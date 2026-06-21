@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>让你的 AI CLI 克隆并启动 ForgeaX · Clone & launch with your AI CLI — ForgeaX</title>
+<meta name="description" content="不用手动操作 —— 把仓库地址交给你的 AI 编程 CLI(Claude Code / Codex / Cursor / forgeax),让它自己 clone、装依赖、启动 ForgeaX。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body class="lang-en">
+<div id="site-header"></div>
+<main>
+  <article class="read article">
+    <a class="back" href="/tutorials/"><span data-lang="zh">← 返回教程</span><span data-lang="en">← Back to tutorials</span></a>
+    <div class="meta"><span class="tag brand"><span data-lang="zh">入门</span><span data-lang="en">Beginner</span></span><span data-lang="zh">约 3 分钟</span><span data-lang="en">~3 min</span></div>
+    <h1><span data-lang="zh">让你的 AI CLI 克隆并启动 ForgeaX</span><span data-lang="en">Have your AI CLI clone &amp; launch ForgeaX</span></h1>
+    <p class="standfirst"><span data-lang="zh">最 AI 原生的装法:不用自己敲命令 —— 把仓库地址交给你的编程 CLI 智能体,让它自己 clone、装依赖、启动,再把本地地址告诉你。</span><span data-lang="en">The most AI-native install: don't type the commands yourself — hand the repo to your coding-CLI agent and let it clone, install, launch, and report back the local URL.</span></p>
+
+    <div class="prose">
+      <div class="note"><span data-lang="zh">🚧 源码正在为公开发布做准备。公开后,下面的流程对任意 AI 编程 CLI 都适用。</span><span data-lang="en">🚧 The source is being prepared for public release. Once public, the flow below works with any AI coding CLI.</span></div>
+
+      <h2><span data-lang="zh">你需要什么</span><span data-lang="en">What you need</span></h2>
+      <ul>
+        <li><span data-lang="zh">一个能跑 shell 命令的 AI 编程 CLI —— 例如 <strong>Claude Code</strong>、<strong>Codex</strong>、<strong>Cursor</strong>,或 ForgeaX 自带的 <strong>forgeax</strong> CLI;</span><span data-lang="en">An AI coding CLI that can run shell commands — e.g. <strong>Claude Code</strong>, <strong>Codex</strong>, <strong>Cursor</strong>, or ForgeaX's own <strong>forgeax</strong> CLI;</span></li>
+        <li><span data-lang="zh">已安装 <code>git</code> 和 <a href="https://bun.sh" target="_blank" rel="noopener">Bun</a>(项目运行时);</span><span data-lang="en"><code>git</code> and <a href="https://bun.sh" target="_blank" rel="noopener">Bun</a> (the project runtime) installed;</span></li>
+        <li><span data-lang="zh">一个 AI 模型的 API key(供工作室里的 Forge 使用)。</span><span data-lang="en">an AI model API key (for Forge inside the studio).</span></li>
+      </ul>
+
+      <h2><span data-lang="zh">一句话交给 CLI</span><span data-lang="en">One instruction to your CLI</span></h2>
+      <p><span data-lang="zh">在一个空目录里打开你的 CLI,把下面这段话发给它:</span><span data-lang="en">Open your CLI in an empty folder and give it this:</span></p>
+      <pre><code><span data-lang="zh">克隆 https://github.com/ForgeaX-Games/forgeax-studio
+(带上子模块 --recurse-submodules),
+进入目录后运行 install 脚本装好依赖,
+再运行 start 脚本启动它,
+最后把可以打开的本地地址告诉我。</span><span data-lang="en">Clone https://github.com/ForgeaX-Games/forgeax-studio
+(with --recurse-submodules), cd into it,
+run the install script to set up dependencies,
+then run the start script to launch it,
+and tell me the local URL I can open.</span></code></pre>
+      <p><span data-lang="zh">CLI 会自己执行 clone、安装、启动这几步,过程里需要的选择(比如填 API key)它会问你。完成后你会拿到一个本地地址,在浏览器打开就是工作室。</span><span data-lang="en">The CLI runs the clone / install / launch steps itself, asking you for anything it needs along the way (such as the API key). When it's done you get a local URL — open it in the browser and you're in the studio.</span></p>
+
+      <h2><span data-lang="zh">手动等价命令(可选)</span><span data-lang="en">Manual equivalent (optional)</span></h2>
+      <p><span data-lang="zh">如果你想自己来,等价的命令大致是:</span><span data-lang="en">If you'd rather do it yourself, the equivalent is roughly:</span></p>
+      <pre><code>git clone --recurse-submodules \
+  https://github.com/ForgeaX-Games/forgeax-studio
+cd forgeax-studio
+bash install.sh   # 装依赖 / install deps (+ 填 API key)
+bash start.sh     # 启动 / launch the studio</code></pre>
+      <p><span data-lang="zh">启动后按提示在浏览器打开本地地址即可。接下来就去 <a href="/tutorials/getting-started.html">快速开始</a>,对 Forge 说出你的第一个游戏。</span><span data-lang="en">Then open the local URL it prints. Next, head to <a href="/tutorials/getting-started.html">Quick start</a> and tell Forge your first game.</span></p>
+
+      <blockquote><span data-lang="zh">为什么这样装最顺?因为 ForgeaX 本就是为 AI 设计的 —— 连"把自己装起来"这件事,也乐意交给 AI 做。</span><span data-lang="en">Why is this the smoothest install? Because ForgeaX is built for AI in the first place — even "set itself up" is something we're happy to hand to an agent.</span></blockquote>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/tutorials/getting-started.html"><span data-lang="zh">下一步:你的第一款游戏 →</span><span data-lang="en">Next: your first game →</span></a></p>
+  </article>
+</main>
+<div id="site-footer"></div>
+<script src="/assets/site.js"></script>
+</body>
+</html>

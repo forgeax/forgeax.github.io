@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>引擎示例 · Examples — ForgeaX</title>
+<meta name="description" content="Runnable WebGPU engine examples — triangle, glTF, sprites, text, physics and more, built from the ForgeaX engine." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+<style>
+  .game{display:block;color:inherit;text-decoration:none;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);overflow:hidden;transition:border-color .2s,transform .2s}
+  .game:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+  .game.card-disabled{opacity:.5;pointer-events:none}
+  .game .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,var(--bg-floating),var(--bg-base));display:grid;place-items:center;position:relative;border-bottom:1px solid var(--border-subtle)}
+  .game .thumb .play{width:54px;height:54px;border-radius:50%;background:rgba(212,255,72,.12);border:1px solid rgba(212,255,72,.35);display:grid;place-items:center;color:var(--brand);font-size:20px}
+  .game .thumb .soon{position:absolute;bottom:10px;right:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary)}
+  .game .body{padding:18px}
+  .game .body .top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .game .body h3{font-size:18px;font-weight:700}
+  .game .body p{color:var(--text-secondary);font-size:14.5px;margin:8px 0 12px}
+  .game .body .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .stamp{font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);margin-top:24px}
+</style>
+</head>
+<body class="lang-en">
+<div id="site-header"></div>
+<main class="wrap">
+  <div class="page-head">
+    <h1><span data-lang="zh">引擎示例</span><span data-lang="en">Engine Examples</span></h1>
+    <p><span data-lang="zh">点开任意一个，在浏览器里直接跑起来。这些示例都是从 ForgeaX 引擎源码构建的 WebGPU/WebGL2 demo。</span><span data-lang="en">Click any one to run it live in your browser. Each is a WebGPU/WebGL2 demo built from the ForgeaX engine source.</span></p>
+  </div>
+  <div class="section" style="padding-top:18px">
+    <div class="grid c2">
+      <a class="game" href="/examples/triangle/" target="_blank" rel="noopener">
+        <div class="thumb"><div class="play">▶</div><span class="soon"><span data-lang="zh">实时 demo</span><span data-lang="en">live demo</span></span></div>
+        <div class="body">
+          <div class="top"><h3><span data-lang="zh">你好,三角形</span><span data-lang="en">Hello Triangle</span></h3></div>
+          <p><span data-lang="zh">最小的 WebGPU/WebGL2 管线 —— 一个三角形,WGSL 编译着色。</span><span data-lang="en">The minimal WebGPU/WebGL2 pipeline — one triangle, shader-compiled WGSL.</span></p>
+          <div class="tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">wgsl</span></div>
+        </div>
+      </a>
+      <a class="game" href="/examples/transform-hierarchy/" target="_blank" rel="noopener">
+        <div class="thumb"><div class="play">▶</div><span class="soon"><span data-lang="zh">实时 demo</span><span data-lang="en">live demo</span></span></div>
+        <div class="body">
+          <div class="top"><h3><span data-lang="zh">层级变换</span><span data-lang="en">Transform Hierarchy</span></h3></div>
+          <p><span data-lang="zh">父子变换 —— 由场景图驱动的公转节点。</span><span data-lang="en">Parent/child transforms — orbiting nodes driven by a scene graph.</span></p>
+          <div class="tags"><span class="tag">transform</span><span class="tag">scene-graph</span></div>
+        </div>
+      </a>
+      <a class="game" href="/examples/gltf/" target="_blank" rel="noopener">
+        <div class="thumb"><div class="play">▶</div><span class="soon"><span data-lang="zh">实时 demo</span><span data-lang="en">live demo</span></span></div>
+        <div class="body">
+          <div class="top"><h3><span data-lang="zh">glTF 模型</span><span data-lang="en">glTF Model</span></h3></div>
+          <p><span data-lang="zh">加载并渲染带 PBR 材质的 glTF 2.0 资产。</span><span data-lang="en">Load and render a glTF 2.0 asset with PBR materials.</span></p>
+          <div class="tags"><span class="tag">gltf</span><span class="tag">mesh</span><span class="tag">pbr</span></div>
+        </div>
+      </a>
+      <a class="game" href="/examples/sprite/" target="_blank" rel="noopener">
+        <div class="thumb"><div class="play">▶</div><span class="soon"><span data-lang="zh">实时 demo</span><span data-lang="en">live demo</span></span></div>
+        <div class="body">
+          <div class="top"><h3><span data-lang="zh">精灵</span><span data-lang="en">Sprites</span></h3></div>
+          <p><span data-lang="zh">2D 精灵渲染 —— 图集纹理的批量四边形。</span><span data-lang="en">2D sprite rendering — batched quads with a texture atlas.</span></p>
+          <div class="tags"><span class="tag">2d</span><span class="tag">sprite</span></div>
+        </div>
+      </a>
+      <a class="game" href="/examples/picking/" target="_blank" rel="noopener">
+        <div class="thumb"><div class="play">▶</div><span class="soon"><span data-lang="zh">实时 demo</span><span data-lang="en">live demo</span></span></div>
+        <div class="body">
+          <div class="top"><h3><span data-lang="zh">GPU 拾取</span><span data-lang="en">GPU Picking</span></h3></div>
+          <p><span data-lang="zh">点击选择 —— 从 GPU 回读逐像素对象 id。</span><span data-lang="en">Click to select — per-pixel object id read back from the GPU.</span></p>
+          <div class="tags"><span class="tag">picking</span><span class="tag">interaction</span></div>
+        </div>
+      </a>
+      <a class="game" href="/examples/fxaa/" target="_blank" rel="noopener">
+        <div class="thumb"><div class="play">▶</div><span class="soon"><span data-lang="zh">实时 demo</span><span data-lang="en">live demo</span></span></div>
+        <div class="body">
+          <div class="top"><h3><span data-lang="zh">FXAA 抗锯齿</span><span data-lang="en">FXAA</span></h3></div>
+          <p><span data-lang="zh">作为后处理通道的快速近似抗锯齿。</span><span data-lang="en">Fast approximate anti-aliasing as a post-process pass.</span></p>
+          <div class="tags"><span class="tag">post-processing</span><span class="tag">anti-aliasing</span></div>
+        </div>
+      </a>
+      <a class="game" href="/examples/bloom/" target="_blank" rel="noopener">
+        <div class="thumb"><div class="play">▶</div><span class="soon"><span data-lang="zh">实时 demo</span><span data-lang="en">live demo</span></span></div>
+        <div class="body">
+          <div class="top"><h3><span data-lang="zh">泛光</span><span data-lang="en">Bloom</span></h3></div>
+          <p><span data-lang="zh">HDR 泛光 —— 亮部提取 + 可分离模糊 + 合成。</span><span data-lang="en">HDR bloom — bright-pass + separable blur + composite.</span></p>
+          <div class="tags"><span class="tag">post-processing</span><span class="tag">bloom</span><span class="tag">hdr</span></div>
+        </div>
+      </a>
+      <a class="game" href="/examples/tonemap/" target="_blank" rel="noopener">
+        <div class="thumb"><div class="play">▶</div><span class="soon"><span data-lang="zh">实时 demo</span><span data-lang="en">live demo</span></span></div>
+        <div class="body">
+          <div class="top"><h3><span data-lang="zh">色调映射</span><span data-lang="en">Tonemap</span></h3></div>
+          <p><span data-lang="zh">HDR 到显示 —— ACES / Reinhard 色调映射算子。</span><span data-lang="en">HDR to display — ACES / Reinhard tone mapping operators.</span></p>
+          <div class="tags"><span class="tag">hdr</span><span class="tag">tonemap</span></div>
+        </div>
+      </a>
+      <a class="game" href="/examples/physics/" target="_blank" rel="noopener">
+        <div class="thumb"><div class="play">▶</div><span class="soon"><span data-lang="zh">实时 demo</span><span data-lang="en">live demo</span></span></div>
+        <div class="body">
+          <div class="top"><h3><span data-lang="zh">物理</span><span data-lang="en">Physics</span></h3></div>
+          <p><span data-lang="zh">Rapier(wasm)刚体物理驱动 ECS 变换。</span><span data-lang="en">Rigid-body physics via Rapier (wasm) driving ECS transforms.</span></p>
+          <div class="tags"><span class="tag">physics</span><span class="tag">rapier</span></div>
+        </div>
+      </a>
+    </div>
+    <p class="stamp"><span data-lang="zh">对齐引擎</span><span data-lang="en">aligned to engine</span> v0.0.0 · <code>5ebada94b8</code></p>
+  </div>
+</main>
+<script src="/assets/site.js"></script>
+</body>
+</html>

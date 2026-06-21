@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>渲染管线:PBR、IBL 与 SSAO · Rendering: PBR, IBL &amp; SSAO — ForgeaX</title>
+<meta name="description" content="ForgeaX 自研渲染管线:PBR、基于图像的光照(IBL)、HDR 天空盒、屏幕空间环境光遮蔽(SSAO)与抗锯齿,跑在双 RHI 之上。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body class="lang-en">
+<div id="site-header"></div>
+<main>
+  <article class="read article">
+    <a class="back" href="/blog/"><span data-lang="zh">← 返回更新</span><span data-lang="en">← Back to blog</span></a>
+    <div class="meta"><span class="tag brand"><span data-lang="zh">更新</span><span data-lang="en">Update</span></span><span>2026-06-12</span><span data-lang="zh">引擎</span><span data-lang="en">Engine</span></div>
+    <h1><span data-lang="zh">渲染管线:PBR、IBL 与 SSAO</span><span data-lang="en">Rendering: PBR, IBL &amp; SSAO</span></h1>
+    <p class="standfirst"><span data-lang="zh">游戏好不好看,渲染管线说了算。ForgeaX 的自研渲染链已经覆盖了现代实时渲染的主要环节 —— 而且 AI 生成的游戏开箱就能用上。</span><span data-lang="en">How good a game looks comes down to the render pipeline. ForgeaX's self-built rendering chain now covers the main stages of modern real-time rendering — and AI-generated games get it out of the box.</span></p>
+
+    <div class="prose">
+      <h2><span data-lang="zh">已经具备的能力</span><span data-lang="en">What's in</span></h2>
+      <ul>
+        <li><span data-lang="zh"><strong>PBR 材质</strong> —— 基于物理的着色,金属/粗糙度工作流,光照表现自然。</span><span data-lang="en"><strong>PBR materials</strong> — physically-based shading with a metalness/roughness workflow for natural lighting.</span></li>
+        <li><span data-lang="zh"><strong>IBL + HDR 天空盒</strong> —— 基于图像的环境光照,场景从环境贴图里"接"到真实的间接光与反射。</span><span data-lang="en"><strong>IBL + HDR skybox</strong> — image-based lighting, so scenes pick up believable indirect light and reflections from an environment map.</span></li>
+        <li><span data-lang="zh"><strong>SSAO</strong> —— 屏幕空间环境光遮蔽,给角落、接缝加上柔和阴影,画面立刻有体积感。</span><span data-lang="en"><strong>SSAO</strong> — screen-space ambient occlusion adds soft contact shadows in corners and seams, giving scenes instant depth.</span></li>
+        <li><span data-lang="zh"><strong>抗锯齿</strong> —— MSAA 与 FXAA,边缘干净不毛糙。</span><span data-lang="en"><strong>Anti-aliasing</strong> — MSAA and FXAA for clean, un-jaggy edges.</span></li>
+        <li><span data-lang="zh"><strong>后处理链 + render-graph</strong> —— 自研材质链与 WGSL 着色器库,按 render-graph 组织,易扩展。</span><span data-lang="en"><strong>Post-processing + render-graph</strong> — a self-built material chain and WGSL shader library, organized as a render-graph that's easy to extend.</span></li>
+      </ul>
+
+      <h2><span data-lang="zh">跑在双 RHI 之上</span><span data-lang="en">On top of dual RHI</span></h2>
+      <p><span data-lang="zh">这套管线建立在两套渲染后端(WebGPU 与一套 wasm 实现)的统一接口之上。两套实现走同一套 API、同时出图,既保证一致性,也在 AI 写错渲染代码时互相验证。</span><span data-lang="en">The pipeline sits on a unified interface over two rendering backends (WebGPU and a wasm implementation). Both run the same API and render side by side — ensuring consistency and cross-checking each other when AI writes rendering code.</span></p>
+
+      <h2><span data-lang="zh">对你意味着什么</span><span data-lang="en">What it means for you</span></h2>
+      <p><span data-lang="zh">你不需要懂任何这些术语。当你描述"一个黄昏氛围的场景"或"金属质感的机甲",引擎已经具备把它渲染好看的底子 —— AI 调用的是同一套管线。</span><span data-lang="en">You don't need to know any of these terms. When you describe "a dusk-lit scene" or "a metallic mech," the engine already has what it takes to render it well — AI calls the very same pipeline.</span></p>
+    </div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/showcase/"><span data-lang="zh">看看渲染效果 →</span><span data-lang="en">See it in the showcase →</span></a></p>
+  </article>
+</main>
+<div id="site-footer"></div>
+<script src="/assets/site.js"></script>
+</body>
+</html>

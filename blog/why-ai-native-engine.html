@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>为什么要做一个 AI 原生引擎 · Why an AI-native engine — ForgeaX</title>
+<meta name="description" content="当 AI 成为引擎的第一用户,API、错误信息、状态形态都应该为 AI 的视角重新设计。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body class="lang-en">
+<div id="site-header"></div>
+<main>
+  <article class="read article">
+    <a class="back" href="/blog/"><span data-lang="zh">← 返回观点</span><span data-lang="en">← Back to blog</span></a>
+    <div class="meta"><span class="tag"><span data-lang="zh">观点</span><span data-lang="en">Opinion</span></span><span>2026-06-16</span></div>
+    <h1><span data-lang="zh">为什么要做一个 AI 原生引擎</span><span data-lang="en">Why build an AI-native engine</span></h1>
+    <p class="standfirst"><span data-lang="zh">大多数游戏引擎的 API 是给人写的。当写代码的主力变成 AI,引擎就该换一种长法。</span><span data-lang="en">Most game-engine APIs are written for humans. When AI becomes the one writing the code, the engine should look different.</span></p>
+
+    <div class="prose">
+      <p><span data-lang="zh">ForgeaX 的核心是:用户描述游戏,AI 来写引擎代码。这听起来只是"换个人写代码",但真正做下去会发现,现成引擎对 AI 并不友好 —— 它们假设的读者是一个能看文档、能猜、能脑补上下文的人类。</span><span data-lang="en">ForgeaX's core idea is simple: the user describes a game, and AI writes the engine code. That sounds like "just a different author," but in practice existing engines aren't friendly to AI — they assume a reader who reads docs, guesses, and fills in context like a human does.</span></p>
+      <p><span data-lang="zh">我们的取舍很简单:<strong>AI 是引擎的第一用户。当"对 AI 友好"和"对人友好"冲突时,优先 AI。</strong>下面是几个具体的做法。</span><span data-lang="en">Our stance is blunt: <strong>AI is the engine's first user. When "friendly to AI" conflicts with "friendly to humans," AI wins.</strong> Here are a few concrete consequences.</span></p>
+
+      <h2><span data-lang="zh">一、单一可信源,其余派生</span><span data-lang="en">1 · One source of truth, derive the rest</span></h2>
+      <p><span data-lang="zh">同一个事实只有一处定义,其他地方都从它派生。比如组件的字段定义内联在 schema 里,inspector、调试器、工具链直接读 schema,而不是去 grep 源码瞎猜。AI 不需要"记住"散落各处的约定,因为约定只有一处。</span><span data-lang="en">A fact is defined in exactly one place; everything else derives from it. Component fields, for instance, live inline in a schema — inspectors, debuggers and tooling read the schema instead of grepping source and guessing. AI doesn't need to "remember" conventions scattered everywhere, because there's only one place to look.</span></p>
+
+      <h2><span data-lang="zh">二、错误要让 AI 看得懂、能恢复</span><span data-lang="en">2 · Errors AI can understand and recover from</span></h2>
+      <p><span data-lang="zh">错误不是 <code>throw</code> 一句人话就完事。我们用闭包的错误码,每个错误自带"这是什么、为什么、怎么恢复"的结构化信息。AI 拿到错误,能直接知道下一步该改哪里,而不是把异常文本当成玄学。</span><span data-lang="en">An error isn't just a human sentence you <code>throw</code>. We use a closed set of error codes, each carrying structured "what / why / how to recover" info. When AI hits an error, it knows what to change next — instead of treating the exception text as mysticism.</span></p>
+
+      <h2><span data-lang="zh">三、用结构化数据代替"看显示器"</span><span data-lang="en">3 · Structured data instead of "look at the screen"</span></h2>
+      <p><span data-lang="zh">渲染 bug 最难的地方在于"它在屏幕上看起来不对"。人可以盯着显示器调,AI 不行。所以引擎支持把一帧的渲染调用录下来 —— draw call、绑定、渲染目标、管线状态都能离线读取、重放、定位到第 N 次绘制时的完整状态。视觉问题被转成了 AI 能 <code>Read</code> 的数据。</span><span data-lang="en">The hardest part of a rendering bug is that "it looks wrong on screen." A human can stare at the monitor; AI can't. So the engine can capture a frame of render calls — draw calls, bindings, render targets, pipeline state — to read offline, replay, and inspect the full state at the Nth draw. A visual problem becomes data AI can <code>Read</code>.</span></p>
+
+      <h2><span data-lang="zh">四、双实现互相验证</span><span data-lang="en">4 · Two implementations that check each other</span></h2>
+      <p><span data-lang="zh">渲染层有两套后端实现(WebGPU 与一套 wasm 实现),走同一套接口。它们同时出图:一旦 AI 把引擎 API 用错了,另一套后端会立刻表现出不一致,问题随即暴露。这比"等人来 review"快得多。</span><span data-lang="en">The render layer has two backend implementations (WebGPU and a wasm one) behind a single interface. They render side by side: the moment AI misuses an engine API, the other backend immediately diverges, surfacing the problem — far faster than waiting for a human review.</span></p>
+
+      <hr />
+      <p><span data-lang="zh">这些设计有一个共同的衡量标准:<strong>读者(无论人还是 AI)要装进脑子里的概念越少越好。</strong>API 越自洽、越能就地索引,AI 写对的概率就越高,人来接手时也越省心。</span><span data-lang="en">These designs share one yardstick: <strong>the fewer concepts a reader (human or AI) must hold in their head, the better.</strong> The more self-consistent and locally-indexable the API, the more often AI gets it right — and the easier it is for a human to take over.</span></p>
+      <p><span data-lang="zh">AI 原生不是一句口号,而是一连串"为 AI 视角重做一遍"的具体决定。我们会在文档和后续更新里,把这些逐步展开。</span><span data-lang="en">"AI-native" isn't a slogan — it's a long series of "redo it for the AI's point of view" decisions. We'll unpack more of them in the docs and future posts.</span></p>
+    </div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/docs/"><span data-lang="zh">看看开发文档大纲 →</span><span data-lang="en">Browse the docs outline →</span></a></p>
+  </article>
+</main>
+<div id="site-footer"></div>
+<script src="/assets/site.js"></script>
+</body>
+</html>

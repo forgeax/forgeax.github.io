@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>插件市场 · Marketplace — ForgeaX</title>
+<meta name="description" content="ForgeaX 的插件市场:按类型筛选并搜索 agent、工作台、技能、CLI 后端、工具与模型绑定。一切能力都是运行时加载的插件。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+<style>
+  .mk-bar{position:sticky;top:var(--nav-h);z-index:50;background:rgba(13,13,13,.86);backdrop-filter:saturate(160%) blur(10px);
+    margin:8px 0 0;padding:12px 0;border-bottom:1px solid var(--border-subtle);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .mk-tabs{display:flex;gap:6px;flex-wrap:wrap}
+  .mk-tab{font-family:inherit;font-size:13.5px;font-weight:600;color:var(--text-secondary);background:var(--bg-base);
+    border:1px solid var(--border-subtle);border-radius:var(--radius-pill);padding:7px 14px;cursor:pointer;
+    transition:color var(--dur-fast) var(--ease-out),background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out)}
+  .mk-tab:hover{color:var(--text-primary);border-color:var(--border-strong)}
+  .mk-tab.active{color:var(--text-on-bright);background:var(--brand);border-color:var(--brand)}
+  .mk-search{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--bg-base);border:1px solid var(--border-subtle);
+    border-radius:var(--radius-md);padding:7px 12px;min-width:210px}
+  .mk-search svg{flex-shrink:0;color:var(--text-tertiary)}
+  .mk-search input{background:none;border:0;outline:0;color:var(--text-primary);font-family:inherit;font-size:14px;width:100%}
+  .mk-count{font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);margin:16px 0 12px}
+  .mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+  .mk-item{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:16px;
+    transition:transform var(--dur-smooth) var(--ease-out),border-color var(--dur-smooth) var(--ease-out)}
+  .mk-item:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+  .mk-item.hide{display:none}
+  .mk-item .kind{display:inline-block;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.6px;
+    padding:2px 8px;border-radius:var(--radius-pill);margin-bottom:9px}
+  .k-agent{background:rgba(196,163,255,.12);color:#c4a3ff;border:1px solid rgba(196,163,255,.25)}
+  .k-wb{background:rgba(212,255,72,.10);color:var(--brand-light);border:1px solid rgba(212,255,72,.25)}
+  .k-skill{background:rgba(255,156,42,.12);color:var(--orange);border:1px solid rgba(255,156,42,.25)}
+  .k-backend{background:rgba(99,156,248,.12);color:var(--blue);border:1px solid rgba(99,156,248,.25)}
+  .k-tool{background:rgba(72,255,207,.10);color:var(--teal);border:1px solid rgba(72,255,207,.25)}
+  .k-binding{background:rgba(168,85,247,.14);color:#c084fc;border:1px solid rgba(168,85,247,.3)}
+  .mk-item h3{font-size:15px;font-weight:700;line-height:1.3}
+  .mk-item .slug{font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);font-weight:400;display:block;margin-top:2px}
+  .mk-item p{color:var(--text-secondary);font-size:13.5px;margin-top:7px}
+  .mk-item a{color:var(--brand)}
+  .mk-empty{display:none;color:var(--text-tertiary);text-align:center;padding:36px 0}
+</style>
+</head>
+<body class="lang-en">
+<div id="site-header"></div>
+<main class="wrap">
+  <div class="page-head">
+    <h1><span data-lang="zh">插件市场</span><span data-lang="en">Marketplace</span></h1>
+    <p><span data-lang="zh">在 ForgeaX 里,几乎一切能力都是一枚<strong>可装载插件</strong>。按类型筛选、搜索,启用、排序,甚至自己写。</span><span data-lang="en">In ForgeaX nearly every capability is a <strong>loadable plugin</strong>. Filter by kind, search, enable, reorder — or write your own.</span></p>
+  </div>
+
+  <div class="mk-bar">
+    <div class="mk-tabs">
+      <button class="mk-tab active" data-kind="all"><span data-lang="zh">全部</span><span data-lang="en">All</span></button>
+      <button class="mk-tab" data-kind="agent">Agent</button>
+      <button class="mk-tab" data-kind="workbench"><span data-lang="zh">工作台</span><span data-lang="en">Workbench</span></button>
+      <button class="mk-tab" data-kind="skill"><span data-lang="zh">技能</span><span data-lang="en">Skill</span></button>
+      <button class="mk-tab" data-kind="backend"><span data-lang="zh">CLI 后端</span><span data-lang="en">CLI backend</span></button>
+      <button class="mk-tab" data-kind="tool"><span data-lang="zh">工具</span><span data-lang="en">Tool</span></button>
+      <button class="mk-tab" data-kind="binding"><span data-lang="zh">模型绑定</span><span data-lang="en">Binding</span></button>
+    </div>
+    <label class="mk-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="mkSearch" type="search" placeholder="Search…" data-ph-en="Search…" data-ph-zh="搜索…" aria-label="search plugins" />
+    </label>
+  </div>
+
+  <div class="mk-count" id="mkCount"></div>
+
+  <div class="mk-grid" id="mkGrid">
+
+    <!-- ── Agents ── -->
+    <div class="mk-item" data-kind="agent" data-search="arin producer 制作人 统筹 production">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">Arin · 制作人</span><span data-lang="en">Arin · Producer</span><span class="slug">producer</span></h3>
+      <p><span data-lang="zh">全能制作人,统筹策划 / 程序 / 美术 / 音效。</span><span data-lang="en">An all-round producer coordinating design / code / art / audio.</span></p>
+    </div>
+    <div class="mk-item" data-kind="agent" data-search="architect 架构师 abstraction">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">架构师</span><span data-lang="en">Architect</span><span class="slug">architect</span></h3>
+      <p><span data-lang="zh">跨域抽象,把游戏 / 代码 / 艺术接到一起。</span><span data-lang="en">Cross-domain abstraction across game, code and art.</span></p>
+    </div>
+    <div class="mk-item" data-kind="agent" data-search="iori gameplay 玩法 pillar mechanics">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">Iori · 玩法柱</span><span data-lang="en">Iori · Gameplay</span><span class="slug">pillar</span></h3>
+      <p><span data-lang="zh">核心玩法师 —— 玩法柱 + 数值骨架。</span><span data-lang="en">Core mechanics — the gameplay pillar and numeric skeleton.</span></p>
+    </div>
+    <div class="mk-item" data-kind="agent" data-search="suzu design experience 体验设计 hud onboarding">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">Suzu · 体验设计</span><span data-lang="en">Suzu · Experience</span><span class="slug">design</span></h3>
+      <p><span data-lang="zh">玩家节拍 / HUD / onboarding。</span><span data-lang="en">Player pacing, HUD and onboarding.</span></p>
+    </div>
+    <div class="mk-item" data-kind="agent" data-search="kotone narrative 叙事 story world dialogue">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">Kotone · 叙事</span><span data-lang="en">Kotone · Narrative</span><span class="slug">narrative</span></h3>
+      <p><span data-lang="zh">世界观 / 角色 bio / 对白。</span><span data-lang="en">World, character bios and dialogue.</span></p>
+    </div>
+    <div class="mk-item" data-kind="agent" data-search="iro art 美术 sprite vfx ui">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">Iro · 美术</span><span data-lang="en">Iro · Art</span><span class="slug">art</span></h3>
+      <p><span data-lang="zh">立绘 / sprite / VFX / UI 统筹。</span><span data-lang="en">Portraits, sprites, VFX and UI direction.</span></p>
+    </div>
+    <div class="mk-item" data-kind="agent" data-search="coder coding 编码 cc-coder code">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">cc-coder · 编码</span><span data-lang="en">cc-coder · Coder</span><span class="slug">coder</span></h3>
+      <p><span data-lang="zh">通用编码 —— 把 spec 落成可运行代码。</span><span data-lang="en">General coding — turns specs into running code.</span></p>
+    </div>
+    <div class="mk-item" data-kind="agent" data-search="tsumugi build ci 工程 toolchain">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">Tsumugi · 工程</span><span data-lang="en">Tsumugi · Build</span><span class="slug">build</span></h3>
+      <p><span data-lang="zh">构建 / CI / 工具链 / 部署。</span><span data-lang="en">Build, CI, toolchain and deployment.</span></p>
+    </div>
+    <div class="mk-item" data-kind="agent" data-search="yevi review 审查 tech debt reviewer">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">Yevi · 审查</span><span data-lang="en">Yevi · Reviewer</span><span class="slug">review</span></h3>
+      <p><span data-lang="zh">技术审查 —— 发现并清理技术债。</span><span data-lang="en">Technical review — identifies and clears tech debt.</span></p>
+    </div>
+    <div class="mk-item" data-kind="agent" data-search="companion personas 陪伴人格 character">
+      <span class="kind k-agent">Agent</span>
+      <h3><span data-lang="zh">陪伴人格</span><span data-lang="en">Companion personas</span><span class="slug">personas</span></h3>
+      <p><span data-lang="zh">同等编码力、不同性格的可选陪伴角色。</span><span data-lang="en">Optional companions — same skill, different character.</span></p>
+    </div>
+
+    <!-- ── Workbenches ── -->
+    <div class="mk-item" data-kind="workbench" data-search="wb-character 角色编辑器 portrait 立绘 turnaround character">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">角色编辑器</span><span data-lang="en">Character editor</span><span class="slug">wb-character</span></h3>
+      <p><span data-lang="zh">一句人设 → 正面立绘 + 转身三视图。</span><span data-lang="en">A one-line brief → portrait + turnaround.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-anim 动画 animation walk attack sprite">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">动画</span><span data-lang="en">Animation</span><span class="slug">wb-anim</span></h3>
+      <p><span data-lang="zh">把静止角色变成会走、会打、带骨骼的动作。</span><span data-lang="en">Turn a still character into walking, attacking, skeletal motion.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-skill 技能 vfx 特效 effects fireball">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">技能 / 特效</span><span data-lang="en">Skill / VFX</span><span class="slug">wb-skill</span></h3>
+      <p><span data-lang="zh">火光、刀光、光环等技能特效,自动挂到出手那一刻。</span><span data-lang="en">Fire, slashes, auras — auto-attached to the moment of cast.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-lowpoly-obj 方块人 blocky rigged 3d character">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">方块人编辑器</span><span data-lang="en">Blocky-character editor</span><span class="slug">wb-lowpoly-obj</span></h3>
+      <p><span data-lang="zh">像捏积木一样做可动 3D 角色,导出标准 3D 文件。</span><span data-lang="en">Build rigged 3D characters like blocks, export standard 3D.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-3d-lowpoly 低多边形 node graph 3d props">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">3D 低多边形生成器</span><span data-lang="en">Low-poly generator</span><span class="slug">wb-3d-lowpoly</span></h3>
+      <p><span data-lang="zh">用连线节点做 3D 道具 / 机械,改参数全套重出。</span><span data-lang="en">Node-graph 3D props; change a parameter, regenerate the set.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-gen3d 3d 生成 text image to 3d model">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">3D 角色生成</span><span data-lang="en">3D generation</span><span class="slug">wb-gen3d</span></h3>
+      <p><span data-lang="zh">文字 / 图片直接变 3D 模型,接入多家生成服务。</span><span data-lang="en">Text or image straight to a 3D model via several generators.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-2d-scene-asset-generator 2d 场景资产 props textures">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">2D 场景资产生成器</span><span data-lang="en">2D scene assets</span><span class="slug">wb-2d-scene-asset-generator</span></h3>
+      <p><span data-lang="zh">批量生成道具、贴图、装饰、UI 小图,自动归档。</span><span data-lang="en">Batch props, textures, decorations and UI bits, auto-filed.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-scene-generator 场景生成器 scene build graph">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">场景生成器</span><span data-lang="en">Scene generator</span><span class="slug">wb-scene-generator</span></h3>
+      <p><span data-lang="zh">自动搭出一整张游戏场景,做成可重跑的流程图。</span><span data-lang="en">Assemble a whole scene as a re-runnable graph.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-ui ui 工坊 menu button health bar prototype">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">UI 工坊</span><span data-lang="en">UI workbench</span><span class="slug">wb-ui</span></h3>
+      <p><span data-lang="zh">按游戏类型出一套可点的交互界面原型。</span><span data-lang="en">A clickable UI prototype for your game type.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-items 道具 图标 icons weapon potion data">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">道具 / 图标</span><span data-lang="en">Items / icons</span><span class="slug">wb-items</span></h3>
+      <p><span data-lang="zh">武器、药水、金币等图标,图与数据一张表。</span><span data-lang="en">Weapons, potions, coins — art and data in one table.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-look 色彩 调色 color grading filter">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">色彩 / Look</span><span data-lang="en">Color / Look</span><span class="slug">wb-look</span></h3>
+      <p><span data-lang="zh">一键统一全游戏的色调氛围。</span><span data-lang="en">Unify the whole game's color mood in one click.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-bgm 音乐 bgm sound sfx timeline">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">音乐 / BGM</span><span data-lang="en">Music / BGM</span><span class="slug">wb-bgm</span></h3>
+      <p><span data-lang="zh">管理背景音乐与音效,排好整局配乐节奏。</span><span data-lang="en">Manage BGM and SFX, sequence the score.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-narrative 叙事工坊 story world template">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">叙事工坊</span><span data-lang="en">Narrative workbench</span><span class="slug">wb-narrative</span></h3>
+      <p><span data-lang="zh">从一句灵感写出整套剧情与世界观。</span><span data-lang="en">From a spark to a full story and world.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-reel 影游 fmv interactive video">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">影游工坊</span><span data-lang="en">Interactive film</span><span class="slug">wb-reel</span></h3>
+      <p><span data-lang="zh">做真人互动影片(FMV)游戏:选项决定剧情。</span><span data-lang="en">Build live-action FMV games where choices drive the story.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-balance 平衡 数值 winrate simulation">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">平衡 / 数值</span><span data-lang="en">Balance</span><span class="slug">wb-balance</span></h3>
+      <p><span data-lang="zh">让 AI 跑几千局,给出胜率与置信区间。</span><span data-lang="en">AI plays thousands of matches for win rates with confidence intervals.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-code 代码 browse files collaborate">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">代码</span><span data-lang="en">Code</span><span class="slug">wb-code</span></h3>
+      <p><span data-lang="zh">在工作台看代码、跳转文件,和编码 AI 一起改。</span><span data-lang="en">Browse code, jump files, edit alongside the coding AI.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-observatory 轨迹 观察台 replay trace blackbox">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">轨迹观察台</span><span data-lang="en">Observatory</span><span class="slug">wb-observatory</span></h3>
+      <p><span data-lang="zh">像黑匣子一样回放 AI 每一步,精确定位问题。</span><span data-lang="en">Replay every AI step like a black box to pinpoint issues.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-agent-persona 人格编辑器 persona character edit">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">人格编辑器</span><span data-lang="en">Persona editor</span><span class="slug">wb-agent-persona</span></h3>
+      <p><span data-lang="zh">改 AI 助手的性格设定,存一下马上生效。</span><span data-lang="en">Edit an AI's persona; save and it applies instantly.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="wb-plugin-author 插件作者 make plugin wizard nocode">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">插件作者</span><span data-lang="en">Plugin author</span><span class="slug">wb-plugin-author</span></h3>
+      <p><span data-lang="zh">让不会编程的人也能做出自己的工作台插件。</span><span data-lang="en">Let non-coders build their own workbench plugins.</span></p>
+    </div>
+    <div class="mk-item" data-kind="workbench" data-search="admin 面板管理 control panel toggle bind models">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">面板管理</span><span data-lang="en">Admin panel</span><span class="slug">admin</span></h3>
+      <p><span data-lang="zh">工作室总控台:开关工作台、绑模型、看 AI 在线状态。</span><span data-lang="en">The control panel: toggle workbenches, bind models, see AI status.</span></p>
+    </div>
+
+    <!-- ── CLI backends ── -->
+    <div class="mk-item" data-kind="backend" data-search="claude code anthropic default backend cli">
+      <span class="kind k-backend">CLI backend</span>
+      <h3>Claude Code<span class="slug">default</span></h3>
+      <p><span data-lang="zh">默认后端。</span><span data-lang="en">The default backend.</span></p>
+      <p><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener">github.com/anthropics/claude-code →</a></p>
+    </div>
+    <div class="mk-item" data-kind="backend" data-search="codex openai backend cli">
+      <span class="kind k-backend">CLI backend</span>
+      <h3>Codex<span class="slug">openai</span></h3>
+      <p><span data-lang="zh">OpenAI Codex 后端。</span><span data-lang="en">The OpenAI Codex backend.</span></p>
+      <p><a href="https://github.com/openai/codex" target="_blank" rel="noopener">github.com/openai/codex →</a></p>
+    </div>
+    <div class="mk-item" data-kind="backend" data-search="cursor agent backend cli">
+      <span class="kind k-backend">CLI backend</span>
+      <h3>Cursor<span class="slug">cursor</span></h3>
+      <p><span data-lang="zh">Cursor 智能体后端。</span><span data-lang="en">The Cursor agent backend.</span></p>
+      <p><a href="https://cursor.com" target="_blank" rel="noopener">cursor.com →</a></p>
+    </div>
+    <div class="mk-item" data-kind="backend" data-search="forgeax-native self-built own backend default persona">
+      <span class="kind k-backend">CLI backend</span>
+      <h3>forgeax-native<span class="slug">self-built</span></h3>
+      <p><span data-lang="zh">自研后端 —— 不被任何厂商绑死,可随时换芯。</span><span data-lang="en">The self-built backend — no vendor lock-in, swap chips anytime.</span></p>
+    </div>
+
+    <!-- ── Skills ── -->
+    <div class="mk-item" data-kind="skill" data-search="author-plugin skill make plugin">
+      <span class="kind k-skill">Skill</span>
+      <h3><span data-lang="zh">插件作者技能</span><span data-lang="en">Plugin author</span><span class="slug">author-plugin</span></h3>
+      <p><span data-lang="zh">从空白做出一个可加载插件。</span><span data-lang="en">Build a loadable plugin from scratch.</span></p>
+    </div>
+    <div class="mk-item" data-kind="skill" data-search="make-game-design skill game design gdd">
+      <span class="kind k-skill">Skill</span>
+      <h3><span data-lang="zh">游戏设计</span><span data-lang="en">Game design</span><span class="slug">make-game-design</span></h3>
+      <p><span data-lang="zh">生成一份游戏设计。</span><span data-lang="en">Generate a game design.</span></p>
+    </div>
+
+    <!-- ── Tool ── -->
+    <div class="mk-item" data-kind="tool" data-search="balance-resim tool battle simulation winrate">
+      <span class="kind k-tool">Tool</span>
+      <h3><span data-lang="zh">战斗重模拟</span><span data-lang="en">Battle re-simulation</span><span class="slug">balance-resim</span></h3>
+      <p><span data-lang="zh">反复跑局得出胜率与置信区间,给数值平衡当依据。</span><span data-lang="en">Replays matches for win rates with confidence intervals to inform balancing.</span></p>
+    </div>
+
+    <!-- ── Binding ── -->
+    <div class="mk-item" data-kind="binding" data-search="anthropic-text model binding channel">
+      <span class="kind k-binding">Binding</span>
+      <h3><span data-lang="zh">Anthropic 文本通道</span><span data-lang="en">Anthropic text channel</span><span class="slug">anthropic-text</span></h3>
+      <p><span data-lang="zh">把抽象档位映射成具体厂商模型。</span><span data-lang="en">Maps abstract tiers to a concrete vendor model.</span></p>
+    </div>
+
+  </div>
+  <div class="mk-empty" id="mkEmpty"><span data-lang="zh">没有匹配的插件。</span><span data-lang="en">No plugins match.</span></div>
+
+  <section class="section">
+    <h2><span data-lang="zh">它怎么加载 · 你怎么扩展</span><span data-lang="en">How it loads · how you extend it</span></h2>
+    <div class="grid c2">
+      <div class="card"><h3><span data-lang="zh">运行时加载</span><span data-lang="en">Loaded at runtime</span></h3><p><span data-lang="zh">CLI 启动时按需挂载插件;agent 的人格只在被派发那一刻加载,共享部分同时附加给编排者与执行者。</span><span data-lang="en">The CLI mounts plugins on demand; an agent's persona loads only when dispatched, with shared pieces attached to both orchestrator and worker.</span></p></div>
+      <div class="card"><h3><span data-lang="zh">你能做什么</span><span data-lang="en">What you can do</span></h3><p><span data-lang="zh">在「面板管理 / admin」里启用、排序工作台,切换 AI 后端;也能用「插件作者」从空白写出第一个可加载插件。</span><span data-lang="en">In the admin panel, enable and reorder workbenches and switch backends; or use the plugin-author wizard to write your first plugin.</span></p></div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="/assets/site.js"></script>
+<script>
+  (function () {
+    var tabs = [].slice.call(document.querySelectorAll(".mk-tab"));
+    var items = [].slice.call(document.querySelectorAll(".mk-item"));
+    var search = document.getElementById("mkSearch");
+    var count = document.getElementById("mkCount");
+    var empty = document.getElementById("mkEmpty");
+    var kind = "all";
+    function apply() {
+      var q = (search.value || "").trim().toLowerCase();
+      var n = 0;
+      items.forEach(function (it) {
+        var okKind = kind === "all" || it.getAttribute("data-kind") === kind;
+        var okQ = !q || (it.getAttribute("data-search") || "").indexOf(q) >= 0 || it.textContent.toLowerCase().indexOf(q) >= 0;
+        var show = okKind && okQ;
+        it.classList.toggle("hide", !show);
+        if (show) n++;
+      });
+      if (count) count.textContent = n + " / " + items.length;
+      if (empty) empty.style.display = n ? "none" : "block";
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        tabs.forEach(function (x) { x.classList.remove("active"); });
+        t.classList.add("active");
+        kind = t.getAttribute("data-kind");
+        apply();
+      });
+    });
+    if (search) search.addEventListener("input", apply);
+    apply();
+  })();
+</script>
+</body>
+</html>

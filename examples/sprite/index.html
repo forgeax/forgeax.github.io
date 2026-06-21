@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script>(function(){var N='__wgpu_notice';function show(){if(document.getElementById(N))return;var d=document.createElement('div');d.id=N;d.style.cssText='position:fixed;inset:0;display:grid;place-items:center;background:#0b0d10;color:#e6e6e6;font:15px/1.6 system-ui,sans-serif;text-align:center;padding:24px;z-index:2147483647';d.innerHTML='<div><div style="font-size:44px">\u26A1</div><p><b>This demo needs WebGPU</b></p><p style="opacity:.75;max-width:32em">Your browser doesn\u2019t have working WebGPU. Open in <b>Chrome or Edge</b> (latest), or Safari 26+ / Firefox with WebGPU enabled. \u8FD9\u4E2A demo \u9700\u8981 WebGPU\uFF0C\u8BF7\u7528\u6700\u65B0\u7248 Chrome / Edge \u6253\u5F00\u3002</p><p style="opacity:.5;font-size:13px">Check chrome://gpu or webgpureport.org</p></div>';(document.body||document.documentElement).appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.appendChild(d);},2500);}async function chk(){var ok=false;try{if(navigator.gpu){var a=await navigator.gpu.requestAdapter();ok=!!a;}}catch(e){}if(!ok){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',show);else show();}}chk();})();</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>forgeax-engine - Hello Sprite (layer-z + JRPG Y-sort)</title>
+    <style>
+      html, body { margin: 0; padding: 0; height: 100%; background: #1a1a22; color: #e8e8ef; font-family: ui-monospace, monospace; }
+      canvas { display: block; width: 100vw; height: 100vh; }
+      .hint {
+        position: fixed; left: 12px; top: 12px;
+        background: rgba(0, 0, 0, 0.45); padding: 8px 12px;
+        border-radius: 6px; line-height: 1.4; pointer-events: none;
+      }
+      .hint b { color: #ffe57c; }
+    </style>
+    <script type="module">var c=document.querySelector("#app")||document.querySelector("canvas");function z(){var d=window.devicePixelRatio||1;if(c&&c.tagName==="CANVAS"){c.width=Math.max(1,Math.round(c.clientWidth*d));c.height=Math.max(1,Math.round(c.clientHeight*d));}}z();addEventListener("resize",z);</script>
+<script type="module" crossorigin src="/examples/sprite/assets/main-CfvqAgLx.js"></script>
+    <link rel="modulepreload" crossorigin href="/examples/sprite/assets/chunk-DtRyYLXJ.js">
+    <link rel="modulepreload" crossorigin href="/examples/sprite/assets/dist-DnarRK0e.js">
+  </head>
+  <body>
+    <canvas id="app"></canvas>
+    <div class="hint">
+      <b>1</b> = scene-A (mode=0, layer-z horizontal)<br />
+      <b>2</b> = scene-B (mode=1, JRPG Y-sort foot pivot)<br />
+      mouse-wheel up/down = scene-B/A
+    </div>
+  </body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>开发文档 · Docs — ForgeaX</title>
+<meta name="description" content="ForgeaX 开发文档 —— 从用户角度,带你用 ForgeaX 做出一款游戏:安装、核心概念、对话开发、场景编辑、资产、运行、发布与进阶。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body class="lang-en">
+<div id="site-header"></div>
+<main class="wrap">
+  <div class="page-head">
+    <h1><span data-lang="zh">开发文档</span><span data-lang="en">Documentation</span></h1>
+    <p><span data-lang="zh">从用户角度,带你一步步用 ForgeaX 做出一款游戏。点开每一条查看细节。</span><span data-lang="en">A user's-eye guide to building a game with ForgeaX. Click any item to expand the details.</span></p>
+  </div>
+
+  <div class="section" style="padding-top:14px">
+    <div class="docs-layout">
+
+      <aside class="docs-sidebar">
+        <div class="docs-search">
+          <input id="docSearch" type="search" autocomplete="off" placeholder="Search docs… (/)" data-ph-en="Search docs… (/)" data-ph-zh="搜索文档… (/)" aria-label="search docs" />
+          <div class="docs-results" id="docResults" hidden></div>
+        </div>
+        <div class="t"><span data-lang="zh">目录</span><span data-lang="en">Contents</span></div>
+        <nav>
+          <a href="#ch1"><span data-lang="zh">1 · 开始之前</span><span data-lang="en">1 · Before you start</span></a>
+          <a href="#ch2"><span data-lang="zh">2 · 核心概念</span><span data-lang="en">2 · Core concepts</span></a>
+          <a href="#ch3"><span data-lang="zh">3 · 用对话做游戏</span><span data-lang="en">3 · Build by chatting</span></a>
+          <a href="#ch4"><span data-lang="zh">4 · 场景与编辑器</span><span data-lang="en">4 · Scenes &amp; editor</span></a>
+          <a href="#ch5"><span data-lang="zh">5 · 资产</span><span data-lang="en">5 · Assets</span></a>
+          <a href="#ch6"><span data-lang="zh">6 · 运行与预览</span><span data-lang="en">6 · Run &amp; preview</span></a>
+          <a href="#ch7"><span data-lang="zh">7 · 发布与分享</span><span data-lang="en">7 · Publish &amp; share</span></a>
+          <a href="#ch8"><span data-lang="zh">8 · 进阶</span><span data-lang="en">8 · Advanced</span></a>
+          <a href="#ch9"><span data-lang="zh">9 · 创作工具</span><span data-lang="en">9 · Creation tools</span></a>
+          <a href="#ch10"><span data-lang="zh">10 · Agent 团队</span><span data-lang="en">10 · The agent team</span></a>
+        </nav>
+      </aside>
+
+      <div class="docs-main">
+
+        <!-- ── CH1 ── -->
+        <section class="docs-chapter" id="ch1">
+          <h2><span class="n">1</span><span data-lang="zh">开始之前</span><span data-lang="en">Before you start</span></h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary><span data-lang="zh">ForgeaX 是什么、能做什么样的游戏</span><span data-lang="en">What ForgeaX is and what games it makes</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">ForgeaX 是一个 AI 原生的游戏开发工作室。你用自然语言描述想要的游戏,一个叫 <strong>Forge</strong> 的 AI 主创把它<strong>规划、设计,并亲手写成可运行的游戏代码</strong>,结果实时热重载进浏览器 —— 所见即所玩。</span><span data-lang="en">ForgeaX is an AI-native game development studio. You describe the game in plain language; an AI lead called <strong>Forge</strong> <strong>plans it, designs it, and writes it into running game code itself</strong>, hot-reloading the result into your browser — what you say is what you play.</span></p>
+                <p><span data-lang="zh">它背后有两块自研底座:一个<strong>为 AI 视角重新设计的引擎</strong>(读 <a href="/blog/why-ai-native-engine.html">为什么做 AI 原生引擎</a>),和一条<strong>引导功能持续收敛到正确的开发流水线</strong>(读 <a href="/blog/how-the-loop-works.html">AI 是怎么把功能做对的</a>)。</span><span data-lang="en">Two in-house foundations sit underneath: an <strong>engine redesigned for the AI's point of view</strong> (see <a href="/blog/why-ai-native-engine.html">Why an AI-native engine</a>) and a <strong>development loop that converges features on a correct result</strong> (see <a href="/blog/how-the-loop-works.html">How AI gets a feature right</a>).</span></p>
+                <p><span data-lang="zh">适合做网页端的 <strong>2D / 2.5D / 3D</strong> 游戏。已经用它做出 FPS、暗黑风 ARPG、双关生存、射击压测等可玩 demo(见 <a href="/showcase/">案例</a>);引擎已覆盖 PBR / IBL / SSAO 渲染、2D/3D 物理、骨骼动画、双 RHI 等(见<a href="/showcase/">案例页底部「引擎能力一览」</a>)。</span><span data-lang="en">It suits <strong>2D / 2.5D / 3D</strong> web games. Playable FPS, Diablo-style ARPG, two-level survival and shooter demos already exist (see the <a href="/showcase/">showcase</a>); the engine covers PBR / IBL / SSAO rendering, 2D/3D physics, skeletal animation and dual RHI (see "Engine capabilities" at the bottom of the <a href="/showcase/">showcase</a>).</span></p>
+                <p><span data-lang="zh">全部跑在浏览器(WebGPU),网页与桌面同一套栈;开源,采用 Apache License 2.0(见 <a href="/license.html">版权说明</a>)。</span><span data-lang="en">Everything runs in the browser (WebGPU), web and desktop on one stack; open source under Apache License 2.0 (see the <a href="/license.html">license</a>).</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">安装与启动(一条命令起工作室)</span><span data-lang="en">Install &amp; launch</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh"><strong>前置:</strong> <code>git</code>、<code>bun</code> ≥ 1.3、<code>node</code> ≥ 22、<code>curl</code>。(在干净机器上,<code>install.sh</code> 还能自动装齐 bun / node 22+ / pnpm / Rust+wasm 工具链 —— 默认零提示全自动,加 <code>--interactive</code> 逐项确认,加 <code>--skip-bootstrap</code> 跳过装环境。)</span><span data-lang="en"><strong>Prerequisites:</strong> <code>git</code>, <code>bun</code> ≥ 1.3, <code>node</code> ≥ 22, <code>curl</code>. (On a clean host, <code>install.sh</code> can also bootstrap bun / node 22+ / pnpm / the Rust+wasm toolchain — zero-prompt by default; <code>--interactive</code> asks per tool, <code>--skip-bootstrap</code> skips it.)</span></p>
+                <pre><code>git clone --recurse-submodules \
+  https://github.com/ForgeaX-Games/forgeax-studio.git
+cd forgeax-studio
+bash install.sh        # 一次性安装 / one-time setup
+bash start.sh          # → http://localhost:18920</code></pre>
+                <p><span data-lang="zh"><strong><code>install.sh</code> 做了什么:</strong>校验前置 → 初始化子模块 → 构建引擎包 → 在每个子仓 <code>bun install</code> → 构建 marketplace 插件 → 从 <code>.env.example</code> 生成 <code>$ROOT/.env</code>。加 <code>--interactive</code> 时会顺带提示你填 <code>ANTHROPIC_API_KEY</code>;否则先给个提醒,稍后自己编辑 <code>.env</code> 即可。</span><span data-lang="en"><strong>What <code>install.sh</code> does:</strong> verifies prereqs → inits submodules → builds the engine packages → runs <code>bun install</code> in each sub-repo → builds the marketplace plugins → scaffolds <code>$ROOT/.env</code> from <code>.env.example</code>. With <code>--interactive</code> it also prompts for <code>ANTHROPIC_API_KEY</code>; otherwise it warns and you edit <code>.env</code> later.</span></p>
+                <p><span data-lang="zh"><strong><code>start.sh</code> 启动 3 个服务:</strong><code>server</code>(:18900,运行时核心 —— chat / 后端 / 会话)、<code>interface</code>(:18920,Studio UI,vite HMR)、<code>engine</code>(:15173,渲染器)。端口可在 <code>.env</code> 用 <code>FORGEAX_{SERVER,INTERFACE,ENGINE}_PORT</code> 覆盖。启动后浏览器打开 <code>http://localhost:18920</code>。</span><span data-lang="en"><strong><code>start.sh</code> boots three services:</strong> <code>server</code> (:18900, the runtime core — chat / backends / sessions), <code>interface</code> (:18920, the Studio UI with vite HMR), and <code>engine</code> (:15173, the renderer). Override ports in <code>.env</code> via <code>FORGEAX_{SERVER,INTERFACE,ENGINE}_PORT</code>. Then open <code>http://localhost:18920</code>.</span></p>
+                <p><span data-lang="zh"><strong>桌面应用:</strong><code>bash app.sh</code> 开一个原生窗口跑实时源码(首次自动装依赖 + 自动起栈,关窗口自动收栈);<code>bash app.sh build</code> 打包自包含 <code>.app</code> / <code>.dmg</code>。完整运行形态见 <a href="#ch6">运行与预览</a>。</span><span data-lang="en"><strong>Desktop app:</strong> <code>bash app.sh</code> opens a native window on the live source (first run auto-installs and starts the stack; closing it stops the stack); <code>bash app.sh build</code> packages a self-contained <code>.app</code> / <code>.dmg</code>. See <a href="#ch6">Run &amp; preview</a> for all modes.</span></p>
+                <p><span data-lang="zh">不想手动?让你的 AI 编程 CLI 替你 clone + 启动,见 <a href="/tutorials/cli-setup.html">让 AI CLI 克隆并启动</a>;装好后照 <a href="/tutorials/getting-started.html">快速开始</a> 做第一个游戏。API key 的配置见 <a href="#ch8">进阶 · 切换 / 配置 AI 后端</a>。</span><span data-lang="en">Prefer not to do it by hand? Let your AI coding CLI clone &amp; launch it — see <a href="/tutorials/cli-setup.html">Have your AI CLI clone &amp; launch it</a>; then build your first game with <a href="/tutorials/getting-started.html">Quick start</a>. For API keys, see <a href="#ch8">Advanced · Switch / configure the AI backend</a>.</span></p>
+                <p><span data-lang="zh">🚧 源码正在为公开发布做准备,上面的仓库地址公开后即可用。</span><span data-lang="en">🚧 The source is being prepared for public release; the repo URL above works once it's public.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">打开工作室,认识界面</span><span data-lang="en">Open the studio, learn the interface</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">界面就三块:顶栏 + 左侧对话 + 右侧预览/工作台。</span><span data-lang="en">The interface is three parts: a top bar, the chat on the left, and the preview/workbench on the right.</span></p>
+                <ul>
+                  <li><span data-lang="zh"><strong>顶栏(TopBar)</strong> —— <code>⊕</code> 新建菜单、<strong>项目切换器</strong>(在不同游戏间切换,什么是"项目"见 <a href="#ch2">核心概念</a>)、<strong>会话切换器</strong>(回看 / 切换历史对话)。</span><span data-lang="en"><strong>Top bar</strong> — the <code>⊕</code> new menu, a <strong>project switcher</strong> (move between games — what a "project" is is covered in <a href="#ch2">Core concepts</a>), and a <strong>session switcher</strong> (review / switch past conversations).</span></li>
+                  <li><span data-lang="zh"><strong>左侧 · 对话区(ChatPanel)</strong> —— 团队栏(Forge 与各子 agent)、消息流(含子 agent 卡片、Forge 的思考与工具调用),底部是输入框(Composer),右下角有<strong>后端切换</strong>(见 <a href="#ch8">进阶</a>)。</span><span data-lang="en"><strong>Left · chat (ChatPanel)</strong> — a team rail (Forge and the sub-agents), a message stream (sub-agent cards, Forge's thinking and tool calls), and a composer at the bottom with a <strong>backend switch</strong> at its bottom-right (see <a href="#ch8">Advanced</a>).</span></li>
+                  <li><span data-lang="zh"><strong>右侧 · 主区(MainArea)</strong> —— 在<strong>预览</strong>(游戏实时 iframe)与<strong>工作台</strong>(文件编辑 / 设计文档)之间切换,详见 <a href="#ch4">场景与编辑器</a>。</span><span data-lang="en"><strong>Right · main area (MainArea)</strong> — toggles between the <strong>preview</strong> (your game live in an iframe) and the <strong>workbench</strong> (file editing / design docs); see <a href="#ch4">Scenes &amp; editor</a>.</span></li>
+                </ul>
+                <p><span data-lang="zh">右上角齿轮是<strong>设置(SettingsPanel)</strong>:填 API key、选模型、切 CLI 后端、管理插件。桌面应用首次启动时还有一个引导浮层(FirstRun)直接让你填 key。</span><span data-lang="en">The top-right cog opens <strong>Settings</strong>: API keys, model choice, CLI backend, and plugin management. The desktop app also shows a first-run overlay that prompts for the key the first time you open it.</span></p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ── CH2 ── -->
+        <section class="docs-chapter" id="ch2">
+          <h2><span class="n">2</span><span data-lang="zh">核心概念</span><span data-lang="en">Core concepts</span></h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary><span data-lang="zh">"项目"就是一款游戏</span><span data-lang="en">A "project" is a game</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">在 ForgeaX 里,<strong>"项目"和"游戏"是同一回事</strong> —— 一款游戏就是一个 <code>games/&lt;slug&gt;/</code> 目录。一个真实游戏目录通常长这样:</span><span data-lang="en">In ForgeaX, <strong>"project" and "game" are the same thing</strong> — a game is one <code>games/&lt;slug&gt;/</code> folder. A real game folder usually looks like this:</span></p>
+                <ul>
+                  <li><code>forge.json</code> — <span data-lang="zh">游戏清单。最小就三个字段:<code>id</code>、<code>name</code>、<code>entry</code>(指向入口代码,如 <code>src/main.ts</code>)。</span><span data-lang="en">the game manifest. Minimally three fields: <code>id</code>, <code>name</code>, and <code>entry</code> (pointing at the entry code, e.g. <code>src/main.ts</code>).</span></li>
+                  <li><code>FORGE.md</code> — <span data-lang="zh">这款游戏自己的说明 / 玩法概览(键位、机制、剧情节奏)。</span><span data-lang="en">the game's own readme / gameplay overview (controls, mechanics, story beats).</span></li>
+                  <li><code>src/</code> — <span data-lang="zh">游戏代码。入口 <code>main.ts</code> 之外通常按职责拆成多个模块(如 <code>player.ts</code>、<code>enemies/</code>、<code>effects.ts</code>、<code>setup.ts</code>)。</span><span data-lang="en">the game code. Besides the <code>main.ts</code> entry, it's usually split into modules by concern (e.g. <code>player.ts</code>, <code>enemies/</code>, <code>effects.ts</code>, <code>setup.ts</code>).</span></li>
+                  <li><code>design/</code> · <code>assets/</code> — <span data-lang="zh">设计文档与美术 / 音频资产。</span><span data-lang="en">design documents and art / audio assets.</span></li>
+                  <li><code>package.json</code> · <code>tsconfig.json</code> — <span data-lang="zh">标准 TS 工程文件。</span><span data-lang="en">standard TS project files.</span></li>
+                </ul>
+                <p><span data-lang="zh">入口 <code>main.ts</code> 从 <code>@forgeax/engine-runtime</code> / <code>engine-ecs</code> / <code>engine-app</code> 引入引擎能力,并导出一个 <code>GameEntry</code> —— 这就是引擎加载一款游戏的契约。引擎能力总览见 <a href="/showcase/">案例页「引擎能力一览」</a>。</span><span data-lang="en">The <code>main.ts</code> entry imports engine capabilities from <code>@forgeax/engine-runtime</code> / <code>engine-ecs</code> / <code>engine-app</code> and exports a <code>GameEntry</code> — the contract by which the engine loads a game. For the full capability set, see "Engine capabilities" on the <a href="/showcase/">showcase</a>.</span></p>
+                <p><span data-lang="zh">多款游戏 = 多个项目,在顶栏的项目切换器里切换。场景 / 关卡如何组织见 <a href="#ch4">场景与编辑器</a>。</span><span data-lang="en">Multiple games = multiple projects, switched in the top-bar project switcher. For how scenes / levels are organized, see <a href="#ch4">Scenes &amp; editor</a>.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">Forge 与它的子 agent 团队</span><span data-lang="en">Forge and its team of sub-agents</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh"><strong>Forge(主 agent)</strong>是唯一直接写游戏代码的角色 —— 它写 <code>games/&lt;slug&gt;/src/main.ts</code>,右侧预览<strong>热重载</strong>,它立刻看到运行结果,据此决定下一步。这个"改 → 看 → 再改"的闭环必须握在能看到预览的 Forge 手里(详见 <a href="#ch3">用对话做游戏</a>)。</span><span data-lang="en"><strong>Forge (the main agent)</strong> is the only one that writes game code directly — it writes <code>games/&lt;slug&gt;/src/main.ts</code>, the preview <strong>hot-reloads</strong>, and it sees the running result to decide the next step. That edit → see → edit loop has to stay with whoever can see the preview, i.e. Forge (see <a href="#ch3">Build by chatting</a>).</span></p>
+                <p><span data-lang="zh"><strong>子 agent</strong>(如 Iori 玩法、Suzu 设计、Kotone 叙事、Iro 美术、Tsumugi 工程)只做规划 / 设计 / 资产 / 文档,<strong>不碰 <code>src/</code></strong> —— 因为子 agent 没有实时预览反馈,写了代码也看不见效果。完整阵容见 <a href="/marketplace/">插件市场</a> 与 <a href="#ch10">第 10 章 · Agent 团队</a>。</span><span data-lang="en"><strong>Sub-agents</strong> (e.g. Iori gameplay, Suzu design, Kotone narrative, Iro art, Tsumugi build) only plan / design / make assets / write docs and <strong>never touch <code>src/</code></strong> — they have no live-preview feedback, so any code they wrote would have nothing to steer it. See the full cast in the <a href="/marketplace/">marketplace</a> and <a href="#ch10">Chapter 10 · The agent team</a>.</span></p>
+                <p><span data-lang="zh"><strong>怎么派活:</strong>Forge 用一次工具调用派发子 agent(形如 <code>subagent(type="iori", task="…")</code>),经服务端的 <code>/api/subagent</code> 流式桥接,把子 agent 的产出实时回流进主对话 —— 你在消息流里看到的就是嵌入的子 agent 卡片。子 agent 产出的设计文档会自动归到工作台里它自己的栏目下(见 <a href="#ch4">场景与编辑器</a>)。</span><span data-lang="en"><strong>How dispatch works:</strong> Forge dispatches a sub-agent with one tool call (shaped like <code>subagent(type="iori", task="…")</code>); the server's <code>/api/subagent</code> stream bridges its output back into the main conversation in real time — that's the embedded sub-agent card you see in the message stream. A sub-agent's design docs are filed under its own section in the workbench (see <a href="#ch4">Scenes &amp; editor</a>).</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">一次对话(session)是怎么回事</span><span data-lang="en">What a session is</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">一个 <strong>session</strong> 就是某个 agent 的对话记忆 —— 一条<strong>只追加</strong>的事件流(每条是一个事件:用户消息 / 助手消息 / 思考 / 工具调用 / 工具结果)。Forge(主)与每个子 agent 各有自己的 session。</span><span data-lang="en">A <strong>session</strong> is an agent's memory — an <strong>append-only</strong> stream of events (each one is a user message / assistant message / thinking / tool call / tool result). Forge (main) and each sub-agent each keep their own.</span></p>
+                <p><span data-lang="zh">前端按"是谁发的"把事件切成主对话与子 agent 两路,主对话里的子 agent 那段渲染成嵌入的卡片。所以同一屏里,你既看到 Forge 的主线,也看到它派出去的子 agent 干了什么。</span><span data-lang="en">The UI splits events by who emitted them into the main thread vs sub-agents, rendering each sub-agent's slice as an embedded card. So on one screen you see both Forge's main thread and what the sub-agents it dispatched actually did.</span></p>
+                <p><span data-lang="zh">在顶栏的会话切换器里可以回看、切换历史会话。<strong>切换会话不会重启任何服务</strong> —— 只是前端换了读取的那个 agent 的事件流而已。</span><span data-lang="en">Use the top-bar session switcher to review and switch past sessions. <strong>Switching a session restarts nothing</strong> — the UI just reads a different agent's event stream.</span></p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ── CH3 ── -->
+        <section class="docs-chapter" id="ch3">
+          <h2><span class="n">3</span><span data-lang="zh">用对话做游戏</span><span data-lang="en">Build by chatting</span></h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary><span data-lang="zh">怎么把想法描述清楚</span><span data-lang="en">How to describe your idea clearly</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">描述越具体,Forge 越能一次到位、少返工。一个好需求通常覆盖这几点:</span><span data-lang="en">The more specific you are, the better Forge nails it first try with fewer redos. A good prompt usually covers:</span></p>
+                <ul>
+                  <li><span data-lang="zh"><strong>类型与视角</strong> —— 俯视 / 第一人称 / 2.5D 横版……</span><span data-lang="en"><strong>Genre &amp; view</strong> — top-down / first-person / 2.5D side-scroller…</span></li>
+                  <li><span data-lang="zh"><strong>核心循环</strong> —— 玩家从头到尾一直在做的那件事</span><span data-lang="en"><strong>Core loop</strong> — the one thing the player keeps doing</span></li>
+                  <li><span data-lang="zh"><strong>操作</strong>、<strong>胜负条件</strong>、<strong>敌人 / 障碍</strong>、<strong>手感与氛围</strong></span><span data-lang="en"><strong>Controls</strong>, <strong>win/lose</strong>, <strong>enemies / obstacles</strong>, and the <strong>feel</strong></span></li>
+                </ul>
+                <p><span data-lang="zh">先从小处起步、跑起来,再逐步加机制。例如:</span><span data-lang="en">Start small, get it running, then layer mechanics on. For example:</span></p>
+                <pre><code><span data-lang="zh">做一个俯视角小游戏:角色在场地里跑,
+按空格发射子弹,四周不断刷新敌人,
+打中消失并记分。</span><span data-lang="en">A top-down game: a character runs around an arena,
+space fires bullets, enemies keep spawning,
+hits remove them and add score.</span></code></pre>
+                <p><span data-lang="zh">想要一步步带着做第一个游戏,见 <a href="/tutorials/getting-started.html">快速开始</a>;不确定能做出什么效果,先看 <a href="/showcase/">案例</a>。设计较重时 Forge 会叫上设计类子 agent(见 <a href="#ch2">核心概念</a>)。</span><span data-lang="en">For a step-by-step first game, see <a href="/tutorials/getting-started.html">Quick start</a>; for what's achievable, browse the <a href="/showcase/">showcase</a>. For heavier design, Forge pulls in design sub-agents (see <a href="#ch2">Core concepts</a>).</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">看 Forge 规划、写代码、跑起来</span><span data-lang="en">Watch Forge plan, code, and run it</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">你发出需求后,链路是这样的:</span><span data-lang="en">Once you send a request, the chain is:</span></p>
+                <ul>
+                  <li><span data-lang="zh"><strong>理解 + 规划</strong> —— Forge 先把需求理清,设计较重时派设计 / 玩法子 agent(见 <a href="#ch2">核心概念</a>)。</span><span data-lang="en"><strong>Understand + plan</strong> — Forge clarifies the requirement, dispatching design / gameplay sub-agents for heavier work (see <a href="#ch2">Core concepts</a>).</span></li>
+                  <li><span data-lang="zh"><strong>写代码</strong> —— Forge <strong>自己</strong>写到 <code>games/&lt;slug&gt;/src/main.ts</code>(及拆分出的模块)。</span><span data-lang="en"><strong>Write code</strong> — Forge writes <strong>itself</strong> into <code>games/&lt;slug&gt;/src/main.ts</code> (and its split-out modules).</span></li>
+                  <li><span data-lang="zh"><strong>热重载</strong> —— 文件一改,引擎的 vite 侦测到改动,右侧预览就地<strong>热替换模块</strong>,不整页刷新,画面几乎即时变。</span><span data-lang="en"><strong>Hot-reload</strong> — on save, the engine's vite detects the change and the preview <strong>hot-replaces the module</strong> in place — no full reload, the picture updates almost instantly.</span></li>
+                  <li><span data-lang="zh"><strong>看结果</strong> —— Forge 通过预览看到运行效果(预览还把游戏里的 <code>console</code> 转发回来),据此决定下一步。</span><span data-lang="en"><strong>See the result</strong> — Forge sees the running result through the preview (which also forwards the game's <code>console</code> back), and decides the next step.</span></li>
+                </ul>
+                <p><span data-lang="zh">整个过程是透明的:消息流里能看到 Forge 的思考、每次工具调用,以及它派出去的子 agent 卡片。预览 / 工作台的切换与控制见 <a href="#ch4">场景与编辑器</a>;热重载机制见 <a href="#ch6">运行与预览</a>。</span><span data-lang="en">The whole process is transparent: the message stream shows Forge's thinking, each tool call, and the cards of the sub-agents it dispatched. For switching/controlling preview vs workbench, see <a href="#ch4">Scenes &amp; editor</a>; for how hot-reload works, see <a href="#ch6">Run &amp; preview</a>.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">一轮轮迭代:加机制、调手感</span><span data-lang="en">Iterate: add mechanics, tune the feel</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">不满意就继续说,每一句反馈都会变成一次新的改动,热重载即时见效:</span><span data-lang="en">Not happy? Keep talking — each bit of feedback becomes another change, visible instantly via hot-reload:</span></p>
+                <pre><code><span data-lang="zh">子弹再快一点,敌人血量加倍,背景换成夜晚。</span><span data-lang="en">Faster bullets, double enemy health, night background.</span></code></pre>
+                <p><span data-lang="zh">预览自带 <strong>播放 / 暂停 / 重载</strong> 控制,方便你边调边试;想固定预览某一款游戏,可在项目切换器里切换(见 <a href="#ch1">认识界面</a>)。</span><span data-lang="en">The preview has <strong>play / pause / reload</strong> controls for testing as you go; to pin the preview to a specific game, switch in the project switcher (see <a href="#ch1">Open the studio, learn the interface</a>).</span></p>
+                <p><span data-lang="zh">基本循环就是:<strong>描述 → 生成 → 游玩 → 再描述</strong>。把它跑顺,就能从一句话迭代到一款能玩的游戏 —— 整套上手流程见 <a href="/tutorials/getting-started.html">快速开始</a>。</span><span data-lang="en">The basic loop is <strong>describe → generate → play → describe again</strong>. Run it smoothly and you go from a sentence to a playable game — the full onboarding is in <a href="/tutorials/getting-started.html">Quick start</a>.</span></p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ── CH4 ── -->
+        <section class="docs-chapter" id="ch4">
+          <h2><span class="n">4</span><span data-lang="zh">场景与编辑器</span><span data-lang="en">Scenes &amp; editor</span></h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary><span data-lang="zh">预览窗口与工作台</span><span data-lang="en">Preview window &amp; workbench</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">右侧主区在两种视图间切换:</span><span data-lang="en">The right-hand main area toggles between two views:</span></p>
+                <ul>
+                  <li><span data-lang="zh"><strong>预览</strong> —— 你的游戏在 iframe 里实时运行,带 FPS 显示与 播放 / 暂停 / 重载 控制。Forge 写完代码,这里热重载即时出结果(见 <a href="#ch3">用对话做游戏</a>)。</span><span data-lang="en"><strong>Preview</strong> — your game runs live in an iframe, with an FPS readout and play / pause / reload controls. When Forge writes code, it hot-reloads here instantly (see <a href="#ch3">Build by chatting</a>).</span></li>
+                  <li><span data-lang="zh"><strong>工作台</strong> —— 一个文件浏览 + 编辑器:看 / 改 / 存文本与代码、渲染 markdown 设计文档,还能预览图片、音频、视频、3D 模型。它也显示文件活动与"谁在编辑"的锁,人和 AI 改同一份不打架。</span><span data-lang="en"><strong>Workbench</strong> — a file browser + editor: view / edit / save text &amp; code, render markdown design docs, and preview images, audio, video and 3D models. It also surfaces file activity and "who's editing" locks, so you and the AI edit the same files without clobbering.</span></li>
+                </ul>
+                <p><span data-lang="zh">没打开文件时,工作台会展示所有创作工作台(角色 / 动画 / 3D / 场景 / UI / 音乐……)的入口 —— 详见 <a href="#ch9">创作工具</a> 与 <a href="/marketplace/">插件市场</a>。资产怎么做见 <a href="#ch5">资产</a>。</span><span data-lang="en">With no file open, the workbench shows entries for every creation workbench (character / animation / 3D / scene / UI / music…) — see <a href="#ch9">Creation tools</a> and the <a href="/marketplace/">marketplace</a>. For making assets, see <a href="#ch5">Assets</a>.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">编辑场景,改动实时回到游戏</span><span data-lang="en">Edit the scene, changes flow back live</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">场景编辑器把一关的内容存成游戏目录里的<strong>场景数据文件</strong>(<code>scene.pack.json</code>)—— 它是这关的<strong>单一可信源</strong>:磁盘上是什么,游戏里跑的就是什么。</span><span data-lang="en">The scene editor saves a level's contents to a <strong>scene data file</strong> in the game folder (<code>scene.pack.json</code>) — the <strong>single source of truth</strong> for that level: what's on disk is what runs in the game.</span></p>
+                <p><span data-lang="zh">你在编辑器里摆好对象、离开编辑态时,改动会<strong>落盘并让运行中的游戏重新读取</strong>,于是预览即时反映你的编辑 —— 这就是 edit→play 实时回流。反过来,Forge 用对话改代码也走同一条热重载链路(见 <a href="#ch3">用对话做游戏</a> 与 <a href="#ch6">运行与预览</a>)。</span><span data-lang="en">When you place objects and leave edit mode, the changes are <strong>flushed to disk and the running game re-reads them</strong>, so the preview reflects your edits immediately — the edit→play round-trip. Conversely, when Forge changes code by chat it rides the same hot-reload path (see <a href="#ch3">Build by chatting</a> and <a href="#ch6">Run &amp; preview</a>).</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">组织你的关卡与对象</span><span data-lang="en">Organize your levels and objects</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">一款游戏可以有<strong>多个场景 / 关卡</strong>,各自一份场景数据,按需切换与复用 —— 案例里的「Cow Survivor」就在白天牧场与暗夜墓园两关之间切换(见 <a href="/showcase/">案例</a>)。</span><span data-lang="en">A game can have <strong>multiple scenes / levels</strong>, each its own scene data, switched and reused as needed — the "Cow Survivor" demo switches between a day pasture and a night graveyard (see the <a href="/showcase/">showcase</a>).</span></p>
+                <p><span data-lang="zh">组织方式上:<strong>对象</strong>住在场景数据里,<strong>美术 / 音频资产</strong>放在游戏目录中(项目结构见 <a href="#ch2">核心概念</a>,资产怎么生成见 <a href="#ch5">资产</a>)。按场景拆分,游戏做大时更好维护。</span><span data-lang="en">How to organize: <strong>objects</strong> live in the scene data, while <strong>art / audio assets</strong> live in the game folder (project layout in <a href="#ch2">Core concepts</a>, asset generation in <a href="#ch5">Assets</a>). Splitting by scene keeps a growing game maintainable.</span></p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ── CH5 ── -->
+        <section class="docs-chapter" id="ch5">
+          <h2><span class="n">5</span><span data-lang="zh">资产:美术 / 动画 / 音乐</span><span data-lang="en">Assets: art / animation / audio</span></h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary><span data-lang="zh">角色立绘与三视图</span><span data-lang="en">Character portraits &amp; turnarounds</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">用<strong>角色编辑器</strong>(<code>wb-character</code>)做角色概念设计:写一句人设,生成<strong>正面立绘 + 转身三视图</strong>。不会画画也能拿到能进游戏的角色形象。</span><span data-lang="en">Use the <strong>character editor</strong> (<code>wb-character</code>) for character concept design: write a one-line brief, get a <strong>portrait + turnaround</strong>. No drawing skills needed to get a game-ready character.</span></p>
+                <p><span data-lang="zh">它的产出(角色清单 + 立绘 / 三视图)按角色存进你的游戏里,并<strong>作为下游输入直接接进动画工作台</strong> —— 也就是说"画好的人 → 让它动起来"是一条顺下来的管线(见下一条)。</span><span data-lang="en">Its outputs (a character manifest + portrait / turnaround) are stored per character inside your game and <strong>feed straight into the animation workbench as downstream input</strong> — so "design the character → make it move" is one continuous pipeline (see the next item).</span></p>
+                <p><span data-lang="zh">每个工作台都是一个面板 + 一组工具,人手点和 AI 派活改的是同一份产物。完整清单见 <a href="/marketplace/">插件市场</a> 与 <a href="/tutorials/workbenches.html">工作台教程</a>。</span><span data-lang="en">Each workbench is a panel plus a set of tools; you-by-hand and AI-by-dispatch edit the same artifact. Full list in the <a href="/marketplace/">marketplace</a> and the <a href="/tutorials/workbenches.html">workbenches tutorial</a>.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">让角色动起来(2D / 3D 动画)</span><span data-lang="en">Make characters move (2D / 3D)</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh"><strong>2D:</strong> 动画工作台(<code>wb-anim</code>)拿角色立绘当模板,把它变成会走、会打、四方向乃至短视频的动作 —— 而且<strong>不串脸</strong>,动起来还是同一个角色。</span><span data-lang="en"><strong>2D:</strong> the animation workbench (<code>wb-anim</code>) uses the character portrait as a template and turns it into walking, attacking, four-direction motion, even short clips — <strong>without face drift</strong>, so it stays the same character once it moves.</span></p>
+                <p><span data-lang="zh"><strong>3D:</strong> 引擎原生支持<strong>骨骼动画</strong> —— 从 FBX 导入带骨架与蒙皮的模型及动画 clip,在 idle / walk / run / cast / death 之间平滑过渡(crossfade)。这条链路是真实跑通的,案例里的暗黑风女巫就是这么动起来的:见 <a href="/blog/skeletal-animation-milestone.html">骨骼动画里程碑</a> 与 <a href="/showcase/">案例(Hellforge)</a>。</span><span data-lang="en"><strong>3D:</strong> the engine natively supports <strong>skeletal animation</strong> — import a rigged, skinned model plus animation clips from FBX, with smooth crossfades between idle / walk / run / cast / death. This pipeline is real and shipped — it's how the dark-fantasy witch in the showcase moves: see <a href="/blog/skeletal-animation-milestone.html">the skeletal-animation milestone</a> and the <a href="/showcase/">showcase (Hellforge)</a>.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">3D 模型、特效、UI、音乐</span><span data-lang="en">3D models, VFX, UI, music</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">角色之外,还有覆盖全链路的工作台:</span><span data-lang="en">Beyond characters, there are workbenches across the whole pipeline:</span></p>
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><strong><span data-lang="zh">3D 模型</span><span data-lang="en">3D models</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">方块人编辑器(<code>wb-lowpoly-obj</code>,导出引擎中立 <code>.glb</code>)、连线节点低多边形(<code>wb-3d-lowpoly</code>)、文字 / 图片 / 多视角转 3D(<code>wb-gen3d</code>,接入多家生成服务、择优而用)。逐一详解见 <a href="#ch9">第 9 章 · 3D 建模与生成</a>。</span><span data-lang="en">Blocky-character editor (<code>wb-lowpoly-obj</code>, exports engine-neutral <code>.glb</code>), node-graph low-poly (<code>wb-3d-lowpoly</code>), and text / image / multi-view-to-3D (<code>wb-gen3d</code>, provider-agnostic). Detailed in <a href="#ch9">Chapter 9 · 3D modeling &amp; generation</a>.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong><span data-lang="zh">特效 / 场景 / UI / 道具</span><span data-lang="en">VFX / scenes / UI / items</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">技能特效(<code>wb-skill</code>)、场景生成与 2D 场景资产(<code>wb-scene-generator</code> / <code>wb-2d-scene-asset-generator</code>)、界面工坊(<code>wb-ui</code>,出可点原型)、道具图标(<code>wb-items</code>,图 + 数据一张表)。逐一详解见 <a href="#ch9">第 9 章 · 场景 / UI / 道具</a>。</span><span data-lang="en">Skill VFX (<code>wb-skill</code>), scene generation and 2D scene assets (<code>wb-scene-generator</code> / <code>wb-2d-scene-asset-generator</code>), the UI workshop (<code>wb-ui</code>, clickable prototypes), and item icons (<code>wb-items</code>, art + data in one table). Detailed in <a href="#ch9">Chapter 9 · Scenes / UI / items</a>.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong><span data-lang="zh">音乐 / 调色 / 剧情</span><span data-lang="en">Music / look / narrative</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">音乐与音效(<code>wb-bgm</code>,BGM 时间轴)、整体调色(<code>wb-look</code>,调色板 + LUT + 后处理)、叙事(<code>wb-narrative</code>,117 题材 × 9 模板)。逐一详解见 <a href="#ch9">第 9 章 · 叙事 / 音乐 / 调色 / 数值</a>。</span><span data-lang="en">Music and SFX (<code>wb-bgm</code>, a BGM timeline), color grading (<code>wb-look</code>, palette + LUT + postprocess), and narrative (<code>wb-narrative</code>, 117 genres × 9 templates). Detailed in <a href="#ch9">Chapter 9 · Narrative / music / look / balance</a>.</span></p></div>
+                  </details>
+                </div>
+                <p><span data-lang="zh">每个工作台的逐一介绍见 <a href="#ch9">第 9 章 · 创作工具</a>、<a href="/tutorials/workbenches.html">工作台教程</a> 与 <a href="/marketplace/">插件市场</a>。</span><span data-lang="en">Item-by-item coverage is in <a href="#ch9">Chapter 9 · Creation tools</a>, the <a href="/tutorials/workbenches.html">workbenches tutorial</a>, and the <a href="/marketplace/">marketplace</a>.</span></p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ── CH6 ── -->
+        <section class="docs-chapter" id="ch6">
+          <h2><span class="n">6</span><span data-lang="zh">运行与预览</span><span data-lang="en">Run &amp; preview</span></h2>
+          <div class="doc-items">
+            <details class="doc-item" open>
+              <summary><span data-lang="zh">在浏览器里直接跑(实时示例)</span><span data-lang="en">Run it right here (live example)</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">下面是 ForgeaX 引擎的一个示例,直接在本页跑起来(WebGPU,建议 Chrome / Edge)。更多可玩示例见 <a href="/examples/">引擎示例</a> 与 <a href="/games/">游戏</a>。</span><span data-lang="en">An actual ForgeaX engine example running live on this page (WebGPU — Chrome / Edge recommended). More runnable demos in <a href="/examples/">Examples</a> and <a href="/games/">Games</a>.</span></p>
+                <iframe src="/examples/gltf/" title="live engine example — spinning cube" loading="lazy" style="width:100%;aspect-ratio:16/10;border:1px solid var(--border-subtle);border-radius:12px;background:#000;display:block"></iframe>
+                <p style="margin-top:8px"><a href="/examples/gltf/" target="_blank" rel="noopener"><span data-lang="zh">全屏打开 ↗</span><span data-lang="en">Open full screen ↗</span></a></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">网页与桌面应用两种形态</span><span data-lang="en">Web and desktop app modes</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">同一套代码有三种运行形态:</span><span data-lang="en">The same codebase runs in three forms:</span></p>
+                <ul>
+                  <li><span data-lang="zh"><strong>网页开发</strong> —— <code>bash start.sh</code> 起三个服务(server / UI / engine),浏览器开 <code>http://localhost:18920</code>,改代码实时 HMR。安装见 <a href="#ch1">开始之前</a>。</span><span data-lang="en"><strong>Web dev</strong> — <code>bash start.sh</code> boots three services (server / UI / engine); open <code>http://localhost:18920</code> in a browser, edits hot-reload live. Install in <a href="#ch1">Before you start</a>.</span></li>
+                  <li><span data-lang="zh"><strong>桌面开发</strong> —— <code>bash app.sh</code> 开原生窗口,加载同一个 dev 服务,实时源码与 HMR 完全一致;首次自动装依赖 + 起栈,关窗口自动收栈。</span><span data-lang="en"><strong>Desktop dev</strong> — <code>bash app.sh</code> opens a native window loading the same dev server, with identical live source and HMR; first run auto-installs and starts the stack, closing the window stops it.</span></li>
+                  <li><span data-lang="zh"><strong>桌面 .app(打包)</strong> —— <code>bash app.sh build</code> 出自包含的 <code>.app</code> / <code>.dmg</code>,双击即用,自带 sidecar(端口 18810 / 15273,与 dev 的 18900 / 15173 刻意错开,可共存);它的 key 放在 <code>~/ForgeaxProjects/.env</code>,首次打开有引导浮层。打包发布见 <a href="#ch7">发布与分享</a>。</span><span data-lang="en"><strong>Desktop .app (packaged)</strong> — <code>bash app.sh build</code> produces a self-contained <code>.app</code> / <code>.dmg</code> that runs on double-click with its own sidecar (ports 18810 / 15273, deliberately offset from dev's 18900 / 15173 so both can coexist); its key lives in <code>~/ForgeaxProjects/.env</code>, with a first-run overlay. Packaging is in <a href="#ch7">Publish &amp; share</a>.</span></li>
+                </ul>
+                <p><span data-lang="zh">三个端口都能在 <code>.env</code> 用 <code>FORGEAX_{SERVER,INTERFACE,ENGINE}_PORT</code> 覆盖。⚠️ 桌面窗口用系统 WebView,3D 走的是 WebKit 的 WebGPU,比 Chrome 略弱 —— <strong>追求最强画质时用浏览器版</strong>。</span><span data-lang="en">All three ports are overridable in <code>.env</code> via <code>FORGEAX_{SERVER,INTERFACE,ENGINE}_PORT</code>. ⚠️ The desktop window uses the system WebView, so 3D runs on WebKit's WebGPU — a bit weaker than Chrome's. <strong>For the best visuals, use the browser.</strong></span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">热重载:边改边看</span><span data-lang="en">Hot-reload: see it as you change it</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">保存即生效,不用手动刷新:</span><span data-lang="en">Save and it takes effect — no manual refresh:</span></p>
+                <ul>
+                  <li><span data-lang="zh">改<strong>游戏代码</strong>(<code>games/&lt;slug&gt;/src/…</code>)→ 引擎就地热替换模块,预览即时变(Forge 写代码也走这条,见 <a href="#ch3">用对话做游戏</a>)。</span><span data-lang="en">Edit <strong>game code</strong> (<code>games/&lt;slug&gt;/src/…</code>) → the engine hot-swaps the module in place and the preview updates instantly (Forge's edits ride this too — see <a href="#ch3">Build by chatting</a>).</span></li>
+                  <li><span data-lang="zh">在<strong>场景编辑器</strong>里的改动落盘后回流到运行中的游戏(见 <a href="#ch4">场景与编辑器</a>)。</span><span data-lang="en">Changes in the <strong>scene editor</strong> flush to disk and flow back into the running game (see <a href="#ch4">Scenes &amp; editor</a>).</span></li>
+                </ul>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">常见问题排查</span><span data-lang="en">Common troubleshooting</span></summary>
+              <div class="doc-body">
+                <ul>
+                  <li><span data-lang="zh"><strong>预览空白 / 引擎报错</strong> —— 引擎没构建好,重跑 <code>bash install.sh</code>。</span><span data-lang="en"><strong>Blank preview / engine error</strong> — the engine isn't built; re-run <code>bash install.sh</code>.</span></li>
+                  <li><span data-lang="zh"><strong><code>:18920</code> 报 SSL 错</strong> —— 用 <code>http://localhost</code> 访问即可(localhost 上 WebGPU 仍可用)。</span><span data-lang="en"><strong>SSL error on <code>:18920</code></strong> — access via <code>http://localhost</code> (WebGPU still works on localhost).</span></li>
+                  <li><span data-lang="zh"><strong>端口被占用</strong> —— 端口被占时会直接报错退出(不会自动换端口),先 <code>bash scripts/stop.sh</code> 再 <code>start.sh</code>;或在 <code>.env</code> 改端口。</span><span data-lang="en"><strong>Port in use</strong> — a busy port errors out (it won't auto-pick another); run <code>bash scripts/stop.sh</code> then <code>start.sh</code>, or change ports in <code>.env</code>.</span></li>
+                  <li><span data-lang="zh"><strong>聊天提示没有 API key</strong> —— 在 <code>.env</code> 设 <code>ANTHROPIC_API_KEY</code>(桌面应用首次启动会弹窗让你填);key 的配置见 <a href="#ch8">进阶</a>。</span><span data-lang="en"><strong>Chat says no API key</strong> — set <code>ANTHROPIC_API_KEY</code> in <code>.env</code> (the desktop app prompts on first run); key setup is in <a href="#ch8">Advanced</a>.</span></li>
+                  <li><span data-lang="zh"><strong>桌面端 3D 偏弱 / 有差异</strong> —— 系统 WebView 的 WebGPU 限制所致,改用 Chrome 浏览器版获得最佳渲染。</span><span data-lang="en"><strong>3D looks weaker on desktop</strong> — a limitation of the system WebView's WebGPU; use the Chrome browser build for best rendering.</span></li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ── CH7 ── -->
+        <section class="docs-chapter" id="ch7">
+          <h2><span class="n">7</span><span data-lang="zh">发布与分享</span><span data-lang="en">Publish &amp; share</span></h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary><span data-lang="zh">打包成桌面应用</span><span data-lang="en">Package as a desktop app</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh"><code>bash app.sh build</code> 把整个工作室连同你的游戏装进一个<strong>自包含桌面包</strong>(macOS 的 <code>.app</code> / <code>.dmg</code>):里面带了一份精简运行时、服务端、Studio 界面、插件市场和你的游戏内容,<strong>双击即用、无需用户再装任何环境</strong>。</span><span data-lang="en"><code>bash app.sh build</code> packages the whole studio together with your game into a <strong>self-contained desktop bundle</strong> (macOS <code>.app</code> / <code>.dmg</code>): a trimmed runtime, the server, the Studio UI, the marketplace and your game content are all inside, so it <strong>runs on double-click with zero setup</strong> for the user.</span></p>
+                <p><span data-lang="zh">它在内置 sidecar 的独立端口(18810 / 15273)上运行,和你的开发栈互不打架(见 <a href="#ch6">运行与预览</a>)。出包需在 macOS 上进行;<code>bash app.sh open</code> 可打开上次打好的包。</span><span data-lang="en">It runs on a built-in sidecar at its own ports (18810 / 15273), so it never collides with your dev stack (see <a href="#ch6">Run &amp; preview</a>). Packaging must run on macOS; <code>bash app.sh open</code> opens the last build.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">分享你的游戏项目</span><span data-lang="en">Share your game project</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">一款游戏就是 <code>games/&lt;slug&gt;/</code> 这一个<strong>自包含目录</strong>(<code>forge.json</code> + <code>src/</code> + 设计文档 + 资产,见 <a href="#ch2">核心概念</a>)。把这个目录分享 / 提交给别人,对方在自己的工作室里打开就能继续玩或继续做 —— demo 库里的几款游戏(fps、hellforge、cow-survivor、shoot-opt)就是这样并排存放的,见 <a href="/showcase/">案例</a>。</span><span data-lang="en">A game is one <strong>self-contained <code>games/&lt;slug&gt;/</code> folder</strong> (<code>forge.json</code> + <code>src/</code> + design docs + assets, see <a href="#ch2">Core concepts</a>). Share or commit that folder and someone else opens it in their studio to keep playing or building — the demo library stores several games side by side (fps, hellforge, cow-survivor, shoot-opt), see the <a href="/showcase/">showcase</a>.</span></p>
+                <p><span data-lang="zh">目前最稳的对外分发是上面的<strong>桌面打包</strong>;更顺滑的"一键 Web 发布 / 在线试玩"仍在完善中。</span><span data-lang="en">For now the most reliable way to hand a game to players is the <strong>desktop package</strong> above; a smoother "one-click web publish / play online" is still in the works.</span></p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ── CH8 ── -->
+        <section class="docs-chapter" id="ch8">
+          <h2><span class="n">8</span><span data-lang="zh">进阶</span><span data-lang="en">Advanced</span></h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary><span data-lang="zh">切换 / 配置 AI 后端</span><span data-lang="en">Switch / configure the AI backend</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh"><strong>切后端(换芯):</strong>在输入框右下角的后端切换处,或设置里的「CLI」一栏选择智能内核 —— <strong>Claude Code(默认)/ Codex / Cursor / forgeax-native</strong>。设置里的 CLI 栏会显示每个后端的<strong>在线状态</strong>并带一个 <strong>Test 按钮</strong>。切后端会连带换掉默认人格(见 <a href="#ch10">Agent 团队</a>),各后端详情见 <a href="/marketplace/">插件市场</a>。</span><span data-lang="en"><strong>Switch backends (swap the chip):</strong> pick the kernel from the backend switch at the composer's bottom-right, or under the <strong>CLI</strong> section of Settings — <strong>Claude Code (default) / Codex / Cursor / forgeax-native</strong>. The CLI section shows each backend's <strong>health</strong> and a <strong>Test</strong> button. Switching a backend also swaps its default persona (see <a href="#ch10">The agent team</a>); details per backend in the <a href="/marketplace/">marketplace</a>.</span></p>
+                <p><span data-lang="zh"><strong>配 key / 选模型:</strong>在设置的「Keys」里填模型 API key(如 <code>ANTHROPIC_API_KEY</code>),<strong>保存即时生效、不用重启</strong>(也可直接编辑 <code>.env</code>);在「Models」里选用哪个模型。没填 key 的排查见 <a href="#ch6">运行与预览</a>。</span><span data-lang="en"><strong>Keys / models:</strong> set your model API key (e.g. <code>ANTHROPIC_API_KEY</code>) under Settings → Keys — it <strong>applies live, no restart</strong> (you can also edit <code>.env</code> directly); choose the model under Settings → Models. Missing-key troubleshooting is in <a href="#ch6">Run &amp; preview</a>.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">写自己的工作台插件</span><span data-lang="en">Write your own workbench plugin</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">ForgeaX 里几乎一切能力都是<strong>运行时加载的插件</strong>(总览见 <a href="/marketplace/">插件市场</a>),所以你也能加自己的。</span><span data-lang="en">Almost every capability in ForgeaX is a <strong>runtime-loaded plugin</strong> (overview in the <a href="/marketplace/">marketplace</a>), so you can add your own.</span></p>
+                <p><span data-lang="zh">当下最快的路子:<strong>复制一个现成的工作台插件改成你要的</strong>,配合<strong>插件作者</strong>(<code>wb-plugin-author</code>)辅助;更完整的 in-app 可视化编辑器(文件树 + 代码编辑 + 保存自动重载)正在路上。做好后在 <strong>admin 面板</strong>里启用、排序 —— 插件由 CLI 在运行时挂载。各类工作台见 <a href="#ch9">创作工具</a>。</span><span data-lang="en">The quickest path today: <strong>copy an existing workbench plugin and adapt it</strong>, with the <strong>plugin author</strong> (<code>wb-plugin-author</code>) helping; a fuller in-app visual editor (file tree + code editor, save → auto-reload) is on the way. Once built, enable and reorder it in the <strong>admin panel</strong> — plugins are mounted by the CLI at runtime. See the kinds of workbench in <a href="#ch9">Creation tools</a>.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">定制 agent 人格</span><span data-lang="en">Customize agent personas</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">用<strong>人格编辑器</strong>(<code>wb-agent-persona</code>):从列表里选一个 agent,在文本区改它的人设,<strong>保存即热重载、不用重启</strong>。这样你不动一行代码,就能给某个 agent 换个性格 / 说话风格。</span><span data-lang="en">Use the <strong>persona editor</strong> (<code>wb-agent-persona</code>): pick an agent from the list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. You can give an agent a different character or voice without touching any code.</span></p>
+                <p><span data-lang="zh">谁是主 agent、谁是子 agent、默认人格怎么来,见 <a href="#ch2">核心概念</a> 与 <a href="#ch10">Agent 团队</a>;完整阵容见 <a href="/marketplace/">插件市场</a>。</span><span data-lang="en">For who's the main vs sub-agents and where default personas come from, see <a href="#ch2">Core concepts</a> and <a href="#ch10">The agent team</a>; the full cast is in the <a href="/marketplace/">marketplace</a>.</span></p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ── CH9 ── -->
+        <section class="docs-chapter" id="ch9">
+          <h2><span class="n">9</span><span data-lang="zh">创作工具(工作台)</span><span data-lang="en">Creation tools (workbenches)</span></h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary><span data-lang="zh">角色 / 动画 / 特效</span><span data-lang="en">Character / animation / VFX</span></summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-character</code> · <strong><span data-lang="zh">角色编辑器</span><span data-lang="en">character editor</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">角色概念设计:写一句人设 → 正面立绘 + 转身三视图。内部有多条管线 —— <strong>三视图</strong>(turnaround)、<strong>视频角色</strong>(三视图 → AI 视频动作 → 序列帧 → spritesheet 导出)、<strong>怪物生成</strong>(8 方向 × 5 动画的怪物精灵)。不会画画也能拿到能进游戏的角色形象,产出再喂给动画工作台(见 <a href="#ch5">资产</a>)。</span><span data-lang="en">Character concept design: a one-line brief → portrait + turnaround. It has several pipelines — <strong>turnaround</strong> (three views), <strong>video character</strong> (turnaround → AI video motion → frame extraction → spritesheet export), and <strong>monster generation</strong> (8-direction × 5-animation monster sprites). No drawing skills needed; the output then feeds the animation workbench (see <a href="#ch5">Assets</a>).</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-anim</code> · <strong><span data-lang="zh">动画</span><span data-lang="en">animation</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">把角色立绘当模板,变成会动的:<strong>像素四方向、载具动画、怪物 sprite、Spine 绑定、短视频生成</strong> —— 而且<strong>不串脸</strong>,动起来还是同一个角色。面板内嵌、带中央预览视口。3D 角色的骨骼动画走引擎原生链路,见 <a href="/blog/skeletal-animation-milestone.html">骨骼动画里程碑</a> 与 <a href="#ch5">资产</a>。</span><span data-lang="en">Uses a character portrait as a template and makes it move: <strong>four-direction pixel, vehicle animation, monster sprites, Spine binding, short-video generation</strong> — <strong>without face drift</strong>, so it stays the same character. Embedded panel with a center viewport. 3D characters use the engine's native skeletal pipeline — see the <a href="/blog/skeletal-animation-milestone.html">skeletal-animation milestone</a> and <a href="#ch5">Assets</a>.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-skill</code> · <strong><span data-lang="zh">技能 / 特效</span><span data-lang="en">skill / VFX</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">技能树编辑 + VFX 预览,集中列出技能与特效产出。关键是<strong>玩家手点与 AI 派活共用同一份技能规格</strong> —— 特效会自动挂到"出手那一刻",不用手动对齐。</span><span data-lang="en">Skill-tree editing + VFX preview, listing your skill and effect outputs in one place. The key idea: <strong>the player's clicks and AI dispatch share one skill spec</strong> — effects auto-attach to "the moment of cast", no manual alignment.</span></p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">3D 建模与生成</span><span data-lang="en">3D modeling &amp; generation</span></summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-lowpoly-obj</code> · <strong><span data-lang="zh">方块人编辑器</span><span data-lang="en">blocky-character editor</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">做<strong>可动的方块 3D 角色</strong>:既能"vibe"——说一句让 AI 生成,也能手动编辑(Blender 风的 gizmo 拖拽),还自带游乐场实时预览。导出<strong>引擎中立的 <code>.glb</code></strong>,任何引擎都能用。</span><span data-lang="en">Build <strong>rigged blocky 3D characters</strong>: either "vibe" it (say a line, AI generates) or edit by hand (Blender-style gizmo), with a built-in playground for live preview. Exports <strong>engine-neutral <code>.glb</code></strong> usable in any engine.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-3d-lowpoly</code> · <strong><span data-lang="zh">3D 低多边形生成器</span><span data-lang="en">low-poly generator</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">用<strong>"连线搭积木"的节点式</strong>方式做 3D 道具 / 机械:把建模流程画成一张节点图,改一个参数,整套重新生成。适合需要批量、可复用、参数化的硬表面资产。</span><span data-lang="en">Build 3D props / mechanical assets with <strong>node-programming</strong> ("wire up blocks"): model the process as a node graph, change one parameter, regenerate the whole set. Great for batch, reusable, parametric hard-surface assets.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-gen3d</code> · <strong><span data-lang="zh">3D 生成</span><span data-lang="en">3D generation</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">3D 资产<strong>生成入口</strong>:选一个生成服务 + 给输入(文字 / 图片 / 多视角图),产出<strong>持久化、可直接进游戏</strong>的 3D 资产清单。接入多家最强生成服务,择优而用、不被单家绑死。</span><span data-lang="en">A 3D asset <strong>generation entrypoint</strong>: pick a generation service and give an input (text / image / multi-view), and get a <strong>durable, game-ready</strong> 3D asset manifest. Plugged into several top generators so you pick whichever's best — no single-vendor lock-in.</span></p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">场景 / UI / 道具</span><span data-lang="en">Scenes / UI / items</span></summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-scene-generator</code> · <strong><span data-lang="zh">场景生成器</span><span data-lang="en">scene generator</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">用<strong>节点式</strong>自动"搭"出一整张游戏场景:把组合、布局、贴图处理画成一张流程图;想改随时重跑,产出整套场景。场景与关卡如何组织见 <a href="#ch4">场景与编辑器</a>。</span><span data-lang="en">Assemble a whole game scene with <strong>node-programming</strong>: lay out composition, placement and texturing as a graph; re-run anytime to regenerate the full scene. For how scenes / levels are organized, see <a href="#ch4">Scenes &amp; editor</a>.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-2d-scene-asset-generator</code> · <strong><span data-lang="zh">2D 场景资产生成器</span><span data-lang="en">2D scene assets</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">同样是节点式,<strong>批量生成</strong>场景里的小物件 —— 道具、贴图、装饰、UI 小图,生成完<strong>自动起名归档</strong>,资产不再乱成一团。</span><span data-lang="en">Also node-programming, for <strong>batch-generating</strong> the small things in a scene — props, textures, decorations, UI bits — then <strong>auto-named and filed</strong> so assets don't turn into a mess.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-ui</code> · <strong><span data-lang="zh">UI 工坊</span><span data-lang="en">UI workshop</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">按<strong>游戏类型、界面流程、视觉风格</strong>生成一整套界面 —— UI 蓝图、组件素材,以及<strong>能点的交互原型</strong>(不只是图)。菜单、按钮、血条都能一键出。</span><span data-lang="en">Generate a full interface set by <strong>genre, screen flow and visual style</strong> — UI blueprints, component assets, and <strong>clickable interactive prototypes</strong> (not just images). Menus, buttons and health bars in one go.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-items</code> · <strong><span data-lang="zh">道具 / 图标</span><span data-lang="en">items / icons</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">做游戏里的<strong>道具与图标</strong> —— 武器、药水、金币的像素小图,并配上数据。<strong>图与数据一张表</strong>(<code>items.json</code>),人和 AI 改同一份,不会对不上。</span><span data-lang="en">Make the game's <strong>items and icons</strong> — pixel art for weapons, potions, coins — with their data attached. <strong>Art and data in one table</strong> (<code>items.json</code>) that you and the AI edit together, so they never drift apart.</span></p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">叙事 / 音乐 / 调色 / 数值</span><span data-lang="en">Narrative / music / look / balance</span></summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-narrative</code> · <strong><span data-lang="zh">叙事工坊</span><span data-lang="en">narrative workshop</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">AI 驱动的叙事生成管线:从一句灵感写出整套剧情与世界观。覆盖 <strong>117 种题材 × 9 套管线模板</strong>,带 Tier/Mode 双层路由和动态 Planner —— AI 按你的题材自动选最合适的写法和步骤。</span><span data-lang="en">An AI-driven narrative pipeline: from a spark to a full story and world. It covers <strong>117 genres × 9 pipeline templates</strong> with tier/mode routing and a dynamic planner — the AI picks the fitting approach and steps for your genre.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-bgm</code> · <strong><span data-lang="zh">音乐 / BGM</span><span data-lang="en">music / BGM</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">管理游戏的<strong>背景音乐与音效</strong>:一条 BGM 时间轴排好整局什么时候放哪段,加上音效命名约定。把整局的配乐节奏排成一张清单。</span><span data-lang="en">Manage the game's <strong>music and sound effects</strong>: a BGM timeline laying out what plays when across a session, plus sound-effect naming conventions — the whole score sequenced as one list.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-look</code> · <strong><span data-lang="zh">色彩 / Look</span><span data-lang="en">color / look-dev</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">统一全游戏的<strong>色调氛围</strong> —— 调色板 + LUT + 后处理栈,像给整部游戏套一层滤镜:黄昏暖色、冷峻夜色,一键切换,画面气质瞬间统一。</span><span data-lang="en">Unify the whole game's <strong>color mood</strong> — palette + LUT + a postprocess stack, like a filter over the entire game: warm dusk, cold night, switched in one click so the visual feel snaps into one.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-balance</code> · <strong><span data-lang="zh">平衡 / 数值</span><span data-lang="en">balance</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">自动测<strong>数值平不平衡</strong>:驱动战斗重模拟(<code>balance-resim</code>)反复跑 N 局,仪表盘给出<strong>胜率 + 95% 置信区间</strong>,再配合手动调参形成闭环 —— 数值好不好用数据说话。这条重模拟也是插件市场里的一个 <a href="/marketplace/">工具(Tool)</a>。</span><span data-lang="en">Auto-test whether the numbers are <strong>balanced</strong>: it drives battle re-simulation (<code>balance-resim</code>) over N trials and dashboards <strong>win rate + a 95% confidence interval</strong>, then loops with manual tweaks — let data judge the tuning. That re-simulation is also a <a href="/marketplace/">Tool</a> in the marketplace.</span></p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">系统与作者工具</span><span data-lang="en">System &amp; author tools</span></summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-code</code> · <strong><span data-lang="zh">代码</span><span data-lang="en">code</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">在工作台里直接<strong>浏览 / 跳转 <code>src/</code> 文件</strong>,和编码 agent <strong>跨对话线程协作</strong> —— 人看哪、AI 改哪,同一个项目无缝接力。</span><span data-lang="en">Browse and <strong>jump through <code>src/</code> files</strong> right in the workbench, <strong>collaborating with the coding agent across chat threads</strong> — you read where, the AI edits where, on one project without dropping the baton.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-observatory</code> · <strong><span data-lang="zh">轨迹观察台</span><span data-lang="en">observatory</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">像<strong>黑匣子</strong>一样,实时 + 离线回放每个 agent / 子 agent 的回合、工具调用,以及系统提示词的模块切片。出问题时能<strong>精确定位是哪一步、哪句提示词</strong>的锅,也帮你管理上下文 / 技能 / 护栏 / 缓存。会话与回放的概念见 <a href="#ch2">核心概念</a>。</span><span data-lang="en">Like a <strong>black box</strong>: live + offline replay of every agent / sub-agent turn, tool call, and slices of the system prompt. When something breaks you can <strong>pinpoint which step or which prompt</strong> caused it, and it helps manage context / skills / guardrails / cache. The session &amp; replay concept is in <a href="#ch2">Core concepts</a>.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-agent-persona</code> · <strong><span data-lang="zh">人格编辑器</span><span data-lang="en">persona editor</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">从列表选一个 agent,在文本区改它的人设,<strong>保存即热重载、不用重启</strong>。不动一行代码就能给某个 agent 换性格 / 说话风格。Agent 阵容见 <a href="#ch10">Agent 团队</a>,操作见 <a href="#ch8">进阶</a>。</span><span data-lang="en">Pick an agent from a list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. Give an agent a new character or voice without touching code. The cast is in <a href="#ch10">The agent team</a>; the how-to is in <a href="#ch8">Advanced</a>.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-plugin-author</code> · <strong><span data-lang="zh">插件作者</span><span data-lang="en">plugin author</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">让<strong>不会编程的人</strong>也能做出自己的工作台插件。当下的路子是"复制现成的 + 改 + 录操作",更完整的 in-app 可视化编辑器(文件树 + 代码编辑、保存自动重载)正在路上。做插件的整体说明见 <a href="#ch8">进阶 · 写自己的工作台插件</a>。</span><span data-lang="en">Lets <strong>non-coders</strong> build their own workbench plugins. The path today is "copy an existing one + adapt + record actions"; a fuller in-app visual editor (file tree + code editor, save → auto-reload) is on the way. The overall how-to is in <a href="#ch8">Advanced · Write your own plugin</a>.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>admin</code> · <strong><span data-lang="zh">面板管理</span><span data-lang="en">control panel</span></strong></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">工作室的<strong>总控台</strong>,四个区:启用 / 排序工作台、绑定模型、查看各 AI 后端的认证与在线状态、看插件计数。和设置面板同源 —— 所有插件与模型状态一屏看全。</span><span data-lang="en">The studio's <strong>master console</strong>, in four sections: enable / reorder workbenches, bind models, check each AI backend's auth and health, and see plugin counts. Kept in sync with the Settings panel — every plugin and model status on one screen.</span></p></div>
+                  </details>
+                </div>
+                <p><span data-lang="zh">这些工作台都是<strong>可装载插件</strong>,完整目录与可筛选浏览见 <a href="/marketplace/">插件市场</a>;偏教程的走法见 <a href="/tutorials/workbenches.html">工作台教程</a>。</span><span data-lang="en">All of these are <strong>loadable plugins</strong>; the full, filterable catalog is in the <a href="/marketplace/">marketplace</a>, and a tutorial walkthrough is in the <a href="/tutorials/workbenches.html">workbenches tutorial</a>.</span></p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ── CH10 ── -->
+        <section class="docs-chapter" id="ch10">
+          <h2><span class="n">10</span><span data-lang="zh">Agent 团队</span><span data-lang="en">The agent team</span></h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary><span data-lang="zh">统筹与架构</span><span data-lang="en">Production &amp; architecture</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh"><strong>Arin · 制作人</strong> —— 全能制作人,把策划 / 程序 / 美术 / 音效统筹到一起,对整款游戏负责。</span><span data-lang="en"><strong>Arin · producer</strong> — an all-round producer who coordinates design / code / art / audio and owns the whole game.</span></p>
+                <p><span data-lang="zh"><strong>架构师</strong> —— 做跨域抽象,把玩法 / 代码 / 艺术接到一起,在结构层面把复杂度压下去。</span><span data-lang="en"><strong>Architect</strong> — cross-domain abstraction, tying gameplay / code / art together and keeping structural complexity down.</span></p>
+                <p><span data-lang="zh">这些都是<strong>命名 agent</strong>,由主创 Forge 按需派发(主 / 子 agent 的关系见 <a href="#ch2">核心概念</a>);完整阵容见 <a href="/marketplace/">插件市场</a>。</span><span data-lang="en">These are <strong>named agents</strong> dispatched on demand by Forge (the main vs sub-agent relationship is in <a href="#ch2">Core concepts</a>); the full cast is in the <a href="/marketplace/">marketplace</a>.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">策划四柱</span><span data-lang="en">Four design pillars</span></summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><strong>Iori · 核心玩法师</strong><span data-lang="zh"> —— 立柱</span><span data-lang="en"> — gameplay pillar</span></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">名字取自"庵"(山中磐石)。Forge 派他时,他守这款游戏的"根" —— 在立柱阶段替整个项目定下<strong>几根不可轻易动摇的玩法支柱</strong>(玩法柱 + 数值骨架),产出一份精炼的支柱文档。他不写架构、不调参数、也不反问(那些 Forge 已在前期问过)。立完柱,交给 Suzu 展开。</span><span data-lang="en">Named after "庵" (a mountain rock). When Forge dispatches him, he guards the game's "roots" — setting a few <strong>load-bearing gameplay pillars</strong> (mechanics + numeric skeleton) that shouldn't be casually shaken, captured in one concise pillar doc. He doesn't write architecture, tune parameters, or ask questions back (Forge handled those up front). Once pillared, Suzu takes over.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Suzu · 体验设计师</strong><span data-lang="zh"> —— 节奏与体验</span><span data-lang="en"> — pacing &amp; experience</span></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">名字取自"鈴"(风一吹就响、是节奏)。Iori 把柱子立好后,Suzu 把每根柱子下面的模块展开成具体体验 —— <strong>玩家节拍、HUD、onboarding</strong>。她定义"玩起来什么感觉",再把需要资产 / 剧情的部分交给 Iro / Kotone。</span><span data-lang="en">Named after "鈴" (a wind-chime — rhythm). After Iori sets the pillars, Suzu expands each pillar's modules into concrete experience — <strong>player pacing, HUD, onboarding</strong>. She defines how it feels to play, then hands the parts needing assets / story to Iro / Kotone.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Kotone · 剧情师</strong><span data-lang="zh"> —— 叙事(按需)</span><span data-lang="en"> — narrative (on demand)</span></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">名字取自"琴音"(弦上传来的故事)。<strong>不是每个游戏都需要剧情师</strong> —— 一个塔防可能根本不派她;只有当游戏需要角色 / 对白 / 分支 / 旁白时,Forge 才叫她来,产出世界观、角色 bio 与对白。</span><span data-lang="en">Named after "琴音" (a story carried on strings). <strong>Not every game needs a narrative designer</strong> — a tower-defense might never call her; only when the game needs characters / dialogue / branches / narration does Forge bring her in to produce world, character bios and lines.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Iro · 美术师</strong><span data-lang="zh"> —— 视觉资产(按需)</span><span data-lang="en"> — visual assets (on demand)</span></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">名字取自"色"(一切被眼睛感受到的东西)。Suzu 讲清模块体验后,如果该模块需要视觉资产(角色 / 场景 / UI / 特效),Forge 才派 Iro。具体资产怎么生成,见 <a href="#ch5">资产</a> 与 <a href="#ch9">创作工具</a>。</span><span data-lang="en">Named after "色" (everything the eye perceives). Once Suzu has framed a module's experience, Forge dispatches Iro only if it needs visual assets (characters / scenes / UI / VFX). How those assets are actually made: see <a href="#ch5">Assets</a> and <a href="#ch9">Creation tools</a>.</span></p></div>
+                  </details>
+                </div>
+                <p><span data-lang="zh">这几位<strong>只做规划与设计、不碰游戏代码</strong>(代码由 Forge 写,见 <a href="#ch2">核心概念</a>);他们的产出会进工作台(见 <a href="#ch4">场景与编辑器</a>),美术资产落地见 <a href="#ch5">资产</a>。</span><span data-lang="en">These specialists <strong>only plan and design — they never touch game code</strong> (Forge writes code, see <a href="#ch2">Core concepts</a>); their output lands in the workbench (see <a href="#ch4">Scenes &amp; editor</a>), and art assets are produced as in <a href="#ch5">Assets</a>.</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">编码与审查小队</span><span data-lang="en">Coding &amp; review crew</span></summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><strong>cc-coder · 通用编码</strong><span data-lang="zh"> —— spec → 代码</span><span data-lang="en"> — spec → code</span></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">接 Iori 的玩法骨架、Suzu 的体验流程、Kotone 的剧情大纲,产出可运行的 TS / React 等代码;可多实例并行写不同子包。注意:游戏主线代码仍由主创 Forge 亲自写并跟预览闭环(见 <a href="#ch2">核心概念</a>),cc-coder 更多用于通用 / 周边编码。</span><span data-lang="en">Takes Iori's gameplay pillars, Suzu's UX flows and Kotone's narrative outlines and turns them into runnable TS / React etc.; can run multiple instances on different packages in parallel. Note: the game's main code is still written by Forge itself, closed-loop with the preview (see <a href="#ch2">Core concepts</a>); cc-coder is more for general / surrounding code.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Tsumugi · 工程师</strong><span data-lang="zh"> —— 构建 / 工具链</span><span data-lang="en"> — build / toolchain</span></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">名字取自"紡"(把丝线缠成系统)。当 Iori / Suzu / Iro 把设计与资产准备好,Tsumugi 把它们编织成可运行的工程 —— 构建、工具链、部署。</span><span data-lang="en">Named after "紡" (weaving threads into a system). Once Iori / Suzu / Iro have the design and assets ready, Tsumugi weaves them into a working build — build, toolchain, deployment.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Yevi · 审查</strong><span data-lang="zh"> —— 技术债猎手</span><span data-lang="en"> — tech-debt hunter</span></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">表面优雅得体、内心冷静如深水的观察者,永远比你多想一步 —— 清楚代码哪里最脆弱、哪一处三周前埋下的隐患即将显现。语气温和从容,措辞却精准而克制。</span><span data-lang="en">A gracefully composed observer, calm as deep water, always one step ahead — she knows where the code is weakest and which three-week-old issue is about to surface. A measured, gentle tone, with precise and incisive wording.</span></p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>陪伴人格</strong><span data-lang="zh"> —— 同等编码力、不同性格</span><span data-lang="en"> — same skill, different character</span></summary>
+                    <div class="doc-subbody"><p><span data-lang="zh">一组<strong>编码力相当、性格各异</strong>的可选角色 —— 有的沉稳内敛,有的机敏俏皮,有的细致缜密。它们能力相同,区别只在与你协作时的相处风格。性格可在<strong>人格编辑器</strong>里随时调整(见 <a href="#ch8">进阶</a>);完整阵容见 <a href="/marketplace/">插件市场</a>。</span><span data-lang="en">A set of optional characters with <strong>comparable coding skill but distinct personalities</strong> — some measured, some playful, some meticulous. They have the same ability; the only difference is how it feels to work alongside them. Personalities are editable any time in the <strong>persona editor</strong> (see <a href="#ch8">Advanced</a>); the full cast is in the <a href="/marketplace/">marketplace</a>.</span></p></div>
+                  </details>
+                </div>
+                <p><span data-lang="zh">此外还有一批<strong>美术 / 资产专精 agent</strong>(2D 角色 / 动画、3D 低多边形 / 特效、影游导演等),各自对接相应的创作工作台(见 <a href="#ch9">创作工具</a>)。</span><span data-lang="en">There's also a set of <strong>art / asset specialist agents</strong> (2D character / animation, 3D low-poly / VFX, interactive-film director, and more), each wired to its matching creation workbench (see <a href="#ch9">Creation tools</a>).</span></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary><span data-lang="zh">可换的默认人格</span><span data-lang="en">Swappable default personas</span></summary>
+              <div class="doc-body">
+                <p><span data-lang="zh">每个 CLI 后端自带一个开箱人格:<strong>Claude</strong>(Claude Code)、<strong>Codex</strong>、<strong>Cursor</strong>、<strong>ForgeaX</strong>(自研 forgeax-native)。<strong>切换后端就换默认人格,无需先写人设</strong> —— 想用哪家的智能内核,就有哪家的默认 persona。</span><span data-lang="en">Each CLI backend ships with an out-of-the-box persona: <strong>Claude</strong> (Claude Code), <strong>Codex</strong>, <strong>Cursor</strong>, and <strong>ForgeaX</strong> (the self-built forgeax-native). <strong>Switching the backend swaps the default persona — no setup needed</strong>; whichever kernel you pick comes with its default persona.</span></p>
+                <p><span data-lang="zh">怎么切后端、怎么改人格见 <a href="#ch8">进阶</a>;完整 agent 阵容与可装载人格见 <a href="/marketplace/">插件市场</a>。</span><span data-lang="en">How to switch backends and edit personas is in <a href="#ch8">Advanced</a>; the full agent cast and loadable personas are in the <a href="/marketplace/">marketplace</a>.</span></p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</main>
+<div id="site-footer"></div>
+<script src="/assets/site.js"></script>
+<script>
+  (function () {
+    var links = [].slice.call(document.querySelectorAll(".docs-sidebar a"));
+    var map = {}; links.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+    if (!("IntersectionObserver" in window)) return;
+    var obs = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (l) { l.classList.remove("active"); });
+          if (map[e.target.id]) map[e.target.id].classList.add("active");
+        }
+      });
+    }, { rootMargin: "-25% 0px -65% 0px", threshold: 0 });
+    document.querySelectorAll(".docs-chapter").forEach(function (s) { obs.observe(s); });
+  })();
+
+  /* ── docs in-page search ── */
+  (function () {
+    var input = document.getElementById("docSearch");
+    var box = document.getElementById("docResults");
+    if (!input || !box) return;
+    var entries = [];
+    document.querySelectorAll(".docs-chapter").forEach(function (ch) {
+      var h2 = ch.querySelector("h2");
+      var chTitle = (h2 ? h2.innerText : "").replace(/\s+/g, " ").trim();
+      entries.push({ el: ch, chapter: chTitle, title: chTitle, hay: ch.textContent.toLowerCase() });
+      ch.querySelectorAll("details.doc-item, details.doc-sub").forEach(function (d) {
+        var sum = d.querySelector(":scope > summary");
+        var title = sum ? sum.innerText.replace(/\s+/g, " ").trim() : "";
+        entries.push({ el: d, chapter: chTitle, title: title, hay: d.textContent.toLowerCase() });
+      });
+    });
+    function openTo(el) {
+      var p = el;
+      while (p) { if (p.tagName === "DETAILS") p.open = true; p = p.parentElement; }
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.add("doc-hit");
+      setTimeout(function () { el.classList.remove("doc-hit"); }, 1600);
+    }
+    function render(q) {
+      q = q.trim().toLowerCase();
+      if (!q) { box.hidden = true; box.innerHTML = ""; return; }
+      var hits = entries.filter(function (e) { return e.hay.indexOf(q) >= 0; }).slice(0, 16);
+      if (!hits.length) {
+        box.innerHTML = '<div class="empty">' + (document.body.classList.contains("lang-zh") ? "无匹配" : "No matches") + "</div>";
+        box.hidden = false; return;
+      }
+      box.innerHTML = hits.map(function (e) {
+        var ctx = (e.title && e.title !== e.chapter) ? '<span class="rc">' + e.chapter + "</span>" : "";
+        return "<a>" + ctx + (e.title || e.chapter) + "</a>";
+      }).join("");
+      box.hidden = false;
+      [].slice.call(box.querySelectorAll("a")).forEach(function (a, i) {
+        a.addEventListener("click", function () { box.hidden = true; input.value = ""; openTo(hits[i].el); });
+      });
+    }
+    input.addEventListener("input", function () { render(input.value); });
+    input.addEventListener("keydown", function (e) { if (e.key === "Escape") { box.hidden = true; input.value = ""; input.blur(); } });
+    document.addEventListener("click", function (e) { if (!e.target.closest(".docs-search")) box.hidden = true; });
+    document.addEventListener("keydown", function (e) {
+      var a = document.activeElement;
+      if (e.key === "/" && a !== input && !/^(INPUT|TEXTAREA|SELECT)$/.test(a ? a.tagName : "")) { e.preventDefault(); input.focus(); }
+    });
+  })();
+</script>
+</body>
+</html>

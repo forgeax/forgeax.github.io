@@ -1,0 +1,109 @@
+# ForgeaX — full site content
+
+> ForgeaX is an AI-native personal game development studio. Describe the game you want (by chat, in a visual editor, and — soon — with images or video) and AI writes the ECS engine code, hot-reloading live in your browser. Open source under Apache License 2.0. This file is a single-document mirror of the public website for machine consumption.
+
+Site: https://forgeax.github.io · GitHub: https://github.com/ForgeaX-Games · License: Apache-2.0
+
+---
+
+## Home
+
+**Your personal game studio.**
+
+ForgeaX is an AI-native game development studio. Turn your ideas into playable games — AI writes the engine code, hot-reloading live in your browser.
+
+By the numbers: 29 @forgeax engine packages · 4 playable game demos · dual RHI (WebGPU + wasm) · Apache 2.0.
+
+Why ForgeaX — a studio that writes the engine for you:
+- **Many ways to create** — chat, a visual editor, and image/video input later; express your ideas whatever way suits you.
+- **Agentic by design** — agents plan, design and write the engine code; you set requirements and review.
+- **Live hot-reload** — every change lands in the preview instantly; what you say is what you play.
+- **Real ECS engine** — a genuine entity-component-system engine with dual-RHI rendering, in a browser studio.
+- **Runs in the browser** — WebGPU-powered, web and desktop on one stack, up and running in a minute.
+- **Open source** — Apache 2.0; free to fork, use, ship and build commercially with.
+
+---
+
+## About / vision
+
+ForgeaX is an AI-native personal game studio. We believe the barrier to making games is being redefined by AI.
+
+Our vision: **let smaller teams, with AI, make games that used to require much larger ones.** Not to replace creators, but to hand the heavy engineering and production between "idea" and "playable game" to AI.
+
+How it works: In the studio you describe the game you want to an AI lead called Forge — through chat, by working directly in a visual editor, and (later) with inputs like images and video. It plans, brings in specialized sub-agents when needed (gameplay, design, art), then writes the engine code itself, hot-reloading the result into a live browser preview.
+
+Underneath are two in-house foundations: an engine redesigned for the AI's point of view (so AI can read it, write it, and understand its errors), and a development loop that pushes AI to get it right (requirements in, playable output out, every step observable and traceable).
+
+Where we are: the current stage is turning ideas into playable games with AI — playable FPS, ARPG, survival and shooter demos exist, with an engine covering PBR rendering, physics and skeletal animation. Longer term we also watch: AI and humans co-designing games, interoperating with the open-source ecosystem, and how AI world-models might evolve what an "engine" is.
+
+Open source: the ForgeaX tool layer is licensed under Apache License 2.0.
+
+> Let smaller teams make bigger games.
+
+---
+
+## Blog: Why build an AI-native engine (opinion)
+
+Most game-engine APIs are written for humans. When AI becomes the one writing the code, the engine should look different. ForgeaX's stance: **AI is the engine's first user. When "friendly to AI" conflicts with "friendly to humans," AI wins.** Concretely:
+
+1. **One source of truth, derive the rest.** A fact is defined in exactly one place; everything else derives from it. Component fields live inline in a schema — inspectors, debuggers and tooling read the schema instead of grepping source and guessing.
+2. **Errors AI can understand and recover from.** A closed set of error codes, each carrying structured "what / why / how to recover" info, so AI knows what to change next.
+3. **Structured data instead of "look at the screen".** The engine can capture a frame of render calls — draw calls, bindings, render targets, pipeline state — to read offline, replay, and inspect the full state at the Nth draw. A visual problem becomes data AI can read.
+4. **Two implementations that check each other.** The render layer has two backends (WebGPU and a wasm one) behind one interface; they render side by side, so misuse of an API diverges and is caught automatically.
+
+Common yardstick: the fewer concepts a reader (human or AI) must hold in their head, the better.
+
+---
+
+## Blog: Skeletal animation, end to end (update, 2026-06-15)
+
+From an FBX file, to mesh + skeleton + animation clips in the engine, to smooth idle ↔ walk ↔ cast in-game — Hellforge's witch finally moves for real.
+
+Pipeline (four steps): ① FBX import — parse the model into sub-assets (mesh, skeleton, skin weights, clips). ② Skeleton/skinning — a skin shader that deforms vertices with the bones. ③ Clip playback — an AnimationPlayer driving multiple channels with a columnar (SoA) layout. ④ Crossfade — smooth transitions between idle/walk/cast.
+
+Cashed out in Hellforge, a Diablo-style ARPG demo: a 2.5D top-down witch casting Fire Bolt, with 5 clips (idle/walk/run/cast/death) referenced by GUID, and a full 30-second loop (leave camp → meet a monster → kill with a spell → grab loot → return). It plugs in declaratively through the game's forge.json.
+
+Next: BlendTree (blend walk/run by speed), Mask (layered regions), IK (foot planting, hand alignment).
+
+---
+
+## Showcase (game demos)
+
+Each demo proves out a slice of the engine and studio; their code, scenes and config were all made in the Studio.
+
+- **Sector Strike** — FPS. An endless arena: 4 weapons, double headshot damage, enemies spawning from the edges, score-chasing. (pointer-lock, first-person, endless)
+- **Hellforge** — ARPG (Diablo-ish). A 2.5D top-down dark-fantasy ARPG: a skeletally-animated witch casting Fire Bolt, with idle/walk/run/cast/death transitions, plus XP and loot. (skeletal animation, 2.5D, spells)
+- **Cow Survivor** — survival, two levels. Switches between a daytime cow pasture and a night graveyard; 3D physics, validating the multi-level / scene-reuse pipeline.
+- **Shoot Opt** — shooter, performance stress test. Built to stress-test the ECS and bulk-entity limits; results drove engine performance gains.
+
+---
+
+## Tutorials
+
+### Have your AI CLI clone & launch ForgeaX
+The most AI-native install: hand the repo to your coding-CLI agent (Claude Code / Codex / Cursor / forgeax) and let it clone, install, launch, and report the local URL. You need: an AI coding CLI that can run shell commands; git and Bun installed; an AI model API key. Example instruction: "Clone https://github.com/ForgeaX-Games/forgeax-studio (with --recurse-submodules), cd in, run the install script, then the start script, and tell me the local URL." Manual equivalent: `git clone --recurse-submodules <repo>` → `bash install.sh` → `bash start.sh`. (Source is being prepared for public release.)
+
+### Quick start: your first game
+ForgeaX's core workflow is one sentence: describe the game you want to Forge, and let it handle the rest. Launch the studio (chat on the left, live preview on the right). Say a request in plain words (e.g. a top-down game where a character runs, space fires bullets, enemies spawn, hits score). Forge clarifies, plans, and writes the engine code itself; it hot-reloads into the preview. Keep giving feedback to iterate. The loop: describe → generate → play → describe again.
+
+---
+
+## Documentation (outline)
+
+User-facing guide; chapters are being filled in:
+1. Before you start — what ForgeaX is; install & launch; the interface.
+2. Core concepts — a "project" is a game; Forge and its sub-agents; what a session is.
+3. Build by chatting — describing ideas clearly; watching Forge plan/code/run; iterating.
+4. Scenes & editor — preview & workbench; editing scenes with changes flowing back live; organizing levels.
+5. Assets — character portraits & turnarounds; 2D/3D animation; 3D models, VFX, UI, music.
+6. Run & preview — web and desktop modes; hot-reload; troubleshooting.
+7. Publish & share — export your game; share it to play.
+8. Advanced — switch/configure the AI backend; write workbench plugins; customize agent personas.
+
+---
+
+## License
+
+The ForgeaX tool layer is licensed under Apache License 2.0 — permissive and business-friendly. You may use (personal/commercial), modify, distribute, commercialize, and you receive a patent grant from contributors. You must keep the copyright notice and LICENSE/NOTICE files, state significant changes to modified files, and not use ForgeaX trademarks to endorse derivatives. (Plain-language summary; the LICENSE/NOTICE files in the repository govern.)
+
+NOTICE: ForgeaX, Copyright 2026 ForgeaX Contributors. This product includes software developed by the ForgeaX project (https://github.com/ForgeaX-Games).
