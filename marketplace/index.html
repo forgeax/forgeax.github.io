@@ -65,6 +65,77 @@
   .mk-exp{font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(212,255,72,.12);color:var(--accent,#D4FF48)}
   .mk-modal-card a.btn{display:inline-block}
   .mk-modal-card a.btn.is-disabled{opacity:.5;pointer-events:none}
+
+  /* ── Agent cards: avatar slot on the right ──
+   * Frame stays 64×64; video inside is zoomed (object-fit: cover +
+   * object-position: center top + scale) so the face fills the circle.
+   * Companion personas: 3 coder skins in a horizontal row, each cycling
+   * its own 9 states independently. Architect uses agent-lock avatar. */
+  .mk-item.is-agent{display:flex;gap:14px;align-items:flex-start}
+  /* Don't make .mk-agent-main a flex column — that stretched the inline
+   * .kind badge to the full card width. Plain block layout is fine. */
+  .mk-item.is-agent .mk-agent-main{flex:1;min-width:0}
+  .mk-item.is-agent h3{margin-top:4px}
+  .mk-avatar{
+    width:64px;height:64px;flex-shrink:0;border-radius:50%;overflow:hidden;
+    background:rgba(196,163,255,.08);
+    border:1px solid rgba(196,163,255,.22);
+    position:relative;
+    transition:border-color var(--dur-smooth) var(--ease-out),transform var(--dur-smooth) var(--ease-out);
+  }
+  .mk-item.is-agent:hover .mk-avatar{border-color:rgba(196,163,255,.48)}
+  /* Two <video> layers stacked for double-buffering: the next clip loads
+   * in the hidden layer and we cross-fade opacity only when its first
+   * frame is ready, so there's never a blank/black frame between states
+   * (single-video src swaps flash to HAVE_NOTHING). */
+  .mk-avatar video{
+    position:absolute;inset:0;
+    width:100%;height:100%;object-fit:cover;object-position:center top;
+    display:block;background:transparent;
+    opacity:0;transition:opacity .3s ease;
+    transform:scale(1.24) translate3d(0,-12%,0);transform-origin:center top;
+    backface-visibility:hidden;
+  }
+  .mk-avatar video.is-front{opacity:1}
+  /* Per-agent zoom tweaks — match studio AgentAvatarVideo framing,
+   * bumped a little larger + shifted up per request. */
+  .mk-avatar[data-agent="suzu"] video{transform:scale(1.34) translate3d(0,-24%,0)}
+  .mk-avatar[data-agent="arin"] video{transform:scale(1.22) translate3d(0,-16%,0)}
+  .mk-avatar[data-agent="kotone"] video{transform:scale(1.30) translate3d(0,-15%,0)}
+  .mk-avatar[data-agent="tsumugi"] video{transform:scale(1.18) translate3d(0,-22%,0)}
+  .mk-avatar[data-agent="lock"] video{transform:scale(1.24) translate3d(0,-22%,0)}
+  .mk-avatar[data-agent="cc-coder"] video{transform:scale(1.24) translate3d(0,-25%,0)}
+  .mk-avatar[data-agent="iori"] video{transform:scale(1.12) translate3d(0,-7%,0)}
+  .mk-avatar[data-agent="iro"] video{transform:scale(1.24) translate3d(0,-21%,0)}
+  .mk-avatar[data-agent="yevi"] video{transform:scale(1.24) translate3d(0,-21%,0)}
+
+  /* Row break: a zero-height full-width grid item. Placed right after the
+   * last agent card so the workbench section (Character editor onward)
+   * always starts on a fresh row instead of backfilling next to agents. */
+  .mk-rowbreak{grid-column:1/-1;height:0;margin:0;padding:0;border:0}
+
+  /* Companion personas: 3 avatars in a horizontal row on the right. Card
+   * stays normal (1-column) width; avatars are sized down so all 3 fit. */
+  .mk-avatar-cluster{display:flex;flex-direction:row;gap:6px;flex-shrink:0;align-items:flex-start}
+  .mk-avatar-cluster .mk-avatar{width:48px;height:48px}
+  /* nudge the 3 companion coders up a touch */
+  .mk-avatar-cluster video{transform:scale(1.24) translate3d(0,-20%,0)}
+
+  /* Companion persona name chips: read-only labels under the description,
+   * showing the 5 available coder personas (糯糯/凛/樱/小枫/蛛蛛). Style
+   * matches studio-side .wm-skin-chip — subtle stroke, brand-tinted for
+   * the 3 currently-visible avatars. */
+  .mk-companions{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .mk-companion{
+    font-family:inherit;font-size:11.5px;line-height:1.3;
+    padding:3px 9px;border-radius:var(--radius-pill);
+    background:transparent;color:var(--text-tertiary);
+    border:1px solid rgba(255,255,255,.07);
+  }
+  .mk-companion.is-shown{
+    color:var(--brand);background:rgba(212,255,72,.10);
+    border-color:rgba(212,255,72,.36);font-weight:600;
+  }
 </style>
 </head>
 <body class="lang-en">
@@ -96,56 +167,98 @@
   <div class="mk-grid" id="mkGrid">
 
     <!-- ── Agents ── -->
-    <div class="mk-item" data-slug="agent-arin" data-kind="agent" data-search="arin producer 制作人 统筹 production">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">Arin · 制作人</span><span data-lang="en">Arin · Producer</span><span class="slug">producer</span></h3>
-      <p><span data-lang="zh">全能制作人,统筹策划 / 程序 / 美术 / 音效。</span><span data-lang="en">An all-round producer coordinating design / code / art / audio.</span></p>
+    <div class="mk-item is-agent" data-slug="agent-arin" data-kind="agent" data-search="arin producer 制作人 统筹 production">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Arin · 制作人</span><span data-lang="en">Arin · Producer</span><span class="slug">producer</span></h3>
+        <p><span data-lang="zh">全能制作人,统筹策划 / 程序 / 美术 / 音效。</span><span data-lang="en">An all-round producer coordinating design / code / art / audio.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="arin"></div>
     </div>
-    <div class="mk-item" data-slug="@group" data-kind="agent" data-search="architect 架构师 abstraction">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">架构师</span><span data-lang="en">Architect</span><span class="slug">architect</span></h3>
-      <p><span data-lang="zh">跨域抽象,把游戏 / 代码 / 艺术接到一起。</span><span data-lang="en">Cross-domain abstraction across game, code and art.</span></p>
+    <div class="mk-item is-agent" data-slug="@group" data-kind="agent" data-search="architect 架构师 abstraction lock">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">架构师</span><span data-lang="en">Architect</span><span class="slug">architect</span></h3>
+        <p><span data-lang="zh">跨域抽象,把游戏 / 代码 / 艺术接到一起。</span><span data-lang="en">Cross-domain abstraction across game, code and art.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="lock"></div>
     </div>
-    <div class="mk-item" data-slug="agent-iori" data-kind="agent" data-search="iori gameplay 玩法 pillar mechanics">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">Iori · 玩法柱</span><span data-lang="en">Iori · Gameplay</span><span class="slug">pillar</span></h3>
-      <p><span data-lang="zh">核心玩法师 —— 玩法柱 + 数值骨架。</span><span data-lang="en">Core mechanics — the gameplay pillar and numeric skeleton.</span></p>
+    <div class="mk-item is-agent" data-slug="agent-iori" data-kind="agent" data-search="iori gameplay 玩法 pillar mechanics">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Iori · 玩法柱</span><span data-lang="en">Iori · Gameplay</span><span class="slug">pillar</span></h3>
+        <p><span data-lang="zh">核心玩法师 —— 玩法柱 + 数值骨架。</span><span data-lang="en">Core mechanics — the gameplay pillar and numeric skeleton.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="iori"></div>
     </div>
-    <div class="mk-item" data-slug="agent-suzu" data-kind="agent" data-search="suzu design experience 体验设计 hud onboarding">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">Suzu · 体验设计</span><span data-lang="en">Suzu · Experience</span><span class="slug">design</span></h3>
-      <p><span data-lang="zh">玩家节拍 / HUD / onboarding。</span><span data-lang="en">Player pacing, HUD and onboarding.</span></p>
+    <div class="mk-item is-agent" data-slug="agent-suzu" data-kind="agent" data-search="suzu design experience 体验设计 hud onboarding">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Suzu · 体验设计</span><span data-lang="en">Suzu · Experience</span><span class="slug">design</span></h3>
+        <p><span data-lang="zh">玩家节拍 / HUD / onboarding。</span><span data-lang="en">Player pacing, HUD and onboarding.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="suzu"></div>
     </div>
-    <div class="mk-item" data-slug="agent-kotone" data-kind="agent" data-search="kotone narrative 叙事 story world dialogue">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">Kotone · 叙事</span><span data-lang="en">Kotone · Narrative</span><span class="slug">narrative</span></h3>
-      <p><span data-lang="zh">世界观 / 角色 bio / 对白。</span><span data-lang="en">World, character bios and dialogue.</span></p>
+    <div class="mk-item is-agent" data-slug="agent-kotone" data-kind="agent" data-search="kotone narrative 叙事 story world dialogue">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Kotone · 叙事</span><span data-lang="en">Kotone · Narrative</span><span class="slug">narrative</span></h3>
+        <p><span data-lang="zh">世界观 / 角色 bio / 对白。</span><span data-lang="en">World, character bios and dialogue.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="kotone"></div>
     </div>
-    <div class="mk-item" data-slug="agent-iro" data-kind="agent" data-search="iro art 美术 sprite vfx ui">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">Iro · 美术</span><span data-lang="en">Iro · Art</span><span class="slug">art</span></h3>
-      <p><span data-lang="zh">立绘 / sprite / VFX / UI 统筹。</span><span data-lang="en">Portraits, sprites, VFX and UI direction.</span></p>
+    <div class="mk-item is-agent" data-slug="agent-iro" data-kind="agent" data-search="iro art 美术 sprite vfx ui">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Iro · 美术</span><span data-lang="en">Iro · Art</span><span class="slug">art</span></h3>
+        <p><span data-lang="zh">立绘 / sprite / VFX / UI 统筹。</span><span data-lang="en">Portraits, sprites, VFX and UI direction.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="iro"></div>
     </div>
-    <div class="mk-item" data-slug="agent-cc-coder" data-kind="agent" data-search="coder coding 编码 cc-coder code">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">cc-coder · 编码</span><span data-lang="en">cc-coder · Coder</span><span class="slug">coder</span></h3>
-      <p><span data-lang="zh">通用编码 —— 把 spec 落成可运行代码。</span><span data-lang="en">General coding — turns specs into running code.</span></p>
+    <div class="mk-item is-agent" data-slug="agent-cc-coder" data-kind="agent" data-search="coder coding 编码 cc-coder code">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">cc-coder · 编码</span><span data-lang="en">cc-coder · Coder</span><span class="slug">coder</span></h3>
+        <p><span data-lang="zh">通用编码 —— 把 spec 落成可运行代码。</span><span data-lang="en">General coding — turns specs into running code.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="cc-coder"></div>
     </div>
-    <div class="mk-item" data-slug="agent-tsumugi" data-kind="agent" data-search="tsumugi build ci 工程 toolchain">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">Tsumugi · 工程</span><span data-lang="en">Tsumugi · Build</span><span class="slug">build</span></h3>
-      <p><span data-lang="zh">构建 / CI / 工具链 / 部署。</span><span data-lang="en">Build, CI, toolchain and deployment.</span></p>
+    <div class="mk-item is-agent" data-slug="agent-tsumugi" data-kind="agent" data-search="tsumugi build ci 工程 toolchain">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Tsumugi · 工程</span><span data-lang="en">Tsumugi · Build</span><span class="slug">build</span></h3>
+        <p><span data-lang="zh">构建 / CI / 工具链 / 部署。</span><span data-lang="en">Build, CI, toolchain and deployment.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="tsumugi"></div>
     </div>
-    <div class="mk-item" data-slug="agent-yevi" data-kind="agent" data-search="yevi review 审查 tech debt reviewer">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">Yevi · 审查</span><span data-lang="en">Yevi · Reviewer</span><span class="slug">review</span></h3>
-      <p><span data-lang="zh">技术审查 —— 发现并清理技术债。</span><span data-lang="en">Technical review — identifies and clears tech debt.</span></p>
+    <div class="mk-item is-agent" data-slug="agent-yevi" data-kind="agent" data-search="yevi review 审查 tech debt reviewer">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Yevi · 审查</span><span data-lang="en">Yevi · Reviewer</span><span class="slug">review</span></h3>
+        <p><span data-lang="zh">技术审查 —— 发现并清理技术债。</span><span data-lang="en">Technical review — identifies and clears tech debt.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="yevi"></div>
     </div>
-    <div class="mk-item" data-slug="@group" data-kind="agent" data-search="companion personas 陪伴人格 character">
-      <span class="kind k-agent">Agent</span>
-      <h3><span data-lang="zh">陪伴人格</span><span data-lang="en">Companion personas</span><span class="slug">personas</span></h3>
-      <p><span data-lang="zh">同等编码力、不同性格的可选陪伴角色。</span><span data-lang="en">Optional companions — same skill, different character.</span></p>
+    <div class="mk-item is-agent" data-slug="@group" data-kind="agent" data-search="companion personas 陪伴人格 character mochi rin sakura kaede kumo 糯糯 凛 樱 小枫 蛛蛛">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">陪伴人格</span><span data-lang="en">Companion personas</span><span class="slug">personas</span></h3>
+        <p><span data-lang="zh">同等编码力、不同性格的可选陪伴角色。</span><span data-lang="en">Optional companions — same skill, different character.</span></p>
+        <div class="mk-companions" aria-label="companion personas">
+          <span class="mk-companion is-shown" data-persona="mochi"><span data-lang="zh">糯糯</span><span data-lang="en">Mochi</span></span>
+          <span class="mk-companion is-shown" data-persona="rin"><span data-lang="zh">凛</span><span data-lang="en">Rin</span></span>
+          <span class="mk-companion is-shown" data-persona="sakura"><span data-lang="zh">樱</span><span data-lang="en">Sakura</span></span>
+          <span class="mk-companion" data-persona="kaede"><span data-lang="zh">小枫</span><span data-lang="en">Kaede</span></span>
+          <span class="mk-companion" data-persona="kumo"><span data-lang="zh">蛛蛛</span><span data-lang="en">Kumo</span></span>
+        </div>
+      </div>
+      <div class="mk-avatar-cluster" aria-hidden="true">
+        <div class="mk-avatar" data-agent="mochi"></div>
+        <div class="mk-avatar" data-agent="rin"></div>
+        <div class="mk-avatar" data-agent="sakura"></div>
+      </div>
     </div>
+    <div class="mk-rowbreak" aria-hidden="true"></div>
 
     <!-- ── Workbenches ── -->
     <div class="mk-item" data-slug="wb-character" data-kind="workbench" data-search="wb-character 角色编辑器 portrait 立绘 turnaround character">
@@ -433,6 +546,114 @@
   });
   modal.addEventListener("click", function(e){ if (e.target.hasAttribute("data-close")) closeModal(); });
   document.addEventListener("keydown", function(e){ if (e.key==="Escape" && !modal.hidden) closeModal(); });
+})();
+</script>
+
+<script>
+/* Agent avatar slot: 9-state video carousel with double-buffered,
+ * flicker-free transitions.
+ * - Each .mk-avatar[data-agent] gets TWO <video> layers, injected lazily
+ *   via IntersectionObserver so the page doesn't fetch ~5MB of webm
+ *   before the user scrolls to the agent row.
+ * - One layer is front (opacity 1), the other is the back buffer. The
+ *   NEXT clip is preloaded into the back buffer while the front clip
+ *   plays; only once the buffer's first frame is decoded (loadeddata) do
+ *   we start it and cross-fade — so there's never a blank frame.
+ * - The companion-personas cluster has 3 independent slots (mochi/rin/
+ *   sakura), each running its own cycle, so 3 coders show 3 different
+ *   emotion states at any moment. */
+(function () {
+  var BASE = "/assets/avatars";
+  var STATES = 9;
+  function pad(n){ return n < 10 ? "0" + n : String(n); }
+  function srcFor(agent, idx){ return BASE + "/" + agent + "/" + pad(idx) + ".webm"; }
+
+  function mkVideo() {
+    var v = document.createElement("video");
+    v.muted = true; v.playsInline = true; v.preload = "auto"; v.loop = false;
+    v.setAttribute("playsinline", ""); v.setAttribute("muted", "");
+    return v;
+  }
+
+  var FADE_MS = 300; // keep in sync with CSS transition on .mk-avatar video
+
+  function startCycle(slot, startIdx) {
+    var agent = slot.getAttribute("data-agent");
+    if (!agent) return;
+    var layers = slot.querySelectorAll("video");
+    var front = layers[0], back = layers[1];
+    var idx = startIdx || 1;
+    var pendingIdx = idx >= STATES ? 1 : idx + 1;
+
+    function load(layer, i) { layer.src = srcFor(agent, i); layer.load(); }
+
+    // Show the first clip; preload the next into the (hidden) back buffer.
+    front.classList.add("is-front");
+    load(front, idx);
+    front.play().catch(function(){});
+    load(back, pendingIdx);
+
+    front.addEventListener("ended", advance);
+    back.addEventListener("ended", advance);
+
+    function swap() {
+      // Start the buffered clip, then cross-fade: back→front, front→back.
+      back.play().catch(function(){});
+      back.classList.add("is-front");
+      front.classList.remove("is-front");
+
+      var outgoing = front;      // now fading 1→0 over FADE_MS
+      front = back; back = outgoing;
+      idx = pendingIdx;
+      pendingIdx = idx >= STATES ? 1 : idx + 1;
+
+      // CRITICAL: only reload the outgoing layer AFTER it has fully faded
+      // out. Reloading it while still visible blanks it to an empty frame
+      // that shows through the cross-fade — that was the "flash". It holds
+      // its last decoded frame untouched until hidden.
+      setTimeout(function () { load(back, pendingIdx); }, FADE_MS + 40);
+    }
+
+    function advance() {
+      // Swap once the buffered clip's first frame is decoded (no blank).
+      if (back.readyState >= 2) {
+        swap();
+      } else {
+        var once = function () { back.removeEventListener("loadeddata", once); swap(); };
+        back.addEventListener("loadeddata", once);
+      }
+    }
+  }
+
+  // Within a cluster (companion personas), stagger each slot to start at a
+  // different state so the 3 visible coders show 3 different emotions.
+  var clusterStartOffsets = new WeakMap();
+  [].slice.call(document.querySelectorAll(".mk-avatar-cluster")).forEach(function (cluster) {
+    [].slice.call(cluster.querySelectorAll(".mk-avatar")).forEach(function (slot, i) {
+      clusterStartOffsets.set(slot, ((i * 3) % STATES) + 1);
+    });
+  });
+
+  function ensureVideo(slot) {
+    if (slot.querySelector("video")) return;
+    slot.appendChild(mkVideo());
+    slot.appendChild(mkVideo());
+    startCycle(slot, clusterStartOffsets.get(slot) || 1);
+  }
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          ensureVideo(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: "240px" });
+    [].slice.call(document.querySelectorAll(".mk-avatar")).forEach(function (s) { io.observe(s); });
+  } else {
+    [].slice.call(document.querySelectorAll(".mk-avatar")).forEach(ensureVideo);
+  }
 })();
 </script>
 </body>
