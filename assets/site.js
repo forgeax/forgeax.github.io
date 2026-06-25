@@ -110,6 +110,10 @@
     });
   }
 
+  if (document.querySelector(".manifest-line")) {
+    loadScript("/assets/manifest-particles.js?v=forgeax-ui-106");
+  }
+
   if (!window.__forgeLucideBoot) {
     window.__forgeLucideBoot = true;
     loadScript("https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js", function () {

@@ -60,7 +60,8 @@
   align-items: center;
 }
 
-.forgeax-site .preview-head a.all {
+.forgeax-site .preview-head a.all,
+.forgeax-site .mk-modal-card a.all {
   --halo-angle: 0deg;
   --all-flow-dur: 3.6s;
   position: relative;
@@ -105,12 +106,14 @@
     background var(--site-dur-hover) var(--halo-ease);
 }
 
-.forgeax-site .preview-head a.all > * {
+.forgeax-site .preview-head a.all > *,
+.forgeax-site .mk-modal-card a.all > * {
   position: relative;
   z-index: 1;
 }
 
-.forgeax-site .preview-head a.all::before {
+.forgeax-site .preview-head a.all::before,
+.forgeax-site .mk-modal-card a.all::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -137,7 +140,8 @@
   animation: halo-edge-flow var(--all-flow-dur) linear infinite;
 }
 
-.forgeax-site .preview-head a.all::after {
+.forgeax-site .preview-head a.all::after,
+.forgeax-site .mk-modal-card a.all::after {
   content: "";
   position: absolute;
   inset: 1px;
@@ -152,7 +156,8 @@
   );
 }
 
-.forgeax-site .preview-head a.all:hover {
+.forgeax-site .preview-head a.all:hover,
+.forgeax-site .mk-modal-card a.all:hover {
   color: #fff;
   background:
     linear-gradient(
@@ -173,7 +178,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .forgeax-site .preview-head a.all::before {
+  .forgeax-site .preview-head a.all::before,
+  .forgeax-site .mk-modal-card a.all::before {
     animation: none;
   }
 }

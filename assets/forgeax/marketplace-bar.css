@@ -43,10 +43,65 @@
 }
 
 .forgeax-site .mk-tab {
-  padding: 0 14px;
+  gap: 6px;
+  padding: 0 13px 0 11px;
   color: var(--text-secondary);
   background: var(--bg-base);
   cursor: pointer;
+}
+
+.forgeax-site .mk-tab-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.78;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.forgeax-site .mk-tab-ico svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+
+.forgeax-site .mk-tab:hover .mk-tab-ico,
+.forgeax-site .mk-tab.active .mk-tab-ico {
+  opacity: 1;
+}
+
+.forgeax-site .mk-tab[data-kind="all"] .mk-tab-ico {
+  color: var(--text-tertiary);
+}
+
+.forgeax-site .mk-tab[data-kind="agent"] .mk-tab-ico {
+  color: #c4a3ff;
+}
+
+.forgeax-site .mk-tab[data-kind="workbench"] .mk-tab-ico {
+  color: #c8dc88;
+}
+
+.forgeax-site .mk-tab[data-kind="skill"] .mk-tab-ico {
+  color: #ddb06a;
+}
+
+.forgeax-site .mk-tab[data-kind="backend"] .mk-tab-ico {
+  color: #8eb0e8;
+}
+
+.forgeax-site .mk-tab[data-kind="tool"] .mk-tab-ico {
+  color: #7ad4c0;
+}
+
+.forgeax-site .mk-tab[data-kind="binding"] .mk-tab-ico {
+  color: #f094b8;
+}
+
+.forgeax-site .mk-tab.active[data-kind="all"] .mk-tab-ico {
+  color: var(--brand-light);
 }
 
 .forgeax-site .mk-tab:hover {

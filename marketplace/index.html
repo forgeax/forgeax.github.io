@@ -8,41 +8,40 @@
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-100" />
+<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-121" />
 <style>
   .mk-count{font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);margin:16px 0 12px}
   .mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
-  .mk-item{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:16px;
-    transition:transform var(--dur-smooth) var(--ease-out),border-color var(--dur-smooth) var(--ease-out)}
-  .mk-item:hover{border-color:var(--border-strong);transform:translateY(-2px)}
-  .mk-item.hide{display:none}
+  .mk-item{padding:16px}
+  .mk-item.hide{display:none !important}
   .mk-item .kind{display:inline-block;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.6px;
     padding:2px 8px;border-radius:var(--radius-pill);margin-bottom:9px}
-  .k-agent{background:rgba(196,163,255,.12);color:#c4a3ff;border:1px solid rgba(196,163,255,.25)}
-  .k-wb{background:rgba(212,255,72,.10);color:var(--brand-light);border:1px solid rgba(212,255,72,.25)}
-  .k-skill{background:rgba(255,156,42,.12);color:var(--orange);border:1px solid rgba(255,156,42,.25)}
-  .k-backend{background:rgba(99,156,248,.12);color:var(--blue);border:1px solid rgba(99,156,248,.25)}
-  .k-tool{background:rgba(72,255,207,.10);color:var(--teal);border:1px solid rgba(72,255,207,.25)}
-  .k-binding{background:rgba(168,85,247,.14);color:#c084fc;border:1px solid rgba(168,85,247,.3)}
+  .k-agent{background:rgba(196,163,255,.14);color:#c4a3ff;border:1px solid rgba(196,163,255,.28)}
+  .k-wb{background:rgba(178,198,98,.13);color:#c8dc88;border:1px solid rgba(178,198,98,.28)}
+  .k-skill{background:rgba(208,148,78,.13);color:#ddb06a;border:1px solid rgba(208,148,78,.28)}
+  .k-backend{background:rgba(102,148,225,.13);color:#8eb0e8;border:1px solid rgba(102,148,225,.28)}
+  .k-tool{background:rgba(88,205,182,.12);color:#7ad4c0;border:1px solid rgba(88,205,182,.26)}
+  .k-binding{background:rgba(236,122,158,.13);color:#f094b8;border:1px solid rgba(236,122,158,.28)}
   .mk-item h3{font-size:15px;font-weight:700;line-height:1.3}
   .mk-item .slug{font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);font-weight:400;display:block;margin-top:2px}
   .mk-item p{color:var(--text-secondary);font-size:13.5px;margin-top:7px}
   .mk-item a{color:var(--brand)}
   .mk-empty{display:none;color:var(--text-tertiary);text-align:center;padding:36px 0}
 
-  /* plugin info modal */
-  .mk-item{cursor:pointer;transition:border-color .15s,transform .05s}
-  .mk-item:hover{border-color:var(--accent,#D4FF48)}
-  .mk-item:active{transform:translateY(1px)}
-  .mk-item:focus-visible{outline:2px solid var(--accent,#D4FF48);outline-offset:2px}
+  /* plugin info modal — layout; glass skin in marketplace-cards.css */
+  .mk-item{cursor:pointer}
   .mk-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
   .mk-modal[hidden]{display:none}
-  .mk-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(2px)}
-  .mk-modal-card{position:relative;max-width:560px;width:100%;max-height:86vh;overflow:auto;background:var(--bg-elevated,#15171c);border:1px solid var(--border,#2a2d35);border-radius:14px;padding:24px 24px 22px;box-shadow:0 24px 64px rgba(0,0,0,.5)}
-  .mk-modal-x{position:absolute;top:10px;right:14px;background:none;border:none;color:var(--text-secondary,#9aa0aa);font-size:24px;line-height:1;cursor:pointer}
-  .mk-modal-x:hover{color:var(--text,#fff)}
-  .mk-modal-kind{display:flex;gap:8px;align-items:center;margin-bottom:4px}
-  .mk-modal-card h3{font-size:21px;font-weight:700;margin:2px 0 10px}
+  .mk-modal-backdrop{position:absolute;inset:0;z-index:0}
+  .mk-modal-card{position:relative;z-index:1;max-width:560px;width:100%;max-height:min(86vh,calc(100vh - 48px));overflow:auto;border-radius:14px;padding:20px 56px 22px 24px;margin:0}
+  .mk-modal-card a.all.is-disabled{opacity:.5;pointer-events:none}
+  .mk-modal-head{margin-bottom:14px}
+  .mk-modal-head h3{font-size:21px;font-weight:700;margin:0 0 12px;line-height:1.3}
+  .mk-modal-visual{display:flex;align-items:center;gap:8px}
+  .mk-modal-visual[hidden]{display:none}
+  .mk-modal-visual .mk-avatar{width:72px;height:72px}
+  .mk-modal-visual .mk-avatar-cluster .mk-avatar{width:52px;height:52px}
+  .mk-modal-visual .mk-modal-icon.ico{width:var(--icon-container-size);height:var(--icon-container-size);margin:0;flex-shrink:0}
   .mk-modal-meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--text-secondary,#9aa0aa);margin-bottom:14px}
   .mk-modal-meta .mono{font-family:'Fira Mono',monospace}
   .mk-modal-card p#mkmDesc{color:var(--text-secondary,#c4c8d0);line-height:1.62;margin:0 0 14px}
@@ -50,9 +49,7 @@
   .mk-caps{margin:0 0 14px;padding-left:18px;color:var(--text-secondary,#c4c8d0);font-size:13.5px;line-height:1.7}
   .mk-kw{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
   .mk-kw span{font-size:12px;padding:3px 9px;border:1px solid var(--border,#2a2d35);border-radius:999px;color:var(--text-secondary,#9aa0aa);font-family:'Fira Mono',monospace}
-  .mk-exp{font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(212,255,72,.12);color:var(--accent,#D4FF48)}
-  .mk-modal-card a.btn{display:inline-block}
-  .mk-modal-card a.btn.is-disabled{opacity:.5;pointer-events:none}
+  .mk-meta-exp{font-size:11px;padding:2px 8px;border-radius:var(--radius-pill);background:rgba(212,255,72,.12);color:var(--accent,#D4FF48)}
 
   /* ── Agent cards: avatar slot on the right ──
    * Frame stays 64×64; video inside is zoomed (object-fit: cover +
@@ -71,7 +68,6 @@
     position:relative;
     transition:border-color var(--dur-smooth) var(--ease-out),transform var(--dur-smooth) var(--ease-out);
   }
-  .mk-item.is-agent:hover .mk-avatar{border-color:rgba(196,163,255,.48)}
   /* Two <video> layers stacked for double-buffering: the next clip loads
    * in the hidden layer and we cross-fade opacity only when its first
    * frame is ready, so there's never a blank/black frame between states
@@ -120,13 +116,31 @@
     background:transparent;color:var(--text-tertiary);
     border:1px solid rgba(255,255,255,.07);
   }
+
+  /* Plugin cards (workbench / skill / backend / tool / binding): .ico slot on the right */
+  .mk-item.is-mk-card{display:flex;gap:10px;align-items:flex-start}
+  .mk-item.is-mk-card .mk-card-main{flex:1;min-width:0}
+  .mk-item.is-mk-card h3{margin-top:2px}
+  .mk-item.is-mk-card .mk-card-icon.ico{
+    width:var(--icon-container-size);
+    height:var(--icon-container-size);
+    margin-top:2px;
+    flex-shrink:0;
+  }
+  .mk-modal-icon.ico{
+    width:var(--icon-container-size);
+    height:var(--icon-container-size);
+    margin:0;
+    flex-shrink:0;
+  }
+
   .mk-companion.is-shown{
     color:var(--brand);background:rgba(212,255,72,.10);
     border-color:rgba(212,255,72,.36);font-weight:600;
   }
 </style>
 </head>
-<body class="lang-en">
+<body class="lang-en forgeax-site">
 <div id="site-header"></div>
 <main class="wrap">
   <div class="page-head">
@@ -136,13 +150,34 @@
 
   <div class="mk-bar">
     <div class="mk-tabs">
-      <button class="mk-tab active" data-kind="all"><span data-lang="zh">全部</span><span data-lang="en">All</span></button>
-      <button class="mk-tab" data-kind="agent">Agent</button>
-      <button class="mk-tab" data-kind="workbench"><span data-lang="zh">工作台</span><span data-lang="en">Workbench</span></button>
-      <button class="mk-tab" data-kind="skill"><span data-lang="zh">技能</span><span data-lang="en">Skill</span></button>
-      <button class="mk-tab" data-kind="backend"><span data-lang="zh">CLI 后端</span><span data-lang="en">CLI backend</span></button>
-      <button class="mk-tab" data-kind="tool"><span data-lang="zh">工具</span><span data-lang="en">Tool</span></button>
-      <button class="mk-tab" data-kind="binding"><span data-lang="zh">模型绑定</span><span data-lang="en">Binding</span></button>
+      <button class="mk-tab active" data-kind="all">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
+        <span data-lang="zh">全部</span><span data-lang="en">All</span>
+      </button>
+      <button class="mk-tab" data-kind="agent">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="bot"></i></span>
+        Agent
+      </button>
+      <button class="mk-tab" data-kind="workbench">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="blocks"></i></span>
+        <span data-lang="zh">工作台</span><span data-lang="en">Workbench</span>
+      </button>
+      <button class="mk-tab" data-kind="skill">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="wand-sparkles"></i></span>
+        <span data-lang="zh">技能</span><span data-lang="en">Skill</span>
+      </button>
+      <button class="mk-tab" data-kind="backend">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
+        <span data-lang="zh">CLI 后端</span><span data-lang="en">CLI backend</span>
+      </button>
+      <button class="mk-tab" data-kind="tool">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="wrench"></i></span>
+        <span data-lang="zh">工具</span><span data-lang="en">Tool</span>
+      </button>
+      <button class="mk-tab" data-kind="binding">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="link-2"></i></span>
+        <span data-lang="zh">模型绑定</span><span data-lang="en">Binding</span>
+      </button>
     </div>
     <label class="mk-search">
       <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
@@ -412,22 +447,28 @@
     </div>
   </section>
 
+</main>
+<div id="site-footer"></div>
+
 <div id="mkModal" class="mk-modal" hidden>
   <div class="mk-modal-backdrop" data-close></div>
   <div class="mk-modal-card" role="dialog" aria-modal="true" aria-labelledby="mkmTitle">
-    <button class="mk-modal-x" data-close aria-label="Close">&times;</button>
-    <div class="mk-modal-kind"><span class="kind" id="mkmKind"></span><span class="mk-exp" id="mkmExp" hidden><span data-lang="zh">实验性</span><span data-lang="en">experimental</span></span></div>
-    <h3 id="mkmTitle"></h3>
+    <button type="button" class="mk-modal-x" data-close aria-label="Close">
+      <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="x"></i></span>
+    </button>
+    <div class="mk-modal-head">
+      <h3 id="mkmTitle"></h3>
+      <div id="mkmVisual" class="mk-modal-visual" hidden aria-hidden="true"></div>
+    </div>
     <div class="mk-modal-meta" id="mkmMeta"></div>
     <p id="mkmDesc"></p>
     <div id="mkmCapsWrap" hidden><h4><span data-lang="zh">能力</span><span data-lang="en">Capabilities</span></h4><ul class="mk-caps" id="mkmCaps"></ul></div>
     <div class="mk-kw" id="mkmKw"></div>
-    <a id="mkmRepo" class="btn primary" target="_blank" rel="noopener" href="#"></a>
+    <a id="mkmRepo" class="all" target="_blank" rel="noopener" href="#"></a>
   </div>
 </div>
-</main>
-<div id="site-footer"></div>
-<script src="/assets/site.js?v=forgeax-ui-84"></script>
+<script src="/assets/site.js?v=forgeax-ui-106"></script>
+<script src="/assets/marketplace/marketplace-card-icons.js?v=forgeax-ui-112"></script>
 <script>
   (function () {
     var tabs = [].slice.call(document.querySelectorAll(".mk-tab"));
@@ -436,6 +477,7 @@
     var count = document.getElementById("mkCount");
     var empty = document.getElementById("mkEmpty");
     var kind = "all";
+    var rowbreak = document.querySelector(".mk-rowbreak");
     function apply() {
       var q = (search.value || "").trim().toLowerCase();
       var n = 0;
@@ -446,6 +488,7 @@
         it.classList.toggle("hide", !show);
         if (show) n++;
       });
+      if (rowbreak) rowbreak.classList.toggle("hide", kind !== "all" && kind !== "agent");
       if (count) count.textContent = n + " / " + items.length;
       if (empty) empty.style.display = n ? "none" : "block";
     }
@@ -474,11 +517,65 @@
   function t(zh,en){ return '<span data-lang="zh">'+zh+'</span><span data-lang="en">'+en+'</span>'; }
   function pick(item, lang){ var n=item.querySelector('h3 [data-lang="'+lang+'"]'); return n?n.textContent.trim():""; }
 
-  function fill(d, fb){
-    $("mkmKind").innerHTML = d ? t(d.kindLabel.zh, d.kindLabel.en) : t("人格","Persona");
-    $("mkmExp").hidden = !(d && d.experimental);
+  function mountModalVisual(item, d) {
+    var wrap = $("mkmVisual");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    wrap.hidden = true;
+    wrap.setAttribute("aria-hidden", "true");
+
+    var cluster = item && item.querySelector(".mk-avatar-cluster");
+    if (cluster) {
+      var c = document.createElement("div");
+      c.className = "mk-avatar-cluster mk-modal-visual-cluster";
+      [].slice.call(cluster.querySelectorAll(".mk-avatar")).forEach(function (slot) {
+        var s = document.createElement("div");
+        s.className = "mk-avatar";
+        s.setAttribute("data-agent", slot.getAttribute("data-agent") || "");
+        c.appendChild(s);
+      });
+      wrap.appendChild(c);
+      wrap.hidden = false;
+      wrap.setAttribute("aria-hidden", "false");
+      return;
+    }
+
+    var av = item && item.querySelector(".mk-avatar");
+    if (av) {
+      var slot = document.createElement("div");
+      slot.className = "mk-avatar";
+      slot.setAttribute("data-agent", av.getAttribute("data-agent") || "");
+      wrap.appendChild(slot);
+      wrap.hidden = false;
+      wrap.setAttribute("aria-hidden", "false");
+      return;
+    }
+
+    if (d && window.forgeaxMountMarketplaceIcon) {
+      var iconKind = d.kind === "cli-provider" ? "backend" : d.kind;
+      if (["workbench", "skill", "backend", "tool", "binding"].indexOf(iconKind) >= 0) {
+        var iconEl = document.createElement("div");
+        iconEl.className = "mk-modal-icon ico";
+        window.forgeaxMountMarketplaceIcon(iconEl, d.slug, iconKind);
+        wrap.appendChild(iconEl);
+        wrap.hidden = false;
+        wrap.setAttribute("aria-hidden", "false");
+      }
+    }
+  }
+
+  function fill(d, fb, item){
+    var card = modal.querySelector(".mk-modal-card");
+    var kind = (d && d.kind) || (item && item.getAttribute("data-kind")) || "agent";
+    if (card) card.setAttribute("data-kind", kind === "cli-provider" ? "backend" : kind);
+
     $("mkmTitle").innerHTML = d ? t(esc(d.name.zh), esc(d.name.en)) : t(esc(fb.zh), esc(fb.en));
+    mountModalVisual(item, d);
+
     var meta = [];
+    if (d && d.experimental) {
+      meta.push('<span class="mk-meta-exp">' + t("实验性", "experimental") + "</span>");
+    }
     if (d){
       meta.push('<span class="mono">'+esc(d.id)+'</span>');
       meta.push('<span>v'+esc(d.version)+'</span>');
@@ -503,9 +600,30 @@
     $("mkmKw").innerHTML = (d && d.keywords ? d.keywords : []).map(function(k){return "<span>"+esc(k)+"</span>";}).join("");
     // repo link
     var a = $("mkmRepo");
+    a.className = "all";
     if (d && d.repoUrl){ a.href=d.repoUrl; a.classList.remove("is-disabled"); a.removeAttribute("aria-disabled"); a.innerHTML = t("查看源码 ↗","View source ↗"); }
     else if (d && d.repoUrl === null){ a.href="#"; a.classList.add("is-disabled"); a.setAttribute("aria-disabled","true"); a.innerHTML = t("暂未开源","Not in the open-source release yet"); }
-    else { a.href=REPO_ROOT; a.classList.remove("is-disabled"); a.innerHTML = t("浏览全部插件 ↗","Browse all plugins ↗"); }
+    else { a.href=REPO_ROOT; a.classList.remove("is-disabled"); a.removeAttribute("aria-disabled"); a.innerHTML = t("浏览全部插件 ↗","Browse all plugins ↗"); }
+  }
+
+  var scrollLockY = 0;
+  function lockScroll(){
+    scrollLockY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = "fixed";
+    document.body.style.top = "-" + scrollLockY + "px";
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+  }
+  function unlockScroll(){
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+    window.scrollTo(0, scrollLockY);
   }
 
   function openCard(item){
@@ -520,19 +638,40 @@
         descEn: (p && p.querySelector('[data-lang="en"]') ? p.querySelector('[data-lang="en"]').textContent.trim() : "")
       };
     }
-    fill(d, fb);
+    fill(d, fb, item);
     modal.hidden = false;
-    document.body.style.overflow = "hidden";
-    var x = modal.querySelector(".mk-modal-x"); if (x) x.focus();
+    lockScroll();
+    if (window.forgeaxRefreshIcons) window.forgeaxRefreshIcons();
+    [].slice.call(modal.querySelectorAll(".mk-avatar")).forEach(function (slot) {
+      if (window.forgeaxEnsureAvatar) window.forgeaxEnsureAvatar(slot);
+    });
+    var x = modal.querySelector(".mk-modal-x");
+    if (x) {
+      try { x.focus({ preventScroll: true }); }
+      catch (e) { x.focus(); }
+    }
   }
-  function closeModal(){ modal.hidden = true; document.body.style.overflow = ""; }
+  function closeModal(){
+    modal.hidden = true;
+    unlockScroll();
+    var visual = $("mkmVisual");
+    if (visual) {
+      visual.innerHTML = "";
+      visual.hidden = true;
+      visual.setAttribute("aria-hidden", "true");
+    }
+  }
 
   [].slice.call(document.querySelectorAll(".mk-item")).forEach(function (it) {
     it.setAttribute("role","button"); it.setAttribute("tabindex","0");
     it.addEventListener("click", function(){ openCard(it); });
     it.addEventListener("keydown", function(e){ if (e.key==="Enter"||e.key===" "){ e.preventDefault(); openCard(it); } });
   });
-  modal.addEventListener("click", function(e){ if (e.target.hasAttribute("data-close")) closeModal(); });
+  modal.addEventListener("click", function (e) {
+    if (e.target.closest("[data-close]") || !e.target.closest(".mk-modal-card")) {
+      closeModal();
+    }
+  });
   document.addEventListener("keydown", function(e){ if (e.key==="Escape" && !modal.hidden) closeModal(); });
 })();
 </script>
@@ -642,6 +781,8 @@
   } else {
     [].slice.call(document.querySelectorAll(".mk-avatar")).forEach(ensureVideo);
   }
+
+  window.forgeaxEnsureAvatar = ensureVideo;
 })();
 </script>
 </body>
