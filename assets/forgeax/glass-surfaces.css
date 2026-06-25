@@ -1,0 +1,183 @@
+/* Universal frosted-glass surfaces — overrides solid bg-* under .forgeax-site */
+
+.forgeax-site body {
+  background: #050505;
+  color: var(--text-primary);
+}
+
+.forgeax-site .ambient__base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -15%, color-mix(in srgb, var(--primary) 5%, #0a0a0a), #060606 52%),
+    linear-gradient(180deg, #080808 0%, #040404 100%);
+}
+
+.forgeax-site .ambient__noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.forgeax-site .card,
+.forgeax-site .stat,
+.forgeax-site .post-row,
+.forgeax-site .outline-card,
+.forgeax-site .foot,
+.forgeax-site .ex-side,
+.forgeax-site .ex-bar,
+.forgeax-site .ex-badge,
+.forgeax-site .input,
+.forgeax-site .md-copy,
+.forgeax-site .ask-ai > summary,
+.forgeax-site .lang-menu-trigger,
+.forgeax-site .ask-menu,
+.forgeax-site .lang-menu-list,
+.forgeax-site .docs-results,
+.forgeax-site .btn.ghost,
+.forgeax-site .note,
+.forgeax-site .prose blockquote,
+.forgeax-site .prose pre,
+.forgeax-site .doc-body pre,
+.forgeax-site .docs-sidebar {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border-color: var(--glass-border-subtle);
+  box-shadow: var(--glass-shadow);
+}
+
+.forgeax-site .card,
+.forgeax-site .stat:not(.stat--display),
+.forgeax-site .post-row,
+.forgeax-site .outline-card {
+  border: 1px solid var(--glass-border-subtle);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--glass-frost) 100%, transparent) 0%,
+      transparent 42%
+    ),
+    var(--glass-bg) !important;
+}
+
+.forgeax-site a.card:hover,
+.forgeax-site .post-row:hover,
+.forgeax-site .outline-card:hover {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--glass-frost) 120%, transparent) 0%,
+      transparent 48%
+    ),
+    var(--glass-bg-hover) !important;
+  border-color: var(--glass-border);
+}
+
+.forgeax-site .prose code,
+.forgeax-site .doc-body code,
+.forgeax-site .doc-subbody code {
+  background: color-mix(in srgb, var(--glass-bg) 80%, var(--primary) 8%) !important;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border-color: var(--glass-border-subtle);
+}
+
+.forgeax-site .tag {
+  background: color-mix(in srgb, var(--glass-bg) 70%, transparent) !important;
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-color: var(--glass-border-subtle);
+}
+
+.forgeax-site .ex-item:hover {
+  background: var(--glass-bg-hover) !important;
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+}
+
+.forgeax-site .ex-item.is-active {
+  background: color-mix(in srgb, var(--primary) 12%, var(--glass-bg)) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+.forgeax-site .ex-view {
+  background: transparent;
+}
+
+.forgeax-site .ex-frame-wrap {
+  background: radial-gradient(ellipse 80% 55% at 50% 0%, color-mix(in srgb, var(--primary) 6%, transparent), #060608);
+}
+
+.forgeax-site .foot {
+  border-top-color: var(--glass-border-subtle);
+}
+
+.forgeax-site .foot-bottom {
+  background: color-mix(in srgb, var(--glass-bg-soft) 60%, transparent);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border-top-color: var(--glass-border-subtle);
+}
+
+.forgeax-site .input:focus {
+  background: var(--glass-bg-hover) !important;
+  border-color: var(--glass-border);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--primary) 18%, transparent),
+    var(--glass-shadow);
+}
+
+.forgeax-site .ask-item:hover,
+.forgeax-site .lang-item:hover,
+.forgeax-site .docs-results a:hover,
+.forgeax-site .docs-results a.sel {
+  background: color-mix(in srgb, var(--glass-bg-hover) 90%, var(--primary) 5%) !important;
+}
+
+.forgeax-site .ex-bar-actions a:hover {
+  background: color-mix(in srgb, var(--primary) 12%, var(--glass-bg)) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.forgeax-site .prose th {
+  background: var(--glass-bg-soft) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.forgeax-site .doc-hit > summary {
+  background: color-mix(in srgb, var(--primary) 10%, var(--glass-bg)) !important;
+}
+
+.forgeax-site .card,
+.forgeax-site .post-row,
+.forgeax-site .stat {
+  position: relative;
+}
+
+.forgeax-site .card::after,
+.forgeax-site .post-row::after,
+.forgeax-site .stat::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--glass-highlight) 30%,
+    var(--glass-highlight) 70%,
+    transparent
+  );
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 2;
+}

@@ -1,0 +1,135 @@
+/* Icon system — Lucide stroke icons + brand fill logos (SSOT) */
+
+.forgeax-site {
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --icon-size-lg: 24px;
+  --icon-size-in-slot: 16px;
+  --icon-container-size: 40px;
+  --icon-slot-padding: calc((var(--icon-container-size) - var(--icon-size-in-slot) - 2px) / 2);
+  --icon-stroke: 1.8;
+  --icon-color-brand: var(--color-brand-primary-light);
+  --icon-color-muted: var(--color-icon-secondary, var(--text-tertiary));
+}
+
+/* inline / nav / search */
+.forgeax-site .ui-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  color: inherit;
+  vertical-align: middle;
+}
+
+.forgeax-site .ui-icon--sm {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+
+.forgeax-site .ui-icon [data-lucide] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lucide SVG defaults (inline / nav) */
+.forgeax-site .ui-icon svg,
+.forgeax-site .ico > svg.lucide,
+.forgeax-site [data-lucide] svg.lucide {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: var(--icon-stroke);
+}
+
+/* Lucide inside card slots — fixed inset, never fill the frame */
+.forgeax-site .ico [data-lucide] svg {
+  width: var(--icon-size-in-slot);
+  height: var(--icon-size-in-slot);
+  max-width: var(--icon-size-in-slot);
+  max-height: var(--icon-size-in-slot);
+  flex-shrink: 0;
+}
+
+.forgeax-site .ui-icon--sm svg {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+
+/* card feature slot */
+.forgeax-site .ico {
+  width: var(--icon-container-size);
+  height: var(--icon-container-size);
+  padding: var(--icon-slot-padding);
+  box-sizing: border-box;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--primary) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 16%, transparent);
+  color: var(--icon-color-brand);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    transform var(--site-dur-silk) var(--site-ease-silk),
+    background var(--site-dur-silk) var(--site-ease-silk);
+}
+
+.forgeax-site .card:hover .ico {
+  transform: scale(1.02);
+  background: color-mix(in srgb, var(--primary) 11%, transparent);
+}
+
+.forgeax-site .ico [data-lucide] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size-in-slot);
+  height: var(--icon-size-in-slot);
+  flex-shrink: 0;
+}
+
+/* third-party brand logos (fill, not stroke) */
+.forgeax-site a.ico-logo {
+  padding: 0;
+  text-decoration: none;
+  transition: filter var(--site-dur-silk) var(--site-ease-silk);
+}
+
+.forgeax-site a.ico-logo svg,
+.forgeax-site .ico-logo svg {
+  display: block;
+  width: var(--icon-size-in-slot);
+  height: var(--icon-size-in-slot);
+  max-width: var(--icon-size-in-slot);
+  max-height: var(--icon-size-in-slot);
+  fill: currentColor;
+  stroke: none;
+  color: inherit;
+}
+
+.forgeax-site a.ico-logo:hover {
+  filter: brightness(1.15);
+}
+
+/* nav controls */
+.forgeax-site .lang-menu-trigger .ui-icon,
+.forgeax-site .ask-ai > summary .ui-icon {
+  margin-right: 2px;
+}
+
+.forgeax-site .nav-burger .ui-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.forgeax-site .mk-search .ui-icon,
+.forgeax-site .docs-search .ui-icon {
+  color: var(--icon-color-muted);
+}

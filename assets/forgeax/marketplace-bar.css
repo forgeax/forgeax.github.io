@@ -1,0 +1,92 @@
+/* Marketplace filter bar — tabs + search share one control spec */
+
+.forgeax-site .mk-bar {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 50;
+  background: rgba(13, 13, 13, 0.86);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  margin: 8px 0 0;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.forgeax-site .mk-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.forgeax-site .mk-tab,
+.forgeax-site .mk-search {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  box-sizing: border-box;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.15;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.forgeax-site .mk-tab {
+  padding: 0 14px;
+  color: var(--text-secondary);
+  background: var(--bg-base);
+  cursor: pointer;
+}
+
+.forgeax-site .mk-tab:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.forgeax-site .mk-tab.active {
+  cursor: default;
+}
+
+.forgeax-site .mk-search {
+  margin-left: auto;
+  gap: 8px;
+  padding: 0 14px;
+  min-width: 210px;
+  background: var(--bg-base);
+}
+
+.forgeax-site .mk-search .ui-icon {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+}
+
+.forgeax-site .mk-search input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.forgeax-site .mk-search input::placeholder {
+  color: var(--text-tertiary);
+  font-weight: 500;
+}

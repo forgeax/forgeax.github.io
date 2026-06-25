@@ -1,0 +1,158 @@
+/* ForgeaX site motion — ultra-silk Linear-style transitions */
+
+.forgeax-site .motion-pressable,
+.forgeax-site .btn,
+.forgeax-site .nav-cta,
+.forgeax-site a.card,
+.forgeax-site a.post-row,
+.forgeax-site .md-copy,
+.forgeax-site .ask-ai > summary,
+.forgeax-site .lang-menu-trigger,
+.forgeax-site .ex-bar-actions a,
+.forgeax-site .ex-item,
+.forgeax-site .input {
+  will-change: transform, box-shadow, background, border-color, backdrop-filter, opacity;
+  transform-origin: center;
+  transition:
+    transform var(--site-dur-hover) var(--site-ease-silk),
+    background var(--site-dur-hover) var(--site-ease-silk),
+    border-color var(--site-dur-hover) var(--site-ease-out),
+    color var(--site-dur-hover) var(--site-ease-out),
+    box-shadow var(--site-dur-hover) var(--site-ease-silk),
+    opacity var(--site-dur-silk) var(--site-ease-silk),
+    backdrop-filter var(--site-dur-hover) var(--site-ease-silk);
+}
+
+.forgeax-site .motion-pressable:hover,
+.forgeax-site .btn:hover,
+.forgeax-site .nav-cta:hover,
+.forgeax-site a.card:hover,
+.forgeax-site a.post-row:hover,
+.forgeax-site .md-copy:hover {
+  transform: translate3d(0, -1px, 0);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.forgeax-site .btn.primary:hover,
+.forgeax-site .btn.primary:active {
+  color: var(--color-text-on-bright-primary);
+}
+
+.forgeax-site .motion-pressable:active,
+.forgeax-site .btn:active,
+.forgeax-site .nav-cta:active,
+.forgeax-site a.card:active,
+.forgeax-site a.post-row:active {
+  transform: translate3d(0, 0, 0) scale(0.998);
+  transition-duration: var(--site-dur-instant);
+}
+
+.forgeax-site .card .ico svg,
+.forgeax-site .btn svg,
+.forgeax-site .nav-links a svg {
+  transition: transform var(--site-dur-silk) var(--site-ease-silk);
+}
+.forgeax-site a.card:hover .ico svg,
+.forgeax-site .btn:hover svg {
+  transform: translate3d(0, -0.5px, 0) scale(1.025);
+}
+
+.forgeax-site .ex-item:hover,
+.forgeax-site .docs-sidebar a:hover {
+  transform: translate3d(2px, 0, 0);
+  transition-duration: var(--site-dur-silk);
+}
+.forgeax-site .ex-item.is-active { transform: none; }
+
+/* Hero — slow silk cascade */
+.forgeax-site .motion-hero-in > * {
+  animation: site-hero-in var(--site-dur-hero) var(--site-ease-silk) backwards;
+}
+.forgeax-site .motion-hero-in > *:nth-child(1) { animation-delay: 0ms; }
+.forgeax-site .motion-hero-in > *:nth-child(2) { animation-delay: calc(var(--site-stagger) * 1); }
+.forgeax-site .motion-hero-in > *:nth-child(3) { animation-delay: calc(var(--site-stagger) * 2); }
+.forgeax-site .motion-hero-in > *:nth-child(4) { animation-delay: calc(var(--site-stagger) * 3); }
+.forgeax-site .motion-hero-in > *:nth-child(5) { animation-delay: calc(var(--site-stagger) * 4); }
+
+.forgeax-site .motion-stagger > *,
+.forgeax-site .grid.c3 > *,
+.forgeax-site .grid.c2 > * {
+  animation: site-reveal-up 0.95s var(--site-ease-silk) backwards;
+}
+.forgeax-site .grid.c3 > *:nth-child(n),
+.forgeax-site .grid.c2 > *:nth-child(n) {
+  animation-delay: calc(var(--site-stagger) * (var(--i, 0)));
+}
+.forgeax-site .grid.c3 > *:nth-child(1),
+.forgeax-site .grid.c2 > *:nth-child(1) { --i: 0; }
+.forgeax-site .grid.c3 > *:nth-child(2),
+.forgeax-site .grid.c2 > *:nth-child(2) { --i: 1; }
+.forgeax-site .grid.c3 > *:nth-child(3),
+.forgeax-site .grid.c2 > *:nth-child(3) { --i: 2; }
+.forgeax-site .grid.c3 > *:nth-child(4),
+.forgeax-site .grid.c2 > *:nth-child(4) { --i: 3; }
+.forgeax-site .grid.c3 > *:nth-child(5),
+.forgeax-site .grid.c2 > *:nth-child(5) { --i: 4; }
+.forgeax-site .grid.c3 > *:nth-child(6),
+.forgeax-site .grid.c2 > *:nth-child(6) { --i: 5; }
+.forgeax-site .grid.c3 > *:nth-child(n + 7),
+.forgeax-site .grid.c2 > *:nth-child(n + 7) { --i: 6; }
+
+.forgeax-site .reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+  transition:
+    opacity var(--site-dur-reveal) var(--site-ease-enter),
+    transform var(--site-dur-reveal) var(--site-ease-enter);
+}
+.forgeax-site .reveal-on-scroll.is-inview {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.forgeax-site .reveal-on-scroll[data-reveal-delay="1"] { transition-delay: 100ms; }
+.forgeax-site .reveal-on-scroll[data-reveal-delay="2"] { transition-delay: 200ms; }
+.forgeax-site .reveal-on-scroll[data-reveal-delay="3"] { transition-delay: 300ms; }
+
+.forgeax-site main.wrap {
+  animation: site-page-in 0.9s var(--site-ease-silk) both;
+}
+
+.forgeax-site .ask-menu,
+.forgeax-site .lang-menu-list,
+.forgeax-site .docs-results {
+  animation: site-dropdown-in var(--site-dur-fast) var(--site-ease-silk) both;
+}
+
+@keyframes site-hero-in {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes site-reveal-up {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes site-page-in {
+  from { opacity: 0; transform: translate3d(0, 8px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes site-dropdown-in {
+  from { opacity: 0; transform: translate3d(0, -8px, 0) scale(0.985); filter: blur(4px); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forgeax-site .reveal-on-scroll,
+  .forgeax-site .motion-hero-in > *,
+  .forgeax-site .grid.c3 > *,
+  .forgeax-site .grid.c2 > * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .forgeax-site main.wrap { animation: none; }
+  .forgeax-site a.card:hover,
+  .forgeax-site .btn:hover,
+  .forgeax-site .ex-item:hover { transform: none !important; }
+}

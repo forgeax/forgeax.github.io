@@ -1,0 +1,35 @@
+/* Visual guide — layout focal tracking only; no background glow layers */
+
+.forgeax-site.has-immersive {
+  --guide-x: 50%;
+  --guide-y: 62%;
+  --guide-strength: 1;
+  --axis-top: 18%;
+  --axis-bottom: 72%;
+}
+
+.forgeax-site.has-immersive .ambient__axis,
+.forgeax-site.has-immersive .ambient__pedestal,
+.forgeax-site.has-immersive .ambient__horizon {
+  display: none !important;
+}
+
+.forgeax-site.has-immersive .ambient__grid {
+  opacity: 0;
+}
+
+.forgeax-site.has-immersive .hero .cta {
+  position: relative;
+}
+
+.forgeax-site.has-immersive .ambient__vignette {
+  background: radial-gradient(
+    ellipse 130% 90% at 50% 0%,
+    transparent 48%,
+    color-mix(in srgb, #000 55%, transparent) 100%
+  );
+}
+
+.forgeax-site.has-immersive::after {
+  opacity: 0 !important;
+}
