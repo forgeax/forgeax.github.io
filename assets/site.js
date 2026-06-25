@@ -139,7 +139,8 @@
   function curLang() { return document.body.classList.contains("lang-en") ? "en" : "zh"; }
 
   var LINKS = [
-    ["/blog/", "更新", "Blog"],
+    ["/changelog/", "更新日志", "Changelog"],
+    ["/blog/", "观点", "Blog"],
     ["/docs/", "文档", "Docs"],
     ["/tutorials/", "教程", "Tutorials"],
     ["/examples/", "示例", "Examples"],
@@ -199,7 +200,8 @@
                   "An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.") + "</p>" +
       "</div>" +
       '<div class="col"><h4>' + t("站点", "Site") + "</h4>" +
-        '<a href="/blog/">' + t("更新 / 观点", "Blog") + "</a>" +
+        '<a href="/changelog/">' + t("更新日志", "Changelog") + "</a>" +
+        '<a href="/blog/">' + t("观点", "Blog") + "</a>" +
         '<a href="/docs/">' + t("开发文档", "Docs") + "</a>" +
         '<a href="/tutorials/">' + t("教程", "Tutorials") + "</a>" +
         '<a href="/examples/">' + t("引擎示例", "Examples") + "</a>" +
