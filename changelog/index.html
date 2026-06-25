@@ -4,21 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>更新日志 · Changelog — ForgeaX</title>
-<meta name="description" content="ForgeaX day-by-day changelog — features and implementation shipped each day. 逐日更新日志:每天交付的特性与实现。" />
+<meta name="description" content="ForgeaX day-by-day dev log — each day is its own page of features and implementation. 逐日开发日志:每天一页,记录当天的特性与实现。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
 <style>
   .cl-list{max-width:760px;margin:0 auto;padding-top:8px}
-  .cl-day{padding:18px 0;border-bottom:1px solid var(--border-subtle)}
-  .cl-day:last-child{border-bottom:0}
-  .cl-day-head{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
-  .cl-date{font-family:var(--font-mono);font-size:15px;font-weight:700;color:var(--text-primary)}
-  .cl-ver{font-family:var(--font-mono);font-size:11px;color:var(--brand);border:1px solid rgba(212,255,72,.35);background:rgba(212,255,72,.10);border-radius:999px;padding:2px 9px}
-  .cl-items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-  .cl-items li{position:relative;padding-left:18px;color:var(--text-secondary);font-size:14.5px;line-height:1.6}
-  .cl-items li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--brand);opacity:.7}
+  .cl-row{display:block;text-decoration:none;color:inherit;padding:16px 0;border-bottom:1px solid var(--border-subtle)}
+  .cl-row:hover .cl-row-title{color:var(--brand)}
+  .cl-row-meta{display:flex;align-items:baseline;gap:12px}
+  .cl-date{font-family:var(--font-mono);font-size:13px;color:var(--text-tertiary)}
+  .cl-ver{font-family:var(--font-mono);font-size:11px;color:var(--brand);border:1px solid rgba(212,255,72,.35);background:rgba(212,255,72,.10);border-radius:999px;padding:1px 8px}
+  .cl-row-title{font-size:17px;font-weight:700;margin:6px 0 0;transition:color .15s}
   .cl-empty,.cl-err{color:var(--text-tertiary);font-size:14px;padding:20px 0}
 </style>
 </head>
@@ -27,7 +25,7 @@
 <main class="wrap">
   <div class="page-head">
     <h1><span data-lang="zh">更新日志</span><span data-lang="en">Changelog</span></h1>
-    <p><span data-lang="zh">逐日记录:每天交付的特性与实现。观点与深度文章见 <a href="/blog/">更新 / 观点</a>。</span><span data-lang="en">Day by day: the features and implementation shipped each day. For opinion &amp; deep-dives, see the <a href="/blog/">blog</a>.</span></p>
+    <p><span data-lang="zh">逐日开发日志:每天一页,记录当天交付的特性与实现。观点与深度文章见 <a href="/blog/">观点</a>。</span><span data-lang="en">A day-by-day dev log — one page per day of the features and implementation shipped. For opinion &amp; deep-dives, see the <a href="/blog/">blog</a>.</span></p>
   </div>
   <div class="cl-list" id="clList">
     <div class="cl-empty"><span data-lang="zh">加载中…</span><span data-lang="en">Loading…</span></div>
@@ -46,16 +44,16 @@
       var days = (data && data.days) || [];
       days = days.slice().sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); });
       if (!days.length) { root.innerHTML = '<div class="cl-empty">' + bi("暂无内容", "Nothing yet.") + '</div>'; return; }
-      var html = days.map(function (d) {
-        var items = (d.items || []).map(function (it) { return '<li>' + bi(it.zh || it.en || "", it.en || it.zh || "") + '</li>'; }).join("");
+      root.innerHTML = days.map(function (d) {
+        var t = d.title || {};
         var ver = d.version ? '<span class="cl-ver">' + esc(d.version) + '</span>' : '';
-        return '<section class="cl-day"><div class="cl-day-head"><span class="cl-date">' + esc(d.date || "") + '</span>' + ver + '</div><ul class="cl-items">' + items + '</ul></section>';
+        return '<a class="cl-row" href="/changelog/' + esc(d.date) + '.html">' +
+                 '<div class="cl-row-meta"><span class="cl-date">' + esc(d.date) + '</span>' + ver + '</div>' +
+                 '<div class="cl-row-title">' + bi(t.zh || t.en || d.date, t.en || t.zh || d.date) + '</div>' +
+               '</a>';
       }).join("");
-      root.innerHTML = html;
     })
-    .catch(function (e) {
-      root.innerHTML = '<div class="cl-err">' + bi("加载失败:" + e.message, "Failed to load: " + e.message) + '</div>';
-    });
+    .catch(function (e) { root.innerHTML = '<div class="cl-err">' + bi("加载失败:" + e.message, "Failed to load: " + e.message) + '</div>'; });
 })();
 </script>
 </body>
