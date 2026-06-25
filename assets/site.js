@@ -139,13 +139,13 @@
   function curLang() { return document.body.classList.contains("lang-en") ? "en" : "zh"; }
 
   var LINKS = [
-    ["/changelog/", "更新日志", "Changelog"],
-    ["/blog/", "观点", "Blog"],
     ["/docs/", "文档", "Docs"],
     ["/tutorials/", "教程", "Tutorials"],
     ["/examples/", "示例", "Examples"],
     ["/games/", "游戏", "Games"],
     ["/marketplace/", "市场", "Marketplace"],
+    ["/blog/", "观点", "Blog"],
+    ["/changelog/", "更新日志", "Changelog"],
     ["/about.html", "关于", "About"],
   ];
   var navLinks = LINKS.map(function (l) {
@@ -185,11 +185,11 @@
       '<div class="nav-inner">' +
         '<a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX"/><span>Forge<b>aX</b></span></a>' +
         '<button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>' +
+        '<div class="nav-links" id="navlinks">' + navLinks + '</div>' +
         '<div class="nav-right">' + langSwitch + askAi +
           '<a class="nav-cta" href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub</a>' +
         '</div>' +
       '</div>' +
-      '<div class="nav-links" id="navlinks">' + navLinks + '</div>' +
     '</nav>';
 
   var footer =
@@ -228,6 +228,13 @@
     var links = document.getElementById("navlinks");
     var nav = links && links.closest(".nav");
     if (!links || !nav) return;
+    // forgeax-ui-110: desktop nav is governed by CSS flex now (brand | links flex:1 centered | actions).
+    // Clear any legacy inline positioning so the row fills the bar evenly and never overlaps the actions.
+    links.removeAttribute("style");
+    links.removeAttribute("data-nav-layout");
+    links.style.removeProperty("--nav-links-x");
+    return;
+    /* eslint-disable no-unreachable */
     if (window.matchMedia("(max-width: 820px)").matches) {
       links.removeAttribute("style");
       links.removeAttribute("data-nav-layout");
