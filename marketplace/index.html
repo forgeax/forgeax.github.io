@@ -54,8 +54,9 @@
   /* ── Agent cards: avatar slot on the right ──
    * Frame stays 64×64; video inside is zoomed (object-fit: cover +
    * object-position: center top + scale) so the face fills the circle.
-   * Companion personas: 3 coder skins in a horizontal row, each cycling
-   * its own 9 states independently. Architect uses agent-lock avatar. */
+   * Every avatar plays the universal "期待" idle state (01.webm) on loop —
+   * no multi-state cycling on marketplace tiles. Architect uses agent-lock
+   * avatar. */
   .mk-item.is-agent{display:flex;gap:14px;align-items:flex-start}
   /* Don't make .mk-agent-main a flex column — that stretched the inline
    * .kind badge to the full card width. Plain block layout is fine. */
@@ -68,10 +69,11 @@
     position:relative;
     transition:border-color var(--dur-smooth) var(--ease-out),transform var(--dur-smooth) var(--ease-out);
   }
-  /* Two <video> layers stacked for double-buffering: the next clip loads
-   * in the hidden layer and we cross-fade opacity only when its first
-   * frame is ready, so there's never a blank/black frame between states
-   * (single-video src swaps flash to HAVE_NOTHING). */
+  /* Single <video> layer (loop=true, locked to 01.webm "期待"). The double-
+   * buffered cross-fade was needed only when we swapped src across 9 states
+   * — now that we don't swap, one layer is enough; the .is-front class still
+   * gates initial opacity so a not-yet-loaded video doesn't show a blank
+   * frame before play() resolves. */
   .mk-avatar video{
     position:absolute;inset:0;
     width:100%;height:100%;object-fit:cover;object-position:center top;
@@ -85,11 +87,11 @@
    * bumped a little larger + shifted up per request. */
   .mk-avatar[data-agent="suzu"] video{transform:scale(1.34) translate3d(0,-24%,0)}
   .mk-avatar[data-agent="arin"] video{transform:scale(1.22) translate3d(0,-16%,0)}
-  .mk-avatar[data-agent="kotone"] video{transform:scale(1.30) translate3d(0,-15%,0)}
+  .mk-avatar[data-agent="kotone"] video{transform:scale(1.18) translate3d(0,-16%,0)}
   .mk-avatar[data-agent="tsumugi"] video{transform:scale(1.18) translate3d(0,-22%,0)}
   .mk-avatar[data-agent="lock"] video{transform:scale(1.24) translate3d(0,-22%,0)}
   .mk-avatar[data-agent="cc-coder"] video{transform:scale(1.24) translate3d(0,-25%,0)}
-  .mk-avatar[data-agent="iori"] video{transform:scale(1.12) translate3d(0,-7%,0)}
+  .mk-avatar[data-agent="iori"] video{transform:scale(1.12) translate3d(0,-10%,0)}
   .mk-avatar[data-agent="iro"] video{transform:scale(1.24) translate3d(0,-21%,0)}
   .mk-avatar[data-agent="yevi"] video{transform:scale(1.24) translate3d(0,-21%,0)}
 
@@ -116,6 +118,14 @@
     background:transparent;color:var(--text-tertiary);
     border:1px solid rgba(255,255,255,.07);
   }
+  .mk-companion.is-shown{
+    color:var(--brand);background:rgba(212,255,72,.10);
+    border-color:rgba(212,255,72,.36);font-weight:600;
+  }
+  /* cc-coder absorbed the personas card — keep chip row tight so the merged
+   * card height stays bounded by the right-side 64px avatar (no visible growth). */
+  .mk-item[data-slug="agent-cc-coder"] .mk-companions{margin-top:4px;gap:4px}
+  .mk-item[data-slug="agent-cc-coder"] .mk-companion{padding:1px 7px;font-size:11px}
 
   /* Plugin cards (workbench / skill / backend / tool / binding): .ico slot on the right */
   .mk-item.is-mk-card{display:flex;gap:10px;align-items:flex-start}
@@ -238,11 +248,18 @@
       </div>
       <div class="mk-avatar" data-agent="iro"></div>
     </div>
-    <div class="mk-item is-agent" data-slug="agent-cc-coder" data-kind="agent" data-search="coder coding 编码 cc-coder code">
+    <div class="mk-item is-agent" data-slug="agent-cc-coder" data-kind="agent" data-search="coder coding 编码 cc-coder code companion personas 陪伴人格 character mochi rin sakura kaede kumo 糯糯 凛 樱 小枫 蛛蛛">
       <div class="mk-agent-main">
         <span class="kind k-agent">Agent</span>
         <h3><span data-lang="zh">cc-coder · 编码</span><span data-lang="en">cc-coder · Coder</span><span class="slug">coder</span></h3>
-        <p><span data-lang="zh">通用编码 —— 把 spec 落成可运行代码。</span><span data-lang="en">General coding — turns specs into running code.</span></p>
+        <p><span data-lang="zh">通用编码 —— 把 spec 落成可运行代码。可选不同性格陪伴。</span><span data-lang="en">General coding — turns specs into running code. Optional companion personas.</span></p>
+        <div class="mk-companions" aria-label="companion personas">
+          <span class="mk-companion is-shown" data-persona="mochi"><span data-lang="zh">糯糯</span><span data-lang="en">Mochi</span></span>
+          <span class="mk-companion is-shown" data-persona="rin"><span data-lang="zh">凛</span><span data-lang="en">Rin</span></span>
+          <span class="mk-companion is-shown" data-persona="sakura"><span data-lang="zh">樱</span><span data-lang="en">Sakura</span></span>
+          <span class="mk-companion" data-persona="kaede"><span data-lang="zh">小枫</span><span data-lang="en">Kaede</span></span>
+          <span class="mk-companion" data-persona="kumo"><span data-lang="zh">蛛蛛</span><span data-lang="en">Kumo</span></span>
+        </div>
       </div>
       <div class="mk-avatar" data-agent="cc-coder"></div>
     </div>
@@ -261,25 +278,6 @@
         <p><span data-lang="zh">技术审查 —— 发现并清理技术债。</span><span data-lang="en">Technical review — identifies and clears tech debt.</span></p>
       </div>
       <div class="mk-avatar" data-agent="yevi"></div>
-    </div>
-    <div class="mk-item is-agent" data-slug="@group" data-kind="agent" data-search="companion personas 陪伴人格 character mochi rin sakura kaede kumo 糯糯 凛 樱 小枫 蛛蛛">
-      <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3><span data-lang="zh">陪伴人格</span><span data-lang="en">Companion personas</span><span class="slug">personas</span></h3>
-        <p><span data-lang="zh">同等编码力、不同性格的可选陪伴角色。</span><span data-lang="en">Optional companions — same skill, different character.</span></p>
-        <div class="mk-companions" aria-label="companion personas">
-          <span class="mk-companion is-shown" data-persona="mochi"><span data-lang="zh">糯糯</span><span data-lang="en">Mochi</span></span>
-          <span class="mk-companion is-shown" data-persona="rin"><span data-lang="zh">凛</span><span data-lang="en">Rin</span></span>
-          <span class="mk-companion is-shown" data-persona="sakura"><span data-lang="zh">樱</span><span data-lang="en">Sakura</span></span>
-          <span class="mk-companion" data-persona="kaede"><span data-lang="zh">小枫</span><span data-lang="en">Kaede</span></span>
-          <span class="mk-companion" data-persona="kumo"><span data-lang="zh">蛛蛛</span><span data-lang="en">Kumo</span></span>
-        </div>
-      </div>
-      <div class="mk-avatar-cluster" aria-hidden="true">
-        <div class="mk-avatar" data-agent="mochi"></div>
-        <div class="mk-avatar" data-agent="rin"></div>
-        <div class="mk-avatar" data-agent="sakura"></div>
-      </div>
     </div>
     <div class="mk-rowbreak" aria-hidden="true"></div>
 
@@ -677,95 +675,43 @@
 </script>
 
 <script>
-/* Agent avatar slot: 9-state video carousel with double-buffered,
- * flicker-free transitions.
- * - Each .mk-avatar[data-agent] gets TWO <video> layers, injected lazily
- *   via IntersectionObserver so the page doesn't fetch ~5MB of webm
- *   before the user scrolls to the agent row.
- * - One layer is front (opacity 1), the other is the back buffer. The
- *   NEXT clip is preloaded into the back buffer while the front clip
- *   plays; only once the buffer's first frame is decoded (loadeddata) do
- *   we start it and cross-fade — so there's never a blank frame.
- * - The companion-personas cluster has 3 independent slots (mochi/rin/
- *   sakura), each running its own cycle, so 3 coders show 3 different
- *   emotion states at any moment. */
+/* Agent avatar slot: locked to the "期待" idle state, looping forever.
+ * - Per ADR-0019 / AVATAR.md, every agent's 9 emotion buckets share the
+ *   same numbering; state 01 ("期待") is the universal default+fallback.
+ * - Marketplace tiles don't react to chat events (no run_start / tool_active
+ *   etc.), so we mirror studio's mode='idle' (AgentAvatarVideo.tsx) — show
+ *   01.webm on native HTMLVideoElement loop. No multi-state carousel, no
+ *   double-buffer swap (single layer, single src, never reloaded).
+ * - Lazy-injected via IntersectionObserver so the page doesn't fetch ~600KB
+ *   of webm before the user scrolls to the agent row. */
 (function () {
   var BASE = "/assets/avatars";
-  var STATES = 9;
+  var IDLE_INDEX = 1; // 01.webm == 期待
   function pad(n){ return n < 10 ? "0" + n : String(n); }
-  function srcFor(agent, idx){ return BASE + "/" + agent + "/" + pad(idx) + ".webm"; }
+  function srcFor(agent){ return BASE + "/" + agent + "/" + pad(IDLE_INDEX) + ".webm"; }
 
   function mkVideo() {
     var v = document.createElement("video");
-    v.muted = true; v.playsInline = true; v.preload = "auto"; v.loop = false;
+    v.muted = true; v.playsInline = true; v.preload = "auto"; v.loop = true;
     v.setAttribute("playsinline", ""); v.setAttribute("muted", "");
     return v;
   }
 
-  var FADE_MS = 300; // keep in sync with CSS transition on .mk-avatar video
-
-  function startCycle(slot, startIdx) {
+  function playIdle(slot) {
     var agent = slot.getAttribute("data-agent");
     if (!agent) return;
-    var layers = slot.querySelectorAll("video");
-    var front = layers[0], back = layers[1];
-    var idx = startIdx || 1;
-    var pendingIdx = idx >= STATES ? 1 : idx + 1;
-
-    function load(layer, i) { layer.src = srcFor(agent, i); layer.load(); }
-
-    // Show the first clip; preload the next into the (hidden) back buffer.
-    front.classList.add("is-front");
-    load(front, idx);
-    front.play().catch(function(){});
-    load(back, pendingIdx);
-
-    front.addEventListener("ended", advance);
-    back.addEventListener("ended", advance);
-
-    function swap() {
-      // Start the buffered clip, then cross-fade: back→front, front→back.
-      back.play().catch(function(){});
-      back.classList.add("is-front");
-      front.classList.remove("is-front");
-
-      var outgoing = front;      // now fading 1→0 over FADE_MS
-      front = back; back = outgoing;
-      idx = pendingIdx;
-      pendingIdx = idx >= STATES ? 1 : idx + 1;
-
-      // CRITICAL: only reload the outgoing layer AFTER it has fully faded
-      // out. Reloading it while still visible blanks it to an empty frame
-      // that shows through the cross-fade — that was the "flash". It holds
-      // its last decoded frame untouched until hidden.
-      setTimeout(function () { load(back, pendingIdx); }, FADE_MS + 40);
-    }
-
-    function advance() {
-      // Swap once the buffered clip's first frame is decoded (no blank).
-      if (back.readyState >= 2) {
-        swap();
-      } else {
-        var once = function () { back.removeEventListener("loadeddata", once); swap(); };
-        back.addEventListener("loadeddata", once);
-      }
-    }
+    var v = slot.querySelector("video");
+    if (!v) return;
+    v.classList.add("is-front");
+    v.src = srcFor(agent);
+    v.load();
+    v.play().catch(function(){});
   }
-
-  // Within a cluster (companion personas), stagger each slot to start at a
-  // different state so the 3 visible coders show 3 different emotions.
-  var clusterStartOffsets = new WeakMap();
-  [].slice.call(document.querySelectorAll(".mk-avatar-cluster")).forEach(function (cluster) {
-    [].slice.call(cluster.querySelectorAll(".mk-avatar")).forEach(function (slot, i) {
-      clusterStartOffsets.set(slot, ((i * 3) % STATES) + 1);
-    });
-  });
 
   function ensureVideo(slot) {
     if (slot.querySelector("video")) return;
     slot.appendChild(mkVideo());
-    slot.appendChild(mkVideo());
-    startCycle(slot, clusterStartOffsets.get(slot) || 1);
+    playIdle(slot);
   }
 
   if ("IntersectionObserver" in window) {
