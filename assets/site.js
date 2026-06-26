@@ -123,8 +123,8 @@
   if (document.querySelector(".reveal-on-scroll") || document.body.classList.contains("forgeax-site")) {
     loadScript("/assets/motion-scroll.js?v=forgeax-ui-84");
   }
-  if (document.querySelector(".spotlight-section, .stat--display")) {
-    loadScript("/assets/spotlight-surface.js?v=forgeax-ui-84");
+  if (document.querySelector(".spotlight-section, .stat--display, .docs-chapter h2")) {
+    loadScript("/assets/spotlight-surface.js?v=forgeax-ui-136");
   }
   if (document.querySelector(".post-list")) {
     loadScript("/assets/blog-list-motion.js?v=forgeax-ui-84");

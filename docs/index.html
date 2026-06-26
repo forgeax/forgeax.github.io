@@ -8,7 +8,7 @@
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-130" />
+<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-149" />
 </head>
 <body class="lang-en forgeax-site">
 <div class="ambient ambient--lite" aria-hidden="true">
@@ -516,21 +516,213 @@ hits remove them and add score.</span></code></pre>
   </div>
 </main>
 <div id="site-footer"></div>
-<script src="/assets/site.js?v=forgeax-ui-130"></script>
+<script src="/assets/site.js?v=forgeax-ui-149"></script>
 <script>
+  /* ── docs sidebar: scroll main pane to chapter + active highlight ── */
   (function () {
-    var links = [].slice.call(document.querySelectorAll(".docs-sidebar a"));
-    var map = {}; links.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
-    if (!("IntersectionObserver" in window)) return;
-    var obs = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (e.isIntersecting) {
-          links.forEach(function (l) { l.classList.remove("active"); });
-          if (map[e.target.id]) map[e.target.id].classList.add("active");
-        }
+    var main = document.querySelector(".docs-main");
+    var layout = document.querySelector(".docs-layout");
+    var chapters = [].slice.call(document.querySelectorAll(".docs-chapter"));
+    var links = [].slice.call(document.querySelectorAll(".docs-sidebar nav a[href^='#']"));
+    if (!main || !chapters.length || !links.length) return;
+
+    var splitPane = window.matchMedia("(min-width: 821px)").matches;
+
+    var map = {};
+    links.forEach(function (a) {
+      var id = (a.getAttribute("href") || "").slice(1);
+      if (id) map[id] = a;
+    });
+
+    var nav = document.querySelector(".docs-sidebar nav");
+    var sidebar = document.querySelector(".docs-sidebar");
+    var indicator = document.createElement("span");
+    indicator.className = "docs-nav-indicator";
+    indicator.setAttribute("aria-hidden", "true");
+    if (nav) nav.insertBefore(indicator, nav.firstChild);
+
+    var activeId = "";
+    var activeIdx = 0;
+    var spyLastScroll = 0;
+    var linkMetrics = [];
+
+    function cacheLinkMetrics() {
+      linkMetrics = links.map(function (link) {
+        return {
+          top: Math.round(link.offsetTop),
+          h: Math.round(link.offsetHeight)
+        };
       });
-    }, { rootMargin: "-25% 0px -65% 0px", threshold: 0 });
-    document.querySelectorAll(".docs-chapter").forEach(function (s) { obs.observe(s); });
+    }
+
+    function paintIndicator(link, instant) {
+      if (!nav || !indicator || !link) return;
+      var i = links.indexOf(link);
+      if (i < 0 || !linkMetrics[i]) return;
+      var m = linkMetrics[i];
+      if (instant) indicator.classList.add("is-snapping");
+      nav.style.setProperty("--nav-ind-y", m.top + "px");
+      nav.style.setProperty("--nav-ind-h", m.h + "px");
+      nav.classList.add("is-ready");
+      if (instant) {
+        requestAnimationFrame(function () {
+          indicator.classList.remove("is-snapping");
+        });
+      }
+    }
+
+    function setActive(id, opts) {
+      opts = opts || {};
+      if (!id || id === activeId) return;
+      var link = map[id];
+      if (!link) return;
+
+      activeId = id;
+      activeIdx = links.indexOf(link);
+      if (activeIdx < 0) activeIdx = 0;
+      links.forEach(function (l) { l.classList.remove("active"); });
+      link.classList.add("active");
+      paintIndicator(link, !!opts.instant);
+
+      if (opts.scrollSidebar && splitPane && sidebar) {
+        var linkTop = link.offsetTop;
+        var linkBottom = linkTop + link.offsetHeight;
+        var viewTop = sidebar.scrollTop;
+        var viewBottom = viewTop + sidebar.clientHeight;
+        if (linkTop < viewTop + 8 || linkBottom > viewBottom - 8) {
+          sidebar.scrollTop = Math.max(0, linkTop - sidebar.clientHeight * 0.35);
+        }
+      }
+    }
+
+    function navOffset() {
+      var raw = getComputedStyle(document.documentElement).getPropertyValue("--nav-h");
+      return (parseFloat(raw) || 72) + 16;
+    }
+
+    function chapterTop(el) {
+      return el.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop;
+    }
+
+    var scrollLockUntil = 0;
+
+    function alignDocsPane(smooth) {
+      if (!splitPane || !layout) return;
+      var top = layout.getBoundingClientRect().top;
+      if (top > navOffset() && top < navOffset() + 48) return;
+      var y = window.scrollY + top - navOffset();
+      window.scrollTo({ top: Math.max(0, y), behavior: smooth ? "smooth" : "auto" });
+    }
+
+    function scrollToChapter(id, smooth) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      scrollLockUntil = Date.now() + (smooth === false ? 80 : 900);
+      setActive(id, { scrollSidebar: true, instant: smooth === false });
+
+      if (splitPane) {
+        alignDocsPane(smooth);
+        var top = chapterTop(el) - 8;
+        main.scrollTo({ top: Math.max(0, top), behavior: smooth === false ? "auto" : "smooth" });
+      } else {
+        var y = window.scrollY + el.getBoundingClientRect().top - navOffset();
+        window.scrollTo({ top: Math.max(0, y), behavior: smooth === false ? "auto" : "smooth" });
+      }
+
+      try { history.replaceState(null, "", "#" + id); } catch (_) { location.hash = id; }
+    }
+
+    function chapterInView() {
+      if (Date.now() < scrollLockUntil) return;
+
+      var idx = 0;
+      if (splitPane) {
+        var st = main.scrollTop;
+        var down = st >= spyLastScroll - 2;
+        spyLastScroll = st;
+        var offset = down ? 108 : 56;
+        var y = st + offset;
+        for (var i = 0; i < chapters.length; i++) {
+          if (chapterTop(chapters[i]) <= y) idx = i;
+        }
+      } else {
+        var mark = navOffset() + 12;
+        for (var j = 0; j < chapters.length; j++) {
+          if (chapters[j].getBoundingClientRect().top <= mark) idx = j;
+        }
+      }
+
+      if (idx === activeIdx) return;
+      if (chapters[idx] && chapters[idx].id) setActive(chapters[idx].id);
+    }
+
+    var hoverTimer = 0;
+    var hoverTarget = null;
+
+    links.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var id = (a.getAttribute("href") || "").slice(1);
+        if (!id || !document.getElementById(id)) return;
+        e.preventDefault();
+        scrollToChapter(id);
+      });
+      if (splitPane) {
+        a.addEventListener("mouseenter", function () {
+          if (!nav) return;
+          hoverTarget = a;
+          clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function () {
+            if (hoverTarget !== a || !nav) return;
+            nav.classList.add("is-tracking-hover");
+            links.forEach(function (l) { l.classList.remove("is-nav-hover"); });
+            a.classList.add("is-nav-hover");
+          }, 160);
+        });
+        a.addEventListener("mouseleave", function () {
+          if (!nav) return;
+          clearTimeout(hoverTimer);
+          if (hoverTarget === a) hoverTarget = null;
+          nav.classList.remove("is-tracking-hover");
+          a.classList.remove("is-nav-hover");
+        });
+      }
+    });
+
+    var scrollTimer;
+    function onScroll() {
+      if (scrollTimer) cancelAnimationFrame(scrollTimer);
+      scrollTimer = requestAnimationFrame(chapterInView);
+    }
+    main.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    window.addEventListener("hashchange", function () {
+      var id = (location.hash || "").replace("#", "");
+      if (id && document.getElementById(id)) scrollToChapter(id, false);
+    });
+
+    window.addEventListener("resize", function () {
+      cacheLinkMetrics();
+      if (activeId && map[activeId]) paintIndicator(map[activeId], true);
+    });
+
+    if (nav && window.ResizeObserver) {
+      new ResizeObserver(function () {
+        cacheLinkMetrics();
+        if (activeId && map[activeId]) paintIndicator(map[activeId], true);
+      }).observe(nav);
+    }
+
+    cacheLinkMetrics();
+    spyLastScroll = splitPane ? main.scrollTop : window.scrollY;
+
+    var initial = (location.hash || "").replace("#", "");
+    if (initial && document.getElementById(initial)) {
+      requestAnimationFrame(function () { scrollToChapter(initial, false); });
+    } else {
+      chapterInView();
+      if (!activeId && chapters[0]) setActive(chapters[0].id, { instant: true });
+    }
   })();
 
   /* ── docs in-page search ── */
@@ -552,7 +744,14 @@ hits remove them and add score.</span></code></pre>
     function openTo(el) {
       var p = el;
       while (p) { if (p.tagName === "DETAILS") p.open = true; p = p.parentElement; }
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      var main = document.querySelector(".docs-main");
+      var splitPane = window.matchMedia("(min-width: 821px)").matches;
+      if (splitPane && main) {
+        var top = el.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop - 20;
+        main.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      } else {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
       el.classList.add("doc-hit");
       setTimeout(function () { el.classList.remove("doc-hit"); }, 1600);
     }
