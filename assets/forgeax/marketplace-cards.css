@@ -1944,6 +1944,68 @@
   margin-bottom: 0;
 }
 
+/* changelog / update history timeline */
+.forgeax-site .mk-history {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 16px;
+  position: relative;
+}
+.forgeax-site .mk-history::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--brand) 55%, transparent),
+    color-mix(in srgb, var(--brand) 8%, transparent)
+  );
+}
+.forgeax-site .mk-history-row {
+  position: relative;
+  margin-bottom: 12px;
+}
+.forgeax-site .mk-history-row:last-child {
+  margin-bottom: 0;
+}
+.forgeax-site .mk-history-row::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 25%, transparent);
+}
+.forgeax-site .mk-history-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+.forgeax-site .mk-history-ver {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: 0.02em;
+}
+.forgeax-site .mk-history-date {
+  font-size: 11.5px;
+  color: var(--text-tertiary, var(--text-secondary));
+  opacity: 0.8;
+}
+.forgeax-site .mk-history-note {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
 .forgeax-site .mk-modal-actions {
   display: flex;
   flex-wrap: wrap;
