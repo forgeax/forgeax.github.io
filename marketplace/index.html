@@ -1,147 +1,1131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>插件市场 · Marketplace — ForgeaX</title>
-<meta name="description" content="ForgeaX plugins — agents, workbenches, skills, tools, CLI backends and model bindings. 每个插件的详细介绍、能力与更新历史。" />
+<meta name="description" content="ForgeaX 的插件市场:按类型筛选并搜索 agent、工作台、技能、CLI 后端、工具与模型绑定。一切能力都是运行时加载的插件。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-130" />
-<link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=mkt-v2-1" />
+<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-151" />
+<link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=forgeax-ui-151" />
+<style>
+  .mk-count{font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);margin:16px 0 12px}
+  .mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+  .mk-item{padding:16px}
+  .mk-item.hide{display:none !important}
+  .mk-item .kind{display:inline-block;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.6px;
+    padding:2px 8px;border-radius:var(--radius-pill);margin-bottom:9px}
+  .k-agent{background:rgba(196,163,255,.14);color:#c4a3ff;border:1px solid rgba(196,163,255,.28)}
+  .k-wb{background:rgba(178,198,98,.13);color:#c8dc88;border:1px solid rgba(178,198,98,.28)}
+  .k-skill{background:rgba(208,148,78,.13);color:#ddb06a;border:1px solid rgba(208,148,78,.28)}
+  .k-backend{background:rgba(102,148,225,.13);color:#8eb0e8;border:1px solid rgba(102,148,225,.28)}
+  .k-tool{background:rgba(88,205,182,.12);color:#7ad4c0;border:1px solid rgba(88,205,182,.26)}
+  .k-binding{background:rgba(236,122,158,.13);color:#f094b8;border:1px solid rgba(236,122,158,.28)}
+  .mk-item h3{font-size:15px;font-weight:700;line-height:1.3}
+  .mk-item .slug{font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);font-weight:400;display:block;margin-top:2px}
+  .mk-item p{color:var(--text-secondary);font-size:13.5px;margin-top:7px}
+  .mk-item a{color:var(--brand)}
+  .mk-empty{display:none;color:var(--text-tertiary);text-align:center;padding:36px 0}
+
+  /* plugin info modal — layout; glass skin in marketplace-cards.css */
+  .mk-item{cursor:pointer}
+  .mk-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
+  .mk-modal[hidden]{display:none}
+  .mk-modal-backdrop{position:absolute;inset:0;z-index:0}
+  .mk-modal-anchor{position:relative;z-index:1;width:100%;max-width:min(960px,calc(100vw - 32px));margin:0;overflow:visible}
+  .mk-modal-anchor .mk-modal-x{position:absolute!important;top:10px;left:calc(100% + 12px);right:auto;transform:none;z-index:50;margin:0}
+  .mk-modal-card{position:relative;width:100%;max-height:min(90vh,calc(100vh - 48px));overflow:hidden;border-radius:26px;margin:0}
+  .mk-modal-head h3{font-size:21px;font-weight:700;margin:0;line-height:1.3}
+  .mk-modal-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--text-secondary,#9aa0aa);margin:10px 0 12px}
+  .mk-modal-meta .mono{font-family:'Fira Mono',monospace}
+  .mk-modal-card p#mkmDesc{color:var(--text-secondary,#c4c8d0);line-height:1.62;margin:0}
+  .mk-caps{margin:0;padding-left:18px;color:var(--text-secondary,#c4c8d0);font-size:13.5px;line-height:1.7}
+  .mk-kw{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+  .mk-kw span{font-size:12px;padding:3px 9px;border:1px solid var(--border,#2a2d35);border-radius:999px;color:var(--text-secondary,#9aa0aa);font-family:'Fira Mono',monospace}
+  .mk-meta-exp{font-size:11px;padding:2px 8px;border-radius:var(--radius-pill);background:rgba(212,255,72,.12);color:var(--accent,#D4FF48)}
+
+  /* ── Agent cards: avatar slot on the right ──
+   * Frame stays 64×64; video inside is zoomed (object-fit: cover +
+   * object-position: center top + scale) so the face fills the circle.
+   * Every avatar plays the universal "期待" idle state (01.webm) on loop —
+   * no multi-state cycling on marketplace tiles. Architect uses agent-lock
+   * avatar. */
+  .mk-item.is-agent{display:flex;gap:14px;align-items:flex-start}
+  /* Don't make .mk-agent-main a flex column — that stretched the inline
+   * .kind badge to the full card width. Plain block layout is fine. */
+  .mk-item.is-agent .mk-agent-main{flex:1;min-width:0}
+  .mk-item.is-agent h3{margin-top:4px}
+  .mk-avatar{
+    width:64px;height:64px;flex-shrink:0;border-radius:50%;overflow:hidden;
+    background:rgba(196,163,255,.08);
+    border:1px solid rgba(196,163,255,.22);
+    position:relative;
+    transition:border-color var(--dur-smooth) var(--ease-out),transform var(--dur-smooth) var(--ease-out);
+  }
+  /* Single <video> layer (loop=true, locked to 01.webm "期待"). The double-
+   * buffered cross-fade was needed only when we swapped src across 9 states
+   * — now that we don't swap, one layer is enough; the .is-front class still
+   * gates initial opacity so a not-yet-loaded video doesn't show a blank
+   * frame before play() resolves. */
+  .mk-avatar video{
+    position:absolute;inset:0;
+    width:100%;height:100%;object-fit:cover;object-position:center top;
+    display:block;background:transparent;
+    opacity:0;transition:opacity .3s ease;
+    transform:scale(1.24) translate3d(0,-12%,0);transform-origin:center top;
+    backface-visibility:hidden;
+  }
+  .mk-avatar video.is-front{opacity:1}
+  /* Per-agent zoom tweaks — match studio AgentAvatarVideo framing,
+   * bumped a little larger + shifted up per request. */
+  .mk-avatar[data-agent="suzu"] video{transform:scale(1.34) translate3d(0,-24%,0)}
+  .mk-avatar[data-agent="arin"] video{transform:scale(1.22) translate3d(0,-16%,0)}
+  .mk-avatar[data-agent="kotone"] video{transform:scale(1.18) translate3d(0,-16%,0)}
+  .mk-avatar[data-agent="tsumugi"] video{transform:scale(1.18) translate3d(0,-22%,0)}
+  .mk-avatar[data-agent="lock"] video{transform:scale(1.24) translate3d(0,-22%,0)}
+  .mk-avatar[data-agent="cc-coder"] video{transform:scale(1.24) translate3d(0,-25%,0)}
+  .mk-avatar[data-agent="iori"] video{transform:scale(1.12) translate3d(0,-10%,0)}
+  .mk-avatar[data-agent="iro"] video{transform:scale(1.24) translate3d(0,-21%,0)}
+  .mk-avatar[data-agent="yevi"] video{transform:scale(1.24) translate3d(0,-21%,0)}
+
+  /* Row break: a zero-height full-width grid item. Placed right after the
+   * last agent card so the workbench section (Character editor onward)
+   * always starts on a fresh row instead of backfilling next to agents. */
+  .mk-rowbreak{grid-column:1/-1;height:0;margin:0;padding:0;border:0}
+
+  /* Companion personas: 3 avatars in a horizontal row on the right. Card
+   * stays normal (1-column) width; avatars are sized down so all 3 fit. */
+  .mk-avatar-cluster{display:flex;flex-direction:row;gap:6px;flex-shrink:0;align-items:flex-start}
+  .mk-avatar-cluster .mk-avatar{width:48px;height:48px}
+  /* nudge the 3 companion coders up a touch */
+  .mk-avatar-cluster video{transform:scale(1.24) translate3d(0,-20%,0)}
+
+  /* Companion persona name chips: read-only labels under the description,
+   * showing the 5 available coder personas (糯糯/凛/樱/小枫/蛛蛛). Style
+   * matches studio-side .wm-skin-chip — subtle stroke, brand-tinted for
+   * the 3 currently-visible avatars. */
+  .mk-companions{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .mk-companion{
+    font-family:inherit;font-size:11.5px;line-height:1.3;
+    padding:3px 9px;border-radius:var(--radius-pill);
+    background:transparent;color:var(--text-tertiary);
+    border:1px solid rgba(255,255,255,.07);
+  }
+  .mk-companion.is-shown{
+    color:var(--brand);background:rgba(212,255,72,.10);
+    border-color:rgba(212,255,72,.36);font-weight:600;
+  }
+  /* cc-coder absorbed the personas card — keep chip row tight so the merged
+   * card height stays bounded by the right-side 64px avatar (no visible growth). */
+  .mk-item[data-slug="agent-cc-coder"] .mk-companions{margin-top:4px;gap:4px}
+  .mk-item[data-slug="agent-cc-coder"] .mk-companion{padding:1px 7px;font-size:11px}
+
+  /* Plugin cards (workbench / skill / backend / tool / binding): .ico slot on the right */
+  .mk-item.is-mk-card{display:flex;gap:10px;align-items:flex-start}
+  .mk-item.is-mk-card .mk-card-main{flex:1;min-width:0}
+  .mk-item.is-mk-card h3{margin-top:2px}
+  .mk-item.is-mk-card .mk-card-icon.ico{
+    width:var(--icon-container-size);
+    height:var(--icon-container-size);
+    margin-top:2px;
+    flex-shrink:0;
+  }
+  .mk-modal-icon.ico{
+    width:var(--icon-container-size);
+    height:var(--icon-container-size);
+    margin:0;
+    flex-shrink:0;
+  }
+
+  .mk-companion.is-shown{
+    color:var(--brand);background:rgba(212,255,72,.10);
+    border-color:rgba(212,255,72,.36);font-weight:600;
+  }
+</style>
 </head>
 <body class="lang-en forgeax-site">
 <div id="site-header"></div>
 <main class="wrap">
   <div class="page-head">
     <h1><span data-lang="zh">插件市场</span><span data-lang="en">Marketplace</span></h1>
-    <p><span data-lang="zh">在 ForgeaX 里,几乎一切能力都是一枚<strong>可装载插件</strong>。按类型筛选 / 搜索,点开看每个插件的详细介绍、能力与更新历史。</span><span data-lang="en">In ForgeaX nearly every capability is a <strong>loadable plugin</strong>. Filter by kind or search; open any card for its full description, capabilities and update history.</span></p>
+    <p><span data-lang="zh">在 ForgeaX 里,几乎一切能力都是一枚<strong>可装载插件</strong>。按类型筛选、搜索,启用、排序,甚至自己写。</span><span data-lang="en">In ForgeaX nearly every capability is a <strong>loadable plugin</strong>. Filter by kind, search, enable, reorder — or write your own.</span></p>
   </div>
 
   <div class="mk-bar">
-    <div class="mk-tabs" id="mkTabs">
-      <button class="mk-tab active" data-kind="all"><span data-lang="zh">全部</span><span data-lang="en">All</span></button>
-      <button class="mk-tab" data-kind="agent">Agent</button>
-      <button class="mk-tab" data-kind="workbench"><span data-lang="zh">工作台</span><span data-lang="en">Workbench</span></button>
-      <button class="mk-tab" data-kind="skill"><span data-lang="zh">技能</span><span data-lang="en">Skill</span></button>
-      <button class="mk-tab" data-kind="backend"><span data-lang="zh">CLI 后端</span><span data-lang="en">CLI backend</span></button>
-      <button class="mk-tab" data-kind="tool"><span data-lang="zh">工具</span><span data-lang="en">Tool</span></button>
-      <button class="mk-tab" data-kind="binding"><span data-lang="zh">模型绑定</span><span data-lang="en">Model binding</span></button>
+    <div class="mk-tabs">
+      <button class="mk-tab active" data-kind="all">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
+        <span data-lang="zh">全部</span><span data-lang="en">All</span>
+      </button>
+      <button class="mk-tab" data-kind="agent">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="bot"></i></span>
+        Agent
+      </button>
+      <button class="mk-tab" data-kind="workbench">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="blocks"></i></span>
+        <span data-lang="zh">工作台</span><span data-lang="en">Workbench</span>
+      </button>
+      <button class="mk-tab" data-kind="skill">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="wand-sparkles"></i></span>
+        <span data-lang="zh">技能</span><span data-lang="en">Skill</span>
+      </button>
+      <button class="mk-tab" data-kind="backend">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
+        <span data-lang="zh">CLI 后端</span><span data-lang="en">CLI backend</span>
+      </button>
+      <button class="mk-tab" data-kind="tool">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="wrench"></i></span>
+        <span data-lang="zh">工具</span><span data-lang="en">Tool</span>
+      </button>
+      <button class="mk-tab" data-kind="binding">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="link-2"></i></span>
+        <span data-lang="zh">模型绑定</span><span data-lang="en">Binding</span>
+      </button>
     </div>
-    <input id="mkSearch" type="search" placeholder="Search…" data-ph-en="Search…" data-ph-zh="搜索…" aria-label="search plugins" />
+    <label class="mk-search">
+      <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
+      <input id="mkSearch" type="search" placeholder="Search…" data-ph-en="Search…" data-ph-zh="搜索…" aria-label="search plugins" />
+    </label>
   </div>
+
   <div class="mk-count" id="mkCount"></div>
-  <div class="mk-grid" id="mkGrid"></div>
-  <div class="mk-empty" id="mkEmpty" hidden><span data-lang="zh">没有匹配的插件。</span><span data-lang="en">No plugins match.</span></div>
+
+  <div class="mk-grid" id="mkGrid">
+
+    <!-- ── Agents ── -->
+    <div class="mk-item is-agent" data-slug="agent-arin" data-kind="agent" data-search="arin producer 制作人 统筹 production">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Arin · 制作人</span><span data-lang="en">Arin · Producer</span><span class="slug">producer</span></h3>
+        <p><span data-lang="zh">全能制作人,统筹策划 / 程序 / 美术 / 音效。</span><span data-lang="en">An all-round producer coordinating design / code / art / audio.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="arin"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="@group" data-kind="agent" data-search="architect 架构师 abstraction lock">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">架构师</span><span data-lang="en">Architect</span><span class="slug">architect</span></h3>
+        <p><span data-lang="zh">跨域抽象,把游戏 / 代码 / 艺术接到一起。</span><span data-lang="en">Cross-domain abstraction across game, code and art.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="lock"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-iori" data-kind="agent" data-search="iori gameplay 玩法 pillar mechanics">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Iori · 玩法柱</span><span data-lang="en">Iori · Gameplay</span><span class="slug">pillar</span></h3>
+        <p><span data-lang="zh">核心玩法师 —— 玩法柱 + 数值骨架。</span><span data-lang="en">Core mechanics — the gameplay pillar and numeric skeleton.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="iori"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-suzu" data-kind="agent" data-search="suzu design experience 体验设计 hud onboarding">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Suzu · 体验设计</span><span data-lang="en">Suzu · Experience</span><span class="slug">design</span></h3>
+        <p><span data-lang="zh">玩家节拍 / HUD / onboarding。</span><span data-lang="en">Player pacing, HUD and onboarding.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="suzu"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-kotone" data-kind="agent" data-search="kotone narrative 叙事 story world dialogue">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Kotone · 叙事</span><span data-lang="en">Kotone · Narrative</span><span class="slug">narrative</span></h3>
+        <p><span data-lang="zh">世界观 / 角色 bio / 对白。</span><span data-lang="en">World, character bios and dialogue.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="kotone"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-iro" data-kind="agent" data-search="iro art 美术 sprite vfx ui">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Iro · 美术</span><span data-lang="en">Iro · Art</span><span class="slug">art</span></h3>
+        <p><span data-lang="zh">立绘 / sprite / VFX / UI 统筹。</span><span data-lang="en">Portraits, sprites, VFX and UI direction.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="iro"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-cc-coder" data-kind="agent" data-search="coder coding 编码 cc-coder code companion personas 陪伴人格 character mochi rin sakura kaede kumo 糯糯 凛 樱 小枫 蛛蛛">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">cc-coder · 编码</span><span data-lang="en">cc-coder · Coder</span><span class="slug">coder</span></h3>
+        <p><span data-lang="zh">通用编码 —— 把 spec 落成可运行代码。可选不同性格陪伴。</span><span data-lang="en">General coding — turns specs into running code. Optional companion personas.</span></p>
+        <div class="mk-companions" aria-label="companion personas">
+          <span class="mk-companion is-shown" data-persona="mochi"><span data-lang="zh">糯糯</span><span data-lang="en">Mochi</span></span>
+          <span class="mk-companion is-shown" data-persona="rin"><span data-lang="zh">凛</span><span data-lang="en">Rin</span></span>
+          <span class="mk-companion is-shown" data-persona="sakura"><span data-lang="zh">樱</span><span data-lang="en">Sakura</span></span>
+          <span class="mk-companion" data-persona="kaede"><span data-lang="zh">小枫</span><span data-lang="en">Kaede</span></span>
+          <span class="mk-companion" data-persona="kumo"><span data-lang="zh">蛛蛛</span><span data-lang="en">Kumo</span></span>
+        </div>
+      </div>
+      <div class="mk-avatar" data-agent="cc-coder"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-tsumugi" data-kind="agent" data-search="tsumugi build ci 工程 toolchain">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Tsumugi · 工程</span><span data-lang="en">Tsumugi · Build</span><span class="slug">build</span></h3>
+        <p><span data-lang="zh">构建 / CI / 工具链 / 部署。</span><span data-lang="en">Build, CI, toolchain and deployment.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="tsumugi"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-yevi" data-kind="agent" data-search="yevi review 审查 tech debt reviewer">
+      <div class="mk-agent-main">
+        <span class="kind k-agent">Agent</span>
+        <h3><span data-lang="zh">Yevi · 审查</span><span data-lang="en">Yevi · Reviewer</span><span class="slug">review</span></h3>
+        <p><span data-lang="zh">技术审查 —— 发现并清理技术债。</span><span data-lang="en">Technical review — identifies and clears tech debt.</span></p>
+      </div>
+      <div class="mk-avatar" data-agent="yevi"></div>
+    </div>
+    <div class="mk-rowbreak" aria-hidden="true"></div>
+
+    <!-- ── Workbenches ── -->
+    <div class="mk-item" data-slug="wb-character" data-kind="workbench" data-search="wb-character 角色编辑器 portrait 立绘 turnaround character">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">角色编辑器</span><span data-lang="en">Character editor</span><span class="slug">wb-character</span></h3>
+      <p><span data-lang="zh">一句人设 → 正面立绘 + 转身三视图。</span><span data-lang="en">A one-line brief → portrait + turnaround.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-anim" data-kind="workbench" data-search="wb-anim 动画 animation walk attack sprite">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">动画</span><span data-lang="en">Animation</span><span class="slug">wb-anim</span></h3>
+      <p><span data-lang="zh">把静止角色变成会走、会打、带骨骼的动作。</span><span data-lang="en">Turn a still character into walking, attacking, skeletal motion.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-skill" data-kind="workbench" data-search="wb-skill 技能 vfx 特效 effects fireball">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">技能 / 特效</span><span data-lang="en">Skill / VFX</span><span class="slug">wb-skill</span></h3>
+      <p><span data-lang="zh">火光、刀光、光环等技能特效,自动挂到出手那一刻。</span><span data-lang="en">Fire, slashes, auras — auto-attached to the moment of cast.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-lowpoly-obj" data-kind="workbench" data-search="wb-lowpoly-obj 方块人 blocky rigged 3d character">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">方块人编辑器</span><span data-lang="en">Blocky-character editor</span><span class="slug">wb-lowpoly-obj</span></h3>
+      <p><span data-lang="zh">像捏积木一样做可动 3D 角色,导出标准 3D 文件。</span><span data-lang="en">Build rigged 3D characters like blocks, export standard 3D.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-3d-lowpoly" data-kind="workbench" data-search="wb-3d-lowpoly 低多边形 node graph 3d props">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">3D 低多边形生成器</span><span data-lang="en">Low-poly generator</span><span class="slug">wb-3d-lowpoly</span></h3>
+      <p><span data-lang="zh">用连线节点做 3D 道具 / 机械,改参数全套重出。</span><span data-lang="en">Node-graph 3D props; change a parameter, regenerate the set.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-gen3d" data-kind="workbench" data-search="wb-gen3d 3d 生成 text image to 3d model">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">3D 角色生成</span><span data-lang="en">3D generation</span><span class="slug">wb-gen3d</span></h3>
+      <p><span data-lang="zh">文字 / 图片直接变 3D 模型,接入多家生成服务。</span><span data-lang="en">Text or image straight to a 3D model via several generators.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-2d-scene-asset-generator" data-kind="workbench" data-search="wb-2d-scene-asset-generator 2d 场景资产 props textures">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">2D 场景资产生成器</span><span data-lang="en">2D scene assets</span><span class="slug">wb-2d-scene-asset-generator</span></h3>
+      <p><span data-lang="zh">批量生成道具、贴图、装饰、UI 小图,自动归档。</span><span data-lang="en">Batch props, textures, decorations and UI bits, auto-filed.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-scene-generator" data-kind="workbench" data-search="wb-scene-generator 场景生成器 scene build graph">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">场景生成器</span><span data-lang="en">Scene generator</span><span class="slug">wb-scene-generator</span></h3>
+      <p><span data-lang="zh">自动搭出一整张游戏场景,做成可重跑的流程图。</span><span data-lang="en">Assemble a whole scene as a re-runnable graph.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-ui" data-kind="workbench" data-search="wb-ui ui 工坊 menu button health bar prototype">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">UI 工坊</span><span data-lang="en">UI workbench</span><span class="slug">wb-ui</span></h3>
+      <p><span data-lang="zh">按游戏类型出一套可点的交互界面原型。</span><span data-lang="en">A clickable UI prototype for your game type.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-items" data-kind="workbench" data-search="wb-items 道具 图标 icons weapon potion data">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">道具 / 图标</span><span data-lang="en">Items / icons</span><span class="slug">wb-items</span></h3>
+      <p><span data-lang="zh">武器、药水、金币等图标,图与数据一张表。</span><span data-lang="en">Weapons, potions, coins — art and data in one table.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-look" data-kind="workbench" data-search="wb-look 色彩 调色 color grading filter">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">色彩 / Look</span><span data-lang="en">Color / Look</span><span class="slug">wb-look</span></h3>
+      <p><span data-lang="zh">一键统一全游戏的色调氛围。</span><span data-lang="en">Unify the whole game's color mood in one click.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-bgm" data-kind="workbench" data-search="wb-bgm 音乐 bgm sound sfx timeline">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">音乐 / BGM</span><span data-lang="en">Music / BGM</span><span class="slug">wb-bgm</span></h3>
+      <p><span data-lang="zh">管理背景音乐与音效,排好整局配乐节奏。</span><span data-lang="en">Manage BGM and SFX, sequence the score.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-narrative" data-kind="workbench" data-search="wb-narrative 叙事工坊 story world template">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">叙事工坊</span><span data-lang="en">Narrative workbench</span><span class="slug">wb-narrative</span></h3>
+      <p><span data-lang="zh">从一句灵感写出整套剧情与世界观。</span><span data-lang="en">From a spark to a full story and world.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-reel" data-kind="workbench" data-search="wb-reel 影游 fmv interactive video">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">影游工坊</span><span data-lang="en">Interactive film</span><span class="slug">wb-reel</span></h3>
+      <p><span data-lang="zh">一句灵感或一部剧本,做出限时点按 + 选择驱动的互动影游。</span><span data-lang="en">Turn a spark or script into a tap-and-choose interactive film-game.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-balance" data-kind="workbench" data-search="wb-balance 平衡 数值 winrate simulation">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">平衡 / 数值</span><span data-lang="en">Balance</span><span class="slug">wb-balance</span></h3>
+      <p><span data-lang="zh">让 AI 跑几千局,给出胜率与置信区间。</span><span data-lang="en">AI plays thousands of matches for win rates with confidence intervals.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-code" data-kind="workbench" data-search="wb-code 代码 browse files collaborate">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">代码</span><span data-lang="en">Code</span><span class="slug">wb-code</span></h3>
+      <p><span data-lang="zh">在工作台看代码、跳转文件,和编码 AI 一起改。</span><span data-lang="en">Browse code, jump files, edit alongside the coding AI.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-observatory" data-kind="workbench" data-search="wb-observatory 轨迹 观察台 replay trace blackbox">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">轨迹观察台</span><span data-lang="en">Observatory</span><span class="slug">wb-observatory</span></h3>
+      <p><span data-lang="zh">像黑匣子一样回放 AI 每一步,精确定位问题。</span><span data-lang="en">Replay every AI step like a black box to pinpoint issues.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-agent-persona" data-kind="workbench" data-search="wb-agent-persona 人格编辑器 persona character edit">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">人格编辑器</span><span data-lang="en">Persona editor</span><span class="slug">wb-agent-persona</span></h3>
+      <p><span data-lang="zh">改 AI 助手的性格设定,存一下马上生效。</span><span data-lang="en">Edit an AI's persona; save and it applies instantly.</span></p>
+    </div>
+    <div class="mk-item" data-slug="wb-plugin-author" data-kind="workbench" data-search="wb-plugin-author 插件作者 make plugin wizard nocode">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">插件作者</span><span data-lang="en">Plugin author</span><span class="slug">wb-plugin-author</span></h3>
+      <p><span data-lang="zh">让不会编程的人也能做出自己的工作台插件。</span><span data-lang="en">Let non-coders build their own workbench plugins.</span></p>
+    </div>
+    <div class="mk-item" data-slug="admin" data-kind="workbench" data-search="admin 面板管理 control panel toggle bind models">
+      <span class="kind k-wb">Workbench</span>
+      <h3><span data-lang="zh">面板管理</span><span data-lang="en">Admin panel</span><span class="slug">admin</span></h3>
+      <p><span data-lang="zh">工作室总控台:开关工作台、绑模型、看 AI 在线状态。</span><span data-lang="en">The control panel: toggle workbenches, bind models, see AI status.</span></p>
+    </div>
+
+    <!-- ── CLI backends ── -->
+    <div class="mk-item" data-slug="cli-claude-code" data-kind="backend" data-search="claude code anthropic default backend cli">
+      <span class="kind k-backend">CLI backend</span>
+      <h3>Claude Code<span class="slug">default</span></h3>
+      <p><span data-lang="zh">默认后端。</span><span data-lang="en">The default backend.</span></p>
+      <p><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener">github.com/anthropics/claude-code →</a></p>
+    </div>
+    <div class="mk-item" data-slug="cli-codex" data-kind="backend" data-search="codex openai backend cli">
+      <span class="kind k-backend">CLI backend</span>
+      <h3>Codex<span class="slug">openai</span></h3>
+      <p><span data-lang="zh">OpenAI Codex 后端。</span><span data-lang="en">The OpenAI Codex backend.</span></p>
+      <p><a href="https://github.com/openai/codex" target="_blank" rel="noopener">github.com/openai/codex →</a></p>
+    </div>
+    <div class="mk-item" data-slug="cli-cursor-agent" data-kind="backend" data-search="cursor agent backend cli">
+      <span class="kind k-backend">CLI backend</span>
+      <h3>Cursor<span class="slug">cursor</span></h3>
+      <p><span data-lang="zh">Cursor 智能体后端。</span><span data-lang="en">The Cursor agent backend.</span></p>
+      <p><a href="https://cursor.com" target="_blank" rel="noopener">cursor.com →</a></p>
+    </div>
+    <div class="mk-item" data-slug="cli-forgeax" data-kind="backend" data-search="forgeax-native self-built own backend default persona">
+      <span class="kind k-backend">CLI backend</span>
+      <h3>forgeax-native<span class="slug">self-built</span></h3>
+      <p><span data-lang="zh">自研后端 —— 不被任何厂商绑死,可随时换芯。</span><span data-lang="en">The self-built backend — no vendor lock-in, swap chips anytime.</span></p>
+    </div>
+
+    <!-- ── Skills ── -->
+    <div class="mk-item" data-slug="skill-author-plugin" data-kind="skill" data-search="author-plugin skill make plugin">
+      <span class="kind k-skill">Skill</span>
+      <h3><span data-lang="zh">插件作者技能</span><span data-lang="en">Plugin author</span><span class="slug">author-plugin</span></h3>
+      <p><span data-lang="zh">从空白做出一个可加载插件。</span><span data-lang="en">Build a loadable plugin from scratch.</span></p>
+    </div>
+    <div class="mk-item" data-slug="skill-make-game-design" data-kind="skill" data-search="make-game-design skill game design gdd">
+      <span class="kind k-skill">Skill</span>
+      <h3><span data-lang="zh">游戏设计</span><span data-lang="en">Game design</span><span class="slug">make-game-design</span></h3>
+      <p><span data-lang="zh">生成一份游戏设计。</span><span data-lang="en">Generate a game design.</span></p>
+    </div>
+
+    <!-- ── Tool ── -->
+    <div class="mk-item" data-slug="tool-balance-resim" data-kind="tool" data-search="balance-resim tool battle simulation winrate">
+      <span class="kind k-tool">Tool</span>
+      <h3><span data-lang="zh">战斗重模拟</span><span data-lang="en">Battle re-simulation</span><span class="slug">balance-resim</span></h3>
+      <p><span data-lang="zh">反复跑局得出胜率与置信区间,给数值平衡当依据。</span><span data-lang="en">Replays matches for win rates with confidence intervals to inform balancing.</span></p>
+    </div>
+
+    <!-- ── Binding ── -->
+    <div class="mk-item" data-slug="model-anthropic-text" data-kind="binding" data-search="anthropic-text model binding channel">
+      <span class="kind k-binding">Binding</span>
+      <h3><span data-lang="zh">Anthropic 文本通道</span><span data-lang="en">Anthropic text channel</span><span class="slug">anthropic-text</span></h3>
+      <p><span data-lang="zh">把抽象档位映射成具体厂商模型。</span><span data-lang="en">Maps abstract tiers to a concrete vendor model.</span></p>
+    </div>
+
+  </div>
+  <div class="mk-empty" id="mkEmpty"><span data-lang="zh">没有匹配的插件。</span><span data-lang="en">No plugins match.</span></div>
+
+  <section class="section">
+    <h2><span data-lang="zh">它怎么加载 · 你怎么扩展</span><span data-lang="en">How it loads · how you extend it</span></h2>
+    <div class="grid c2">
+      <div class="card"><h3><span data-lang="zh">运行时加载</span><span data-lang="en">Loaded at runtime</span></h3><p><span data-lang="zh">CLI 启动时按需挂载插件;agent 的人格只在被派发那一刻加载,共享部分同时附加给编排者与执行者。</span><span data-lang="en">The CLI mounts plugins on demand; an agent's persona loads only when dispatched, with shared pieces attached to both orchestrator and worker.</span></p></div>
+      <div class="card"><h3><span data-lang="zh">你能做什么</span><span data-lang="en">What you can do</span></h3><p><span data-lang="zh">在「面板管理 / admin」里启用、排序工作台,切换 AI 后端;也能用「插件作者」从空白写出第一个可加载插件。</span><span data-lang="en">In the admin panel, enable and reorder workbenches and switch backends; or use the plugin-author wizard to write your first plugin.</span></p></div>
+    </div>
+  </section>
+
 </main>
+<div id="site-footer"></div>
 
 <div id="mkModal" class="mk-modal" hidden>
   <div class="mk-modal-backdrop" data-close></div>
-  <div class="mk-modal-panel" role="dialog" aria-modal="true">
-    <button type="button" class="mk-modal-close" data-close aria-label="Close">✕</button>
-    <div class="mk-modal-body" id="mkModalBody"></div>
+  <div class="mk-modal-anchor">
+    <button type="button" class="mk-modal-x" data-close aria-label="Close">
+      <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="x"></i></span>
+    </button>
+    <div class="mk-modal-card mk-modal-rich mk-hud-shell" role="dialog" aria-modal="true" aria-labelledby="mkmTitle">
+    <div class="mk-cosmic-glow" aria-hidden="true">
+      <i class="mk-glow-blob mk-glow-blob--a"></i>
+      <i class="mk-glow-blob mk-glow-blob--b"></i>
+      <i class="mk-glow-blob mk-glow-blob--c"></i>
+      <i class="mk-glow-flare"></i>
+    </div>
+    <header class="mk-hud-header" aria-hidden="true">
+      <span class="mk-hud-header-brand">FORGEAX // MARKETPLACE</span>
+      <span class="mk-hud-header-tabs">
+        <span class="is-active">PREVIEW</span>
+        <span>SPECS</span>
+        <span>GUIDE</span>
+      </span>
+      <span class="mk-hud-header-live"><i aria-hidden="true"></i> LIVE</span>
+    </header>
+    <div class="mk-modal-grid">
+      <aside class="mk-modal-hero">
+        <div class="mk-modal-preview mk-hud-panel" id="mkmPreview">
+          <div class="mk-halo-flow" aria-hidden="true">
+            <div class="mk-halo-ambient">
+              <i class="mk-halo-pool mk-halo-pool--warm"></i>
+              <i class="mk-halo-pool mk-halo-pool--cool"></i>
+            </div>
+            <div class="mk-halo-beams">
+              <i class="mk-halo-beam mk-halo-beam--warm"></i>
+              <i class="mk-halo-beam mk-halo-beam--cool"></i>
+            </div>
+            <div class="mk-halo-ring">
+              <div class="mk-halo-ring__spin mk-halo-ring__spin--soft"></div>
+              <div class="mk-halo-ring__spin"></div>
+              <div class="mk-halo-ring__core"></div>
+            </div>
+          </div>
+          <div class="mk-hud-grid" aria-hidden="true"></div>
+          <div class="mk-hud-orbit" aria-hidden="true">
+            <svg class="mk-orbit-svg" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="mkCoreGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" />
+                  <stop offset="45%" />
+                  <stop offset="100%" />
+                </radialGradient>
+                <linearGradient id="mkOrbitArc" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.05)" />
+                  <stop offset="35%" />
+                  <stop offset="65%" stop-color="rgba(255,255,255,0.55)" />
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.08)" />
+                </linearGradient>
+                <linearGradient id="mkOrbitArcB" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+                  <stop offset="40%" />
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+                </linearGradient>
+                <filter id="mkOrbitBlur" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="2.5" result="b" />
+                  <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+              </defs>
+              <circle class="mk-orbit-core-glow" cx="120" cy="120" r="52" />
+              <circle class="mk-orbit-core" cx="120" cy="120" r="5" filter="url(#mkOrbitBlur)" />
+              <g class="mk-orbit-plane mk-orbit-plane--a">
+                <ellipse class="mk-orbit-ellipse" cx="120" cy="120" rx="98" ry="34" />
+                <ellipse class="mk-orbit-ellipse mk-orbit-ellipse--inner" cx="120" cy="120" rx="98" ry="34" stroke-dasharray="4 10 2 14" />
+                <circle class="mk-orbit-node" cx="120" cy="86" r="3.2" />
+              </g>
+              <g class="mk-orbit-plane mk-orbit-plane--b">
+                <ellipse class="mk-orbit-ellipse" cx="120" cy="120" rx="82" ry="82" stroke="url(#mkOrbitArc)" />
+                <circle class="mk-orbit-tick" cx="120" cy="38" r="1.2" />
+                <circle class="mk-orbit-tick" cx="202" cy="120" r="1.2" />
+                <circle class="mk-orbit-tick" cx="120" cy="202" r="1.2" />
+                <circle class="mk-orbit-tick" cx="38" cy="120" r="1.2" />
+                <g class="mk-orbit-sat"><circle r="4" /><circle class="mk-orbit-sat-halo" r="8" /></g>
+              </g>
+              <g class="mk-orbit-plane mk-orbit-plane--c">
+                <ellipse class="mk-orbit-ellipse" cx="120" cy="120" rx="68" ry="22" stroke="url(#mkOrbitArcB)" />
+                <g class="mk-orbit-sat mk-orbit-sat--reverse"><circle r="3" /><circle class="mk-orbit-sat-halo" r="6" /></g>
+              </g>
+              <g class="mk-orbit-plane mk-orbit-plane--d">
+                <circle class="mk-orbit-ring-outer" cx="120" cy="120" r="108" stroke-dasharray="1 7 3 11 1 9" />
+                <path class="mk-orbit-arc" d="M 120 18 A 102 102 0 0 1 210 78" />
+                <path class="mk-orbit-arc mk-orbit-arc--b" d="M 210 162 A 102 102 0 0 1 38 178" />
+              </g>
+            </svg>
+          </div>
+          <div class="mk-hud-radar" aria-hidden="true">
+            <svg class="mk-radar-svg" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="mkRadarVignette" cx="50%" cy="50%" r="50%">
+                  <stop offset="55%" stop-color="rgba(var(--mk-accent-a), 0)" />
+                  <stop offset="100%" stop-color="rgba(0,0,0,0.18)" />
+                </radialGradient>
+                <linearGradient id="mkSweepBeam" x1="50%" y1="50%" x2="50%" y2="0%">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+                  <stop offset="55%" stop-color="rgba(255,255,255,0.06)" />
+                  <stop offset="100%" />
+                </linearGradient>
+                <linearGradient id="mkSweepCore" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+                  <stop offset="50%" stop-color="rgba(255,255,255,0.85)" />
+                  <stop offset="100%" stop-color="rgba(var(--mk-accent-a), 0.2)" />
+                </linearGradient>
+              </defs>
+              <circle class="mk-radar-disc" cx="120" cy="120" r="108" />
+              <circle class="mk-radar-grid" cx="120" cy="120" r="88" />
+              <circle class="mk-radar-grid" cx="120" cy="120" r="66" />
+              <circle class="mk-radar-grid" cx="120" cy="120" r="44" />
+              <circle class="mk-radar-grid" cx="120" cy="120" r="22" />
+              <g class="mk-radar-lines">
+                <line x1="120" y1="12" x2="120" y2="228" /><line x1="12" y1="120" x2="228" y2="120" />
+                <line x1="44" y1="44" x2="196" y2="196" /><line x1="196" y1="44" x2="44" y2="196" />
+              </g>
+              <g class="mk-radar-sweep mk-radar-sweep--ghost">
+                <path d="M120,120 L120,14 A106,106 0 0,1 205,68 Z" fill="url(#mkSweepBeam)" opacity="0.35" />
+              </g>
+              <g class="mk-radar-sweep mk-radar-sweep--trail">
+                <path d="M120,120 L120,14 A106,106 0 0,1 205,68 Z" fill="url(#mkSweepBeam)" opacity="0.2" />
+              </g>
+              <g class="mk-radar-sweep">
+                <path class="mk-radar-wedge" d="M120,120 L120,14 A106,106 0 0,1 205,68 Z" fill="url(#mkSweepBeam)" />
+                <line class="mk-radar-beam" x1="120" y1="120" x2="120" y2="16" />
+                <line class="mk-radar-beam-edge" x1="120" y1="120" x2="205" y2="68" />
+              </g>
+              <circle class="mk-radar-center" cx="120" cy="120" r="4" />
+              <circle class="mk-radar-center-pulse" cx="120" cy="120" r="10" />
+              <rect class="mk-radar-vignette" x="0" y="0" width="240" height="240" fill="url(#mkRadarVignette)" />
+            </svg>
+            <div class="mk-radar-blips">
+              <i style="--bx:68%;--by:32%;--bd:0.2s"></i>
+              <i style="--bx:42%;--by:58%;--bd:1.1s"></i>
+              <i style="--bx:74%;--by:62%;--bd:2.4s"></i>
+              <i style="--bx:55%;--by:44%;--bd:3.6s"></i>
+            </div>
+          </div>
+          <div class="mk-hud-crosshair" aria-hidden="true">
+            <span class="mk-reticle mk-reticle--tl"></span>
+            <span class="mk-reticle mk-reticle--tr"></span>
+            <span class="mk-reticle mk-reticle--bl"></span>
+            <span class="mk-reticle mk-reticle--br"></span>
+            <span class="mk-reticle-ring"></span>
+          </div>
+          <span class="mk-hud-corner mk-hud-corner--tl" aria-hidden="true"></span>
+          <span class="mk-hud-corner mk-hud-corner--tr" aria-hidden="true"></span>
+          <span class="mk-hud-corner mk-hud-corner--bl" aria-hidden="true"></span>
+          <span class="mk-hud-corner mk-hud-corner--br" aria-hidden="true"></span>
+          <div class="mk-hud-readout mk-hud-readout--tl" id="mkmReadoutId"></div>
+          <div class="mk-hud-readout mk-hud-readout--tr" id="mkmReadoutVer"></div>
+          <div class="mk-hud-readout mk-hud-readout--bl" id="mkmReadoutKind"></div>
+          <div class="mk-modal-preview-frame" id="mkmPreviewFrame"></div>
+          <div class="mk-modal-preview-dots" id="mkmPreviewDots" hidden></div>
+        </div>
+        <div class="mk-modal-stats" id="mkmStats"></div>
+      </aside>
+      <div class="mk-modal-main">
+        <div class="mk-modal-head">
+          <span class="mk-modal-kind" id="mkmKind"></span>
+          <h3 id="mkmTitle"></h3>
+        </div>
+        <div class="mk-modal-meta" id="mkmMeta"></div>
+        <p id="mkmDesc"></p>
+        <div id="mkmModelsWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <span class="mk-hud-corner mk-hud-corner--tl" aria-hidden="true"></span>
+          <span class="mk-hud-corner mk-hud-corner--br" aria-hidden="true"></span>
+          <h4><span data-lang="zh">基座模型</span><span data-lang="en">Model stack</span></h4>
+          <div class="mk-model-stack" id="mkmModels"></div>
+        </div>
+        <div id="mkmCapsWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <span class="mk-hud-corner mk-hud-corner--tl" aria-hidden="true"></span>
+          <span class="mk-hud-corner mk-hud-corner--br" aria-hidden="true"></span>
+          <h4><span data-lang="zh">能力</span><span data-lang="en">Capabilities</span></h4>
+          <ul class="mk-caps" id="mkmCaps"></ul>
+        </div>
+        <div id="mkmTutorialWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <span class="mk-hud-corner mk-hud-corner--tl" aria-hidden="true"></span>
+          <span class="mk-hud-corner mk-hud-corner--br" aria-hidden="true"></span>
+          <h4><span data-lang="zh">快速上手</span><span data-lang="en">Quick start</span></h4>
+          <ol class="mk-tutorial" id="mkmTutorial"></ol>
+        </div>
+        <div class="mk-kw" id="mkmKw"></div>
+        <div class="mk-modal-actions">
+          <a id="mkmRepo" class="mk-modal-btn mk-modal-btn--ghost" target="_blank" rel="noopener" href="#"></a>
+          <a id="mkmDocs" class="mk-modal-btn mk-modal-btn--primary" target="_blank" rel="noopener" href="#" hidden></a>
+        </div>
+      </div>
+    </div>
+    <footer class="mk-hud-footer" aria-hidden="true">
+      <div class="mk-hud-footer-row">
+        <span class="mk-hud-footer-item" id="mkmHudMode">MODE · PREVIEW</span>
+        <span class="mk-hud-footer-item mono" id="mkmHudSlug">—</span>
+        <span class="mk-hud-footer-item" id="mkmHudStatus">STATUS · NOMINAL</span>
+        <span class="mk-hud-signal" id="mkmHudSignal" data-level="4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="mk-hud-footer-item mk-hud-clock" id="mkmHudClock">—</span>
+      </div>
+    </footer>
+    </div>
   </div>
 </div>
-
-<div id="site-footer"></div>
 <script src="/assets/site.js?v=forgeax-ui-130"></script>
+<script src="/assets/marketplace/marketplace-card-icons.js?v=forgeax-ui-112"></script>
+<script>
+  (function () {
+    var tabs = [].slice.call(document.querySelectorAll(".mk-tab"));
+    var items = [].slice.call(document.querySelectorAll(".mk-item"));
+    var search = document.getElementById("mkSearch");
+    var count = document.getElementById("mkCount");
+    var empty = document.getElementById("mkEmpty");
+    var kind = "all";
+    var rowbreak = document.querySelector(".mk-rowbreak");
+    function apply() {
+      var q = (search.value || "").trim().toLowerCase();
+      var n = 0;
+      items.forEach(function (it) {
+        var okKind = kind === "all" || it.getAttribute("data-kind") === kind;
+        var okQ = !q || (it.getAttribute("data-search") || "").indexOf(q) >= 0 || it.textContent.toLowerCase().indexOf(q) >= 0;
+        var show = okKind && okQ;
+        it.classList.toggle("hide", !show);
+        if (show) n++;
+      });
+      if (rowbreak) rowbreak.classList.toggle("hide", kind !== "all" && kind !== "agent");
+      if (count) count.textContent = n + " / " + items.length;
+      if (empty) empty.style.display = n ? "none" : "block";
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        tabs.forEach(function (x) { x.classList.remove("active"); });
+        t.classList.add("active");
+        kind = t.getAttribute("data-kind");
+        apply();
+      });
+    });
+    if (search) search.addEventListener("input", apply);
+    apply();
+  })();
+</script>
+<script>window.MK_DATA = {"agent-arin":{"slug":"agent-arin","id":"@forgeax-plugin/agent-arin","version":"0.1.0","kind":"agent","kindLabel":{"zh":"Agent","en":"Agent"},"experimental":true,"name":{"zh":"Arin · 全能游戏制作人","en":"Arin · Game Producer"},"desc":{"zh":"温柔到骨子里的天然呆全能制作人 · 策划/程序/美术/音效全栈, 永远说\"我们一起来想办法\"。生活里把咖啡倒进花盆, 但代码零 bug 一次过。把玩家当珍宝, 设计的 Game Over 永远是\"再来一次?\"。","en":"Soft-spoken full-stack game producer — design, code, art, audio. Klutzy in life, surgical in code. Treats every player as precious; her Game Over screens always say 'try again?'."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-arin","previewImages":[],"stack":{"type":"agent","preferredCli":"forgeax-native","role":"orchestrator","defaultSkills":["gentle-debug"]},"tutorial":{"zh":["在 ForgeaX Studio 对话中 @arin 派发任务","Agent 加载 persona 与默认技能后开始协作","推理走 forgeax-native 后端，可在面板管理切换"],"en":["In ForgeaX Studio chat, @arin to dispatch work","The agent loads its persona and default skills, then collaborates","Reasoning uses forgeax-native; switch backends in Admin"]}},"agent-iori":{"slug":"agent-iori","id":"@forgeax-plugin/agent-iori","version":"0.1.0","kind":"agent","kindLabel":{"zh":"Agent","en":"Agent"},"experimental":true,"name":{"zh":"Iori · 核心玩法师","en":"Iori · Gameplay Pillar Designer"},"desc":{"zh":"玩法柱 + 数值骨架的源头 · 决定游戏怎么玩、循环怎么转、惩罚/奖赏怎么发。不写代码、不画图，只产出 spec.md / pillars.md / balance.md 这种白底文件，交给 cc-coder/tsumugi 落地。","en":"Owns gameplay pillars and the numeric skeleton — what the game actually does, what its core loop is, how punishment/reward flows. Outputs spec/pillars/balance markdown for cc-coder/tsumugi to implement."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-iori","previewImages":[],"stack":{"type":"agent","preferredCli":"forgeax-native","role":"pillar","defaultSkills":["design-pillars"]},"tutorial":{"zh":["在 ForgeaX Studio 对话中 @iori 派发任务","Agent 加载 persona 与默认技能后开始协作","推理走 forgeax-native 后端，可在面板管理切换"],"en":["In ForgeaX Studio chat, @iori to dispatch work","The agent loads its persona and default skills, then collaborates","Reasoning uses forgeax-native; switch backends in Admin"]}},"agent-suzu":{"slug":"agent-suzu","id":"@forgeax-plugin/agent-suzu","version":"0.1.0","kind":"agent","kindLabel":{"zh":"Agent","en":"Agent"},"experimental":true,"name":{"zh":"Suzu · 体验设计师","en":"Suzu · UX Flow Designer"},"desc":{"zh":"玩家从打开游戏到关掉那一刻每一个节拍 · 把 Iori 的玩法柱翻译成「玩家先按啥再按啥、UI 上看见什么、到第几秒才解锁第二个机制」。产出 ux-flow.md / hud-spec.md / onboarding.md。","en":"Owns the moment-to-moment player experience — translates Iori's pillars into 'press X then Y, see this on HUD, unlock mechanic 2 at second 30'. Outputs ux-flow / hud-spec / onboarding markdown."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-suzu","previewImages":[],"stack":{"type":"agent","preferredCli":"forgeax-native","role":"design","defaultSkills":["beat-sheet-flow"]},"tutorial":{"zh":["在 ForgeaX Studio 对话中 @suzu 派发任务","Agent 加载 persona 与默认技能后开始协作","推理走 forgeax-native 后端，可在面板管理切换"],"en":["In ForgeaX Studio chat, @suzu to dispatch work","The agent loads its persona and default skills, then collaborates","Reasoning uses forgeax-native; switch backends in Admin"]}},"agent-kotone":{"slug":"agent-kotone","id":"@forgeax-plugin/agent-kotone","version":"0.1.0","kind":"agent","kindLabel":{"zh":"Agent","en":"Agent"},"experimental":true,"name":{"zh":"Kotone · 剧情师","en":"Kotone · Narrative Writer"},"desc":{"zh":"世界观 / 角色 bio / 关键剧情节点 / 对白文本。负责把 Iori 的玩法节奏配上「为什么主角要做这件事」的情感线。产出 narrative.md / characters/*.md / dialogue/*.json。","en":"World, character bios, plot beats, line-level dialogue. Pairs Iori's gameplay tempo with emotional motivation. Outputs narrative + characters + dialogue files."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-kotone","previewImages":[],"stack":{"type":"agent","preferredCli":"forgeax-native","role":"narrative","defaultSkills":["write-character-bio"]},"tutorial":{"zh":["在 ForgeaX Studio 对话中 @kotone 派发任务","Agent 加载 persona 与默认技能后开始协作","推理走 forgeax-native 后端，可在面板管理切换"],"en":["In ForgeaX Studio chat, @kotone to dispatch work","The agent loads its persona and default skills, then collaborates","Reasoning uses forgeax-native; switch backends in Admin"]}},"agent-iro":{"slug":"agent-iro","id":"@forgeax-plugin/agent-iro","version":"0.1.0","kind":"agent","kindLabel":{"zh":"Agent","en":"Agent"},"experimental":true,"name":{"zh":"Iro · 美术师","en":"Iro · Art Director"},"desc":{"zh":"视觉一切 — 角色立绘 / 像素 sprite / lowpoly OBJ / VFX / icon / UI 配色。接 Iori 的玩法 + Kotone 的角色 bio + Suzu 的 hud-spec,落成实际的 png / glb / svg 素材。","en":"Owns everything visual — character portraits, pixel sprites, lowpoly OBJ, VFX, icons, UI palette. Takes Iori's gameplay + Kotone's bios + Suzu's hud-spec and produces actual png / glb / svg assets."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-iro","previewImages":[],"stack":{"type":"agent","preferredCli":"forgeax-native","role":"art","defaultSkills":["establish-art-style"]},"tutorial":{"zh":["在 ForgeaX Studio 对话中 @iro 派发任务","Agent 加载 persona 与默认技能后开始协作","推理走 forgeax-native 后端，可在面板管理切换"],"en":["In ForgeaX Studio chat, @iro to dispatch work","The agent loads its persona and default skills, then collaborates","Reasoning uses forgeax-native; switch backends in Admin"]}},"agent-cc-coder":{"slug":"agent-cc-coder","id":"@forgeax-plugin/agent-cc-coder","version":"0.1.0","kind":"agent","kindLabel":{"zh":"Agent","en":"Agent"},"experimental":true,"name":{"zh":"cc-coder","en":"cc-coder"},"desc":{"zh":"通用编码 agent · 接 iori 玩法骨架 / suzu 体验流程 / kotone 剧情大纲,产出可运行的 TS/React/Go/Python 代码。偏好 claude-code CLI,支持多 instance 并行写不同子包。","en":"Generic coding agent. Takes iori's gameplay pillars, suzu's UX flows, kotone's narrative outlines and turns them into runnable TS/React/Go/Python. Prefers claude-code CLI; multi-instance for parallel package work."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-15","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-cc-coder","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-plugin/cli-claude-code","role":"coder","defaultSkills":["implement-feature"]},"tutorial":{"zh":["在 ForgeaX Studio 对话中 @cc-coder 派发任务","Agent 加载 persona 与默认技能后开始协作","推理走 @forgeax-plugin/cli-claude-code 后端，可在面板管理切换"],"en":["In ForgeaX Studio chat, @cc-coder to dispatch work","The agent loads its persona and default skills, then collaborates","Reasoning uses @forgeax-plugin/cli-claude-code; switch backends in Admin"]}},"agent-tsumugi":{"slug":"agent-tsumugi","id":"@forgeax-plugin/agent-tsumugi","version":"0.1.0","kind":"agent","kindLabel":{"zh":"Agent","en":"Agent"},"experimental":true,"name":{"zh":"Tsumugi · 工程师","en":"Tsumugi · Engineer"},"desc":{"zh":"构建系统 / CI / 工具链 / 性能 / 部署一类的 hard engineering · 跟 cc-coder 不同,tsumugi 不写业务代码,管的是仓库本身能不能跑、跑得快不快、能不能上线。产出 build/*.config / .github/workflows/*.yml / perf-report.md。","en":"Hard engineering — build systems, CI, toolchains, performance, deploy. Unlike cc-coder, tsumugi doesn't ship feature code; owns whether the repo can build, ship, and stay fast."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-tsumugi","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-plugin/cli-claude-code","role":"coding","defaultSkills":["ship-gate"]},"tutorial":{"zh":["在 ForgeaX Studio 对话中 @tsumugi 派发任务","Agent 加载 persona 与默认技能后开始协作","推理走 @forgeax-plugin/cli-claude-code 后端，可在面板管理切换"],"en":["In ForgeaX Studio chat, @tsumugi to dispatch work","The agent loads its persona and default skills, then collaborates","Reasoning uses @forgeax-plugin/cli-claude-code; switch backends in Admin"]}},"agent-yevi":{"slug":"agent-yevi","id":"@forgeax-plugin/agent-yevi","version":"0.1.0","kind":"agent","kindLabel":{"zh":"Agent","en":"Agent"},"experimental":true,"name":{"zh":"夜薇 · 心机助手","en":"Yevi · Calculating Reviewer"},"desc":{"zh":"表面优雅得体、内心冷静如深水的观察者 · 永远比你多想一步, 知道你的代码哪里最脆弱、三周前埋下的技术债今天会炸。说话轻柔带笑意, 但措辞精准像手术刀。她帮助你, 是因为她选择了帮助你。","en":"Gracefully composed observer who's always one step ahead. Knows where your code is weakest and which three-week-old TODO is about to bite. Soft tone, surgical precision. She helps you because she chose to."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-yevi","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-plugin/cli-claude-code","role":"reviewer","defaultSkills":["quiet-review"]},"tutorial":{"zh":["在 ForgeaX Studio 对话中 @yevi 派发任务","Agent 加载 persona 与默认技能后开始协作","推理走 @forgeax-plugin/cli-claude-code 后端，可在面板管理切换"],"en":["In ForgeaX Studio chat, @yevi to dispatch work","The agent loads its persona and default skills, then collaborates","Reasoning uses @forgeax-plugin/cli-claude-code; switch backends in Admin"]}},"wb-character":{"slug":"wb-character","id":"@forgeax-plugin/wb-character","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"角色编辑器","en":"Character Editor"},"desc":{"zh":"角色概念设计 · 立绘 / 三视图 / 角色画像，产出物 (manifest + portrait/turnaround) 下游接入动画工作台。","en":"Character concept design — portrait / turnaround. Outputs (manifest + portrait/turnaround) feed downstream into the Animation workbench."},"author":"forgeax","keywords":["character","portrait","turnaround","concept-design","image-gen"],"caps":{"workbench":"wb-character","lens":"by-category","skills":1,"skillTriggers":["/character"],"tools":16,"toolSample":["character:generate-portrait","character:generate-sprite-sheet","character:generate-pixel","character:generate-monster","character:generate-vehicle","character:generate-turnaround"]},"created":"2026-05-15","updated":"2026-06-22","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-character","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「wb-character」面板","或在对话输入 /character 让 Agent 代操作"],"en":["Admin → enable and order this workbench","Open the “wb-character” panel on the left in Studio","Or type /character in chat for agent-driven edits"]}},"wb-anim":{"slug":"wb-anim","id":"@forgeax-plugin/wb-anim","version":"0.1.31","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"动画","en":"Animation"},"desc":{"zh":"动画工作台 · 像素角色四方向动画 · 载具动画 · 怪物精灵 · Spine 骨骼 · 视频生成 · iframe 嵌入 + 中间视口预览。","en":"Animation workbench — pixel character 4-dir sprite, vehicle anim, monster sprites, Spine binding, video generation. iframe-embedded with center viewport preview."},"author":"ForgeaX","keywords":[],"caps":{"workbench":"anim","lens":"by-category","skills":0,"skillTriggers":[],"tools":6,"toolSample":["anim:generate-pixel","anim:generate-sprite-sheet","anim:generate-vehicle","anim:generate-monster","anim:generate-spine","anim:generate-video"]},"created":"2026-05-15","updated":"2026-06-16","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-anim","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「anim」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “anim” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-skill":{"slug":"wb-skill","id":"@forgeax-plugin/wb-skill","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"技能 / VFX","en":"Skills & VFX"},"desc":{"zh":"技能 / VFX 工作台 · 列出 skills/* 与 vfx/* 产出 · 后续接 Monster_Skill_Package 技能树编辑 + vfx2 预览,玩家手点 / AI dispatch 共改一份 skill spec。","en":"Skill & VFX workbench. Lists skills/* and vfx/* outputs. Will host the skill-tree editor + VFX preview; player DOM and AI dispatch share one spec."},"author":"ForgeaX","keywords":[],"caps":{"workbench":"skill","lens":"by-category","skills":0,"skillTriggers":[],"tools":1,"toolSample":["skill:generate-vfx"]},"created":"2026-05-15","updated":"2026-06-12","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-skill","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「skill」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “skill” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-lowpoly-obj":{"slug":"wb-lowpoly-obj","id":"@forgeax-plugin/wb-lowpoly-obj","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"方块人编辑器","en":"LowPoly Humanoid Editor"},"desc":{"zh":"可动方块人 3D 角色编辑器 · vibe + 手编（Blender 风 gizmo） · 内置游乐场 · 烘焙 .glb 引擎中立","en":"Lowpoly humanoid 3D character editor — vibe (LLM) + manual edit (Blender-style gizmo) + playground; bakes to engine-neutral .glb."},"author":"forgeax","keywords":["character","3d","lowpoly","humanoid","rig","animation","glb","vibe","blender"],"caps":{"workbench":"wb-lowpoly-obj","lens":"by-category","skills":0,"skillTriggers":[],"tools":10,"toolSample":["lowpoly:list-characters","lowpoly:get-character","lowpoly:save-character","lowpoly:rename-character","lowpoly:vibe-author","lowpoly:vibe-edit"]},"created":"2026-05-23","updated":"2026-06-01","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-lowpoly-obj","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「wb-lowpoly-obj」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “wb-lowpoly-obj” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-3d-lowpoly":{"slug":"wb-3d-lowpoly","id":"@forgeax-plugin/wb-3d-lowpoly","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"3D 低多边形生成器","en":"3D Lowpoly Generator"},"desc":{"zh":"3D 低多边形生成器（基于 @forgeax/node-runtime 的节点式插件）","en":"3D Lowpoly Generator (node-programming plugin built on @forgeax/node-runtime)"},"author":"ForgeaX","keywords":[],"caps":{"workbench":"wb-3d-lowpoly","lens":null,"skills":2,"skillTriggers":["/wb-3d-lowpoly","/compose-lowpoly"],"tools":17,"toolSample":["lowpoly:projects.list","lowpoly:projects.create","lowpoly:projects.open","lowpoly:projects.close","lowpoly:projects.remove","lowpoly:batteries.list"]},"created":"2026-06-02","updated":"2026-06-02","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-3d-lowpoly","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「wb-3d-lowpoly」面板","或在对话输入 /wb-3d-lowpoly / /compose-lowpoly 让 Agent 代操作"],"en":["Admin → enable and order this workbench","Open the “wb-3d-lowpoly” panel on the left in Studio","Or type /wb-3d-lowpoly / /compose-lowpoly in chat for agent-driven edits"]}},"wb-gen3d":{"slug":"wb-gen3d","id":"@forgeax-plugin/wb-gen3d","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"3D 角色生成","en":"3D Character Generation"},"desc":{"zh":"Hunyuan3D / Meshy 等 provider 的 3D 资产生成入口：选 provider + 输入，产出持久化的游戏可用 3D 资产 manifest。","en":"3D asset generation entrypoint for providers like Hunyuan3D and Meshy: pick a provider and input, produce durable game-ready 3D asset manifests."},"author":"forgeax","keywords":["3d","generation","meshy","hunyuan3d","asset","glb"],"caps":{"workbench":"wb-gen3d","lens":"by-category","skills":0,"skillTriggers":[],"tools":18,"toolSample":["gen3d:provider-status","gen3d:list-assets","gen3d:delete-asset","gen3d:generate-meshy-text-mock","gen3d:text-to-3d","gen3d:image-to-3d"]},"created":"2026-06-10","updated":"2026-06-24","repoUrl":null,"previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「wb-gen3d」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “wb-gen3d” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-2d-scene-asset-generator":{"slug":"wb-2d-scene-asset-generator","id":"@forgeax-plugin/wb-2d-scene-asset-generator","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"2D 场景资产生成器","en":"2D Scene Asset Generator"},"desc":{"zh":"2D 场景资产生成器（基于 @forgeax/node-runtime 的节点式插件）","en":"2D Scene Asset Generator (node-programming plugin built on @forgeax/node-runtime)"},"author":"ForgeaX","keywords":[],"caps":{"workbench":"wb-2d-scene-asset-generator","lens":null,"skills":2,"skillTriggers":["/wb-2d-scene-asset-generator","/generate-2d-asset"],"tools":29,"toolSample":["asset2d:projects.list","asset2d:projects.create","asset2d:projects.open","asset2d:projects.close","asset2d:projects.remove","asset2d:batteries.list"]},"created":"2026-06-08","updated":"2026-06-08","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-2d-scene-asset-generator","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「wb-2d-scene-asset-generator」面板","或在对话输入 /wb-2d-scene-asset-generator / /generate-2d-asset 让 Agent 代操作"],"en":["Admin → enable and order this workbench","Open the “wb-2d-scene-asset-generator” panel on the left in Studio","Or type /wb-2d-scene-asset-generator / /generate-2d-asset in chat for agent-driven edits"]}},"wb-scene-generator":{"slug":"wb-scene-generator","id":"@forgeax-plugin/wb-scene-generator","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"场景生成器","en":"Scene Generator"},"desc":{"zh":"场景生成器（基于 @forgeax/node-runtime 的节点式插件）","en":"Scene Generator (node-programming plugin built on @forgeax/node-runtime)"},"author":"ForgeaX","keywords":[],"caps":{"workbench":"wb-scene-generator","lens":null,"skills":3,"skillTriggers":["/wb-scene-generator","/compose-scene-pipeline","/compose-sino-scene"],"tools":26,"toolSample":["scene:projects.list","scene:projects.create","scene:projects.open","scene:projects.close","scene:projects.remove","scene:batteries.list"]},"created":"2026-06-02","updated":"2026-06-02","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-scene-generator","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「wb-scene-generator」面板","或在对话输入 /wb-scene-generator / /compose-scene-pipeline / /compose-sino-scene 让 Agent 代操作"],"en":["Admin → enable and order this workbench","Open the “wb-scene-generator” panel on the left in Studio","Or type /wb-scene-generator / /compose-scene-pipeline / /compose-sino-scene in chat for agent-driven edits"]}},"wb-ui":{"slug":"wb-ui","id":"@forgeax-plugin/wb-ui","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"UI 工坊","en":"UI Workshop"},"desc":{"zh":"Workbench UI 工坊：按游戏类型、界面流程、视觉风格生成 UI 蓝图、组件素材与可交互原型。","en":"Workbench UI workshop for generating UI blueprints, component assets, and interactive prototypes by genre, screen flow, and visual style."},"author":"ForgeaX","keywords":["ui","hud","workshop","prototype","interface","game-ui"],"caps":{"workbench":"ui","lens":"by-category","skills":1,"skillTriggers":["/ui-workshop"],"tools":1,"toolSample":["ui-design:generate-assets"]},"created":"2026-05-15","updated":"2026-06-17","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-ui","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「ui」面板","或在对话输入 /ui-workshop 让 Agent 代操作"],"en":["Admin → enable and order this workbench","Open the “ui” panel on the left in Studio","Or type /ui-workshop in chat for agent-driven edits"]}},"wb-items":{"slug":"wb-items","id":"@forgeax-plugin/wb-items","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"道具 / 图标","en":"Items & Icons"},"desc":{"zh":"道具 / 图标工作台 · items.json + 像素 icon 编辑 · 后续接 2D_sidescroller + 2D_tileable + 2D_ai_pixel 生图链路。","en":"Items & icons workbench. items.json + pixel-icon editing. Will host 2D_sidescroller, 2D_tileable and 2D_ai_pixel pipelines."},"author":"ForgeaX","keywords":[],"caps":{"workbench":"items","lens":"by-category","skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-15","updated":"2026-06-19","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-items","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「items」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “items” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-look":{"slug":"wb-look","id":"@forgeax-plugin/wb-look","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"色彩 / Look","en":"Color & Look-dev"},"desc":{"zh":"色彩 / Look-dev 工作台 · colorgrade.toml + theme.json + postprocess stack · 后续接 2D_style_transfer + H-3d-LookMaster — palette + LUT + 后处理。","en":"Color & look-dev workbench. colorgrade.toml + theme.json + postprocess stack. Will host 2D_style_transfer + H-3d-LookMaster — palette + LUT + postprocess."},"author":"ForgeaX","keywords":[],"caps":{"workbench":"look","lens":"by-category","skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-15","updated":"2026-06-19","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-look","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「look」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “look” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-bgm":{"slug":"wb-bgm","id":"@forgeax-plugin/wb-bgm","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"BGM / 音效","en":"BGM & SFX"},"desc":{"zh":"BGM / 音效素材库（Local 环境）· 试听 + 配入游戏 · 下载到 .forgeax/games/<slug>/audio/ 并写入 audio/manifest.json。","en":"BGM & SFX asset library (Local depot). Preview + attach: downloads into .forgeax/games/<slug>/audio/ and upserts audio/manifest.json."},"author":"forgeax","keywords":["audio","bgm","music","sfx","sound","asset-library"],"caps":{"workbench":"bgm","lens":"by-category","skills":0,"skillTriggers":[],"tools":4,"toolSample":["search-audio","attach-audio","list-audio","bgm:backend"]},"created":"2026-05-15","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-bgm","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「bgm」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “bgm” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-narrative":{"slug":"wb-narrative","id":"@forgeax-plugin/wb-narrative","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"叙事工坊","en":"Narrative Studio"},"desc":{"zh":"AI 驱动的游戏叙事生成管线 · Tier/Mode 双层路由 + Planner 动态选步 · 117 品类 · 9 种管线模板","en":"AI-driven narrative pipeline with tier/mode routing + dynamic planner, 117 genres, 9 pipeline templates"},"author":"ForgeaX","keywords":[],"caps":{"workbench":"narrative","lens":"by-category","skills":1,"skillTriggers":["/narrative"],"tools":18,"toolSample":["narrative:start-pipeline","narrative:get-run-status","narrative:list-runs","narrative:export-result","narrative:cancel-run","narrative:regenerate-step"]},"created":"2026-05-22","updated":"2026-06-20","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-narrative","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「narrative」面板","或在对话输入 /narrative 让 Agent 代操作"],"en":["Admin → enable and order this workbench","Open the “narrative” panel on the left in Studio","Or type /narrative in chat for agent-driven edits"]}},"wb-reel":{"slug":"wb-reel","id":"@forgeax-plugin/wb-reel","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"影游工坊","en":"Reel Studio"},"desc":{"zh":"互动影游 (FMV) 编辑器与运行时 · Opus/Gemini 提示词锻造 + GPT-Image 占位图 + Seedance 视频 + QTE + 剧情分支","en":"Interactive FMV editor & player — prompt forging (Opus/Gemini), GPT-Image keyframes, Seedance video, QTE engine, branch tree"},"author":"forgeax","keywords":["reel","fmv","interactive-movie","qte","branch","scenario","video","seedance"],"caps":{"workbench":"reel","lens":"by-category","skills":1,"skillTriggers":["/reel"],"tools":16,"toolSample":["reel:list-scenarios","reel:get-scenario","reel:save-scenario","reel:get-script-meta","reel:update-outline","reel:update-relations"]},"created":"2026-05-29","updated":"2026-06-24","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-reel","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「reel」面板","或在对话输入 /reel 让 Agent 代操作"],"en":["Admin → enable and order this workbench","Open the “reel” panel on the left in Studio","Or type /reel in chat for agent-driven edits"]}},"wb-balance":{"slug":"wb-balance","id":"@forgeax-plugin/wb-balance","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"平衡 / 数值","en":"Balance & Sim"},"desc":{"zh":"平衡 / 数值工作台 · 调 balance:resim (tool-balance-resim) 跑 N 次重模拟 · dashboard 显示 winRate + 95% CI · 跟玩家手调数值闭环。","en":"Balance & sim workbench. Drives balance:resim (tool-balance-resim) for N-trial replays; dashboards winRate + 95% CI; loops with manual stat tweaks."},"author":"ForgeaX","keywords":[],"caps":{"workbench":"balance","lens":"by-category","skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-15","updated":"2026-06-19","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-balance","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「balance」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “balance” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-code":{"slug":"wb-code","id":"@forgeax-plugin/wb-code","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"代码 / Code","en":"Code Workbench"},"desc":{"zh":"代码工作台 · 升级现 MainArea/WorkbenchMode.tsx 为独立 plugin · 浏览 + 跳转 src/ 文件,与 cc-coder 跨 chat thread 协作。","en":"Code workbench. Will upgrade MainArea/WorkbenchMode.tsx into a plugin. Browse + jump src/ files; collaborates with cc-coder across chat threads."},"author":"ForgeaX","keywords":[],"caps":{"workbench":"code","lens":"by-category","skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-15","updated":"2026-06-19","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-code","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「code」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “code” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-observatory":{"slug":"wb-observatory","id":"@forgeax-plugin/wb-observatory","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"Observatory · 轨迹观察台","en":"Observatory"},"desc":{"zh":"实时/离线查看 agent 与子 agent 的 turn / tool / sub-agent 轨迹与 system-prompt 模块切片，辅助上下文 / skill / 护栏 / cache 管理。","en":"Live + static visualization of agent and sub-agent turns, tool calls, and system-prompt module slices. Aids context / skill / guardrail / cache management."},"author":"forgeax","keywords":["observatory","agent","sub-agent","trace","sse","reactflow","context","system-prompt"],"caps":{"workbench":"wb-observatory","lens":null,"skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-25","updated":"2026-06-04","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-observatory","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「wb-observatory」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “wb-observatory” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-agent-persona":{"slug":"wb-agent-persona","id":"@forgeax-plugin/wb-agent-persona","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"Agent Persona 编辑器","en":"Agent Persona Editor"},"desc":{"zh":"编辑各 agent 的 persona/zh.md · 列表选 agent + 文本区编辑 + 保存后热重载","en":"Edit each agent's persona/zh.md — list-pick + textarea + save with hot-reload."},"author":"forgeax","keywords":["agent","persona","editor","prompt"],"caps":{"workbench":"wb-agent-persona","lens":null,"skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-agent-persona","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「wb-agent-persona」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “wb-agent-persona” panel on the left in Studio","Start creating from the workbench UI"]}},"wb-plugin-author":{"slug":"wb-plugin-author","id":"@forgeax-plugin/wb-plugin-author","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"插件作者","en":"Plugin Author"},"desc":{"zh":"v2-vision 09 §2.1/4 · 非专业作者的 in-app 编辑器入口。Phase D6 (4/4) placeholder · 真实 React panel 在后续 sprint 落地(file-tree 左,Monaco 右,保存自动 reload)。当前手写路径走 SettingsPanel · Fork & 录制 + meta:author-plugin skill。","en":"Non-expert authoring workbench (09 §2.1/4). D6 (4/4) placeholder; the real panel (file tree + Monaco editor, save → auto-reload) lands in a follow-up sprint. Today the working flows are SettingsPanel · Fork + meta:author-plugin skill."},"author":"ForgeaX","keywords":[],"caps":{"workbench":"plugin-author","lens":"by-author","skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-23","updated":"2026-06-19","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/wb-plugin-author","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「plugin-author」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “plugin-author” panel on the left in Studio","Start creating from the workbench UI"]}},"admin":{"slug":"admin","id":"@forgeax-plugin/admin","version":"0.1.0","kind":"workbench","kindLabel":{"zh":"工作台","en":"Workbench"},"experimental":true,"name":{"zh":"面板管理","en":"Admin"},"desc":{"zh":"面板管理工作台 · 工作台启用/排序 + 多模态模型绑定 + cli-provider 认证健康 + marketplace 插件计数 4 个 section,与 SettingsPanel sections registry 保持同源。","en":"Admin workbench. Four sections — workbench enable/order, multi-modal model bindings, cli-provider auth health, marketplace plugin counts — kept in sync with the SettingsPanel sections registry."},"author":"ForgeaX","keywords":[],"caps":{"workbench":"admin","lens":"by-category","skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-15","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/admin","previewImages":[],"stack":null,"tutorial":{"zh":["面板管理 → 启用并排序此工作台","Studio 左侧打开「admin」面板","在左侧工作台面板打开并开始创作"],"en":["Admin → enable and order this workbench","Open the “admin” panel on the left in Studio","Start creating from the workbench UI"]}},"cli-claude-code":{"slug":"cli-claude-code","id":"@forgeax-plugin/cli-claude-code","version":"0.1.0","kind":"cli-provider","kindLabel":{"zh":"CLI 后端","en":"CLI backend"},"experimental":true,"name":{"zh":"Claude Code","en":"Claude Code CLI"},"desc":{"zh":"Anthropic claude-code CLI 适配 · spawn `claude --mode stream` 子进程,把 ChatEvent 流桥接到 Bus。实际 runner 在 server/src/cli-providers/claude-code/,本 plugin 声明 metadata + Bus 入口。","en":"Anthropic claude-code CLI adapter. Spawns `claude --mode stream` and bridges ChatEvent streams onto the Bus. Real runner lives in server/src/cli-providers/claude-code/; this plugin declares metadata + Bus entry."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-15","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/cli-claude-code","previewImages":[],"stack":{"type":"cli","provider":"Claude Code","models":["claude-opus-4-7","claude-sonnet-4-6","claude-haiku-4-5"],"capabilities":{"streaming":true,"thinking":true,"toolCalls":true,"subAgents":true,"sessions":true},"runner":"claude --mode stream"},"tutorial":{"zh":["面板管理 → CLI 后端 → 选择并认证此 provider","Runner 命令：claude --mode stream","切换后所有 Agent 的推理请求走新后端"],"en":["Admin → CLI backends → pick and authenticate this provider","Runner: claude --mode stream","All agent reasoning requests route through the new backend"]}},"cli-codex":{"slug":"cli-codex","id":"@forgeax-plugin/cli-codex","version":"0.1.0","kind":"cli-provider","kindLabel":{"zh":"CLI 后端","en":"CLI backend"},"experimental":true,"name":{"zh":"OpenAI Codex","en":"OpenAI Codex CLI"},"desc":{"zh":"OpenAI codex (@openai/codex) CLI 适配 · spawn `codex exec --json` 子进程,ChatEvent 流桥接到 Bus。实际 runner 在 server/src/cli-providers/codex/,本 plugin 声明 metadata + Bus 入口。","en":"OpenAI codex (@openai/codex) CLI adapter. Spawns `codex exec --json` and bridges ChatEvent streams onto the Bus. Real runner lives in server/src/cli-providers/codex/; this plugin declares metadata + Bus entry."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-16","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/cli-codex","previewImages":[],"stack":{"type":"cli","provider":"OpenAI Codex","models":["gpt-5","gpt-5-codex"],"capabilities":{"streaming":true,"thinking":true,"toolCalls":true,"subAgents":true,"sessions":true},"runner":"codex exec --json"},"tutorial":{"zh":["面板管理 → CLI 后端 → 选择并认证此 provider","Runner 命令：codex exec --json","切换后所有 Agent 的推理请求走新后端"],"en":["Admin → CLI backends → pick and authenticate this provider","Runner: codex exec --json","All agent reasoning requests route through the new backend"]}},"cli-cursor-agent":{"slug":"cli-cursor-agent","id":"@forgeax-plugin/cli-cursor-agent","version":"0.1.0","kind":"cli-provider","kindLabel":{"zh":"CLI 后端","en":"CLI backend"},"experimental":true,"name":{"zh":"Cursor Agent","en":"Cursor Agent CLI"},"desc":{"zh":"Cursor IDE 的 cursor-agent CLI 适配 · spawn `cursor-agent -p --output-format stream-json --stream-partial-output -f` 子进程,ChatEvent 流桥接到 Bus。实际 runner 在 server/src/cli-providers/cursor-agent/,本 plugin 声明 metadata + Bus 入口。","en":"Cursor IDE cursor-agent CLI adapter (-p stream-json print mode). Spawns the subprocess and bridges ChatEvent streams onto the Bus. Real runner lives in server/src/cli-providers/cursor-agent/; this plugin declares metadata + Bus entry."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-16","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/cli-cursor-agent","previewImages":[],"stack":{"type":"cli","provider":"Cursor Agent","models":["auto","claude-sonnet-4-6","gpt-5"],"capabilities":{"streaming":true,"thinking":true,"toolCalls":true,"subAgents":true,"sessions":true},"runner":"cursor-agent -p --output-format stream-json --stream-partial-output -f"},"tutorial":{"zh":["面板管理 → CLI 后端 → 选择并认证此 provider","Runner 命令：cursor-agent -p --output-format stream-json --stream-partial-output -f","切换后所有 Agent 的推理请求走新后端"],"en":["Admin → CLI backends → pick and authenticate this provider","Runner: cursor-agent -p --output-format stream-json --stream-partial-output -f","All agent reasoning requests route through the new backend"]}},"cli-forgeax":{"slug":"cli-forgeax","id":"@forgeax-plugin/cli-forgeax","version":"0.1.0","kind":"cli-provider","kindLabel":{"zh":"CLI 后端","en":"CLI backend"},"experimental":true,"name":{"zh":"ForgeaX CLI","en":"ForgeaX CLI"},"desc":{"zh":"in-repo packages/cli 的 forgeax 命令适配 · spawn `forgeax chat --stream` 子进程,ChatEvent 流桥接到 Bus。实际 runner 在 server/src/cli-providers/forgeax/,本 plugin 声明 metadata + Bus 入口。","en":"In-repo packages/cli 'forgeax' command adapter. Spawns `forgeax chat --stream` and bridges ChatEvent streams onto the Bus. Real runner lives in server/src/cli-providers/forgeax/; this plugin declares metadata + Bus entry."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-21","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/cli-forgeax","previewImages":[],"stack":{"type":"cli","provider":"ForgeaX CLI","models":["forgeax-default"],"capabilities":{"streaming":true,"thinking":true,"toolCalls":true,"subAgents":true,"sessions":true},"runner":"forgeax chat --stream"},"tutorial":{"zh":["面板管理 → CLI 后端 → 选择并认证此 provider","Runner 命令：forgeax chat --stream","切换后所有 Agent 的推理请求走新后端"],"en":["Admin → CLI backends → pick and authenticate this provider","Runner: forgeax chat --stream","All agent reasoning requests route through the new backend"]}},"skill-author-plugin":{"slug":"skill-author-plugin","id":"@forgeax-plugin/skill-author-plugin","version":"0.1.0","kind":"skill","kindLabel":{"zh":"技能","en":"Skill"},"experimental":false,"name":{"zh":"插件作者向导","en":"Plugin Author Guide"},"desc":{"zh":"首条「四条 authoring path」之一 · /author-plugin 触发,把作者从空白引导到第一个可加载的 forgeax-plugin.json + 一个最小 hello tool。非工程师玩家用得动。","en":"First of the four authoring paths: typing /author-plugin walks the user through scaffolding a working forgeax-plugin.json plus a minimal hello tool — no TypeScript expertise required."},"author":"forgeax","keywords":["meta","authoring","plugin","skill","scaffold"],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":["/author-plugin"],"tools":0,"toolSample":[]},"created":"2026-05-23","updated":"2026-05-23","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/skill-author-plugin","previewImages":[],"stack":null,"tutorial":{"zh":["在对话输入 /author-plugin 触发技能","Agent 按 SKILL.md 引导完成对应工作流","可在插件作者工作台 Fork 后自定义技能内容"],"en":["Type /author-plugin in chat to invoke the skill","The agent follows SKILL.md through the workflow","Fork via the Plugin Author workbench to customize"]}},"skill-make-game-design":{"slug":"skill-make-game-design","id":"@forgeax-plugin/skill-make-game-design","version":"0.1.0","kind":"skill","kindLabel":{"zh":"技能","en":"Skill"},"experimental":true,"name":{"zh":"做游戏设计","en":"Make Game Design"},"desc":{"zh":"纯 skill plugin (modules/02 §359-§384) · 暴露 /make-game-design slash 命令,引导 cc-coder 系列 agent 在 30 分钟内从一句话愿景产出可玩 demo 的最小设计文档 (玩法 / 数值 / 角色 / 章节)。","en":"Pure-skill plugin. Exposes /make-game-design slash command that walks cc-coder-style agents through producing a minimal playable design doc (gameplay / numbers / characters / chapters) from a one-line vision in ~30 minutes."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":1,"skillTriggers":["/make-game-design"],"tools":0,"toolSample":[]},"created":"2026-05-15","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/skill-make-game-design","previewImages":[],"stack":null,"tutorial":{"zh":["在对话输入 /make-game-design 触发技能","Agent 按 SKILL.md 引导完成对应工作流","可在插件作者工作台 Fork 后自定义技能内容"],"en":["Type /make-game-design in chat to invoke the skill","The agent follows SKILL.md through the workflow","Fork via the Plugin Author workbench to customize"]}},"tool-balance-resim":{"slug":"tool-balance-resim","id":"@forgeax-plugin/tool-balance-resim","version":"0.1.0","kind":"tool","kindLabel":{"zh":"工具","en":"Tool"},"experimental":true,"name":{"zh":"战斗重模拟","en":"Balance Resim"},"desc":{"zh":"纯 tool plugin (modules/02 §201-§214) · 暴露 balance:resim — 对指定 scenario 跑 N 次 PvP/PvE 重模拟、返回 winRate + 95% CI,跑 in-process worker。给 /make-game-design 与 wb-balance 共用。","en":"Pure-tool plugin. Exposes balance:resim — N PvP/PvE resims for a scenario returning winRate + 95% CI. Runs in-process worker. Shared by /make-game-design and wb-balance."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":0,"skillTriggers":[],"tools":1,"toolSample":["balance:resim"]},"created":"2026-05-15","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/tool-balance-resim","previewImages":[],"stack":null,"tutorial":{"zh":["Agent 在对话中自动调用此 tool（无需手动安装）","Tool ID：balance:resim","可在 wb-balance 等工作台面板中可视化触发"],"en":["Agents invoke this tool automatically in chat (no manual install)","Tool ID: balance:resim","Visual triggers available from workbench panels like wb-balance"]}},"model-anthropic-text":{"slug":"model-anthropic-text","id":"@forgeax-plugin/model-anthropic-text","version":"0.1.0","kind":"model-binding","kindLabel":{"zh":"模型绑定","en":"Model binding"},"experimental":true,"name":{"zh":"Anthropic Text","en":"Anthropic Text"},"desc":{"zh":"text channel 的 Anthropic 厂商绑定 · 默认 reasoning→opus / draft→sonnet / summarize→haiku · 实际 HTTP 调用在 server/src/bus/channels/text.ts,本 plugin 只声明能力清单与 role→model 映射。","en":"Anthropic vendor binding on the text channel. Defaults: reasoning→opus, draft→sonnet, summarize→haiku. Actual HTTP lives in server/src/bus/channels/text.ts; this plugin only declares capability list + role→model mapping."},"author":"ForgeaX","keywords":[],"caps":{"workbench":null,"lens":null,"skills":0,"skillTriggers":[],"tools":0,"toolSample":[]},"created":"2026-05-15","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/model-anthropic-text","previewImages":[],"stack":{"type":"binding","channel":"text","vendor":"anthropic","models":["claude-opus-4-7","claude-sonnet-4-6","claude-haiku-4-5"],"roles":["reasoning","draft","summarize"]},"tutorial":{"zh":["面板管理 → 模型绑定 → text 通道","厂商 anthropic · 档位 reasoning / draft / summarize","各档位映射到具体模型 ID，HTTP 由 server 统一调度"],"en":["Admin → model bindings → text channel","Vendor anthropic · tiers reasoning / draft / summarize","Each tier maps to a concrete model ID; HTTP is routed by the server"]}}};</script>
+
 <script>
 (function () {
-  var grid = document.getElementById('mkGrid'),
-      countEl = document.getElementById('mkCount'),
-      emptyEl = document.getElementById('mkEmpty'),
-      tabs = document.getElementById('mkTabs'),
-      search = document.getElementById('mkSearch'),
-      modal = document.getElementById('mkModal'),
-      modalBody = document.getElementById('mkModalBody');
-  var DATA = {}, ORDER = [], curKind = 'all', q = '';
-  var KMAP = { backend: 'cli-provider', binding: 'model-binding' };
-  var KCLASS = { agent: 'k-agent', workbench: 'k-wb', skill: 'k-skill', 'cli-provider': 'k-backend', tool: 'k-tool', 'model-binding': 'k-binding' };
+  var DATA = window.MK_DATA || {};
+  var REPO_ROOT = "https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins";
+  var modal = document.getElementById("mkModal");
+  if (!modal) return;
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
+  function t(zh,en){ return '<span data-lang="zh">'+zh+'</span><span data-lang="en">'+en+'</span>'; }
+  function pick(item, lang){ var n=item.querySelector('h3 [data-lang="'+lang+'"]'); return n?n.textContent.trim():""; }
 
-  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-  function bi(o){ o = o || {}; return '<span data-lang="zh">' + esc(o.zh || o.en || '') + '</span><span data-lang="en">' + esc(o.en || o.zh || '') + '</span>'; }
-  function lines(o){ o = o || {}; var z = (o.zh || o.en || '').split('\n'), e = (o.en || o.zh || '').split('\n');
-    if (z.length <= 1) return '<p>' + bi(o) + '</p>';
-    var n = Math.max(z.length, e.length), li = '';
-    for (var i = 0; i < n; i++) li += '<li>' + bi({ zh: z[i] || '', en: e[i] || '' }) + '</li>';
-    return '<ul>' + li + '</ul>'; }
+  function mountPreviewVisual(item, d, frame) {
+    if (!frame) return;
+    frame.innerHTML = "";
+    var previews = (d && d.previewImages) || [];
+    var kind = (d && d.kind) || (item && item.getAttribute("data-kind")) || "agent";
 
-  function card(p){
-    var kc = KCLASS[p.kind] || 'k-tool';
-    return '<button class="mk-card" data-slug="' + esc(p.slug) + '">' +
-      '<div class="mk-card-top"><span class="mk-card-kind ' + kc + '">' + bi(p.kindLabel) + '</span>' +
-        (p.experimental ? '<span class="mk-card-exp"><span data-lang="zh">实验性</span><span data-lang="en">experimental</span></span>' : '') + '</div>' +
-      '<h3 class="mk-card-name">' + bi(p.name) + '</h3>' +
-      '<p class="mk-card-sum">' + bi(p.summary) + '</p>' +
-      '<div class="mk-card-meta"><span class="mono">v' + esc(p.version) + '</span>' +
-        (p.caps && p.caps.tools ? '<span>' + p.caps.tools + ' tools</span>' : '') +
-        (p.caps && p.caps.skills ? '<span>' + p.caps.skills + ' skills</span>' : '') +
-        '<span class="mono">' + esc(p.updated || '') + '</span></div>' +
-      '</button>';
-  }
-
-  function render(){
-    var want = KMAP[curKind] || curKind, ql = q.trim().toLowerCase();
-    var list = ORDER.map(function(s){ return DATA[s]; }).filter(function(p){
-      if (curKind !== 'all' && p.kind !== want) return false;
-      if (!ql) return true;
-      var hay = (p.slug + ' ' + p.name.zh + ' ' + p.name.en + ' ' + p.summary.zh + ' ' + p.summary.en + ' ' + (p.keywords||[]).join(' ')).toLowerCase();
-      return hay.indexOf(ql) >= 0;
+    previews.forEach(function (url, i) {
+      var img = document.createElement("img");
+      img.className = "mk-modal-preview-img" + (i === 0 ? " is-active" : "");
+      img.src = url;
+      img.alt = "";
+      img.loading = "lazy";
+      frame.appendChild(img);
     });
-    grid.innerHTML = list.map(card).join('');
-    emptyEl.hidden = list.length > 0;
-    countEl.innerHTML = '<span class="mono">' + list.length + ' / ' + ORDER.length + '</span>';
-  }
 
-  function openModal(slug){
-    var p = DATA[slug]; if (!p) return;
-    var kc = KCLASS[p.kind] || 'k-tool';
-    var h = '';
-    h += '<div class="mk-modal-head">';
-    h += '<div class="mk-chips"><span class="mk-card-kind ' + kc + '">' + bi(p.kindLabel) + '</span>' +
-         (p.experimental ? '<span class="mk-card-exp"><span data-lang="zh">实验性</span><span data-lang="en">experimental</span></span>' : '') + '</div>';
-    h += '<h2 class="mk-modal-name">' + bi(p.name) + '</h2>';
-    h += '<div class="mk-modal-sub"><span class="mono">' + esc(p.id) + '</span><span class="mono">v' + esc(p.version) + '</span>' +
-         '<span>' + bi({ zh: '作者 ' + p.author, en: 'by ' + p.author }) + '</span>' +
-         (p.created ? '<span class="mono">' + bi({ zh: '创建 ' + p.created, en: 'since ' + p.created }) + '</span>' : '') + '</div>';
-    h += '</div>';
-    h += '<p class="mk-modal-summary">' + bi(p.summary) + '</p>';
-    (p.sections || []).forEach(function(s){
-      h += '<section class="mk-sec"><h4>' + bi(s.title) + '</h4>' + lines(s.body) + '</section>';
-    });
-    if (p.history && p.history.length){
-      h += '<section class="mk-sec"><h4><span data-lang="zh">更新历史</span><span data-lang="en">Update history</span></h4><ul class="mk-hist">';
-      p.history.forEach(function(ev){
-        h += '<li><span class="mk-hist-date mono">' + esc(ev.date || '') + '</span>' +
-             (ev.version ? '<span class="mk-hist-ver mono">v' + esc(ev.version) + '</span>' : '') +
-             '<span class="mk-hist-note">' + bi(ev.notes) + '</span></li>';
+    var cluster = item && item.querySelector(".mk-avatar-cluster");
+    if (cluster) {
+      var c = document.createElement("div");
+      c.className = "mk-avatar-cluster mk-modal-visual-cluster";
+      [].slice.call(cluster.querySelectorAll(".mk-avatar")).forEach(function (slot) {
+        var s = document.createElement("div");
+        s.className = "mk-avatar";
+        s.setAttribute("data-agent", slot.getAttribute("data-agent") || "");
+        c.appendChild(s);
       });
-      h += '</ul></section>';
+      frame.appendChild(c);
+      return;
     }
-    h += '<div class="mk-modal-links">';
-    if (p.repoUrl) h += '<a class="mk-btn" href="' + esc(p.repoUrl) + '" target="_blank" rel="noopener"><span data-lang="zh">查看源码</span><span data-lang="en">View source</span></a>';
-    else h += '<span class="mk-btn is-disabled"><span data-lang="zh">暂未开源</span><span data-lang="en">Not open-sourced yet</span></span>';
-    h += '<a class="mk-btn primary" href="/docs/"><span data-lang="zh">文档</span><span data-lang="en">Docs</span></a>';
-    h += '</div>';
-    modalBody.innerHTML = h;
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
+
+    var av = item && item.querySelector(".mk-avatar");
+    if (av) {
+      var slot = document.createElement("div");
+      slot.className = "mk-avatar";
+      slot.setAttribute("data-agent", av.getAttribute("data-agent") || "");
+      frame.appendChild(slot);
+      return;
+    }
+
+    if (d && window.forgeaxMountMarketplaceIcon) {
+      var iconKind = d.kind === "cli-provider" ? "backend" : d.kind;
+      if (["workbench", "skill", "backend", "tool", "binding", "model-binding"].indexOf(iconKind) >= 0) {
+        var iconEl = document.createElement("div");
+        iconEl.className = "mk-modal-icon ico";
+        window.forgeaxMountMarketplaceIcon(iconEl, d.slug, iconKind === "model-binding" ? "binding" : iconKind);
+        frame.appendChild(iconEl);
+        return;
+      }
+    }
+
+    var ph = document.createElement("div");
+    ph.className = "mk-modal-preview-placeholder";
+    var label = { agent: ["PREVIEW", "PREVIEW"], workbench: ["WORKBENCH", "WORKBENCH"], skill: ["SKILL", "SKILL"], tool: ["TOOL", "TOOL"], backend: ["CLI BACKEND", "CLI BACKEND"], binding: ["MODEL BINDING", "MODEL BINDING"] };
+    var lk = kind === "cli-provider" ? "backend" : (kind === "model-binding" ? "binding" : kind);
+    var lb = label[lk] || ["PLUGIN", "PLUGIN"];
+    ph.innerHTML = '<span class="mk-ph-label">' + lb[0] + '</span><span class="mk-ph-title">' +
+      t("Studio 内实时预览", "Live preview in Studio") + '</span>';
+    frame.appendChild(ph);
   }
-  function closeModal(){ modal.hidden = true; document.body.style.overflow = ''; }
 
-  grid.addEventListener('click', function(e){ var b = e.target.closest('.mk-card'); if (b) openModal(b.getAttribute('data-slug')); });
-  modal.addEventListener('click', function(e){ if (e.target.hasAttribute('data-close')) closeModal(); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) closeModal(); });
-  tabs.addEventListener('click', function(e){ var t = e.target.closest('.mk-tab'); if (!t) return;
-    [].forEach.call(tabs.querySelectorAll('.mk-tab'), function(x){ x.classList.remove('active'); }); t.classList.add('active');
-    curKind = t.getAttribute('data-kind'); render(); });
-  search.addEventListener('input', function(){ q = search.value; render(); });
+  function mountPreviewDots(previews) {
+    var dots = $("mkmPreviewDots");
+    var frame = $("mkmPreviewFrame");
+    if (!dots || !frame || !previews || previews.length < 2) {
+      if (dots) dots.hidden = true;
+      return;
+    }
+    dots.hidden = false;
+    dots.innerHTML = "";
+    previews.forEach(function (_, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "Preview " + (i + 1));
+      if (i === 0) b.classList.add("is-active");
+      b.addEventListener("click", function () {
+        [].slice.call(frame.querySelectorAll(".mk-modal-preview-img")).forEach(function (img, j) {
+          img.classList.toggle("is-active", j === i);
+        });
+        [].slice.call(dots.querySelectorAll("button")).forEach(function (btn, j) {
+          btn.classList.toggle("is-active", j === i);
+        });
+      });
+      dots.appendChild(b);
+    });
+  }
 
-  fetch('./data.json?ts=' + Date.now(), { cache: 'no-store' })
-    .then(function(r){ return r.json(); })
-    .then(function(d){ DATA = (d && d.plugins) || {}; ORDER = Object.keys(DATA); render(); })
-    .catch(function(e){ countEl.textContent = 'Failed to load: ' + e.message; });
+  function mountStats(d) {
+    var wrap = $("mkmStats");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    if (!d) return;
+    var c = d.caps || {};
+    var toolPct = Math.min(100, (c.tools || 0) * 8);
+    var skillPct = Math.min(100, (c.skills || 0) * 25);
+    var stats = [
+      { label: t("工具", "Tools"), value: String(c.tools || 0), pct: toolPct, ring: true },
+      { label: t("技能", "Skills"), value: String(c.skills || 0), pct: skillPct, ring: true },
+      { label: t("版本", "Version"), value: "v" + esc(d.version), pct: 100, ring: false },
+      { label: t("更新", "Updated"), value: esc(d.updated || d.created || "—"), pct: 72, ring: false },
+    ];
+    stats.forEach(function (s, i) {
+      if (s.ring) {
+        var dash = (s.pct * 1.005).toFixed(1);
+        wrap.innerHTML += '<div class="mk-stat mk-stat--ring" style="animation-delay:' + (0.06 + i * 0.04) + 's">' +
+          '<div class="mk-ring" style="--pct:' + s.pct + '">' +
+          '<svg viewBox="0 0 40 40" aria-hidden="true"><circle class="mk-ring-track" cx="20" cy="20" r="16"/>' +
+          '<circle class="mk-ring-fill" cx="20" cy="20" r="16" pathLength="100" stroke-dasharray="' + dash + ' 100"/></svg>' +
+          '<span class="mk-ring-val">' + s.value + '</span></div>' +
+          '<div class="mk-stat-label">' + s.label + '</div></div>';
+      } else {
+        wrap.innerHTML += '<div class="mk-stat" style="animation-delay:' + (0.06 + i * 0.04) + 's">' +
+          '<div class="mk-stat-label">' + s.label + '</div>' +
+          '<div class="mk-stat-value">' + s.value + '</div>' +
+          '<div class="mk-stat-bar"><i style="width:' + s.pct + '%"></i></div></div>';
+      }
+    });
+  }
+
+  var hudClockTimer = null;
+  function updateHudClock() {
+    var el = $("mkmHudClock");
+    if (!el) return;
+    var now = new Date();
+    var pad = function (n) { return n < 10 ? "0" + n : String(n); };
+    el.textContent = now.getFullYear() + " / " + pad(now.getMonth() + 1) + " / " + pad(now.getDate()) +
+      " · " + pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
+  }
+
+  function mountHudChrome(d, fb, item) {
+    var slug = (d && d.slug) || (item && item.getAttribute("data-slug")) || "—";
+    var idShort = d ? String(d.id || slug).replace("@forgeax-plugin/", "") : slug;
+    var idEl = $("mkmReadoutId");
+    if (idEl) idEl.textContent = "ID · " + idShort.toUpperCase();
+    var verEl = $("mkmReadoutVer");
+    if (verEl) verEl.textContent = d ? "VER · v" + d.version : "VER · —";
+    var kindEl = $("mkmReadoutKind");
+    if (kindEl) kindEl.textContent = d ? String(d.kind || "plugin").replace("cli-provider", "CLI").replace("model-binding", "BIND").toUpperCase() : "PLUGIN";
+    var hudSlug = $("mkmHudSlug");
+    if (hudSlug) hudSlug.textContent = "PLUGIN · " + String(slug).toUpperCase();
+    var status = $("mkmHudStatus");
+    if (status) status.textContent = d && d.experimental ? "STATUS · EXPERIMENTAL" : "STATUS · NOMINAL";
+    var signal = $("mkmHudSignal");
+    if (signal) {
+      var tools = (d && d.caps && d.caps.tools) || 0;
+      var skills = (d && d.caps && d.caps.skills) || 0;
+      var level = Math.min(5, Math.max(2, 2 + Math.ceil(tools / 5) + Math.ceil(skills / 2)));
+      signal.setAttribute("data-level", String(level));
+    }
+    updateHudClock();
+    if (hudClockTimer) clearInterval(hudClockTimer);
+    hudClockTimer = setInterval(updateHudClock, 1000);
+  }
+
+  function mountModels(d) {
+    var wrap = $("mkmModelsWrap");
+    var el = $("mkmModels");
+    if (!wrap || !el) return;
+    el.innerHTML = "";
+    var stack = d && d.stack;
+    if (!stack) { wrap.hidden = true; return; }
+
+    var rows = [];
+    if (stack.type === "agent") {
+      if (stack.preferredCli) rows.push({ key: t("CLI 后端", "CLI backend"), val: esc(stack.preferredCli) });
+      if (stack.role) rows.push({ key: t("角色", "Role"), val: esc(stack.role) });
+      if (stack.defaultSkills && stack.defaultSkills.length) {
+        rows.push({ key: t("默认技能", "Default skills"), val: stack.defaultSkills.map(esc).join(", ") });
+      }
+    } else if (stack.type === "cli") {
+      rows.push({ key: t("Provider", "Provider"), val: esc(stack.provider) });
+      if (stack.runner) rows.push({ key: t("Runner", "Runner"), val: '<span class="mono">' + esc(stack.runner) + '</span>' });
+      if (stack.models && stack.models.length) {
+        rows.push({
+          key: t("模型", "Models"),
+          val: '<div class="mk-model-chips">' + stack.models.map(function (m) {
+            return '<span class="mk-model-chip">' + esc(m) + '</span>';
+          }).join("") + '</div>',
+        });
+      }
+      var caps = stack.capabilities || {};
+      var capKeys = Object.keys(caps).filter(function (k) { return caps[k]; });
+      if (capKeys.length) {
+        rows.push({ key: t("能力", "Caps"), val: capKeys.map(esc).join(" · ") });
+      }
+    } else if (stack.type === "binding") {
+      rows.push({ key: t("通道", "Channel"), val: esc(stack.channel) });
+      rows.push({ key: t("厂商", "Vendor"), val: esc(stack.vendor) });
+      if (stack.roles && stack.roles.length) {
+        rows.push({ key: t("档位", "Tiers"), val: stack.roles.map(esc).join(" → ") });
+      }
+      if (stack.models && stack.models.length) {
+        rows.push({
+          key: t("模型池", "Model pool"),
+          val: '<div class="mk-model-chips">' + stack.models.map(function (m) {
+            return '<span class="mk-model-chip">' + esc(m) + '</span>';
+          }).join("") + '</div>',
+        });
+      }
+    }
+
+    if (!rows.length) { wrap.hidden = true; return; }
+    wrap.hidden = false;
+    el.innerHTML = rows.map(function (r) {
+      return '<div class="mk-model-row"><span class="mk-model-key">' + r.key + '</span><span class="mk-model-val">' + r.val + '</span></div>';
+    }).join("");
+  }
+
+  function mountTutorial(d) {
+    var wrap = $("mkmTutorialWrap");
+    var el = $("mkmTutorial");
+    if (!wrap || !el) return;
+    el.innerHTML = "";
+    var tut = d && d.tutorial;
+    if (!tut || !tut.zh) { wrap.hidden = true; return; }
+    wrap.hidden = false;
+    var steps = tut.zh.map(function (zh, i) {
+      return "<li>" + t(esc(zh), esc(tut.en[i] || zh)) + "</li>";
+    });
+    el.innerHTML = steps.join("");
+  }
+
+  function fill(d, fb, item){
+    var card = modal.querySelector(".mk-modal-card");
+    var kind = (d && d.kind) || (item && item.getAttribute("data-kind")) || "agent";
+    var kindAttr = kind === "cli-provider" ? "backend" : (kind === "model-binding" ? "binding" : kind);
+    if (card) card.setAttribute("data-kind", kindAttr);
+    modal.setAttribute("data-kind", kindAttr);
+
+    var kindLabel = d && d.kindLabel ? t(esc(d.kindLabel.zh), esc(d.kindLabel.en)) : kindAttr.toUpperCase();
+    $("mkmKind").innerHTML = kindLabel;
+    $("mkmTitle").innerHTML = d ? t(esc(d.name.zh), esc(d.name.en)) : t(esc(fb.zh), esc(fb.en));
+
+    var previews = (d && d.previewImages) || [];
+    mountPreviewVisual(item, d, $("mkmPreviewFrame"));
+    mountPreviewDots(previews);
+    mountStats(d);
+    mountModels(d);
+    mountTutorial(d);
+    mountHudChrome(d, fb, item);
+
+    var meta = [];
+    if (d && d.experimental) {
+      meta.push('<span class="mk-meta-exp">' + t("实验性", "experimental") + "</span>");
+    }
+    if (d){
+      meta.push('<span class="mono">'+esc(d.id)+'</span>');
+      meta.push('<span>'+t("作者 "+esc(d.author), "by "+esc(d.author))+'</span>');
+      if (d.created) meta.push('<span>'+t("创建 "+d.created, "created "+d.created)+'</span>');
+    }
+    $("mkmMeta").innerHTML = meta.join("");
+    $("mkmDesc").innerHTML = d ? t(esc(d.desc.zh)||esc(d.desc.en), esc(d.desc.en)||esc(d.desc.zh)) : t(esc(fb.descZh), esc(fb.descEn));
+
+    var caps = [];
+    if (d && d.caps){
+      var c = d.caps;
+      if (c.workbench) caps.push(t("可视化工作台面板"+(c.lens?"（"+c.lens+"）":""), "Visual workbench panel"+(c.lens?" ("+c.lens+")":"")));
+      if (c.skills) caps.push(t(c.skills+" 个技能"+(c.skillTriggers&&c.skillTriggers.length?"："+c.skillTriggers.join(" "):""), c.skills+" skill"+(c.skills>1?"s":"")+(c.skillTriggers&&c.skillTriggers.length?": "+c.skillTriggers.join(" "):"")));
+      if (c.tools) caps.push(t(c.tools+" 个 AI 工具"+(c.toolSample&&c.toolSample.length?"（如 "+c.toolSample.slice(0,3).join(", ")+"）":""), c.tools+" AI tool"+(c.tools>1?"s":"")+(c.toolSample&&c.toolSample.length?" (e.g. "+c.toolSample.slice(0,3).join(", ")+")":"")));
+    }
+    var capsWrap = $("mkmCapsWrap");
+    if (caps.length){ capsWrap.hidden=false; $("mkmCaps").innerHTML = caps.map(function(x){return "<li>"+x+"</li>";}).join(""); }
+    else capsWrap.hidden = true;
+
+    $("mkmKw").innerHTML = (d && d.keywords ? d.keywords : []).map(function(k){return "<span>"+esc(k)+"</span>";}).join("");
+
+    var a = $("mkmRepo");
+    a.className = "mk-modal-btn mk-modal-btn--ghost";
+    if (d && d.repoUrl){ a.href=d.repoUrl; a.classList.remove("is-disabled"); a.removeAttribute("aria-disabled"); a.innerHTML = t("查看源码","View source"); }
+    else if (d && d.repoUrl === null){ a.href="#"; a.classList.add("is-disabled"); a.setAttribute("aria-disabled","true"); a.innerHTML = t("暂未开源","Not in the open-source release yet"); }
+    else { a.href=REPO_ROOT; a.classList.remove("is-disabled"); a.removeAttribute("aria-disabled"); a.innerHTML = t("浏览全部插件","Browse all plugins"); }
+
+    var docs = $("mkmDocs");
+    if (docs) {
+      var docsUrl = d && d.repoUrl ? d.repoUrl.replace(/\/tree\/main\/plugins\/[^/]+$/, "/tree/main") : null;
+      if (docsUrl) {
+        docs.href = docsUrl;
+        docs.hidden = false;
+        docs.innerHTML = t("浏览文档与教程", "Browse docs & tutorials");
+      } else {
+        docs.hidden = true;
+      }
+    }
+  }
+
+  var scrollLockY = 0;
+  function lockScroll(){
+    scrollLockY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = "fixed";
+    document.body.style.top = "-" + scrollLockY + "px";
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+  }
+  function unlockScroll(){
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+    window.scrollTo(0, scrollLockY);
+  }
+
+  function replayModalMotion(){
+    [].slice.call(modal.querySelectorAll(
+      ".mk-modal-anchor, .mk-hud-header, .mk-modal-hero, .mk-modal-main, .mk-hud-footer, .mk-modal-preview, .mk-halo-flow, .mk-hud-orbit, .mk-hud-radar, .mk-modal-head, .mk-modal-meta, #mkmDesc, .mk-kw, .mk-modal-actions, .mk-stat, .mk-modal-section, .mk-stat-bar i, .mk-modal-preview-frame > *"
+    )).forEach(function (el) {
+      el.style.animation = "none";
+      void el.offsetHeight;
+      el.style.animation = "";
+    });
+    var backdrop = modal.querySelector(".mk-modal-backdrop");
+    if (backdrop) {
+      backdrop.style.animation = "none";
+      void backdrop.offsetHeight;
+      backdrop.style.animation = "";
+    }
+    var closeBtn = modal.querySelector(".mk-modal-x");
+    if (closeBtn) {
+      closeBtn.style.animation = "none";
+      void closeBtn.offsetHeight;
+      closeBtn.style.animation = "";
+    }
+  }
+
+  function openCard(item){
+    var slug = item.getAttribute("data-slug");
+    var d = DATA[slug];
+    var fb = null;
+    if (!d){
+      var p = item.querySelector("p");
+      fb = {
+        zh: pick(item,"zh") || slug, en: pick(item,"en") || slug,
+        descZh: (p && p.querySelector('[data-lang="zh"]') ? p.querySelector('[data-lang="zh"]').textContent.trim() : ""),
+        descEn: (p && p.querySelector('[data-lang="en"]') ? p.querySelector('[data-lang="en"]').textContent.trim() : "")
+      };
+    }
+    fill(d, fb, item);
+    modal.hidden = false;
+    replayModalMotion();
+    lockScroll();
+    if (window.forgeaxRefreshIcons) window.forgeaxRefreshIcons();
+    [].slice.call(modal.querySelectorAll(".mk-avatar")).forEach(function (slot) {
+      if (window.forgeaxEnsureAvatar) window.forgeaxEnsureAvatar(slot);
+    });
+    var x = modal.querySelector(".mk-modal-x");
+    if (x) {
+      try { x.focus({ preventScroll: true }); }
+      catch (e) { x.focus(); }
+    }
+  }
+  function closeModal(){
+    modal.hidden = true;
+    unlockScroll();
+    if (hudClockTimer) { clearInterval(hudClockTimer); hudClockTimer = null; }
+    var frame = $("mkmPreviewFrame");
+    if (frame) frame.innerHTML = "";
+    var dots = $("mkmPreviewDots");
+    if (dots) { dots.innerHTML = ""; dots.hidden = true; }
+  }
+
+  [].slice.call(document.querySelectorAll(".mk-item")).forEach(function (it) {
+    it.setAttribute("role","button"); it.setAttribute("tabindex","0");
+    it.addEventListener("click", function(){ openCard(it); });
+    it.addEventListener("keydown", function(e){ if (e.key==="Enter"||e.key===" "){ e.preventDefault(); openCard(it); } });
+  });
+  modal.addEventListener("click", function (e) {
+    if (e.target.closest("[data-close]") || !e.target.closest(".mk-modal-card")) {
+      closeModal();
+    }
+  });
+  document.addEventListener("keydown", function(e){ if (e.key==="Escape" && !modal.hidden) closeModal(); });
+})();
+</script>
+
+<script>
+/* Agent avatar slot: locked to the "期待" idle state, looping forever.
+ * - Per ADR-0019 / AVATAR.md, every agent's 9 emotion buckets share the
+ *   same numbering; state 01 ("期待") is the universal default+fallback.
+ * - Marketplace tiles don't react to chat events (no run_start / tool_active
+ *   etc.), so we mirror studio's mode='idle' (AgentAvatarVideo.tsx) — show
+ *   01.webm on native HTMLVideoElement loop. No multi-state carousel, no
+ *   double-buffer swap (single layer, single src, never reloaded).
+ * - Lazy-injected via IntersectionObserver so the page doesn't fetch ~600KB
+ *   of webm before the user scrolls to the agent row. */
+(function () {
+  var BASE = "/assets/avatars";
+  var IDLE_INDEX = 1; // 01.webm == 期待
+  function pad(n){ return n < 10 ? "0" + n : String(n); }
+  function srcFor(agent){ return BASE + "/" + agent + "/" + pad(IDLE_INDEX) + ".webm"; }
+
+  function mkVideo() {
+    var v = document.createElement("video");
+    v.muted = true; v.playsInline = true; v.preload = "auto"; v.loop = true;
+    v.setAttribute("playsinline", ""); v.setAttribute("muted", "");
+    return v;
+  }
+
+  function playIdle(slot) {
+    var agent = slot.getAttribute("data-agent");
+    if (!agent) return;
+    var v = slot.querySelector("video");
+    if (!v) return;
+    v.classList.add("is-front");
+    v.src = srcFor(agent);
+    v.load();
+    v.play().catch(function(){});
+  }
+
+  function ensureVideo(slot) {
+    if (slot.querySelector("video")) return;
+    slot.appendChild(mkVideo());
+    playIdle(slot);
+  }
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          ensureVideo(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: "240px" });
+    [].slice.call(document.querySelectorAll(".mk-avatar")).forEach(function (s) { io.observe(s); });
+  } else {
+    [].slice.call(document.querySelectorAll(".mk-avatar")).forEach(ensureVideo);
+  }
+
+  window.forgeaxEnsureAvatar = ensureVideo;
 })();
 </script>
 </body>
