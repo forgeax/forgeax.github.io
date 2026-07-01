@@ -1,30 +1,36 @@
 # i18n — multilingual architecture
 
-Default language: **English** (authored inline in the HTML, also the fallback).
+Default language: **English** (authored inline in the HTML).
 
-## How it works today
-- Every translatable string is wrapped in `<span data-lang="en">…</span><span data-lang="zh">…</span>`.
-- `assets/site.js` holds the language registry (`LANGS`) and renders the **language dropdown** in the nav.
-- `setLang(code)` sets `body.class = "lang-<code>"` and `<html lang>`, persists to `localStorage["forgeax-lang"]`.
-- CSS rule: English shows by default; only `lang-zh` swaps to the Chinese variant. **Any language without its own variant falls back to English automatically.** So the 6 new languages already work — they just show English until translated.
+## How it works
+- Every translatable string uses `<span data-lang="en">…</span>` + `<span data-lang="zh">…</span>` siblings (or is generated that way from `site.js` nav/footer).
+- **English & 中文** are authored inline; CSS shows the matching `body.lang-*` variant.
+- **日本語 / 한국어 / Español / Deutsch / Français / Português** load JSON dictionaries from `assets/i18n/dict/<code>.json` (keys = hash of English HTML). `site.js` injects sibling spans on language switch.
+- `setLang(code)` sets `body.class = "lang-<code>"`, updates `<html lang>`, persists to `localStorage["forgeax-lang"]`.
 
-## Supported languages (registry = `LANGS` in site.js + `languages.json` here)
-| code | name | html lang | translated |
-|---|---|---|---|
-| en | English | en | ✅ (default) |
-| zh | 简体中文 | zh-CN | ✅ |
-| ja | 日本語 | ja | ⏳ falls back to English |
-| ko | 한국어 | ko | ⏳ |
-| fr | Français | fr | ⏳ |
-| de | Deutsch | de | ⏳ |
-| es | Español | es | ⏳ |
-| ru | Русский | ru | ⏳ |
+## Supported languages
+| code | name | source |
+|---|---|---|
+| en | English | inline HTML (default) |
+| zh | 中文 | inline HTML |
+| ja | 日本語 | `dict/ja.json` |
+| ko | 한국어 | `dict/ko.json` |
+| es | Español | `dict/es.json` |
+| de | Deutsch | `dict/de.json` |
+| fr | Français | `dict/fr.json` |
+| pt | Português | `dict/pt.json` |
 
-## Planned: JSON-dictionary system (for when translations land)
-To scale past 2 fully-authored languages without duplicating every string inline:
-1. Give each translatable element a stable key: `data-i18n="home.hero.title"`, keep the English text inline as the fallback.
-2. Add one dictionary file per language here: `assets/i18n/<code>.json` = `{ "home.hero.title": "…" }`.
-3. `site.js` fetches the active language's JSON and fills `[data-i18n]`; **missing keys keep the inline English** (graceful fallback).
-4. Adding a new language = drop a new `<code>.json` + one row in `LANGS`. No HTML changes.
+## Build pipeline
+```bash
+node scripts/website/extract-i18n.mjs    # → assets/i18n/catalog.json
+node scripts/website/build-i18n-dict.mjs # → assets/i18n/dict/*.json (Google Translate)
+```
 
-Until then, translation work is tracked in `/WEBSITE-TODO.md` (item: Multilingual).
+## JS helpers (site.js)
+- `window.forgeaxGetLang()` — active language code
+- `window.forgeaxApplyI18n(root?)` — inject dict spans under `root` (default `document`)
+- `window.forgeaxL10n({ zh, en })` — pick translated string from MK_DATA-style objects
+- `window.forgeaxT(zh, en)` — build bilingual span HTML
+- `window.forgeaxUi("copied")` — small UI chrome strings
+
+Dynamic pages should listen for `forgeax:langchange` and re-render or call `forgeaxApplyI18n`.

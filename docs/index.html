@@ -762,7 +762,7 @@ hits remove them and add score.</span></code></pre>
       if (!q) { box.hidden = true; box.innerHTML = ""; return; }
       var hits = entries.filter(function (e) { return e.hay.indexOf(q) >= 0; }).slice(0, 16);
       if (!hits.length) {
-        box.innerHTML = '<div class="empty">' + (document.body.classList.contains("lang-zh") ? "无匹配" : "No matches") + "</div>";
+        box.innerHTML = '<div class="empty">' + (window.forgeaxUi ? window.forgeaxUi("noMatches") : (document.body.classList.contains("lang-zh") ? "无匹配" : "No matches")) + "</div>";
         box.hidden = false; return;
       }
       box.innerHTML = hits.map(function (e) {

@@ -41,7 +41,10 @@
       setLoading(true);
       frame.src = e.href;
     }
-    if (titleEl) titleEl.innerHTML = bi(e.title.zh, e.title.en) + '<small>' + bi(e.blurb.zh, e.blurb.en) + '</small>';
+    if (titleEl) {
+      titleEl.innerHTML = bi(e.title.zh, e.title.en) + '<small>' + bi(e.blurb.zh, e.blurb.en) + '</small>';
+      if (window.forgeaxApplyI18n) window.forgeaxApplyI18n(titleEl);
+    }
     if (openEl) openEl.href = e.href;
     items.forEach(function (it) { it.classList.toggle("is-active", it.getAttribute("data-id") === id); });
     var act = list.querySelector(".ex-item.is-active");

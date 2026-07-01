@@ -328,6 +328,8 @@ details.doc-sub > summary strong{color:var(--text-primary);font-weight:600}
   padding:6px 12px;font-family:inherit;transition:color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out)}
 .lang-menu-trigger:hover{color:var(--text-primary);border-color:var(--border-strong)}
 .lang-menu.is-open .lang-menu-trigger{color:var(--text-primary);border-color:var(--brand)}
+.forgeax-site .lang-menu-trigger--icon{padding:8px 10px!important;gap:0!important;min-width:0}
+.forgeax-site .lang-menu-trigger--icon .ui-icon{margin:0}
 .lang-menu-list{position:fixed;z-index:10000;min-width:150px;pointer-events:auto;
   background:color-mix(in srgb, var(--bg-elevated) 94%, #0d0d0d);
   backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
@@ -336,7 +338,7 @@ details.doc-sub > summary strong{color:var(--text-primary);font-weight:600}
   background:none;border:0;border-radius:var(--radius-sm);padding:8px 11px;cursor:pointer;pointer-events:auto;
   transition:background var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)}
 .lang-item:hover{background:var(--hover-surface);color:var(--text-primary)}
-.lang-item.active{color:var(--brand)}
+.lang-item.active{background:var(--hover-surface);color:var(--text-primary);font-weight:600}
 
 /* ── docs in-page search ───────────────────────────────────────────────── */
 .docs-search{
@@ -407,13 +409,17 @@ details.doc-sub > summary strong{color:var(--text-primary);font-weight:600}
    The body class lang-<code> reveals that language and hides the others.
    Add a language by: (1) more data-lang="xx" siblings, (2) a switch button,
    (3) one selector line below. Active variant keeps its natural display. */
-/* English is the inline default + fallback; only Chinese has a translated variant today.
-   Any non-zh language shows the English variant automatically. New languages will move
-   to the JSON dictionary system (assets/i18n/) — see WEBSITE-TODO. */
+/* i18n: hide all language variants; show only the active body.lang-* variant */
 [data-lang]{display:none}
-[data-lang="en"]{display:revert}
-body.lang-zh [data-lang="en"]{display:none}
+body.lang-en [data-lang="en"]{display:revert}
 body.lang-zh [data-lang="zh"]{display:revert}
+body.lang-ja [data-lang="ja"]{display:revert}
+body.lang-ko [data-lang="ko"]{display:revert}
+body.lang-es [data-lang="es"]{display:revert}
+body.lang-de [data-lang="de"]{display:revert}
+body.lang-fr [data-lang="fr"]{display:revert}
+body.lang-pt [data-lang="pt"]{display:revert}
+body.i18n-loading main{visibility:hidden}
 
 /* ── mobile reading: prevent horizontal overflow, keep text legible ──────── */
 html,body{max-width:100%;overflow-x:hidden}
@@ -442,20 +448,9 @@ code{overflow-wrap:anywhere;word-break:break-word}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}
   .ex-frame-wrap.is-loading::after{display:none}}
 
-/* ── nav layout — forgeax-ui-110: brand | links (flex, centered, fills the bar) | actions.
-   Robust flexbox; the row spreads across the bar and never overlaps the right-hand actions. */
-@media (min-width:1160px){
-  .forgeax-site .nav{position:sticky;top:var(--devbar-h,0px)}
-  /* wider than the 1080 content column so the link row spans the bar instead of cramping */
-  .forgeax-site .nav-inner{max-width:min(1280px,calc(100% - 40px));display:flex;align-items:center;justify-content:space-between;gap:20px}
-  .forgeax-site .nav-brand{flex:0 0 auto!important;width:auto!important;max-width:none!important}
-  .forgeax-site .nav-right{flex:0 0 auto!important;margin-left:0!important}
-  .forgeax-site .nav .nav-links{
-    position:static!important;transform:none!important;
-    flex:0 1 auto!important;min-width:0;
-    display:flex!important;align-items:center!important;justify-content:center!important;
-    gap:clamp(2px,0.8vw,14px)!important;margin:0!important;width:auto!important;max-width:none!important;
-    pointer-events:auto
-  }
-  .forgeax-site .nav .nav-links a{padding:8px 10px}
+/* ── nav layout — JS centers links in brand↔actions slot (see layoutNavLinks in site.js) */
+@media (min-width:821px){
+  .forgeax-site .nav-inner{position:relative;max-width:min(1280px,calc(100% - 40px))}
+  .forgeax-site .nav-brand{flex:0 0 auto!important;z-index:4}
+  .forgeax-site .nav-right{flex:0 0 auto!important;margin-left:auto!important;z-index:4}
 }

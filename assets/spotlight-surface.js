@@ -122,8 +122,13 @@
     });
   }
 
+  function pageLang() {
+    if (window.forgeaxGetLang) return window.forgeaxGetLang();
+    return document.body.classList.contains("lang-zh") ? "zh" : "en";
+  }
+
   function ensureTitleGlyphs(h2) {
-    var lang = document.body.classList.contains("lang-zh") ? "zh" : "en";
+    var lang = pageLang();
     var title = h2.querySelector('[data-lang="' + lang + '"]');
     if (!title || title.dataset.charsSplit === "1") return;
     var text = title.textContent;
@@ -148,7 +153,7 @@
       var nodes = [];
       var n = el.querySelector(".n");
       if (n) nodes.push({ el: n, isNum: true });
-      var lang = document.body.classList.contains("lang-zh") ? "zh" : "en";
+      var lang = pageLang();
       var t = el.querySelector('[data-lang="' + lang + '"]');
       if (t) {
         if (t.dataset.charsSplit !== "1") ensureTitleGlyphs(el);

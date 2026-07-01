@@ -136,7 +136,6 @@
     return path.indexOf(href) === 0 ? "active" : "";
   }
   function t(zh, en) { return '<span data-lang="zh">' + zh + '</span><span data-lang="en">' + en + "</span>"; }
-  function curLang() { return document.body.classList.contains("lang-en") ? "en" : "zh"; }
 
   var LINKS = [
     ["/docs/", "文档", "Docs"],
@@ -152,20 +151,120 @@
     return '<a href="' + l[0] + '" class="' + active(l[0]) + '">' + t(l[1], l[2]) + "</a>";
   }).join("");
 
-  // i18n language registry — add a language by adding one entry here (+ later a JSON dict)
+  // i18n language registry — en/zh + six more; only en/zh have inline translations today
   var LANGS = [
     ["en", "English", "en"],
-    ["zh", "简体中文", "zh-CN"],
-    // more languages re-enable here when translated (ja/ko/fr/de/es/ru) — see assets/i18n/README.md
+    ["zh", "中文", "zh-CN"],
+    ["ja", "日本語", "ja"],
+    ["ko", "한국어", "ko"],
+    ["es", "Español", "es"],
+    ["de", "Deutsch", "de"],
+    ["fr", "Français", "fr"],
+    ["pt", "Português", "pt"],
   ];
   var LANG_NAME = {}, LANG_HTML = {};
   LANGS.forEach(function (l) { LANG_NAME[l[0]] = l[1]; LANG_HTML[l[0]] = l[2]; });
 
+  /* ── i18n dictionary (ja/ko/es/de/fr/pt) — keyed by hash of English HTML ── */
+  var I18N_EXTRA = ["ja", "ko", "es", "de", "fr", "pt"];
+  var I18N_VER = "forgeax-i18n-2";
+  var I18N_CACHE = {};
+  var I18N_UI = {
+    copied: { zh: "已复制", en: "Copied", ja: "コピーしました", ko: "복사됨", es: "Copiado", de: "Kopiert", fr: "Copié", pt: "Copiado" },
+    noMatches: { zh: "无匹配", en: "No matches", ja: "一致なし", ko: "일치 없음", es: "Sin coincidencias", de: "Keine Treffer", fr: "Aucune correspondance", pt: "Sem correspondências" },
+  };
+
+  function i18nHash(html) {
+    var s = String(html).replace(/\s+/g, " ").trim();
+    var h = 2166136261;
+    for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return "k" + (h >>> 0).toString(36);
+  }
+  function i18nEnsureIds(root) {
+    (root || document).querySelectorAll('[data-lang="en"]').forEach(function (enEl) {
+      if (!enEl.dataset.i18nKey) enEl.dataset.i18nKey = i18nHash(enEl.innerHTML);
+    });
+  }
+  function i18nLoadDict(lang) {
+    if (lang === "en" || lang === "zh") return Promise.resolve(null);
+    if (I18N_CACHE[lang]) return Promise.resolve(I18N_CACHE[lang]);
+    return fetch("/assets/i18n/dict/" + lang + ".json?v=" + I18N_VER)
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function () { return {}; })
+      .then(function (d) { I18N_CACHE[lang] = d; return d; });
+  }
+  function i18nApplyDict(lang, dict, root) {
+    if (!dict || lang === "en" || lang === "zh") return;
+    (root || document).querySelectorAll('[data-lang="en"]').forEach(function (enEl) {
+      if (!enEl.dataset.i18nKey) enEl.dataset.i18nKey = i18nHash(enEl.innerHTML);
+      var key = enEl.dataset.i18nKey;
+      var translated = dict[key] || enEl.innerHTML;
+      var parent = enEl.parentNode;
+      if (!parent) return;
+      var sibling = parent.querySelector('[data-lang="' + lang + '"]');
+      if (!sibling) {
+        sibling = document.createElement("span");
+        sibling.setAttribute("data-lang", lang);
+        if (enEl.nextSibling) parent.insertBefore(sibling, enEl.nextSibling);
+        else parent.appendChild(sibling);
+      }
+      sibling.innerHTML = translated;
+    });
+  }
+  function i18nLookup(enHtml, lang) {
+    if (!enHtml || lang === "en" || lang === "zh") return null;
+    var dict = I18N_CACHE[lang];
+    if (!dict) return null;
+    return dict[i18nHash(enHtml)] || null;
+  }
+  function i18nApplyPlaceholders(l) {
+    document.querySelectorAll("[data-ph-en]").forEach(function (el) {
+      var zh = el.getAttribute("data-ph-zh"), en = el.getAttribute("data-ph-en");
+      if (l === "zh" && zh) el.setAttribute("placeholder", zh);
+      else if (l === "en") el.setAttribute("placeholder", en);
+      else {
+        var tr = i18nLookup(en, l);
+        el.setAttribute("placeholder", tr || en);
+      }
+    });
+  }
+  window.forgeaxGetLang = getActiveLang;
+  window.forgeaxI18nHash = i18nHash;
+  window.forgeaxApplyI18n = function (root) {
+    var l = getActiveLang();
+    i18nEnsureIds(root || document);
+    if (I18N_EXTRA.indexOf(l) >= 0 && I18N_CACHE[l]) i18nApplyDict(l, I18N_CACHE[l], root);
+  };
+  window.forgeaxL10n = function (obj) {
+    var l = getActiveLang();
+    if (!obj) return "";
+    if (l === "zh" && obj.zh) return obj.zh;
+    if (l === "en") return obj.en || obj.zh || "";
+    if (I18N_EXTRA.indexOf(l) >= 0) {
+      var en = obj.en || obj.zh || "";
+      var tr = i18nLookup(en, l);
+      return tr || en;
+    }
+    return obj.en || obj.zh || "";
+  };
+  window.forgeaxT = t;
+  window.forgeaxUi = function (key) {
+    var l = getActiveLang();
+    var row = I18N_UI[key];
+    return (row && (row[l] || row.en)) || "";
+  };
+
+  function getActiveLang() {
+    var m = document.body.className.match(/\blang-([a-z]{2})\b/);
+    if (m && LANG_NAME[m[1]]) return m[1];
+    return "en";
+  }
+  function curLang() { return getActiveLang(); }
+
   var langSwitch =
     '<div class="lang-menu" id="langMenu">' +
-      '<button type="button" class="lang-menu-trigger" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox">' +
+      '<button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">' +
         '<span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>' +
-        '<span class="lbl" id="langLabel"> English</span>' +
       "</button>" +
       '<div class="lang-menu-list" id="langMenuList" role="listbox" hidden>' +
         LANGS.map(function (l) { return '<button type="button" class="lang-item" data-l="' + l[0] + '">' + l[1] + "</button>"; }).join("") +
@@ -223,80 +322,58 @@
   if (f) f.innerHTML = footer;
   if (typeof window.forgeaxRefreshIcons === "function") window.forgeaxRefreshIcons();
 
-  /* desktop nav: EN hugs right edge of slot; ZH stays on hero/viewport center axis */
+  /* desktop nav: center links in the slot between brand and actions (no overlap) */
   function layoutNavLinks() {
     var links = document.getElementById("navlinks");
     var nav = links && links.closest(".nav");
     if (!links || !nav) return;
-    // forgeax-ui-110: desktop nav is governed by CSS flex now (brand | links flex:1 centered | actions).
-    // Clear any legacy inline positioning so the row fills the bar evenly and never overlaps the actions.
-    links.removeAttribute("style");
-    links.removeAttribute("data-nav-layout");
-    links.style.removeProperty("--nav-links-x");
-    return;
-    /* eslint-disable no-unreachable */
+
     if (window.matchMedia("(max-width: 820px)").matches) {
       links.removeAttribute("style");
       links.removeAttribute("data-nav-layout");
       links.style.removeProperty("--nav-links-x");
       return;
     }
+
     var navBox = nav.getBoundingClientRect();
+    var inner = nav.querySelector(".nav-inner") || nav;
+    var innerBox = inner.getBoundingClientRect();
     var brand = nav.querySelector(".nav-brand");
     var navRight = nav.querySelector(".nav-right");
-    var pad = 14;
-    var tail = 8;
-    var brandRight = brand ? brand.getBoundingClientRect().right : navBox.left + 100;
-    var actionsLeft = navRight ? navRight.getBoundingClientRect().left : navBox.right - 260;
-    var slotLeft = brandRight - navBox.left + pad;
-    var slotRight = actionsLeft - navBox.left - pad - tail;
-    if (slotRight <= slotLeft + 80) return;
+    var pad = 12;
+    var brandRight = brand ? brand.getBoundingClientRect().right : innerBox.left + 100;
+    var actionsLeft = navRight ? navRight.getBoundingClientRect().left : innerBox.right - 260;
+    var slotLeft = brandRight - innerBox.left + pad;
+    var slotRight = actionsLeft - innerBox.left - pad;
+    if (slotRight <= slotLeft + 48) return;
 
-    var isEn = !document.body.classList.contains("lang-zh");
     var slotCenter = (slotLeft + slotRight) / 2;
-    var linkGap = isEn ? 8 : 14;
+    var nudge = Math.min(18, (slotRight - slotLeft) * 0.06);
+    var desiredCenter = slotCenter + nudge;
+    var slotW = Math.max(0, Math.round(slotRight - slotLeft));
+    var linkGap = getActiveLang() === "zh" ? 14 : 8;
     var base =
       "position:absolute;top:0;bottom:0;right:auto;" +
-      "transform:translateX(-50%);display:flex;align-items:center;gap:" + linkGap + "px;margin:0;" +
-      "width:max-content;z-index:3;pointer-events:none";
+      "transform:translateX(-50%);display:flex;align-items:center;flex-wrap:nowrap;" +
+      "gap:" + linkGap + "px;margin:0;width:max-content;" +
+      "z-index:3;pointer-events:none";
 
-    function setCenter(px) {
-      links.style.setProperty("--nav-links-x", px + "px");
-      links.style.left = px + "px";
+    links.style.cssText = base;
+    links.style.left = desiredCenter + "px";
+    links.style.setProperty("--nav-links-x", desiredCenter + "px");
+
+    while (links.getBoundingClientRect().width > slotW && linkGap > 2) {
+      linkGap -= 1;
+      links.style.gap = linkGap + "px";
     }
 
-    links.style.cssText = base + "left:" + slotCenter + "px;max-width:none";
-    setCenter(slotCenter);
     var half = links.getBoundingClientRect().width / 2;
     var minCenter = slotLeft + half;
     var maxCenter = slotRight - half;
-    var desiredCenter;
-    if (isEn) {
-      desiredCenter = maxCenter;
-    } else {
-      var axis = document.querySelector(".hero h1") || document.querySelector(".hero") || document.querySelector("main.wrap");
-      var mid = axis
-        ? axis.getBoundingClientRect().left + axis.getBoundingClientRect().width / 2
-        : window.innerWidth / 2;
-      desiredCenter = mid - navBox.left - 28;
-    }
     var center = Math.max(minCenter, Math.min(maxCenter, desiredCenter));
-
-    links.style.cssText = base + "left:" + center + "px;max-width:none";
-    setCenter(center);
-    var box = links.getBoundingClientRect();
-    var limit = actionsLeft - pad - tail;
-    if (box.right > limit) {
-      center -= box.right - limit;
-      setCenter(center);
-      box = links.getBoundingClientRect();
-    }
-    var minLeft = brandRight + pad;
-    if (box.left < minLeft) {
-      center += minLeft - box.left;
-      setCenter(center);
-    }
-    links.dataset.navLayout = "forgeax-ui-102";
+    links.style.left = center + "px";
+    links.style.setProperty("--nav-links-x", center + "px");
+    links.dataset.navLayout = "forgeax-ui-146";
   }
   window.forgeaxLayoutNavLinks = layoutNavLinks;
   layoutNavLinks();
@@ -326,24 +403,39 @@
   if (burger && links) burger.addEventListener("click", function () { links.classList.toggle("open"); });
 
   window.setLang = function (l) {
-    if (!LANG_NAME[l]) l = "en";                       // unknown → English
+    if (!LANG_NAME[l]) l = "en";
     var b = document.body;
     Array.prototype.slice.call(b.classList).forEach(function (c) { if (c.indexOf("lang-") === 0) b.classList.remove(c); });
     b.classList.add("lang-" + l);
     document.documentElement.lang = LANG_HTML[l] || "en";
-    var lbl = document.getElementById("langLabel"); if (lbl) lbl.textContent = " " + LANG_NAME[l];
+    var langBtn = document.getElementById("langMenuBtn");
+    if (langBtn) langBtn.setAttribute("aria-label", LANG_NAME[l]);
     var items = document.querySelectorAll(".lang-item");
     for (var i = 0; i < items.length; i++) items[i].classList.toggle("active", items[i].getAttribute("data-l") === l);
-    // language-driven placeholders / titles (attributes can't use data-lang spans)
-    var phs = document.querySelectorAll("[data-ph-en]");
-    for (var j = 0; j < phs.length; j++) {
-      var zh = phs[j].getAttribute("data-ph-zh"), en = phs[j].getAttribute("data-ph-en");
-      phs[j].setAttribute("placeholder", (l === "zh" && zh) ? zh : en);
-    }
+    i18nApplyPlaceholders(l);
     try { localStorage.setItem("forgeax-lang", l); } catch (e) {}
-    requestAnimationFrame(function () {
-      requestAnimationFrame(window.forgeaxLayoutNavLinks);
-    });
+
+    function finishLang() {
+      b.classList.remove("i18n-loading");
+      document.dispatchEvent(new CustomEvent("forgeax:langchange", { detail: { lang: l } }));
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          window.forgeaxLayoutNavLinks();
+          setTimeout(window.forgeaxLayoutNavLinks, 120);
+        });
+      });
+    }
+
+    if (I18N_EXTRA.indexOf(l) >= 0) {
+      b.classList.add("i18n-loading");
+      i18nEnsureIds(document);
+      i18nLoadDict(l).then(function (dict) {
+        i18nApplyDict(l, dict, document);
+        finishLang();
+      });
+    } else {
+      finishLang();
+    }
   };
   // wire language menu — panel portals to <body> so main content cannot steal clicks
   (function wireLangMenu() {
@@ -418,13 +510,15 @@
       if (menu.classList.contains("is-open")) closeMenu();
     }, { passive: true });
   })();
-  // initial language: saved → browser → English (only zh is translated today; others fall back to English)
+  // initial language: saved → browser locale → English
   var saved = null;
   try { saved = localStorage.getItem("forgeax-lang"); } catch (e) {}
+  if (!LANG_NAME[saved]) saved = null;
   if (!saved) {
     var nav = (navigator.language || "en").toLowerCase();
     saved = nav.indexOf("zh") === 0 ? "zh" : (LANG_NAME[nav.slice(0, 2)] ? nav.slice(0, 2) : "en");
   }
+  i18nEnsureIds(document);
   window.setLang(saved);
 
   /* ── copy page as Markdown ──────────────────────────────────────────────
@@ -482,7 +576,7 @@
     function done() {
       var b = document.getElementById("copyMd"); if (!b) return;
       var old = b.innerHTML;
-      b.innerHTML = '<span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="check"></i></span><span class="lbl">' + (curLang() === "zh" ? "已复制" : "Copied") + "</span>";
+      b.innerHTML = '<span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="check"></i></span><span class="lbl">' + (window.forgeaxUi ? window.forgeaxUi("copied") : (curLang() === "zh" ? "已复制" : "Copied")) + "</span>";
       if (typeof window.forgeaxRefreshIcons === "function") window.forgeaxRefreshIcons();
       b.classList.add("ok");
       setTimeout(function () { b.innerHTML = old; b.classList.remove("ok"); }, 1600);

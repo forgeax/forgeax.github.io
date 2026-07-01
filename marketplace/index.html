@@ -633,7 +633,7 @@
     </div>
   </div>
 </div>
-<script src="/assets/site.js?v=forgeax-ui-130"></script>
+<script src="/assets/site.js?v=forgeax-ui-143"></script>
 <script src="/assets/marketplace/marketplace-card-icons.js?v=forgeax-ui-112"></script>
 <script>
   (function () {
@@ -1027,6 +1027,7 @@
     replayModalMotion();
     lockScroll();
     if (window.forgeaxRefreshIcons) window.forgeaxRefreshIcons();
+    if (window.forgeaxApplyI18n) window.forgeaxApplyI18n(modal);
     [].slice.call(modal.querySelectorAll(".mk-avatar")).forEach(function (slot) {
       if (window.forgeaxEnsureAvatar) window.forgeaxEnsureAvatar(slot);
     });
@@ -1056,6 +1057,12 @@
     }
   });
   document.addEventListener("keydown", function(e){ if (e.key==="Escape" && !modal.hidden) closeModal(); });
+  document.addEventListener("forgeax:langchange", function () {
+    if (modal.hidden) return;
+    var active = document.querySelector(".mk-item.is-active") || document.querySelector(".mk-item:not(.hide)");
+    if (active) openCard(active);
+    else if (window.forgeaxApplyI18n) window.forgeaxApplyI18n(modal);
+  });
 })();
 </script>
 
