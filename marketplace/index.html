@@ -35,7 +35,6 @@
   .mk-modal[hidden]{display:none}
   .mk-modal-backdrop{position:absolute;inset:0;z-index:0}
   .mk-modal-anchor{position:relative;z-index:1;width:100%;max-width:min(960px,calc(100vw - 32px));margin:0;overflow:visible}
-  .mk-modal-anchor .mk-modal-x{position:absolute!important;top:10px;left:calc(100% + 12px);right:auto;transform:none;z-index:50;margin:0}
   .mk-modal-card{position:relative;width:100%;max-height:min(90vh,calc(100vh - 48px));overflow:hidden;border-radius:26px;margin:0}
   .mk-modal-head h3{font-size:21px;font-weight:700;margin:0;line-height:1.3}
   .mk-modal-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--text-secondary,#9aa0aa);margin:10px 0 12px}
@@ -446,9 +445,6 @@
 <div id="mkModal" class="mk-modal" hidden>
   <div class="mk-modal-backdrop" data-close></div>
   <div class="mk-modal-anchor">
-    <button type="button" class="mk-modal-x" data-close aria-label="Close">
-      <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="x"></i></span>
-    </button>
     <div class="mk-modal-card mk-modal-rich mk-hud-shell" role="dialog" aria-modal="true" aria-labelledby="mkmTitle">
     <div class="mk-cosmic-glow" aria-hidden="true">
       <i class="mk-glow-blob mk-glow-blob--a"></i>
@@ -458,12 +454,9 @@
     </div>
     <header class="mk-hud-header" aria-hidden="true">
       <span class="mk-hud-header-brand">FORGEAX // MARKETPLACE</span>
-      <span class="mk-hud-header-tabs">
-        <span class="is-active">PREVIEW</span>
-        <span>SPECS</span>
-        <span>GUIDE</span>
-      </span>
-      <span class="mk-hud-header-live"><i aria-hidden="true"></i> LIVE</span>
+      <button type="button" class="mk-modal-x" data-close aria-label="Close">
+        <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="x"></i></span>
+      </button>
     </header>
     <div class="mk-modal-grid">
       <aside class="mk-modal-hero">
@@ -610,26 +603,18 @@
         <div class="mk-modal-meta" id="mkmMeta"></div>
         <p id="mkmDesc"></p>
         <div id="mkmModelsWrap" class="mk-modal-section mk-hud-panel" hidden>
-          <span class="mk-hud-corner mk-hud-corner--tl" aria-hidden="true"></span>
-          <span class="mk-hud-corner mk-hud-corner--br" aria-hidden="true"></span>
           <h4><span data-lang="zh">基座模型</span><span data-lang="en">Model stack</span></h4>
           <div class="mk-model-stack" id="mkmModels"></div>
         </div>
         <div id="mkmCapsWrap" class="mk-modal-section mk-hud-panel" hidden>
-          <span class="mk-hud-corner mk-hud-corner--tl" aria-hidden="true"></span>
-          <span class="mk-hud-corner mk-hud-corner--br" aria-hidden="true"></span>
           <h4><span data-lang="zh">能力</span><span data-lang="en">Capabilities</span></h4>
           <ul class="mk-caps" id="mkmCaps"></ul>
         </div>
         <div id="mkmTutorialWrap" class="mk-modal-section mk-hud-panel" hidden>
-          <span class="mk-hud-corner mk-hud-corner--tl" aria-hidden="true"></span>
-          <span class="mk-hud-corner mk-hud-corner--br" aria-hidden="true"></span>
           <h4><span data-lang="zh">快速上手</span><span data-lang="en">Quick start</span></h4>
           <ol class="mk-tutorial" id="mkmTutorial"></ol>
         </div>
         <div id="mkmHistoryWrap" class="mk-modal-section mk-hud-panel" hidden>
-          <span class="mk-hud-corner mk-hud-corner--tl" aria-hidden="true"></span>
-          <span class="mk-hud-corner mk-hud-corner--br" aria-hidden="true"></span>
           <h4><span data-lang="zh">更新历史</span><span data-lang="en">Changelog</span></h4>
           <ol class="mk-history" id="mkmHistory"></ol>
         </div>
@@ -642,11 +627,7 @@
     </div>
     <footer class="mk-hud-footer" aria-hidden="true">
       <div class="mk-hud-footer-row">
-        <span class="mk-hud-footer-item" id="mkmHudMode">MODE · PREVIEW</span>
-        <span class="mk-hud-footer-item mono" id="mkmHudSlug">—</span>
-        <span class="mk-hud-footer-item" id="mkmHudStatus">STATUS · NOMINAL</span>
-        <span class="mk-hud-signal" id="mkmHudSignal" data-level="4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <span class="mk-hud-footer-item mk-hud-clock" id="mkmHudClock">—</span>
+        <span class="mk-hud-header-live"><i aria-hidden="true"></i> LIVE</span>
       </div>
     </footer>
     </div>
@@ -819,16 +800,6 @@
     });
   }
 
-  var hudClockTimer = null;
-  function updateHudClock() {
-    var el = $("mkmHudClock");
-    if (!el) return;
-    var now = new Date();
-    var pad = function (n) { return n < 10 ? "0" + n : String(n); };
-    el.textContent = now.getFullYear() + " / " + pad(now.getMonth() + 1) + " / " + pad(now.getDate()) +
-      " · " + pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
-  }
-
   function mountHudChrome(d, fb, item) {
     var slug = (d && d.slug) || (item && item.getAttribute("data-slug")) || "—";
     var idShort = d ? String(d.id || slug).replace("@forgeax-plugin/", "") : slug;
@@ -838,20 +809,6 @@
     if (verEl) verEl.textContent = d ? "VER · v" + d.version : "VER · —";
     var kindEl = $("mkmReadoutKind");
     if (kindEl) kindEl.textContent = d ? String(d.kind || "plugin").replace("cli-provider", "CLI").replace("model-binding", "BIND").toUpperCase() : "PLUGIN";
-    var hudSlug = $("mkmHudSlug");
-    if (hudSlug) hudSlug.textContent = "PLUGIN · " + String(slug).toUpperCase();
-    var status = $("mkmHudStatus");
-    if (status) status.textContent = d && d.experimental ? "STATUS · EXPERIMENTAL" : "STATUS · NOMINAL";
-    var signal = $("mkmHudSignal");
-    if (signal) {
-      var tools = (d && d.caps && d.caps.tools) || 0;
-      var skills = (d && d.caps && d.caps.skills) || 0;
-      var level = Math.min(5, Math.max(2, 2 + Math.ceil(tools / 5) + Math.ceil(skills / 2)));
-      signal.setAttribute("data-level", String(level));
-    }
-    updateHudClock();
-    if (hudClockTimer) clearInterval(hudClockTimer);
-    hudClockTimer = setInterval(updateHudClock, 1000);
   }
 
   function mountModels(d) {
@@ -1082,7 +1039,6 @@
   function closeModal(){
     modal.hidden = true;
     unlockScroll();
-    if (hudClockTimer) { clearInterval(hudClockTimer); hudClockTimer = null; }
     var frame = $("mkmPreviewFrame");
     if (frame) frame.innerHTML = "";
     var dots = $("mkmPreviewDots");

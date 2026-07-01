@@ -351,7 +351,7 @@
   opacity: 0.88;
 }
 
-.forgeax-site .mk-modal-card > *:not(.mk-cosmic-glow):not(.mk-cosmic-rim):not(.mk-modal-x) {
+.forgeax-site .mk-modal-card > *:not(.mk-cosmic-glow):not(.mk-cosmic-rim) {
   position: relative;
   z-index: 2;
 }
@@ -363,15 +363,6 @@
   max-width: min(960px, calc(100vw - 32px));
   margin: 0;
   overflow: visible;
-}
-
-.forgeax-site .mk-modal-anchor .mk-modal-x {
-  position: absolute !important;
-  top: 10px;
-  left: calc(100% + 12px);
-  right: auto;
-  transform: none;
-  z-index: 50;
 }
 
 .forgeax-site .mk-cosmic-glow {
@@ -470,17 +461,14 @@
 }
 
 .forgeax-site .mk-modal-x {
-  position: absolute !important;
-  top: 10px;
-  left: calc(100% + 12px);
-  right: auto;
-  transform: none;
-  z-index: 50;
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   padding: 0;
   margin: 0;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -546,7 +534,7 @@
   animation: none;
 }
 
-.forgeax-site .mk-modal:not([hidden]) .mk-modal-anchor .mk-modal-x {
+.forgeax-site .mk-modal:not([hidden]) .mk-hud-header .mk-modal-x {
   animation: mk-close-in 0.78s var(--site-ease-silk) 0.42s both;
 }
 
@@ -736,45 +724,6 @@
 .forgeax-site .mk-hud-header-brand {
   color: rgba(var(--mk-accent-a), 0.92);
   text-shadow: 0 0 18px rgba(var(--mk-accent-a), 0.35);
-}
-
-.forgeax-site .mk-hud-header-tabs {
-  display: flex;
-  gap: 14px;
-}
-
-.forgeax-site .mk-hud-header-tabs span {
-  opacity: 0.45;
-  position: relative;
-  padding: 2px 0;
-}
-
-.forgeax-site .mk-hud-header-tabs span.is-active {
-  opacity: 1;
-  color: var(--text-primary);
-}
-
-.forgeax-site .mk-hud-header-tabs span.is-active::before,
-.forgeax-site .mk-hud-header-tabs span.is-active::after {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border: 1px solid rgba(var(--mk-accent-a), 0.65);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.forgeax-site .mk-hud-header-tabs span.is-active::before {
-  left: -10px;
-  border-right: none;
-  border-bottom: none;
-}
-
-.forgeax-site .mk-hud-header-tabs span.is-active::after {
-  right: -10px;
-  border-left: none;
-  border-top: none;
 }
 
 .forgeax-site .mk-hud-header-live {
@@ -1960,8 +1909,8 @@
   width: 1px;
   background: linear-gradient(
     to bottom,
-    color-mix(in srgb, var(--brand) 55%, transparent),
-    color-mix(in srgb, var(--brand) 8%, transparent)
+    rgba(var(--mk-accent-a), 0.55),
+    rgba(var(--mk-accent-b), 0.08)
   );
 }
 .forgeax-site .mk-history-row {
@@ -1979,8 +1928,10 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--brand);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 25%, transparent);
+  background: rgb(var(--mk-accent-a));
+  box-shadow:
+    0 0 0 2px rgba(var(--mk-accent-a), 0.25),
+    0 0 10px rgba(var(--mk-accent-a), 0.45);
 }
 .forgeax-site .mk-history-head {
   display: flex;
@@ -1992,7 +1943,8 @@
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 12px;
   font-weight: 700;
-  color: var(--brand);
+  color: rgba(var(--mk-accent-a), 0.92);
+  text-shadow: 0 0 12px rgba(var(--mk-accent-a), 0.35);
   letter-spacing: 0.02em;
 }
 .forgeax-site .mk-history-date {
@@ -2098,6 +2050,10 @@
   color: var(--text-tertiary);
 }
 
+.forgeax-site .mk-hud-footer-row .mk-hud-header-live {
+  margin-left: auto;
+}
+
 .forgeax-site .mk-hud-footer-item.mono {
   font-family: var(--font-mono);
 }
@@ -2106,7 +2062,7 @@
   display: inline-flex;
   align-items: flex-end;
   gap: 2px;
-  margin-left: auto;
+  margin-left: 0;
   height: 14px;
 }
 
@@ -2218,7 +2174,7 @@
 @media (prefers-reduced-motion: reduce) {
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-anchor,
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-backdrop,
-  .forgeax-site .mk-modal:not([hidden]) .mk-modal-anchor .mk-modal-x,
+  .forgeax-site .mk-modal:not([hidden]) .mk-hud-header .mk-modal-x,
   .forgeax-site .mk-modal:not([hidden]) .mk-hud-header,
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-hero,
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-main,
