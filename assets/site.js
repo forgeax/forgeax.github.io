@@ -99,8 +99,8 @@
   if (!window.__forgeParticlesBoot && (detectForgePage() === "home" || document.body.classList.contains("has-immersive"))) {
     window.__forgeParticlesBoot = true;
     loadScript("/assets/forge-scenes.js?v=forgeax-ui-84", function () {
-      loadScript("/assets/forge-particles.js?v=forgeax-ui-84", function () {
-        loadScript("/assets/light-field.js?v=forgeax-ui-84");
+      loadScript("/assets/forge-particles.js?v=forgeax-ui-137", function () {
+        loadScript("/assets/light-field.js?v=forgeax-ui-138");
       });
     });
   }
@@ -307,9 +307,18 @@
   /* sticky nav: deepen background + shadow after scroll */
   var navEl = h && h.querySelector(".nav");
   if (navEl) {
-    var onScroll = function () { navEl.classList.toggle("is-scrolled", window.scrollY > 8); };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    // RAF-throttled + state-guarded: only touch the class when it actually flips,
+    // and at most once per frame (the raw scroll event can fire far more often).
+    var navScrolled = null, navTicking = false;
+    var syncNav = function () {
+      navTicking = false;
+      var s = window.scrollY > 8;
+      if (s !== navScrolled) { navEl.classList.toggle("is-scrolled", s); navScrolled = s; }
+    };
+    syncNav();
+    window.addEventListener("scroll", function () {
+      if (!navTicking) { navTicking = true; requestAnimationFrame(syncNav); }
+    }, { passive: true });
   }
 
   var burger = document.getElementById("burger");

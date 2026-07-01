@@ -170,5 +170,13 @@
 
   resize();
   raf = requestAnimationFrame(drawFrame);
+
+  // Pause the canvas loop while the tab is hidden — no point drawing dust nobody
+  // can see, and it keeps the CPU/GPU idle in the background.
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { cancelAnimationFrame(raf); raf = 0; }
+    else if (!raf) { raf = requestAnimationFrame(drawFrame); }
+  });
+
   window.addEventListener("beforeunload", function () { cancelAnimationFrame(raf); });
 })();

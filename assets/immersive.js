@@ -21,10 +21,14 @@
   }
 
   var sections = Array.prototype.slice.call(document.querySelectorAll("[data-immersive-section]"));
-  var blendTicking = false;
 
-  function sectionAnchors() {
-    return sections
+  // Anchor positions come from offsetTop/offsetHeight, which change on layout
+  // (resize / font load / content) — NOT on scroll. Reading them every scroll
+  // frame forced a synchronous relayout (layout thrash). Measure once and cache;
+  // re-measure only on resize / load.
+  var cachedAnchors = [];
+  function measureAnchors() {
+    cachedAnchors = sections
       .map(function (s) {
         return {
           el: s,
@@ -40,10 +44,9 @@
   }
 
   function updateScrollBlend() {
-    blendTicking = false;
     if (reduced || !sections.length) return;
 
-    var anchors = sectionAnchors();
+    var anchors = cachedAnchors;
     if (!anchors.length) return;
 
     var viewMid = window.scrollY + window.innerHeight * 0.44;
@@ -76,97 +79,46 @@
 
     document.body.classList.toggle("is-hero-visible", from.id === "sec-hero" && t < 0.5);
 
-    updateVisualGuide();
-
     document.dispatchEvent(new CustomEvent("forgeax:blend", {
       detail: { t: pageT, scrollT: t, focalX: focalX, focalY: focalY },
     }));
   }
 
-  function requestBlend() {
-    if (!blendTicking) {
-      blendTicking = true;
-      requestAnimationFrame(updateScrollBlend);
-    }
-  }
-
-  var root = document.documentElement;
-
-  function updateVisualGuide() {
-    if (reduced) return;
-    var hero = document.getElementById("sec-hero");
-    if (!hero) return;
-
-    var cta = hero.querySelector(".cta");
-    var primary = cta && cta.querySelector(".btn.primary");
-    var anchor = primary || cta || hero;
-    var r = anchor.getBoundingClientRect();
-    var hr = hero.getBoundingClientRect();
-    var gx = ((r.left + r.width * 0.5) / window.innerWidth) * 100;
-    var gy = ((r.top + r.height * 0.85) / window.innerHeight) * 100;
-
-    var strength = 0;
-    if (hr.bottom > 0 && hr.top < window.innerHeight) {
-      var visible = Math.min(hr.bottom, window.innerHeight) - Math.max(hr.top, 0);
-      strength = Math.min(1, Math.max(0, visible / (hr.height * 0.55)));
-      if (window.scrollY > hr.height * 0.3) {
-        strength *= Math.max(0, 1 - (window.scrollY - hr.height * 0.3) / (hr.height * 0.7));
-      }
-    }
-
-    var stats = document.getElementById("sec-stats");
-    if (stats && window.scrollY > hr.height * 0.15) {
-      var sr = stats.getBoundingClientRect();
-      if (sr.top < window.innerHeight * 0.92) {
-        var blend = Math.min(1, Math.max(0, (window.scrollY - hr.height * 0.15) / (hr.height * 0.55)));
-        var sx = ((sr.left + sr.width * 0.5) / window.innerWidth) * 100;
-        var sy = ((sr.top + sr.height * 0.35) / window.innerHeight) * 100;
-        gx = gx + (sx - gx) * blend;
-        gy = gy + (sy - gy) * blend;
-        strength = Math.max(strength * (1 - blend * 0.55), 0.12);
-      }
-    }
-
-    var logo = hero.querySelector(".hero-logo");
-    var axisTop = 18;
-    var axisBottom = 72;
-    if (logo) {
-      var lr = logo.getBoundingClientRect();
-      axisTop = Math.max(8, (lr.top / window.innerHeight) * 100 - 4);
-      axisBottom = Math.min(88, gy + 4);
-    }
-
-    root.style.setProperty("--guide-x", gx.toFixed(2) + "%");
-    root.style.setProperty("--guide-y", gy.toFixed(2) + "%");
-    root.style.setProperty("--guide-strength", strength.toFixed(3));
-    root.style.setProperty("--axis-top", axisTop.toFixed(2) + "%");
-    root.style.setProperty("--axis-bottom", axisBottom.toFixed(2) + "%");
-  }
-
-  window.addEventListener("scroll", requestBlend, { passive: true });
-  window.addEventListener("resize", requestBlend, { passive: true });
-
   var ambientOrbs = document.querySelectorAll(".ambient__orb");
-  var ticking = false;
-  function onParallax() {
-    ticking = false;
+  function updateParallax() {
     if (reduced) return;
     var sy = window.scrollY;
     ambientOrbs.forEach(function (orb, i) {
       orb.style.transform = "translate3d(" + (sy * (i % 2 ? -0.005 : 0.008)) + "px, " + (sy * 0.01) + "px, 0)";
     });
   }
-  window.addEventListener("scroll", function () {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(onParallax);
+
+  // One scroll listener, one RAF per frame. Previously the section blend and the
+  // orb parallax each had their own scroll handler + RAF; merged so a scroll tick
+  // schedules a single frame that runs both.
+  var scrollTicking = false;
+  function onScrollFrame() {
+    scrollTicking = false;
+    updateScrollBlend();
+    updateParallax();
+  }
+  function requestScroll() {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      requestAnimationFrame(onScrollFrame);
     }
-  }, { passive: true });
+  }
+
+  window.addEventListener("scroll", requestScroll, { passive: true });
+  window.addEventListener("resize", function () { measureAnchors(); requestScroll(); }, { passive: true });
+  // Layout can shift after fonts / images finish loading — re-measure then.
+  window.addEventListener("load", function () { measureAnchors(); requestScroll(); });
+
+  measureAnchors();
 
   var hero = document.getElementById("sec-hero");
   if (hero) {
-    requestBlend();
+    requestScroll();
     emitFocal(hero);
-    updateVisualGuide();
   }
 })();
