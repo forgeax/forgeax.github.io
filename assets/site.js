@@ -286,7 +286,7 @@
         '<button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>' +
         '<div class="nav-links" id="navlinks">' + navLinks + '</div>' +
         '<div class="nav-right">' + langSwitch + askAi +
-          '<a class="nav-cta" href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub</a>' +
+          '<a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>' +
         '</div>' +
       '</div>' +
     '</nav>';
