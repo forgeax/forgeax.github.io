@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-31 · Export a game as a standalone site + skybox and bloom — ForgeaX</title>
+<meta name="description" content="Export a game as a self-contained website you can host anywhere, scenes gain skybox + bloom + hierarchical transforms, preview works under any sub-path, and the interactive-narrative pipeline runs a full loop." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-31 · Export a game as a standalone site + skybox and bloom — ForgeaX" />
+<meta property="og:description" content="Export a game as a self-contained website you can host anywhere, scenes gain skybox + bloom + hierarchical transforms, preview works under any sub-path, and the interactive-narrative pipeline runs a full loop." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-05-31.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-31.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-31.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-31.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-31.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-31.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-31.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-31.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-31.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-05-31.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Diário</span><span>2026-05-31</span></div>
+    <h1>Export a game as a standalone site + skybox and bloom</h1>
+    <p class="standfirst">This day took a big step &quot;from built to shipped&quot;: a whole game can be exported as a self-contained static website, dropped onto any host and run. Scenes gained a real skybox and bloom and composite objects sit correctly; the preview loads correctly under prefixed URLs; and the interactive-narrative pipeline runs a full loop.</p>
+    <div class="prose"><h2>From &quot;built it&quot; to &quot;shipped it&quot;</h2>
+<p>For a game platform, being able to &quot;build it&quot; isn&#39;t enough — you must be able to &quot;ship it,&quot; letting what you made leave the tool and be played by others. The weightiest thing this day was filling in the &quot;export&quot; step: packaging a whole game into a website anyone can host and anyone can open. Meanwhile the engine added skybox and bloom for atmosphere, fixed loading under prefixed URLs for deployment flexibility, and ran the narrative pipeline into a loop. On one side &quot;make it look better,&quot; on the other &quot;take it away when done&quot; — the day pushed both ends of creation: making you enjoy building, and giving your results somewhere to go.</p>
+<h2>Package a game into a website you can take with you</h2>
+<p>A big step toward shipping: you can now export a whole game as a self-contained static website — no need to bring the full Studio along; drop the exported folder onto any static host and it runs on its own. In other words, the game you chat into being and build here can be packaged up, sent to friends to play, or put online for everyone, instead of being locked inside this tool. A first exported sample came with it — an FPS game called Sector Strike (with its own scene and readme) — to run and validate the whole export chain. A key bug was also fixed: the backend&#39;s route addresses used to be wrongly &quot;captured&quot; by the front-end&#39;s routing rules, keeping some embedded pages from opening; once fixed, the exported product reliably routes front-end and backend requests each to the right place. From &quot;playable inside the tool&quot; to &quot;playable outside it,&quot; the road to shipping is genuinely open for the first time.</p>
+<h2>Skybox + bloom: more atmosphere</h2>
+<p>The engine shipped two immediately visible features this day. One is a visible skybox: a scene&#39;s background is no longer a flat solid color but a real sky environment wrapping the whole scene, with sky and atmosphere in the distance — the sense of space changes at once. The other is bloom: a soft glow spillover on bright areas — neon signs, strong light sources and glowing objects bleed a halo — the most common move for sci-fi, dreamy or night-scene atmosphere. Both are &quot;atmosphere effects&quot; acting directly on look and feel. Underneath, an important thing was wired through: hierarchical world transforms. A parent and child&#39;s position, rotation and scale now propagate correctly layer by layer to the renderer, meaning the parts of a composite object — a character holding a weapon, a vehicle with attached parts — finally place and move correctly with the whole instead of being misaligned. Atmosphere plus correct hierarchy together make a scene both good-looking and &quot;correctly arranged.&quot;</p>
+<h2>Preview loads correctly under a URL prefix</h2>
+<p>This day also grappled with an unglamorous but deployment-flexibility-critical path: making the preview load all resources correctly under a &quot;URL path prefix.&quot; In many real deployments, an app isn&#39;t at the website root but under some sub-path (a subdirectory of some site) — and if resource addresses don&#39;t account for that prefix, loading fails to find files and errors. This day aligned the whole chain, from engine to packaging to the resource index, to &quot;respect the path prefix,&quot; and locked a regression test to keep it from going wrong again; it also fixed the startup flow to ensure the full set of needed runtime pieces is correctly built before launch. It addresses the most headache-inducing class of environment issue — &quot;deploy it somewhere else and loading breaks.&quot; Getting this path working means exported games and embedded previews reliably find their resources and run no matter what URL path they&#39;re placed under — exactly the underlying guarantee that makes &quot;package it into a website and take it&quot; genuinely usable.</p>
+<h2>The interactive-narrative pipeline runs a full loop</h2>
+<p>The story pipeline for narrative-driven games was wired into an end-to-end loop this day. A plot is essentially a branching &quot;story tree,&quot; and drawing and running that tree correctly means solving a string of thorny problems: disambiguating repeated numbering, repairing back edges, routing long-span connections around, and auto-mounting on start so it&#39;s visible from the beginning — all fixed this day, so the whole story structure presents correctly. The agent responsible for narrative connected to the full pipeline toolset and reports progress live as it runs. The key piece: when the whole pipeline finishes, the system automatically wakes that agent back to do a closing summary, rather than stopping halfway and leaving a dangling end. With that, building a branching, well-paced plot becomes a smooth, visible, self-closing flow from start to finish — the narrative line moves from &quot;has tools&quot; to genuinely &quot;can run all the way through once.&quot;</p>
+<h2>What this day means</h2>
+<p>The most important shift this day is the platform having a complete &quot;exit&quot; for the first time. Before, however well-made, a game was still trapped in the tool; and &quot;export as a website&quot; plus &quot;loads correctly under any path&quot; together let your work genuinely leave here and reach others for the first time. With skybox and bloom making it better-looking and the narrative loop making it more complete, this day filled in the last link of the &quot;create — take shape — ship&quot; chain. A creation tool&#39;s value is ultimately redeemed by whether &quot;what you make can be seen by the world.&quot; From today, the game you make here is no longer just a local demo but a real work you can package, host and share for anyone to play.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-11 · Text-to-3D lands in your game + agents verify before continuing — ForgeaX</title>
+<meta name="description" content="Generated 3D models now land straight in your game with per-game storage; agents close their own write-verify-continue loop and stop stalling for input; a large scene's cold-load drops from 2GB to 45MB; skeletal animation groundwork lands; and a new bullet-survival sample joins the library." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-11 · Text-to-3D lands in your game + agents verify before continuing — ForgeaX" />
+<meta property="og:description" content="Generated 3D models now land straight in your game with per-game storage; agents close their own write-verify-continue loop and stop stalling for input; a large scene's cold-load drops from 2GB to 45MB; skeletal animation groundwork lands; and a new bullet-survival sample joins the library." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-11.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-11.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-11.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-11.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-11.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-11.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-11.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-11.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-11.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-11.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Diário</span><span>2026-06-11</span></div>
+    <h1>Text-to-3D lands in your game + agents verify before continuing</h1>
+    <p class="standfirst">This day text/image-to-3D genuinely came through: results are stored per game and land straight in your game, no longer sitting on a look-only showcase; the agent runs its own verification after writing code and keeps fixing on failure, instead of stalling to ask the user; the engine compressed one large scene&#39;s cold-load from about 2GB to about 45MB; the skeletal-character-animation chain advanced; and a bullet-survival sample joined the game library.</p>
+    <div class="prose"><h2>Two lines converging: delivery, and autonomous reliability</h2>
+<p>The two most notable things this day map exactly onto the two key questions on the &quot;AI builds games&quot; road: how does what&#39;s made actually get used, and how does the AI cause people less trouble. The previous day&#39;s &quot;text-to-3D model&quot; workbench was still at the &quot;testbed&quot; stage — it could generate, but the result didn&#39;t necessarily wire smoothly into a game; this day it walked the last mile, with generated models stored per game and landing straight into your level. On the other line, the &quot;build-gate&quot; installed on the AI over the preceding days still needed the platform watching from behind; this day went further, having the agent close the &quot;write code → verify → continue&quot; loop itself, no longer stopping to ask the user at every turn. With the engine&#39;s speedup for large scenes, the advance in skeletal animation, and a new sample game, the day&#39;s theme is: making capabilities genuinely usable and automation genuinely worry-free.</p>
+<h2>Text/image-to-3D works for real — results land in your game</h2>
+<p>The 3D-generation workbench formally moved from &quot;testbed&quot; to &quot;actually usable&quot; this day. It could already generate 3D models from text or images, but generation is only step one — a model that can&#39;t be smoothly saved and wired into the game you&#39;re making is just an isolated showpiece. What this day completed is exactly the &quot;delivery&quot; second half: each game has its own 3D asset storage, and generated models are archived per game; generation runs over a publicly-reachable upload path, and after connecting to an external image-to-3D service, generating models from text or images now works end-to-end in a real environment; the backend also opened a dedicated channel to serve 3D assets per game, delivering each game&#39;s generated output separately. The accompanying tool editor UI was rebuilt too, aligned to a unified visual style and organizing the sidebar by generation stage. Strung together, the distance from &quot;I want a model of a rock / crate / little monster&quot; to &quot;that model is already in my level&quot; suddenly shortened — generation is no longer a separate stage where you manually carry results around, but a smooth step in the creative flow. For creators without art skills, this genuinely flattens a stretch of the highest bar of all — acquiring assets.</p>
+<h2>Agents verify their own work, instead of stalling to ask you</h2>
+<p>Continuing the &quot;build-gate&quot; idea of the preceding days, this day genuinely tightened the agent&#39;s &quot;write → verify → continue&quot; loop a step further. The prior pain was subtle and common: an agent would finish a chunk of code, neither proactively running tests nor checking whether the build errored, but stop to ask the user &quot;is this right?&quot; — yet the user often can&#39;t judge at all and can only vaguely reply &quot;should be fine,&quot; letting the error slip through. This effectively pushed onto people the verification responsibility that should be the machine&#39;s. This day&#39;s change has the agent auto-run a verification after writing code: it proceeds only on pass, and on failure keeps fixing with the specific errors in hand until it&#39;s truly right — no longer needlessly spending one of your conversation turns on a question it could confirm itself. This extends the same logic as the previous days&#39; &quot;no &#39;done&#39; until the build passes&quot;: the latter guarantees the final delivery is correct, this one makes every intermediate step self-close as much as possible and disturb people less. With a new &quot;jump to latest&quot; marker in the chat and no more auto-scroll yanking you to the bottom while reviewing old records, long conversations are far more comfortable to look back over. A genuinely good AI collaborator should &quot;not ask about what it can handle itself,&quot; and this day stepped exactly that way.</p>
+<h2>A large scene&#39;s cold-load drops from about 2GB to about 45MB</h2>
+<p>The engine gave large complex scenes an astonishingly aggressive cold-start slimming this day. The prior pain: a detail-rich indoor scene had to read about 2GB of mesh geometry on first load — not only unbearably slow to start, but agony when repeatedly restarting during development. This day&#39;s approach pre-binarizes the mesh data and packs it into a compact cache artifact: for the same scene, the data read on first load shrank from about 2GB to about 45MB, a full order of magnitude faster to start. The significance is that it directly decides &quot;whether this engine can run serious-scale scenes at all&quot; — a load that takes tens of seconds or freezes makes large scenes practically unusable; compressing it to seconds is the first time genuinely large, detailed scenes become &quot;painless to develop.&quot; The engine can also light up hundreds of lights at once in one scene while staying efficient, and bake crisp, sharp text into the picture; together these capabilities mean the engine&#39;s demo line can finally carry serious scenes approaching real-game scale.</p>
+<h2>Skeletal-animation groundwork: paving the way for &quot;characters that really move&quot;</h2>
+<p>The engine also took a solid step on the character-animation line this day: wiring through the vertex-data chain needed for skeletal skinning animation. It sounds low-level, but it corresponds to one of the most important kinds of expression in games — a character runs, jumps and waves naturally because &quot;bones&quot; drive &quot;skin&quot;: inside the model is an invisible skeleton, and as each bone swings, the mesh surface (&quot;skin&quot;) attached to it deforms along, so the character moves. For this mechanism to work correctly, the engine must correctly pass and compute the string of data for &quot;which bones affect each vertex, and by how much&quot; all the way through. What landed this day is exactly the key link of this chain, paired with a demo showing multiple instances of the same skinned character at once, plus a model importer recognizing several formats and a resolver handling the bone hierarchy. It isn&#39;t yet &quot;the character is already moving,&quot; but the prerequisite engineering that makes that step possible — with this chain paved, real character animation later can connect onto it steadily. For an engine aiming to make games, character animation is an unavoidable tough nut, and this day cracked a key part of it.</p>
+<h2>A new bullet-survival sample joins the game library</h2>
+<p>A &quot;bullet-survival&quot; style 3D sample game was added to the library this day: swarms of little monsters rush in from all sides while the character auto-fires, clearing them continuously and trying to survive a little longer amid an ever-denser encirclement. This genre has been popular in recent years — simple rules, satisfying pace, easy to pick up yet replayable. Making it a ready-made sample has two layers of value: one, it&#39;s a playable finished product anyone can open and play, or modify into their own version; two, as a real game with a complete gameplay loop, it in turn tests whether the platform&#39;s and engine&#39;s capabilities truly hold up — many on-screen enemies stress rendering capacity, auto-combat stresses logic, the survival pace stresses the overall feel. Stress-testing the platform with a real game exposes problems better than any abstract test. Each additional sample in a different style gives later creators one more starting point they can stand directly on.</p>
+<h2>What this day means</h2>
+<p>This day pushed both &quot;capability&quot; and &quot;reliability&quot; forward a stretch each — and these are precisely the two legs of an AI creation platform, neither of which can be missing for a steady gait. On the &quot;capability&quot; leg, text-to-3D genuinely landed, large scenes became runnable, skeletal animation was paved, and a new sample joined the library — the platform can do more, bigger, more real things. On the &quot;reliability&quot; leg, the agent learned to verify before continuing — the platform does things more worry-free, less prone to mishap, needing less constant watching. A tool worth trusting long-term never strains on just one leg, but moves both forward in coordinated alternation: the stronger the capability, the more it needs reliability to back it, lest power instead mean a bigger risk of crashing; and the firmer the reliability, the more boldly capability can be pushed toward harder, bigger goals. This day was a step taken with both legs together.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

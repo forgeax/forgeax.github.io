@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-19 · Desktop hardening: games no longer stuck on Loading — ForgeaX</title>
+<meta name="description" content="The desktop app pushed from 'opens' to 'opens and works': fallback lighting ends the Loading deadlock, the app owns the full backend lifecycle so open/close/reset no longer freeze, placeholder plugins hide gracefully, a status-bar log panel arrives, and an audio library lands — with the root-cause gaps filed upstream." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-19 · Desktop hardening: games no longer stuck on Loading — ForgeaX" />
+<meta property="og:description" content="The desktop app pushed from 'opens' to 'opens and works': fallback lighting ends the Loading deadlock, the app owns the full backend lifecycle so open/close/reset no longer freeze, placeholder plugins hide gracefully, a status-bar log panel arrives, and an audio library lands — with the root-cause gaps filed upstream." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-06-19.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-06-19.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-19.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-19.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-19.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-19.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-19.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-19.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-19.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-19.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-19.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-19.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-19.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-19.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-06-19.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-06-19.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-19.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-19.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-19.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-06-19</span></div>
+    <h1>Desktop hardening: games no longer stuck on Loading</h1>
+    <p class="standfirst">The day had one through-line: pushing the packaged desktop app from &quot;opens&quot; to &quot;opens and works.&quot; Games no longer go black, stuck on &quot;Loading game&quot; — thanks to a fallback-lighting scheme; opening, closing and resetting data no longer freeze the whole interface; unimplemented placeholder plugins hide gracefully instead of throwing dead links; and a professional-tool status bar with a log panel arrived, along with a built-in music-and-sound audio library.</p>
+    <div class="prose"><h2>Pushing &quot;opens&quot; into &quot;opens and works&quot;</h2>
+<p>一个能在浏览器里跑得很好的东西,装进桌面应用后未必同样好用——桌面应用用的是操作系统自带的网页引擎,它和主流浏览器在底层能力上有不少差异,很多在浏览器里没问题的功能,到了桌面就会以各种意想不到的方式出岔子。这一天就是一次集中的&quot;桌面硬化&quot;:把打包后的桌面应用从&quot;勉强能打开&quot;逼到&quot;打开就能正常用&quot;。它处理的不是某一个炫目的新功能,而是一长串&quot;在桌面端才会暴露&quot;的可靠性问题——游戏加载死锁、窗口开关冻结、重置炸窗、点不开的死链。这类工作往往吃力不讨好:做好了用户察觉不到,做不好用户第一时间就被劝退。但对一个想让普通人把它装到自己电脑上日常用的产品来说,&quot;桌面端开箱即用&quot;是绕不过去的一关。这一天,就是认认真真把这一关闯了过去。Something that runs great in a browser isn&#39;t necessarily as usable once packaged into a desktop app — a desktop app uses the operating system&#39;s built-in web engine, which differs in underlying capabilities from mainstream browsers in many ways, so plenty of features that work fine in a browser go wrong in unexpected ways on the desktop. This day was a concentrated &quot;desktop hardening&quot;: pushing the packaged desktop app from &quot;barely opens&quot; to &quot;opens and works properly.&quot; It tackled not one dazzling new feature but a long string of &quot;only-on-desktop&quot; reliability problems — game-load deadlock, window open/close freezes, reset crashing the window, dead links you can&#39;t open. Such work is often thankless: done well, users don&#39;t notice; done poorly, users bounce immediately. But for a product that wants ordinary people to install it on their own computers and use it daily, &quot;works out of the box on the desktop&quot; is an unavoidable gate. This day was about earnestly clearing that gate.</p>
+<h2>No more stuck on &quot;Loading game&quot;: fallback lighting for scenes</h2>
+<p>这天最关键的一修,是让游戏在桌面应用里不再黑屏死锁。此前的现象很劝退:在打包后的桌面应用里点&quot;试玩&quot;,画面常常一直黑着、永远停在 &quot;Loading game&quot;。追根究底,是桌面应用所用的系统网页引擎不支持&quot;基于环境贴图的天光&quot;——这是一种用一张环境图来给整个场景提供真实照明的高级技法;在桌面引擎上,它所依赖的几项底层能力恰好都缺失,于是场景在加载这盏天光时直接卡死,后面什么都跑不起来。这天的解法是给场景设计了一条&quot;兜底&quot;路径:给相机加上一个纯色的天空底色(至少天不是黑的),再加一盏纯色的兜底环境光把场景里的物体均匀照亮——即使享受不到高级天光,场景也能正常、明亮地显示出来。同时让所有样例游戏在检测到这种环境时,自动跳过那盏加载不了的天光,直接走兜底路径。改完之后,这些游戏在桌面应用里都能正常进入、看得见画面了。这背后还有一条好习惯:把这些底层能力的缺口完整地整理成清单,提交给引擎团队,推动从根上补齐,而不是只在自己这边打补丁绕过去。The day&#39;s key fix was ending the black-screen deadlock for games in the desktop app. The prior symptom was off-putting: hitting &quot;play&quot; in the packaged desktop app often left the screen black, forever stuck on &quot;Loading game.&quot; At root, the system web engine the desktop app uses doesn&#39;t support &quot;environment-map-based sky lighting&quot; — an advanced technique that uses an environment image to provide realistic lighting for a whole scene; on the desktop engine, several underlying capabilities it depends on happen to be missing, so a scene deadlocked while loading this sky light and nothing further could run. This day&#39;s solution designed a &quot;fallback&quot; path for scenes: giving the camera a solid sky base color (so the sky at least isn&#39;t black), plus a solid-color fallback ambient light to evenly illuminate the scene&#39;s objects — so even without advanced sky lighting, a scene displays properly and brightly. All sample games, on detecting this environment, automatically skip the unloadable sky light and take the fallback path. After the fix, these games enter and render properly in the desktop app. Behind it is a good habit: compiling the underlying capability gaps into a complete list and filing them with the engine team to drive a root fix, rather than only patching around them on our own side.</p>
+<h2>Opening, closing and resetting no longer freeze: lifecycle hardening</h2>
+<p>这天还系统性地硬化了桌面应用的&quot;生命周期&quot;。桌面应用不只是一个窗口,它背后还连着一整套本地后端服务,而&quot;窗口开 / 窗口关 / 数据重置&quot;这些时刻,正是各种可靠性问题最容易爆发的地方。改进有几条:让桌面应用自己接管整套后端的生命周期——开窗时干净地重启服务、关窗时彻底地拆除,不再留下一堆游离的后台进程占着资源。一批&quot;重置之后整个界面就炸&quot;的坑被填平:清空会话、重置游戏这类批量删除操作,改成了异步且有边界的方式,不再因为一次性同步删大量数据而把界面冻住,也不再连带把窗口一起杀掉,重置完窗口和设置都能优雅地恢复。后台还立起了一套看护机制:自动监护并在必要时重启关键的边车进程、在退出时干净地回收它们、并用健康检查门控启动;再配上顶层的异常兜底和一个修好的、不再泄漏的心跳机制。这些改动单看都很底层,但合起来决定了一件事:你能不能放心地把这个桌面应用开着用一整天而它不崩、不卡、不留烂摊子。This day also systematically hardened the desktop app&#39;s &quot;lifecycle.&quot; A desktop app isn&#39;t just a window — behind it sits a whole set of local backend services, and the moments of &quot;window open / window close / data reset&quot; are exactly where reliability problems most erupt. Several improvements: having the desktop app own the whole backend lifecycle itself — cleanly restarting services on open and fully tearing them down on close, leaving no pile of stray background processes hogging resources. A batch of &quot;reset and the whole interface blows up&quot; pitfalls were fixed: bulk-delete operations like clearing sessions and resetting games became asynchronous and bounded, no longer freezing the interface by synchronously deleting a mass of data at once, nor taking the window down with it, with window and settings recovering gracefully after a reset. A supervision system was stood up in the background: it watches and, when needed, restarts key side processes, cleanly reaps them on exit, and gates startup on health checks; plus a top-level exception backstop and a fixed, no-longer-leaking heartbeat. Individually low-level, together these decide one thing: whether you can confidently keep this desktop app open all day without it crashing, hanging, or leaving a mess.</p>
+<h2>Placeholder plugins hide gracefully: show only what&#39;s implemented</h2>
+<p>这天还清理掉了一类很影响第一印象的尴尬:点开一个工作台插件,结果是个 404 死链。原因是商店里有几个还只是占位、尚未实现的工作台插件,它们本不该出现在用户面前,却被当成正常插件展示了出来,一点就报错。这天把它们统一标记为隐藏——让所有工作台插件都进入&quot;实现了才出现&quot;的优雅降级:没做好的东西,干脆不展示,而不是展示一个点了就坏的入口。与此同时还修了一个更深的根因:在开发环境下,插件的构建产物有时会损坏或缺失,导致它即便是已实现的插件也加载不出来;这天给这种情况加了自愈——发现产物坏了或没有,就自动重新构建,从源头上消除了这类 404。一个产品对外暴露的每一个入口,都是一次承诺;把&quot;点了就坏&quot;的入口藏起来、把坏掉的产物自动修好,守住的是&quot;凡是你看得见的,就都是能用的&quot;这条基本信任。This day also cleared a class of first-impression awkwardness: opening a workbench plugin only to get a 404 dead link. The cause was several still-placeholder, unimplemented workbench plugins in the store that shouldn&#39;t have appeared before users yet were shown as normal plugins, erroring on click. This day marked them uniformly as hidden — putting all workbench plugins into &quot;appears only once implemented&quot; graceful degradation: what isn&#39;t ready simply isn&#39;t shown, rather than showing an entry that breaks on click. Meanwhile a deeper root cause was fixed: in the development environment, a plugin&#39;s build output can sometimes be broken or missing, so even an implemented plugin fails to load; this day added self-healing for that — on finding the output broken or absent, it rebuilds automatically, eliminating this class of 404 at the source. Every entry a product exposes is a promise; hiding the &quot;breaks on click&quot; entries and auto-repairing the broken output upholds the basic trust that &quot;whatever you can see, you can use.&quot;</p>
+<h2>A professional-tool status bar + log panel + audio library</h2>
+<p>这天还给界面增添了两样很实用的东西。其一是一条专业工具风格的状态栏:界面右侧有一个健康指示器,一眼就能看出系统当前状态正不正常;出严重问题时会弹出醒目的横幅;还有一个可停靠的信息日志面板,把运行过程中的日志收集起来,支持点击即复制、重复条目自动折叠,并把控制台和网络面板也接了进来。对一个复杂的创作工具来说,&quot;出了问题能不能第一时间看到、看清&quot;非常关键——这条状态栏就是把系统的健康状况和运行细节,从藏在后台变成了摆在眼前。其二是新增了一个音频库工作台:内置了音乐与音效素材库,并接入了语音与音乐的合成能力。一个游戏没有声音总像缺了一半灵魂,而很多创作者既不懂作曲、也没有现成的音效;有了这个库,给游戏配背景音乐、加打击音效、做角色配音,都从&quot;要去别处找&quot;变成了&quot;在工具里就能拿&quot;。This day also added two practical things to the interface. One is a professional-tool-style status bar: a health indicator on the right shows at a glance whether the system&#39;s current state is healthy; a prominent banner pops on serious problems; and a dockable info-log panel collects runtime logs, supporting click-to-copy and auto-folding of repeated entries, with console and network panels wired in too. For a complex creation tool, &quot;can you see and clearly see a problem the moment it happens&quot; is crucial — this status bar moves the system&#39;s health and runtime detail from hidden in the background to right before your eyes. The other is a new audio-library workbench: a built-in music and sound-effect library plus speech and music synthesis. A game without sound always feels half a soul short, and many creators neither compose nor have ready sound effects; with this library, scoring a game&#39;s background music, adding hit sounds, and voicing characters all go from &quot;go find it elsewhere&quot; to &quot;get it right in the tool.&quot;</p>
+<h2>What this day means</h2>
+<p>这一天没有诞生什么惊艳的新能力,它做的是一件更朴素也更关键的事:让产品在真实的使用形态下站得住。一个能在开发者浏览器里跑得很好的东西,和一个能被普通人装进自己电脑、双击就能用一整天而不崩的产品,中间隔着的正是这一天所做的全部——兜底、硬化、自愈、优雅降级。这些工作有一个共同的气质:它们都是在为&quot;信任&quot;打底。游戏能正常加载,人才敢做;窗口不冻死,人才敢一直开着;看得见的入口都能用,人才不会被劝退;出问题能看到、声音随手能加,人才用得安心、用得尽兴。把一个东西从&quot;演示能跑&quot;做到&quot;真实能用&quot;,从来都是最不显山露水、却最见功力的一段路。这一天,正是把桌面应用扎扎实实地推过了这道门槛。This day birthed no dazzling new capability; it did something plainer and more crucial: making the product hold up in its real form of use. Between something that runs great in a developer&#39;s browser and a product an ordinary person can install on their own computer and double-click to use all day without crashing lies exactly everything done this day — fallbacks, hardening, self-healing, graceful degradation. These share one temperament: they all lay the groundwork for &quot;trust.&quot; Games loading properly is what lets people dare to build; windows not freezing is what lets people keep it open; every visible entry working is what keeps people from bouncing; problems being visible and sound being easy to add is what lets people use it with ease and to the full. Taking something from &quot;the demo runs&quot; to &quot;it genuinely works&quot; is always the least showy yet most skill-revealing stretch of road. This day pushed the desktop app solidly past that threshold.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

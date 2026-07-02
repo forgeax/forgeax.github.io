@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Generate art with the workbenches — ForgeaX</title>
+<meta name="description" content="ForgeaX creation workbenches: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Generate art with the workbenches — ForgeaX" />
+<meta property="og:description" content="ForgeaX creation workbenches: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/fr/tutorials/workbenches.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/workbenches.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/docs/" data-nav="/docs/">Documents</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/" class="active">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/games/" data-nav="/games/">Jeux</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Marché</a>
+      <a href="/fr/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/fr/changelog/" data-nav="/changelog/">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/workbenches.html" data-l="en">English</a><a class="lang-item" href="/zh/tutorials/workbenches.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/workbenches.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/workbenches.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/workbenches.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/workbenches.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/tutorials/workbenches.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/tutorials/workbenches.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Demandez à l'IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Ouvrir dans ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Ouvert à Claude</a>
+          <button class="ask-item" id="copyMd">Copier la page en tant que Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/tutorials/">← Retour aux tutoriels</a>
+    <div class="meta"><span class="tag brand">Créer</span><span>Aperçu</span></div>
+    <h1>Générez de l'art avec les établis</h1>
+    <p class="standfirst">Au-delà du chat, ForgeaX dispose d'un ensemble d'« établis » : chacun est un panneau et un groupe d'outils qui transforment une phrase en éléments prêts à jouer. Vous à la main et l'IA par expédition modifiez le même artefact.</p>
+
+    <div class="prose">
+      <div class="note">✅Open source (Apache-2.0). Vous trouverez ci-dessous un aperçu du système d'établi ; pour cloner et installer, voir le<a href="/fr/docs/">documents</a>.</div>
+
+      <h2>Personnages · animation · VFX</h2>
+      <ul>
+        <li><strong>Éditeur de personnages</strong>- rédigez un mémoire d'une ligne, obtenez un portrait et un redressement.</li>
+        <li><strong>Animation</strong>- transformez un personnage immobile en un mouvement squelettique marchant, attaquant, dans quatre directions (même des clips courts) - sans dérive du visage.</li>
+        <li><strong>Compétence / VFX</strong>- ajoutez des effets comme du feu, des barres obliques et des auras, automatiquement attachés au moment de l'incantation.</li>
+      </ul>
+
+      <h2>Modélisation et génération 3D</h2>
+      <ul>
+        <li><strong>Éditeur de caractères en bloc</strong>- créez des personnages 3D truqués comme des blocs d'accrochage, exportez des fichiers 3D standard.</li>
+        <li><strong>Générateur low-poly</strong>— construire des accessoires 3D avec un graphe de nœuds ; modifier un paramètre, régénérer l'ensemble.</li>
+        <li><strong>Génération 3D</strong>— texte ou image directement sur un modèle 3D, branché sur plusieurs générateurs de premier plan, choisissez celui qui convient le mieux.</li>
+      </ul>
+
+      <h2>Scènes · UI · éléments</h2>
+      <ul>
+        <li><strong>Générateur de scène</strong>- assemblez une scène de jeu entière sous forme de graphique que vous pouvez réexécuter à tout moment.</li>
+        <li><strong>Générateur d'éléments de scène 2D</strong>- des accessoires par lots, des textures, des décorations et des bits d'interface utilisateur, nommés et classés automatiquement.</li>
+        <li><strong>Établi d'interface utilisateur</strong>- une interface utilisateur définie pour votre type de jeu - pas seulement des images, un prototype cliquable.</li>
+        <li><strong>Objets/icônes</strong>— armes, potions, pièces de monnaie sous forme d'icônes avec leurs données, art et chiffres dans un seul tableau.</li>
+      </ul>
+
+      <h2>Récit · musique · regard · chiffres</h2>
+      <ul>
+        <li><strong>Établi narratif</strong>- d'une étincelle à une histoire et un monde complets, l'IA choisissant une approche appropriée.</li>
+        <li><strong>Musique / Musique de fond</strong>- gérez la musique de fond et les effets sonores, en séquençant la partition d'une session entière.</li>
+        <li><strong>Couleur / Aspect</strong>- unifiez l'ambiance chromatique de l'ensemble du jeu en un seul clic, comme un filtre sur tout.</li>
+        <li><strong>Équilibre</strong>— demandez à l'IA de jouer des milliers de matchs et de rapporter les taux de victoire avec des intervalles de confiance ; laissez les données juger du réglage.</li>
+      </ul>
+
+      <h2>Outils système et auteurs</h2>
+      <ul>
+        <li><strong>Code</strong>- parcourez le code, passez d'un fichier à l'autre et modifiez-le avec l'IA de codage.</li>
+        <li><strong>Observatoire</strong>- rejouez chaque étape franchie par l'IA, comme une boîte noire, pour identifier où les choses ont mal tourné.</li>
+        <li><strong>Auteur du plugin</strong>- laissez les non-codeurs créer leurs propres plugins d'atelier.</li>
+        <li><strong>Administrateur</strong>— le panneau de contrôle du studio : basculer entre les établis, lier les modèles, voir quelles IA sont en ligne.</li>
+      </ul>
+
+      <blockquote>Vous ne savez pas dessiner, modéliser ou composer ? C'est très bien – décrivez-le, et les ateliers produisent des ressources qui s'intègrent directement dans votre jeu.</blockquote>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/fr/showcase/">Voir les démos terminées →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables. Open source, licence Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/blog/">Blogue</a>
+    <a href="/fr/docs/">Documents</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/games/">Jeux</a>
+    <a href="/fr/marketplace/">Marché</a>
+  </div>
+  <div class="col"><h4>Projet</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>更新日志 · Changelog — ForgeaX</title>
+<meta name="description" content="ForgeaX 逐日开发日志:每天一页,记录当天的特性与实现。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="更新日志 · Changelog — ForgeaX" />
+<meta property="og:description" content="ForgeaX 逐日开发日志:每天一页,记录当天的特性与实现。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+<style>
+  .cl-list{max-width:760px;margin:0 auto;padding-top:8px}
+  .cl-row{display:block;text-decoration:none;color:inherit;padding:16px 0;border-bottom:1px solid var(--border-subtle)}
+  .cl-row:hover .cl-row-title{color:var(--brand)}
+  .cl-row-meta{display:flex;align-items:baseline;gap:12px}
+  .cl-date{font-family:var(--font-mono);font-size:13px;color:var(--text-tertiary)}
+  .cl-ver{font-family:var(--font-mono);font-size:11px;color:var(--brand);border:1px solid rgba(212,255,72,.35);background:rgba(212,255,72,.10);border-radius:999px;padding:1px 8px}
+  .cl-row-title{font-size:17px;font-weight:700;margin:6px 0 0;transition:color .15s}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/" data-l="es">Español</a><a class="lang-item" href="/de/changelog/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>更新日志</h1>
+    <p>这是 ForgeaX「自己造自己」的逐日记录。这套引擎与平台,几乎完全由 AI 在一个自主开发循环里写成;而这里,就是它的<b>长期开发记忆</b> —— 每天一页,记录当天它为自己交付了哪些特性、又是怎么实现的。</p>
+  </div>
+  <div class="cl-list">
+    <a class="cl-row" href="/zh/changelog/2026-07-02.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-07-02</span></div>
+      <div class="cl-row-title">Forge 有了长期记忆:对话越多越懂你</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-07-01.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-07-01</span></div>
+      <div class="cl-row-title">R4 前端落地收官 + 视口 2×2 重设计</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-30.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-30</span></div>
+      <div class="cl-row-title">架构大拆分:前端四大模块独立 + 开源镜像全面加固</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-29.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-29</span></div>
+      <div class="cl-row-title">Forge 学会组队:多个 agent 一起干活</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-28.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-28</span></div>
+      <div class="cl-row-title">一条命令,从此 Windows 也能跑</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-27.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-27</span></div>
+      <div class="cl-row-title">把内容浏览器和拖拽到场景对标 UE5 + 编辑器自带质检门</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-26.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-26</span></div>
+      <div class="cl-row-title">全链路可观测:慢在哪一眼看见</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-25.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-25</span><span class="cl-ver">v0.2.0</span></div>
+      <div class="cl-row-title">打开一个工程就渲染它 + agent 长期记忆</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-24.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-24</span></div>
+      <div class="cl-row-title">全新资产浏览器 + 更省心的首次引导</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-23.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-23</span></div>
+      <div class="cl-row-title">资产检视器 + 切换不再卡顿 + Windows 兼容</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-22.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-22</span></div>
+      <div class="cl-row-title">项目正式对外开源 + 桌面端不再开机崩</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-21.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-21</span></div>
+      <div class="cl-row-title">3D 生成会绑骨配动作 + 编辑器自动体检</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-20.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-20</span></div>
+      <div class="cl-row-title">整个界面能切中英文 + 开发者工具齐活</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-19.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-19</span></div>
+      <div class="cl-row-title">桌面 App 硬化日:游戏不再卡 Loading</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-18.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-18</span></div>
+      <div class="cl-row-title">每个 agent 有了会动的头像 + 工程数据有了唯一真源</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-17.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-17</span></div>
+      <div class="cl-row-title">角色撞墙会滑的标准移动 + 编辑器独立窗成熟</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-16.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-16</span></div>
+      <div class="cl-row-title">角色终于有影子了 + 编辑器完全独立</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-15.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-15</span></div>
+      <div class="cl-row-title">暗黑风格 ARPG 样例 + 上传模型立刻能用</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-14.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-14</span></div>
+      <div class="cl-row-title">特效不再白爆 + 导入场景能走能跳</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-13.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-13</span></div>
+      <div class="cl-row-title">一个工程多个关卡 + 阴影系统升档</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-12.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-12</span></div>
+      <div class="cl-row-title">角色真的动起来了 + 聊天更稳</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-11.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-11</span></div>
+      <div class="cl-row-title">文字生 3D 落进游戏 + agent 自己验证再继续</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-10.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-10</span></div>
+      <div class="cl-row-title">新建游戏即有真天光 + 文字生成 3D 模型</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-09.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-09</span></div>
+      <div class="cl-row-title">给游戏装上"验车线"</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-08.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-08</span></div>
+      <div class="cl-row-title">编辑器大整合 + 模型带材质实时渲染</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-07.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-07</span></div>
+      <div class="cl-row-title">编辑器三件套到齐 + Windows 兼容</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-06.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-06</span></div>
+      <div class="cl-row-title">拖一个模型进来就变成场景</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-05.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-05</span></div>
+      <div class="cl-row-title">编辑器模式收官</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-04.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-04</span></div>
+      <div class="cl-row-title">编辑模式真正能用了</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-03.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-03</span></div>
+      <div class="cl-row-title">编辑器模式定下路线 + 引擎为可视化编辑铺路</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-02.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-02</span></div>
+      <div class="cl-row-title">一条命令开桌面应用 + 节点编辑器进商店</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-06-01.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-06-01</span></div>
+      <div class="cl-row-title">桌面 App 端到端跑通 + 3D 世界里的清晰文字</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-31.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-31</span></div>
+      <div class="cl-row-title">一个游戏打包成网站带走 + 天空盒与辉光</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-30.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-30</span></div>
+      <div class="cl-row-title">桌面 App 立起来 + 多游戏共用一个游戏库</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-29.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-29</span></div>
+      <div class="cl-row-title">引擎加上物理与点选 + 界面底座换代</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-28.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-28</span></div>
+      <div class="cl-row-title">动画独立成工作台 + 工具执行实时流式显示</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-27.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-27</span></div>
+      <div class="cl-row-title">引擎完全自立 + 更真实的材质</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-26.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-26</span></div>
+      <div class="cl-row-title">一键整理对话 + WebGPU 软件兜底</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-25.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-25</span></div>
+      <div class="cl-row-title">骨骼动画 + 场景工作台与观测台</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-24.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-24</span></div>
+      <div class="cl-row-title">游戏运行时全面换上自研引擎</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-23.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-23</span></div>
+      <div class="cl-row-title">危险操作先确认 + 引擎环境光与阴影</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-22.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-22</span></div>
+      <div class="cl-row-title">引擎学会投影 + 新增叙事工作台</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-21.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-21</span></div>
+      <div class="cl-row-title">焕新界面 + 可嵌入工具窗的工作台</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-20.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-20</span></div>
+      <div class="cl-row-title">聊天接回新后端 + 设置里管模型与密钥</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-19.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-19</span></div>
+      <div class="cl-row-title">断电也能恢复的后端地基 + 引擎第一次点灯</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-18.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-18</span></div>
+      <div class="cl-row-title">打开任意目录当工作区 + 应用内版本与快捷键</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-17.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-17</span></div>
+      <div class="cl-row-title">聊天里直接预览模型与图片 + @提及 pill</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-16.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-16</span></div>
+      <div class="cl-row-title">把 agent 总线搬进界面 + 仪表盘筛选</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-15.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-15</span></div>
+      <div class="cl-row-title">聊天界面进阶:可调布局、嵌套工具调用、子 agent 卡片</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-14.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-14</span></div>
+      <div class="cl-row-title">关掉浏览器,agent 照样在后台干活</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-13.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-13</span></div>
+      <div class="cl-row-title">实时热重载预览 + 会话回放</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-12.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-12</span></div>
+      <div class="cl-row-title">引擎资产系统 v1 + 聊天深度打磨</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-11.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-11</span></div>
+      <div class="cl-row-title">从零到「对话生成一个旋转立方体」</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-10.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-10</span></div>
+      <div class="cl-row-title">构建与运行时架构成型</div>
+    </a>
+    <a class="cl-row" href="/zh/changelog/2026-05-09.html">
+      <div class="cl-row-meta"><span class="cl-date">2026-05-09</span></div>
+      <div class="cl-row-title">项目启动</div>
+    </a>
+  </div>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

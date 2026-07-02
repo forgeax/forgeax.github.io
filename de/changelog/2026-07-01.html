@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-01 · R4 frontend lands + viewport 2×2 redesign — ForgeaX</title>
+<meta name="description" content="R4 frontend app extraction completes with interface store slimming and studio boot wiring; the viewport gets a 2×2 run × display redesign; the editor no longer bakes game paths — Studio injects layout instead; bun fx update gains a color-coded structured report; and desktop builds harden for cross-platform packaging." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-01 · R4 frontend lands + viewport 2×2 redesign — ForgeaX" />
+<meta property="og:description" content="R4 frontend app extraction completes with interface store slimming and studio boot wiring; the viewport gets a 2×2 run × display redesign; the editor no longer bakes game paths — Studio injects layout instead; bun fx update gains a color-coded structured report; and desktop builds harden for cross-platform packaging." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-07-01.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-01.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/docs/" data-nav="/docs/">Dokumente</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/games/" data-nav="/games/">Spiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Marktplatz</a>
+      <a href="/de/blog/" data-nav="/blog/">Blog</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-01.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-01.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-01.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-01.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-01.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-07-01.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-01.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-01.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Fragen Sie die KI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">In ChatGPT öffnen</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Geöffnet in Claude</a>
+          <button class="ask-item" id="copyMd">Seite als Markdown kopieren</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Täglich</span><span>2026-07-01</span></div>
+    <h1>R4 frontend lands + viewport 2×2 redesign</h1>
+    <p class="standfirst">This day shipped several Studio changes you can feel in the editor: the R4 frontend apps (chat, workbench, settings, dashboard) finally wired into the boot chain with a slimmed interface store; the viewport moved from mutually exclusive Edit/Play toggles to a 2×2 run × display matrix; and the editor no longer hard-codes game paths — Studio injects the game layout instead. On top of that, <code>bun fx update</code> gained a color-coded structured report, and the desktop packaging script was hardened for cross-platform builds.</p>
+    <div class="prose"><h2>R4 frontend: from standalone submodules to actually running</h2>
+<p>After splitting chat, workbench, settings and dashboard into standalone submodules on June 30, this day was about &quot;turning them on.&quot; The interface package was slimmed to a pure AppKit layer (bus, broadcast, deep links, overlays); the four L2 apps each own agent preferences and file preview via the bus instead of crowding one big store. Studio&#39;s <code>main.tsx</code> now initializes <code>initAgentPrefs</code>, <code>initFilePreview</code>, <code>bootBroadcast</code> and daemon tick subscriptions at boot — the four modules are no longer &quot;subdirectories sitting there&quot; but formal parts of the editor. R4 went from plan to structure you can develop against daily.</p>
+<h2>Viewport 2×2: run mode × display mode</h2>
+<p>The editor viewport completed its 2×2 redesign this day. Before, Edit and Play were two mutually exclusive states — switching meant rebuilding the entire viewport. The new design splits &quot;run mode&quot; (Edit / Play) and &quot;display mode&quot; (Scene / Game) into two orthogonal dimensions forming a 2×2 matrix — you can see both the scene view and the game view at once, driven by different run states. AppMode became the single source of truth, with the interface and editor submodules aligned to this viewport semantics. It&#39;s a step toward a UE5-style editing experience: edit and preview on one screen without toggling back and forth.</p>
+<h2>Editor decouples game paths — Studio injects layout</h2>
+<p>The editor submodule shed its hard-coded dependency on game directories this day, becoming a layout-agnostic standalone package. Where game files live and what the URL prefix is no longer gets &quot;baked&quot; by the editor — the host (Studio) injects it: the main viewport iframe gets its path via EditSurfaceProps.gameRoot, localStorage keeps panel iframes pointed at the same game; launching the engine passes the disk scan dir and client URL prefix; desktop packaging also bakes the URL prefix so a frozen app serves game assets correctly. The editor can evolve independently while Studio owns project layout — clearer boundaries.</p>
+<h2>bun fx update: pull code and see everything at a glance</h2>
+<p>The first thing a developer does each morning is usually pull the latest code. Before, bun fx update would silently run git pull plus submodule sync — say nothing on success, and dump an opaque error on failure. This day added a structured update report: a color-coded table showing each submodule&#39;s pull result (success, skipped, conflict), its current branch, and the latest commit summary. If a submodule has local changes that needed stashing, it tells you explicitly. After one update you know what state the entire project is in — no more running git status in each submodule one by one.</p>
+<h2>Desktop packaging: cross-platform script + version baking</h2>
+<p>Desktop packaging was hardened this day too: build-desktop.ts became a cross-platform script with tests added; packaging vendors platform-io and agent-host into the sidecar, baking the version via lib/version.ts into the artifact instead of assembling it at runtime; and bun fx start gained a port-busy check that probes whether common ports are already in use before launch, so you don&#39;t end up with half a stack running and no idea why. None of these are flashy on their own, but they determine whether packaging and launching work smoothly on Windows and macOS.</p>
+<h2>What this day means</h2>
+<p>The theme of this day is &quot;boundaries landing.&quot; Yesterday&#39;s R4 split set the direction; today the four modules actually wired into the boot chain. The viewport 2×2 turned editing and previewing from mutually exclusive into composable. The editor handed game-directory ownership back to Studio. Each piece answers the same question: in this editor, who owns what? Once boundaries are clear, modules can iterate independently — touch chat without rebuilding workbench, swap the editor without touching Studio&#39;s project layout. Studio is moving from one big ball of mud to a set of modules with clear responsibilities.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle täglichen Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele. Open Source, Apache-Lizenz 2.0.</p>
+  </div>
+  <div class="col"><h4>Website</h4>
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/blog/">Blog</a>
+    <a href="/de/docs/">Dokumente</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/games/">Spiele</a>
+    <a href="/de/marketplace/">Marktplatz</a>
+  </div>
+  <div class="col"><h4>Projekt</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

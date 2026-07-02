@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-27 · 引擎完全自立 + 更真实的材质 — ForgeaX</title>
+<meta name="description" content="里程碑日:引擎拔掉最后一个外部渲染库依赖,从此完全靠自己跑、还能自检每帧的像素级精度。材质升到自发光 + 环境光遮蔽 + 多种色调映射;更多老设备也能画得出;预览有了原生"播放器",五十行就能写个游戏;再加上全程 HTTPS 与预览自动恢复。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-27 · 引擎完全自立 + 更真实的材质 — ForgeaX" />
+<meta property="og:description" content="里程碑日:引擎拔掉最后一个外部渲染库依赖,从此完全靠自己跑、还能自检每帧的像素级精度。材质升到自发光 + 环境光遮蔽 + 多种色调映射;更多老设备也能画得出;预览有了原生"播放器",五十行就能写个游戏;再加上全程 HTTPS 与预览自动恢复。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-27.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-27.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-27.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-27.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-27.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-27.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-27.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-27.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-27.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-27.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-27</span></div>
+    <h1>引擎完全自立 + 更真实的材质</h1>
+    <p class="standfirst">里程碑日:引擎拔掉最后一个外部渲染库依赖,从此完全靠自己跑、还能自检每帧的像素级精度。材质升到自发光 + 环境光遮蔽 + 多种色调映射;更多老设备也能画得出;预览有了原生&quot;播放器&quot;,五十行就能写个游戏;再加上全程 HTTPS 与预览自动恢复。</p>
+    <div class="prose"><h2>自立的分水岭:从&quot;借壳&quot;到&quot;自己站住&quot;</h2>
+<p>这是引擎发展史上的一个分水岭日。一直以来,引擎在底层还留着对一个成熟的外部通用渲染库的依赖——用它当&quot;标准答案&quot;来对照自己画得对不对。这天把这最后一个依赖整个拔掉,引擎从此完全靠自己的渲染管线运行。这不是一次普通的删依赖,而是一个姿态上的转变:从&quot;站在别人肩膀上、随时要参照别人&quot;的状态,变成&quot;自己就是那个标准&quot;。下面几件事——自检基准、材质升档、设备兼容、原生预览——都是围绕这次&quot;自立&quot;展开的配套,合起来宣告:这台引擎已经长成一个能独立站住的成熟渲染器。</p>
+<h2>自带像素级对齐基准:自己给自己验真</h2>
+<p>拔掉外部库之后,一个现实问题随之而来:以前靠那个库当对照来确认&quot;画得对不对&quot;,现在没有它了,拿什么保证质量?答案是引擎自带了一套&quot;像素级对齐&quot;的基准——它能自己给自己出标准答案,逐像素核对每一帧渲染的结果,差一点就报警。这等于把&quot;质量裁判&quot;从外部请来的,变成了引擎自己内置的。它的深远意义在于:从此引擎的画质、性能、特性演进都完全掌握在自己手里,不再被外部库的能力边界和取舍牵着走——想加什么、想怎么优化,不必绕开别人的限制。一个能自我验真的引擎,才真正具备了长期独立演进的资格。</p>
+<h2>Tier-1 PBR 材质:自发光 + 环境光遮蔽 + 多种色调映射</h2>
+<p>材质系统这天统一并升了一档。底层把原本分成几种变体的材质合并成一套统一的、基于&quot;渲染通道&quot;的材质模型,既简化了概念,也为加新能力腾出了空间。在这套统一模型上,加了几样让画面更真实的能力:自发光,让物体能自己&quot;亮&quot;起来,做霓虹灯、发光符文、能量核心这类效果;环境光遮蔽,让缝隙、转角、接触处自然变暗,大大增强立体感;还有多种色调映射风格,让你能挑画面的整体观感(冷峻、温暖、电影感等)。为了不让&quot;材质花样一多就掉帧&quot;,这些复杂材质会被串进渲染管线的缓存里,相同的复用、不同的各管各的。综合起来,场景里的东西看上去更&quot;对&quot;、更有质感——这是从&quot;画得出&quot;迈向&quot;画得好看&quot;的关键升级。</p>
+<h2>更广的设备兼容:渲染设备层补齐 + 无高级特性也能兜底</h2>
+<p>这天把&quot;让引擎在更多机器上跑得起来&quot;也往前推了一截。底层的&quot;渲染设备层&quot;补齐了关键的一整组能力,让引擎在浏览器里能完整地申请并使用渲染所需的设备资源,不再缺胳膊少腿;在没有最新显卡能力的退路上,也把离&quot;能正常出图&quot;仅剩的几个缺口逐一接通。更贴心的是,对那些缺少某些现代显卡特性的设备,专门做了材质上的兼容方案,让它们即便走简化路径也能把物体正确画出来。综合下来,能正常跑起 3D 的机器范围又宽了一截。对一个面向大众的平台来说,&quot;在更弱的机器上也能跑&quot;和&quot;画得更好看&quot;同样重要——前者决定有多少人进得来,后者决定他们留不留得住。</p>
+<h2>预览有了原生&quot;播放器&quot;,五十行就能写个游戏</h2>
+<p>预览游戏这天用上了平台自己的原生运行宿主:一套清爽的游戏入口与加载器,负责把一个游戏正确地装载、跑起来,不必再绕一个外部宿主。配套把游戏模板压缩到了约五十行——也就是说,写一个能跑的游戏,从五十行起步就够了。这件事的价值在于&quot;起点足够轻&quot;:一个新手或一个 AI,面对的不是一大坨需要先读懂的框架代码,而是一份极简、清晰、能立刻往上加东西的骨架。起点越轻、越标准,&quot;聊出一个游戏&quot;这条路就越顺——AI 照着这个干净起点生成代码,出错更少;人接手时,也更容易看懂和修改。原生宿主 + 极简模板,是把&quot;做游戏&quot;的入门台阶削到最低的一步。</p>
+<h2>稳定性:全程 HTTPS + 预览自动恢复</h2>
+<p>这天还在稳定性上补了两笔。其一是支持&quot;全程 HTTPS&quot;的开发模式——某些现代浏览器能力(包括部分图形与设备特性)只在安全来源下才放开,走 HTTPS 能让这些能力正常可用,也更贴近真实部署环境。其二是预览的自动恢复:当预览因为后端的临时抖动而出错时,它会自己尝试重连、自愈,而不是停在一个错误页面等你手动刷新。这两件事都属于&quot;让你不被打断&quot;的功夫——开发时最破坏心流的,往往不是某个大 bug,而是这种隔三差五要手动救一下的小毛病。把它们自动化掉,长时间坐着做游戏才真正顺畅。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的核心,是引擎完成了&quot;自立&quot;。拔掉最后一个外部渲染依赖、自带像素级基准,意味着它从一个&quot;借别人壳跑、要参照别人&quot;的状态,长成了一个能独立站住、自己给自己验真的成熟渲染器。在这个底气之上,材质升到了能做真实质感、设备兼容覆盖到了更弱的机器、预览有了极简的原生起点、稳定性也更经得起折腾——每一项都是这次自立之后才更有意义的延伸。一个平台敢把最核心的渲染底座做成完全自研、不依赖任何外部库,图的是把命运攥在自己手里:从此画质能走多远、性能能优化到什么程度、要支持什么新特性,都不再受制于人。这正是这一天最该被记住的分量。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

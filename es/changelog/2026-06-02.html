@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-02 · One command to launch the desktop app + a node editor joins — ForgeaX</title>
+<meta name="description" content="A one-command desktop launcher, a visual node editor joining via manifest-driven plugin discovery with isolated plugins, a smoother chat with a preview watchdog, and a big ECS slim-down." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-02 · One command to launch the desktop app + a node editor joins — ForgeaX" />
+<meta property="og:description" content="A one-command desktop launcher, a visual node editor joining via manifest-driven plugin discovery with isolated plugins, a smoother chat with a preview watchdog, and a big ECS slim-down." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-02.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-02.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-02.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-02.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-02.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-02.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-02.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-02.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-02.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-02.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-06-02</span></div>
+    <h1>One command to launch the desktop app + a node editor joins</h1>
+    <p class="standfirst">This day one command launches the whole desktop Studio; plugin startup moved from hardcoded to manifest-driven discovery, a whole visual node editor joins as a plugin with plugins isolated from each other; chat gained handy interactions and the preview a load watchdog; and the engine did a round of ECS slimming.</p>
+    <div class="prose"><h2>Making both &quot;launch it&quot; and &quot;plug it in&quot; simple</h2>
+<p>The day&#39;s through-line is two &quot;made simpler&quot;s. One is making &quot;launching&quot; simple: running the whole Studio on the desktop used to mean memorizing a string of commands to start each service; now one command does it. The other is making &quot;plugging in&quot; simple: adding a new tool to the platform used to require hardcoding startup logic; now it&#39;s &quot;auto-discovery by manifest&quot; — drop in any plugin that follows the convention and it&#39;s recognized and launched. With a round of chat-experience polish and an internal engine slim-down, the day&#39;s overall work is paving both the &quot;use it&quot; and &quot;extend it&quot; roads flatter — easier for ordinary people to launch, easier for developers to integrate.</p>
+<h2>One command to open the desktop app</h2>
+<p>The desktop side gained a one-command launcher this day: a single command starts dev mode, builds a package, opens the app directly, or shuts everything down, with docs explaining the three ways to run — browser dev, desktop dev, and the packaged desktop app, and what each suits. Running the whole Studio on the desktop used to mean memorizing and typing a string of commands in order to start each service, hard to recover from when something went wrong; now one line brings up the whole desktop side. Underneath, start/stop moved to &quot;process groups&quot;: a group of services starts together and is cleanly cleaned up together on exit — directly solving a long-standing annoyance where closing the window left a pile of &quot;zombie processes&quot; in the background, quietly holding ports and memory and bogging down the machine. Flattening the launch bar is a precondition for more people to install it on their own computers and use it daily.</p>
+<h2>A node editor joins the store, with plugins isolated</h2>
+<p>This day changed plugin startup from &quot;a pile of hardcoded logic&quot; to &quot;auto-discovery by manifest&quot;: any standalone plugin with a manifest declaration, dropped in, is automatically recognized and launched by the system, with no need to edit the main program&#39;s startup code for each plugin. Using this generic mechanism, a complete visual node editor (bringing a &quot;3D low-poly&quot; and a &quot;scene-generator&quot; workbench) joined as a whole plugin. An isolation issue was solved alongside: each plugin now has its own isolated project root, so several workbenches no longer share one project and edit the wrong place by crosstalk; in development, plugins default to hot reload, so a one-line change takes effect at once. The significance: it turns &quot;how third-party tools integrate&quot; from one-off hardcoding into a reusable, auto-discoverable, mutually-isolated standard — a key step toward a &quot;plugin ecosystem,&quot; making any future tool both clean and plug-and-play.</p>
+<h2>A smoother chat + a preview load watchdog</h2>
+<p>The conversation panel gained a set of everyday-smoothing interactions this day: switch the current model on the fly, replay history in segments (instead of laboriously scrolling one long strip), new entries for common actions in the top bar, and a context-usage ring showing at a glance how much budget remains. The preview gained an &quot;initial-load watchdog&quot;: if the first frame is slow to appear after loading, it auto-reloads and retries until the picture actually renders, rather than leaving you waiting at a white screen — this kind of &quot;occasionally won&#39;t load, need a manual refresh&quot; issue most wears your patience, and automating it away makes the experience much smoother. The backend also fixed a few chat hangs and ensured conversations genuinely run on the model you pick. Individually small, together these polish the highest-frequency surface of the day from &quot;usable&quot; to &quot;responsive.&quot;</p>
+<h2>A big ECS slim-down: fewer concepts, faster, easier to grasp</h2>
+<p>The engine did a heavy round of &quot;slimming&quot; this day on its core — the &quot;entity-component-system&quot; (ECS) that describes a game world. It removed or merged several cumbersome concepts: no longer needing a separate &quot;register component&quot; step, unifying &quot;local transform&quot; and &quot;world transform&quot; into one no-longer-split set, folding each world&#39;s own component numbering into one globally-unified identifier, dropping some redundant local caches, and peeling out a responsibility that shouldn&#39;t have been mixed with asset registration to be managed separately. Behind this is a design axiom running through the whole project: the measure of code quality isn&#39;t line count but &quot;how many concepts you must hold to understand any single spot&quot; — fewer concepts, fewer errors for both humans and AI reading it. This slimming is entirely invisible on the user&#39;s side, yet directly decides whether the engine, as it grows ever larger, can stay &quot;decomposable, fast, changeable.&quot; Continuously cutting the core&#39;s conceptual noise is the inner work that lets this engine evolve healthily long-term.</p>
+<h2>What this day means</h2>
+<p>The day&#39;s items seem to each mind their own corner, but inside share one pursuit: cutting friction. The one-command launcher cut the friction of &quot;launching,&quot; manifest auto-discovery cut the friction of &quot;plugging in,&quot; the chat polish and preview watchdog cut the friction of &quot;daily use,&quot; and the ECS slim-down cut the friction of &quot;reading and changing code.&quot; For a platform to be used by more people, extended by more tools, and maintained long-term, what usually matters isn&#39;t some dazzling big feature but smoothing these unremarkable frictions one by one. The less friction, the lower the bar, and the more people willing to come in, stay, and contribute. This day pushed forward several steps at once on the plain but fundamental matter of &quot;making everything a bit smoother.&quot;</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

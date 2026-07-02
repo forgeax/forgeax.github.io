@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-21 · 焕新界面 + 可嵌入工具窗的工作台 — ForgeaX</title>
+<meta name="description" content="这天界面做了一次系统级焕新:统一设计系统、整套图标、平滑动效、全新的预览外壳。工作台升级成"分屏插件"架构,第一次能装下一个完整的嵌入式工具窗;仪表盘以会话为中心重写、聊天不再串流;引擎补上 2D 精灵图层与一整套光照样例,安装启停也简化成一条命令。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-21 · 焕新界面 + 可嵌入工具窗的工作台 — ForgeaX" />
+<meta property="og:description" content="这天界面做了一次系统级焕新:统一设计系统、整套图标、平滑动效、全新的预览外壳。工作台升级成"分屏插件"架构,第一次能装下一个完整的嵌入式工具窗;仪表盘以会话为中心重写、聊天不再串流;引擎补上 2D 精灵图层与一整套光照样例,安装启停也简化成一条命令。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-21.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-21.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-21.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-21.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-21.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-21.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-21.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-21.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-21.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-21.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-21</span></div>
+    <h1>焕新界面 + 可嵌入工具窗的工作台</h1>
+    <p class="standfirst">这天界面做了一次系统级焕新:统一设计系统、整套图标、平滑动效、全新的预览外壳。工作台升级成&quot;分屏插件&quot;架构,第一次能装下一个完整的嵌入式工具窗;仪表盘以会话为中心重写、聊天不再串流;引擎补上 2D 精灵图层与一整套光照样例,安装启停也简化成一条命令。</p>
+    <div class="prose"><h2>从原型感走向产品感</h2>
+<p>前面一段时间,精力大多压在&quot;能不能跑通&quot;上;到这天,产品在视觉与结构上都到了该&quot;长大成人&quot;的节点。这天的主线就是把界面从一个功能拼装出来的原型,系统性地推向一个看着像、用着也像成型产品的形态——统一的设计语言、一致的图标、平滑的动效,以及一个更清楚的整体布局。与此同时,工作台、仪表盘、引擎几条线也各自往前推进。它们合起来传递的信号是:这个东西不再满足于&quot;能演示&quot;,而是开始认真对待&quot;长期被人每天打开使用&quot;时的观感与秩序。把这两件事(好看 + 好用)同时往前推,是产品从能用迈向好用的关键一跃。</p>
+<h2>焕新的界面:统一设计系统 + 图标 + 动效</h2>
+<p>界面这天做了一次系统级焕新。底层换上一套三层结构的设计令牌——把颜色、边框、间距这些基础视觉变量统一收口管理,而不是各处各写一套硬编码的样式;这样全站视觉天然一致,改一处主题就能处处生效,维护成本大幅下降。一整套清爽的线性图标接进了工作台与各处工具条,让原本靠表情符号或文字凑合的地方变得专业、统一。还加了一层动效:侧栏内容切换、面板进出都有平滑过渡,而不是生硬地瞬间跳变,视觉上的连续感让操作不那么割裂。顶部结构也做了升级。这些改动单看都不是&quot;功能&quot;,但合起来决定了你打开它的第一眼,会觉得这是个玩具,还是个工具。</p>
+<h2>工作台能装下完整的嵌入式工具窗</h2>
+<p>工作台这天升级成&quot;分屏插件&quot;架构:一个工具既能在侧栏放它的控件,也能接管整个主区域、铺开一个完整的工作界面。这解决了一个真实的局促——像&quot;角色生成&quot;这类需要大画布的工具,以前只能挤在一个小面板里施展不开;现在它能以嵌入式工具窗的形态住进工作台,占满主区域,像一个专业软件那样工作。第一个按这套架构迁移的就是角色生成工作台,它从此以独立的嵌入页面运行。聊天里还加了一个 /tool 命令,可以直接调用某个工具的能力,而不必每次都用自然语言描述一遍。这套架构的意义远不止&quot;窗口变大&quot;:它定义了&quot;第三方工具怎么以一等公民的身份接进工作台&quot;,是平台走向&quot;可被插件无限扩展&quot;的关键一步。</p>
+<h2>更干净的仪表盘,聊天不再串流</h2>
+<p>仪表盘这天做了一次以会话为中心的重写,收敛成总览、会话、分析三个清楚的视图,把一些重复、过时的旧页面下线。最直接的好处是:打开它不再蹦出一堆红字错误,而是干净、可信地呈现当前状态。聊天这边也修掉了一个恼人的老问题——每个对话标签页现在严格绑定它自己的会话,切换会话、或从仪表盘跳回聊天时,不会再串到上一条对话还在飞的输出流上;打断按钮也和后端的真实运行状态对齐,点了就真的停。版本号则常驻可见、切回窗口自动刷新。这些都是&quot;日常用着不添堵&quot;的基本盘,这天把它们一一补齐。</p>
+<h2>引擎:2D 精灵图层 + 一整套光照样例</h2>
+<p>引擎这天在 2D 和光照两头都有推进。2D 方面,新增了精灵图层:精灵可以分层、按正确的顺序叠放,做 2D 内容(背景、角色、UI 元素的前后关系)终于有了规整的底座,不必再靠手工 hack 控制谁压在谁上面。光照方面,把一整套循序渐进的光照样例铺完了——从基础着色、材质,到贴图光照、投光体、多光源同场,一系列章节都做成了可运行的引擎 demo。这些样例既是引擎光照能力的活文档,也是任何人(包括 AI)学习&quot;怎么用这套引擎布光&quot;的现成教材。2D 与 3D 两条线一起往前,意味着引擎不偏科,既能做平面也能做立体。</p>
+<h2>更简单的安装与启停</h2>
+<p>这天把安装与启停彻底简化了。现在一条命令就能把整套服务起起来,一条命令干净地停掉;后台只跑一个常驻的核心服务,不再像以前那样依赖容器环境、要先装一堆东西才能跑。一个曾经在某些系统上因为容器安装失败而卡住新人的坑,也随之被绕开。对想上手的人来说,&quot;从克隆到跑起来&quot;这条路被压到最短——这是降低使用门槛最实在的一环。一个再强的平台,如果第一步安装就劝退一半人,那它的能力也传递不出去;把入口修得足够平,本身就是产品力的一部分。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天是产品&quot;长相&quot;和&quot;骨架&quot;同时升级的一天。视觉焕新让它看起来像个成型产品,分屏工作台让第三方工具能真正住进来,干净的仪表盘和不串流的聊天让日常用着不添堵,引擎的 2D 图层与光照样例让能力更全面,简化的安装让更多人迈得进门。这些改动跨越了&quot;好看、好用、好扩展、好上手&quot;四个不同维度,却指向同一件事:让这个平台配得上被当成一个正经工具长期使用。一个产品从&quot;能跑的原型&quot;到&quot;愿意每天打开的工具&quot;,中间隔的往往不是某个杀手级功能,而正是这样一整天、在多个维度上同时把粗糙磨成精致的功夫。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

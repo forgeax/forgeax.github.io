@@ -1,83 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" />
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>关于 · About — ForgeaX</title>
-<meta name="description" content="ForgeaX 的愿景:让更小的团队借助 AI,做出过去需要更大团队才能完成的游戏。" />
+<title>About — ForgeaX</title>
+<meta name="description" content="ForgeaX's vision: let smaller teams, with AI, make games that used to require much larger ones." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="About — ForgeaX" />
+<meta property="og:description" content="ForgeaX's vision: let smaller teams, with AI, make games that used to require much larger ones." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/about.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/about.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/about.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/about.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/about.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/about.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/about.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/about.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/about.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/about.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/about.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-131" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
 </head>
 <body class="lang-en forgeax-site">
-<div id="site-header"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/docs/" data-nav="/docs/">Docs</a>
+      <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/games/" data-nav="/games/">Games</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Marketplace</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
+      <a href="/about.html" data-nav="/about.html" class="active">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/about.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/about.html" data-l="zh">中文</a><a class="lang-item" href="/ja/about.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/about.html" data-l="ko">한국어</a><a class="lang-item" href="/es/about.html" data-l="es">Español</a><a class="lang-item" href="/de/about.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/about.html" data-l="fr">Français</a><a class="lang-item" href="/pt/about.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Open in ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Open in Claude</a>
+          <button class="ask-item" id="copyMd">Copy page as Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
 <main>
   <div class="wrap page-head">
-    <h1><span data-lang="zh">关于 ForgeaX</span><span data-lang="en">About ForgeaX</span></h1>
-    <p><span data-lang="zh">为 AI 时代,做游戏开发的工具。</span><span data-lang="en">Game-development tools, built for the age of AI.</span></p>
+    <h1>About ForgeaX</h1>
+    <p>Game-development tools, built for the age of AI.</p>
   </div>
 
   <article class="read article" style="padding-top:20px">
     <div class="prose">
-      <p><span data-lang="zh">ForgeaX 是一个 <strong>AI 原生的个人游戏工作室</strong>。我们相信:做游戏的门槛,正在被 AI 重新定义。</span><span data-lang="en">ForgeaX is an <strong>AI-native personal game studio</strong>. We believe the barrier to making games is being redefined by AI.</span></p>
-      <p><span data-lang="zh">我们的愿景很直接 —— <strong>让更小的团队,借助 AI,做出过去需要更大团队才能完成的游戏。</strong>不是取代创作者,而是把"把想法变成可玩游戏"中间那一大段繁重的工程与制作,交给 AI 去扛。</span><span data-lang="en">Our vision is direct: <strong>let smaller teams, with AI, make games that used to require much larger ones.</strong> Not to replace creators, but to hand the heavy engineering and production between "idea" and "playable game" to AI.</span></p>
+      <p>ForgeaX is an <strong>AI-native personal game studio</strong>. We believe the barrier to making games is being redefined by AI.</p>
+      <p>Our vision is direct: <strong>let smaller teams, with AI, make games that used to require much larger ones.</strong> Not to replace creators, but to hand the heavy engineering and production between "idea" and "playable game" to AI.</p>
 
-      <h2><span data-lang="zh">它怎么工作</span><span data-lang="en">How it works</span></h2>
-      <p><span data-lang="zh">你在工作室里向一个叫 Forge 的 AI 主创描述你想要的游戏 —— 可以用对话,也可以在可视化编辑器里直接动手,未来还会支持图片、视频等更多输入。它会规划、必要时叫上各司其职的子 agent(玩法、设计、美术……),然后<strong>自己编写引擎代码</strong>,结果实时热重载到浏览器预览里。</span><span data-lang="en">In the studio you describe the game you want to an AI lead called Forge — through chat, by working directly in a visual editor, and (later) with inputs like images and video. It plans, brings in specialized sub-agents when needed (gameplay, design, art…), then <strong>writes the engine code itself</strong>, hot-reloading the result into a live browser preview.</span></p>
-      <p><span data-lang="zh">这背后有两块自研的底座:一个<strong>为 AI 视角重新设计的游戏引擎</strong>(让 AI 读得懂、写得动、错得明白),和一套<strong>引导 AI 持续收敛到正确结果的开发流程</strong>(需求进、可玩产物出,中间每一步可观测、可回溯)。</span><span data-lang="en">Underneath are two in-house foundations: an <strong>engine redesigned for the AI's point of view</strong> (so AI can read it, write it, and understand its errors), and a <strong>development loop that holds AI to a correct, verifiable result</strong> (requirements in, playable output out, every step observable and traceable).</span></p>
+      <h2>How it works</h2>
+      <p>In the studio you describe the game you want to an AI lead called Forge — through chat, by working directly in a visual editor, and (later) with inputs like images and video. It plans, brings in specialized sub-agents when needed (gameplay, design, art…), then <strong>writes the engine code itself</strong>, hot-reloading the result into a live browser preview.</p>
+      <p>Underneath are two in-house foundations: an <strong>engine redesigned for the AI's point of view</strong> (so AI can read it, write it, and understand its errors), and a <strong>development loop that holds AI to a correct, verifiable result</strong> (requirements in, playable output out, every step observable and traceable).</p>
 
-      <h2><span data-lang="zh">里面有什么</span><span data-lang="en">What's inside</span></h2>
-      <p><span data-lang="zh">四块东西协同工作:</span><span data-lang="en">Four pieces work together:</span></p>
+      <h2>What's inside</h2>
+      <p>Four pieces work together:</p>
       <ul>
-        <li><span data-lang="zh"><strong>一个 AI 原生引擎</strong> —— TypeScript 写的 ECS 引擎,双 RHI 渲染(WebGPU + 一套 wasm 后端)、PBR/IBL/SSAO 渲染、2D/3D 物理、glTF/FBX 资产与骨骼动画。它的 API、错误与状态都为 AI 读写而设计。</span><span data-lang="en"><strong>An AI-native engine</strong> — a TypeScript ECS engine with dual-RHI rendering (WebGPU + a wasm backend), PBR/IBL/SSAO, 2D/3D physics, glTF/FBX assets and skeletal animation. Its APIs, errors and state are shaped for AI to read and write.</span></li>
-        <li><span data-lang="zh"><strong>自进化开发闭环(ForgeaX closed loop)</strong> —— 七步闭环(需求 → 研究 → 计划 → 实现 → 验证 → 验收 → 合入),由编排者驱动一组角色化子 agent,内置 AI 评审与"真跑 + 截图"的沙箱验证;它吃自己的反馈持续进化,越跑越稳。</span><span data-lang="en"><strong>A self-evolving dev loop (the ForgeaX closed loop)</strong> — a seven-step pipeline (requirements → research → plan → implement → verify → judgment → finalize) driven by an orchestrator and role-specialized sub-agents, with AI review and a sandbox that actually runs and screenshots each build; it learns from its own feedback and grows steadier over time.</span></li>
-        <li><span data-lang="zh"><strong>AI 原生玩法</strong> —— 不止用 AI 做游戏,还支持把 AI 做进玩法本身:智能 NPC、生成式内容、可交互的 AI 体验。</span><span data-lang="en"><strong>AI-native gameplay</strong> — not just making games with AI, but building AI into the play itself: intelligent NPCs, generative content, interactive AI experiences.</span></li>
-        <li><span data-lang="zh"><strong>工作室与编辑器</strong> —— 对话区紧挨实时预览,可视化场景编辑器的改动直接回流到运行中的游戏;网页或桌面应用皆可。</span><span data-lang="en"><strong>The studio &amp; editor</strong> — a chat panel beside a live preview, and a visual scene editor whose edits flow straight back into the running game, on web or as a desktop app.</span></li>
-        <li><span data-lang="zh"><strong>Agent 团队与创作工具</strong> —— 制作、玩法、设计、叙事、美术、编码各有命名 agent;还有一整套工作台插件,生成角色、动画、3D 模型、特效、UI、音乐等。</span><span data-lang="en"><strong>An agent team &amp; creation tools</strong> — named agents for production, gameplay, design, narrative, art and coding, plus a marketplace of workbenches that generate characters, animation, 3D models, VFX, UI, music and more.</span></li>
+        <li><strong>An AI-native engine</strong> — a TypeScript ECS engine with dual-RHI rendering (WebGPU + a wasm backend), PBR/IBL/SSAO, 2D/3D physics, glTF/FBX assets and skeletal animation. Its APIs, errors and state are shaped for AI to read and write.</li>
+        <li><strong>A self-evolving dev loop (the ForgeaX closed loop)</strong> — a seven-step pipeline (requirements → research → plan → implement → verify → judgment → finalize) driven by an orchestrator and role-specialized sub-agents, with AI review and a sandbox that actually runs and screenshots each build; it learns from its own feedback and grows steadier over time.</li>
+        <li><strong>AI-native gameplay</strong> — not just making games with AI, but building AI into the play itself: intelligent NPCs, generative content, interactive AI experiences.</li>
+        <li><strong>The studio &amp; editor</strong> — a chat panel beside a live preview, and a visual scene editor whose edits flow straight back into the running game, on web or as a desktop app.</li>
+        <li><strong>An agent team &amp; creation tools</strong> — named agents for production, gameplay, design, narrative, art and coding, plus a marketplace of workbenches that generate characters, animation, 3D models, VFX, UI, music and more.</li>
       </ul>
 
-      <h2><span data-lang="zh">我们走在哪一步</span><span data-lang="en">Where we are</span></h2>
-      <p><span data-lang="zh">当前阶段是 <strong>用 AI 把想法做成可玩游戏</strong>:已经能在工作室里做出 FPS、ARPG、生存、射击等多款可玩 demo,引擎覆盖了 PBR 渲染、物理、骨骼动画等能力。这一阶段会持续打磨,把"AI 写出能出货的游戏"推进到更高的完成度。</span><span data-lang="en">The current stage is <strong>turning ideas into playable games with AI</strong>: we can already make playable FPS, ARPG, survival and shooter demos in the studio, with an engine covering PBR rendering, physics and skeletal animation. We'll keep polishing this stage toward shippable quality.</span></p>
+      <h2>Where we are</h2>
+      <p>The current stage is <strong>turning ideas into playable games with AI</strong>: we can already make playable FPS, ARPG, survival and shooter demos in the studio, with an engine covering PBR rendering, physics and skeletal animation. We'll keep polishing this stage toward shippable quality.</p>
 
-      <h2><span data-lang="zh">开源</span><span data-lang="en">Open source</span></h2>
-      <p><span data-lang="zh">ForgeaX 的工具层采用 <strong>Apache License 2.0</strong> —— 任何人都可以自由 fork、使用、商用与二次发布。我们希望它成为一个开放、可被社区共建的项目。详见 <a href="/license.html">版权说明</a>。</span><span data-lang="en">The ForgeaX tool layer is licensed under <strong>Apache License 2.0</strong> — anyone can freely fork, use, build commercially, and redistribute. We want it to be an open project the community can build together. See the <a href="/license.html">license page</a>.</span></p>
+      <h2>Open source</h2>
+      <p>The ForgeaX tool layer is licensed under <strong>Apache License 2.0</strong> — anyone can freely fork, use, build commercially, and redistribute. We want it to be an open project the community can build together. See the <a href="/license.html">license page</a>.</p>
 
-      <blockquote class="manifest-line"><span data-lang="zh">让更小的团队,做出更大的游戏。</span><span data-lang="en">Let smaller teams make bigger games.</span></blockquote>
+      <blockquote class="manifest-line">Let smaller teams make bigger games.</blockquote>
     </div>
     <p class="cta-row">
-      <a class="btn primary" href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener"><span data-lang="zh">在 GitHub 关注我们</span><span data-lang="en">Follow us on GitHub</span></a>
-      <a class="btn ghost" href="/showcase/"><span data-lang="zh">看看案例</span><span data-lang="en">See the showcase</span></a>
+      <a class="btn primary" href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Follow us on GitHub</a>
+      <a class="btn ghost" href="/showcase/">See the showcase</a>
     </p>
   </article>
 
   <section class="wrap section">
-    <h2><span data-lang="zh">项目仓库</span><span data-lang="en">Repositories</span></h2>
-    <p class="lead"><span data-lang="zh">ForgeaX 沿用多仓结构,每个子系统是一个独立仓库,集中在 GitHub 组织 <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener" style="color:var(--brand)">ForgeaX-Games</a> 下。所有仓库均已<strong>开源</strong>(Apache-2.0),可直接克隆。</span><span data-lang="en">ForgeaX keeps a multi-repo structure: each subsystem is its own repository under the GitHub org <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener" style="color:var(--brand)">ForgeaX-Games</a>. All repositories are <strong>open source</strong> (Apache-2.0) and ready to clone.</span></p>
+    <h2>Repositories</h2>
+    <p class="lead">ForgeaX keeps a multi-repo structure: each subsystem is its own repository under the GitHub org <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener" style="color:var(--brand)">ForgeaX-Games</a>. All repositories are <strong>open source</strong> (Apache-2.0) and ready to clone.</p>
     <div class="grid c3">
-      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-engine" target="_blank" rel="noopener"><div class="ico"><i data-lucide="settings"></i></div><h3>forgeax-engine</h3><p><span data-lang="zh">AI 原生 ECS 游戏引擎(渲染 / 物理 / 资产 / 动画)。</span><span data-lang="en">The AI-native ECS engine (rendering / physics / assets / animation).</span></p><span class="more">GitHub</span></a>
-      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-cli" target="_blank" rel="noopener"><div class="ico"><i data-lucide="bot"></i></div><h3>forgeax-cli</h3><p><span data-lang="zh">智能体内核 / 命令行(编排、会话、可换芯)。</span><span data-lang="en">The agent kernel / CLI (orchestration, sessions, swappable backends).</span></p><span class="more">GitHub</span></a>
-      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-server" target="_blank" rel="noopener"><div class="ico"><i data-lucide="globe"></i></div><h3>forgeax-server</h3><p><span data-lang="zh">工作室运行时(chat / fs / ws / HMR)。</span><span data-lang="en">The studio runtime (chat / fs / ws / HMR).</span></p><span class="more">GitHub</span></a>
-      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-harness" target="_blank" rel="noopener"><div class="ico"><i data-lucide="wrench"></i></div><h3>forgeax-harness</h3><p><span data-lang="zh">七步开发流水线。</span><span data-lang="en">The seven-step development loop.</span></p><span class="more">GitHub</span></a>
-      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-interface" target="_blank" rel="noopener"><div class="ico"><i data-lucide="palette"></i></div><h3>forgeax-interface</h3><p><span data-lang="zh">Studio UI + 场景编辑器 + 桌面壳。</span><span data-lang="en">Studio UI + scene editor + desktop shell.</span></p><span class="more">GitHub</span></a>
-      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-marketplace" target="_blank" rel="noopener"><div class="ico"><i data-lucide="shopping-cart"></i></div><h3>forgeax-marketplace</h3><p><span data-lang="zh">插件市场;工作台仓命名 <code>forgeax-wb-*</code>。</span><span data-lang="en">The plugin marketplace; workbench repos are <code>forgeax-wb-*</code>.</span></p><span class="more">GitHub</span></a>
-      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-games" target="_blank" rel="noopener"><div class="ico"><i data-lucide="gamepad-2"></i></div><h3>forgeax-games</h3><p><span data-lang="zh">游戏 demo 与共享游戏库。</span><span data-lang="en">Game demos and the shared library.</span></p><span class="more">GitHub</span></a>
-      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener"><div class="ico"><i data-lucide="package"></i></div><h3>forgeax-studio</h3><p><span data-lang="zh">总集成仓 —— 一键启动工作室。</span><span data-lang="en">The umbrella repo — a one-command studio.</span></p><span class="more">GitHub</span></a>
+      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-engine" target="_blank" rel="noopener"><div class="ico"><i data-lucide="settings"></i></div><h3>forgeax-engine</h3><p>The AI-native ECS engine (rendering / physics / assets / animation).</p><span class="more">GitHub</span></a>
+      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-cli" target="_blank" rel="noopener"><div class="ico"><i data-lucide="bot"></i></div><h3>forgeax-cli</h3><p>The agent kernel / CLI (orchestration, sessions, swappable backends).</p><span class="more">GitHub</span></a>
+      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-server" target="_blank" rel="noopener"><div class="ico"><i data-lucide="globe"></i></div><h3>forgeax-server</h3><p>The studio runtime (chat / fs / ws / HMR).</p><span class="more">GitHub</span></a>
+      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-harness" target="_blank" rel="noopener"><div class="ico"><i data-lucide="wrench"></i></div><h3>forgeax-harness</h3><p>The seven-step development loop.</p><span class="more">GitHub</span></a>
+      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-interface" target="_blank" rel="noopener"><div class="ico"><i data-lucide="palette"></i></div><h3>forgeax-interface</h3><p>Studio UI + scene editor + desktop shell.</p><span class="more">GitHub</span></a>
+      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-marketplace" target="_blank" rel="noopener"><div class="ico"><i data-lucide="shopping-cart"></i></div><h3>forgeax-marketplace</h3><p>The plugin marketplace; workbench repos are <code>forgeax-wb-*</code>.</p><span class="more">GitHub</span></a>
+      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-games" target="_blank" rel="noopener"><div class="ico"><i data-lucide="gamepad-2"></i></div><h3>forgeax-games</h3><p>Game demos and the shared library.</p><span class="more">GitHub</span></a>
+      <a class="card" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener"><div class="ico"><i data-lucide="package"></i></div><h3>forgeax-studio</h3><p>The umbrella repo — a one-command studio.</p><span class="more">GitHub</span></a>
     </div>
   </section>
+
   <section class="wrap section">
-    <h2><span data-lang="zh">联系我们</span><span data-lang="en">Get in touch</span></h2>
-    <p class="lead"><span data-lang="zh">有疑问、想合作,或想加入团队?给我们写信 —— 每一封我们都会认真读。</span><span data-lang="en">Questions, partnership ideas, or interested in joining the team? Write to us — we read every message.</span></p>
+    <h2>Get in touch</h2>
+    <p class="lead">Questions, partnership ideas, or interested in joining the team? Write to us — we read every message.</p>
     <div class="grid c3">
-      <a class="card" href="mailto:forgeax@outlook.com?subject=ForgeaX%20%E2%80%94%20Question%20%2F%20%E7%96%91%E9%97%AE"><div class="ico"><i data-lucide="message-circle"></i></div><h3><span data-lang="zh">疑问与反馈</span><span data-lang="en">Questions &amp; feedback</span></h3><p><span data-lang="zh">用法、bug、功能建议 —— 任何想法都欢迎。</span><span data-lang="en">Usage, bugs, feature ideas — anything is welcome.</span></p><span class="more">forgeax@outlook.com</span></a>
-      <a class="card" href="mailto:forgeax@outlook.com?subject=ForgeaX%20%E2%80%94%20Collaboration%20%2F%20%E5%90%88%E4%BD%9C"><div class="ico"><i data-lucide="handshake"></i></div><h3><span data-lang="zh">合作</span><span data-lang="en">Collaboration</span></h3><p><span data-lang="zh">集成、共建、商务合作 —— 一起聊聊可能性。</span><span data-lang="en">Integrations, co-building, partnerships — lets explore it together.</span></p><span class="more">forgeax@outlook.com</span></a>
-      <a class="card" href="mailto:forgeax@outlook.com?subject=ForgeaX%20%E2%80%94%20Joining%20the%20team%20%2F%20%E5%8A%A0%E5%85%A5%E5%9B%A2%E9%98%9F"><div class="ico"><i data-lucide="rocket"></i></div><h3><span data-lang="zh">加入团队</span><span data-lang="en">Join the team</span></h3><p><span data-lang="zh">认同 AI 原生的游戏开发?带上你的作品来找我们。</span><span data-lang="en">Believe in AI-native game dev? Bring your work and reach out.</span></p><span class="more">forgeax@outlook.com</span></a>
+      <a class="card" href="mailto:forgeax@outlook.com?subject=ForgeaX%20%E2%80%94%20Question%20%2F%20%E7%96%91%E9%97%AE"><div class="ico"><i data-lucide="message-circle"></i></div><h3>Questions &amp; feedback</h3><p>Usage, bugs, feature ideas — anything is welcome.</p><span class="more">forgeax@outlook.com</span></a>
+      <a class="card" href="mailto:forgeax@outlook.com?subject=ForgeaX%20%E2%80%94%20Collaboration%20%2F%20%E5%90%88%E4%BD%9C"><div class="ico"><i data-lucide="handshake"></i></div><h3>Collaboration</h3><p>Integrations, co-building, partnerships — lets explore it together.</p><span class="more">forgeax@outlook.com</span></a>
+      <a class="card" href="mailto:forgeax@outlook.com?subject=ForgeaX%20%E2%80%94%20Joining%20the%20team%20%2F%20%E5%8A%A0%E5%85%A5%E5%9B%A2%E9%98%9F"><div class="ico"><i data-lucide="rocket"></i></div><h3>Join the team</h3><p>Believe in AI-native game dev? Bring your work and reach out.</p><span class="more">forgeax@outlook.com</span></a>
     </div>
-    <p class="lead" style="margin-top:14px"><span data-lang="zh">也可以直接邮件:<a href="mailto:forgeax@outlook.com" style="color:var(--brand)">forgeax@outlook.com</a></span><span data-lang="en">Or just email us directly: <a href="mailto:forgeax@outlook.com" style="color:var(--brand)">forgeax@outlook.com</a></span></p>
+    <p class="lead" style="margin-top:14px">Or just email us directly: <a href="mailto:forgeax@outlook.com" style="color:var(--brand)">forgeax@outlook.com</a></p>
   </section>
 
 </main>
-<div id="site-footer"></div>
-<script src="/assets/site.js?v=forgeax-ui-130"></script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/changelog/">Changelog</a>
+    <a href="/blog/">Blog</a>
+    <a href="/docs/">Docs</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/games/">Games</a>
+    <a href="/marketplace/">Marketplace</a>
+  </div>
+  <div class="col"><h4>Project</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
 </body>
 </html>

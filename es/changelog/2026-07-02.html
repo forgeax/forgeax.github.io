@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-02 · Forge gets long-term memory: the more you talk, the more it knows — ForgeaX</title>
+<meta name="description" content="Agents gain a Soul memory system that automatically extracts and persists key context from conversations, with a new Settings panel to control it; the editor's Mesh panel shows per-entity geometry stats; a ring-0 agent-host sidecar handles process supervision and IPC; and the CLI fixes a Windows argument-length limit that broke Cursor integration." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-02 · Forge gets long-term memory: the more you talk, the more it knows — ForgeaX" />
+<meta property="og:description" content="Agents gain a Soul memory system that automatically extracts and persists key context from conversations, with a new Settings panel to control it; the editor's Mesh panel shows per-entity geometry stats; a ring-0 agent-host sidecar handles process supervision and IPC; and the CLI fixes a Windows argument-length limit that broke Cursor integration." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-07-02.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-02.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-02.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-02.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-02.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-02.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-07-02.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-07-02.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-02.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-02.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-07-02</span></div>
+    <h1>Forge gets long-term memory: the more you talk, the more it knows</h1>
+    <p class="standfirst">The biggest change this day is giving Forge &quot;long-term memory.&quot; Before, every new conversation started like a first meeting; now it can automatically distill key information from past sessions and recall it in new ones — your preferences, your project conventions, the bug you were halfway through fixing, it remembers all of it. A Memory toggle was added to the Settings panel so you stay in control. On the editor side, the Mesh panel can now show per-entity geometry stats; underneath, a new agent-host process supervisor landed; and a Windows argument-length limit that broke Cursor integration was fixed.</p>
+    <div class="prose"><h2>Soul memory: from &quot;starting fresh each time&quot; to &quot;learning as you go&quot;</h2>
+<p>One of the most frustrating things about AI assistants is &quot;amnesia between sessions.&quot; You spend 20 minutes yesterday explaining your project&#39;s code conventions, naming preferences and pitfalls to avoid, then open a new conversation today and it&#39;s forgotten everything — you start from scratch. The Soul memory system shipped this day exists to fix that. At the end of each conversation (or at suitable moments during it), it automatically distills information worth retaining long-term — things like &quot;this project uses Bun not Node,&quot; &quot;the user prefers concise code without excessive comments,&quot; &quot;the game&#39;s protagonist is called Arin&quot; — and persists these memories to disk. When a new conversation begins, these memories are injected into Forge&#39;s context so it &quot;starts with memory.&quot; Technically, memory extraction uses a fork mechanism: it forks a lightweight extraction task from the current conversation, runs it asynchronously without disturbing the ongoing chat, and writes to the memory store when done.</p>
+<h2>Settings panel: memory under your control</h2>
+<p>Memory is a good thing, but &quot;the AI deciding what to remember on its own&quot; can also be unsettling. So this day also added a Memory section in the Settings panel: you can toggle automatic memory extraction on or off, see what Forge has remembered, and delete entries you don&#39;t want kept. This design follows a principle: the AI can learn proactively, but humans always have a veto. The memory switch defaults to on (so most users benefit immediately), but can be turned off with one click at any time — and turning it off reverts Forge to &quot;start fresh each time&quot; mode with no residue.</p>
+<h2>The editor: Mesh panel shows geometry detail per entity</h2>
+<p>The editor&#39;s Mesh panel added a handy small feature this day: in entity mode, each object shows its geometry stats alongside — vertex count, triangle count, material count and so on. Before you could only see &quot;this is a mesh&quot; without knowing how heavy it was; now you can tell at a glance &quot;this model has 500K faces, probably needs decimation&quot; or &quot;this one is just 200 faces, safe to place many.&quot; The previously shown &quot;Kind&quot; field, which was misleading in this context, was hidden at the same time. It looks like a small change, but for anyone doing scene optimization, it means no longer needing to open an external tool just to check polygon counts.</p>
+<h2>Agent-host: a dedicated housekeeper for agents</h2>
+<p>A new agent-host process supervisor landed at the infrastructure level — think of it as a &quot;housekeeper&quot; for agents. Running as a ring-0 sidecar, it handles agent process lifecycle management (start, monitor, restart, graceful shutdown) and inter-process communication (IPC). Previously agent process management was scattered across the codebase with no unified supervisor; now with agent-host, a crashed agent restarts automatically and message passing between multiple agents has a standard channel. This is the infrastructure that makes Team multi-agent collaboration more robust — a team can only work efficiently when someone is &quot;watching&quot; each member.</p>
+<h2>Windows CLI fix: Cursor integration no longer truncates</h2>
+<p>A Windows-only issue was also fixed: when calling the Forge CLI through Cursor, a long prompt would be truncated by Windows <code>cmd.exe</code> due to its argument-length limit, causing the agent to receive only half an instruction. The fix feeds the prompt through stdin instead, bypassing the command-line argument length cap. This kind of platform-specific edge case is insidious — works perfectly on Mac, mysteriously fails on Windows — but fixing it is a real reliability gain for Windows users.</p>
+<h2>What this day means</h2>
+<p>The keyword of this day is &quot;accumulation.&quot; Soul memory means Forge&#39;s capability no longer resets to zero each time, but accumulates with use — the more you use it, the better it knows your project, your habits, your preferences, and the more efficient it becomes. Agent-host gives multi-agent collaboration a reliable foundation, and the editor&#39;s geometry stats give optimization a data basis. Every change points in the same direction: turning Forge from &quot;a temp worker improvising each session&quot; into &quot;a partner who remembers, is dependable, and can work alongside you long-term.&quot;</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

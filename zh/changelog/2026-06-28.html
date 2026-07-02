@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-28 · 一条命令,从此 Windows 也能跑 — ForgeaX</title>
+<meta name="description" content="这天把安装和启动脚本从 bash 整体搬到了跨平台的 Bun TypeScript:同一套命令在 macOS、Linux、Windows 上一致运行,Windows 上不再需要 Git-Bash。配套修掉了一串 Windows 专属的拦路问题,把"会话"从绑死全局改成跟着每个游戏走,资产导入更稳,底层 CLI 也更快、更可控、更可审计。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-28 · 一条命令,从此 Windows 也能跑 — ForgeaX" />
+<meta property="og:description" content="这天把安装和启动脚本从 bash 整体搬到了跨平台的 Bun TypeScript:同一套命令在 macOS、Linux、Windows 上一致运行,Windows 上不再需要 Git-Bash。配套修掉了一串 Windows 专属的拦路问题,把"会话"从绑死全局改成跟着每个游戏走,资产导入更稳,底层 CLI 也更快、更可控、更可审计。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-28.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-28.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-28.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-28.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-28.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-28.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-28.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-28.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-28.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-28</span></div>
+    <h1>一条命令,从此 Windows 也能跑</h1>
+    <p class="standfirst">这天把安装和启动脚本从 bash 整体搬到了跨平台的 Bun TypeScript:同一套命令在 macOS、Linux、Windows 上一致运行,Windows 上不再需要 Git-Bash。配套修掉了一串 Windows 专属的拦路问题,把&quot;会话&quot;从绑死全局改成跟着每个游戏走,资产导入更稳,底层 CLI 也更快、更可控、更可审计。</p>
+    <div class="prose"><h2>最大的一道门槛:换平台就装不起来</h2>
+<p>长期以来,装好、跑起来这一步是靠一堆 bash 脚本完成的。这对 macOS 和 Linux 用户没问题,但对 Windows 用户就是一道硬门槛——bash 不是 Windows 的原生环境,要么得先装 Git-Bash 这类兼容层,要么各种诡异报错。对一个想让&quot;任何人都能把想法变成游戏&quot;的工具来说,&quot;装不起来&quot;是最致命的第一道劝退。这一天解决的就是这件事:把所有安装与启动脚本,从 bash 整体重写成用 Bun 跑的跨平台 TypeScript。Bun 在三大系统上行为一致,于是同一套命令、同一套逻辑,在 Windows 上和在 Mac 上跑得一模一样,不再需要任何兼容层。</p>
+<h2>命令收敛成一组好记的</h2>
+<p>搬迁的同时,入口也清理干净了。过去散落的、平台各异的脚本(<code>.sh</code>、<code>.bat</code>、<code>.ps1</code> 等)被一并删掉,统一成一组直白好记的命令:<code>bun run setup</code> 一次性装好环境、<code>bun run start</code> 起整套服务、<code>bun run stop</code> 停掉、<code>bun run app</code> 开桌面应用。不管你在哪个系统上,记住这几条就够了。对新用户,这意味着&quot;照着 README 抄四行就能跑起来&quot;,不用再分辨&quot;我是 Windows,这条该换成哪个&quot;;对老用户,这意味着不再有&quot;两份脚本(一份 sh、一份 ps1)各改一遍、还容易改漏&quot;的维护负担。把多份等价脚本收敛成一份跨平台的真源,正是这天工作的核心——少一份要同步的东西,就少一处会出错的地方。</p>
+<h2>顺手修掉一串 Windows 专属拦路虎</h2>
+<p>真正让 Windows 顺起来,光有跨平台脚本还不够,还得逐个修掉那些只在 Windows 上冒头的怪问题。这天处理的一类典型是:系统里那个&quot;假&quot;的 Python——Windows 自带一个其实没装、点了只会弹应用商店的 python3 占位程序,脚本如果天真地以为它能用,就会在装环境时莫名其妙地卡住。这天让安装流程学会识别并跳过这个占位、去找一个真正能用的 Python。类似这种&quot;在别的系统上根本不存在、只在 Windows 上才会绊一跤&quot;的细节,是跨平台支持里最磨人也最必要的一环——它们不增加任何功能,但每修掉一个,就有一批 Windows 用户能少卡一次、顺利往下走。</p>
+<h2>会话从&quot;绑死全局&quot;变成&quot;跟着游戏走&quot;</h2>
+<p>这天还动了一处更内在的结构:会话(也就是你和 Forge 的一段对话过程)的归属。此前会话是全局的、和具体游戏分离的;这天把它改成嵌套进每个游戏之下、按游戏来划分。意思是:你为&quot;太空射击&quot;这个项目和 Forge 的对话,和你为&quot;农场模拟&quot;那个项目的对话,从此各归各的、互不串味。这更符合直觉——一段对话本就属于某一个具体的游戏;也为后面更清晰的项目管理打底:切换游戏时,连同它的对话历史、上下文一起切过去,而不是面对一锅混在一起的全局会话。这类&quot;把数据归到它真正所属的地方&quot;的整理,平时不显眼,却让整个系统的心智模型更干净。</p>
+<h2>资产导入更稳 + 底层 CLI 更快更可控</h2>
+<p>这天还落了几项让日常更稳的修复。资产这边,修好了较大模型导入时的一个索引问题(大网格需要用更宽的整数来索引顶点,过去会在这里出错),并让模型导入时写出的元数据走统一的规范格式——导入一个大一点、复杂一点的模型不再容易&quot;翻车&quot;。底层驱动 AI 的 CLI 内核也做了多项打磨:让某些场景下的首轮响应去掉冗余、更快开始干活;修正了一处给 agent 注入&quot;行为准则&quot;的问题;并新增了可选地屏蔽用户自带外部工具、以及对 agent 调用宿主工具的审计记录——后者意味着&quot;这次 AI 到底动用了哪些工具&quot;变得有据可查。这些合起来,是把地基往&quot;更快、更可控、更可信&quot;的方向又夯实了一层。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的主角,是&quot;门槛&quot;。一个再强大的工具,如果一大批人因为系统不对、装不起来就被挡在门外,它的价值就先打了对折。把安装与启动彻底跨平台、让 Windows 用户也能一条命令跑起来,等于把这扇门向所有人敞开——这是&quot;任何人都能做游戏&quot;这句话能成立的前提之一。而同一天里,把会话归到游戏名下、把资产导入修稳、把 CLI 内核打磨得更快更可审计,则是在敞开门的同时,把屋里也收拾得更整洁。降低进入的门槛,再提高里面的质量——这一天两件事都做了。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

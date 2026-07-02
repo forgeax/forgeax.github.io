@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-22 · 项目正式对外开源 + 桌面端不再开机崩 — ForgeaX</title>
+<meta name="description" content="这是一个里程碑日子:整个项目正式对外开源——每个模块都配齐了图文并茂的中英双语文档、开源许可,并支持"自带你自己的 agent 订阅";同一天还修好了打包后桌面应用一启动就崩的顽疾、把官网示例画廊改成可边看列表边实时跑的分栏,引擎也落地了资产优先启动、阴影开关合并与骨骼动画修正。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-22 · 项目正式对外开源 + 桌面端不再开机崩 — ForgeaX" />
+<meta property="og:description" content="这是一个里程碑日子:整个项目正式对外开源——每个模块都配齐了图文并茂的中英双语文档、开源许可,并支持"自带你自己的 agent 订阅";同一天还修好了打包后桌面应用一启动就崩的顽疾、把官网示例画廊改成可边看列表边实时跑的分栏,引擎也落地了资产优先启动、阴影开关合并与骨骼动画修正。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-22.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-22.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-22.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-22.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-22.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-22.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-22.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-22.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-22.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-22.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-22</span></div>
+    <h1>项目正式对外开源 + 桌面端不再开机崩</h1>
+    <p class="standfirst">这是一个里程碑日子:整个项目正式对外开源——每个模块都配齐了图文并茂的中英双语文档、开源许可,并支持&quot;自带你自己的 agent 订阅&quot;;同一天还修好了打包后桌面应用一启动就崩的顽疾、把官网示例画廊改成可边看列表边实时跑的分栏,引擎也落地了资产优先启动、阴影开关合并与骨骼动画修正。</p>
+    <div class="prose"><h2>从&quot;自己用&quot;到&quot;给所有人用&quot;</h2>
+<p>这一天是一个项目生命中很特别的节点:它第一次完整地、体面地把自己交到了公众手里。开源不只是&quot;把代码公开&quot;这么一个动作,它意味着一整套面向陌生人的准备——别人凭什么看懂你在做什么?凭什么相信它能跑起来?凭什么愿意自己装、自己改?这一天做的所有事,都在回答这些问题:给每个模块写清楚&quot;它是什么、怎么协作、怎么上手&quot;的双语文档,补齐开源许可让别人能合法地使用和修改,确保下载下来的东西真能一键跑通而不是缺东少西,把桌面应用启动即崩的拦路虎清掉,把官网的示例做得能让人一眼看见&quot;这东西能做出什么&quot;。一个内部项目走向开源,最难的从来不是公开代码本身,而是把&quot;只有自己人懂&quot;的东西,重新打磨成&quot;任何人都能上手&quot;的样子。这一天,做的正是这件事。</p>
+<h2>项目正式对外开源:全模块双语文档 + 自带你自己的 agent 订阅</h2>
+<p>这天把对外开源所需的门面一次性磨完。最核心的一项,是给全部核心模块加上整个超级工程都配齐了图文并茂的中英双语文档,而且统一成同一种三段式结构:第一段讲&quot;它为什么不一样&quot;(这个平台到底特别在哪),第二段讲&quot;一条七步的人机协作闭环&quot;(人和 AI 是怎么一步步把一个想法变成游戏的),第三段是&quot;各模块地图&quot;(整个项目由哪些部分组成、各管什么)。这种统一结构让任何一个陌生人,无论先点开哪个模块,都能用同一套心智模型快速读懂。命令行那块还专门加了一节&quot;自带你自己的 agent 订阅&quot;:你不必被绑死在某一家,而是可以接上自己已有的编码 agent 订阅或接口来驱动整个平台——四种主流方式任选其一。每个子模块也都补齐了开源许可,让别人能在清晰的授权下放心地使用、修改、再分发。对一个想被社区了解、被开发者二次开发的项目来说,这套文档和许可,就是它递给世界的第一张名片。</p>
+<h2>桌面 App 不再开机就崩</h2>
+<p>开源发布要让人&quot;下载就能跑&quot;,而当时打包出来的桌面应用恰恰栽在这一关上:一启动就反复崩溃,后端不断报找不到某个核心运行模块。根因在于打包时漏带了那个模块及其依赖,离线运行时自然找不到。这天的修法是把所需的整个运行依赖闭包都完整打进桌面包里随包自带,确保离线环境下也一应俱全、能正常起来。同时还顺手解决了两个相关的坑:一是把桌面包改成单游戏打包,绕开了多个游戏同时存在时资源标识相互撞车的老问题;二是容忍了打包过程中复制大量文件时偶发的&quot;文件刚刚消失&quot;的小故障——以前这种瞬时抖动会因为严格的错误检查而把整个构建直接中断。改完之后,桌面应用能稳定地启动、正常地进入,不再开机就挂。这件事的意义,正好踩在开源发布的节骨眼上:再好的项目,如果别人下载下来连打都打不开,一切都无从谈起。</p>
+<h2>官网示例画廊:边看列表边跑 demo</h2>
+<p>配合开源,官网的示例画廊也重做成了一种&quot;边看边跑&quot;的分栏布局。左边是所有示例的列表,可以按类别筛选;右边是一个实时运行的预览框,你点中哪个示例,右侧就直接把它跑起来——不必下载、不必离开页面,即点即看。它还支持深链:把某个示例的网址发给别人,对方打开就能直接定位到那一个,方便分享和引用。配套还做了一个插件信息生成器,把各个插件的元数据自动抓取成结构化数据,于是画廊里的卡片不再是看不动的静态图,而是能点开弹窗看详情。对一个刚开源、想让人快速建立&quot;这东西到底能做什么&quot;印象的项目来说,一个能即点即玩的示例画廊,胜过千言万语的介绍——亲眼看到一个 demo 跑起来,远比读一段描述更有说服力。</p>
+<h2>引擎:资产优先启动 + 阴影开关合并 + 骨骼动画修正</h2>
+<p>引擎这天也是大日子,推进了好几项。其一是&quot;资产优先&quot;的启动方式落地,全部六个样例游戏一并迁过来:游戏不再靠一段开场代码把场景一件件搭出来,而是从一份结构化的资产(场景描述)出发直接实例化——这更干净、也更利于被可视化编辑器读写。其二是把投影开关简化了:以前要给方向光单独挂一个&quot;投影&quot;组件才能让它产生阴影,现在合并成方向光自带的一个开关,需要投影就打开,概念少了一个,用起来更直觉。其三是修了骨骼动画里一个真实存在的方向错乱 bug——旋转数据之前被错误地当成了另一种表示方式,导致从专业工具导入的带动画模型转向不对;修好后转向终于正确。此外,瓦片地图支持了&quot;物体层&quot;渲染(在格子地图之上,每个格子可以放置带朝向、翻转、轴心的独立物体),做 2D 关卡更灵活;底层还加固了资产注册和渲染器在出意外后的健康恢复。这些改进有的是为了更干净的架构,有的是为了修正错误,有的是为了拓展能力,但都在让引擎这块地基更扎实——恰好赶在开源、要被更多人审视和使用的时刻。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的分量,在于&quot;对外&quot;两个字。在此之前,平台的所有进步都是面向内部、面向自己的;而从这天起,它第一次完整地把自己摆在了公众面前——任何人都能下载、阅读、运行、修改、贡献。开源是一个项目从&quot;一群人的作品&quot;走向&quot;一件公共的东西&quot;的转折,它把这个项目放进了一个更大的、由全世界开发者共同审视和参与的语境里。值得一提的是,这一天为开源所做的努力,几乎全是&quot;为别人着想&quot;的:写清楚文档,是为了让陌生人看懂;补齐许可,是为了让别人放心使用;修好桌面崩溃、确保一键能跑,是为了让第一次接触它的人不被劝退;做好示例画廊,是为了让人一眼看见它的可能性。一个项目愿意花一整天,只为把自己变得&quot;对别人更友好&quot;,这本身就说明它准备好了走向更广阔的世界。从这天起,这个用 AI 做游戏的平台,不再只属于做它的人。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

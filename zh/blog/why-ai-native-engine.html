@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>为什么要做一个 AI 原生引擎 — ForgeaX</title>
+<meta name="description" content="当 AI 成为引擎的第一用户，API、错误信息、状态形态都应该为 AI 的视角重新设计。这篇聊聊我们为此做的几个具体取舍。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="为什么要做一个 AI 原生引擎 — ForgeaX" />
+<meta property="og:description" content="当 AI 成为引擎的第一用户，API、错误信息、状态形态都应该为 AI 的视角重新设计。这篇聊聊我们为此做的几个具体取舍。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/blog/why-ai-native-engine.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/blog/why-ai-native-engine.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/blog/why-ai-native-engine.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/blog/why-ai-native-engine.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/blog/why-ai-native-engine.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/blog/why-ai-native-engine.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/blog/why-ai-native-engine.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/blog/why-ai-native-engine.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/blog/why-ai-native-engine.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/blog/why-ai-native-engine.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/blog/why-ai-native-engine.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/" class="active">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/blog/why-ai-native-engine.html" data-l="en">English</a><a class="lang-item active" href="/zh/blog/why-ai-native-engine.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/blog/why-ai-native-engine.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/blog/why-ai-native-engine.html" data-l="ko">한국어</a><a class="lang-item" href="/es/blog/why-ai-native-engine.html" data-l="es">Español</a><a class="lang-item" href="/de/blog/why-ai-native-engine.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/blog/why-ai-native-engine.html" data-l="fr">Français</a><a class="lang-item" href="/pt/blog/why-ai-native-engine.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/blog/">← 返回观点</a>
+    <div class="meta"><span class="tag">观点</span><span>2026年6月16日</span></div>
+    <h1>为什么要做一个 AI 原生引擎</h1>
+    <p class="standfirst">大多数游戏引擎的 API 是给人写的。当写代码的主力变成 AI，引擎就该换一种长法。</p>
+    <div class="prose"><p>ForgeaX 的核心是：用户描述游戏，AI 来写引擎代码。这听起来只是&quot;换个人写代码&quot;，但真正做下去会发现，现成引擎对 AI 并不友好 —— 它们假设的读者是一个能看文档、能猜、能脑补上下文的人类。</p>
+<p>我们的取舍很简单：<strong>AI 是引擎的第一用户。当&quot;对 AI 友好&quot;和&quot;对人友好&quot;冲突时，优先 AI。</strong> 下面是几个具体的做法。</p>
+<h2>一、单一可信源，其余派生</h2>
+<p>同一个事实只有一处定义，其他地方都从它派生。比如组件的字段定义内联在 schema 里，inspector、调试器、工具链直接读 schema，而不是去 grep 源码瞎猜。AI 不需要&quot;记住&quot;散落各处的约定，因为约定只有一处。</p>
+<h2>二、错误要让 AI 看得懂、能恢复</h2>
+<p>错误不是 <code>throw</code> 一句人话就完事。我们用闭包的错误码，每个错误自带&quot;这是什么、为什么、怎么恢复&quot;的结构化信息。AI 拿到错误，能直接知道下一步该改哪里，而不是把异常文本当成玄学。</p>
+<h2>三、用结构化数据代替&quot;看显示器&quot;</h2>
+<p>渲染 bug 最难的地方在于&quot;它在屏幕上看起来不对&quot;。人可以盯着显示器调，AI 不行。所以引擎支持把一帧的渲染调用录下来 —— draw call、绑定、渲染目标、管线状态都能离线读取、重放、定位到第 N 次绘制时的完整状态。视觉问题被转成了 AI 能 <code>Read</code> 的数据。</p>
+<h2>四、双实现互相验证</h2>
+<p>渲染层有两套后端实现（WebGPU 与一套 wasm 实现），走同一套接口。它们同时出图：一旦 AI 把引擎 API 用错了，另一套后端会立刻表现出不一致，问题随即暴露。这比&quot;等人来 review&quot;快得多。</p>
+<hr>
+<p>这些设计有一个共同的衡量标准：<strong>读者（无论人还是 AI）要装进脑子里的概念越少越好。</strong> API 越自洽、越能就地索引，AI 写对的概率就越高，人来接手时也越省心。</p>
+<p>AI 原生不是一句口号，而是一连串&quot;为 AI 视角重做一遍&quot;的具体决定。我们会在文档和后续更新里，把这些逐步展开。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/docs/">看看开发文档大纲 →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

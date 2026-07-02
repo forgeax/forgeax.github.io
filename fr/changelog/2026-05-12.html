@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-12 · Engine asset system v1 + deep chat polish — ForgeaX</title>
+<meta name="description" content="A 30-hour push: an engine asset system with handle references, a pixel-parity benchmark gated in CI, sandbox visual verification, ~100 chat-polish passes, heavy backend hardening, and an HMR-independence refactor." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-12 · Engine asset system v1 + deep chat polish — ForgeaX" />
+<meta property="og:description" content="A 30-hour push: an engine asset system with handle references, a pixel-parity benchmark gated in CI, sandbox visual verification, ~100 chat-polish passes, heavy backend hardening, and an HMR-independence refactor." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-05-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/docs/" data-nav="/docs/">Documents</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/games/" data-nav="/games/">Jeux</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Marché</a>
+      <a href="/fr/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-12.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-12.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-12.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-12.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-05-12.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-05-12.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Demandez à l'IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Ouvrir dans ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Ouvert à Claude</a>
+          <button class="ask-item" id="copyMd">Copier la page en tant que Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Tous les jours</span><span>2026-05-12</span></div>
+    <h1>Engine asset system v1 + deep chat polish</h1>
+    <p class="standfirst">A round-the-clock push across four parallel tracks: the engine got a proper asset system, rendering raised a &quot;pixel-parity&quot; quality yardstick gated in CI, the sandbox let the agent &quot;see&quot; whether the picture is right, the chat panel took a hundred polish passes, the backend laid heavy tests around safety and contracts, and a big refactor finally made the interface&#39;s hot-reload independent.</p>
+    <div class="prose"><h2>Four tracks in a day: the day&#39;s panorama</h2>
+<p>This was the densest day so far, pushing from midnight into the next morning with four tracks running at once: the engine landing feature after feature and fix under a strict seven-step closed loop, the chat panel entering &quot;never finished&quot; steady-state polish, the backend nailing safety and interface contracts down with tests one by one, plus a closing refactor that pulled the interface&#39;s hot-reload out on its own. Packing so much into one day without chaos came down to two things: each track had clear boundaries and acceptance criteria, and the closer a change was to the foundation, the more it had to be verifiable. Below it&#39;s split by theme, but remember they rolled forward meshed together in a single day.</p>
+<h2>Engine asset system v1: referencing game content by handle</h2>
+<p>The engine&#39;s most important delivery this day was the first version of an asset system. Before it, &quot;game content&quot; like models, textures and scenes had no unified way to be managed; the asset system gave them a formal identity: every asset is a structured object referenced through a lightweight &quot;handle&quot; rather than passing huge raw data around. A handle is like a library call number — hold it and you can fetch the book, without carrying the whole book around. A sample room scene was built to validate the chain. The significance: game content can now be referenced, shared and reused in a structured way, with one entry point for loading models, textures and scenes. It&#39;s the true starting point for every later &quot;import a model, place assets in a scene&quot; feature.</p>
+<h2>A pixel-parity benchmark: render quality can&#39;t quietly regress</h2>
+<p>What an in-house renderer fears most isn&#39;t a single wrong frame but &quot;quietly getting worse with no one noticing&quot; — change one thing and some frames differ from the reference by a few pixels, invisible to the eye yet drifting off over time. This day raised a &quot;pixel-parity&quot; yardstick: compare the engine&#39;s rendered frames against a reference pixel by pixel, and the moment the difference exceeds a threshold, continuous integration goes red and blocks the change from merging into the trunk. It turns &quot;is the rendering correct&quot; from something watched by hand and by feel into an automatic, objective gate that runs on every commit. For an engine evolving its image quality long-term, this gate is the precondition for quality holding steady — with it, you can change rendering boldly without dread.</p>
+<h2>Sandbox visual verification: let the agent &quot;see&quot; whether the picture is right</h2>
+<p>Having an AI edit games automatically runs into an unavoidable problem: after it changes things, how does it know the picture is actually right? Checking only whether the code errored easily leads to &quot;the code didn&#39;t crash but the screen is black&quot; while believing it succeeded. This day built a visual verification mechanism in the sandbox, deliberately separating two roles — &quot;producing the picture&quot; and &quot;checking the picture&quot;: one side runs the game and captures frames, the other judges the captured frames. Separating the roles makes verification more trustworthy — no &quot;I edit, I screenshot, I declare it fine&quot; self-certification trap. This step is key to the agent moving from &quot;can write code&quot; to &quot;is accountable for its output&quot;: it no longer just throws code over the wall but can close the loop and look at &quot;what does the thing I made actually look like.&quot;</p>
+<h2>Instanced rendering + many objects: a block game as the touchstone</h2>
+<p>This day also hammered the engine&#39;s many-object capability with a &quot;falling-block clear&quot; mini-game demo. Such games feature lots of identical blocks on screen at once, and issuing a separate draw command for each piles up cost fast. For this the engine added &quot;instanced drawing&quot;: a single submission draws a large batch of the same object, amortizing the repeated cost. The many-object rendering path was tidied alongside, so &quot;many entities appearing together&quot; runs fast and stable. Validating with a genuinely playable mini-game rather than an abstract test is itself a discipline — making a real game run smoothly is far more convincing than passing an isolated snippet.</p>
+<h2>~100 chat-polish passes: cost, duration, multiple providers</h2>
+<p>The chat panel entered &quot;never finished&quot; steady-state polish this day, a hundred-plus tiny iterations focused on a few practical things. One: surface each turn&#39;s real cost and duration, with an adaptive amount format — cents, dimes, dollars each at the right precision — so you see at a glance what it cost. Two: a switchable selector for &quot;which coding backend to use&quot;: you can pin a conversation to one, the choice is remembered, syncs across tabs, supports up/down keyboard selection, and warns when the one you picked is unavailable. Three: thoughtful handling of the anxiety-inducing &quot;the model is thinking silently for a long time&quot; state — showing seconds elapsed, suggesting a switch past a threshold, and a placeholder note for &quot;finished but no visible output.&quot; Each pass touched one thing, self-tested, and logged a note. This track earns a hundred passes because it&#39;s the surface the user stares at longest each day: however strong the capability, if it reads laboriously and feels uncertain, there&#39;s no trust.</p>
+<h2>Backend safety and contract hardening: whitelists, traversal defense, many tests</h2>
+<p>Since the agent really reads and writes files on your machine, the backend must make &quot;it can only touch what it should&quot; airtight. This day laid a large batch of defenses and tests around file and path safety: constraining accessible paths with a whitelist, adding defense against &quot;directory traversal&quot; over-reach, refusing to overwrite an existing directory when writing a file, and redacting the user&#39;s home path in outward responses (so your machine&#39;s real paths don&#39;t leak). Meanwhile the backend&#39;s interface contracts were pinned down test by test — what input should return what, how edge cases are handled, all guarded by tests, and the unit-test count crossed a milestone that day. None of this is a &quot;visible new feature,&quot; but it decides whether you dare let a file-editing AI into your own project: only with clear boundaries, predictable behavior and regressions caught by tests is there real peace of mind.</p>
+<h2>A closing refactor: making the interface&#39;s hot-reload independent</h2>
+<p>Crossing into the early hours, the day closed with a structural refactor: making the interface&#39;s hot-reload mechanism independent, and putting each part in its place along the way — the user&#39;s game data moved to the instance&#39;s own directory, the engine source extracted to a unified build location, environment config lifted to the repo root, and the pitfall-prone nested-directory layout straightened out. Such a refactor shows almost no change on the user&#39;s side, but it makes the &quot;edit code, the interface hot-reloads instantly&quot; experience cleaner and less prone to cross-interference. The clearer the foundation, the faster you build later — doing this at the day&#39;s end is precisely because, after so many new things landed, the whole tree needed one consolidation to realign.</p>
+<h2>What this day means</h2>
+<p>If the previous days proved &quot;conversation can build something runnable,&quot; this day laid the foundation for &quot;can it be done reliably, long-term.&quot; The asset system lets content be managed structurally; the pixel-parity benchmark and sandbox visual verification give an objective judge of &quot;is the picture right&quot;; the backend&#39;s safety and tests make &quot;letting the AI act&quot; trustworthy; the chat polish makes people want to use it daily; and the closing refactor keeps it all clean in engineering terms. Together they reveal a stance: charge forward fast, yet leave at every step a solid trail that can be verified, regressed and retrospected. That&#39;s exactly the model this log wants to leave for future development — speed and rigor aren&#39;t an either/or, but two things attainable in the same day.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour quotidiennes</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables. Open source, licence Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/blog/">Blogue</a>
+    <a href="/fr/docs/">Documents</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/games/">Jeux</a>
+    <a href="/fr/marketplace/">Marché</a>
+  </div>
+  <div class="col"><h4>Projet</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

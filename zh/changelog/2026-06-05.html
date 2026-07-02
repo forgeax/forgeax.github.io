@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-05 · 编辑器模式收官 — ForgeaX</title>
+<meta name="description" content="前一天刚跑通的编辑器,这天一口气把所有可实施的功能补齐收官:面板能拖、能分组、能弹成独立窗口、能一键重置;移动 / 旋转 / 缩放三种 gizmo 全到位并配上快捷键;属性面板跟着你拖动实时刷新;一键飞到选中对象、历史与能力面板齐备。引擎这边还让网格的拓扑类型能直接在视口里看出来,内容工具也收了一批界面统一。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-05 · 编辑器模式收官 — ForgeaX" />
+<meta property="og:description" content="前一天刚跑通的编辑器,这天一口气把所有可实施的功能补齐收官:面板能拖、能分组、能弹成独立窗口、能一键重置;移动 / 旋转 / 缩放三种 gizmo 全到位并配上快捷键;属性面板跟着你拖动实时刷新;一键飞到选中对象、历史与能力面板齐备。引擎这边还让网格的拓扑类型能直接在视口里看出来,内容工具也收了一批界面统一。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-05.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-05.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-05.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-05.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-05.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-05.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-05.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-05.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-05.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-05.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-05</span></div>
+    <h1>编辑器模式收官</h1>
+    <p class="standfirst">前一天刚跑通的编辑器,这天一口气把所有可实施的功能补齐收官:面板能拖、能分组、能弹成独立窗口、能一键重置;移动 / 旋转 / 缩放三种 gizmo 全到位并配上快捷键;属性面板跟着你拖动实时刷新;一键飞到选中对象、历史与能力面板齐备。引擎这边还让网格的拓扑类型能直接在视口里看出来,内容工具也收了一批界面统一。</p>
+    <div class="prose"><h2>从&quot;能用&quot;到&quot;像个真编辑器&quot;</h2>
+<p>前一天,编辑器第一次能选对象、拖 gizmo、存盘,迈出了&quot;动手&quot;的第一步;但那时它还更像一个能用的雏形,而不是一个让人愿意整天待在里面干活的成熟工具。这天做的,就是把&quot;能用&quot;补成&quot;好用&quot;:一个专业编辑器之所以让人顺手,靠的是无数件看似细碎、实则缺一不可的事——面板能不能按你的习惯摆、变换工具全不全、改一下数值能不能立刻看到反馈、找一个物体快不快、做错了能不能回退。这天把这些事一次性补齐,等于给编辑器装上了&quot;专业工具该有的全部基本功&quot;。这不是堆功能,而是把一个工具打磨到&quot;上手没有别扭感&quot;的程度——而正是这种没有别扭感,决定了一个创作者愿不愿意长期用它。</p>
+<h2>可停靠面板:界面随你摆,乱了一键复位</h2>
+<p>这天给编辑器接入了一套可停靠的面板系统,并配了一个统一的面板管理器来掌管它。具体能做什么:每一块面板——场景树、属性检视、材质、时间轴、材质图等等——都可以用鼠标拖到界面的任意区域重新摆放,可以把几个面板叠成一组标签页(拖到一起就成组、点标签就切换),可以把某个面板弹成一个独立的浮动窗口单独看,布局被你折腾乱了还能一键重置回默认。为什么这件事重要?因为不同的人、不同的活,需要的界面布局完全不同:调材质时想把材质面板放大,做动画时想让时间轴占满底部。一套写死的固定布局永远只能照顾一种人;而可停靠面板把&quot;界面长什么样&quot;的决定权交还给了用户。同一天还首发了材质、时间轴、材质图三个新面板,加上已有的检视器和场景树一起接进这套系统——编辑器的&quot;骨架&quot;自此成型。</p>
+<h2>三种变换工具全到位:移动、旋转、缩放</h2>
+<p>前一天能拖的只有&quot;移动&quot;一种 gizmo,这天把&quot;旋转&quot;和&quot;缩放&quot;也补齐了,并配上了一组与业界通行约定一致的快捷键来快速切换这三种模式——这样上手过任何专业三维工具的人,几乎不用学就知道怎么用。三种变换是摆放任何东西的最基本动作:把一个箱子挪到墙边(移动)、让它斜着放(旋转)、把它放大一倍当作障碍(缩放),缺一不可。配套还让引擎正确渲染出物体的旋转,保证你在视口里看到的姿态和数据完全一致。此外还加了&quot;一键飞到选中对象&quot;——按一个键或双击,相机立刻平滑地飞过去把选中的东西框在画面中央,在一个大场景里再不用费劲手动找视角。把这套最基础的操作做齐、做到符合直觉,是编辑器从&quot;演示品&quot;变成&quot;生产工具&quot;的分界线。</p>
+<h2>改一下立刻看到:检视器跟着拖动实时刷新</h2>
+<p>这天还接通了编辑里最关键的一条反馈回路:属性检视面板会跟着你在视口里的拖动实时更新。也就是说,当你用 gizmo 拖动一个物体时,右侧检视面板里那些表示位置、旋转、缩放的数字会同步跳动,你能一边拖、一边精确地看到当前数值;反过来,这条回路也保证了你在面板里输入一个精确数值时,视口里的物体立刻随之改变。这种&quot;双向、即时&quot;的一致性,是所有专业编辑器的灵魂——它消除了&quot;我刚才那一拖到底改成了多少&quot;这种不确定感,让粗调(拖 gizmo)和精调(填数值)能无缝衔接。同一天还上线了历史面板和能力面板:历史面板让你能看清并回退做过的每一步操作,能力面板则把当前可用的操作集中呈现。有了实时反馈和可回退的历史,编辑这件事才真正变得&quot;放心大胆&quot;——错了能撤,改了能看见。</p>
+<h2>引擎:一眼看出网格的拓扑类型</h2>
+<p>引擎这天补的一项很实用:把网格的&quot;拓扑类型&quot;做成了能直接在视口里画出来的调试视图,五种基本的几何拓扑(点、线段、连续折线、三角面、连续三角带)都能被可视地标注出来。这是什么意思?一个三维模型说到底是由一堆点和它们之间的连接关系拼成的,而&quot;拓扑&quot;就是描述&quot;这些点是怎么连起来的&quot;——是孤立的点、是一根根线段、还是拼成的三角面。当一个模型显示不正常时,问题常常就出在拓扑类型不对,但以前你只能对着代码或数据瞎猜。现在能在视口里直接把它画出来看,定位坏掉的几何就直观多了。这项能力主要服务于调试和资产排查,它和编辑器是一条线上的——编辑器让你能摆放和调整,而这种调试视图让你在出问题时能看清底层到底怎么了。把&quot;看不见的内部状态&quot;变得可见,是工具走向成熟的一个标志。</p>
+<h2>游戏与内容工具:对齐编辑器这条线</h2>
+<p>编辑器收官的同时,周边也在往同一个方向靠拢。游戏这边,把示例射击游戏的&quot;可玩体验&quot;写成了正经文档,并给另一个射击示例做了&quot;场景文件种子化&quot;——也就是把它的场景预先存成那份以文档为准的场景文件,让它和编辑器走的是同一套磁盘场景机制;还顺手清理掉了之前用编辑器做测试时留下的痕迹,保证种子场景是干净的。内容创作工具这边,梳理了技能工作台的侧边栏工作流,并把各个插件的侧边栏标题样式一次性对齐统一,让它们看起来是同一个产品的不同模块;叙事工具也继续推进,加上了关键节点的校验和角色时间线。这些改动单看都不大,但它们共同确保了一件事:当编辑器这条主线收官时,它周围的游戏示例和创作工具不是各走各的,而是被一起拉到了同一套机制、同一套视觉语言上。</p>
+<h2>这一天意味着什么</h2>
+<p>从蓝图到收官,编辑器只用了三天:定方向、跑通、补齐。这天画下的句号,意味着 Studio 正式拥有了一个功能完整、上手不别扭的可视化编辑器——它不再是 AI 之外的一个附属演示,而是和对话生成平起平坐的第二条创作主线。值得回味的是这三天的节奏:没有为了赶进度而留下一堆半成品,而是一项项把专业工具的基本功老老实实补齐,直到&quot;所有可实施的功能都落地&quot;。一个工具最终好不好用,从来不是由它有多少炫目的大功能决定的,而是由这些不起眼的基本功有没有被认真做齐决定的。编辑器这条线收官之后,人和 AI 终于站在了同一块画布前:AI 用代码和对话作画,你用鼠标和 gizmo 修改,两支笔画在同一张图上。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

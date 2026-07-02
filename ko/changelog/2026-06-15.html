@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-15 · A dark-fantasy ARPG sample + upload-a-model-and-use-it — ForgeaX</title>
+<meta name="description" content="A dark-fantasy ARPG sample with an animated witch hero puts skeletal animation, cameras and combat into real gameplay; uploading a model now works end to end into play; you can roll back to any past message with per-file diffs; and the engine preps professional model formats plus a record-and-replay debug infrastructure." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-15 · A dark-fantasy ARPG sample + upload-a-model-and-use-it — ForgeaX" />
+<meta property="og:description" content="A dark-fantasy ARPG sample with an animated witch hero puts skeletal animation, cameras and combat into real gameplay; uploading a model now works end to end into play; you can roll back to any past message with per-file diffs; and the engine preps professional model formats plus a record-and-replay debug infrastructure." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-06-15.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-06-15.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-15.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-15.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-15.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-15.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-15.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-15.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-15.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-15.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-15.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-15.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-15.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-15.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-06-15.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-06-15.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-15.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-15.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-15.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-06-15</span></div>
+    <h1>A dark-fantasy ARPG sample + upload-a-model-and-use-it</h1>
+    <p class="standfirst">This day a dark-fantasy action-RPG sample with an animated hero appeared, threading the skeletal animation, cameras, combat and lighting built up over recent days into real gameplay for the first time; uploading a model now lets you see and use it in play immediately, an end-to-end path; you can also roll the conversation and project back to any past message; and the engine prepared to ingest professional model formats and landed a cross-device &quot;record-and-replay&quot; debug setup.</p>
+    <div class="prose"><h2>Assembling the parts into a game that actually moves</h2>
+<p>Over the past two weeks, the platform accumulated, piece by piece, the parts needed to make a game: moving rigged characters, shadow-casting lights, walkable scenes, importable models. This day, those parts were assembled into the same real game for the first time — a dark-fantasy action-RPG sample with a moving witch hero, switchable cameras, naturally-blended combat and nighttime atmosphere. It&#39;s a meaningful milestone: it proves those scattered capabilities aren&#39;t just individually demonstrable but can genuinely combine to support a flesh-and-blood game. The day&#39;s other lines all orbited &quot;making creation smoother&quot;: turning model upload into an immediately-usable end-to-end flow, letting you roll back to any step of the conversation at any time, and paving the way for the engine to ingest professional modeling formats. In one line: moving from &quot;the parts are ready&quot; to &quot;they assemble into a whole machine,&quot; and continuing to polish the assembly to be smoother.</p>
+<h2>A new dark-fantasy ARPG sample: Hellforge</h2>
+<p>This day a complete dark-fantasy action-RPG sample game was added. Its witch hero is a rigged character model with five animations — idle, move, attack and more — which is the first time the recently-completed skeletal animation was used on a real playable character; the witch is no longer a standing-still model but a living character who walks and fights. It offers two cameras switchable with a single key: an over-shoulder follow camera behind the character, and a slightly top-down 2.5D view like classic ARPGs; combat actions are driven by a state machine so the transitions between &quot;idle → move → attack&quot; blend naturally rather than stiffly. The scene carries night-vision atmosphere — dim moonlight plus a few camp torches — evoking the dark-fantasy mood. The sample&#39;s value is that it&#39;s the first time the platform threaded the separately-polished capabilities of skeletal animation, the camera system, combat logic and atmosphere lighting all into one game with complete gameplay. It&#39;s both a directly playable finished product and a ready starting point anyone wanting to make a similar action-RPG can stand right on.</p>
+<h2>A more independent editor + upload a model and use it now</h2>
+<p>The thing most directly benefiting creators this day was making &quot;bring in a model → use it in the game right away&quot; one end-to-end path. The play side gained complete model import, covering all of a model&#39;s internal sub-contents — mesh (shape), material (texture quality), texture (surface pattern), animation (motion), skeleton (the drivable bones) and more, missing none. This means you upload a model and can immediately see and use it in play, and rigged characters preview correctly in the edit view too; no more fretting over &quot;it imported but doesn&#39;t display fully, or the animation/skeleton was lost.&quot; To read rigged models correctly, the underlying mesh validation was made to &quot;understand&quot; skeleton data — skinned vertices carry bone-weight information beyond ordinary vertices and are laid out differently, and validation must distinguish the two, or a skinned model would be flagged as malformed on import. Meanwhile, the editor absorbed the core of the front-end shell&#39;s framework and removed its old self-built docking layer, so it can now mount more fully independently and isn&#39;t bound to the main chat interface — leaving room to later embed the editor elsewhere or package it on its own.</p>
+<h2>Roll back to any past message + per-file diffs</h2>
+<p>This day the backend added a reassuring capability: message-level rollback points. In trial-and-error with the AI, you often hit &quot;the earlier rounds were right, but the recent rounds drifted worse and worse&quot; — from this day, every step of changes gets snapshotted, and you can &quot;soft-revert&quot; to the state at any earlier message, rolling back the last few unsatisfactory rounds in one click and starting over. The key is that it&#39;s &quot;soft&quot; and reversible: a rollback doesn&#39;t hard-delete what came after, and you can always return to a later state again, effectively fitting the whole creative process with a timeline you can drag back and forth. The interface clearly surfaces each rollback point, the dimmed parts that were rolled back, and the current edit state, and shows a per-file breakdown of exactly which files each step changed and by how many lines. The significance is that it turns &quot;collaborating with the AI&quot; from something requiring caution lest you break things into something you can boldly try — because however you try, you can always come back. The sturdier the safety net, the bolder people dare to explore.</p>
+<h2>Engine: paving the way for professional model formats + record-and-replay debugging</h2>
+<p>The engine designed and prepared to ingest the model formats that professional modeling tools output directly this day. Professional 3D modeling software usually exports a format that fully carries animation, skeleton and even physics parameters, while the platform currently mainly supports another web-common format — many professional assets must undergo a format conversion before use, and conversion inevitably loses detail. This day&#39;s design is for the engine to read professional formats directly, skipping the intermediate-conversion hassle so assets flowing from professional tools enter the game in their original fidelity. Another heavyweight was landing a &quot;record → replay and compare&quot; debugging infrastructure: it can record the rendering process and replay it pixel-by-pixel across different devices for comparison, purpose-built to catch the very-hard-to-reproduce regressions where &quot;the same code draws differently on this machine.&quot; It also wired in ambient occlusion (naturally darkening corners and crevices that light can&#39;t reach, for stronger depth), and fixed a critical bug — previously, turning on anti-aliasing silently disabled custom material shaders; such &quot;silent breakage&quot; is the most dangerous because you have no idea where it went wrong, and this day closed it.</p>
+<h2>What this day means</h2>
+<p>The most memorable thing this day is the turning point the dark-fantasy ARPG sample marks: the platform is no longer just isolated capability points like &quot;can make a moving character,&quot; &quot;can import models,&quot; &quot;can cast lighting and shadows,&quot; but assembled them, for the first time, into a complete game with a hero, cameras, combat and atmosphere. The value of capability points is ultimately redeemed by whether they can play together as a complete tune — and this day gave a resounding yes. The other things around it all pushed toward &quot;letting more people assemble their own games more smoothly&quot;: instantly-usable model upload lowered the bar to using assets; rollback to any message lowered the psychological burden of trial and error; paving the way for professional formats broadened the sources of assets that can come in; and record-and-replay made visual problems easier to catch and fix. From accumulating parts to assembling a whole machine, to polishing each step of the assembly to be smooth — this day took a solid step toward the goal of &quot;letting anyone assemble a real game.&quot;</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

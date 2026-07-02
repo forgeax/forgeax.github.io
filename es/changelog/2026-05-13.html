@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-13 · Live hot-reload preview + session replay — ForgeaX</title>
+<meta name="description" content="Edit a game's files and the preview refreshes itself; reopen a session and its full history replays; composable shaders hot-reload across files; new games ship a runnable starter and the agent always knows which game you're on." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-13 · Live hot-reload preview + session replay — ForgeaX" />
+<meta property="og:description" content="Edit a game's files and the preview refreshes itself; reopen a session and its full history replays; composable shaders hot-reload across files; new games ship a runnable starter and the agent always knows which game you're on." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-05-13.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-13.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-13.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-13.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-13.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-13.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-05-13.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-05-13.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-13.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-13.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-05-13</span></div>
+    <h1>Live hot-reload preview + session replay</h1>
+    <p class="standfirst">This day truly closed the &quot;say it, see it&quot; feel: edit a game&#39;s files and the center preview refreshes itself; reopen a session and the prior back-and-forth replays in full. Alongside it, shaders can be composed across files and hot-reload, new games ship a runnable starter, and the agent always knows which game you&#39;re working on.</p>
+    <div class="prose"><h2>From bet to muscle memory: making &quot;say it, see it&quot; reflexive</h2>
+<p>The previous days proved &quot;conversation can build something runnable&quot; and raised the foundations of rendering, assets and safety. This day&#39;s theme is polishing that loop from &quot;runs once&quot; into &quot;comfortable to use&quot; — changes visible instantly, history never lost, the agent never confused about which target it&#39;s acting on. These all sound like experiences that &quot;should just work,&quot; but behind each is a real engineering gap being filled. Only once they&#39;re all filled does the platform go from &quot;can demo&quot; to &quot;can sit down and use for hours.&quot;</p>
+<h2>Live hot-reload preview: edit a file, the picture changes itself</h2>
+<p>This day connected the center preview to a &quot;hot-reload bridge&quot;: when a game&#39;s files change, the preview refreshes itself to show the latest, with no manual reload click. It works by the backend continuously watching for file changes in that game&#39;s directory and, the moment something changes, notifying the front end over a real-time channel, which reloads the preview. This may look like &quot;saving a click,&quot; but it&#39;s a vital link in the &quot;say it, see it&quot; loop: the instant the agent finishes editing, you see the result on screen almost immediately, squeezing the latency between conversation and picture to a minimum. For someone sitting down to make a game for hours, this &quot;what you change is what you see&quot; instant feedback is what connects inspiration to implementation.</p>
+<h2>Session replay: reopen a session and the back-and-forth comes back</h2>
+<p>Collaborate with AI long enough and the session history becomes a precious asset — the requirements you raised, the decisions it made, the detours taken. This day persisted session history into a durable &quot;ledger&quot; and made reopening a session replay the prior back-and-forth from it. One technical subtlety was handled: the real-time event stream carries only lightweight records of &quot;what happened,&quot; not the full text, so replay must reconstruct the real content from the ledger rather than naively replaying events. The significance: close it and come back, and context isn&#39;t lost; a stretch of history can be revisited anytime, just as it happened. This makes &quot;working on a project long-term, over many rounds&quot; possible, instead of starting from a blank page each time.</p>
+<h2>Composable shaders + cross-file hot-reload</h2>
+<p>The engine gave shaders a &quot;composable&quot; capability this day: shaders can import one another, share fragments, and parameterize with macro definitions, instead of piling all code into one file. Better still, it supports cross-file hot-reload — edit a shared fragment that others reference and every shader using it refreshes instantly. For someone crafting visual effects, this means organizing shader code like building blocks: factor common lighting, noise and color processing into reusable modules referenced everywhere; change one and it takes effect everywhere, seen at once. It turns &quot;writing effects&quot; from &quot;trial-and-error against one big blob&quot; into &quot;composing reusable modules and tuning live&quot; — a real expansion of rendering expressiveness.</p>
+<h2>A unified engine console: one execution channel, consistent everywhere</h2>
+<p>The engine unified its &quot;console&quot; debug/inspect channel this day into a single abstraction: the backend converges to one execution channel, while the command-line side offers a lighter read-only inspect entry. The benefit of unifying is consistent behavior and a simpler mental model — wherever you initiate an inspect or execute, it travels the same orderly path, rather than each place having its own slightly-different version. Such convergence in abstraction is usually invisible on the user&#39;s side, but it decides whether a system grows messier as features pile up. Converging &quot;how the console works&quot; into one authoritative channel early sets the same rules for every capability that later plugs into the console.</p>
+<h2>New games ship a runnable starter + the agent always knows which game</h2>
+<p>This day filled in two details that make &quot;creating a game&quot; smoother. One: a new game ships with a directly-runnable starter (a spinning-cube opening), so the moment you create it you see a picture, instead of staring at a blank and writing from scratch. Two: the context of &quot;which game you&#39;re currently working on&quot; is fed explicitly into the agent&#39;s system prompt, so it clearly knows which game to write code into. The latter fixes a dangerous pitfall — with multiple games coexisting, an agent unsure of the current target easily edits the wrong place. Making the &quot;active game&quot; an explicit, reliably-passed context is like giving the agent a compass that won&#39;t point wrong.</p>
+<h2>The backend keeps it solid: more tests, path redaction, name validation</h2>
+<p>The backend kept up its rhythm of &quot;pinning behavior down with tests,&quot; adding another large batch of end-to-end probes and unit tests. A few focuses: locking game and project naming rules with many cases (which names are valid, which should be rejected, every boundary guarded by tests), continuing to redact the user&#39;s home path in outward responses (no leaking your machine&#39;s real paths), and extracting key logic like building the system prompt into a pure, separately-testable function. None of these are flashy features; they&#39;re the daily work of &quot;making a file-editing system worthy of trust.&quot; Notably, this day also adapted to another coding backend&#39;s event format, smoothing the integration of more model-driving options — one more choice, a consistent experience.</p>
+<h2>What this day means</h2>
+<p>Seen together, the through-line is clear: make &quot;build while talking&quot; not just possible but frictionless. Changes visible instantly (hot-reload), history fully recoverable (session replay), effects organized like building blocks (composable shaders), the agent never editing the wrong target (active-game context), the backend worthy of trust (tests and redaction) — each removes a small friction that would break flow. Whether a tool is pleasant to use often hinges less on whether it can do one big thing than on how smoothly it does the hundred small everyday ones. What this day filled in were several of the most crucial among those hundred.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

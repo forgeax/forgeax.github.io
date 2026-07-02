@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-08 · A big editor integration + textured models render live — ForgeaX</title>
+<meta name="description" content="The editor integrates a unified context menu, reference-to-chat, workspace tabs and pro-style viewport at once; imported models render live with textures, mipmaps, double-sided materials and image-based sky light in both edit and play; the live agent console gets a polish storm; and the animation tools are standardized into one UI." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-08 · A big editor integration + textured models render live — ForgeaX" />
+<meta property="og:description" content="The editor integrates a unified context menu, reference-to-chat, workspace tabs and pro-style viewport at once; imported models render live with textures, mipmaps, double-sided materials and image-based sky light in both edit and play; the live agent console gets a polish storm; and the animation tools are standardized into one UI." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-08.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-08.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-08.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-08.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-08.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-08.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-08.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-08.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-08.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-08.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-06-08</span></div>
+    <h1>A big editor integration + textured models render live</h1>
+    <p class="standfirst">This day the editor integrated a whole batch of interactions at once — a context menu, referencing a selected object into chat, workspace tabs, professional-grade viewport controls; imported models render live with materials, textures and sky light in both edit and play for the first time, so what-you-see-is-what-you-get no longer comes with a discount; the console for watching the AI work live had its rough edges smoothed one by one, and the animation tools were unified into one interface.</p>
+    <div class="prose"><h2>Two lines both &quot;converging&quot; in one day</h2>
+<p>This day can be summed up in one word: &quot;converging&quot; — gathering the parts scattered about over the preceding days, each individually usable, into a coherent, unified, tactile whole. On the editor side, a batch of scattered interactions were integrated at once, turning it from &quot;the features are assembled&quot; into &quot;it works as one piece&quot;; on the rendering side, imported models can finally appear in a scene in real time with their own true materials and textures, closing the last visual gap of &quot;what-you-see-is-what-you-get&quot;; on the tools side, several animation workbenches were unified into one design language so the whole product looks like one product; and even the back-office console for watching the AI work live had each grating little flaw smoothed away this day. What separates a product&#39;s &quot;the parts work&quot; from &quot;the whole is pleasant&quot; is often exactly this kind of day-by-day converging work — it doesn&#39;t add to what you can do, but vastly changes how it feels to do it.</p>
+<h2>A big editor integration: context menu, reference-to-chat, a pro viewport</h2>
+<p>The editor filled in a large batch of natural-feeling interactions at once this day. A unified right-click menu puts common actions within reach anywhere — right-click nearby instead of hunting the interface for a button. &quot;Reference a selected object into chat&quot;: select something in the scene and, in one click, carry it as a reference into the conversation with the AI, so when you say &quot;scale this up a bit,&quot; the AI knows exactly which &quot;this&quot; you mean without your laboring to describe it. Multiple workspaces switch via tabs, with different layouts for different work that don&#39;t disturb each other. The viewport&#39;s move/rotate/scale handles and the camera&#39;s pan/zoom/orbit adopt the common operating conventions of mainstream professional 3D software — anyone who has used a pro 3D tool picks it up at almost zero cost. An error overlay was added on the canvas: the moment something goes wrong, a prompt pops up right in the view, instead of burying the error in an unseen console and leaving you mystified. This whole wave of integration clearly pushed the editor from &quot;the features work&quot; toward &quot;natural to use and professional to look at.&quot;</p>
+<h2>Models render live with materials, in edit and play alike</h2>
+<p>This day filled in the last visual piece long missing from &quot;what-you-see-is-what-you-get&quot;: imported 3D models now render correctly with full materials at runtime. Specifically: textures (the pattern and color laid on the model&#39;s surface), mipmaps (so objects no longer show fine shimmering noise in the distance), and double-sided materials (so thin, sheet-like objects display correctly on both faces without breaking). Combined with image-based environment-map sky lighting, models look real and tactile in a scene rather than a lump of gray model with no surface detail. More crucial than any single capability is consistency: this runtime rendering makes edit and play look exactly the same — what you arranged and saw in the editor is what it is when actually played, with no more &quot;looks one way editing, another way running&quot; gap. The sample shooter has moved wholesale onto this runtime rendering path, with its edit and play views matching seamlessly. For creators this means you can finally &quot;polish confidently against what the editor shows,&quot; because that is what the final product looks like.</p>
+<h2>Live console polish: watching the AI work, more reassuring</h2>
+<p>This day had a dense burst of polish concentrated on the console for &quot;watching the AI agents work live&quot; — your window into the progress of multiple background AI tasks and stepping in at any time. Previously it was a bit grating in every corner; this day those were smoothed one by one. Close the browser and come back, and the background agents are still alive with state intact; when running a full-screen terminal program inside it, the mouse wheel can finally scroll directly; as multiple task cards switch focus, their brightening and dimming became a smooth transition instead of a jarring jump; the currently-focused card gained a clear highlight border instead of the browser&#39;s default ugly white edge; a full-screen card correctly covers above the top bar instead of being blocked; and an annoying loop that kept falsely reporting &quot;history lost&quot; was eliminated. None of these is a &quot;new feature,&quot; but together the console went from &quot;barely usable&quot; to &quot;you can watch it all day without irritation.&quot; For a platform centered on AI agents, &quot;comfortably observing what the AI is doing&quot; is itself a key capability — only when you can see clearly and watch steadily will you confidently hand the work to it.</p>
+<h2>A unified animation workbench + cutout and annotation tools</h2>
+<p>Several animation-related tools each had their own interface before — icons, button priority, sidebar layout and toast styles all inconsistent, so the workbenches together looked like things stitched from different teams. This day standardized them onto one design language in a single pass: a unified icon set, clear button hierarchy (primary and secondary actions distinguishable at a glance), consistent sidebar layout, unified toast style, and unified &quot;complete&quot;-state colors. Beyond visual unity, the 2D skeletal-animation pipeline gained several practical abilities: choosing among multiple candidate results, automatic background removal, and an annotation mode; another workbench for building 2D scenes was also formally opened up. Visual consistency seems like just &quot;looking nice,&quot; but it&#39;s really about trust — when every corner of a product looks like the same thing, users instinctively believe the same reliable logic sits behind them. For creators who don&#39;t write code and only use the interface, this day was the first time Studio &quot;looked like a complete product&quot; rather than a platter of assorted tools.</p>
+<h2>Engine: the sky no longer renders upside-down + advanced rendering demos</h2>
+<p>The engine fixed a textbook small-but-irritating bug this day: the skybox&#39;s cube map was previously drawn flipped vertically, leaving the sky upside-down. This day removed that flip, and the cube map finally renders right-side-up — the sky is back to normal. The same wave produced a batch of advanced rendering-technique demos running directly in the engine: cube environment maps, efficient ways to share data in shaders, and the instanced rendering mentioned earlier (using a planet-ring scene to validate efficient drawing of many repeated objects). These demos serve a dual purpose: on one hand they are &quot;living documentation&quot; of the engine&#39;s capabilities — anyone wanting to know how a technique is used finds a runnable demo most intuitive; on the other, the very act of building demos continually exposes residual little pitfalls in the rendering pipeline and patches them on the spot — the upside-down-sky bug was found and fixed exactly this way. Teaching yourself while cleaning up is a good habit for keeping an engine continuously healthy.</p>
+<h2>What this day means</h2>
+<p>This day discovered no new continent out of nowhere, but it brought the promise running through the whole platform — &quot;what-you-see-is-what-you-get&quot; — nearly to completion. The editor&#39;s interaction integration makes the creative process natural; textured runtime rendering makes what you see in editing what it is when played; the animation tools&#39; unified interface makes the whole product feel like an organic whole; the console&#39;s polish lets you observe the AI work with confidence; and even the engine&#39;s teaching demos clean up the foundation while fixing as they go. Strung together, all of the day&#39;s effort points at one goal: eliminating &quot;awkwardness in the process.&quot; The mark of a tool&#39;s true maturity is often not what astonishing new thing it can do, but that doing each old thing no longer makes you furrow your brow. This day, smoothing one tiny furrow after another, took a solid step forward.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

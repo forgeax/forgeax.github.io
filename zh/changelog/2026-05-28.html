@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-28 · 动画独立成工作台 + 工具执行实时流式显示 — ForgeaX</title>
+<meta name="description" content="这天把臃肿的角色工作台拆成几个各司其职的专门工具(角色、动画、特效),工具执行过程也变成实时流式、结束自动收起。预览更稳;引擎补上音频系统、材质继承,以及一批进阶渲染示例。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-28 · 动画独立成工作台 + 工具执行实时流式显示 — ForgeaX" />
+<meta property="og:description" content="这天把臃肿的角色工作台拆成几个各司其职的专门工具(角色、动画、特效),工具执行过程也变成实时流式、结束自动收起。预览更稳;引擎补上音频系统、材质继承,以及一批进阶渲染示例。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-28.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-28.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-28.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-28.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-28.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-28.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-28.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-28.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-28.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-28</span></div>
+    <h1>动画独立成工作台 + 工具执行实时流式显示</h1>
+    <p class="standfirst">这天把臃肿的角色工作台拆成几个各司其职的专门工具(角色、动画、特效),工具执行过程也变成实时流式、结束自动收起。预览更稳;引擎补上音频系统、材质继承,以及一批进阶渲染示例。</p>
+    <div class="prose"><h2>拆分与流式:让大工具变专、让等待变透明</h2>
+<p>这天的两条主线都关于&quot;清晰&quot;。一条是把一个越长越臃肿的大工作台,拆成几个各司其职的专门工具——大而全往往意味着哪样都不够顺手,拆开之后每个都能更聚焦、更深入。另一条是把 agent 调用工具的过程从&quot;黑箱等结果&quot;变成&quot;实时看它干活&quot;——让等待变得透明,你能看清它正在哪一步。一个是结构上的清晰,一个是过程上的清晰;再加上预览的稳定性打磨和引擎的几项新能力,这天整体在做的,是让这个越来越大的系统对人始终保持清楚、可控。</p>
+<h2>角色工作台拆成专门工具:角色、动画、特效各司其职</h2>
+<p>原先的角色工作台一个人扛了太多职责——又要造型、又要做动画、又要做特效,功能堆在一起越来越臃肿,哪一块都施展不开。这天把它按职能拆开:动画相关的能力(骨骼动画、视频生成等管线)整块迁出,独立成一个专门的动画工作台;特效相关的能力(各类视觉特效生成)迁进一个独立的特效/技能工作台;角色工作台本身则瘦身,回归&quot;专心做角色本身&quot;。拆分过程很讲究——把共享的底层代码以清晰标注的方式各自带走,确保拆完之后几个工具互不依赖、能各自独立演进。各司其职之后,每个工具都更聚焦、更好用,后面也能在自己的方向上深耕,而不必牵一发动全身。</p>
+<h2>工具执行实时流式显示,完成自动收起</h2>
+<p>agent 调用工具时,过程现在是实时流式显示的——输出一行行滚出来,你能看着它一步步推进,而不是干等一个最终结果。这背后是后端支持了&quot;工具调用的增量流式输出&quot;:工具一边跑,一边把片段实时推到界面上,而不是憋到结束才一次性返回。为了不刷屏,显示采用&quot;只留最新几行&quot;的滚动末尾方式;当这一步执行结束,对应的工具面板会自动收起,界面立刻回归清爽。这件事改善的是&quot;等待体验&quot;:在等一个可能要跑几十秒的工具时,看着它确实在动、知道它到哪一步了,远比对着一个不动的转圈圈安心。看的时候透明,看完又不碍事——这正是一个好工具该有的分寸。</p>
+<h2>预览更稳:崩溃防护 + 去掉多余的崩溃浮层</h2>
+<p>预览的稳定性这天又收了一轮。最关键的一处是:在重新加载预览之前,会先&quot;优雅地&quot;释放掉之前占用的图形资源,再加载新的——避免新旧两套渲染同时抢占资源而把整个图形环境搞崩。崩溃检测也更聪明了,改成&quot;出现第一帧画面之后才开始判断&quot;,从而避开了刚加载、还没出图那段时间的误报。原先那层略显多余的崩溃浮层也被去掉了——真要重来,工具条上本来就有重载按钮,够用了。流式输出还加了节流,避免刷得太快拖垮渲染。这些改动单看都很细碎,但它们共同决定了一件事:你在预览里反复试、反复改时,它会不会动不动就崩给你看。把这种小崩溃一个个消掉,创作时才不被打断。</p>
+<h2>引擎:音频系统 + 材质继承 + 进阶渲染示例</h2>
+<p>引擎这天补上了好几块。最值得说的是音频系统——引擎接入了基于网页标准音频能力的声音系统,游戏从此能出声:背景音乐、音效、随场景变化的声音都有了底层支撑;一个没有声音的游戏总是少了一半灵魂,这一步把&quot;听觉&quot;这条维度补了进来。材质上,支持了从&quot;父材质&quot;继承属性:把共用的设置放在父材质里,子材质只覆盖需要不同的部分,一批风格统一又各有小差异的材质从此既好管又不易出错;同时把材质的注册方式做了统一收敛。渲染示例上,补齐了一批进阶技法的演示(深度、模板、混合、剔除等),既是引擎能力的活文档,也为后面做更复杂的画面效果打了样。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天在为&quot;规模变大之后还能保持清楚&quot;做功夫。工具拆分,是承认&quot;一个工具不能什么都干&quot;,该专的就专;执行流式,是承认&quot;用户有权看见 AI 在干什么&quot;,该透明的就透明;预览防崩、引擎补音频与材质继承,则是在各自的角落把粗糙磨平、把缺口补齐。一个系统在快速膨胀时最容易丢的就是&quot;清楚&quot;——功能越堆越多,工具越来越杂,过程越来越像黑箱。这天反其道而行:与其继续往一个大工具里塞东西,不如拆开让每样都清爽;与其让等待变成黑箱,不如把过程摊开给人看。保持清楚,是一个复杂系统能被长期信任和驾驭的前提。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

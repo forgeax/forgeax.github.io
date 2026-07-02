@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-28 · A dedicated animation workbench + live tool streaming — ForgeaX</title>
+<meta name="description" content="The character workbench splits into focused tools, tool execution streams live and auto-collapses, the preview is steadier, and the engine gains audio, material inheritance and advanced rendering demos." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-28 · A dedicated animation workbench + live tool streaming — ForgeaX" />
+<meta property="og:description" content="The character workbench splits into focused tools, tool execution streams live and auto-collapses, the preview is steadier, and the engine gains audio, material inheritance and advanced rendering demos." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-28.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-28.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/docs/" data-nav="/docs/">ドキュメント</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-28.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-28.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-28.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-28.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-28.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-28.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-28.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">毎日</span><span>2026-05-28</span></div>
+    <h1>A dedicated animation workbench + live tool streaming</h1>
+    <p class="standfirst">This day split the bloated character workbench into focused tools (character, animation, effects), and tool execution became live-streaming and auto-collapsing when done. The preview is steadier; the engine added an audio system, material inheritance, and a batch of advanced rendering demos.</p>
+    <div class="prose"><h2>Split and stream: make big tools focused, make waiting transparent</h2>
+<p>The day&#39;s two through-lines are both about clarity. One is splitting an ever-bloating big workbench into focused tools — big-and-everything often means nothing is quite smooth, and after splitting each can be more focused and go deeper. The other is turning the agent&#39;s tool-calling from &quot;a black box you wait on&quot; into &quot;watching it work live&quot; — making waiting transparent so you can see which step it&#39;s on. One is structural clarity, the other process clarity; with preview stability polish and several new engine capabilities, the day&#39;s overall work is keeping this ever-larger system clear and controllable to people.</p>
+<h2>The character workbench splits: character, animation, effects each focused</h2>
+<p>The original character workbench carried too many responsibilities — modeling, animation and effects all piled together, growing bloated with no room for any to stretch. This day split it by function: animation-related capabilities (skeletal animation, video generation and related pipelines) moved out wholesale into a dedicated animation workbench; effects-related capabilities (various visual-effect generation) moved into a separate effects/skill workbench; and the character workbench itself slimmed back to &quot;focusing on the character.&quot; The split was careful — shared low-level code was carried over with clear annotations so that afterward the tools don&#39;t depend on each other and can each evolve independently. With clearer division of labor, each tool is more focused and usable, and each can go deeper in its own direction without one change rippling through everything.</p>
+<h2>Tool execution streams live, then tidies itself away</h2>
+<p>When an agent calls a tool, the process now streams live — output rolls out line by line so you can watch it progress instead of waiting blankly for a final result. Behind this, the backend gained &quot;incremental streaming output for tool calls&quot;: a tool pushes fragments to the interface in real time as it runs, rather than holding everything until it finishes. To avoid flooding the screen, the display keeps a &quot;rolling tail&quot; of just the latest lines; when the step finishes, its tool panel auto-collapses and the interface returns to clean at once. This improves the &quot;waiting experience&quot;: while waiting on a tool that may run for tens of seconds, seeing it genuinely move and knowing which step it&#39;s at is far more reassuring than staring at a frozen spinner. Transparent while you watch, out of the way once you&#39;ve seen it — exactly the discretion a good tool should have.</p>
+<h2>A steadier preview: crash prevention + removing the redundant overlay</h2>
+<p>Preview stability got another pass this day. The key piece: before reloading the preview, it now &quot;gracefully&quot; releases the graphics resources held earlier and then loads the new one — avoiding old and new rendering both grabbing resources and crashing the whole graphics environment. Crash detection got smarter too, changed to &quot;start judging only after the first frame appears,&quot; dodging false alarms during the just-loaded, not-yet-rendered window. The somewhat redundant crash overlay was removed — if you really need to start over, the toolbar already has a reload button, which is enough. Streaming output also got throttling to avoid refreshing too fast and dragging down rendering. Individually fine-grained, these together decide one thing: whether, as you repeatedly try and edit in the preview, it keeps crashing on you. Eliminating these small crashes one by one is what keeps creation uninterrupted.</p>
+<h2>Engine: an audio system + material inheritance + advanced rendering demos</h2>
+<p>The engine filled in several pieces this day. Most notable is the audio system — the engine wired in a sound system based on the web&#39;s standard audio capability, so games can now make sound: background music, sound effects and scene-driven audio all have underlying support; a game with no sound always lacks half its soul, and this step adds the &quot;hearing&quot; dimension. On materials, inheritance from a &quot;parent&quot; material was supported: put shared settings on the parent, and a child overrides only what differs, making a batch of stylistically-unified-yet-slightly-varying materials both manageable and less error-prone; material registration was also unified. On rendering demos, a batch of advanced-technique demonstrations (depth, stencil, blending, culling, etc.) was completed — both living documentation of the engine&#39;s capabilities and a template for more complex visual effects later.</p>
+<h2>What this day means</h2>
+<p>This day worked on &quot;staying clear after growing large.&quot; Splitting tools admits &quot;one tool can&#39;t do everything,&quot; so let the specialized specialize; streaming execution admits &quot;users have the right to see what the AI is doing,&quot; so make it transparent; preview crash-prevention and engine audio plus material inheritance smooth roughness and fill gaps in their own corners. What a system most easily loses while expanding fast is &quot;clarity&quot; — features pile up, tools get tangled, the process becomes a black box. This day went the other way: rather than keep stuffing one big tool, split it so each is clean; rather than let waiting be a black box, lay the process open for people. Staying clear is the precondition for a complex system to be trusted and steered long-term.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

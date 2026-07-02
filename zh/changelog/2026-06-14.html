@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-14 · 特效不再白爆 + 导入场景能走能跳 — ForgeaX</title>
+<meta name="description" content="这天有大半被一个顽固的视觉 bug 拽住——火球、子弹、爆炸的颜色一直被冲成全屏白板;一路逼出真凶后,特效终于能稳稳保住自己的颜色。同一天,导入的场景从"只能看"变成"能走能跳能上台阶";3D 生成工作台从"会出模型"升级到"会评分、会调参、能多角度看";对话与 agent 的工作循环也收掉了一批卡顿。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-14 · 特效不再白爆 + 导入场景能走能跳 — ForgeaX" />
+<meta property="og:description" content="这天有大半被一个顽固的视觉 bug 拽住——火球、子弹、爆炸的颜色一直被冲成全屏白板;一路逼出真凶后,特效终于能稳稳保住自己的颜色。同一天,导入的场景从"只能看"变成"能走能跳能上台阶";3D 生成工作台从"会出模型"升级到"会评分、会调参、能多角度看";对话与 agent 的工作循环也收掉了一批卡顿。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-14.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-14.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-14.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-14.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-14.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-14.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-14.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-14.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-14.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-14.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-14</span></div>
+    <h1>特效不再白爆 + 导入场景能走能跳</h1>
+    <p class="standfirst">这天有大半被一个顽固的视觉 bug 拽住——火球、子弹、爆炸的颜色一直被冲成全屏白板;一路逼出真凶后,特效终于能稳稳保住自己的颜色。同一天,导入的场景从&quot;只能看&quot;变成&quot;能走能跳能上台阶&quot;;3D 生成工作台从&quot;会出模型&quot;升级到&quot;会评分、会调参、能多角度看&quot;;对话与 agent 的工作循环也收掉了一批卡顿。</p>
+    <div class="prose"><h2>被一个 bug 拽住的一天,也是把根基夯实的一天</h2>
+<p>不是每一天都在添新功能。这一天的大半,是被一个看似简单、实则牵连甚广的视觉 bug 拖住的:游戏里的火球、子弹、爆炸,颜色总是被冲成刺眼的全屏白,连角色都看不见。这类&quot;打磨日&quot;在产品开发里同样关键——它不增加你能做的事,却决定你已经能做的事到底做得好不好。同一天还有另外几条线在并行:把一个导入的场景从静态摆设变成真能跑能跳的关卡、让 3D 生成工作台不只是出模型还能帮你判断和调优、以及继续收紧对话和 agent 循环里那些偶发的卡顿。把这几件事放在一起看,这一天的主题不是&quot;扩张&quot;,而是&quot;夯实&quot;——把已有的东西一处处打磨到真正经得起用。一个产品光会长新枝还不够,还得不断回头把每一根枝桠都修结实。</p>
+<h2>特效不再&quot;全屏白爆&quot;:火球终于稳稳是红的</h2>
+<p>一个折腾了一整天的视觉问题被彻底根治。此前的现象很夸张:在那款弹幕生存游戏里一放火球、一开火、一爆炸,整个屏幕就被冲成一块大白板,角色和场景全淹没在白光里,根本没法玩。难就难在它不是单一原因,而是好几种效果叠加共振的结果:辉光(让亮的地方发光晕)开得太强、粒子用了一种&quot;越叠越亮&quot;的混合方式、物体的自发光被拉到了顶、子弹的拖尾又在屏幕上一层层往上加——任何一个单独看都还好,凑在一起就互相放大,最终把整个画面推到纯白。这天的修复是靠真实截图一步步逼出真凶,然后对症逐项处理:调低辉光、把粒子和特效换成一种&quot;叠加不会失真&quot;的混合方式、把过度的自发光压下来、子弹改用正常的透明混合而不是越叠越亮、并干脆去掉那条会在屏幕上糊成一片白的拖尾。最后还顺手补回了地面的投影、把方向光调斜让阴影看得见,画面的明暗层次重新清楚。对所有想用本平台做带华丽特效游戏的人来说,这是把一类极常见、又极难自己定位的坑,从根上填平了。</p>
+<h2>导入的场景能正常走、跳、上台阶</h2>
+<p>一个导入进来的仓库场景这天从&quot;摆设&quot;变成了&quot;能玩&quot;。此前的问题有两个:一是它根本没有碰撞,角色一进去就直接掉穿地面,像幽灵一样落进虚空;二是它的比例错得离谱,整个仓库被缩小了一大截,显得角色像个钻不进门的巨人。这天先修正了真实比例,让仓库的大小和角色对得上;再做了一套逐节点的碰撞——场景里的每一个网格部件(墙、地、箱子、台阶等)都各自算出一个包围盒,系统据此一次性推导出&quot;哪里是能站、能走的地面&quot;。在此之上又加了跳跃和&quot;自动上台阶&quot;:遇到不太高的台阶或边沿,角色会自动抬脚踏上去,而不是被卡住。现在你能在这个仓库里跑动、跳跃、踩着台阶往上走,把它当成一张真正的关卡来玩。这件事的意义,是把前几天打通的&quot;导入外部模型&quot;这条路又往前接了一段:模型不仅能看、能摆,现在还能真正&quot;踩上去玩&quot;——从一个静态的展示物,变成了一个有物理、能交互的游戏空间。</p>
+<h2>3D 生成工作台:会评分、会调参、能多角度看</h2>
+<p>3D 生成工作台这天从&quot;会出模型&quot;升级到了&quot;会帮你判断好坏、会让你调&quot;。它一天里上了三个大功能。其一是更专业的预览器:支持切换环境、阴影、线框等多种显示模式,你能从不同光照、不同角度去审视一个生成出来的模型,而不再只能盯着一个固定视图,模型的细节和问题都更容易看清。其二是五维质量评分:系统会自动从网格、贴图、拓扑、动画、整体这五个维度给生成结果打分,把&quot;这个模型到底好不好&quot;从主观感觉变成了一眼可见的具体指标——尤其当你一次生成好几个候选时,评分能帮你快速挑出最好的那个。其三是透传各家生成服务的进阶参数:以前你只能用默认配置生成,现在能调出不同服务各自的高级选项,针对性地控制生成效果。这三件事合起来,把工作台从一个&quot;输入文字、输出模型&quot;的单向黑盒,变成了一条&quot;生成 → 评估 → 调参 → 再生成&quot;的可迭代闭环——你不再是被动接受 AI 给你什么,而是能看着评分、调着参数,主动把结果逼近你想要的样子。</p>
+<h2>对话与 agent 更不容易卡</h2>
+<p>这天后端和聊天又收掉了一批容易卡顿的环节,专攻&quot;AI 在干活途中会不会突然僵住&quot;这类问题。后端方面:当你中断一个 agent 向你发起的&quot;询问&quot;时,界面现在永远不会再被卡住——以前这种中断偶尔会让整个界面僵在那里;同时给模型输出加了边界保护,当输出过长或溢出时能稳妥处理而不是直接崩。前端方面:给流式输出(模型一个字一个字往外吐的过程)做了节流,避免刷新太频繁拖累界面;加了一个命令授权的界面,让需要你确认的敏感操作有了清楚的交互;还修掉了那个询问卡片偶尔会卡在&quot;正在准备选项&quot;、迟迟出不来选项的问题。这些改动单看都很细碎,但它们共同针对的是同一种最让人焦虑的体验——&quot;它是不是死了?&quot;。一个让你把任务长时间交给它自己跑的 AI,绝不能动不动就僵在那里让你不知所措;把这些会卡住的地方一个个堵上,正是让人能安心把后台交给它的前提。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天没有什么惊艳的新大陆,但它示范了产品成熟过程中同样不可或缺的另一面:把已有的东西做对、做扎实。火球白爆的根治,是把&quot;画面表现&quot;这件已经能做的事做到真的好看;导入场景变得能走能跳,是把&quot;导入模型&quot;这条已经打通的路真正延伸到&quot;可玩&quot;;生成工作台学会评分调参,是把&quot;能生成&quot;升级成&quot;能用得好&quot;;对话循环的抗卡,则是把&quot;能用&quot;打磨成&quot;用着踏实&quot;。值得记住的是,这一天有相当一部分时间是花在和一个 bug 死磕上的——靠真实截图、一步步逼出层层叠加的真凶。这种不放过、不糊弄、一定要找到根因的较真,恰恰是一个工具能被长期信赖的底色。会添砖加瓦的人很多,愿意回头把每一块砖都敲实的人才难得;这一天,做的正是后者。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

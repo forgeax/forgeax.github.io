@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-29 · 引擎加上物理与点选 + 界面底座换代 — ForgeaX</title>
+<meta name="description" content="这天引擎一口气补上做游戏的几块硬骨头:2D/3D 物理、屏幕点选拾取、抗锯齿,还加了视锥剔除让大场景更流畅。界面则迁到一套现代组件底座、配上渲染错误兜底;材质支持继承读穿,选哪个游戏就激活哪个,工具家族还添了影像工作台。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-29 · 引擎加上物理与点选 + 界面底座换代 — ForgeaX" />
+<meta property="og:description" content="这天引擎一口气补上做游戏的几块硬骨头:2D/3D 物理、屏幕点选拾取、抗锯齿,还加了视锥剔除让大场景更流畅。界面则迁到一套现代组件底座、配上渲染错误兜底;材质支持继承读穿,选哪个游戏就激活哪个,工具家族还添了影像工作台。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-29.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-29.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-29.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-29.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-29.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-29.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-29.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-29.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-29.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-29.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-29</span></div>
+    <h1>引擎加上物理与点选 + 界面底座换代</h1>
+    <p class="standfirst">这天引擎一口气补上做游戏的几块硬骨头:2D/3D 物理、屏幕点选拾取、抗锯齿,还加了视锥剔除让大场景更流畅。界面则迁到一套现代组件底座、配上渲染错误兜底;材质支持继承读穿,选哪个游戏就激活哪个,工具家族还添了影像工作台。</p>
+    <div class="prose"><h2>从&quot;能渲染&quot;到&quot;能玩&quot;</h2>
+<p>引擎前面攒下的能力大多还停留在&quot;把画面渲对、渲好看&quot;上;但一个游戏光好看不够,得能玩——物体要会掉落、会碰撞,玩家要能点中、能操作。这天的引擎主线,正是把&quot;能玩&quot;所必需的几块硬骨头一次性补上:物理、点选、抗锯齿、性能剔除。与此同时,界面那一侧也做了一次底座换代,把整套交互组件迁到更现代、更稳的实现上。一边让&quot;做出来的东西能玩&quot;,一边让&quot;用来做的工具更稳&quot;,这天是引擎与界面同时迈过一道质量门槛的一天。</p>
+<h2>引擎大补强:物理 + 点选拾取 + 抗锯齿</h2>
+<p>引擎这天一口气补上了做游戏绕不开的三块。最重磅的是物理:接入了一套同时支持 2D 和 3D 的物理能力,物体从此能受重力、会碰撞、能堆叠——平台跳跃、打砖块、堆箱子、滚小球这些玩法终于有了真正的底层支撑,而不是靠手写假装。其次是&quot;屏幕点选拾取&quot;:鼠标点屏幕上哪个物体,就能精确地把它选中——这是编辑器里&quot;点一下选中物体&quot;和游戏里&quot;点击玩法&quot;共同的基础。第三是抗锯齿:物体边缘不再有那种台阶状的锯齿毛刺,画面看起来干净专业。物理负责&quot;能动起来&quot;、点选负责&quot;能交互&quot;、抗锯齿负责&quot;看着像样&quot;,三者凑齐,引擎才真正从&quot;能渲染&quot;跨进了&quot;能做一个能玩的游戏&quot;。</p>
+<h2>性能:视锥剔除让大场景更流畅</h2>
+<p>引擎这天还加了一项关键的性能优化:视锥剔除。原理很直白——摄像机此刻看不到的物体(在视野之外的),就别费力气去画了。在此之前,场景里的物体不管在不在画面里都可能被一一处理,场景一大就白白浪费大量算力;现在引擎会先判断每个物体在不在摄像机的可见范围内,把看不见的直接跳过。场景越大、物体越多,这个优化省下来的就越多,复杂场景的帧率因此稳得多。它和此前的实例化绘制(一次画一大批相同物体)是互补的两招:一个减少&quot;画重复的&quot;,一个减少&quot;画看不见的&quot;。两者合起来,引擎扛大型、密集场景的底气明显更足了。</p>
+<h2>界面底座换代:现代组件库 + 渲染错误兜底</h2>
+<p>界面这天做了一次&quot;换地基&quot;级别的升级:把弹窗、下拉、菜单、表单控件等一整套交互组件,全部迁到一套现代、成熟、可靠的组件底座之上。好处是多方面的——交互手感更顺、视觉更统一、无障碍支持更好;原先一些用浏览器原生弹窗(那种很丑、没法定制的系统提示框)凑合的地方,也升级成了风格统一的对话框。更关键的是底层加了一道&quot;渲染错误兜底&quot;:万一某个界面组件在渲染时抛了错,系统会把它隔离住,而不是让一个局部的错误把整个启动画面卡死、白屏。这件事看起来只是&quot;换了套 UI 库&quot;,实则是把界面从&quot;能用但脆&quot;提升到&quot;稳健耐用&quot;——一个每天要长时间盯着用的工具,界面稳不稳,直接决定了用起来安不安心。</p>
+<h2>材质继承读穿 + 选哪个游戏就激活哪个</h2>
+<p>这天还有两处让日常更顺的改进。其一,材质的继承做成了&quot;读穿&quot;:子材质没有显式设置的属性,会自动透到父材质去取值——把共用设置放父材质里、子材质只覆盖差异,一批风格统一又各有小别的材质从此既好管又不易出错。其二,也是很要命的一处:挑选或新建一个游戏时,系统现在会真正把它&quot;激活&quot;成当前在做的游戏,后台 agent 干活的工作目录也跟着切过去。在此之前,多个游戏并存时很容易&quot;你看着的是这个、agent 改的是那个&quot;——选了哪个就对准哪个之后,这种错位被根除了。这两件事一个让材质好维护、一个让操作不犯迷糊,都是把&quot;多内容并存&quot;这件复杂事理顺的关键细节。</p>
+<h2>新增影像工作台 + 引擎调试与默认模型升级</h2>
+<p>工具家族这天又添一位:影像工作台,用来组织过场动画与影像内容,为做有叙事、有演出的游戏多备一件趁手工具。引擎侧也加了一份专门的调试技法说明,把排查渲染问题的套路沉淀下来,方便人和 AI 照着定位问题。后端把默认使用的模型升级到了更强的一档,同样的对话能得到更聪明的回应。这些改动各自不大,但方向一致:在前面那些&quot;能玩&quot;&quot;更稳&quot;的大块之外,把工具的覆盖面、引擎的可调试性、以及 AI 的底层能力都各自往前补了一点。一个平台的成熟,既靠几次大跨步,也靠这种持续的小补强。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天是引擎和界面同时&quot;成人&quot;的一天。引擎补上物理、点选、抗锯齿、剔除——这些不是锦上添花的特效,而是&quot;一个东西能不能称之为游戏&quot;的及格线:能动、能交互、看着像样、跑得动大场景。界面换上现代底座、加上错误兜底,则是把每天要长时间使用的那层壳从&quot;能用&quot;做到&quot;扛造&quot;。两件事合起来,标志着这个平台开始具备做&quot;真正能玩的游戏&quot;的完整底气——既有让游戏成立的引擎硬实力,又有让人愿意天天用的界面稳定性。从这天起,&quot;做个能玩的游戏&quot;不再是愿景,而是手里真有了那套工具。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

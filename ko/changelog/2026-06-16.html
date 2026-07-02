@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-16 · Characters finally cast shadows + a fully standalone editor — ForgeaX</title>
+<meta name="description" content="After a long hunt the hero finally casts a grounded shadow with night atmosphere; the editor runs fully standalone; the monorepo gains its first CI gate; the engine ingests professional model formats with smooth animation crossfade; and a 2D tile-map system lands." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-16 · Characters finally cast shadows + a fully standalone editor — ForgeaX" />
+<meta property="og:description" content="After a long hunt the hero finally casts a grounded shadow with night atmosphere; the editor runs fully standalone; the monorepo gains its first CI gate; the engine ingests professional model formats with smooth animation crossfade; and a 2D tile-map system lands." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-06-16.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-16.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-16.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-16.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-16.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-06-16.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-06-16.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-16.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-16.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-16.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-06-16</span></div>
+    <h1>Characters finally cast shadows + a fully standalone editor</h1>
+    <p class="standfirst">This was a day of enormous output. The hero finally casts a real shadow underfoot — behind it a whole day of grinding; the editor was rewritten into a self-contained shell that runs fully standalone; the whole codebase gained an automated quality gate for the first time; and the engine formally ingested professional modeling formats, made animations blend smoothly, and landed a complete 2D tile-map system.</p>
+    <div class="prose"><h2>A high-volume day: filling details and setting rules</h2>
+<p>This day&#39;s output was large, spanning &quot;filling details&quot; and &quot;setting rules.&quot; The detail-filling side was the work that directly shapes a product&#39;s look and feel: making a character cast a real ground shadow, making animations blend smoothly, making the engine ingest models from professional tools, and completing the whole 2D tile-map category. The rule-setting side was infrastructure, unseen yet far-reaching: rewriting the editor into a fully standalone module, fitting the whole codebase with its first automated quality gate, and hardening cross-platform deployment. The former makes &quot;what&#39;s built now&quot; better; the latter makes &quot;the process of building later&quot; steadier. For a project to go far, both hands must be strong: continually polishing the visible experience while quietly setting, one by one, the rules that guarantee long-term health. This day was a textbook case of both advancing together.</p>
+<h2>The character finally casts a shadow: a whole day of grinding</h2>
+<p>The dark-fantasy ARPG sample from the day before had an at-a-glance flaw: the witch hero cast no shadow underfoot, the whole figure like a texture floating in midair, with no sense of &quot;standing on the ground.&quot; This day grinded against that shadow for a whole day, a winding process: first trying to write a dedicated shadow-casting shader for the rigged character, then using an invisible proxy geometry to cast the shadow in its place, then falling back to an oval &quot;fake shadow&quot; pinned under the feet as a backstop; while repeatedly tuning the parameters shadow casting needs — adding a casting pass to scene materials, tilting the directional light to lengthen shadows, adjusting cascaded-shadow precision, lowering sky-light intensity so the directional light&#39;s contrast shows, tuning the moonlight&#39;s intensity and angle. After all that trial, the real crux was finally pinned down: the shadow&#39;s cascade count had to change from 4 to 1 to cast reliably — which actually surfaced a deeper engine bug (the 4-cascade directional-shadow path misbehaves in play mode), organized into a detailed report for the engine team. Night atmosphere was tuned to match: dim moonlight plus a few torches around the camp, evoking the dark-fantasy mood of &quot;clearing monsters around a fire at night.&quot; A whole day&#39;s persistence bought a seemingly tiny yet crucial effect: the character finally &quot;landed.&quot;</p>
+<h2>The editor runs fully standalone</h2>
+<p>The editor&#39;s standalone entry was rewritten this day into a truly self-contained shell. It had been working toward &quot;standalone&quot; for a while, but that standalone entry was still entangled with the main chat interface — it had to run inside the main interface, not truly independent. This day it was fully separated and rewritten: it brings its own dockable multi-panel layout, renders and organizes all nine panels the editor needs itself, depending not at all on the main interface&#39;s setup. A one-click bootstrap script was added that, on a fresh machine, automatically prepares the various build artifacts needed to run — including the binary pieces low-level rendering needs — so it&#39;s ready to edit out of the box. The significance is turning the editor from &quot;an embedded part of the main Studio&quot; fully into &quot;a complete application you can open and use on its own.&quot; It&#39;s both a thorough fulfillment of modular design and a paving of the way to later embed the editor in other products or distribute it as a standalone tool.</p>
+<h2>The whole codebase gets its first CI gate</h2>
+<p>This day fitted the whole codebase with its first automated quality gate. A CI (continuous integration) gate means that whenever someone submits a change, the system automatically runs a check — this initial check has three parts: type checking (confirming the interfaces between code parts line up), build (confirming the code actually compiles), and smoke testing (a run confirming basic functionality didn&#39;t break). Only if all three pass is the change allowed into the mainline. The gate, once up, immediately surfaced over twenty type inconsistencies that had been &quot;quietly drifting&quot; in a few sub-projects — they didn&#39;t error in normal use but had already planted hazards; they were cleaned up in batches that same day. The far-reaching significance: from this day, no new change can quietly carry such problems into the mainline — the machine automatically stops them at the door. For a codebase changed at high frequency in parallel by many AI agents, this automated &quot;gatekeeper&quot; is especially crucial: a person can&#39;t watch every change, but a gate can, and it never tires and never plays favorites. Handing the floor of quality to automation to guard is exactly the mark of a project moving from &quot;fast growth&quot; to &quot;sustainable growth.&quot;</p>
+<h2>Professional model formats + smooth animation blending</h2>
+<p>The engine added two solid capabilities on characters and assets this day. One: it formally ingests the model formats that professional modeling tools output directly. This format fully carries animation, skeleton and even physics parameters, whereas using it before required converting to another web-common format first, inevitably losing detail; now the engine reads it directly, so assets flowing from professional tools come into the game faithfully. Two: it makes character actions cross-fade smoothly: where switching from &quot;walk&quot; to &quot;run&quot; or &quot;idle&quot; to &quot;attack&quot; used to be a hard instant cut that looked jumpy, now several clips can blend proportionally and transition smoothly, making a character&#39;s motion far more coherent and natural — crucial to the feel of action games. An immediate debug-draw tool was also added, drawing helper lines and bounding boxes right on the picture, what-you-see-is-what-you-get for diagnosis, far more intuitive than guessing from numbers. Together these complete another stretch of the toolchain for &quot;making a character that moves, and moves naturally.&quot;</p>
+<h2>A complete 2D tile-map system lands in the engine</h2>
+<p>The engine also systematically completed and landed the whole 2D tile-map category this day. Tile maps are the most classic way to build 2D games — paving the world into a grid of square cells, each holding a small picture, assembled into a whole level. What landed this day isn&#39;t just &quot;can display&quot; but a complete set of mechanisms: tileset assets, tile layers, efficient chunk-based extraction and rendering, horizontal/vertical flipping and anchor handling for tiles, correct sprite culling and sorting, and a string of strict data validations that fail fast on error. It came with runnable demos and automated tests backing it the whole way. This pushes the platform&#39;s 2D capability from the preliminary basics of recent days to the level of &quot;you can seriously make a 2D game.&quot; The first game in many creators&#39; minds is precisely a 2D one — a side-scroller, a top-down view, a pixel-art world; paving the 2D road solidly throws open a door to that large body of creators. With both 3D and 2D legs strong, the range of game types the platform can carry is wide enough.</p>
+<h2>What this day means</h2>
+<p>This day, with enormous output, answered both &quot;is it well-made&quot; and &quot;is the path steady.&quot; The process of grinding a whole day over one shadow best represents this team&#39;s attitude: a character without a shadow may seem an inconsequential flaw to many, but it directly decides whether the image is believable — and fully solving it required not fudging past it but trying layer by layer, ruling out layer by layer, until finding the true crux hidden deep in the engine, and honestly recording it. Meanwhile, the editor&#39;s full independence, the establishment of the first CI gate, and the hardening of cross-platform deployment provide sustainable soil for this kind of diligence — when the floor of quality is guarded by automation and modules can evolve independently, the team is freed to polish every shadow. Doing the immediate experience to the utmost while setting the long-term foundation firm — this day achieved both.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

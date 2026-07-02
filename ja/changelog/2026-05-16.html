@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-16 · The agent bus comes into the UI + dashboard filters — ForgeaX</title>
+<meta name="description" content="The event bus between agents gets a visible surface, the dashboard gains filters and search, the engine can load standard glTF models, and the ECS converges its data vocabulary into one type-safe family." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-16 · The agent bus comes into the UI + dashboard filters — ForgeaX" />
+<meta property="og:description" content="The event bus between agents gets a visible surface, the dashboard gains filters and search, the engine can load standard glTF models, and the ECS converges its data vocabulary into one type-safe family." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-16.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-16.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/docs/" data-nav="/docs/">ドキュメント</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-16.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-16.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-16.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-16.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-16.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-16.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-16.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-16.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">毎日</span><span>2026-05-16</span></div>
+    <h1>The agent bus comes into the UI + dashboard filters</h1>
+    <p class="standfirst">The event bus the backend poured the day before surfaced this day: the bus agents use to talk to each other got a visible entry point for the first time, and the dashboard gained filtering and search. Meanwhile the engine learned to load standard 3D models and converged its component-system data vocabulary into one unified, type-safe family.</p>
+    <div class="prose"><h2>Making the invisible machinery visible</h2>
+<p>The plugin runtime and event bus the backend quietly poured the day before are themselves &quot;invisible&quot; — they run in the background, imperceptible to users. This day&#39;s theme was wiring that invisible machinery to the interface, making it observable and operable. Once a system starts having internal activity like &quot;several agents communicating over a bus,&quot; hiding it all in the background leaves users and developers in the black-box anxiety of &quot;what is it actually doing.&quot; So this day&#39;s work was clear: open a window onto the bus, add filtering to the task list, let people truly see what&#39;s happening inside the system. Observability isn&#39;t a nice-to-have; it&#39;s the precondition for a complex system to be trusted and debugged.</p>
+<h2>A visible agent bus</h2>
+<p>This day wired the event bus agents use to communicate into the interface. A &quot;bus health lamp&quot; appeared in the sidebar, carrying the current plugin count, so you can tell at a glance how many capabilities are loaded and whether the state is healthy; and a dedicated bus admin panel was promoted to a top-level entry, where you can browse event kinds, navigate up/down by keyboard, expand any record in place for its detail, even deep-link from a record straight to the matching event category in the sidebar. The point of all this: multi-agent collaboration became &quot;visible&quot; for the first time — who&#39;s talking to whom, what&#39;s being passed, how many of each event kind — laid out plainly, no longer a blob of background activity you could only guess at. For a platform that works long-term through &quot;a team of agents collaborating,&quot; this window is a key step in turning abstract collaboration into a concrete picture that can be understood and intervened in.</p>
+<h2>Dashboard: status distribution, filtering and search</h2>
+<p>As more tasks ran at once, a flat list alone was no longer enough. This day added a few practical tools to the dashboard: the runs list gained a &quot;status-distribution strip&quot; at the top, so you can see at a glance the overall picture of how many are running, done, or errored; and the task list supports filtering by status and searching by title, letting you quickly locate the one you care about out of a big pile of history. These are plain features, but when you&#39;re genuinely managing dozens of tasks at once, they decide whether you &quot;grasp the whole at a glance&quot; or &quot;fish for a needle in a long list.&quot; Smoothing the two high-frequency operations of triaging problems and reviewing history is, at heart, respecting the user&#39;s time — as a system grows, good filtering and search are productivity itself.</p>
+<h2>The engine can load standard 3D models (glTF)</h2>
+<p>The engine took a key step in its content ecosystem this day: support for loading the standard 3D model format glTF, and loading it through the asset system stood up the day before. glTF is the common interchange format for 3D content, supported by most modeling tools and model marketplaces; being able to ingest glTF directly means vast amounts of ready-made 3D models can be brought in and used, without remaking each by hand. Wiring it to the asset system rather than spinning up separate loading logic matters too — imported models then naturally have a unified identity and way to be referenced, manageable and reusable in a structured way. For users, this is an important answer to the real question of &quot;where do the assets to make a game come from&quot;: not only can AI generate them, but standard models already out in the world can be brought straight in.</p>
+<h2>The engine&#39;s ECS vocabulary converges into one family</h2>
+<p>The engine made an important &quot;convergence&quot; at the low level this day. Previously, different data shapes in components — strings, fixed/variable-length arrays, buffers — each had their own handling and wrapper layers, scattered in concept and tiring to read. This day converged them all under one &quot;managed-resource&quot; family and deleted a pile of redundant wrapper code. Alongside, &quot;creating an entity&quot; became stricter at the type level: more precise type constraints describe which components and what data an entity is made of, both blocking mistakes at compile time and clearing away the old patches done via &quot;forced type casts&quot; one by one, with a permanent check to stop them creeping back. This work is entirely invisible on the user&#39;s side, but it embodies a core engineering stance: the measure of code quality isn&#39;t line count but &quot;how many concepts you must hold to understand any single spot&quot; — converging scattered vocabulary into one family is exactly lightening the load for everyone (including AI) who later reads this code.</p>
+<h2>A working stance: edit directly + the local test is the gate</h2>
+<p>This day also articulated a working stance in engineering culture: for changes clear enough, edit directly rather than applying a heavy process to everything; but at the same time, &quot;local tests pass&quot; was set as an ungated-around threshold — you can move fast, but you can&#39;t skip verification. The two seem contradictory but are two sides of one thing: precisely because automated tests are the safety net, editing directly doesn&#39;t become recklessness. Spelling out &quot;when to take the heavy process and when direct editing is fine&quot; is itself respect for efficiency — not letting simple things be slowed by process, nor letting speed become an excuse for losing control of quality. This sense of pacing is the invisible secret to a fast-iterating team staying both fast and stable long-term.</p>
+<h2>What this day means</h2>
+<p>Seen together, this was a day of &quot;making the system transparent to people.&quot; The backend&#39;s complex internal machinery was wired to the interface, becoming observable and operable; the engine opened the door to vast standard models, so content sources are no longer limited; and the low level made the code itself more readable and trustworthy through vocabulary convergence. On the surface, visualization, model loading and type convergence are three unrelated things, but they point at one goal: keeping this ever-more-complex system &quot;understandable and trustworthy&quot; for users, for developers, and for the AI that will later read the code. How far a system goes often hinges less on how many features it piles up than on whether it can stay transparent as it grows complex — and this day was an investment in exactly that transparency.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

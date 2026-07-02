@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-07 · The core editor panels arrive + Windows support — ForgeaX</title>
+<meta name="description" content="The Hierarchy, Inspector and Assets panels — the everyday core of any game editor — arrive together; the engine gains 2D tile-map rendering and Windows support; an imported model scene is wired into a real sample; and the backend degrades gracefully when a sub-service is down." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-07 · The core editor panels arrive + Windows support — ForgeaX" />
+<meta property="og:description" content="The Hierarchy, Inspector and Assets panels — the everyday core of any game editor — arrive together; the engine gains 2D tile-map rendering and Windows support; an imported model scene is wired into a real sample; and the backend degrades gracefully when a sub-service is down." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-06-07.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-07.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-07.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-07.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-07.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-06-07.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-06-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-07.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-07.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-07.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-06-07</span></div>
+    <h1>The core editor panels arrive + Windows support</h1>
+    <p class="standfirst">This day filled the editor with the three most essential, most everyday panels of game editing — Hierarchy, Inspector and Assets — forming a complete editing flow for the first time; meanwhile the engine added 2D tile-map rendering, fixed a batch of Windows compatibility issues, wired a full imported-model scene into a sample game, and made the backend degrade gracefully when a sub-service is down rather than erroring outright.</p>
+    <div class="prose"><h2>From &quot;skeleton&quot; to &quot;flesh&quot;: the editor starts filling in</h2>
+<p>The previous two days stood up the editor&#39;s &quot;skeleton&quot; — the dockable panel system, transform tools, undo/redo. But a skeleton alone can&#39;t do work; what actually lets someone sit down and build a game are the feature panels hung on that skeleton. This day&#39;s work is exactly putting flesh on that skeleton: filling in, all at once, the three core panels indispensable to any game editor, so the most basic editing flow — &quot;see objects, select, change properties, pull in assets&quot; — runs end-to-end for the first time. Meanwhile the engine broadened itself in two directions — adding the rendering foundation for the whole tile-map category of 2D gameplay, and fixing a batch of Windows compatibility issues so more people can run it. With an imported model actually wired into a sample game and the backend degrading gracefully on failure, the day&#39;s theme is clear: filling the framework built over the preceding days, spot by spot, into something genuinely usable.</p>
+<h2>The core editor trio: Hierarchy / Inspector / Assets</h2>
+<p>This day the editor filled in the three most essential panels of game editing, each minding its own domain and none dispensable. The Hierarchy panel: arranging every object in the scene into a tree by parent-child relationship, making clear at a glance who is whose child, click to select — this is where you &quot;find things and grasp structure&quot; in a scene. The Inspector panel: select an object and its every property spreads out on the right — position, rotation, material, all kinds of parameters editable directly — this is where you &quot;tune one thing.&quot; The Assets panel: browse and pull in all the project&#39;s materials — models, textures, scene packs and so on, dragging in whatever you need — this is where you &quot;fetch materials.&quot; Together, the three form the core flow every game developer repeats hundreds or thousands of times a day — &quot;see all objects → select one → change its parameters → drag something in from assets&quot; — finally complete in Studio. They&#39;re a &quot;trio&quot; precisely because the essence of editing is shuttling endlessly between &quot;the global view, the single-object detail, and the source of materials&quot; — only with all three present does the editor truly become capable of work.</p>
+<h2>The engine gains 2D tile-map rendering</h2>
+<p>The engine laid the foundation for a whole category of gameplay this day: 2D tile-map rendering. Tile maps are the classic 2D-game approach — cut the world into a grid of square cells, put a small picture (&quot;a tile&quot;) in each cell, and assembled they make a whole map: grass, walls, rivers and roads are all paved from these little squares; classic side-scrolling, top-down and pixel-art games are nearly all built on it. This day the engine landed the base components for tile maps and tile layers, and can read a common tile-map file format — meaning a level you draw in a dedicated map tool can be read straight into the engine and rendered, without re-placing every cell by hand. The significance: it formally extends the platform&#39;s reach from the previously 3D-leaning scenes into the vast territory of 2D — the first game many creators want to make is precisely a 2D one, and opening this road throws the door open to a large body of 2D creators.</p>
+<h2>Windows compatibility: it runs properly on more machines</h2>
+<p>This day focused on a batch of Windows compatibility issues. The most common and most insidious pitfall of cross-platform software often lies not in the features themselves but in the subtle convention differences between systems: different operating systems use different text line-endings, different file-path separators, different behavior for wildcard file matching — and if any one isn&#39;t aligned, code that ran fine on one system fails inexplicably on another. This day fixed, one by one, a set of failures caused by these differences, and unified the text line-ending convention so all files behave consistently across platforms. For Windows users, this means the development environment and tests run properly on their own machines instead of snagging everywhere on OS differences. For a tool to be used by as many people as possible, cross-platform support is unavoidable groundwork — it adds no new feature, yet directly decides how many people &quot;can&#39;t even get in the door.&quot; Firming up this compatibility clears the very first obstacle for a broader user base.</p>
+<h2>Wiring &quot;an imported model&quot; into a real game + a sturdier backend</h2>
+<p>The previous day opened the &quot;drag a model in and it becomes a scene&quot; capability; this day ran it through with a real example: a full scene model was wired into the shooter sample as a real-world example of the &quot;import a model → assemble a playable scene&quot; path. A new capability merely running isn&#39;t enough — it needs a real use case to verify it holds up in an actual end-to-end flow, and this sample does exactly that. The backend also holds up better against surprises: when a depended-on sub-service isn&#39;t up yet, related requests now degrade gracefully to a clear &quot;temporarily unavailable&quot; status instead of throwing a pile of generic server errors that drag the whole interface down. This &quot;graceful degradation&quot; is a hallmark of a robust system — one component being down shouldn&#39;t paralyze the whole system; it should clearly say &quot;this part isn&#39;t available right now&quot; and let the rest run on. Combined with the earlier binary-asset upload channel, the full chain of bringing external materials in and using them in a real game grew more complete this day.</p>
+<h2>What this day means</h2>
+<p>This day had no earth-shattering single breakthrough, but it nicely illustrates a product&#39;s process of &quot;moving from framework to practicality.&quot; The arrival of the editor trio means Studio&#39;s visual editing crossed, for the first time, from &quot;demonstrable&quot; into &quot;you can actually sit down and work&quot;; the addition of 2D tile maps extended the platform&#39;s territory from 3D to 2D, catching a large body of creators who want to make classic 2D games; and the Windows compatibility fix clears the entry barrier ahead of time for more potential users. Seen together, these three point in the same direction: letting more people, in more ways, on more devices, genuinely put this platform to use. A tool&#39;s maturity is never the birth of some dazzling feature, but this kind of &quot;coverage&quot; and &quot;usability&quot; being solidly broadened day after day.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

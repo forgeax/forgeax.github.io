@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-18 · Animated agent avatars + one source of truth for project data — ForgeaX</title>
+<meta name="description" content="Each agent gets an animated avatar that reflects its state; game-project data converges to a single self-describing source of truth; a host-engine contract with screen projection and video cutscenes lands; and four real-game-surfaced rendering bugs are fixed across a unified engine." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-18 · Animated agent avatars + one source of truth for project data — ForgeaX" />
+<meta property="og:description" content="Each agent gets an animated avatar that reflects its state; game-project data converges to a single self-describing source of truth; a host-engine contract with screen projection and video cutscenes lands; and four real-game-surfaced rendering bugs are fixed across a unified engine." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-18.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-18.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/docs/" data-nav="/docs/">Documents</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/games/" data-nav="/games/">Jeux</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Marché</a>
+      <a href="/fr/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-18.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-18.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-18.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-18.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-18.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-18.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-18.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-18.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Demandez à l'IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Ouvrir dans ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Ouvert à Claude</a>
+          <button class="ask-item" id="copyMd">Copier la page en tant que Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Tous les jours</span><span>2026-06-18</span></div>
+    <h1>Animated agent avatars + one source of truth for project data</h1>
+    <p class="standfirst">This day was a watershed: game-project data was converged into a single source of truth, with the whole platform reading and writing config through one unified entry; each agent gained, in the workbench, an animated avatar that shifts with its state; a &quot;host page ↔ engine&quot; contract and screen-projection capability landed; and through this big integration, several engine rendering bugs surfaced by real games were cleared at once.</p>
+    <div class="prose"><h2>Converging the foundation while adding warmth</h2>
+<p>Two temperaments coexisted this day. One is the cool &quot;convergence&quot;: unifying the scattered, every-part-for-itself logic for reading game-project data into a single authoritative entry; aligning the whole platform onto one engine mainline; clearing several engine bugs surfaced by real games at once. These deduplicate and disambiguate the foundation, making the whole system more reliable and maintainable. The other is the warm &quot;addition&quot;: giving each agent an animated avatar that changes with its state, so the abstract matter of &quot;collaborating with a team of AIs&quot; gains, on screen, a human presence for the first time. A good platform needs both the composure to converge complexity into simplicity and the care to let a cold system show a little humanity. This day placed both temperaments together — firming the unseen foundation and lighting up the visible details.</p>
+<h2>Game-project data gets a single source of truth</h2>
+<p>The weightiest thing this day was converging each game&#39;s project configuration (the core file describing &quot;what this game is called, which resources it uses, which scene it starts from&quot;) into a &quot;single source of truth.&quot; The prior pain was typical: each part of the platform — backend, editor, play side — read this file separately, hand-wrote its own parsing, and wrote its own error-handling; the moment the file&#39;s format or fields quietly changed, no one could guarantee every place reading it kept up, planting the hazard of mismatched fields. This day fully unified it: the whole platform reads and writes project data through one authoritative entry only, and the configuration&#39;s format describes itself with a machine-validatable spec — that is, what the file looks like, what fields it has, and each field&#39;s type are all made clear by the spec itself, no longer relying on scattered docs and word of mouth. The chance was also taken to adopt a cleaner new format: a version number (for smooth upgrades later) and stable identifiers for referencing resources (rather than easily-changing names). The essence is a core creed running through the whole project — a single fact should have only one authoritative source. Setting an authoritative manual for the workbench&#39;s &quot;project file&quot; buys project data that is more reliable, consistent everywhere, and diagnosable in one place.</p>
+<h2>Each agent gets an animated avatar</h2>
+<p>This day added a humanizing detail to the workbench: each agent is no longer a static image but an animated avatar that shifts with its state — different animations for thinking, working and idle. This came together across four parts: a set of finished animated character avatars, the rendering that plays them in the workbench, a backend state machine that switches the avatar by the agent&#39;s current state, and the interface tying it all together. Why is an &quot;animated avatar&quot; worth building deliberately? Because the platform&#39;s core experience is directing a team of differently-tasked AI agents to collaborate (planners, designers, coders...), and when they&#39;re all just static icons, it&#39;s hard to intuit &quot;who&#39;s busy now, with what.&quot; With avatars that change by state, a glance conveys the &quot;a room full of people each at their own work&quot; presence: who&#39;s deliberating, who&#39;s running a job, who&#39;s waiting. It gives the once-abstract matter of &quot;collaborating with a team of AIs&quot; warmth and life on screen for the first time — a seemingly &quot;just pretty&quot; detail that actually directly shapes how people perceive and trust this collaborative relationship.</p>
+<h2>A host-page ↔ engine contract + screen projection</h2>
+<p>The engine also established a &quot;host-page ↔ engine&quot; contract this day and added a very practical capability: projecting a point in the 3D world to its 2D coordinate on screen. The contract first: a game runs in the engine, wrapped by a web interface (the host) outside it, and the two need a clear agreement on &quot;who can ask whom for what, passing what&quot; — writing this agreement down explicitly means collaboration across that boundary no longer relies on tacit understanding and guessing. Screen projection next: it solves a very common need — how to &quot;pin&quot; a UI element above a 3D object? Such as a health bar floating over an enemy&#39;s head, a name tag following a character, an interaction prompt appearing beside an item. Achieving these requires converting that 3D object&#39;s world position, in real time, into its current 2D landing point on screen. This day made this world-to-screen conversion a standard engine capability, with camera auto-fit to the picture&#39;s aspect ratio and a video-cutscene demo alongside. Together these give reliable underpinning to &quot;overlaying a 2D information layer atop a 3D picture&quot; — something nearly every game must do.</p>
+<h2>Engine bugs surfaced by real games, fixed at once</h2>
+<p>As project data unified, the whole platform also fully aligned onto one engine mainline this day. This big integration brought an unexpected but valuable gain: several engine issues previously surfaced while building real games were confirmed fixed at once — including large-scene shadows, a class of data writes, resource-identifier collisions, and solid-color ambient light, four concrete problems. This confirms a healthy collaborative loop: stress-testing the underlying engine with real games often surfaces real problems that abstract tests can&#39;t; recording them faithfully, driving the fixes, and confirming they land makes the engine ever more solid through rounds of real use. This day the editor and all six sample games were migrated to the engine&#39;s new interface too. The benefit of unification is obvious: behavior is consistent everywhere, problems are easier to trace, and new features can be &quot;built once and take effect everywhere,&quot; with no juggling compatibility across forked versions. Converging the scattered into the unified looks like mere tidying but actually clears the obstacles for all the fast iteration that follows.</p>
+<h2>What this day means</h2>
+<p>The day&#39;s keywords are &quot;unification&quot; and &quot;humanity.&quot; Unification shows in converging project data into a single source of truth, aligning the platform onto one engine, and writing cross-boundary collaboration into an explicit contract — all eliminating ambiguity and duplication, keeping an ever-larger system understandable and maintainable. This convergence is unseen and unglamorous, yet the inner work that lets a system grow healthily long-term; it follows that plain but fundamental principle: a single fact should have only one authoritative source. And &quot;humanity&quot; shows in those animated agent avatars — when what you face is no longer cold icons but a team of companions seemingly each genuinely busy, human-AI collaboration gains a layer of emotional connection. A truly good tool must both set order seamlessly underneath and make people comfortable, even happy, to use on top. This day attended to both.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour quotidiennes</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables. Open source, licence Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/blog/">Blogue</a>
+    <a href="/fr/docs/">Documents</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/games/">Jeux</a>
+    <a href="/fr/marketplace/">Marché</a>
+  </div>
+  <div class="col"><h4>Projet</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

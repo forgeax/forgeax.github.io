@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-13 · 一个工程多个关卡 + 阴影系统升档 — ForgeaX</title>
+<meta name="description" content="这天同一个工程能放多个关卡了,还配了关卡启动器;引擎阴影系统一次升档——大场景级联阴影 + 点光源阴影 + 完整的 HDR 与辉光;弹幕生存样例被做成了"白天牧场 + 夜晚墓地"的双关卡战役,顺带把整套粒子特效捋顺;引擎和聊天两端同时围猎资源泄漏;agent 的可靠性也做了一轮加固。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-13 · 一个工程多个关卡 + 阴影系统升档 — ForgeaX" />
+<meta property="og:description" content="这天同一个工程能放多个关卡了,还配了关卡启动器;引擎阴影系统一次升档——大场景级联阴影 + 点光源阴影 + 完整的 HDR 与辉光;弹幕生存样例被做成了"白天牧场 + 夜晚墓地"的双关卡战役,顺带把整套粒子特效捋顺;引擎和聊天两端同时围猎资源泄漏;agent 的可靠性也做了一轮加固。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-13.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-13.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-13.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-13.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-13.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-13.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-13.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-13.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-13.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-13.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-13</span></div>
+    <h1>一个工程多个关卡 + 阴影系统升档</h1>
+    <p class="standfirst">这天同一个工程能放多个关卡了,还配了关卡启动器;引擎阴影系统一次升档——大场景级联阴影 + 点光源阴影 + 完整的 HDR 与辉光;弹幕生存样例被做成了&quot;白天牧场 + 夜晚墓地&quot;的双关卡战役,顺带把整套粒子特效捋顺;引擎和聊天两端同时围猎资源泄漏;agent 的可靠性也做了一轮加固。</p>
+    <div class="prose"><h2>一边做大,一边收紧</h2>
+<p>这一天的工作可以分成&quot;做大&quot;和&quot;收紧&quot;两股劲。做大的一面:工程能装下多个关卡,意味着创作的单位从&quot;一个场景&quot;升级成了&quot;一整套游戏&quot;;引擎的阴影、HDR、辉光一次升档,意味着画面能往真实、有质感的方向再推一大步;弹幕生存样例被做成完整的双关卡战役,则把这些新能力当场演示了一遍。收紧的一面:引擎和聊天两端都在围猎&quot;资源泄漏&quot;这个隐形敌人,把用完不还的显存和内存一处处堵上;agent 的可靠性也做了专项加固,让它在出错时能自己重试、扛得住超长上下文。一个平台在快速长大的同时,必须同步把根基收紧,否则规模越大、漏洞越多。这一天恰好把这两件事放在了一起做。</p>
+<h2>一个工程能放多个关卡 + 关卡启动器</h2>
+<p>这天编辑器接入了&quot;多场景游戏&quot;,这是一个把创作单位放大的关键变化。此前一个工程基本对应一个场景,想做有多关、有分支的完整游戏就很别扭;现在同一个工程下可以并存多个关卡文件,资产面板也改成按名称组织&quot;子资产&quot;,不再把同一个场景拆成一行行重复堆在列表里看着眼花。配套新增了一个关卡启动器面板,让你在 Studio 里直接挑选要进哪一关来编辑或试玩;编辑态和试玩态之间会成对同步,你在编辑器里改了什么,切到试玩就如实呈现。为了把这套能力坐实,配套的弹幕生存样例也被做成了一个真正的多关卡战役——一关是白天的牧场、一关是夜晚的墓地,两种完全不同的氛围,正是&quot;用一个工程做出一整套关卡&quot;的实战示范。从这天起,做一个有起承转合、有多个关卡的完整游戏,在结构上终于顺理成章,而不再需要为每一关单开一个工程、再手动拼起来。</p>
+<h2>引擎阴影系统升档:近清晰、远平滑、点光也投影</h2>
+<p>引擎的阴影这天一次升了一档,而阴影恰恰是决定一个三维画面&quot;可不可信&quot;的关键——没有阴影,物体就像浮在空中、贴在背景上,毫无立体感。核心的一项是新增了&quot;级联阴影&quot;并把它定为统一的阴影方案。它解决的是大场景阴影的老大难:一张大地图,如果用一张固定精度的阴影图去覆盖,要么近处糊、要么远处糊;级联阴影的思路是把视野按远近分成几段,近处用高精度、远处用低精度,于是脚边的阴影清晰锐利、远处的阴影平滑过渡,整张大地图都经得起看。另一项是点光源现在也能投影了——以前只有像太阳那样的平行光能产生阴影,而一盏灯泡、一支火把这种向四面八方发光的点光源照不出影子;现在它们也能投出正确的、向四周发散的阴影。再配上完整的 HDR(高动态范围,让画面明暗层次更真实)与辉光范例,画面的真实感整体抬升。这些是后续做出有质感的真实场景必不可少的图形地基。</p>
+<h2>弹幕生存样例:从&quot;能跑&quot;到&quot;像个真游戏&quot;</h2>
+<p>围绕那款弹幕生存样例,这天把整条粒子与特效链路彻底捋顺了一遍,顺带把它从&quot;能跑&quot;打磨成了&quot;看着像个真游戏&quot;。具体做了一连串事:把粒子系统改成实例化的方式,于是满屏的火花、爆炸、光效同时出现也不卡顿;修对了加色混合与透明渲染的处理,消除了之前那种特效边缘出现的发黑方块;把冲击波从一团杂乱的效果改成了干净利落的薄环;给每种技能配了各自的自定义着色器,让爆炸、火焰、冰冻各有各的质感;再叠上一层电影感的画面后处理,以及给怪物和玩家角色做的整套外观资产。这件事的价值是双重的:一方面,它让这个样例本身变成了一个观感不错、可以直接玩也可以照着学的成品;另一方面,它实际上是用一个真游戏,把当天引擎刚升级的阴影、辉光、粒子、特效等一整套图形能力,完完整整地跑了一遍压力测试——能把它撑起来,才证明这些底层能力是真的好用。</p>
+<h2>两端同时围猎资源泄漏</h2>
+<p>这天有一条贯穿前后端的暗线:围猎&quot;资源泄漏&quot;。所谓泄漏,就是用过的资源没被及时归还,越积越多,最终拖垮整个系统——它平时不显眼,只在长时间、大规模使用时集中爆发,因而格外阴险。引擎这一侧,补上了显卡资源的完整生命周期管理:每一块显存缓冲、每一张纹理在用完后都能被明确地销毁回收,渲染器整体也能干净地释放——以前这些显存可能悄悄漏着,跑久了显存越占越满。聊天这一侧,则一口气清掉了好几处前端状态的内存泄漏:关闭一个会话时,与它相关的各种缓存、监听、临时记录都会被正确地清除,而不是残留在内存里越堆越多。这两件事看起来一个在底层渲染、一个在前端界面,毫不相干,但内核是同一条原则:谁申请的资源,谁负责在用完后归还。把这条原则在系统的每一个角落都贯彻到位,正是一个软件能够长时间、大体量稳定运行的根本保证。</p>
+<h2>Agent 可靠性加固:出错能自己重试、扛得住长上下文</h2>
+<p>这天还给 agent 的可靠性做了一轮针对性加固,专攻几类最影响&quot;AI 干活靠不靠谱&quot;的问题。其一,是在 agent 的工作循环内部加了对大模型调用的重试:模型调用偶尔会因为网络抖动等原因失败,以前一次失败可能就让整个任务中断,现在它会在循环里自己再试一次,把这种偶发故障消化掉。其二,是当对话上下文太长、快要超出模型容量时,系统会主动地、有反应地把历史压缩一下,避免直接撞上限而崩掉。其三,是加固了把任务派给子 agent 时的回调处理,以及对事件积压的报告。这些改动还配了一套专门的验证手段——用一个可脚本控制的&quot;假模型服务器&quot;来模拟各种异常情况,在真实的运行栈里把这些加固逐一验证过。一个让 AI 替你长时间自主干活的平台,最怕的就是它在中途因为某个偶发问题悄无声息地卡住或崩掉;把这些薄弱环节一个个补强,正是让人敢于&quot;放手让它跑&quot;的底气所在。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天把&quot;野心&quot;和&quot;底气&quot;摆在了一起。多关卡工程和阴影升档,代表的是野心——它让平台能承载更完整、更宏大、更好看的作品,创作的天花板被又一次抬高;而资源泄漏的围猎与 agent 可靠性的加固,代表的是底气——它让这些更大的野心能稳稳地落在一个不漏、不崩、出错能自愈的根基上。一个只追野心不顾底气的产品,做得越大、塌得越惨;一个只守底气不敢追野心的产品,则永远停在原地。真正成熟的工程节奏,是让这两者像这一天一样彼此配速:每往前迈一大步能力,就同时往下夯一层根基。那个被做成完整双关卡战役、画面精致的样例,正是这种节奏最好的注脚——它既展示了能做到多好,也用自己跑通了这一切是否真的稳。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

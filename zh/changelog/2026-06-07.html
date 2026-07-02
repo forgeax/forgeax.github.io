@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-07 · 编辑器三件套到齐 + Windows 兼容 — ForgeaX</title>
+<meta name="description" content="这天把游戏编辑里最核心、最日常的三个面板——层级、检视器、资产——一次性补进了编辑器,编辑动线第一次完整成形;引擎同时新增了 2D 瓦片地图渲染、修好了 Windows 上的一批兼容问题,还把一个完整的导入模型场景接进了示例游戏,并让后端在子服务未启动时优雅降级而不是直接报错。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-07 · 编辑器三件套到齐 + Windows 兼容 — ForgeaX" />
+<meta property="og:description" content="这天把游戏编辑里最核心、最日常的三个面板——层级、检视器、资产——一次性补进了编辑器,编辑动线第一次完整成形;引擎同时新增了 2D 瓦片地图渲染、修好了 Windows 上的一批兼容问题,还把一个完整的导入模型场景接进了示例游戏,并让后端在子服务未启动时优雅降级而不是直接报错。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-07.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-07.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-07.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-07.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-07.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-07.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-07.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-07.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-07.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-07</span></div>
+    <h1>编辑器三件套到齐 + Windows 兼容</h1>
+    <p class="standfirst">这天把游戏编辑里最核心、最日常的三个面板——层级、检视器、资产——一次性补进了编辑器,编辑动线第一次完整成形;引擎同时新增了 2D 瓦片地图渲染、修好了 Windows 上的一批兼容问题,还把一个完整的导入模型场景接进了示例游戏,并让后端在子服务未启动时优雅降级而不是直接报错。</p>
+    <div class="prose"><h2>从&quot;骨架&quot;到&quot;血肉&quot;:编辑器开始填实</h2>
+<p>前两天把编辑器的&quot;骨架&quot;立了起来——可停靠的面板系统、变换工具、撤销重做。但骨架本身不能干活,真正让人能坐下来编游戏的,是挂在骨架上的那些功能面板。这天做的,正是往这副骨架上填血肉:把任何游戏编辑器都不可或缺的三个核心面板一次性补齐,让&quot;看见对象、选中、改属性、取素材&quot;这条最基本的编辑动线第一次完整跑通。与此同时,引擎也在两个方向上拓宽自己——一是补上了 2D 瓦片地图这一整类玩法的渲染基础,二是修好了在 Windows 上的一批兼容问题让更多人能跑起来。再加上把导入的模型真正接进一个示例游戏、让后端在异常时优雅降级,这一天的主题很清晰:把前几天搭好的框架,一处处填成真正能用的东西。</p>
+<h2>编辑器三件套到齐:层级 / 检视器 / 资产</h2>
+<p>这天编辑器补上了游戏编辑里最核心的三个面板,它们各管一摊、缺一不可。层级面板:把场景里所有对象按父子关系排成一棵树,谁是谁的子节点一目了然,点一下就能选中——这是你在场景里&quot;找东西、理结构&quot;的地方。检视器面板:选中一个对象后,在右侧把它的所有属性摊开,位置、旋转、材质、各种参数都能直接改——这是你&quot;调一个东西&quot;的地方。资产面板:浏览和取用项目里的全部素材——模型、纹理、场景包等等,需要什么从这里拖进来——这是你&quot;取材料&quot;的地方。这三个面板配合在一起,&quot;看见全部对象 → 选中一个 → 改它的参数 → 从资产里拖东西进来&quot;这套每个游戏开发者每天要重复成百上千次的核心动线,终于在 Studio 里完整成形。它们之所以是&quot;三件套&quot;,正因为编辑的本质就是在&quot;全局视图、单体细节、素材来源&quot;这三者之间不停穿梭——三个都到齐,编辑器才算真正能干活。</p>
+<h2>引擎新增 2D 瓦片地图渲染</h2>
+<p>引擎这天补上了一整类玩法的地基:2D 瓦片地图渲染。瓦片地图是 2D 游戏里最经典的做法——把世界切成一格一格的方块网格,每一格放一张小图(&quot;瓦片&quot;),拼起来就是一整张地图:草地、墙壁、河流、道路都是用这些小方块铺出来的;经典的横版、俯视角、像素风游戏几乎都建立在它之上。这天引擎落下了瓦片地图和瓦片图层的基础组件,并且能读取通用的瓦片地图文件格式——也就是说,你用专门的地图工具画好的关卡,可以直接被引擎读进来渲染出来,而不必手工重摆每一格。这件事的意义在于,它让平台的能力从此前偏重的 3D 场景,正式扩展到了 2D 这一大片天地——很多创作者想做的第一个游戏恰恰是 2D 的,把这条路打通,等于向一大批 2D 创作者敞开了门。</p>
+<h2>Windows 兼容修复:更多电脑能正常跑</h2>
+<p>这天集中修了一批 Windows 上的兼容问题。跨平台软件最常见、也最隐蔽的坑,往往不在功能本身,而在系统之间那些细微的约定差异:不同操作系统的文本换行符不一样、文件路径的分隔方式不一样、按通配符匹配文件的行为不一样——任何一处没对齐,在一个系统上跑得好好的代码,换到另一个系统就会莫名其妙地失败。这天把因这些差异导致的一组失败逐个修掉,并统一了文本换行的规范,确保所有文件在各平台上表现一致。对 Windows 用户来说,这意味着开发环境和测试能在自己的机器上正常跑起来,不再因为系统差异处处卡壳。一个工具想要被尽可能多的人用上,跨平台就是绕不开的基本功——它不增加任何新功能,却直接决定了有多少人&quot;连门都进不来&quot;。把这块兼容性补扎实,是在为更广的用户群体扫清最前面的障碍。</p>
+<h2>把&quot;导入的模型&quot;接进一个真游戏 + 后端更稳健</h2>
+<p>前一天打通了&quot;拖一个模型进来就变成场景&quot;的能力,这天就用一个真实示例把它跑了一遍:一个完整的场景模型被接进了射击示例游戏,作为&quot;导入模型 → 拼成可玩场景&quot;这条路的实战样例。一项新能力光能跑通还不够,得有真实的用例去验证它在端到端的真实流程里确实站得住——这个示例做的就是这件事。后端这边也更经得起意外了:当某个依赖的子服务还没启动时,相关请求现在会优雅地返回一个&quot;暂不可用&quot;的明确状态,而不是抛出一堆笼统的服务器错误把整个界面拖垮。这种&quot;优雅降级&quot;是健壮系统的标志——一个部件没起来,不该让整个系统跟着瘫;它应该清楚地说&quot;我这块暂时不行&quot;,让其余部分照常运转。配合此前的二进制资源上传通道,把外部素材搬进来、再用进真实游戏的整条链路,这天又完整了一截。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天没有一个石破天惊的单点突破,但它很好地诠释了一个产品&quot;由框架走向实用&quot;的过程。编辑器三件套的到齐,意味着 Studio 的可视化编辑第一次从&quot;能演示&quot;跨进了&quot;能真正坐下来干活&quot;;2D 瓦片地图的加入,把平台的疆域从 3D 扩展到了 2D,接住了一大批想做经典 2D 游戏的创作者;Windows 兼容的修复,则是在替更多潜在用户提前扫清进门的门槛。把这三件事放在一起看,会发现它们指向同一个方向:让更多的人、用更多的方式、在更多的设备上,都能真正用起这个平台。一个工具的成熟,从来不是某个炫目功能的诞生,而是这种&quot;覆盖面&quot;和&quot;可用度&quot;在一天天里被踏踏实实地拓宽。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

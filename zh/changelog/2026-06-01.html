@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-01 · 桌面 App 端到端跑通 + 3D 世界里的清晰文字 — ForgeaX</title>
+<meta name="description" content="六月第一天:桌面应用第一次从安装到游玩全程跑通,首启就引导你填 key。引擎一天连击——3D 世界里能挂清晰文字、物体关系双向同步、加了每帧缓存提性能、修好抗锯齿与贴图朝向;还新增了一个低多边形建模助手。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-01 · 桌面 App 端到端跑通 + 3D 世界里的清晰文字 — ForgeaX" />
+<meta property="og:description" content="六月第一天:桌面应用第一次从安装到游玩全程跑通,首启就引导你填 key。引擎一天连击——3D 世界里能挂清晰文字、物体关系双向同步、加了每帧缓存提性能、修好抗锯齿与贴图朝向;还新增了一个低多边形建模助手。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-01.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-01.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-01.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-01.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-01.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-01.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-01.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-01.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-01.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-01.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-01</span></div>
+    <h1>桌面 App 端到端跑通 + 3D 世界里的清晰文字</h1>
+    <p class="standfirst">六月第一天:桌面应用第一次从安装到游玩全程跑通,首启就引导你填 key。引擎一天连击——3D 世界里能挂清晰文字、物体关系双向同步、加了每帧缓存提性能、修好抗锯齿与贴图朝向;还新增了一个低多边形建模助手。</p>
+    <div class="prose"><h2>从&quot;桌面壳立起来&quot;到&quot;端到端能用&quot;</h2>
+<p>前几天桌面应用的外壳刚立起来,但&quot;立起来&quot;和&quot;能用&quot;之间还隔着一整条链路:后端要打进包、预览要内嵌、示例游戏要自动放好、第一次启动还得让用户顺利填上 key。这天把这整条链路从头到尾打通,桌面应用第一次能从&quot;安装&quot;一路走到&quot;游玩&quot;。与此同时,引擎单日推进了一长串(文字、关系、性能、画质修复),协作侧还添了一个新助手。一边把&quot;能装能跑&quot;的桌面体验做闭环,一边持续给引擎和工具加料,这天是把六月开局稳稳铺在&quot;既能用、又在长&quot;的双轨上。</p>
+<h2>桌面 App 端到端跑通 + 首启引导填 key</h2>
+<p>桌面应用这天第一次从头跑到尾。它把后端服务直接打进安装包、把引擎预览内嵌进窗口、把示例游戏在首次启动时自动放好,连第一人称游戏需要的鼠标指针捕获(把光标锁进窗口里转视角)也接上了。最贴心的是首次启动体验:会弹出一个引导层让你填入 API key,填完立即生效、不用重启应用——后端会把新填的 key 实时应用到运行环境里。端口也能用环境变量覆盖以适配不同机器,装配前还会自愈一类常见的依赖摆放问题,避免打包失败。从这天起,把它当一个能安装、能打开、能直接玩的桌面软件来用,整条路真正通了——这是从&quot;开发者在源码里跑&quot;到&quot;普通人装个 app 就能用&quot;的关键一步。</p>
+<h2>引擎:3D 世界里能挂清晰文字</h2>
+<p>引擎这天落地了&quot;世界空间文字渲染&quot;:现在能把清晰、放大也不糊的文字直接挂在 3D 场景里的任意位置。这件事比听起来重要——游戏里到处都需要立在世界里的文字:招牌、路牌、角色头顶的名字、血条数字、漂浮的伤害跳字、互动提示。它用的是一种特殊的字形表达方式,让文字无论被拉近拉远、放大缩小,边缘都保持锐利,而不是变成一团模糊的像素糊。在此之前,引擎只能画几何与贴图,文字是个明显的空缺;补上这一块,意味着做带 UI、带提示、带数值反馈的游戏第一次有了正经的文字能力。对几乎任何类型的游戏来说,这都是从&quot;能渲染世界&quot;到&quot;能在世界里传达信息&quot;的必备一步。</p>
+<h2>引擎:物体关系双向同步 + 实体生命周期统一 + 性能缓存</h2>
+<p>引擎这天在底层的&quot;对象组织&quot;上做了几处加固。其一是物体之间的&quot;关系&quot;做成了双向自动同步:当你建立或解除一对父子、归属之类的关联时,关系的两端会自动保持一致——不会出现&quot;父亲说有这个孩子、孩子却不认这个父亲&quot;的脏状态,组合与拆解都更省心。其二是把场景实例的生命周期统一了:分离、销毁、整体清除走同一套规整的语义,避免边角情况下漏删、残留。其三是性能:加了一层每帧的渲染状态缓存,把每帧都要重算的东西缓存起来复用,减少无谓开销。这些都是看不见的内功,但它们决定了一个复杂场景在频繁增删、组合对象时会不会越来越乱、越来越慢。把&quot;对象之间怎么连、怎么生、怎么灭&quot;这套规矩立稳,是引擎能扛住真实游戏复杂度的根基。</p>
+<h2>引擎画质修复:抗锯齿 + 贴图朝向</h2>
+<p>这天还修了几处直接影响观感的画质问题。抗锯齿修了两处:一处是采样偏移的数学算错,导致边缘平滑得不准;另一处更隐蔽——颜色被错误地做了两次空间转换,使得画面平坦区域整体偏亮、发灰。两处修对之后,边缘更干净、色彩更准。还修了一个程序化生成几何体的贴图上下颠倒问题:根因是贴图坐标的方向和图形采样器的原点约定没对齐(一个从上数、一个从下数),典型的&quot;差一个翻转&quot;的坑——草地之类的贴图原本是倒着贴的,现在正过来了。这些都不是新功能,而是把已有能力的细节抠到&quot;看着就是对的&quot;。画质这种东西,往往就赢在这些一眼能看出对错、却很容易被忽略的细节上。</p>
+<h2>新增低多边形建模助手 + 外部插件自动启动</h2>
+<p>协作阵容这天再添一员:一个专做低多边形(low-poly)3D 建模的助手,带无头渲染能力,可以帮你生成那种面数少、棱角分明、清爽风格的 3D 模型——这是很多独立游戏偏爱的美术风格,做起来又快又有辨识度。平台这边还让外部工作台插件能随系统自动启动:装好的第三方工具开机即用,不必每次手动去拉起,接入体验更顺。同时修好了一个会让某些工具被误报&quot;未知工具&quot;的同步问题——根因是工具注册的同步不够及时、不够幂等,修对之后工具调用更稳。一个负责造型的新助手、一个让插件更省心的接入改进、一个让工具调用更可靠的修复,合起来继续把&quot;用一群各有专长的 AI 协作做游戏&quot;这件事打磨得更顺手。</p>
+<h2>这一天意味着什么</h2>
+<p>六月以这样一天开局,信号很明确:一边把&quot;普通人装个 app 就能用&quot;这件事做到真正端到端,一边让引擎在画面表达力(文字)、底层秩序(对象关系与生命周期)、性能与画质细节上同时往前推。桌面端从&quot;能开&quot;走到&quot;能用&quot;,意味着这个工具开始具备走向真实用户的形态;引擎补上世界文字、把对象关系理顺,意味着它能承载的游戏越来越接近&quot;完整作品&quot;。一个面向大众的创作平台,既要让人轻松进得来(桌面 app + 首启引导),又要让人做得出像样东西(引擎能力持续补强)——这一天在这两条最根本的线上,都各自扎实地走了一步。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

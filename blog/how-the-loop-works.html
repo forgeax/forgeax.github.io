@@ -1,52 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" />
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AI 是怎么把一个功能做对的 · How AI gets a feature right — ForgeaX</title>
-<meta name="description" content="ForgeaX 不靠 AI 一次写对,而是用一条可观测、可回溯的流水线,让它逐步收敛到正确:需求 → 研究 → 计划 → 实现 → 验证 → 验收 → 合入。" />
+<title>How AI gets a feature right — ForgeaX</title>
+<meta name="description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="How AI gets a feature right — ForgeaX" />
+<meta property="og:description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/blog/how-the-loop-works.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/blog/how-the-loop-works.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-131" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
 </head>
-<body class="lang-en">
-<div id="site-header"></div>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/docs/" data-nav="/docs/">Docs</a>
+      <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/games/" data-nav="/games/">Games</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Marketplace</a>
+      <a href="/blog/" data-nav="/blog/" class="active">Blog</a>
+      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/blog/how-the-loop-works.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/blog/how-the-loop-works.html" data-l="zh">中文</a><a class="lang-item" href="/ja/blog/how-the-loop-works.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/blog/how-the-loop-works.html" data-l="ko">한국어</a><a class="lang-item" href="/es/blog/how-the-loop-works.html" data-l="es">Español</a><a class="lang-item" href="/de/blog/how-the-loop-works.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/blog/how-the-loop-works.html" data-l="fr">Français</a><a class="lang-item" href="/pt/blog/how-the-loop-works.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Open in ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Open in Claude</a>
+          <button class="ask-item" id="copyMd">Copy page as Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
 <main>
   <article class="read article">
-    <a class="back" href="/blog/"><span data-lang="zh">← 返回更新</span><span data-lang="en">← Back to blog</span></a>
-    <div class="meta"><span class="tag"><span data-lang="zh">幕后</span><span data-lang="en">Behind the scenes</span></span><span>2026-06-10</span></div>
-    <h1><span data-lang="zh">AI 是怎么把一个功能做对的</span><span data-lang="en">How AI gets a feature right</span></h1>
-    <p class="standfirst"><span data-lang="zh">AI 不是靠"一次写对"的。ForgeaX 用一条可观测、可回溯的流水线,让每个功能一步步收敛到正确。</span><span data-lang="en">AI doesn't get things right in one shot. ForgeaX uses an observable, traceable pipeline that guides each feature to a correct result, step by step.</span></p>
-
-    <div class="prose">
-      <h2><span data-lang="zh">七步闭环</span><span data-lang="en">A seven-step loop</span></h2>
-      <p><span data-lang="zh">在引擎内部,每个功能都经过同一条流水线 —— 需求进、可用产物出,中间每一步都留下可读的记录:</span><span data-lang="en">Inside the engine, every feature goes through the same pipeline — requirements in, a working result out, with a readable record at each step:</span></p>
-      <ol>
-        <li><span data-lang="zh"><strong>需求</strong> —— 把要做什么写清楚,带验收标准。</span><span data-lang="en"><strong>Requirements</strong> — state what to build, with acceptance criteria.</span></li>
-        <li><span data-lang="zh"><strong>研究</strong> —— 查历史、约束与可选方案。</span><span data-lang="en"><strong>Research</strong> — survey history, constraints and options.</span></li>
-        <li><span data-lang="zh"><strong>计划</strong> —— 定策略,拆成可执行任务。</span><span data-lang="en"><strong>Plan</strong> — set a strategy and break it into tasks.</span></li>
-        <li><span data-lang="zh"><strong>实现</strong> —— 写代码 + 测试。</span><span data-lang="en"><strong>Implement</strong> — write code and tests.</span></li>
-        <li><span data-lang="zh"><strong>验证</strong> —— 多方独立检查,任一不过就拦下。</span><span data-lang="en"><strong>Verify</strong> — independent checks; any red blocks the merge.</span></li>
-        <li><span data-lang="zh"><strong>验收</strong> —— 人来把最后一关。</span><span data-lang="en"><strong>Judgment</strong> — a human makes the final call.</span></li>
-        <li><span data-lang="zh"><strong>合入</strong> —— 通过后并进主干。</span><span data-lang="en"><strong>Finalize</strong> — merge once it passes.</span></li>
-      </ol>
-
-      <h2><span data-lang="zh">编排者 + 子 agent</span><span data-lang="en">An orchestrator and sub-agents</span></h2>
-      <p><span data-lang="zh">一个"编排者"推进这条状态机,决定每一步派哪个子 agent、并检查它的产物;子 agent 各有角色、各自独立上下文。人类只在两个出入点注入判断:<strong>提需求</strong>和<strong>做验收</strong>。</span><span data-lang="en">An "orchestrator" drives the state machine, deciding which sub-agent to dispatch at each step and checking its output; sub-agents are role-specialized with their own context. Humans inject judgment at just two points: <strong>stating requirements</strong> and <strong>reviewing results</strong>.</span></p>
-
-      <h2><span data-lang="zh">不让"看起来过了"溜过去</span><span data-lang="en">No "looks fine" slipping through</span></h2>
-      <p><span data-lang="zh">验证步里有两道 AI 关卡:一个以 AI 用户视角静态扫文档与 API,抓"承诺了却没实现";另一个在隔离沙箱里真跑 demo、截图,再回头核对画面对不对 —— 防止"测试假绿、画面却是黑的"。</span><span data-lang="en">Verification has two AI gates: one statically scans docs and APIs from an AI user's perspective, catching "promised but not implemented"; the other actually runs the demo in an isolated sandbox, captures screenshots, and re-checks them — guarding against "tests green, screen black."</span></p>
-
-      <h2><span data-lang="zh">越跑越稳</span><span data-lang="en">It gets steadier over time</span></h2>
-      <p><span data-lang="zh">每个功能跑完,过程里遇到的痛点会沉淀成反馈,反过来升级流水线本身。下一个功能自动用上更新后的版本 —— 流水线吃自己的产物,越跑越懂。</span><span data-lang="en">After each feature, the friction encountered along the way is captured as feedback that upgrades the pipeline itself. The next feature automatically uses the improved version — the pipeline feeds on its own output and gets smarter.</span></p>
-
-      <blockquote><span data-lang="zh">结果是:AI 写出来的不是"demo 级"代码,而是经过验证、可重放、能被人接手的功能。</span><span data-lang="en">The result: AI produces not "demo-grade" code, but verified, replayable features a human can take over.</span></blockquote>
-    </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/blog/why-ai-native-engine.html"><span data-lang="zh">延伸阅读:为什么做 AI 原生引擎 →</span><span data-lang="en">Related: why an AI-native engine →</span></a></p>
+    <a class="back" href="/blog/">← Back to blog</a>
+    <div class="meta"><span class="tag">Behind the scenes</span><span>June 10, 2026</span></div>
+    <h1>How AI gets a feature right</h1>
+    <p class="standfirst">AI doesn't get things right in one shot. ForgeaX uses an observable, traceable pipeline that guides each feature to a correct result, step by step.</p>
+    <div class="prose"><h2>A seven-step loop</h2>
+<p>Inside the engine, every feature goes through the same pipeline — requirements in, a working result out, with a readable record at each step:</p>
+<ol>
+<li><strong>Requirements</strong> — state what to build, with acceptance criteria.</li>
+<li><strong>Research</strong> — survey history, constraints and options.</li>
+<li><strong>Plan</strong> — set a strategy and break it into tasks.</li>
+<li><strong>Implement</strong> — write code and tests.</li>
+<li><strong>Verify</strong> — independent checks; any red blocks the merge.</li>
+<li><strong>Judgment</strong> — a human makes the final call.</li>
+<li><strong>Finalize</strong> — merge once it passes.</li>
+</ol>
+<h2>An orchestrator and sub-agents</h2>
+<p>An &quot;orchestrator&quot; drives the state machine, deciding which sub-agent to dispatch at each step and checking its output; sub-agents are role-specialized with their own context. Humans inject judgment at just two points: <strong>stating requirements</strong> and <strong>reviewing results</strong>.</p>
+<h2>No &quot;looks fine&quot; slipping through</h2>
+<p>Verification has two AI gates: one statically scans docs and APIs from an AI user&#39;s perspective, catching &quot;promised but not implemented&quot;; the other actually runs the demo in an isolated sandbox, captures screenshots, and re-checks them — guarding against &quot;tests green, screen black.&quot;</p>
+<h2>It gets steadier over time</h2>
+<p>After each feature, the friction encountered along the way is captured as feedback that upgrades the pipeline itself. The next feature automatically uses the improved version — the pipeline feeds on its own output and gets smarter.</p>
+<blockquote>
+<p>The result: AI produces not &quot;demo-grade&quot; code, but verified, replayable features a human can take over.</p>
+</blockquote>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/blog/why-ai-native-engine.html">Related: why an AI-native engine →</a></p>
   </article>
 </main>
-<div id="site-footer"></div>
-<script src="/assets/site.js?v=forgeax-ui-130"></script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/changelog/">Changelog</a>
+    <a href="/blog/">Blog</a>
+    <a href="/docs/">Docs</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/games/">Games</a>
+    <a href="/marketplace/">Marketplace</a>
+  </div>
+  <div class="col"><h4>Project</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
 </body>
 </html>

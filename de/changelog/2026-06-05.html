@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-05 · Editor mode, complete — ForgeaX</title>
+<meta name="description" content="The editor mode reaches completion: a dockable panel shell that drags, groups, pops out and resets; a full move/rotate/scale gizmo set with shortcuts; an inspector that live-tracks dragging; frame-selection and history panels; plus engine mesh-topology debug-draw and content-tool polish." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-05 · Editor mode, complete — ForgeaX" />
+<meta property="og:description" content="The editor mode reaches completion: a dockable panel shell that drags, groups, pops out and resets; a full move/rotate/scale gizmo set with shortcuts; an inspector that live-tracks dragging; frame-selection and history panels; plus engine mesh-topology debug-draw and content-tool polish." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-06-05.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-05.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/docs/" data-nav="/docs/">Dokumente</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/games/" data-nav="/games/">Spiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Marktplatz</a>
+      <a href="/de/blog/" data-nav="/blog/">Blog</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-05.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-05.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-05.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-05.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-05.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-06-05.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-05.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-05.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Fragen Sie die KI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">In ChatGPT öffnen</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Geöffnet in Claude</a>
+          <button class="ask-item" id="copyMd">Seite als Markdown kopieren</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Täglich</span><span>2026-06-05</span></div>
+    <h1>Editor mode, complete</h1>
+    <p class="standfirst">The editor that had just run the day before reached completion this day, with every implementable feature filled in: panels drag, group, pop out into separate windows and reset with one click; the move/rotate/scale gizmos are all in place with shortcuts; the property inspector refreshes live as you drag; one-key fly-to-selection plus history and capabilities panels are ready. The engine also made a mesh&#39;s topology type directly visible in the viewport, and the content tools got a batch of interface unification.</p>
+    <div class="prose"><h2>From &quot;usable&quot; to &quot;feels like a real editor&quot;</h2>
+<p>The day before, the editor could select objects, drag gizmos and save for the first time, taking the first &quot;hands-on&quot; step; but at that point it was more a usable prototype than a mature tool you&#39;d happily spend all day working in. This day&#39;s work fills &quot;usable&quot; out into &quot;pleasant&quot;: what makes a professional editor feel natural is countless seemingly-trivial yet indispensable things — whether panels arrange to your habits, whether the transform tools are complete, whether a value change shows feedback at once, how fast you can find an object, whether a mistake can be undone. Filling all of these in at once equips the editor with &quot;the full basics a professional tool should have.&quot; This isn&#39;t piling on features but polishing a tool to the point of &quot;no awkwardness on first use&quot; — and it&#39;s exactly that lack of awkwardness that decides whether a creator will use it for the long haul.</p>
+<h2>Dockable panels: arrange the interface your way, reset in one click</h2>
+<p>This day wired a dockable panel system into the editor, with a unified panel manager to govern it. What it can do: every panel — scene tree, property inspector, material, timeline, material graph and so on — can be dragged with the mouse to any region to rearrange, can stack several panels into one tab group (drag together to group, click a tab to switch), can pop a panel out into its own floating window to view alone, and if you mess the layout up you can reset to default in one click. Why does this matter? Because different people and different tasks need entirely different layouts: tuning materials you want the material panel enlarged, animating you want the timeline filling the bottom. One hardcoded fixed layout can only ever serve one kind of person; dockable panels hand the decision of &quot;what the interface looks like&quot; back to the user. The same day debuted three new panels — material, timeline and material graph — joined with the existing inspector and scene tree into this system, and the editor&#39;s &quot;skeleton&quot; took shape from here.</p>
+<h2>The full transform toolset: move, rotate, scale</h2>
+<p>The day before, the only gizmo you could drag was &quot;move&quot;; this day &quot;rotate&quot; and &quot;scale&quot; were filled in, with a set of shortcuts matching industry-standard convention to switch quickly between the three modes — so anyone who has used any professional 3D tool knows how to use it almost without learning. The three transforms are the most basic actions for placing anything: move a crate to the wall (move), set it at an angle (rotate), double its size as an obstacle (scale) — none dispensable. The engine was also made to render an object&#39;s rotation correctly, ensuring the pose you see in the viewport exactly matches the data. On top of that, &quot;one-key fly-to-selection&quot; was added — press a key or double-click and the camera smoothly flies over to frame the selected thing in the center, so in a big scene you no longer struggle to find the viewpoint by hand. Completing this most basic toolset and making it intuitive is the dividing line where an editor turns from a &quot;demo&quot; into a &quot;production tool.&quot;</p>
+<h2>See it at once: the inspector refreshes live as you drag</h2>
+<p>This day also wired up the most crucial feedback loop in editing: the property inspector refreshes live with your dragging in the viewport. That is, as you drag an object with a gizmo, the numbers for position, rotation and scale in the right-hand inspector jump in sync, so you can drag while seeing the exact current values; conversely, this loop also guarantees that when you type a precise value in the panel, the viewport object changes with it at once. This &quot;bidirectional, instant&quot; consistency is the soul of every professional editor — it eliminates the uncertainty of &quot;just how much did that drag change,&quot; letting coarse adjustment (dragging gizmos) and fine adjustment (typing values) seamlessly connect. The same day brought a history panel and a capabilities panel: the history panel lets you see and undo each operation you performed, and the capabilities panel surfaces the currently available operations in one place. With live feedback and an undoable history, editing finally becomes &quot;confident and bold&quot; — mistakes can be undone, changes can be seen.</p>
+<h2>Engine: see a mesh&#39;s topology type at a glance</h2>
+<p>A very practical engine addition this day: a mesh&#39;s &quot;topology type&quot; was made into a debug view that can be drawn directly in the viewport, with all five basic geometry topologies (points, line segments, continuous polylines, triangle faces, continuous triangle strips) visibly annotated. What does this mean? A 3D model is, at bottom, a pile of points and the connections between them, and &quot;topology&quot; describes &quot;how those points are connected&quot; — isolated points, individual line segments, or assembled triangle faces. When a model displays wrong, the problem is often a wrong topology type, but you used to only guess at the code or data. Now you can draw it directly in the viewport and look, making it far more intuitive to locate broken geometry. This capability mainly serves debugging and asset inspection, and it&#39;s on the same line as the editor — the editor lets you place and adjust, while this debug view lets you see what&#39;s really happening underneath when something goes wrong. Making &quot;invisible internal state&quot; visible is a hallmark of a tool maturing.</p>
+<h2>Games and content tools: aligning to the editor line</h2>
+<p>As the editor reached completion, its surroundings converged in the same direction. On the games side, the sample shooter&#39;s &quot;playable experience&quot; was written into a proper document, and another shooter sample got &quot;scene-file seeding&quot; — pre-saving its scene as that document-driven scene file so it runs the same disk-scene mechanism as the editor; the artifacts left from earlier editor-testing were also cleaned up to keep the seed scene clean. On the content-tools side, the skill workbench&#39;s sidebar workflow was streamlined, and the sidebar header styles across plugins were unified at once so they look like different modules of one product; the narrative tool also kept advancing, adding validation of key nodes and a character timeline. Individually small, these together ensure one thing: when the editor&#39;s main line reached completion, the game samples and creation tools around it weren&#39;t each going their own way but were pulled together onto the same mechanism and the same visual language.</p>
+<h2>What this day means</h2>
+<p>From blueprint to completion, the editor took just three days: set direction, run it through, fill it in. The period drawn this day means Studio formally has a feature-complete, awkwardness-free visual editor — no longer an auxiliary demo beside the AI but a second creative main line on equal footing with conversation. What&#39;s worth savoring is the rhythm of these three days: not leaving a pile of half-finished pieces to rush a schedule, but honestly filling in a professional tool&#39;s basics one by one until &quot;every implementable feature landed.&quot; Whether a tool is ultimately pleasant to use is never decided by how many dazzling big features it has, but by whether these unglamorous basics were earnestly completed. With the editor line wrapped, human and AI finally stand before the same canvas: the AI paints with code and conversation, you revise with mouse and gizmo, two brushes on one image.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle täglichen Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele. Open Source, Apache-Lizenz 2.0.</p>
+  </div>
+  <div class="col"><h4>Website</h4>
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/blog/">Blog</a>
+    <a href="/de/docs/">Dokumente</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/games/">Spiele</a>
+    <a href="/de/marketplace/">Marktplatz</a>
+  </div>
+  <div class="col"><h4>Projekt</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

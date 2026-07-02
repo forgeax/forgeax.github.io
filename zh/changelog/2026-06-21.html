@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-21 · 3D 生成会绑骨配动作 + 编辑器自动体检 — ForgeaX</title>
+<meta name="description" content="这天 3D 生成工作台往"端到端能自己干活"又推了一大步:能在插件里填密钥、生成、绑骨、挑动作,一条龙走完;编辑器有了自动化的端到端体检和"保活"地基,切走也不被掐死;引擎完成了 GPU 与音频资源的对称回收,长时间玩不再越跑越卡;游戏也改成了更干净的统一加载方式。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-21 · 3D 生成会绑骨配动作 + 编辑器自动体检 — ForgeaX" />
+<meta property="og:description" content="这天 3D 生成工作台往"端到端能自己干活"又推了一大步:能在插件里填密钥、生成、绑骨、挑动作,一条龙走完;编辑器有了自动化的端到端体检和"保活"地基,切走也不被掐死;引擎完成了 GPU 与音频资源的对称回收,长时间玩不再越跑越卡;游戏也改成了更干净的统一加载方式。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-21.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-21.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-21.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-21.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-21.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-21.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-21.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-21.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-21.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-21.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-21</span></div>
+    <h1>3D 生成会绑骨配动作 + 编辑器自动体检</h1>
+    <p class="standfirst">这天 3D 生成工作台往&quot;端到端能自己干活&quot;又推了一大步:能在插件里填密钥、生成、绑骨、挑动作,一条龙走完;编辑器有了自动化的端到端体检和&quot;保活&quot;地基,切走也不被掐死;引擎完成了 GPU 与音频资源的对称回收,长时间玩不再越跑越卡;游戏也改成了更干净的统一加载方式。</p>
+    <div class="prose"><h2>让能力更自主,让运行更可靠</h2>
+<p>这一天有两条彼此呼应的线。一条关于&quot;自主&quot;:让 3D 生成从一个需要人盯着、一步步操作的工具,变成一条能自己把&quot;生成 → 绑骨 → 配动作&quot;一气呵成走完的产线,而且密钥、模式都能由用户在插件里自行配置。另一条关于&quot;可靠&quot;:给编辑器立自动化体检、给嵌入式运行打保活地基、给引擎的资源管理立&quot;有借有还&quot;的对称规矩。前者拓展了&quot;能做到什么&quot;,后者保障了&quot;做出来的东西稳不稳、能不能长时间用&quot;。一个工具越是想让用户放手交给它自己跑,就越要在可靠性上下足功夫——能力越自主,对底层稳健的要求就越高。这一天,恰好是这两件事一起往前推。</p>
+<h2>3D 生成全面&quot;会自己干活&quot;:填密钥、生成、绑骨、配动作</h2>
+<p>3D 生成工作台这天往&quot;端到端能用&quot;又推了一大步,几件事合起来形成了一条完整的产线。其一,生成方式改成多视图——从多个角度去引导生成,出来的模型形态更稳、更符合预期。其二,你可以直接在插件里配置多家生成服务的密钥,并用一个&quot;真实模式&quot;总开关来决定是真正调用服务出模型、还是先用占位试跑流程;把密钥和开关交到用户手里,意味着每个人都能用自己的额度、按自己的节奏来生成。其三也是最关键的一步:接上了&quot;绑骨 + 配动作&quot;。一个刚生成出来的模型只是一具静态的躯壳,要让它能动,得先给它绑上一副骨架(绑骨),再给这副骨架套上具体的动作。现在这两步都能在工作台里完成——绑骨可以自动做,动作则从一个内置的&quot;动作浏览器&quot;里直接挑选现成的套上去。把这几样串起来,&quot;用一句话生成一个角色 → 给它骨架 → 让它动起来&quot;,第一次能在同一个工作台里一条龙走完,而不必把模型导出去、在别的专业工具里来回折腾。对没有建模和动画功底的创作者来说,这条产线把原本需要好几款专业软件、好几道工序才能完成的事,压缩成了在一个面板里点几下。</p>
+<h2>编辑器有了自动化体检 + 切换不被掐死</h2>
+<p>这天给编辑器立了一套自动化的端到端体检。具体说,是一组冒烟测试会自动把几个不同类型的样例游戏都跑一遍——纯代码的、带场景包的、需要在桌面环境走兜底路径的——逐一确认它们在编辑和试玩里都能正常加载、不出退化。这件事的价值在于:平台每天都有大量改动,任何一处改动都可能不经意地把某个现成的游戏弄坏;有了这套自动体检,机器会在改动合入前先替你把这些样例都验一遍,把&quot;改 A 坏了 B&quot;这类回归挡在门外。与此同时,还对&quot;嵌入式编辑器&quot;做了加固,并为&quot;保活&quot;打下地基:编辑器是嵌在一个内嵌页面里运行的,当你在不同标签页或不同宿主之间切来切去时,浏览器有时会把暂时看不见的它悄悄回收掉,导致你切回来时正在跑的会话已经被掐死。这天的加固和保活地基,正是为了让这种切换不再打断你正在进行的工作。底层还把&quot;图形设备意外掉线后自动恢复&quot;做进了引擎,让这类底层意外更少地打断创作。</p>
+<h2>引擎资源对称回收:GPU 与音频不再悄悄泄漏</h2>
+<p>引擎这天给资源管理立了一条&quot;有借有还&quot;的对称规矩,并以此标志着一整个底层基础层的收口。所谓对称,就是每一种&quot;申请资源&quot;的操作,都必须有一个配套的、明确的&quot;释放资源&quot;操作与之对应——显卡资源(纹理、缓冲等)有了成套的释放原语,用完能被干净地回收;音频资源也做了确定性回收,即到了该清理的时候就准确地清理,而不是靠垃圾回收的运气。为什么这件事这么重要?因为一个游戏可能要连续跑很久,期间不停地创建、又不停地丢弃各种资源;如果&quot;申请&quot;了却没人负责&quot;释放&quot;,这些用不到的资源就会在显存和音频内存里悄悄堆积,越积越多,直到把游戏拖得越来越卡、最终崩溃。这种&quot;悄悄泄漏&quot;是大型场景和长时间会话最隐蔽、最难排查的杀手,因为它平时不报错,只在跑得够久之后才发作。把资源的生命周期做成严格对称、可确定地回收,等于从制度上杜绝了这类泄漏。这天还把引擎规划中的这一整层基础工作正式标记为完成——意味着引擎的底层资源治理告一段落,可以放心地在它之上搭更复杂的东西。</p>
+<h2>游戏改用更干净的统一加载方式</h2>
+<p>这天还顺手把示例游戏的加载方式做了一次整理,统一到一个更干净的模型上。此前不同的游戏在&quot;如何加载自己的场景资源&quot;上各有各的做法——有的自己去抓、自己解析、自己维护一份目录,逻辑分散且容易各自走偏。这天把它们改成由&quot;宿主&quot;统一喂入:游戏不再自己去张罗加载,而是由承载它的运行环境把场景资源准备好、直接递给它。配套还把各游戏的场景资源文件挪到了一个能被自动扫描发现的统一位置。这类改动用户完全看不见,但它消除了&quot;每个游戏一套加载逻辑&quot;的重复和分歧,让所有游戏走同一条加载路径。好处是双重的:一是后面再做加载相关的改进时,改一处就能让所有游戏受益,不必逐个适配;二是问题更好排查——既然大家走同一条路,出了岔子就只需要查那一条路。把分散的做法收敛成统一的一条,正是让整个游戏库能被一致地维护和演进的前提。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天体现了一个 AI 创作平台成熟过程中两股力量的并进:一股是让能力更&quot;自主&quot;——3D 生成从一个需要人逐步操作的工具,变成一条能自己走完&quot;生成、绑骨、配动作&quot;全程、且让用户自主掌控密钥与模式的产线;另一股是让系统更&quot;可靠&quot;——给编辑器立自动体检、为嵌入式运行保活、给引擎资源立对称回收、把游戏加载收敛成统一路径。这两股力量看似一进一守,实则相辅相成:正因为有了自动体检和稳健的资源治理兜底,才敢把越来越多的环节交给 AI 自主完成;而越是把环节交出去,这些底层保障就越显得不可或缺。一个真正可靠的自动化系统,从来不是&quot;放手不管&quot;,而是&quot;放手之前先把网织密&quot;。这一天,既在织密那张网,也在把更多的事放心地交了出去。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

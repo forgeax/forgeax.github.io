@@ -1,1 +1,116 @@
-<!DOCTYPE html><html lang="en"><head><!-- RICH-v3 --><meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>2026-07-02 · Forge 有了长期记忆:对话越多越懂你 · Forge gets long-term memory: the more you talk, the more it knows — ForgeaX Changelog</title><meta name="description" content="Agents gain a Soul memory system that automatically extracts and persists key context from conversations, with a new Settings panel to control it; the editor's Mesh panel shows per-entity geometry stats; a ring-0 agent-host sidecar handles process supervision and IPC; and the CLI fixes a Windows argument-length limit that broke Cursor integration." /><link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" /><link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-131" /></head><body class="lang-en"><div id="site-header"></div><main><article class="read article"><a class="back" href="/changelog/"><span data-lang="zh">← 更新日志</span><span data-lang="en">← Changelog</span></a><div class="meta"><span class="tag brand"><span data-lang="zh">每日</span><span data-lang="en">Daily</span></span><span>2026-07-02</span></div><h1><span data-lang="zh">Forge 有了长期记忆:对话越多越懂你</span><span data-lang="en">Forge gets long-term memory: the more you talk, the more it knows</span></h1><p class="standfirst"><span data-lang="zh">这天最大的变化是给 Forge 装上了"长期记忆"。以前每次新对话,Forge 都像第一次见面;现在它能从历次对话中自动提炼关键信息,在新会话里调用——你的偏好、你的项目约定、上次修到一半的 bug,它都记得。设置面板里新增了记忆开关,让你随时掌控。编辑器这边,Mesh 面板能显示每个实体的几何统计了;底层还新增了 agent-host 进程管理器,以及修掉了 Windows 上 Cursor 集成的一个参数长度限制问题。</span><span data-lang="en">The biggest change this day is giving Forge "long-term memory." Before, every new conversation started like a first meeting; now it can automatically distill key information from past sessions and recall it in new ones — your preferences, your project conventions, the bug you were halfway through fixing, it remembers all of it. A Memory toggle was added to the Settings panel so you stay in control. On the editor side, the Mesh panel can now show per-entity geometry stats; underneath, a new agent-host process supervisor landed; and a Windows argument-length limit that broke Cursor integration was fixed.</span></p><div class="prose"><h2><span data-lang="zh">Soul 记忆:从"每次从头"到"越用越懂"</span><span data-lang="en">Soul memory: from "starting fresh each time" to "learning as you go"</span></h2><p><span data-lang="zh">AI 助手最让人沮丧的事情之一,是"每次对话都像失忆了一样"。你昨天花 20 分钟跟它解释了项目的代码规范、命名偏好、要避免的坑,今天开个新对话,它全忘了,你又得从头来一遍。这天上线的 Soul 记忆系统就是要解决这个问题。它在每次对话结束时（或在对话过程中的合适时机）,自动从对话内容中提炼出值得长期保留的信息——比如"这个项目用 Bun 而不是 Node"、"用户喜欢简洁的代码不要过多注释"、"游戏的主角叫 Arin"——然后把这些记忆持久化到磁盘。下次新对话开始时,这些记忆会被注入到 Forge 的上下文里,让它"带着记忆"开始工作。技术上,记忆提取用了 fork 机制:从当前对话分叉出一个轻量的提取任务,不干扰正在进行的对话,异步完成后写入记忆库。</span><span data-lang="en">One of the most frustrating things about AI assistants is "amnesia between sessions." You spend 20 minutes yesterday explaining your project's code conventions, naming preferences and pitfalls to avoid, then open a new conversation today and it's forgotten everything — you start from scratch. The Soul memory system shipped this day exists to fix that. At the end of each conversation (or at suitable moments during it), it automatically distills information worth retaining long-term — things like "this project uses Bun not Node," "the user prefers concise code without excessive comments," "the game's protagonist is called Arin" — and persists these memories to disk. When a new conversation begins, these memories are injected into Forge's context so it "starts with memory." Technically, memory extraction uses a fork mechanism: it forks a lightweight extraction task from the current conversation, runs it asynchronously without disturbing the ongoing chat, and writes to the memory store when done.</span></p><h2><span data-lang="zh">设置面板:记忆由你掌控</span><span data-lang="en">Settings panel: memory under your control</span></h2><p><span data-lang="zh">记忆是好事,但"AI 自己决定记住什么"也可能让人不安。所以这天同时在设置面板里加了一个 Memory 区域:你可以打开或关闭自动记忆提取,查看 Forge 已经记住了什么,删掉不想被记住的条目。这个设计遵循了一个原则:AI 可以主动学习,但人始终有否决权。记忆开关默认开启（这样大多数用户能直接受益）,但随时可以一键关掉——关掉后 Forge 就退回到"每次从头"的模式,不会有任何残留。</span><span data-lang="en">Memory is a good thing, but "the AI deciding what to remember on its own" can also be unsettling. So this day also added a Memory section in the Settings panel: you can toggle automatic memory extraction on or off, see what Forge has remembered, and delete entries you don't want kept. This design follows a principle: the AI can learn proactively, but humans always have a veto. The memory switch defaults to on (so most users benefit immediately), but can be turned off with one click at any time — and turning it off reverts Forge to "start fresh each time" mode with no residue.</span></p><h2><span data-lang="zh">编辑器:Mesh 面板看到每个物体的几何细节</span><span data-lang="en">The editor: Mesh panel shows geometry detail per entity</span></h2><p><span data-lang="zh">编辑器的 Mesh 面板这天加了一个实用的小功能:在实体模式下,每个物体旁边会显示它的几何统计——顶点数、三角面数、材质数等。以前你只能看到"这是一个 mesh",但不知道它有多重;现在一眼就能判断"这个模型有 50 万面,可能需要减面"或"这个只有 200 面,可以放心多放几个"。同时隐藏了之前在实体模式下显示的 Kind 字段——因为在这个上下文里它是误导性的。看起来是小改动,但对做场景优化的人来说,不用再打开外部工具查面数了。</span><span data-lang="en">The editor's Mesh panel added a handy small feature this day: in entity mode, each object shows its geometry stats alongside — vertex count, triangle count, material count and so on. Before you could only see "this is a mesh" without knowing how heavy it was; now you can tell at a glance "this model has 500K faces, probably needs decimation" or "this one is just 200 faces, safe to place many." The previously shown "Kind" field, which was misleading in this context, was hidden at the same time. It looks like a small change, but for anyone doing scene optimization, it means no longer needing to open an external tool just to check polygon counts.</span></p><h2><span data-lang="zh">Agent-host:给 agent 一个专属管家</span><span data-lang="en">Agent-host: a dedicated housekeeper for agents</span></h2><p><span data-lang="zh">底层新增了一个 agent-host 进程管理器——可以把它理解为 agent 的"管家"。它作为 ring-0 级别的 sidecar 运行,负责 agent 进程的生命周期管理（启动、监控、重启、优雅关闭）和进程间通信（IPC）。之前 agent 的进程管理散落在各处,没有统一的监督者;现在有了 agent-host,一个 agent 挂了会自动重启,多个 agent 之间的消息传递也有了标准通道。这是让 Team 多 agent 协作更稳定的基础设施——团队能高效运转的前提,是每个成员都有人"盯着"。</span><span data-lang="en">A new agent-host process supervisor landed at the infrastructure level — think of it as a "housekeeper" for agents. Running as a ring-0 sidecar, it handles agent process lifecycle management (start, monitor, restart, graceful shutdown) and inter-process communication (IPC). Previously agent process management was scattered across the codebase with no unified supervisor; now with agent-host, a crashed agent restarts automatically and message passing between multiple agents has a standard channel. This is the infrastructure that makes Team multi-agent collaboration more robust — a team can only work efficiently when someone is "watching" each member.</span></p><h2><span data-lang="zh">Windows CLI 修复:Cursor 集成不再截断</span><span data-lang="en">Windows CLI fix: Cursor integration no longer truncates</span></h2><p><span data-lang="zh">还修掉了一个只在 Windows 上出现的问题:通过 Cursor 调用 Forge CLI 时,如果 prompt 内容很长,Windows 的 cmd.exe 会因为参数长度限制把它截断,导致 agent 只收到半截指令。修法是把 prompt 改为通过 stdin 传入,绕过命令行参数的长度限制。这种平台专属的边界问题很隐蔽——在 Mac 上完全正常,换到 Windows 就莫名失灵——但修掉它对 Windows 用户来说是实实在在的可靠性提升。</span><span data-lang="en">A Windows-only issue was also fixed: when calling the Forge CLI through Cursor, a long prompt would be truncated by Windows <code>cmd.exe</code> due to its argument-length limit, causing the agent to receive only half an instruction. The fix feeds the prompt through stdin instead, bypassing the command-line argument length cap. This kind of platform-specific edge case is insidious — works perfectly on Mac, mysteriously fails on Windows — but fixing it is a real reliability gain for Windows users.</span></p><h2><span data-lang="zh">这一天意味着什么</span><span data-lang="en">What this day means</span></h2><p><span data-lang="zh">这一天的关键词是"积累"。Soul 记忆让 Forge 的能力不再是每次归零,而是随着使用不断积累——用得越多,它越了解你的项目、你的习惯、你的偏好,工作效率也就越高。agent-host 让多 agent 协作有了可靠的底座,编辑器的几何统计让优化有了数据依据。每一处改动都指向同一个方向:让 Forge 从一个"每次现场发挥的临时工"变成"记得住、靠得住、能长期共事的搭档"。</span><span data-lang="en">The keyword of this day is "accumulation." Soul memory means Forge's capability no longer resets to zero each time, but accumulates with use — the more you use it, the better it knows your project, your habits, your preferences, and the more efficient it becomes. Agent-host gives multi-agent collaboration a reliable foundation, and the editor's geometry stats give optimization a data basis. Every change points in the same direction: turning Forge from "a temp worker improvising each session" into "a partner who remembers, is dependable, and can work alongside you long-term."</span></p></div><p style="margin-top:32px"><a class="btn ghost" href="/changelog/"><span data-lang="zh">← 看全部每日更新</span><span data-lang="en">← All daily updates</span></a></p></article></main><div id="site-footer"></div><script src="/assets/site.js?v=forgeax-ui-130"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-02 · Forge gets long-term memory: the more you talk, the more it knows — ForgeaX</title>
+<meta name="description" content="Agents gain a Soul memory system that automatically extracts and persists key context from conversations, with a new Settings panel to control it; the editor's Mesh panel shows per-entity geometry stats; a ring-0 agent-host sidecar handles process supervision and IPC; and the CLI fixes a Windows argument-length limit that broke Cursor integration." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-02 · Forge gets long-term memory: the more you talk, the more it knows — ForgeaX" />
+<meta property="og:description" content="Agents gain a Soul memory system that automatically extracts and persists key context from conversations, with a new Settings panel to control it; the editor's Mesh panel shows per-entity geometry stats; a ring-0 agent-host sidecar handles process supervision and IPC; and the CLI fixes a Windows argument-length limit that broke Cursor integration." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/changelog/2026-07-02.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-02.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-02.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/docs/" data-nav="/docs/">Docs</a>
+      <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/games/" data-nav="/games/">Games</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Marketplace</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-07-02.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-07-02.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-02.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-02.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-02.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-02.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-02.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-02.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Open in ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Open in Claude</a>
+          <button class="ask-item" id="copyMd">Copy page as Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/changelog/">← Changelog</a>
+    <div class="meta"><span class="tag brand">Daily</span><span>2026-07-02</span></div>
+    <h1>Forge gets long-term memory: the more you talk, the more it knows</h1>
+    <p class="standfirst">The biggest change this day is giving Forge &quot;long-term memory.&quot; Before, every new conversation started like a first meeting; now it can automatically distill key information from past sessions and recall it in new ones — your preferences, your project conventions, the bug you were halfway through fixing, it remembers all of it. A Memory toggle was added to the Settings panel so you stay in control. On the editor side, the Mesh panel can now show per-entity geometry stats; underneath, a new agent-host process supervisor landed; and a Windows argument-length limit that broke Cursor integration was fixed.</p>
+    <div class="prose"><h2>Soul memory: from &quot;starting fresh each time&quot; to &quot;learning as you go&quot;</h2>
+<p>One of the most frustrating things about AI assistants is &quot;amnesia between sessions.&quot; You spend 20 minutes yesterday explaining your project&#39;s code conventions, naming preferences and pitfalls to avoid, then open a new conversation today and it&#39;s forgotten everything — you start from scratch. The Soul memory system shipped this day exists to fix that. At the end of each conversation (or at suitable moments during it), it automatically distills information worth retaining long-term — things like &quot;this project uses Bun not Node,&quot; &quot;the user prefers concise code without excessive comments,&quot; &quot;the game&#39;s protagonist is called Arin&quot; — and persists these memories to disk. When a new conversation begins, these memories are injected into Forge&#39;s context so it &quot;starts with memory.&quot; Technically, memory extraction uses a fork mechanism: it forks a lightweight extraction task from the current conversation, runs it asynchronously without disturbing the ongoing chat, and writes to the memory store when done.</p>
+<h2>Settings panel: memory under your control</h2>
+<p>Memory is a good thing, but &quot;the AI deciding what to remember on its own&quot; can also be unsettling. So this day also added a Memory section in the Settings panel: you can toggle automatic memory extraction on or off, see what Forge has remembered, and delete entries you don&#39;t want kept. This design follows a principle: the AI can learn proactively, but humans always have a veto. The memory switch defaults to on (so most users benefit immediately), but can be turned off with one click at any time — and turning it off reverts Forge to &quot;start fresh each time&quot; mode with no residue.</p>
+<h2>The editor: Mesh panel shows geometry detail per entity</h2>
+<p>The editor&#39;s Mesh panel added a handy small feature this day: in entity mode, each object shows its geometry stats alongside — vertex count, triangle count, material count and so on. Before you could only see &quot;this is a mesh&quot; without knowing how heavy it was; now you can tell at a glance &quot;this model has 500K faces, probably needs decimation&quot; or &quot;this one is just 200 faces, safe to place many.&quot; The previously shown &quot;Kind&quot; field, which was misleading in this context, was hidden at the same time. It looks like a small change, but for anyone doing scene optimization, it means no longer needing to open an external tool just to check polygon counts.</p>
+<h2>Agent-host: a dedicated housekeeper for agents</h2>
+<p>A new agent-host process supervisor landed at the infrastructure level — think of it as a &quot;housekeeper&quot; for agents. Running as a ring-0 sidecar, it handles agent process lifecycle management (start, monitor, restart, graceful shutdown) and inter-process communication (IPC). Previously agent process management was scattered across the codebase with no unified supervisor; now with agent-host, a crashed agent restarts automatically and message passing between multiple agents has a standard channel. This is the infrastructure that makes Team multi-agent collaboration more robust — a team can only work efficiently when someone is &quot;watching&quot; each member.</p>
+<h2>Windows CLI fix: Cursor integration no longer truncates</h2>
+<p>A Windows-only issue was also fixed: when calling the Forge CLI through Cursor, a long prompt would be truncated by Windows <code>cmd.exe</code> due to its argument-length limit, causing the agent to receive only half an instruction. The fix feeds the prompt through stdin instead, bypassing the command-line argument length cap. This kind of platform-specific edge case is insidious — works perfectly on Mac, mysteriously fails on Windows — but fixing it is a real reliability gain for Windows users.</p>
+<h2>What this day means</h2>
+<p>The keyword of this day is &quot;accumulation.&quot; Soul memory means Forge&#39;s capability no longer resets to zero each time, but accumulates with use — the more you use it, the better it knows your project, your habits, your preferences, and the more efficient it becomes. Agent-host gives multi-agent collaboration a reliable foundation, and the editor&#39;s geometry stats give optimization a data basis. Every change points in the same direction: turning Forge from &quot;a temp worker improvising each session&quot; into &quot;a partner who remembers, is dependable, and can work alongside you long-term.&quot;</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/changelog/">← All daily updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/changelog/">Changelog</a>
+    <a href="/blog/">Blog</a>
+    <a href="/docs/">Docs</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/games/">Games</a>
+    <a href="/marketplace/">Marketplace</a>
+  </div>
+  <div class="col"><h4>Project</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

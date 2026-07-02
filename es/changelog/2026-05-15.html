@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-15 · Chat UI grows up: resizable layout, nested tool calls, sub-agent cards — ForgeaX</title>
+<meta name="description" content="The chat UI matures (resizable layout, nested tool calls, sub-agent cards, unified live/replay), while the backend lays a plugin-runtime foundation — event bus, permissions, sandboxed file API — and the engine extends its component vocabulary." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-15 · Chat UI grows up: resizable layout, nested tool calls, sub-agent cards — ForgeaX" />
+<meta property="og:description" content="The chat UI matures (resizable layout, nested tool calls, sub-agent cards, unified live/replay), while the backend lays a plugin-runtime foundation — event bus, permissions, sandboxed file API — and the engine extends its component vocabulary." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-05-15.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-15.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-15.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-15.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-15.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-15.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-05-15.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-05-15.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-15.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-15.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-05-15</span></div>
+    <h1>Chat UI grows up: resizable layout, nested tool calls, sub-agent cards</h1>
+    <p class="standfirst">Two through-lines this day: the interface grew up — resizable layout, tool calls nested under their to-do, sub-agents with their own cards, live and replay unified into one pipeline; and the backend quietly poured a big foundation — a plugin runtime (event bus, permission engine, sandboxed file API, plugin manifests) to pave the way for &quot;any capability can plug in.&quot; The engine also extended its component vocabulary and introduced scene assets.</p>
+    <div class="prose"><h2>One visible, one quiet: the UI grows up while the backend pours a foundation</h2>
+<p>The day&#39;s work split into a visible half and an invisible one. The visible half: the chat interface matured a notch — this is what users face every day, where every bit of progress shows immediately. The invisible half: the backend quietly poured a far-reaching foundation, a runtime that lets &quot;third-party capability be safely installed as a plugin.&quot; The latter shipped almost nothing a user could perceive that day, yet it decides whether the platform can grow from &quot;an app with hardcoded features&quot; into &quot;a platform that can be extended endlessly, even built upon by users.&quot; Seen on the same day, the two embody a balance: keep polishing the experience at hand while betting on long-term extensibility.</p>
+<h2>Chat matures: resizable layout + tool calls nested under their to-do</h2>
+<p>The interface&#39;s progress this day centered on &quot;organizing information more clearly.&quot; One: the sidebar, chat area and bottom panel are all resizable, so you can allocate screen space to whatever you&#39;re doing — narrow the chat when reading code, raise the bottom when watching output. Two, and more important: tool calls now nest under the to-do item they belong to, rather than spreading into one long flat list. When an agent executes a multi-step task, you can clearly see &quot;which tools it called to complete this step,&quot; with the hierarchy obvious at a glance. What long conversations and multi-step tasks fear most is information blurring into a mass that hides progress; these two changes make &quot;seeing clearly who&#39;s doing what, and how far along&quot; real.</p>
+<h2>Sub-agents get their own cards</h2>
+<p>As multi-agent collaboration grew common, &quot;a lead agent delegating to several sub-agents&quot; became an everyday scenario. This day gave sub-agent activity its own card presentation: sub-tasks no longer mix into the main conversation&#39;s text stream but each get a foldable card with their own context. This makes &quot;who&#39;s working for whom, and how each is progressing&quot; instantly distinguishable. For a platform that treats &quot;one person directing a team of AIs&quot; as a core scenario, this way of &quot;giving each member&#39;s work its own place&quot; is essential — otherwise, as the team grows, the screen becomes an unreadable stew. The sub-agent card is the first step in turning the abstract &quot;multi-agent&quot; into a picture your eyes can directly read.</p>
+<h2>Live and replay unified into one pipeline</h2>
+<p>Before this, &quot;watching the agent live&quot; and &quot;replaying history afterward&quot; were likely two separate rendering paths — so for the same content, what you saw live and what replayed often disagreed in detail. This day unified them onto one pipeline sharing the same processing callbacks: whether content is streaming in live or being replayed from the history ledger, it travels the exact same parse-and-present path. The significance is consistency: reopen a stretch of history and you see exactly what truly happened, with no detail distorted. This &quot;single source-of-truth path&quot; design both removes the burden of maintaining two logics and eliminates at the root the most confusing class of bug — &quot;live and replay disagree.&quot;</p>
+<h2>A backend plugin-runtime foundation: bus, permissions, sandbox</h2>
+<p>The backend&#39;s heaviest work this day was beginning to pour a plugin-runtime foundation, aimed at letting &quot;third-party capability be safely installed and run as a plugin.&quot; It&#39;s made of meshing parts: an in-process event bus so components communicate loosely via publish/subscribe; parsing and validation of plugin manifests, with anti-forgery on the &quot;scope&quot; a manifest declares (so a plugin can&#39;t lie about its permissions); a permission engine that constrains by rules what each plugin can and can&#39;t touch; a sandboxed file API with cooperative file locks so multiple plugins reading and writing don&#39;t corrupt each other; plus an append-only file ledger recording what happened. This whole set shipped almost nothing user-facing that day, but it&#39;s the true starting point of the long-term &quot;everything is a plugin&quot; direction — with it, new tools, new workbenches or new agents can later plug in a unified, controlled, sandboxed way, without rewriting the core for each addition.</p>
+<h2>Engine: an extended component vocabulary + scene assets</h2>
+<p>The engine kept expanding the &quot;vocabulary&quot; with which it describes a game world. The component system gained support for data shapes like strings and fixed/variable-length arrays, and a built-in &quot;name&quot; component — so every object in a scene can have a readable name rather than just an internal number, far more convenient for debugging and for later viewing in an editor. More importantly, &quot;scene assets&quot; were introduced: managing a whole scene as a referenceable, instantiable asset object, with a mechanism to instantiate a scene into the world. This means scenes can now be saved, referenced and reused structurally just like models and textures — the underlying precondition for all later abilities like &quot;building scenes in an editor, assembling scenes into levels.&quot;</p>
+<h2>An engine quality gate: two-channel checking</h2>
+<p>The engine also raised a two-channel quality gate this day, automatically checking code quality from two complementary angles: one channel does conventional style and convention checks, the other specifically watches the usage boundary of &quot;internal interfaces&quot; — ensuring things meant for internal use only aren&#39;t unintentionally exposed as public. Both channels run in continuous integration, automatically on every commit. Its value is of a piece with the earlier rendering benchmark: turning &quot;is the code quality right&quot; from human review and self-discipline into an automatic, objective, unavoidable gate. An engine meant to evolve long-term and face ever more collaborators relies on gate after automatic gate to iterate fast without slowly rotting.</p>
+<h2>What this day means</h2>
+<p>The day&#39;s two lines represent exactly the two ends a mature product must hold at once: one is the user&#39;s present feel, the other the platform&#39;s long-term skeleton. The chat interface&#39;s maturation makes it more comfortable to use right now, while the backend&#39;s nearly invisible plugin runtime plants the seed for &quot;whether this platform can be extended without limit later.&quot; Caring for the present and investing in the long term on the same day takes clear division of labor and judgment about priority — which are experiences that must pay off immediately, and which are foundations worth laying solidly even if slower. That&#39;s an experience worth leaving for future development: don&#39;t only pile on visible features, and don&#39;t only bury yourself in invisible foundations; the truly hard thing is to shortchange neither.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

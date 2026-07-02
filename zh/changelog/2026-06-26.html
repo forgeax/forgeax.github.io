@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-26 · 全链路可观测:慢在哪一眼看见 — ForgeaX</title>
+<meta name="description" content="这天把"追踪 + 日志"打通成一条贯穿前端、后端、agent 的完整链路:一次操作从界面发出、经后端、到 agent 执行、再回到画面,全程可追,配卡顿看门狗,慢在哪、卡在哪一眼可见。渲染调试工具也学会了录下初始状态,让"黑屏"这类最难缠的问题能在回放里稳定重现。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-26 · 全链路可观测:慢在哪一眼看见 — ForgeaX" />
+<meta property="og:description" content="这天把"追踪 + 日志"打通成一条贯穿前端、后端、agent 的完整链路:一次操作从界面发出、经后端、到 agent 执行、再回到画面,全程可追,配卡顿看门狗,慢在哪、卡在哪一眼可见。渲染调试工具也学会了录下初始状态,让"黑屏"这类最难缠的问题能在回放里稳定重现。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-26.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-26.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-26.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-26.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-26.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-26.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-26.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-26.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-26.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-26</span></div>
+    <h1>全链路可观测:慢在哪一眼看见</h1>
+    <p class="standfirst">这天把&quot;追踪 + 日志&quot;打通成一条贯穿前端、后端、agent 的完整链路:一次操作从界面发出、经后端、到 agent 执行、再回到画面,全程可追,配卡顿看门狗,慢在哪、卡在哪一眼可见。渲染调试工具也学会了录下初始状态,让&quot;黑屏&quot;这类最难缠的问题能在回放里稳定重现。</p>
+    <div class="prose"><h2>看不见的系统,管不住</h2>
+<p>当一个系统越来越复杂、越来越多的环节交给 AI 自主推进,一个根本问题就浮上来了:它内部到底在发生什么?一次操作明明发出去了,半天没反应,到底卡在前端、卡在后端、还是某个 agent 正在埋头干活?光凭表面现象,你只能猜。这一天做的,就是把整个系统从&quot;黑箱&quot;变成&quot;透明箱&quot;:让一次操作的完整旅程——从你在界面上点下去、到后端处理、到 agent 一回合一回合地执行、再到结果回到画面——全程都能被追踪、被看见。这看似不增加任何新玩法,却是一个复杂系统能被长期驾驭的前提:看得见,才管得住;管得住,才敢继续放手交给它更多。可观测性是所有优化与排错的起点——你无法改善一个你看不清的东西。</p>
+<h2>一条贯穿前后端与 agent 的追踪</h2>
+<p>这天最核心的工作,是把&quot;追踪&quot;打通成一条真正贯穿全栈的链路。所谓追踪,就是给一次操作打上一个统一的标识,让它无论流经系统的哪一层,都带着这个标识、留下时间戳,于是事后可以把散落在各处的片段,按这个标识串成一条完整的时间线。这天做到的,是让这条标识从前端一路传递到后端、再传递到 agent 的执行里——任意一次操作,都能被还原成&quot;它先在前端花了多久、再在后端花了多久、然后哪个 agent 接手、又花了多久&quot;的完整轨迹。技术上的关键,是让这个追踪上下文在跨越每一层边界时都被正确地往下传,而不是在边界处断掉(那样就只能看到孤立的片段、拼不成全局)。这条贯穿全链的追踪一旦建立,&quot;系统慢&quot;或&quot;系统卡&quot;这类最含糊、最难查的抱怨,就有了一把能精确定位的尺子。</p>
+<h2>前端追踪器 + 卡顿看门狗</h2>
+<p>在这条全链追踪里,前端这一段单独加了一个浏览器侧的追踪器,专门跟住&quot;从你在界面上发出一个动作,到它最终渲染出来&quot;这一程。它解决的是一类很具体的困惑:有时你点了一下、敲了一段,界面却迟迟没反应——到底是请求还没发出去、是在等后端、还是前端自己在某处卡住了渲染?前端追踪器把这一程拆成可见的步骤,让你能看清究竟卡在哪一步。配套还加了一个&quot;卡顿看门狗&quot;:它会盯着关键流程的节奏,一旦某一步迟迟不动、超出了预期时间,就立刻把这个卡顿标记出来,而不是让你对着一个一动不动的界面干等、不知道它是死了还是在忙。对一个以界面交互为核心的工具来说,&quot;前端到底在忙什么、有没有卡住&quot;是用户最直接、最高频的疑问;把这一程也纳入可观测,等于把追踪的触角伸到了离用户最近的地方。</p>
+<h2>后端汇集与上报 + agent 每回合纳入追踪</h2>
+<p>链路的另外两段也同步补齐。后端这边立起了一个遥测汇集入口:各处产生的追踪与日志被统一收到这里、再上报出去,并且会把前端带下来的追踪上下文继续往后传递,确保同一次操作在后端的部分,仍然挂在同一条追踪线上、不会断档。agent 这一段,则把每一回合的执行也纳入了同一条追踪——一个 agent 接手一个任务、跑了一回合,这一回合花了多久、做了什么,都会作为这条追踪上的一节被记录下来。这两段合起来,才让&quot;全链路&quot;名副其实:从前端的一次点击,到后端的处理,再到 agent 一回合一回合的工作,全部串在同一条线上。对一个核心体验就是&quot;指挥一群 AI agent 干活&quot;的平台来说,&quot;每个 agent 这一回合到底在忙什么、慢在哪&quot;是最该被看见的;把 agent 的执行也接进追踪,等于让 AI 的工作过程不再是一个不可窥视的黑箱。</p>
+<h2>渲染调试:录下初始状态,重现&quot;黑屏&quot;类问题</h2>
+<p>和&quot;可观测&quot;同一种精神,渲染调试工具这天也更强了一档。此前它已经能&quot;录制一帧画面、再回放对比&quot;,但缺了一块关键拼图:初始状态。画面是从某个起点一步步画出来的,如果录制时只录了那些绘制动作、却没录下起点时各项资源的初始内容,回放就等于&quot;从一个错误的起点重演&quot;,有些问题根本复现不出来。这天补上了这块:录帧时会把相关资源的初始状态也一并记下来,回放时把它作为&quot;种子&quot;注入,从完全一致的起点精确重建整帧。它对排查&quot;画面一片黑、物体凭空消失&quot;这类最难缠的问题尤其管用——这类问题往往就出在某个初始状态没设对,过去因为回放复现不出来而极难定位;现在黑屏能在回放里如实重现,等于把一个&quot;偶发、抓不住&quot;的幽灵 bug,变成了一个&quot;稳定重现、可以反复研究并修复&quot;的具体对象。它和当天的全链路追踪是同一回事的两面:一个让你看清&quot;系统慢在哪&quot;,一个让你看清&quot;画面错在哪&quot;。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天补上的,是一个走向成熟的系统必不可少的&quot;感官&quot;。前面的许多天,平台一直在长出新的能力——会动的角色、能编辑的场景、能生成的资产、能开源给所有人;但能力越多、越自动,&quot;看清它内部在干什么&quot;就越重要。一个看不见自己内部的系统,出了问题只能靠猜,慢了也不知道慢在哪,最终会因为无法诊断而失控。这天把追踪打通成贯穿前端、后端、agent 的一条线,又让渲染调试能录下初始状态、稳定重现画面问题——等于一次性给了平台两双眼睛:一双看性能与流程,一双看画面与渲染。把&quot;系统在干什么&quot;和&quot;画面为什么是这样&quot;都变得可见,意味着接下来无论是优化速度、排查故障,还是放心地把更多自主权交给 AI,都有了可靠的依据。能力让一个平台&quot;能做什么&quot;,而可观测性决定它&quot;能被信赖到什么程度&quot;——这一天,补的正是后者。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

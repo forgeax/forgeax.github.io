@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-27 · 把内容浏览器和拖拽到场景对标 UE5 + 编辑器自带质检门 — ForgeaX</title>
+<meta name="description" content="这是一个"打地基"的日子,没有炫目的新玩法,做的是两件让后面走得更稳的事:一是把"资产怎么浏览、怎么拖进场景"按成熟引擎(UE5)的标准写成白纸黑字的设计,二是给独立编辑器装上一道属于它自己的自动质检门,让它往后长新功能时不会悄悄把旧的弄坏。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-27 · 把内容浏览器和拖拽到场景对标 UE5 + 编辑器自带质检门 — ForgeaX" />
+<meta property="og:description" content="这是一个"打地基"的日子,没有炫目的新玩法,做的是两件让后面走得更稳的事:一是把"资产怎么浏览、怎么拖进场景"按成熟引擎(UE5)的标准写成白纸黑字的设计,二是给独立编辑器装上一道属于它自己的自动质检门,让它往后长新功能时不会悄悄把旧的弄坏。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-27.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-27.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-27.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-27.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-27.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-27.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-27.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-27.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-27.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-27.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-27</span></div>
+    <h1>把内容浏览器和拖拽到场景对标 UE5 + 编辑器自带质检门</h1>
+    <p class="standfirst">这是一个&quot;打地基&quot;的日子,没有炫目的新玩法,做的是两件让后面走得更稳的事:一是把&quot;资产怎么浏览、怎么拖进场景&quot;按成熟引擎(UE5)的标准写成白纸黑字的设计,二是给独立编辑器装上一道属于它自己的自动质检门,让它往后长新功能时不会悄悄把旧的弄坏。</p>
+    <div class="prose"><h2>为什么&quot;先写设计、再动手&quot;</h2>
+<p>越是要做得像样、越是要对标成熟工具的功能,越值得先把它想清楚、写下来,再开工。内容浏览器和&quot;把模型拖进场景&quot;听起来简单,但真正决定好不好用的,是无数细节:资产怎么分类、缩略图怎么生成、拖进去的瞬间放在哪、朝向和缩放怎么定、和已有物体怎么对齐。这些如果边做边拍脑袋,最后往往各处不一致、改起来牵一发动全身。这一天先把这套交互按&quot;对标 UE5&quot;的标准整理成设计文档:以业界公认顺手的范式为参照,先定清楚&quot;它应该是什么样&quot;,再让 AI 照着实现。对一个主要由 AI 自主推进的项目来说,一份清晰的设计文档尤其关键——它既是给 AI 的施工图,也是事后判断&quot;做对没做对&quot;的标尺。</p>
+<h2>对标 UE5 的内容浏览器与&quot;拖进场景&quot;</h2>
+<p>这份设计瞄准的是创作里最高频的两个动作:找到一个资产、把它放进世界里。&quot;内容浏览器&quot;对标的是成熟引擎里那个分门别类、带缩略图、能搜索筛选的资产库——你应该能像翻素材柜一样浏览自己工程里所有的模型、贴图、场景、角色,而不是在文件夹里盲找。&quot;拖拽到场景&quot;则要求把这条路径做到顺滑自然:从浏览器里抓起一个模型,拖到 3D 视图里松手,它就以合理的位置、朝向、尺寸落进场景,并正确接好材质与引用——而不是丢进去一团错位或没贴图的东西。把这两件事按 UE5 这种被千万开发者验证过的范式来对标,意味着目标不是&quot;能用就行&quot;,而是&quot;用起来和专业引擎一样顺手&quot;。这一天交付的是这条路的完整设计与对标清单,为随后的真正落地铺好了图纸。</p>
+<h2>编辑器有了自己的质检门</h2>
+<p>另一件事关乎可靠性。可视化编辑器这块,已经独立成一个能单独构建、单独运行的部分;这一天进一步给它装上了一道属于它自己的自动质检门:每次改动都要先经过一套自动化的构建与检查,通过了才算数。这听起来不起眼,却是任何一个会持续长大的部件能保持健康的关键。编辑器以后会不断加面板、加交互、加能力;没有这道门,某个改动可能在不被注意的角落悄悄弄坏了另一处,直到用户撞上才发现。有了这道门,问题会在最早、最便宜的阶段——也就是改动刚发生时——就被拦下,而不是流到你手里。换句话说,这一天给编辑器装的不是新功能,而是&quot;长大的过程中不退步&quot;的保障。</p>
+<h2>这一天意味着什么</h2>
+<p>不是每一天都该是新功能的烟花。一个想做得长久、做得专业的工具,需要在冲刺之间穿插这样的&quot;地基日&quot;:把方向想清楚、把标准定下来、把质量护栏架好。这一天做的两件事正是如此——用一份对标 UE5 的设计,给&quot;资产怎么用&quot;这条最高频的路径定了专业级的目标;用一道自动质检门,给正在快速长大的编辑器上了保险。它们都不会立刻在画面上变出什么,但它们决定了接下来真正动手时,能不能做得又快又稳、又不踩坑。把目标定高、把护栏架牢,后面的每一步才走得踏实。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

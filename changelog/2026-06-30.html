@@ -1,1 +1,116 @@
-<!DOCTYPE html><html lang="en"><head><!-- RICH-v3 --><meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>2026-06-30 · 架构大拆分:前端四大模块独立 + 开源镜像全面加固 · Architecture unbundled: four frontend modules go standalone + OSS mirror hardened — ForgeaX Changelog</title><meta name="description" content="The studio's four largest frontend packages — chat, workbench, settings, dashboard — are extracted into standalone submodules (R4); the CLI dependency closure is isolated into its own repos; the public OSS mirror gains real build CI, PR-based pushes and admin-bypass protection; a viewport 2×2 redesign spec lands; and nightly release v0.3.3 ships automatically." /><link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" /><link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-131" /></head><body class="lang-en"><div id="site-header"></div><main><article class="read article"><a class="back" href="/changelog/"><span data-lang="zh">← 更新日志</span><span data-lang="en">← Changelog</span></a><div class="meta"><span class="tag brand"><span data-lang="zh">每日</span><span data-lang="en">Daily</span></span><span>2026-06-30</span></div><h1><span data-lang="zh">架构大拆分:前端四大模块独立 + 开源镜像全面加固</span><span data-lang="en">Architecture unbundled: four frontend modules go standalone + OSS mirror hardened</span></h1><p class="standfirst"><span data-lang="zh">这天是一次大规模的架构拆分。Studio 前端最大的四个包——聊天、工作台、设置、仪表盘——被独立为子模块（R4 计划）；CLI 的依赖闭包也拆成了独立仓库；公开的开源镜像拿到了真正的构建 CI、PR 推送流程和管理员绕过保护；同时发布了一份视口 2×2 重设计方案,自动夜间发布 v0.3.3 也顺利产出。</span><span data-lang="en">This day was a large-scale architecture unbundling. The studio's four largest frontend packages — chat, workbench, settings, dashboard — were extracted into standalone submodules (the R4 plan); the CLI dependency closure was isolated into its own repositories; the public OSS mirror gained real build CI, PR-based pushes and admin-bypass protection; a viewport 2×2 redesign spec landed; and nightly release v0.3.3 shipped automatically.</span></p><div class="prose"><h2><span data-lang="zh">R4:把前端拆成真正独立的模块</span><span data-lang="en">R4: splitting the frontend into truly independent modules</span></h2><p><span data-lang="zh">Studio 的前端代码到现在已经足够庞大,四个最重的包——聊天（chat）、工作台（workbench）、设置（settings）、仪表盘（dashboard）——一直嵌在主仓里一起编译、一起发版。对开发者来说,改一行聊天的代码要等整个前端重新构建;对架构来说,四个大块之间的依赖纠缠越来越难理清。这天的 R4 计划就是把这四个包各自注册为独立子模块,拥有自己的仓库、自己的版本、自己的 CI。好处立竿见影:每个模块可以独立迭代、独立测试,修改聊天不必重编工作台;坏处也很明确——子模块管理变多了。但对一个正在从"快速原型"走向"长期可维护"的项目来说,这一步迟早要迈,越早越好。</span><span data-lang="en">The studio's frontend had grown large enough that its four heaviest packages — chat, workbench, settings, dashboard — were all embedded in the main repo, compiled together and released together. For developers, changing one line in chat meant waiting for the entire frontend to rebuild; architecturally, the tangled dependencies between the four blocks grew harder and harder to untangle. This day's R4 plan registered each of these four packages as independent submodules, each with its own repository, its own version, its own CI. The benefit was immediate: each module can iterate and test independently, and touching chat doesn't force a workbench rebuild. The downside is also clear — more submodules to manage. But for a project moving from "rapid prototype" to "long-term maintainable," this step had to come sooner or later, and sooner is better.</span></p><h2><span data-lang="zh">CLI 依赖闭包也独立了</span><span data-lang="en">The CLI dependency closure goes standalone too</span></h2><p><span data-lang="zh">不只是前端。这天还把 CLI（命令行工具）的依赖闭包——contracts、agent-host、platform-io、core 这几个包——从主仓抽出来成为独立的子模块仓库。之前它们作为主仓的子目录存在,共享一份 <code>node_modules</code>、共享一条构建管线;但 CLI 本质上是一个独立产品,它需要在不同版本的 Studio 间保持兼容,嵌在大仓里反而限制了它的灵活度。抽出后,CLI 可以单独版本发布、单独跑测试,也让开源镜像只需同步这几个仓库就能完整构建——之前缺了这些依赖,公开镜像的 <code>bun install</code> 一直失败。</span><span data-lang="en">Not just the frontend. This day also extracted the CLI's dependency closure — contracts, agent-host, platform-io, core — out of the main repo into standalone submodule repositories. Previously they lived as subdirectories of the main repo, sharing one <code>node_modules</code> and one build pipeline; but the CLI is fundamentally an independent product that needs to stay compatible across different Studio versions, and being embedded in the monorepo constrained its flexibility. Once extracted, the CLI can version and test independently, and the OSS mirror only needs to sync these repositories to build completely — before this, the missing dependencies caused the public mirror's <code>bun install</code> to keep failing.</span></p><h2><span data-lang="zh">开源镜像:从"能看"到"能构建"</span><span data-lang="en">The OSS mirror: from "browsable" to "buildable"</span></h2><p><span data-lang="zh">这天对公开的开源镜像（ForgeaX-Games/forgeax-studio）做了一次全面加固。最大的变化是:往公开仓库推代码不再是直接 push 到 main,而是必须走 PR + 自动合并的流程——这意味着每次同步都有 CI 检查,有 review 记录,有回滚点。同时,公开仓库第一次拿到了真正的构建 CI:类型检查、<code>bun fx setup</code>、smoke 测试,完整跑一遍,确保开源用户拿到的代码真的能编译通过。还堵上了一个安全漏洞：之前管理员可以绕过分支保护直接 push,现在 <code>enforce_admins=true</code> 把这条路也关了。另外修掉了 MIRROR_TOKEN 泄漏问题,并加了 PR 阶段的镜像 dry-run 检查。一句话:镜像从"代码能看但不一定能跑"变成了"CI 保证能构建,流程保证可追溯"。</span><span data-lang="en">This day gave the public OSS mirror (ForgeaX-Games/forgeax-studio) a thorough hardening. The biggest change: pushing code to the public repo no longer goes straight to main — it must go through a PR + auto-merge flow, meaning every sync gets a CI check, a review trail and a rollback point. At the same time, the public repo got real build CI for the first time: type-checking, <code>bun fx setup</code>, smoke tests, running end to end to ensure the code open-source users receive actually compiles. A security hole was plugged too: admins previously could bypass branch protection and push directly; now <code>enforce_admins=true</code> closes that path. The MIRROR_TOKEN leak was also fixed, and a PR-time mirror dry-run gate was added. In one sentence: the mirror went from "code you can browse but might not build" to "CI guarantees it builds, process guarantees it's traceable."</span></p><h2><span data-lang="zh">视口 2×2 重设计:运行×显示正交模式</span><span data-lang="en">Viewport 2×2 redesign: run × display orthogonal modes</span></h2><p><span data-lang="zh">这天还落地了一份重要的设计规格文档:视口 2×2 重设计。核心思路是把"运行模式"（Edit / Play）和"显示模式"（Scene / Game）解耦成两个正交维度,形成 2×2 矩阵。之前编辑器的 Edit 和 Play 是两种互斥状态,切换时整个视口重建;新方案让你可以同时看到场景视图和游戏视图,用不同的运行状态驱动。这是对标 UE5 编辑器体验的一步——在一个屏幕上同时编辑和预览,不用来回切换。</span><span data-lang="en">This day also landed an important design spec: the viewport 2×2 redesign. The core idea is to decouple "run mode" (Edit / Play) from "display mode" (Scene / Game) into two orthogonal dimensions, forming a 2×2 matrix. Previously the editor's Edit and Play were two mutually exclusive states, with the entire viewport rebuilt on switch; the new design lets you see both the scene view and the game view simultaneously, driven by different run states. This is a step toward matching UE5's editor experience — editing and previewing on one screen without toggling back and forth.</span></p><h2><span data-lang="zh">v0.3.3 自动夜间发布 + 修了一堆构建问题</span><span data-lang="en">v0.3.3 automatic nightly release + a pile of build fixes</span></h2><p><span data-lang="zh">夜间发布流水线这天成功自动产出了 v0.3.3。但过程中也暴露并修掉了不少问题:桌面端构建缺少 Bun sidecar 二进制文件、子模块递归 checkout 偶发失败需要重试机制、Vite 别名路径在包名重构后没跟上、Tauri 构建时找不到从 contracts 移走的类型定义等等。还修掉了 server 端的工作台 GUID 重映射 bug 和 platform-io 的资产根路径偏移问题。这些修复单个看都不大,但加在一起,是让整条自动发布管线从"能跑"走向"稳定跑"的关键一步。</span><span data-lang="en">The nightly release pipeline successfully produced v0.3.3 automatically this day. But the process also exposed and fixed a fair number of issues along the way: the desktop build was missing the Bun sidecar binary, recursive submodule checkout failed intermittently and needed a retry mechanism, Vite alias paths hadn't kept up with package name restructuring, and the Tauri build couldn't find type definitions that had moved from contracts. Also fixed were a server-side workbench GUID remapping bug and a platform-io asset-root off-by-one. Each fix is small on its own, but together they are the key step from "the auto-release pipeline can run" to "the auto-release pipeline runs reliably."</span></p><h2><span data-lang="zh">这一天意味着什么</span><span data-lang="en">What this day means</span></h2><p><span data-lang="zh">这一天的关键词是"边界"。当一个项目从快速原型期走向成熟,最重要的事情之一就是给代码画清楚边界:哪些是独立模块、谁依赖谁、哪些可以单独发布。R4 拆分和 CLI 依赖闭包独立,是在主仓内部画边界;开源镜像加固,是在内部仓库和公开仓库之间画边界;分支保护和 PR 流程,是在"人"和"代码变更"之间画边界。边界画清了,每个部分才能独立进化、独立测试、独立发布,项目才能从"一个人推着一个大泥球跑"变成"一组清晰的模块各自往前走"。</span><span data-lang="en">The keyword of this day is "boundaries." When a project moves from rapid prototyping into maturity, one of the most important things to do is draw clear boundaries in the code: which pieces are independent modules, who depends on whom, which can release on their own. The R4 split and CLI dependency extraction draw boundaries inside the main repo; hardening the OSS mirror draws a boundary between the internal and public repositories; branch protection and the PR flow draw a boundary between "people" and "code changes." Once the boundaries are clear, each part can evolve, test and release independently, and the project can move from "one person pushing a big ball of mud" to "a set of clear modules each moving forward on their own."</span></p></div><p style="margin-top:32px"><a class="btn ghost" href="/changelog/"><span data-lang="zh">← 看全部每日更新</span><span data-lang="en">← All daily updates</span></a></p></article></main><div id="site-footer"></div><script src="/assets/site.js?v=forgeax-ui-130"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-30 · Architecture unbundled: four frontend modules go standalone + OSS mirror hardened — ForgeaX</title>
+<meta name="description" content="The studio's four largest frontend packages — chat, workbench, settings, dashboard — are extracted into standalone submodules (R4); the CLI dependency closure is isolated into its own repos; the public OSS mirror gains real build CI, PR-based pushes and admin-bypass protection; a viewport 2×2 redesign spec lands; and nightly release v0.3.3 ships automatically." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-30 · Architecture unbundled: four frontend modules go standalone + OSS mirror hardened — ForgeaX" />
+<meta property="og:description" content="The studio's four largest frontend packages — chat, workbench, settings, dashboard — are extracted into standalone submodules (R4); the CLI dependency closure is isolated into its own repos; the public OSS mirror gains real build CI, PR-based pushes and admin-bypass protection; a viewport 2×2 redesign spec lands; and nightly release v0.3.3 ships automatically." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/changelog/2026-06-30.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-30.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/docs/" data-nav="/docs/">Docs</a>
+      <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/games/" data-nav="/games/">Games</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Marketplace</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-06-30.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-06-30.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-30.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-30.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-30.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-30.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-30.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-30.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Open in ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Open in Claude</a>
+          <button class="ask-item" id="copyMd">Copy page as Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/changelog/">← Changelog</a>
+    <div class="meta"><span class="tag brand">Daily</span><span>2026-06-30</span></div>
+    <h1>Architecture unbundled: four frontend modules go standalone + OSS mirror hardened</h1>
+    <p class="standfirst">This day was a large-scale architecture unbundling. The studio&#39;s four largest frontend packages — chat, workbench, settings, dashboard — were extracted into standalone submodules (the R4 plan); the CLI dependency closure was isolated into its own repositories; the public OSS mirror gained real build CI, PR-based pushes and admin-bypass protection; a viewport 2×2 redesign spec landed; and nightly release v0.3.3 shipped automatically.</p>
+    <div class="prose"><h2>R4: splitting the frontend into truly independent modules</h2>
+<p>The studio&#39;s frontend had grown large enough that its four heaviest packages — chat, workbench, settings, dashboard — were all embedded in the main repo, compiled together and released together. For developers, changing one line in chat meant waiting for the entire frontend to rebuild; architecturally, the tangled dependencies between the four blocks grew harder and harder to untangle. This day&#39;s R4 plan registered each of these four packages as independent submodules, each with its own repository, its own version, its own CI. The benefit was immediate: each module can iterate and test independently, and touching chat doesn&#39;t force a workbench rebuild. The downside is also clear — more submodules to manage. But for a project moving from &quot;rapid prototype&quot; to &quot;long-term maintainable,&quot; this step had to come sooner or later, and sooner is better.</p>
+<h2>The CLI dependency closure goes standalone too</h2>
+<p>Not just the frontend. This day also extracted the CLI&#39;s dependency closure — contracts, agent-host, platform-io, core — out of the main repo into standalone submodule repositories. Previously they lived as subdirectories of the main repo, sharing one <code>node_modules</code> and one build pipeline; but the CLI is fundamentally an independent product that needs to stay compatible across different Studio versions, and being embedded in the monorepo constrained its flexibility. Once extracted, the CLI can version and test independently, and the OSS mirror only needs to sync these repositories to build completely — before this, the missing dependencies caused the public mirror&#39;s <code>bun install</code> to keep failing.</p>
+<h2>The OSS mirror: from &quot;browsable&quot; to &quot;buildable&quot;</h2>
+<p>This day gave the public OSS mirror (ForgeaX-Games/forgeax-studio) a thorough hardening. The biggest change: pushing code to the public repo no longer goes straight to main — it must go through a PR + auto-merge flow, meaning every sync gets a CI check, a review trail and a rollback point. At the same time, the public repo got real build CI for the first time: type-checking, <code>bun fx setup</code>, smoke tests, running end to end to ensure the code open-source users receive actually compiles. A security hole was plugged too: admins previously could bypass branch protection and push directly; now <code>enforce_admins=true</code> closes that path. The MIRROR_TOKEN leak was also fixed, and a PR-time mirror dry-run gate was added. In one sentence: the mirror went from &quot;code you can browse but might not build&quot; to &quot;CI guarantees it builds, process guarantees it&#39;s traceable.&quot;</p>
+<h2>Viewport 2×2 redesign: run × display orthogonal modes</h2>
+<p>This day also landed an important design spec: the viewport 2×2 redesign. The core idea is to decouple &quot;run mode&quot; (Edit / Play) from &quot;display mode&quot; (Scene / Game) into two orthogonal dimensions, forming a 2×2 matrix. Previously the editor&#39;s Edit and Play were two mutually exclusive states, with the entire viewport rebuilt on switch; the new design lets you see both the scene view and the game view simultaneously, driven by different run states. This is a step toward matching UE5&#39;s editor experience — editing and previewing on one screen without toggling back and forth.</p>
+<h2>v0.3.3 automatic nightly release + a pile of build fixes</h2>
+<p>The nightly release pipeline successfully produced v0.3.3 automatically this day. But the process also exposed and fixed a fair number of issues along the way: the desktop build was missing the Bun sidecar binary, recursive submodule checkout failed intermittently and needed a retry mechanism, Vite alias paths hadn&#39;t kept up with package name restructuring, and the Tauri build couldn&#39;t find type definitions that had moved from contracts. Also fixed were a server-side workbench GUID remapping bug and a platform-io asset-root off-by-one. Each fix is small on its own, but together they are the key step from &quot;the auto-release pipeline can run&quot; to &quot;the auto-release pipeline runs reliably.&quot;</p>
+<h2>What this day means</h2>
+<p>The keyword of this day is &quot;boundaries.&quot; When a project moves from rapid prototyping into maturity, one of the most important things to do is draw clear boundaries in the code: which pieces are independent modules, who depends on whom, which can release on their own. The R4 split and CLI dependency extraction draw boundaries inside the main repo; hardening the OSS mirror draws a boundary between the internal and public repositories; branch protection and the PR flow draw a boundary between &quot;people&quot; and &quot;code changes.&quot; Once the boundaries are clear, each part can evolve, test and release independently, and the project can move from &quot;one person pushing a big ball of mud&quot; to &quot;a set of clear modules each moving forward on their own.&quot;</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/changelog/">← All daily updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/changelog/">Changelog</a>
+    <a href="/blog/">Blog</a>
+    <a href="/docs/">Docs</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/games/">Games</a>
+    <a href="/marketplace/">Marketplace</a>
+  </div>
+  <div class="col"><h4>Project</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

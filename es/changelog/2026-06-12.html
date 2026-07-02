@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-12 · Characters actually animate + a steadier chat — ForgeaX</title>
+<meta name="description" content="Rigged characters now play their skeletal animation end to end; a generate-rig-animate character pipeline forms; chat fixes memory leaks, lets you type during streaming and pops interactive question cards; the editor can run standalone with strictly validated cross-surface messages; and a knowledge browser arrives." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-12 · Characters actually animate + a steadier chat — ForgeaX" />
+<meta property="og:description" content="Rigged characters now play their skeletal animation end to end; a generate-rig-animate character pipeline forms; chat fixes memory leaks, lets you type during streaming and pops interactive question cards; the editor can run standalone with strictly validated cross-surface messages; and a knowledge browser arrives." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-12.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-12.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-12.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-12.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-12.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-06-12</span></div>
+    <h1>Characters actually animate + a steadier chat</h1>
+    <p class="standfirst">This day was the month&#39;s peak in commits. A rigged character genuinely played animation for the first time; the matching character-generation pipeline advanced to &quot;rig + add motion + reduce polygons,&quot; joining &quot;generate a character → make it move&quot; into one line; chat got a focused memory-leak pass, lets you keep typing during streaming and can pop a clickable &quot;ask card&quot;; the editor can run standalone with strictly two-sided-validated cross-surface messages; and the monitoring console gained a browsable knowledge base.</p>
+    <div class="prose"><h2>A peak day: characters, chat and architecture all converging</h2>
+<p>This was the month&#39;s densest development day, but beneath the bustle ran a clear thread. The most emblematic thing was a character genuinely moving for the first time — an unavoidable milestone for a game-making platform, since without moving characters most games are impossible; and it happened to echo the character-generation pipeline&#39;s advance into &quot;rigging and adding motion,&quot; connecting for the first time the full chain of &quot;generate a character from nothing, then bring it to life.&quot; Another line landed on &quot;conversation,&quot; the interface you touch most daily: memory-leak fixes, type-while-streaming, clickable ask cards — a set of changes making it both steadier and smoother. A third line was more foundational: making the editor a standalone-runnable module, adding strict validation to cross-surface messages, and distilling knowledge into a browsable library — groundwork for long-term maintainability and extensibility. Capability, experience, architecture — this day converged a stretch on all three at once.</p>
+<h2>Characters actually move: the skeletal-animation chain runs end to end</h2>
+<p>A milestone moment: a rigged character model can now genuinely play its built-in animation — every frame of walking, running and jumping is driven by the animation system moving the skeleton, which in turn deforms the surface mesh, rather than a statue frozen in place. Technically, this completed the most core link of skeletal animation: each frame, the system computes every bone&#39;s current world pose, multiplies it by the inverse of its &quot;initial pose at binding time&quot; to get a set of matrices describing &quot;how much each bone has shifted from its initial position,&quot; and uploads that set to the GPU all at once; the vertex shader reads it and deforms the mesh surface correctly by &quot;which bones affect each vertex, and by how much&quot; — this method is the standard way character animation is done. It builds on the previous day&#39;s vertex-data chain and multi-format model import, and several days of groundwork finally bore fruit this day. The samples can now have several rigged characters performing actions at once. For an engine aiming to make games, &quot;characters move&quot; is almost the precondition for everything — once it holds, combat, interaction and performance later all have a root.</p>
+<h2>Generate → rig → animate: a character pipeline takes shape</h2>
+<p>Echoing the engine making characters move, the character-generation workbench reached a key milestone this day: automatically rigging generated models, adding motion, and providing a polygon-reduction pipeline. Each addresses a concrete stage. &quot;Rigging&quot; fits a static model with a drivable skeleton — only with a skeleton can a model move at all; traditionally this needs an artist by hand, costly in time and skill. &quot;Adding motion&quot; maps standard actions (walk, run, idle and so on) onto that skeleton, so a character comes with a basic action set the moment it&#39;s generated. &quot;Polygon reduction&quot; automatically simplifies the often too-high-poly, runtime-heavy generated model into a game-runnable low-poly version while preserving its look as much as possible. Connecting these three to the earlier &quot;text/image-to-model&quot; forms a complete character pipeline: you describe a character → it&#39;s generated → automatically rigged → fitted with motion → optimized into a usable low-poly model, ending as a living character you can drop into a game and have it walk around. For people without art or animation skills, this pipeline compresses &quot;make a moving character&quot; — once an extremely high bar — into a few automated steps.</p>
+<h2>A steadier chat: a focused leak fix, so it won&#39;t bog down all day</h2>
+<p>Chat got a stability-focused pass this day, centered on fixing several memory leaks. A memory leak is when memory a program has used isn&#39;t reclaimed in time and keeps piling up, dragging the interface slower over time — for a conversation panel you might keep open all day, this is the biggest hidden threat to the long-session experience. This day plugged it at several sources one by one: very long conversation history is now capped rather than piling up in memory without limit; scrolling up to old messages pages them in instead of stuffing thousands into the page at once and bloating it; each message used to quietly register a window-resize listener without releasing it, accumulating endlessly, and this leak was fixed too. These problems are inconspicuous in normal use and only surface with &quot;long use,&quot; but they&#39;re exactly what decides whether a tool can be trusted for extended sessions. Plugging these invisible drains one by one turns the chat panel from &quot;fine for a while, laggy after long use&quot; into &quot;stable even open all day.&quot;</p>
+<h2>Type while streaming + the AI can ask you structured questions</h2>
+<p>Chat&#39;s interaction also gained two very practical abilities this day. One is &quot;input during streaming&quot;: previously, while the model was still spilling text line by line, the input box was often locked and you had to wait for it to finish before typing; now you can watch it output while typing your next message, queue it and send it whenever, without interrupting your train of thought to wait. The other is the AI asking you &quot;structured questions&quot;: when an agent needs you to choose or confirm, it no longer mixes the question into a long paragraph you must labor to parse, but pops an &quot;ask card&quot; — listing clickable options (single or multi-select) and also allowing a custom answer. Its significance is more than looks: it turns &quot;the key decisions humans must make in the loop&quot; into a clear, explicit, unmisreadable interaction. For a collaboration model that&#39;s AI-led but where humans must step in to decide at any time, &quot;how the AI cleanly hands a question to a person, and how the person crisply answers&quot; is a core link. Making it a tidy card equips the conversation at these key moments with a reliable interface.</p>
+<h2>The editor can run standalone + strictly validated cross-surface messages</h2>
+<p>This day also did something more long-term on the architecture: extracting the front-end shell into a reusable application framework with a few public interfaces, so the editor can detach from the main interface and mount and run as a standalone app. That turns the editor from &quot;a piece that can only live inside the main Studio&quot; into &quot;a module that can be opened on its own and embedded elsewhere&quot; — more modular, and leaving room for later scenarios like packing it into a desktop app or embedding it in other pages. Alongside, messages passed between parts of the interface and across embedded pages now all carry strict two-sided validation: each message is checked against a predefined structure at both the sending and receiving ends, and rejected if malformed. It seems trivial but is key — cross-surface, cross-embedded-page state sync used to be a hotbed of weird bugs: one side thinks it sent correctly while the other receives something that doesn&#39;t match, agonizing to debug. Giving each message a clear &quot;format contract&quot; validated on both sides eliminates the &quot;blind passing, mismatched&quot; hazard at the root, making cross-surface collaboration predictable and trustworthy.</p>
+<h2>The monitoring console gains a browsable knowledge base</h2>
+<p>This day added a complete &quot;knowledge base&quot; tab to the monitoring console, where you can browse accumulated material and entries. Its left side is a faceted filter sidebar grouping entries by type, tags and domain, collapsible; the right side is a two-column entry grid, and opening any entry pops a preview; the top has a clickable tag cloud. A string of detail polish came with it — animated refresh feedback, theme-colored thin scrollbars, collapsible group headers and so on — making browsing smooth. Why does a development platform need a built-in knowledge base? Because when much work is pushed by AI, the accumulated experience, conventions and decision records become the shared &quot;memory&quot; of the team and the AI; organizing this knowledge in a structured, searchable, browsable way helps people look things up and gives the AI a basis to act on. The same day, the design principles guiding the whole project were reorganized into the form of &quot;a few compression axioms plus two boundaries&quot; — the core belief unchanged: a system&#39;s quality is measured not by how much code there is but by how many concepts you must hold to understand it, fewer being better. Making knowledge searchable and principles expressible are the same pursuit: keeping this ever-more-complex system understandable to both people and AI.</p>
+<h2>What this day means</h2>
+<p>This day, with the month&#39;s highest commit density, advanced a stretch on three levels at once, and they happen to cover the three most important things for a creation platform. In &quot;what it can do,&quot; characters moved and the generation pipeline joined up — a leap in capability that pulls &quot;making a game with living characters,&quot; once far off, a big step closer. In &quot;how it feels to use,&quot; chat is steadier and smoother and the AI can ask you clearly — a polish of experience that makes human-AI collaboration more worry-free and fluid. In &quot;how far it can go,&quot; the editor can stand alone, messages have contracts, and knowledge is searchable — architectural foresight that decides whether the system can stay healthy as it keeps growing. A product genuinely meant to last never strains on just one level; like this day, it has capability, experience and foundation pull on each other and advance together. The moment a character moves is moving, but equally important is the complete chain behind it — from generation to rigging to playback — and the ever-steadier, ever-clearer foundation supporting it all.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

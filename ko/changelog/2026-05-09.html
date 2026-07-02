@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-09 · Project kickoff — ForgeaX</title>
+<meta name="description" content="Day one: a working WebGPU shader pipeline, the rendering device layer taken over end to end, a cross-environment GPU-memory hotfix, safe concurrent agents, and a sturdier terminal." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-09 · Project kickoff — ForgeaX" />
+<meta property="og:description" content="Day one: a working WebGPU shader pipeline, the rendering device layer taken over end to end, a cross-environment GPU-memory hotfix, safe concurrent agents, and a sturdier terminal." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-05-09.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-09.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-09.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-09.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-09.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-05-09.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-05-09.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-09.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-05-09</span></div>
+    <h1>Project kickoff</h1>
+    <p class="standfirst">Day one pours the hardest part of the foundation: a working WebGPU shader pipeline, the rendering device layer taken over end to end, a cross-environment GPU-memory lifecycle hotfix, and a chat agent that is concurrency-safe with sturdier input. Everything tall starts from lighting the first pixel correctly in a browser.</p>
+    <div class="prose"><h2>Why day one starts from the rendering foundation</h2>
+<p>This is day one of the platform&#39;s public record. For a platform where &quot;you chat and a game appears,&quot; one thing must hold true at the very bottom: the browser has to render 3D — genuinely and stably. So day one wasn&#39;t about piling on a flashy interface; it put all the effort into the hardest part, the rendering foundation: building a rendering pipeline directly on the browser&#39;s next-generation graphics capability (WebGPU) in-house, rather than wrapping an off-the-shelf general library. That path is harder and slower at first — many details others have packaged away must be walked through ourselves, and the pitfalls filled one by one. But it decides whether image quality, performance and features stay in our own hands later, instead of being throttled by an upstream library&#39;s trade-offs. Today&#39;s deliverables are really different faces of one big thing — &quot;lighting the first pixel correctly in a browser.&quot; Getting this most-underestimated, least-compromisable thing solid first is what gives every later dream of &quot;generating games by conversation&quot; a place to stand.</p>
+<h2>A working shader pipeline: WGSL + a shader-compile shim + simplified PBR</h2>
+<p>The core of rendering is the shader — the little program that tells the GPU &quot;what color each pixel should be.&quot; This day wired a whole shader pipeline together: written in the browser graphics standard&#39;s shader language (WGSL), paired with a compile shim that turns shader source into a GPU-executable format in place, plus a simplified physically-based shading (PBR) implementation. &quot;Physically based&quot; means materials react to light by real-world rules — metal looks like metal, plastic like plastic, not a colored paper cutout. This simplified PBR deliberately uses a lean resource-binding structure (just three bind groups) to stay light while keeping the image believable — easy to understand and easy to extend. The compile shim matters especially: WebGPU doesn&#39;t directly consume high-level shader source, so a translation step into a lower-level format is needed in between, and solving it in the browser is what makes &quot;write a shader and immediately see the result&quot; possible. From this day, the engine no longer merely tints triangles; it renders objects that are lit and have material — the key first step from &quot;can draw&quot; to &quot;draws correctly,&quot; and the right starting point for all the richer materials and lighting to follow.</p>
+<h2>The rendering device layer taken over end to end</h2>
+<p>For shaders to run, there must be a &quot;rendering device layer&quot; underneath handling everything: requesting GPU resources, managing the canvas surface, organizing each frame&#39;s draw commands and submitting them to the GPU. This day took that layer over completely from start to finish, verifying the whole chain stage by stage — from initial setup to stably producing frame after frame, a series of milestones all ticked off. Players never see this layer, but it&#39;s the steward of all rendering: when it&#39;s solid, the games above it are solid; when it has holes, even the prettiest effects randomly black out or crash. Many rendering issues look like a broken effect on the surface, but the root is really this layer not being sorted out. Making it staged and verifiable has a long-term payoff too: when a future frame goes wrong, you can trace back through these milestones to pin which link broke, rather than staring helplessly at a black screen. Making it sturdy first lays a reliable track for every rendering feature to come.</p>
+<h2>The first cross-environment hurdle: a GPU-memory lifecycle hotfix</h2>
+<p>Running WebGPU across different environments, GPU memory buffers follow strict lifecycle rules for &quot;when usable, when to hand back&quot;; once the timing is misaligned, you get half-read dirty data or an outright crash. This day hotfixed the buffer lifecycle during the &quot;mapped read/write&quot; stage, making it follow the rules under two quite different environments: one where, with no discrete GPU, rendering is simulated purely in software, and one where the browser calls the machine&#39;s native graphics directly. For the same code to be correct on both paths, every allocation and return of GPU memory has to get its timing exactly right. Such fixes ship no &quot;visible new feature,&quot; yet they&#39;re exactly what decides whether the engine is &quot;a toy that sometimes runs on my machine&quot; or &quot;a base that runs on another machine and another environment too.&quot; A large share of the cost of an in-house renderer goes into this grind of plugging cross-environment uncertainty one hole at a time; each one plugged widens the range of devices the platform can reliably cover.</p>
+<h2>Safe concurrency: a lifecycle lock per agent</h2>
+<p>The platform&#39;s other side is the agents that chat with you and do the work. From the start this platform envisions &quot;a team of agents working at once&quot; — a lead handing out tasks, sub-agents each taking a slice, rather than talking to one assistant at a time. But the moment several agents run concurrently, the classic &quot;race condition&quot; appears: two actions touch the same agent&#39;s state at almost the same instant with no guaranteed order, producing intermittent corruption or hangs. This day extracted each agent&#39;s lifecycle management into a dedicated &quot;async lock&quot; component: operations on the same agent — start, stop, switch — are serialized through that lock into a queue, guaranteeing only one action touches its state at any moment. With that, running many agents no longer means stepping on each other, and behavior becomes predictable. For a platform that treats &quot;multi-agent collaboration&quot; as a core promise, this lock is a key piece that lets the blueprint actually land instead of living only in a demo.</p>
+<h2>A sturdier terminal: paste won&#39;t crash + collaboration guidance</h2>
+<p>Beyond concurrency safety, the chat agent gained two &quot;everyday feel&quot; fixes. First, terminal input: an old &quot;the second paste freezes&quot; bug was fixed, making pasting long requirement text on the command line more resilient — paste in a whole block of setup or a long spec and it won&#39;t seize up. Second, collaboration communication: the tool agents use to message one another got fleshed-out usage scenarios and reply guidance, so &quot;who should message whom, when, and how&quot; has structure, and communication during multi-agent collaboration stops being ad hoc. These are the key &quot;doesn&#39;t feel awkward to use&quot; details: an assistant that crashes when you paste your requirements, or that descends into a babble when collaborating, can&#39;t be trusted no matter how smart. Only by smoothing these rough edges one by one does it become something you&#39;d hand real work to.</p>
+<h2>No wasted cache: dynamic reminders append a new message</h2>
+<p>When talking to a large model, the stable context up front can be &quot;cached&quot; to save time and money; but rewriting the very front each time invalidates that cache and forces a full recompute. This day changed &quot;dynamic reminders&quot; (the temporary, conversation-shifting info handed to the model) from &quot;rewrite the front&quot; to &quot;append a new message at the end,&quot; preserving the prefix cache. The direct feel for you: faster responses and lower cost on long conversations. Such an optimization looks small on its own, but on a platform built around long back-and-forth collaboration with AI it adds up to real differences in smoothness and spend — and the longer the conversation grows, the more this early right call pays off. It also reveals a stance running through the whole project: treating &quot;how we talk to the model&quot; as engineering worth real polish, not a prompt slapped together on a whim.</p>
+<h2>What this day means</h2>
+<p>Looking at day one&#39;s pieces together, you notice none of them is deliberately a &quot;feature to show off&quot;: no pretty home page, no flashy demo. They are the first cornerstone of each of four through-lines — rendering, engine, concurrency, conversation. Behind that is a clear-eyed judgment: whether &quot;generate a game by chatting&quot; ultimately works doesn&#39;t hinge on whether day one can demo a trick, but on whether the foundation is hard enough — drawable in the browser, stable across environments, agents that don&#39;t fight, long conversations that don&#39;t burn money. Pouring these four foundations at once is what lets every later day stack steadily on top of them. It&#39;s also the first model this changelog wants to leave for future development: get the hardest, least glamorous, least-compromisable things right first.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

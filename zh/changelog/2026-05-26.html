@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-26 · 一键整理对话 + WebGPU 软件兜底 — ForgeaX</title>
+<meta name="description" content="这天围绕"让长会话和各种机器都不掉链子"做功夫:一键压缩对话、上下文用量看得见、斜杠命令可补全;3D 在没有硬件加速时自动软件兜底。新游戏从干净的 ECS 模板起步,引擎还补上 2D 精灵图集动画与一批健壮性修复。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-26 · 一键整理对话 + WebGPU 软件兜底 — ForgeaX" />
+<meta property="og:description" content="这天围绕"让长会话和各种机器都不掉链子"做功夫:一键压缩对话、上下文用量看得见、斜杠命令可补全;3D 在没有硬件加速时自动软件兜底。新游戏从干净的 ECS 模板起步,引擎还补上 2D 精灵图集动画与一批健壮性修复。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-26.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-26.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-26.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-26.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-26.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-26.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-26.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-26.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-26.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-26.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-26</span></div>
+    <h1>一键整理对话 + WebGPU 软件兜底</h1>
+    <p class="standfirst">这天围绕&quot;让长会话和各种机器都不掉链子&quot;做功夫:一键压缩对话、上下文用量看得见、斜杠命令可补全;3D 在没有硬件加速时自动软件兜底。新游戏从干净的 ECS 模板起步,引擎还补上 2D 精灵图集动画与一批健壮性修复。</p>
+    <div class="prose"><h2>把&quot;长期、广泛地用&quot;这件事做扎实</h2>
+<p>能力齐了之后,下一个问题是:它能不能被长期、广泛地用?长期,指的是一次对话能不能撑很久而不被上下文塞爆;广泛,指的是它能不能在各种各样的机器上都跑得起来,而不只是开发者那台高配电脑。这天的几件事,正好分别回答这两个问题:一键整理对话解决&quot;聊久了会卡上限&quot;,WebGPU 软件兜底解决&quot;没有好显卡就黑屏&quot;。再加上新游戏的干净起点、2D 动画和一批健壮性修复——主线很清楚:不是加新花活,而是把&quot;日常长时间、在更多机器上用&quot;这件事做扎实。</p>
+<h2>一键整理对话:/compact + 上下文用量环</h2>
+<p>和大模型长时间来回,它能记住的&quot;上下文&quot;会越堆越满;一旦接近上限,响应会变慢、质量也会下滑,甚至开始忘事。这天加了一个 /compact 命令:一键把此前的来回压缩成一份精炼的摘要,腾出空间继续聊,而且这次压缩本身不占用一整轮对话——它是直接在后端完成的。输入框里还多了一个&quot;上下文用量环&quot;,像油表一样直观显示当前还剩多少额度,快满了你一眼就能看见,从而主动决定该不该整理一下。配合斜杠命令的自动补全,打一个 / 就能看到所有可用命令并快速选用。这一组改动直面&quot;和 AI 长期协作&quot;绕不开的核心约束——上下文是有限的;把它的管理交到用户手里、而且做得轻巧,长会话才真正可持续。</p>
+<h2>WebGPU 软件兜底:更多机器能跑起 3D</h2>
+<p>3D 渲染依赖现代显卡的能力,但现实里总有一些机器或环境拿不到硬件加速——可能是显卡太旧、可能是运行环境受限。以前遇到这种情况就是一片黑屏,等于直接把这部分用户挡在门外。这天加了一层软件兜底:当拿不到硬件加速的渲染设备时,系统会自动退一步,改用软件实现把画面渲出来——虽然慢一些,但至少能跑、能看、能继续做。底层还做了多级回退(一条路不通就试下一条,实在不行才报错),并补上了更清楚的诊断提示,告诉你为什么没走上硬件加速(比如运行在非安全来源下)。这件事的意义在于覆盖面:一个面向大众、希望谁都能上手的平台,不能假设每个人都有一台高配电脑;能在更弱的机器上也跑起来,门槛才真正降了下来。</p>
+<h2>新游戏从干净的 ECS 模板起步</h2>
+<p>新建一个游戏时,现在会从一份结构清晰、按正规架构组织的精简模板生成。这天把这份默认模板重写成了&quot;正规 ECS 架构&quot;的写法,并把它从内嵌字符串提取成一个受版本控制的独立文件、行数还砍掉了一半——也就是说,你一建好游戏,拿到的就是一份干净、紧凑、能直接往上加东西的好底子,而不是一堆需要先读懂再删改的样板代码。配套也把模板和喂给 AI 的系统说明一起更新到了最新的引擎接口。这件事对&quot;AI 来写游戏&quot;尤其重要:AI 是照着模板的样子继续写的,模板越干净、越规范,AI 生成的代码就越大概率写对、越容易被你看懂和复用。一个好的起点,能省下后面无数纠偏的功夫。</p>
+<h2>2D 精灵图集动画</h2>
+<p>引擎这天补上了 2D 精灵图集动画:把一张&quot;精灵图集&quot;(把一连串动作帧排在同一张图里)里的多帧按顺序播放,角色和特效的 2D 动画就有了一套现成、规范的做法。这是 2D 游戏里最常用的动画方式——一个小人走路、一团火焰跳动,本质上就是几帧画面快速轮播。在此之前 2D 内容只能是静态精灵;有了图集动画,2D 这条线才算真正能动起来。它和此前的精灵图层一起,把引擎做 2D 的基本功补齐:既能正确分层叠放,又能让每个精灵动起来。对想做 2D 游戏的人来说,这是把&quot;能摆图&quot;升级成&quot;能做动画&quot;的关键一步。</p>
+<h2>引擎健壮性:回归测试 + 一批渲染修复</h2>
+<p>这天引擎还做了一批不显眼但要紧的健壮性工作。补上了针对几类容易出问题的情形的回归测试——比如渲染查询、父子层级、以及&quot;场景里一盏灯都没有&quot;这种边界,把它们用测试钉死,防止以后改别的地方时把它们悄悄改坏。还把一些含义模糊的字段做了更准确的命名,让代码读起来更不容易误解;并修了几处合并后才暴露的兼容问题。这些都属于&quot;把刚加进来的新能力焊牢&quot;的工作:前面几天密集加了很多东西,这天回头给它们补测试、清边角,确保它们不只是&quot;能跑一次&quot;,而是&quot;以后也一直靠得住&quot;。快速迭代和稳扎稳打交替进行,是这条产品线能一直跑下去的原因。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-18 · 每个 agent 有了会动的头像 + 工程数据有了唯一真源 — ForgeaX</title>
+<meta name="description" content="这天是个分水岭:游戏工程数据被收敛成唯一真源,整个平台读写配置都走同一个统一入口;每个 agent 在工作台里有了一张会随状态切换的动态头像;还落地了一套"宿主页面 ↔ 引擎"的对接契约和屏幕投影能力;借这次大整合,几个真实游戏暴露出来的引擎渲染 bug 也一次修干净。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-18 · 每个 agent 有了会动的头像 + 工程数据有了唯一真源 — ForgeaX" />
+<meta property="og:description" content="这天是个分水岭:游戏工程数据被收敛成唯一真源,整个平台读写配置都走同一个统一入口;每个 agent 在工作台里有了一张会随状态切换的动态头像;还落地了一套"宿主页面 ↔ 引擎"的对接契约和屏幕投影能力;借这次大整合,几个真实游戏暴露出来的引擎渲染 bug 也一次修干净。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-18.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-18.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-18.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-18.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-18.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-18.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-18.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-18.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-18.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-18.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-18</span></div>
+    <h1>每个 agent 有了会动的头像 + 工程数据有了唯一真源</h1>
+    <p class="standfirst">这天是个分水岭:游戏工程数据被收敛成唯一真源,整个平台读写配置都走同一个统一入口;每个 agent 在工作台里有了一张会随状态切换的动态头像;还落地了一套&quot;宿主页面 ↔ 引擎&quot;的对接契约和屏幕投影能力;借这次大整合,几个真实游戏暴露出来的引擎渲染 bug 也一次修干净。</p>
+    <div class="prose"><h2>一边收敛地基,一边增添温度</h2>
+<p>这一天有两种气质并存。一种是冷静的&quot;收敛&quot;:把游戏工程数据这层散落各处、各自为政的读取逻辑,统一收成唯一一个权威入口;把平台整体对齐到同一套引擎主线;把几个真实游戏暴露的引擎 bug 一次性修干净。这些都是在给地基去重、去歧义,让整个系统更可靠、更好维护。另一种是温暖的&quot;增添&quot;:给每个 agent 配上一张会随状态变化的动态头像,让&quot;和一群 AI 协作&quot;这件抽象的事,第一次在画面上有了人气和临场感。一个好的平台,既要有把复杂收敛到极简的冷静,也要有让冰冷的系统透出一点人味的用心。这一天恰好把这两种气质放在了一起——既夯实了看不见的根基,也点亮了看得见的细节。</p>
+<h2>游戏工程数据有了唯一真源</h2>
+<p>这天最有分量的一件事,是把每个游戏的工程配置(那份描述&quot;这个游戏叫什么、用哪些资源、从哪个场景开始&quot;的核心文件)收敛成了&quot;唯一真源&quot;。此前的痛点很典型:平台的各个部分——后端、编辑器、试玩端——各自去读这份文件、各自手写解析、各自写一段容错代码;一旦文件的格式或字段悄悄变了,谁也不能保证所有读取它的地方都同步跟上,字段对不上的隐患就此埋下。这天把它彻底统一:整个平台读写工程数据都只走同一个权威入口,这份配置的格式也用一份机器可校验的规范来自我说明——也就是说,文件长什么样、有哪些字段、各字段什么类型,都由规范本身讲清楚,不再靠散落的文档和口口相传。借这次机会还换上了更清晰的新格式:带上版本号(方便日后平滑升级)、用稳定的标识来引用资源(而不是容易变动的名字)。这件事的本质,是贯穿整个项目的一条核心信条——同一个事实只应有一个权威来源。给整个工作台的&quot;项目文件&quot;立一份权威说明书,换来的是更可靠、跨各处一致、出问题能在一处定位的工程数据。</p>
+<h2>每个 agent 有了会动的头像</h2>
+<p>这天给工作台增添了一抹很有人情味的细节:每个 agent 不再是一张静止的图片,而是一段会随状态切换的动态头像——思考时、工作时、空闲时各有不同的动画表现。这是四个部分协同完成的一件事:一批做好的角色动态头像、工作台里负责播放这些动态头像的渲染、后端一套根据 agent 当前状态来切换头像的状态机驱动,以及把这一切串起来的接口。为什么一个&quot;会动的头像&quot;值得专门做?因为这个平台的核心体验,是你指挥一群各有分工的 AI agent 协作干活(规划的、写设计的、写代码的……),而当它们都只是一张张静止的图标时,你很难直观感受到&quot;现在谁在忙、忙什么&quot;。换成会随状态变化的动态头像后,你扫一眼就能感受到&quot;一屋子人各忙各的&quot;那种临场感:谁在动脑、谁在跑活、谁在等。它让&quot;和一群 AI 协作&quot;这件原本相当抽象的事,第一次在画面上有了温度和生气——这种看似只是&quot;好看&quot;的细节,其实直接影响人对这套协作关系的感知和信任。</p>
+<h2>宿主页面 ↔ 引擎对接契约 + 屏幕投影</h2>
+<p>引擎这天还立了一份&quot;宿主页面 ↔ 引擎&quot;的对接契约,并补上了一项很实用的能力:把三维世界里的一个点投影到屏幕上的二维坐标。先说契约:游戏跑在引擎里,而它外面包着一层网页界面(宿主),两者之间需要清楚约定&quot;谁能向谁要什么、传什么&quot;——把这份约定明确写下来,跨这层边界的协作就不再靠默契和猜测。再说屏幕投影:它解决的是一个非常常见的需求——怎么把一块界面元素&quot;钉&quot;在一个三维物体上方?比如让血条飘在敌人头顶、让名字标签跟着角色移动、让一个交互提示出现在某个物品旁边。要做到这些,就得能把那个三维物体在世界里的位置,实时换算成它当前在屏幕上的二维落点。这天把这套世界坐标到屏幕坐标的换算做成了引擎的标准能力,还配了相机自动适配画面比例、以及一个视频过场演示。这些能力合起来,让&quot;在三维画面之上叠加二维信息层&quot;这件几乎每个游戏都要做的事,有了可靠的底层支持。</p>
+<h2>真实游戏照出的引擎 bug,一次修干净</h2>
+<p>随着工程数据的统一,整个平台这天也彻底对齐到了同一套引擎主线上。这次大整合带来一个意外但宝贵的收获:几个之前在做真实游戏时暴露出来的引擎问题,被一次性确认修复——包括大场景的阴影、某一类数据的写入、资源标识相互撞车、以及纯色环境光等四个具体问题。这件事印证了一条健康的协作闭环:用真实的游戏去&quot;压测&quot;底层引擎,往往能照出抽象测试照不出的真实问题;把这些问题如实记录、推动修复、再确认落地,引擎就在一轮轮真实使用中变得越来越扎实。这天编辑器和全部六个样例游戏也一并迁到了引擎新的接口上。统一带来的好处是显而易见的:各处行为一致、问题更好追溯、以后做新特性也能&quot;一次实现、处处生效&quot;,不必在多个分叉的版本之间来回兼容。把分散的收敛成统一的,看似只是整理,实则是为后面所有的快速迭代扫清了障碍。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的关键词,是&quot;统一&quot;与&quot;人味&quot;。统一,体现在把工程数据收敛成唯一真源、把平台对齐到同一套引擎、把跨边界的协作写成明确契约——这些都是在消除歧义和重复,让一个日益庞大的系统始终保持可理解、可维护。这种收敛看不见、不炫目,却是一个系统能长期健康生长的内功;它遵循的正是那条朴素而根本的原则:同一个事实,只该有一个权威来源。而&quot;人味&quot;,则体现在那一张张会动的 agent 头像上——当你面对的不再是冷冰冰的图标、而是一群仿佛真的在各自忙碌的伙伴时,人与 AI 的协作就多了一层情感上的连接。一个真正好的工具,既要在底层把秩序立得严丝合缝,也要在表层让人用得舒服、甚至用得开心。这一天,两者兼顾。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

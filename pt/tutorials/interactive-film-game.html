@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Make an interactive film-game — ForgeaX</title>
+<meta name="description" content="Build a timed-tap, choice-driven interactive film-game from a spark or a script: AI breaks down the story, locks characters/locations/props, generates storyboards and video; you edit on a three-track timeline, play-test, and ship a self-contained webpage anyone can play. Includes the five-step flow, track design and FAQ." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Make an interactive film-game — ForgeaX" />
+<meta property="og:description" content="Build a timed-tap, choice-driven interactive film-game from a spark or a script: AI breaks down the story, locks characters/locations/props, generates storyboards and video; you edit on a three-track timeline, play-test, and ship a self-contained webpage anyone can play. Includes the five-step flow, track design and FAQ." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/pt/tutorials/interactive-film-game.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/" class="active">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/interactive-film-game.html" data-l="en">English</a><a class="lang-item" href="/zh/tutorials/interactive-film-game.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/interactive-film-game.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/interactive-film-game.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/interactive-film-game.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/interactive-film-game.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/interactive-film-game.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/tutorials/interactive-film-game.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/tutorials/">← Voltar aos tutoriais</a>
+    <div class="meta"><span class="tag brand">Criar</span><span>Jogo de filme interativo</span></div>
+    <h1>Faça um filme-jogo interativo</h1>
+    <p class="standfirst">A partir de uma única faísca ou de um roteiro inteiro, crie um jogo de filme interativo impulsionado por toques cronometrados e escolhas ramificadas – a IA divide a história, fixa personagens e locais, gera storyboards e vídeos; você edita, testa e envia como uma página da web que qualquer pessoa abre e reproduz em um navegador.</p>
+
+    <div class="prose">
+      <div class="note">✅ Código aberto (Apache-2.0). Abaixo está uma visão geral completa do fluxo; para clonar e instalar veja o<a href="/pt/docs/">documentos</a>.</div>
+
+      <h2>O que é isso</h2>
+      <p>Um filme-jogo interativo é um curta-metragem que você pode jogar. As cenas fluem como vídeos e imagens, como assistir a um pequeno drama - mas em momentos-chave um<strong>toque cronometrado</strong>aparece, pedindo que você reaja em segundos; e no final de uma cena um<strong>escolha</strong>ramifica a história em direção a uma próxima batida diferente, até finais diferentes.</p>
+      <p>Você monta o<strong>história, recursos visuais, batidas e ramificações</strong>no editor; o que os jogadores obtêm é uma experiência determinística e reproduzível – as mesmas escolhas seguem o mesmo caminho, uma escolha diferente desbloqueia uma nova história.</p>
+
+      <div class="note">💡 Em uma linha: você molda a história, o ritmo e as escolhas; A IA cuida da “filmagem”, da “edição” e da transformação em algo que pode ser reproduzido em um navegador.</div>
+
+      <h2>Para que serve</h2>
+      <ul>
+        <li><strong>Curtas interativos/histórias com vários finais</strong>— deixe o público decidir o próximo movimento do protagonista; uma história, vários caminhos.</li>
+        <li><strong>Minijogos baseados em histórias</strong>- transforme diálogos, suspense e reações cronometradas em jogabilidade leve, sem necessidade de código de mecanismo.</li>
+        <li><strong>Ensino / demonstrações / treinamento</strong>- detalhar processos e decisões com ramificações "e se eu escolher isto" - mais envolvente do que vídeo simples.</li>
+        <li><strong>Prototipagem</strong>- crie um esboço jogável em horas para validar a história e o sentimento antes de se comprometer.</li>
+      </ul>
+
+      <h2>Do roteiro ao filme, em cinco passos</h2>
+
+      <h3>① Roteiro: de uma faísca a uma história estruturada</h3>
+      <p>Insira uma faísca de uma linha, uma sinopse ou um roteiro completo. A IA se expande e<strong>estruturas</strong>em atos, personagens, relacionamentos e batidas cena por cena. Longa história? Continue episódio por episódio, mantendo as configurações anteriores consistentes.</p>
+
+      <h3>② Âncoras: bloqueie o visual primeiro</h3>
+      <p>O sistema extrai automaticamente<strong>personagens, locais e adereços principais</strong>(e seus estados e variantes) para que você possa bloquear sua aparência antecipadamente. Cada cena posterior se alinha a essas âncoras, para que os personagens não troquem de rosto e os locais não se desviem – o passo fundamental para manter a consistência de todo o filme.</p>
+
+      <h3>③ Árvore de histórias · storyboards: divida a história em uma árvore jogável</h3>
+      <p>A IA divide a história em um<strong>árvore de storyboard</strong>: cada nó é uma foto com uma imagem gerada automaticamente. Você organiza tudo livremente – reordena e remodela,<strong>adicionar opções de ramificação</strong>(bifurcar dois ou mais caminhos após um nó), e<strong>definir toques cronometrados</strong>em momentos tensos. A árvore é todo caminho que um jogador pode seguir.</p>
+
+      <h3>④ Gere vídeo: dê vida às fotos</h3>
+      <p>Quando as placas estiverem corretas, transforme as fotos estáticas em<strong>vídeo</strong>em um clique. As imagens de referência mantêm os personagens e locais consistentes nas tomadas; linhas podem ser transportadas por um escolhido<strong>voz</strong>. Tudo cai na linha do tempo, alinhado aos diálogos e batidas.</p>
+
+      <h3>⑤ Editar · teste de jogo: ajuste a linha do tempo, ajuste enquanto você joga</h3>
+      <p>Ajuste fino em um<strong>linha do tempo de três faixas</strong>: alinhe o diálogo, posicione quando as torneiras aparecerem, conecte onde os galhos levam. Virar para um<strong>teste de reprodução em tela cheia</strong>a qualquer momento e experimente como um jogador real - onde quer que o ritmo se arraste, um toque seja muito forte ou um galho pareça solto, pule para trás, conserte-o e jogue novamente.</p>
+
+      <h2>Três faixas: diálogo / toques / ramificações</h2>
+      <p>A jogabilidade de um jogo de filme vem de três trilhas na linha do tempo, cada uma com uma função:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Acompanhar</th>
+            <th>O que controla</th>
+            <th>Dica de design</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Diálogo</td>
+            <td>Quando cada linha aparece e por quanto tempo, com voz</td>
+            <td>Mantenha as legendas sincronizadas com imagem e voz</td>
+          </tr>
+          <tr>
+            <td>Torneiras</td>
+            <td>Reações cronometradas: toque em uma janela para ter sucesso</td>
+            <td>Coloque em picos de tensão; não deixe a janela brutal</td>
+          </tr>
+          <tr>
+            <td>Galhos</td>
+            <td>Escolhas no final da cena que decidem a próxima batida</td>
+            <td>Duas ou três opções; faça com que cada escolha seja importante</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Algumas dicas para jogar melhor</h2>
+      <ul>
+        <li><strong>Coloque as escolhas onde elas contam</strong>- peça aos jogadores que decidam em momentos que realmente mudem a história, e não em bifurcações triviais.</li>
+        <li><strong>Torneiras servem emoção</strong>- dê toques cronometrados em ação, confronto e suspense para amplificar "Estou nisso".</li>
+        <li><strong>Misture divergentes e convergentes</strong>— as filiais não precisam ficar totalmente separadas; deixe alguns voltarem à linha principal para adicionar variedade e, ao mesmo tempo, manter o escopo são.</li>
+        <li><strong>Primeiro curto, depois longo</strong>- obtenha um caminho completo mais curto trabalhando de ponta a ponta e, em seguida, coloque ramificações e terminações.</li>
+        <li><strong>Faça testes com frequência</strong>- caminhar como um jogador geralmente revela problemas mais rápido do que olhar para a linha do tempo.</li>
+      </ul>
+
+      <h2>Empacotar e compartilhar</h2>
+      <p>Um jogo de filme acabado<strong>pacotes em uma página da web independente</strong>: história, imagens, vídeo, toques e lógica de ramificação, tudo incluído. Envie para qualquer pessoa e<strong>joga em qualquer navegador moderno</strong>- sem instalação, sem necessidade de GPU.</p>
+      <p>Dentro de um projeto ele também é salvo e endereçado como um<strong>recurso de jogo padrão</strong>, para que possa ser reutilizado, referenciado, redistribuído ou conectado a um projeto maior.</p>
+
+      <h2>Perguntas frequentes</h2>
+      <ul>
+        <li><strong>Os jogadores precisam instalar alguma coisa?</strong>Não. O pacote é uma página da web – abra-o em um navegador, localmente ou hospedado.</li>
+        <li><strong>Não consigo fotografar ou editar. Ainda posso usá-lo?</strong>Sim. Basta moldar a história e as escolhas; a geração e o alinhamento são tratados pela IA e pela linha do tempo.</li>
+        <li><strong>E as histórias longas?</strong>Tudo bem – continue episódio por episódio, cada um alinhado aos personagens e locais que você já bloqueou.</li>
+        <li><strong>Posso editar mais tarde?</strong>Sim. É um ativo endereçável em seu projeto — retorne ao editor, ajuste e reempacote a qualquer momento.</li>
+      </ul>
+
+      <blockquote>Não consegue filmar ou editar filme? Tudo bem – conte a história e a IA a transforma em um curta-metragem que você pode reproduzir.</blockquote>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/pt/showcase/">Veja demonstrações finalizadas →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

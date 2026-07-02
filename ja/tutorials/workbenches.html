@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Generate art with the workbenches — ForgeaX</title>
+<meta name="description" content="ForgeaX creation workbenches: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Generate art with the workbenches — ForgeaX" />
+<meta property="og:description" content="ForgeaX creation workbenches: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/ja/tutorials/workbenches.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/workbenches.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/docs/" data-nav="/docs/">ドキュメント</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/" class="active">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/workbenches.html" data-l="en">English</a><a class="lang-item" href="/zh/tutorials/workbenches.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/tutorials/workbenches.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/tutorials/workbenches.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/workbenches.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/workbenches.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/workbenches.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/workbenches.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/tutorials/">← チュートリアルに戻る</a>
+    <div class="meta"><span class="tag brand">作成する</span><span>概要</span></div>
+    <h1>ワークベンチでアートを生成する</h1>
+    <p class="standfirst">チャット以外にも、ForgeaX には一連の「ワークベンチ」があり、それぞれがパネルと、文章をゲーム対応のアセットに変換するツールのグループです。あなたは手作業で、AI は同じ成果物をディスパッチで編集します。</p>
+
+    <div class="prose">
+      <div class="note">✅ オープンソース (Apache-2.0)。以下にワークベンチ システムの概要を示します。クローンとインストールについては、を参照してください。<a href="/ja/docs/">ドキュメント</a>。</div>
+
+      <h2>キャラクター・アニメーション・VFX</h2>
+      <ul>
+        <li><strong>キャラクターエディター</strong>— 一行の概要を書き、ポートレートとターンアラウンドを取得します。</li>
+        <li><strong>アニメーション</strong>— 顔のドリフトを発生させずに、静止したキャラクターを歩行、攻撃、4 方向の骨格の動きに変換します (短いクリップでも)。</li>
+        <li><strong>スキル・VFX</strong>— キャストの瞬間に自動的に付加される、火、斬撃、オーラなどのエフェクトを追加します。</li>
+      </ul>
+
+      <h2>3Dモデリングと生成</h2>
+      <ul>
+        <li><strong>ブロック状の文字エディタ</strong>— スナップブロックなどのリグ付き 3D キャラクターを構築し、標準 3D ファイルをエクスポートします。</li>
+        <li><strong>ローポリジェネレータ</strong>— ノードグラフを使用して 3D プロップを構築します。 1 つのパラメータを変更すると、セットが再生成されます。</li>
+        <li><strong>3D生成</strong>— テキストまたは画像を 3D モデルに直接出力し、いくつかのトップジェネレーターに接続して、最適なものを選択します。</li>
+      </ul>
+
+      <h2>シーン・UI・アイテム</h2>
+      <ul>
+        <li><strong>シーンジェネレーター</strong>— ゲームシーン全体をグラフとして組み立て、いつでも再実行できます。</li>
+        <li><strong>2D シーン アセット ジェネレーター</strong>— バッチ プロップ、テクスチャ、装飾、UI ビット、自動で名前が付けられ、ファイルされます。</li>
+        <li><strong>UIワークベンチ</strong>— ゲームの種類に合わせた UI セット — 単なる画像ではなく、クリック可能なプロトタイプ。</li>
+        <li><strong>アイテム・アイコン</strong>— 武器、ポーション、コインをアイコンとして表示し、そのデータ、アート、数字を 1 つのテーブルにまとめます。</li>
+      </ul>
+
+      <h2>物語・音楽・見た目・数字</h2>
+      <ul>
+        <li><strong>ナラティブワークベンチ</strong>— AI が適切なアプローチを選択して、スパークから完全なストーリーと世界に至るまで。</li>
+        <li><strong>音楽・BGM</strong>— バックグラウンドミュージックとサウンドエフェクトを管理し、セッション全体のスコアをシーケンスします。</li>
+        <li><strong>色・見た目</strong>— すべてにフィルターを適用するかのように、ワンクリックでゲーム全体の色の雰囲気を統一します。</li>
+        <li><strong>バランス</strong>— AI に何千もの試合をプレイさせ、信頼区間を使用して勝率をレポートさせます。データにチューニングを判断させます。</li>
+      </ul>
+
+      <h2>システムおよび作成者ツール</h2>
+      <ul>
+        <li><strong>コード</strong>— コードを参照し、ファイル間を移動し、コーディング AI と一緒に編集します。</li>
+        <li><strong>天文台</strong>— AI が実行したすべてのステップをブラック ボックスのように再生して、問題が発生した場所を特定します。</li>
+        <li><strong>プラグイン作成者</strong>— コーディングをしない人でも独自のワークベンチ プラグインを構築できるようにします。</li>
+        <li><strong>管理者</strong>— スタジオのコントロール パネル: ワークベンチを切り替え、モデルをバインドし、どの AI がオンラインであるかを確認します。</li>
+      </ul>
+
+      <blockquote>絵を描いたり、モデルを作ったり、作曲したりすることはできませんか?それは問題ありません。それを説明すると、ワークベンチはゲームに直接ドロップされるアセットを生成します。</blockquote>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/ja/showcase/">完成したデモを見る→</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

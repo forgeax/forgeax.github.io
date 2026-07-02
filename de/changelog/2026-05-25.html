@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-25 · Skeletal animation + scene & observatory workbenches — ForgeaX</title>
+<meta name="description" content="Characters play skeletal animation; new scene and observatory workbenches arrive with multi-game support; narrative tools get teeth; chat is cleaner and credentials safer; the engine slims boilerplate and runs cleanly in the browser." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-25 · Skeletal animation + scene & observatory workbenches — ForgeaX" />
+<meta property="og:description" content="Characters play skeletal animation; new scene and observatory workbenches arrive with multi-game support; narrative tools get teeth; chat is cleaner and credentials safer; the engine slims boilerplate and runs cleanly in the browser." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-25.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-25.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/docs/" data-nav="/docs/">Dokumente</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/games/" data-nav="/games/">Spiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Marktplatz</a>
+      <a href="/de/blog/" data-nav="/blog/">Blog</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-25.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-25.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-25.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-25.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-25.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-25.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-25.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-25.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Fragen Sie die KI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">In ChatGPT öffnen</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Geöffnet in Claude</a>
+          <button class="ask-item" id="copyMd">Seite als Markdown kopieren</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Täglich</span><span>2026-05-25</span></div>
+    <h1>Skeletal animation + scene & observatory workbenches</h1>
+    <p class="standfirst">This day characters genuinely &quot;moved&quot; for the first time: the engine added skinned skeletal animation. The tool family grew too — a scene workbench (with multi-game per project), an observatory, and narrative tools with real teeth; chat got cleaner, credentials safer, and the engine slimmed boilerplate and ran cleanly in the browser.</p>
+    <div class="prose"><h2>From &quot;static objects&quot; to &quot;living characters&quot;</h2>
+<p>Before this day, the engine could render objects that were lit, textured and shadowed, but they were all &quot;static&quot; — however refined, just ornaments. The skeletal animation added this day is the key piece that brings these objects &quot;to life&quot;; and on the tool side, several capabilities — scene, observatory, narrative — arrived at once. Putting &quot;make characters move&quot; and &quot;fill in the tools for making games&quot; on the same day is this platform&#39;s consistent rhythm: the engine governs &quot;is what you make vivid enough,&quot; the tools govern &quot;is making it smooth,&quot; advancing both ends together. Below, each in turn.</p>
+<h2>Engine: skinned skeletal animation</h2>
+<p>The engine added one of the most essential pieces for games this day — skinned skeletal animation. How it works: build a &quot;skeleton&quot; for a character model, then &quot;skin&quot; the surface mesh onto it; when the skeleton poses according to animation data, the mesh stretches and bends along with it naturally, so the character walks, runs and waves rather than standing frozen. This is the watershed from &quot;rendering a static object&quot; to &quot;rendering a living character&quot; — a motionless character, however good-looking, is just a statue, while a moving character can carry real genres like role-playing, action and adventure. Getting this foundational capability right means the engine, from &quot;can display scenes,&quot; becomes qualified to &quot;carry a living protagonist&quot; — the precondition for every later game with characters and combat.</p>
+<h2>A new scene workbench + multiple games in one project</h2>
+<p>The tool family gained a solid member: a scene workbench, landing as the first plugin of its kind that &quot;actually does work,&quot; for building and organizing a game&#39;s scenes. The platform began supporting &quot;managing multiple games in one project,&quot; with per-game isolated data storage — each game&#39;s content belongs to itself, with no cross-contamination. This means you can make a series in one project, branch out multiple levels, or try several different ideas in parallel without starting over each time. For a creator who wants to cultivate their own works long-term, &quot;multiple games coexisting in one project without interference&quot; is the basis for settling scattered attempts into a system — picking which game to run or edit is now a smooth step rather than a move.</p>
+<h2>A new observatory: watch what agents are doing, live</h2>
+<p>A new &quot;observatory&quot; workbench lays out agent activity in real time: who&#39;s running, which tool they&#39;re calling, what events they&#39;ve produced — all at a glance. It&#39;s backed by a dedicated backend interface and an event bridge that streams what&#39;s happening in the background onto this panel. It addresses the most conflicting pair of needs when &quot;letting a team of agents work on their own&quot; — wanting to be hands-off yet fearing total loss of control. The observatory gives you a middle ground: let them run by themselves normally, and a glance at the panel tells you the overall state; the moment something&#39;s off, you can immediately see who and at which step the problem is and step in. For a platform leaning ever more on multi-agent collaboration, this &quot;visible sense of control&quot; is the psychological footing to dare hand more to the AI.</p>
+<h2>Narrative tools get teeth + the narrative agent activates</h2>
+<p>The narrative line moved this day from &quot;an empty shell&quot; to &quot;actually usable.&quot; The backend added a set of large-model-facing narrative tool definitions — equipping the agent with handy implements that genuinely arrange story and text, not just an interface that can&#39;t act; meanwhile, the dedicated agent responsible for narrative was formally activated from placeholder status and can take work. Together, &quot;writing the story&quot; has, for the first time, both a role and tools that can actually drive it in the platform. Making a game was never only piling up gameplay; plot, dialogue and pacing are equally a work&#39;s soul. Filling in the narrative tools and the narrative agent together is a concrete step toward &quot;one person can make a complete, fully-fleshed game.&quot;</p>
+<h2>A cleaner chat + safer credentials</h2>
+<p>Interface and security each got a touch this day. The chat interface had a pass of simplification: redundant glow and blur removed, borders unified, the list paginates when many agents are installed, and hover heights are steadier — easier on the eyes over a long session and more focused on content itself. The preview window also opened the graphics and fullscreen permissions it needs, so games inside run more completely. On security, the backend began migrating model keys from a separate vault toward &quot;environment-variable only&quot; management, and added a file-activity ledger — both simplifying the credential path and making &quot;when which file was touched&quot; traceable. A cleaner interface is to disturb less, tidier credentials to be more trustworthy — both bringing the platform a step closer to &quot;safe to use long-term.&quot;</p>
+<h2>Engine: slimmer boilerplate + clean in-browser runs</h2>
+<p>The engine did low-level work on both &quot;easy to use&quot; and &quot;easy to run&quot; this day. One is boilerplate slimming: giving common data structures sensible defaults and convenient factory functions, and unifying how some common utilities are exported — so writing game content takes less boilerplate and expresses intent more directly. The other is &quot;browser-safe sub-exports&quot;: stripping dependencies usable only in the local environment (not the browser) out of the engine&#39;s main entry, ensuring the engine, when loaded in the browser, doesn&#39;t accidentally pull in things that can&#39;t run, and runs cleanly. The former lowers the burden of &quot;writing,&quot; the latter safeguards the stability of &quot;running&quot;; neither is a flashy feature, but both genuinely make this in-house engine friendlier to the people using it (and the AI generating code).</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle täglichen Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele. Open Source, Apache-Lizenz 2.0.</p>
+  </div>
+  <div class="col"><h4>Website</h4>
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/blog/">Blog</a>
+    <a href="/de/docs/">Dokumente</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/games/">Spiele</a>
+    <a href="/de/marketplace/">Marktplatz</a>
+  </div>
+  <div class="col"><h4>Projekt</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-20 · 整个界面能切中英文 + 开发者工具齐活 — ForgeaX</title>
+<meta name="description" content="这天做了一次彻底的国际化:整个工作室界面实现中英双语、可一键切换、跨窗口实时同步,编辑器也同步全量双语化;开发者工具的控制台 / 网络 / 日志面板从空壳补成真功能;界面层叠、表单对比度、无障碍标题等老毛病一并理顺;引擎困扰多日的方向光阴影终于修对,游戏逻辑获得声明式系统编排,引擎资源也用上了规范的生命周期与故障隔离。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-20 · 整个界面能切中英文 + 开发者工具齐活 — ForgeaX" />
+<meta property="og:description" content="这天做了一次彻底的国际化:整个工作室界面实现中英双语、可一键切换、跨窗口实时同步,编辑器也同步全量双语化;开发者工具的控制台 / 网络 / 日志面板从空壳补成真功能;界面层叠、表单对比度、无障碍标题等老毛病一并理顺;引擎困扰多日的方向光阴影终于修对,游戏逻辑获得声明式系统编排,引擎资源也用上了规范的生命周期与故障隔离。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-20.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-20.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-20.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-20.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-20.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-20.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-20.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-20.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-20.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-20.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-20</span></div>
+    <h1>整个界面能切中英文 + 开发者工具齐活</h1>
+    <p class="standfirst">这天做了一次彻底的国际化:整个工作室界面实现中英双语、可一键切换、跨窗口实时同步,编辑器也同步全量双语化;开发者工具的控制台 / 网络 / 日志面板从空壳补成真功能;界面层叠、表单对比度、无障碍标题等老毛病一并理顺;引擎困扰多日的方向光阴影终于修对,游戏逻辑获得声明式系统编排,引擎资源也用上了规范的生命周期与故障隔离。</p>
+    <div class="prose"><h2>面向世界,也面向调试</h2>
+<p>这一天有两个朝向。一个朝外:把整个界面彻底双语化,让它不再只服务于中文用户,而是能面向全世界——这是一个产品想走向更广阔人群的必经一步。另一个朝内:把开发者工具补齐,让创作者在调试自己游戏时,能清楚看到控制台输出、网络请求、运行日志——这是让人能&quot;看清自己在做什么&quot;的底气。一外一内,看似不相干,内核却一致:都是在消除&quot;看不见 / 看不懂&quot;的障碍。语言不通,界面就是一堵墙;调试无门,问题就是一团雾。这天同时拆掉了这两类障碍。与此同时,引擎也把困扰多日的阴影问题从根上修对、给游戏逻辑添了更有条理的编排方式、并为自己的资源管理立了更严的规矩。对外更可达,对内更透明,底层更扎实——这是这一天的三个侧面。</p>
+<h2>整个界面能一键切中英文</h2>
+<p>这天做了一次彻底的国际化,而且做法很讲究。第一步是先搭起一套轻量的多语言内核:以英文为基准源(所有文案以英文为权威)、中文作为覆盖层(在英文之上替换成中文),两者可随时切换。第二步是把整个界面逐文件、分批迁移进这套体系——顶栏、仪表盘、聊天面板、设置抽屉、侧边栏、各种切换器,几十个面板和组件一个不落。为什么要&quot;逐文件&quot;而不是一次性全改?因为界面里硬编码的文案散落在成百上千处,只有一处处过、才能不漏。迁完之后,界面默认英文、自动跟随系统语言,还做了一个很贴心的细节:跨窗口实时同步——你在一个窗口里把语言切成中文,另一个开着的窗口会立刻跟着变,不必各切一遍。编辑器那边也同步完成了全量双语化并通过了运行验证。对一个想被全世界创作者使用的平台来说,语言这堵墙是必须先拆掉的——这一天,把它彻底拆掉了。</p>
+<h2>开发者工具面板齐活:控制台 + 网络 + 日志落盘</h2>
+<p>开发者工具区此前有几个面板要么空着、要么是点不动的占位,这天一次性补成了真功能。控制台面板接通了游戏与编辑器的完整输出流——你的游戏里打印的每一条日志、报的每一个错,都会实时汇到这里。网络面板从一个死占位变成了真东西,能抓到你正在试玩的游戏里发出的各种网络请求:普通请求、异步请求、长连接都能看到。更进一步,控制台、网络、信息这三条流不只是显示在面板里,还会被镜像保存到本地的日志文件,方便事后回溯——出问题时不必非得在现场抓到,事后翻日志也能复盘。同时删掉了一个和监控台职能重复的页签,避免两处显示同样的东西让人困惑。这件事的意义在于:调试是创作中绕不开的一环,而调试的前提是&quot;看得见&quot;。当一个游戏行为不对时,能在面板里直接看到完整的控制台报错和网络往来,排错就从&quot;凭感觉猜&quot;变成了&quot;照着证据查&quot;。</p>
+<h2>界面打磨:层叠、对比度、无障碍</h2>
+<p>借着这次大改,界面上几处积压已久的老毛病也一并理顺了。一是层叠次序:此前一些弹窗、下拉菜单、语言选择器会错误地盖住顶栏、或者藏到对话框底下,这天把它们的层级关系重新排清楚,该在上面的稳稳在上面。二是表单控件的对比度:某些原生的输入框、按钮之前因为样式没接上,显示的是浏览器默认的黑色文字,在深色背景上几乎看不清;这天让它们都用上了可读的主题色。三是无障碍:给提示弹窗补上了规范要求的标题,消除了无障碍方面的报错,也让用辅助阅读工具的人能正确理解弹窗内容。这些改动每一个都很小,小到大多数人不会专门注意;但它们共同决定了一件事——界面是不是处处都&quot;正常&quot;。一个到处有小别扭的界面,会持续地、隐隐地消耗用户的耐心;把这些别扭一个个抹平,换来的是一种&quot;用着哪儿都对劲&quot;的踏实感。</p>
+<h2>引擎方向光阴影修对 + ECS 系统声明式编排</h2>
+<p>引擎这天把一个困扰了好几天的问题从根上修对了:方向光的阴影。前几天做样例游戏时,曾不得不靠&quot;把阴影的级联层数从 4 改成 1&quot;这种临时绕法才能让影子稳定投出来——那只是症状层面的回避,真正的病根在引擎里。这天把它彻底治好:多级联阴影在某些配置下失效、以及单层时的错位,几个根因被一起收掉。上游一稳,下游所有游戏的方向光阴影就都能正常工作,不再需要那种治标不治本的绕法。同一天,游戏逻辑这层还获得了一个很有价值的能力:声明式的系统编排。一个游戏由许多&quot;系统&quot;(各管一摊的逻辑模块,比如移动、碰撞、AI)组成,以前它们的运行时机和顺序得手工安排;现在可以按条件、按标签、按当前状态来声明式地编排——比如&quot;只在战斗状态下运行这套系统&quot;&quot;这几个系统打上同一个标签一起调度&quot;。这让复杂的游戏行为逻辑写起来更有条理、更不容易乱。底层还顺手加了故障隔离(把底层崩溃转成可恢复的错误并自动重试)和一个离线的渲染帧查看器,让排查图形问题更顺手。</p>
+<h2>引擎给资源立规矩:用完即收、坏了不崩</h2>
+<p>引擎这天还在&quot;资源管理&quot;上下了不少功夫,而这恰是一个长时间运行的程序最容易出问题的地方。一方面是显卡资源和音频资源的生命周期:每一块显存、每一个声音通道,在不再被任何东西引用时,都能被准确地识别出来并及时回收,而不是悄悄堆积、越占越多——这天专门做了&quot;释放不再被引用的资源&quot;的机制,并用一个长时间运行的压力测试验证它确实能维持在一个稳定、有界的占用水平,而不会一路膨胀。另一方面是故障隔离:当底层出现严重错误时,引擎能把它转成一个可以被妥善处理的错误、而不是直接整个崩掉,必要时还能重试。这两件事都属于用户看不见、却直接决定&quot;能不能长时间稳定运行&quot;的底层功夫。一个游戏可能要连续跑上几个小时,期间不断地创建和销毁各种资源;只有把&quot;用完就还、坏了能扛&quot;这两条做扎实,长时间游玩才不会越来越卡、或者莫名崩溃。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的关键词是&quot;打通障碍&quot;。双语化打通的是语言的障碍,让这个平台第一次具备了面向全球用户的基本条件——一个工具要走多远,首先取决于它能被多少人看懂、用上。开发者工具的补全打通的是调试的障碍,让创作者在出问题时能看清真相、而不是对着黑箱干着急。引擎阴影的修复打通的是&quot;治标&quot;到&quot;治本&quot;的障碍,把一个反复出现、只能绕过的顽疾从根上解决。而声明式编排和资源管理,则是在为更复杂、更长时间的游戏打通可能性的障碍。把这些障碍一道道拆掉,平台就同时变得更可达、更透明、更可靠。一个真正想被广泛使用、被长期信赖的工具,做的往往就是这样朴素的事:不断地发现障碍、然后认真地把它拆掉。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-23 · An asset inspector + switch-without-stalling + Windows support — ForgeaX</title>
+<meta name="description" content="A kind-aware asset inspector arrives, switching scenes/views no longer cold-reboots the renderer thanks to keep-alive, a batch of Windows cross-platform fixes land, the engine self-heals from device loss and degrades gracefully under WebKit limits, load-time contract checks catch interface drift, and terminal checkpoints plus multi-agent chat touches ship." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-23 · An asset inspector + switch-without-stalling + Windows support — ForgeaX" />
+<meta property="og:description" content="A kind-aware asset inspector arrives, switching scenes/views no longer cold-reboots the renderer thanks to keep-alive, a batch of Windows cross-platform fixes land, the engine self-heals from device loss and degrades gracefully under WebKit limits, load-time contract checks catch interface drift, and terminal checkpoints plus multi-agent chat touches ship." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-23.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-23.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-23.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-23.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-23.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-23.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-23.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-23.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-23.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-23.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Diário</span><span>2026-06-23</span></div>
+    <h1>An asset inspector + switch-without-stalling + Windows support</h1>
+    <p class="standfirst">After the open-source release, this day was a solid round of polish and hardening: the editor gained an inspector covering every asset kind; switching between scenes, and between edit and play, no longer cold-reboots the renderer or freezes on a black screen; a batch of Windows compatibility issues were cleared; the engine learned to self-heal from device loss and degrade gracefully in constrained environments; load-time contract checks were added; and the terminal version gained checkpoint rewind.</p>
+    <div class="prose"><h2>After release, turning to polish</h2>
+<p>Open-sourcing handed the project to the public, and the real test begins the moment it&#39;s handed over — more people, more varied computers, more critical eyes will expose every spot that isn&#39;t smooth or stable enough. This day was the turn after release: not chasing dazzling new features but settling down to polish the existing experience smoother and harden the foundation steadier. The asset inspector lets creators clearly see every material in hand; stall-free switching removes the most frequent hitch in daily use; Windows compatibility lets more people in the door; engine self-healing keeps accidents from easily interrupting people; and load-time contract checks keep the AI&#39;s code edits from escaping with errors. Individually small, these all target &quot;is it actually smooth and stable to use&quot; — exactly what a project just stepping into public view should reinforce immediately. A first impression happens only once, and every bit of polish after release guards it.</p>
+<h2>An asset inspector: see every asset clearly</h2>
+<p>The editor gained an asset inspector panel this day, covering every kind of asset in a project. It addresses a basic yet long-missing need: when your project piles up a lot of materials — meshes, materials, textures, animations, scenes — how do you quickly see what any one actually is? Previously you often only saw a name, and to know its look and properties you had to actually place it in a scene. Now select any asset and the inspector on the right gives a kind-appropriate preview and details: pick a mesh and see its shape, a material and see its texture quality, a texture and see the image, an animation and see its info. A &quot;content browser&quot; was also linked to the material panel, forming a coherent flow from browsing to viewing to editing. The significance for creators is &quot;knowing what you have&quot; — a somewhat larger project easily holds dozens or hundreds of assets, and being able to open and clearly see each one keeps you from groping among a heap of vague names, raising the efficiency of managing and reusing materials.</p>
+<h2>Switching without stalling: keeping the render context alive</h2>
+<p>This day fixed a long-tormenting and, in daily use, extremely frequent old problem: the stall on switching. Previously, whether switching between different scenes or flipping between &quot;edit&quot; and &quot;play&quot; modes, the system tore down and rebuilt the whole underlying graphics rendering — a black flash, a re-initialization, and at its slowest an outright freeze. The root cause: each switch rebuilt the render context, and rebuilding a graphics context is a fairly expensive operation prone to errors in certain browser environments — the more often you switch, the more likely it breaks. This day&#39;s solution is &quot;keep-alive&quot;: switching no longer tears down and rebuilds but keeps the render context alive in the background (moved off-screen rather than destroyed) and reuses it directly when needed. Switched to in-place, flipping between scenes and between edit and play becomes smooth and instant, with no black screens or stalls. For a creation tool that encourages you to repeatedly &quot;tweak, glance, tweak again,&quot; switching is one of the most frequently triggered actions; turning this path from &quot;rebuild every time&quot; into &quot;instant switch anytime&quot; directly removes the most obstructive hitch in the creative flow.</p>
+<h2>Cross-platform: a batch of Windows fixes</h2>
+<p>Now that it&#39;s open source and wants as many people as possible to use it, Windows had to be tackled. This day swept a batch of Windows compatibility issues, all the typical kind of &quot;fine on another system, inexplicably broken on Windows&quot; pitfall: the way to tell whether a process is still alive needs a different approach to be correct in the Windows terminal; the symlinks created when making a new project hit permission limits on Windows, sidestepped with a native Windows equivalent; and environment-map (HDR format) decoding was fixed on Windows too. Startup scripts were hardened for cross-platform use alongside. Each problem is inconspicuous, but a single unsolved one could block a Windows user at install, project creation or first run, bouncing them outright. Getting this whole path, from install to running, working on Windows throws the door open to the Windows users who hold most of the desktop market — and for a just-open-sourced project eager to be tried by more people, this step&#39;s practical significance is especially large.</p>
+<h2>Engine self-healing: recover from device loss, degrade gracefully under limits</h2>
+<p>The engine advanced a big step on &quot;withstanding accidents&quot; this day. One is device/surface self-healing: a graphics device can suddenly drop during operation for various reasons (system resource pressure, a driver reset), which previously often meant the screen went black with no recovery; now the engine detects such a drop and attempts to automatically re-establish rendering so the picture comes back, rather than dying. Two is graceful degradation under limits: in some weaker browser environments, the engine&#39;s probe of video-memory capacity may not get an accurate value, and this day it falls back to a safe default ceiling when it can&#39;t; and when content to render exceeds capacity, it now &quot;renders a truncated subset&quot; rather than skipping the whole frame, preferring to draw a little less over crashing the whole picture; low-level crashes were isolated into recoverable errors too. The shared theme is &quot;resilience&quot;: an engine meant to face all sorts of real devices and be used for long stretches by ordinary people can&#39;t assume everything is perfect; the mark of true maturity is that when imperfection happens, it withstands, recovers, and keeps working at a reduced level, rather than going on strike at the first accident.</p>
+<h2>Load-time contract checks + scene writeback</h2>
+<p>This day added another safeguard to the &quot;AI writes code&quot; line: load-time contract checks. When loading a game, the system automatically verifies that the game code lines up with the engine&#39;s interfaces — a &quot;contract&quot; being the calling conventions the engine prescribes; if, after the AI edits code, some spot misuses an interface or cross-file interfaces don&#39;t match, the system points out this &quot;drift&quot; directly and prominently in an on-screen error overlay, rather than crashing inexplicably partway through. This effectively sets another automatic checkpoint between &quot;finished writing&quot; and &quot;running,&quot; catching interface-level errors on the spot. Meanwhile, the engine completed scene &quot;writeback&quot;: it can serialize the current scene&#39;s contents into a structured asset pack and look up the identifier in reverse from the contents. This lays the underlying foundation for the loop of &quot;edit in the editor and save it right away&quot; — editing isn&#39;t just viewing and tuning; changes must also reliably persist. These two, one after the other, both make &quot;the products of creation&quot; more reliable: ensuring the code lines up and that editing results are saved.</p>
+<h2>Terminal checkpoint rewind + multi-agent collaboration touches</h2>
+<p>This day the command-line / terminal version gained capabilities matching the graphical interface: checkpoints and rewind. You can roll a conversation back to an earlier checkpoint and retry, backing out if unsatisfied; session recovery was added — after an interruption, one command resumes where you left off, no starting over; plus an overlay for asking you questions. The chat interface kept polishing the live details of multi-agent collaboration: when a sub-agent hands a task to another, a clear relay header shows the handoff relationship; related agents are grouped by &quot;producer family,&quot; each in their own category; sensitive operations needing your call got a dedicated permission-confirmation card; and agent avatars were slightly lifted and enlarged to make &quot;who&#39;s active, who&#39;s waiting on you&quot; clearer at a glance. These together serve one thing: when you direct a team of differently-tasked AIs to collaborate, the whole process must be clear, controllable and always rollback-able — you understand what they&#39;re doing while keeping the initiative to halt and rewind.</p>
+<h2>What this day means</h2>
+<p>If the previous day&#39;s open-source release was &quot;open the door and invite people in,&quot; this day was &quot;tidy the house so people are comfortable living in it.&quot; It had no earth-shattering new feature, all polish and hardening throughout: letting you clearly see every asset, keeping switching from hitching, letting Windows users in the door, helping the engine withstand accidents, keeping the AI&#39;s code from escaping with errors, making multi-agent collaboration clear and controllable. What these all point to is &quot;usability&quot; and &quot;reliability&quot; — exactly the two things a project just welcoming a flood of new users most needs to reinforce at once. New users won&#39;t stay for some dazzling feature but may well turn away over a single stall, a single crash, a single failure to run on Windows. Solving these unremarkable experience and stability issues one by one looks plain but is really tamping the foundation firmer for the real usage that follows open-sourcing. Release is a starting point, not an end; this day was the start of taking &quot;actually being used by people&quot; seriously.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

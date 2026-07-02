@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-24 · 游戏运行时全面换上自研引擎 — ForgeaX</title>
+<meta name="description" content="这是一个分水岭:预览里实际跑你游戏的运行时,整体换成了自研引擎,此前攒下的能力第一次收进同一套引擎协同工作。材质支持自定义着色器,网格上传遇到坏数据会当场报错,专家 agent 更齐、能在工具里直接挑人,文档与代码也有了自动对账的闸门。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-24 · 游戏运行时全面换上自研引擎 — ForgeaX" />
+<meta property="og:description" content="这是一个分水岭:预览里实际跑你游戏的运行时,整体换成了自研引擎,此前攒下的能力第一次收进同一套引擎协同工作。材质支持自定义着色器,网格上传遇到坏数据会当场报错,专家 agent 更齐、能在工具里直接挑人,文档与代码也有了自动对账的闸门。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-24.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-24.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-24.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-24.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-24.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-24.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-24.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-24.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-24.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-24.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-24</span></div>
+    <h1>游戏运行时全面换上自研引擎</h1>
+    <p class="standfirst">这是一个分水岭:预览里实际跑你游戏的运行时,整体换成了自研引擎,此前攒下的能力第一次收进同一套引擎协同工作。材质支持自定义着色器,网格上传遇到坏数据会当场报错,专家 agent 更齐、能在工具里直接挑人,文档与代码也有了自动对账的闸门。</p>
+    <div class="prose"><h2>分水岭:跑你游戏的,从此是自己的引擎</h2>
+<p>这是一个真正的分水岭。在此之前,预览里实际驱动你游戏跑起来的,还是一套早期为了快速起步而借用的通用渲染方案;而引擎团队这些天自研的那套能力,虽然一直在长,却还没真正成为&quot;跑游戏的那台发动机&quot;。这天把运行时整体切换到了自研引擎——从今天起,你聊出来的每一个游戏,真正跑在自己的引擎上。它的意义不只是&quot;换了个底&quot;,而是把前面这些天分散积累的能力(基于物理的光照、阴影、环境天光、资产系统、2D 图层)第一次收进同一套引擎里协同工作,不再各管一摊。下面几件事,都是围绕这次切换展开或被它带动的。</p>
+<h2>为什么自研引擎是值得的选择</h2>
+<p>换掉一套现成、能用的方案,自己从头造一台引擎,代价显然不小;那为什么值得?核心在于&quot;掌控力&quot;。借用通用方案时,画质、性能、特性都受制于那套方案的取舍,想做点它没设计的事就很别扭;而自研之后,渲染表现完全可控、出了问题能一路查到底、要加的新特性可以一处实现处处生效,不必绕着别人的限制走。更重要的是,这台引擎是专门为&quot;AI 来写游戏&quot;而设计的——它的接口、它的资产体系、它的默认行为,都可以围绕&quot;让 AI 容易写对、让生成的代码容易复用&quot;来打磨,这是任何通用第三方方案给不了的。这天的切换,等于把产品最核心的那块基础,从&quot;租来的&quot;变成了&quot;自己的&quot;。</p>
+<h2>材质支持自定义着色器</h2>
+<p>借着引擎切换,材质系统也分成了&quot;模板 + 实例&quot;两层。一层是开箱即用的标准物理材质,满足大多数普通物体;另一层允许某个物体挂上它自己的自定义着色器,去做独特的视觉效果——发光、扭曲、脉动、能量场之类,不再受标准材质的束缚。为了不让&quot;花样多了就变卡&quot;,引擎会按材质各自缓存对应的渲染管线,相同材质复用、不同材质各管各的,既灵活又高效。配套做了一个会&quot;脉动发光&quot;的示例来验证整条路打通了。对想让某个物体看起来与众不同的人来说,这一步给了一条正路:既能享受标准材质的省心,又保留了在需要时彻底自定义的自由。</p>
+<h2>网格上传更严格:坏数据当场报错</h2>
+<p>这天还给&quot;把网格数据传上显卡&quot;这条底层链路加了一道严格的入口检查:如果传进来的网格数据格式不对(比如每个顶点的数据量对不上预期),引擎会当场快速报错,而不是默默吞下、等到画面以诡异方式出错时才让人去猜。配套还做了一次数据格式上的统一迁移,把相关的顶点数据格式对齐到一致的标准。这看似只是&quot;加了个检查&quot;,其实体现了一条重要的工程原则:让错误尽早、尽近地暴露在它真正发生的地方,而不是顺着管线往下漂、最后变成一个难以追查的怪现象。对一个要让 AI 大量生成网格数据的引擎来说,这种&quot;坏数据进不来&quot;的把关,能省下后面无数排查时间。</p>
+<h2>更多专家 agent + 工具里直接挑人</h2>
+<p>协作阵容这天又充实了一批:新增了若干各有专长的 agent,你可以按任务挑合适的那个来接手,而不是所有事都丢给同一个通才。工具窗的顶栏还加了一个 agent 选择器,可以直接在某个工作台里指定由哪个 agent 来干,并一键打开它的详情看看它擅长什么。后端也补上了对 agent 的统一增删改查能力和角色配套,让&quot;管理你这支 AI 团队&quot;本身变得规整。让对的人做对的事,是协作效率的关键——一个画美术的需求交给擅长美术的 agent,远比交给一个什么都会一点的通才更靠谱。这天把&quot;挑人&quot;这件事做得既方便又顺手。</p>
+<h2>让文档别骗人:文档与代码自动对账</h2>
+<p>这天还立了一道很特别的闸门:自动检查&quot;设计文档&quot;和&quot;实际代码&quot;是否还对得上。任何长期演进的项目都有一个通病——文档写的是当初的设想,代码却一直在变,时间一长两者就悄悄脱节,文档反而开始误导人。这道对账闸门会在代码里那些被文档引用的关键位置发生变化时报警,逼着你要么更新代码、要么更新文档,不许它们偷偷分家。它解决的是&quot;文档可信度&quot;这个最容易被忽视、却长期侵蚀团队效率的问题。对一个把&quot;AI 也要靠文档来理解系统&quot;当回事的平台来说,保证文档不骗人,本身就是一项核心基础设施——因为骗了人的文档,会同时把人类和 AI 一起带偏。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的重量,几乎全压在那次运行时切换上:把跑你游戏的引擎,从&quot;租来的&quot;换成&quot;自己的&quot;。它不是一个能立刻让画面变漂亮的功能,而是一个关于&quot;未来主动权在谁手里&quot;的根本决定——从此画质、性能、为 AI 优化的方向,都掌握在自己手中。围绕这次切换,材质能自定义了、坏数据进不来了、团队更好挑人了、文档不再骗人了,每一件都在让这台&quot;自己的引擎&quot;更可控、更可信。一个平台敢在能用之后还把最核心的底层换成自研,图的不是一时的好看,而是长久的自主——这正是这一天最该被记住的判断。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

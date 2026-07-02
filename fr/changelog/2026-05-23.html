@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-23 · Confirm before risky actions + engine ambient light & shadows — ForgeaX</title>
+<meta name="description" content="A confirmation gate before risky actions, in-app plugin editing, plugin signing and trust lists, engine image-based ambient light + shadows + large-scene loading, and a fully plugin-ized workbench." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-23 · Confirm before risky actions + engine ambient light & shadows — ForgeaX" />
+<meta property="og:description" content="A confirmation gate before risky actions, in-app plugin editing, plugin signing and trust lists, engine image-based ambient light + shadows + large-scene loading, and a fully plugin-ized workbench." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-05-23.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-23.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/docs/" data-nav="/docs/">Documents</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/games/" data-nav="/games/">Jeux</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Marché</a>
+      <a href="/fr/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-23.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-23.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-23.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-23.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-23.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-23.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-05-23.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-05-23.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Demandez à l'IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Ouvrir dans ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Ouvert à Claude</a>
+          <button class="ask-item" id="copyMd">Copier la page en tant que Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Tous les jours</span><span>2026-05-23</span></div>
+    <h1>Confirm before risky actions + engine ambient light & shadows</h1>
+    <p class="standfirst">This day added real safeguards to &quot;letting the AI act&quot;: risky actions now prompt for confirmation, and plugins can be signed, verified and trusted. Plugins can also be edited in-app and the workbench went fully plugin-ized; the engine added image-based ambient light, shadows, and the ability to load a game-scale complex scene.</p>
+    <div class="prose"><h2>Install the safeguards before letting go</h2>
+<p>The more you want to &quot;let the AI work for you,&quot; the more you must first answer one question: will it do something it shouldn&#39;t while you&#39;re not watching? This day&#39;s through-line was equipping &quot;letting go&quot; with safeguards — making risky actions require your approval, and making third-party plugins&#39; sources verifiable. At the same time, the workbench went fully plugin-ized, plugins became editable inside the product, and the engine&#39;s image quality kept pushing toward realism. Safety, extensibility, good looks — pieces placed in three directions at once; but running through them is one word: trust. Only when you&#39;re sure it won&#39;t run amok, and that what you install is trustworthy, do you dare truly hand off the work.</p>
+<h2>A confirmation prompt before risky actions</h2>
+<p>Agents gained a safety gate when calling tools. Each tool can declare its confirmation policy: always confirm, never confirm, or confirm only when judged dangerous. When an agent is about to take a dangerous action (say, deleting or overwriting an important file), the backend pushes a &quot;needs confirmation&quot; request to the interface in real time, a confirmation bar pops up at the top, and it proceeds only if you allow and is blocked on the spot if you deny; every decision is logged for the record. This gate addresses the most unsettling risk — &quot;the agent quietly finished doing something bad in the background and you had no idea.&quot; With it, you get the ease of letting go while always holding final veto over critical actions. This is the concrete landing of the &quot;human is the final authority&quot; principle in the product.</p>
+<h2>Edit plugins right in the app</h2>
+<p>A new &quot;plugin author&quot; workbench arrived: a file tree on the left, an editor on the right, changes taking effect immediately. Its significance is dropping the bar for &quot;extending it yourself&quot; to near zero — to tweak a tool&#39;s prompt, change a parameter, or try an idea, you don&#39;t leave the product, switch to a code editor and shuffle back and forth, but edit right in the interface and see the effect at once. This echoes a long-term direction of the platform: letting non-professional developers, even users themselves, extend and customize the platform hands-on, rather than only using what developers preset. Though for now it&#39;s a plain file tree plus edit box, once &quot;you can change the product inside the product&quot; holds, the space of what&#39;s imaginable opens up.</p>
+<h2>Plugins can be signed, verified and trusted</h2>
+<p>Since the platform is heading toward an ecosystem where &quot;anyone can make plugins and share them,&quot; safety must set rules first. This day gave plugin packages a full trust mechanism: a digital signature on export, automatic verification on import to confirm a package truly comes from the author it claims and hasn&#39;t been tampered with in transit; the system keeps a trust list recording which sources are trustworthy; and once a source&#39;s signature is revoked, freshly installing its plugins is blocked outright. This draws on the mature &quot;signing + chain of trust&quot; approach in software distribution, with a clear aim: when you install someone else&#39;s plugin, you needn&#39;t trust blindly. An open plugin ecosystem without this trust foundation will sooner or later be bitten by malicious or tampered plugins; establishing it while the ecosystem is still small is the responsible move.</p>
+<h2>Engine: ambient sky light + shadows + game-scale scenes</h2>
+<p>The engine&#39;s image quality took another step up this day. With image-based ambient light added, objects are softly lit by their surroundings — shadowed areas are no longer dead black, smooth surfaces reflect the environment&#39;s color, and the whole scene&#39;s light becomes natural and refined; together with the existing directional shadows, the light-and-dark relationship is more complete and believable. More tellingly: this day the engine could load and render a game-scale, complex, large indoor scene in full, with multiple lights lit at once. Running a scene of such real scale is a hard test of a renderer&#39;s &quot;real-world readiness&quot; — it means the engine has moved from the &quot;can spin a cube&quot; demo stage into the &quot;can hold up under real game content&quot; stage.</p>
+<h2>A fully plugin-ized workbench: many tools on one architecture</h2>
+<p>This day fully plugin-ized the workbench: tools like character, narrative and plugin-author now all run as their own embedded pages on the same split-surface plugin architecture, no longer special cases hardcoded into the main interface. The interface side also changed &quot;which plugins to load&quot; from a hardcoded table to subscribing to a dynamic plugin registry — what&#39;s installed is what shows, with no main-program code changes. Chat can also invoke a plugin&#39;s capability directly with a /tool command. The far-reaching significance: it puts &quot;built-in features&quot; and &quot;third-party plugins&quot; on the same starting line — the platform&#39;s own tools and others&#39; tools follow the same integration rules. Only when a system&#39;s core features can themselves exist as plugins does it truly hold the potential to be extended without limit.</p>
+<h2>What this day means</h2>
+<p>The keyword of this day is &quot;trust.&quot; Risky actions needing your nod and plugin sources being verifiable address &quot;do I dare let it act, do I dare install others&#39; things&quot;; the fully plugin-ized workbench and editing plugins inside the product address &quot;can this platform be extended without limit, can users do it themselves&quot;; the engine adding ambient light and shadows and running real-scale scenes addresses &quot;is what it makes actually good-looking and real enough.&quot; Safety, openness, image quality look like three things but all pave the way for one future: a platform you dare truly hand creation to, can keep extending to your own ideas, and that produces presentable work. Only by laying the foundation of trust solidly can you talk about handing greater freedom to users.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour quotidiennes</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables. Open source, licence Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/blog/">Blogue</a>
+    <a href="/fr/docs/">Documents</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/games/">Jeux</a>
+    <a href="/fr/marketplace/">Marché</a>
+  </div>
+  <div class="col"><h4>Projet</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

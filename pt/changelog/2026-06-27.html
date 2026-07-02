@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-27 · A UE5-grade plan for the content browser & drag-to-scene, plus an editor QA gate — ForgeaX</title>
+<meta name="description" content="A design-first day: a UE5-grade plan for how assets are browsed and dragged into a scene, and the standalone editor placed under its own automated build-and-test gate so it can grow without quietly breaking." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-27 · A UE5-grade plan for the content browser & drag-to-scene, plus an editor QA gate — ForgeaX" />
+<meta property="og:description" content="A design-first day: a UE5-grade plan for how assets are browsed and dragged into a scene, and the standalone editor placed under its own automated build-and-test gate so it can grow without quietly breaking." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-27.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-27.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-27.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-27.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-27.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-27.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-27.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-27.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-27.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-27.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Diário</span><span>2026-06-27</span></div>
+    <h1>A UE5-grade plan for the content browser & drag-to-scene, plus an editor QA gate</h1>
+    <p class="standfirst">A foundations day — no flashy new gameplay, but two things that make everything after it steadier: first, writing down a UE5-grade design for how assets get browsed and dragged into a scene; second, putting the standalone editor under its own automated quality gate, so it can grow new features without quietly breaking the old ones.</p>
+    <div class="prose"><h2>Why &quot;design first, then build&quot;</h2>
+<p>The more polished something needs to be — and the more it aims to match a mature tool&#39;s feature — the more it&#39;s worth thinking through and writing down before building. A content browser and &quot;drag a model into the scene&quot; sound simple, but what really decides whether they feel good is a thousand details: how assets are categorized, how thumbnails are generated, where a dropped item lands, how its orientation and scale are decided, how it snaps to existing objects. Improvised on the fly, these tend to end up inconsistent and entangled to change. This day first organized the interaction into a design doc benchmarked against UE5: using the industry&#39;s proven, comfortable patterns as the reference, pinning down &quot;what it should be&quot; before letting the AI implement it. For a project driven largely by AI, a clear design doc matters all the more — it is both the construction drawing for the AI and the yardstick for judging afterward whether it was done right.</p>
+<h2>A content browser &amp; drag-to-scene, benchmarked against UE5</h2>
+<p>The design targets the two most frequent acts in creation: finding an asset and placing it into the world. The &quot;content browser&quot; is benchmarked against the categorized, thumbnailed, searchable asset library of a mature engine — you should be able to browse every model, texture, scene and character in your project like flipping through a material cabinet, instead of hunting blindly in folders. &quot;Drag-to-scene&quot; then demands that path feel smooth and natural: grab a model from the browser, drop it into the 3D view, and it lands in the scene at a sensible position, orientation and size with its materials and references correctly wired — not a misplaced or untextured blob. Benchmarking both against a paradigm proven by millions of developers, like UE5&#39;s, means the goal isn&#39;t &quot;good enough to work&quot; but &quot;as comfortable as a professional engine.&quot; What this day delivered is the full design and parity checklist for that path, laying the blueprint for the real implementation that follows.</p>
+<h2>The editor gets its own QA gate</h2>
+<p>The other thing is about reliability. The visual editor has already become a part that builds and runs on its own; this day went further and gave it its own automated quality gate: every change must first pass a suite of automated build-and-check steps before it counts. It sounds unremarkable, yet it&#39;s the key to keeping any continuously growing component healthy. The editor will keep gaining panels, interactions and capabilities; without this gate, some change could quietly break another corner unnoticed until a user hits it. With it, problems are caught at the earliest and cheapest stage — the moment the change is made — instead of flowing to you. In other words, what this day added to the editor isn&#39;t a new feature but a guarantee of &quot;not regressing as it grows.&quot;</p>
+<h2>What this day means</h2>
+<p>Not every day should be a fireworks of new features. A tool that means to last and to be professional needs &quot;foundation days&quot; interleaved between the sprints: getting the direction clear, setting the standard, building the quality guardrails. The two things this day did are exactly that — a UE5-grade design setting a professional target for the most frequent path of &quot;how assets get used,&quot; and an automated QA gate insuring the fast-growing editor. Neither conjures anything on screen immediately, but together they decide whether the real building that follows can be fast, steady and pitfall-free. Aim high, rail it tight, and every later step lands on solid ground.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

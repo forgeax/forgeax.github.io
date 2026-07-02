@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-23 · 危险操作先确认 + 引擎环境光与阴影 — ForgeaX</title>
+<meta name="description" content="这天给"放手让 AI 干活"加上了几道实打实的保险:危险操作先弹窗确认、插件能签名验签建立信任。同时插件能在 app 里直接编辑、工作台全面插件化;引擎则补上基于环境的天光、阴影,并能加载一个游戏级的复杂大场景。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-23 · 危险操作先确认 + 引擎环境光与阴影 — ForgeaX" />
+<meta property="og:description" content="这天给"放手让 AI 干活"加上了几道实打实的保险:危险操作先弹窗确认、插件能签名验签建立信任。同时插件能在 app 里直接编辑、工作台全面插件化;引擎则补上基于环境的天光、阴影,并能加载一个游戏级的复杂大场景。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-23.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-23.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-23.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-23.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-23.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-23.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-23.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-23.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-23.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-23.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-23</span></div>
+    <h1>危险操作先确认 + 引擎环境光与阴影</h1>
+    <p class="standfirst">这天给&quot;放手让 AI 干活&quot;加上了几道实打实的保险:危险操作先弹窗确认、插件能签名验签建立信任。同时插件能在 app 里直接编辑、工作台全面插件化;引擎则补上基于环境的天光、阴影,并能加载一个游戏级的复杂大场景。</p>
+    <div class="prose"><h2>放手之前,先把保险装上</h2>
+<p>越是想&quot;放手让 AI 替你干活&quot;,就越需要先回答一个问题:它会不会在你没看见的时候,把不该做的事做了?这天的主线,就是给&quot;放手&quot;这件事配齐几道保险——让危险操作必须先经你同意、让第三方插件的来源可被验证。与此同时,工作台彻底走向插件化、插件能在产品里直接编辑,而引擎的画质也继续往真实感推进。安全、可扩展、好看,这天在三个方向上同时落子;但贯穿其中的核心,是&quot;信任&quot;二字:只有当你确信它不会乱来、装进来的东西可信,你才敢真正把活交出去。</p>
+<h2>危险操作前会弹窗确认</h2>
+<p>agent 在调用工具时多了一道安全闸。每个工具可以声明自己的确认策略:总是确认、从不确认、或仅在被判定为危险时确认。当 agent 要执行一个危险动作(比如删改重要文件)时,后端会实时把一个&quot;需要确认&quot;的请求推到界面,顶部弹出确认条,你点&quot;允许&quot;才放行、点&quot;拒绝&quot;就当场拦下;你的每一次决定都会被记进日志,有据可查。这条闸门解决的是一个让人最不安的隐患——&quot;agent 在后台悄悄把坏事做完了,人却完全不知道&quot;。有了它,你既能享受放手的省心,又始终握着对关键动作的最终否决权。这正是&quot;人类是最终裁决者&quot;这一原则在产品里的具体落地。</p>
+<h2>在 app 里直接编辑插件</h2>
+<p>新增了一个&quot;插件作者&quot;工作台:左边是文件树,右边是编辑器,改完即时生效。它的意义在于把&quot;二次开发&quot;的门槛拉到极低——想给某个工具调一调提示词、改一个参数、试一个想法,你不必退出产品、切到代码编辑器、再来回折腾,而是直接在界面里改、立刻看效果。这呼应了平台一个长远的方向:让非专业开发者、甚至用户自己,都能动手扩展和定制这个平台,而不是只能用开发者预设好的东西。虽然此刻它还只是一个朴素的文件树加编辑框,但&quot;能在产品里改产品自己&quot;这件事一旦成立,后面的想象空间就被打开了。</p>
+<h2>插件可签名、验签、建立信任名单</h2>
+<p>既然平台要走向&quot;人人都能做插件、互相分享&quot;的生态,安全就必须先立规矩。这天给插件包做了一整套信任机制:导出时对插件包做数字签名,导入时自动验签,确认它确实来自它声称的那个作者、且未被中途篡改;系统维护一份信任名单,记录哪些来源是可信的;一旦某个来源的签名被吊销,再想全新安装它的插件会被直接拦下。这套机制借鉴了软件分发里成熟的&quot;签名 + 信任链&quot;思路,目的很明确:让你装别人做的插件时,不必盲信。一个开放的插件生态如果没有这层信任地基,迟早会被恶意或被篡改的插件反噬;趁生态还小就把它立起来,是负责任的做法。</p>
+<h2>引擎:环境天光 + 阴影 + 游戏级大场景</h2>
+<p>引擎的画质这天再上一个台阶。加入了基于环境的天光后,物体会被四周环境的光柔和地照亮——暗部不再是死黑一片,光滑表面会映出环境的色彩,整个场景的光感变得自然而高级;配合此前的方向光阴影,明暗关系更加完整可信。更有标志性的是:引擎这天能把一个游戏级别的、复杂的大型室内场景完整加载并渲染出来,场景里还同时点着多盏灯。能跑这样一个真实规模的场景,是检验一个渲染器&quot;实战能力&quot;的硬指标——它意味着引擎已经从&quot;能转个方块&quot;的演示阶段,迈进了&quot;扛得住真正游戏内容&quot;的阶段。</p>
+<h2>工作台全面插件化:同一套架构跑多个工具</h2>
+<p>这天把工作台彻底插件化:角色、叙事、插件作者等几个工具,现在都以独立嵌入页面的方式、跑在同一套分屏插件架构上,而不再是写死在主界面里的特例。界面侧也把&quot;加载哪些插件&quot;从一张硬编码的表,改成订阅一个动态的插件清单——装了什么就显示什么,不必改主程序代码。聊天里还能用 /tool 命令直接调用某个插件的能力。这件事的深远意义在于:它把&quot;内置功能&quot;和&quot;第三方插件&quot;放到了同一条起跑线上——平台自己的工具,和别人写的工具,走的是同一套接入规矩。当一个系统的核心功能都能以插件形式存在时,它才真正具备了被无限扩展的潜力。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的关键词是&quot;信任&quot;。危险操作要你点头、插件来源可被验证,解决的是&quot;我敢不敢放手让它干、敢不敢装别人的东西&quot;;工作台全面插件化、插件能在产品里直接改,解决的是&quot;这个平台能不能被无限扩展、能不能让用户自己动手&quot;;引擎补上环境光、阴影,能跑真实规模的场景,解决的是&quot;它做出来的东西到底够不够好看、够不够真&quot;。安全、开放、画质,看似三件事,实则都在为同一个未来铺路:一个你敢把创作真正交给它、又能按自己的想法不断扩展、还能产出像样作品的平台。把信任的地基打牢,才谈得上把更大的自由交到用户手里。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

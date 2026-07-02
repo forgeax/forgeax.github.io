@@ -1,1 +1,118 @@
-<!DOCTYPE html><html lang="en"><head><!-- RICH-v3 --><meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>2026-05-18 · 打开任意目录当工作区 + 应用内版本与快捷键 · Open any folder as a workspace + in-app version & shortcuts — ForgeaX Changelog</title><meta name="description" content="Open any folder on disk as a workspace, an in-app version/changelog/shortcuts system, and engine model instancing + build-time texture cooking + a runtime shell with a game loop." /><link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" /><link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-131" /></head><body class="lang-en"><div id="site-header"></div><main><article class="read article"><a class="back" href="/changelog/"><span data-lang="zh">← 更新日志</span><span data-lang="en">← Changelog</span></a><div class="meta"><span class="tag brand"><span data-lang="zh">每日</span><span data-lang="en">Daily</span></span><span>2026-05-18</span></div><h1><span data-lang="zh">打开任意目录当工作区 + 应用内版本与快捷键</span><span data-lang="en">Open any folder as a workspace + in-app version & shortcuts</span></h1><p class="standfirst"><span data-lang="zh">这天平台不再把你绑死在固定目录里:挑磁盘上任意一个文件夹就能开工。应用自己也长出了"版本意识"——状态栏显示当前版本、设置里能翻更新日志、配上全局快捷键。引擎则补上模型实例化、构建期纹理烘焙,以及一套完整的运行外壳与游戏主循环。</span><span data-lang="en">This day the platform stopped tying you to a fixed directory: pick any folder on disk and start. The app also grew a "sense of version" — the status bar shows the current version, settings let you read the changelog, with global keyboard shortcuts. The engine added model instancing, build-time texture cooking, and a complete runtime shell with a game loop.</span></p><div class="prose"><h2><span data-lang="zh">从"绑死目录"到"打开任意工程"</span><span data-lang="en">From "locked to a directory" to "open any project"</span></h2><p><span data-lang="zh">在此之前,你的游戏代码必须放进平台自带的某个固定目录里才能被它管理——这其实是个不小的束缚:它意味着你的项目得迁就工具,而不是工具迁就你的项目。这天的主线,是把这层束缚拆掉,让平台能打开磁盘上任意一个目录当作工作区。这看似只是一个"选文件夹"的小功能,背后却是产品定位上的一次松绑:从"一个你必须按它的规矩摆放代码的应用",走向"一个能接管你已有项目的开发平台"。配合这天补上的版本意识与若干打磨,平台在"像个正经工具一样被日常使用"这件事上又踏实了一步。</span><span data-lang="en">Before this, your game code had to live in one of the platform's built-in fixed directories to be managed — a real constraint: it meant your project had to accommodate the tool rather than the tool accommodating your project. This day's through-line was removing that constraint, letting the platform open any directory on disk as a workspace. It looks like a small "pick a folder" feature, but behind it is a loosening of product positioning: from "an app where you must arrange code by its rules" toward "a development platform that can take over your existing project." Together with the version awareness and several polishes added this day, the platform took another solid step toward "being used daily like a proper tool."</span></p><h2><span data-lang="zh">打开任意目录当工作区</span><span data-lang="en">Open any folder as a workspace</span></h2><p><span data-lang="zh">顶栏新增了一个项目切换器,点开是一个文件浏览器,你可以挑磁盘上任意一个目录把它当作当前工作区——不再强制把代码塞进自带的某个固定目录里。最近打开过的项目会被记下来,下次一键就能回到。更贴心的是:如果你选了一个空目录,系统会自动往里放一个可直接运行的默认游戏骨架,于是"新建一个文件夹 → 立刻让 agent 在里面开工"成了一条完全顺畅的路。对刚把仓库克隆下来的人来说,这意味着可以直接打开自己项目的目录开始干,而不必先学会这个平台的目录规矩。它把"接入门槛"实实在在地降了一截。</span><span data-lang="en">The top bar gained a project switcher that opens into a file browser, so you can pick any directory on disk as your current workspace — no longer forced to drop code into one built-in folder. Recently opened projects are remembered for one-click return. Even better: if you choose an empty directory, the system drops in a directly-runnable default game scaffold, so "make a new folder → have an agent start working in it" becomes a perfectly smooth path. For someone who just cloned a repo, this means opening their own project's directory and starting right away, without first learning the platform's directory conventions. It genuinely lowers the bar to getting started.</span></p><h2><span data-lang="zh">应用内版本号 + 更新日志 + 快捷键</span><span data-lang="en">In-app version + changelog + shortcuts</span></h2><p><span data-lang="zh">这天给应用补上了一套"版本意识"。状态栏现在显示当前运行的版本号,并且会主动刷新——它在后台直接看实时的代码版本、文件一变就更新,你切回窗口就能确认自己跑的是不是最新,而不会盯着一个早已过期的旧号。设置里多了"更新日志"一栏,在产品内部就能翻看最近改了什么,不必跑去别处查。还多了"快捷键"一栏,配上一套全局快捷键,把常用操作变得可发现、可速记、随手可按。这些功能单看都很朴素,但它们共同传递一个信号:这不再是一个临时的实验品,而是一个会持续更新、值得你长期使用、并且认真对待"用户怎么知道自己用的是哪一版"的产品。</span><span data-lang="en">This day gave the app a "sense of version." The status bar now shows the running version and refreshes on its own — it watches the live code version in the background and updates the moment files change, so switching back to the window confirms whether you're on the latest rather than staring at a long-stale number. Settings gained a "Changelog" section so you can read what recently changed inside the product, without going elsewhere. And a "Shortcuts" section with a set of global keyboard shortcuts makes common actions discoverable, memorable and one keypress away. Individually plain, together these signal something: this is no longer a throwaway experiment but a product that keeps updating, is worth using long-term, and takes seriously "how does the user know which version they're on."</span></p><h2><span data-lang="zh">引擎:模型实例化 + 构建期纹理烘焙</span><span data-lang="en">Engine: model instancing + build-time texture cooking</span></h2><p><span data-lang="zh">引擎这天在性能与资产上各推进一块。性能上,标准 3D 模型支持了实例化绘制——当同一个模型在场景里成片出现(一排树、一群敌人)时,引擎能用一次提交把它们全画出来,开销大幅下降;导入模型时还会把模型里每个节点自带的名字带进引擎,方便后续辨认和操作。资产上,图片纹理改为在"构建期"就提前烘焙处理好,运行时按句柄直接取用,既加载更快也更稳定,不必每次运行都临时处理一遍。这两件事一个面向"同屏物体很多",一个面向"加载又快又稳",合起来是在为后面真正复杂、内容丰富的场景提前铺路。</span><span data-lang="en">The engine advanced on both performance and assets this day. On performance, standard 3D models gained instanced drawing — when the same model appears in bulk in a scene (a row of trees, a crowd of enemies), the engine can draw them all in one submission, sharply cutting cost; importing a model also carries each node's own name into the engine, easing later identification and manipulation. On assets, image textures are now cooked ahead of time at "build time" and fetched by handle at runtime — both faster to load and more stable, without reprocessing on every run. One targets "many objects on screen," the other "fast and stable loading," and together they pave the way for the genuinely complex, content-rich scenes to come.</span></p><h2><span data-lang="zh">引擎运行外壳与游戏主循环成型</span><span data-lang="en">An engine runtime shell with a game loop takes shape</span></h2><p><span data-lang="zh">引擎这天还补齐了一块结构性的地基:一套完整的"运行外壳"加上游戏主循环。运行外壳负责把一个游戏正确地启动起来、把每一帧的更新与渲染按固定节奏推进——这就是任何游戏在底层"转起来"的那台发动机。在此之前,各个示例往往各自拼装这套启动与循环逻辑;现在把它收敛成引擎自带的标准外壳,意味着写一个游戏可以从一个干净、统一的起点出发,而不必每次都重搭一遍骨架。这对"让 AI 来写游戏"尤其重要:起点越标准、越可预期,AI 写出来的代码就越容易跑对、越容易被复用。</span><span data-lang="en">The engine also filled in a structural foundation this day: a complete "runtime shell" plus a game loop. The runtime shell is responsible for starting a game correctly and driving each frame's update and render at a steady cadence — the engine that makes any game "turn" at the lowest level. Before this, individual examples often assembled this startup-and-loop logic themselves; converging it into a standard shell the engine provides means writing a game can start from a clean, uniform point rather than rebuilding the skeleton each time. This matters especially for "having AI write games": the more standard and predictable the starting point, the more easily the AI's code runs correctly and can be reused.</span></p><h2><span data-lang="zh">顺手的小改进:文字可选中 + 输入框右键菜单</span><span data-lang="en">Small ergonomics: selectable text + a composer right-click menu</span></h2><p><span data-lang="zh">这天也抹平了几处日常的小别扭。聊天里的文字现在可以正常选中、复制了——这听起来理所当然,但在此之前它是被无意中禁掉的,想摘一段 agent 的回复出来都不方便。输入框也补上了右键菜单,把常用操作放到触手可及的地方。这类改动每一个都微不足道,但它们正是决定一个工具"用着顺不顺手"的那一层。一个连复制文字都别扭的界面,再强的能力也会被这点摩擦消磨掉好感;把这些边角一个个磨平,是对"每天都要用它的人"的基本尊重。</span><span data-lang="en">This day also smoothed a few everyday frictions. Text in chat can now be selected and copied as expected — which sounds obvious, but it had been unintentionally disabled before, making it inconvenient to pull out a passage of the agent's reply. The composer gained a right-click menu, putting common actions within reach. Each of these is trivial on its own, but they're exactly the layer that decides whether a tool "feels smooth to use." An interface where even copying text is awkward will erode goodwill no matter how strong the capability; smoothing these edges one by one is basic respect for the people who use it every day.</span></p><h2><span data-lang="zh">这一天意味着什么</span><span data-lang="en">What this day means</span></h2><p><span data-lang="zh">这一天的几件事,合起来是在回答一个朴素的问题:这个平台,配不配被当成一个"正经工具"长期使用?能打开你自己的任意工程,说明它愿意迁就你已有的工作方式;有了版本号、更新日志和快捷键,说明它把自己当成一个会持续演进、需要对用户负责的产品;引擎补上实例化、构建期烘焙和标准运行外壳,说明底层在为更大的场景与更多的内容认真准备;连文字能不能复制这种细节都去抠,说明它在乎你每天用起来的手感。从能演示到能日用,中间隔着的正是这一类不显眼却不可少的功夫。</span><span data-lang="en">The day's pieces together answer a plain question: does this platform deserve to be used long-term as a "proper tool"? Being able to open any project of your own says it's willing to accommodate your existing way of working; having a version number, changelog and shortcuts says it treats itself as a product that keeps evolving and is accountable to users; the engine adding instancing, build-time cooking and a standard runtime shell says the low level is seriously preparing for bigger scenes and more content; and bothering with details like whether text can be copied says it cares about your daily feel. Between "can demo" and "can use daily" lies exactly this kind of unglamorous but indispensable work.</span></p></div><p style="margin-top:32px"><a class="btn ghost" href="/changelog/"><span data-lang="zh">← 看全部每日更新</span><span data-lang="en">← All daily updates</span></a></p></article></main><div id="site-footer"></div><script src="/assets/site.js?v=forgeax-ui-130"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-18 · Open any folder as a workspace + in-app version & shortcuts — ForgeaX</title>
+<meta name="description" content="Open any folder on disk as a workspace, an in-app version/changelog/shortcuts system, and engine model instancing + build-time texture cooking + a runtime shell with a game loop." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-18 · Open any folder as a workspace + in-app version & shortcuts — ForgeaX" />
+<meta property="og:description" content="Open any folder on disk as a workspace, an in-app version/changelog/shortcuts system, and engine model instancing + build-time texture cooking + a runtime shell with a game loop." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/changelog/2026-05-18.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-18.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/docs/" data-nav="/docs/">Docs</a>
+      <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/games/" data-nav="/games/">Games</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Marketplace</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-05-18.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-05-18.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-18.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-18.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-18.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-18.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-18.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-18.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Open in ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Open in Claude</a>
+          <button class="ask-item" id="copyMd">Copy page as Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/changelog/">← Changelog</a>
+    <div class="meta"><span class="tag brand">Daily</span><span>2026-05-18</span></div>
+    <h1>Open any folder as a workspace + in-app version & shortcuts</h1>
+    <p class="standfirst">This day the platform stopped tying you to a fixed directory: pick any folder on disk and start. The app also grew a &quot;sense of version&quot; — the status bar shows the current version, settings let you read the changelog, with global keyboard shortcuts. The engine added model instancing, build-time texture cooking, and a complete runtime shell with a game loop.</p>
+    <div class="prose"><h2>From &quot;locked to a directory&quot; to &quot;open any project&quot;</h2>
+<p>Before this, your game code had to live in one of the platform&#39;s built-in fixed directories to be managed — a real constraint: it meant your project had to accommodate the tool rather than the tool accommodating your project. This day&#39;s through-line was removing that constraint, letting the platform open any directory on disk as a workspace. It looks like a small &quot;pick a folder&quot; feature, but behind it is a loosening of product positioning: from &quot;an app where you must arrange code by its rules&quot; toward &quot;a development platform that can take over your existing project.&quot; Together with the version awareness and several polishes added this day, the platform took another solid step toward &quot;being used daily like a proper tool.&quot;</p>
+<h2>Open any folder as a workspace</h2>
+<p>The top bar gained a project switcher that opens into a file browser, so you can pick any directory on disk as your current workspace — no longer forced to drop code into one built-in folder. Recently opened projects are remembered for one-click return. Even better: if you choose an empty directory, the system drops in a directly-runnable default game scaffold, so &quot;make a new folder → have an agent start working in it&quot; becomes a perfectly smooth path. For someone who just cloned a repo, this means opening their own project&#39;s directory and starting right away, without first learning the platform&#39;s directory conventions. It genuinely lowers the bar to getting started.</p>
+<h2>In-app version + changelog + shortcuts</h2>
+<p>This day gave the app a &quot;sense of version.&quot; The status bar now shows the running version and refreshes on its own — it watches the live code version in the background and updates the moment files change, so switching back to the window confirms whether you&#39;re on the latest rather than staring at a long-stale number. Settings gained a &quot;Changelog&quot; section so you can read what recently changed inside the product, without going elsewhere. And a &quot;Shortcuts&quot; section with a set of global keyboard shortcuts makes common actions discoverable, memorable and one keypress away. Individually plain, together these signal something: this is no longer a throwaway experiment but a product that keeps updating, is worth using long-term, and takes seriously &quot;how does the user know which version they&#39;re on.&quot;</p>
+<h2>Engine: model instancing + build-time texture cooking</h2>
+<p>The engine advanced on both performance and assets this day. On performance, standard 3D models gained instanced drawing — when the same model appears in bulk in a scene (a row of trees, a crowd of enemies), the engine can draw them all in one submission, sharply cutting cost; importing a model also carries each node&#39;s own name into the engine, easing later identification and manipulation. On assets, image textures are now cooked ahead of time at &quot;build time&quot; and fetched by handle at runtime — both faster to load and more stable, without reprocessing on every run. One targets &quot;many objects on screen,&quot; the other &quot;fast and stable loading,&quot; and together they pave the way for the genuinely complex, content-rich scenes to come.</p>
+<h2>An engine runtime shell with a game loop takes shape</h2>
+<p>The engine also filled in a structural foundation this day: a complete &quot;runtime shell&quot; plus a game loop. The runtime shell is responsible for starting a game correctly and driving each frame&#39;s update and render at a steady cadence — the engine that makes any game &quot;turn&quot; at the lowest level. Before this, individual examples often assembled this startup-and-loop logic themselves; converging it into a standard shell the engine provides means writing a game can start from a clean, uniform point rather than rebuilding the skeleton each time. This matters especially for &quot;having AI write games&quot;: the more standard and predictable the starting point, the more easily the AI&#39;s code runs correctly and can be reused.</p>
+<h2>Small ergonomics: selectable text + a composer right-click menu</h2>
+<p>This day also smoothed a few everyday frictions. Text in chat can now be selected and copied as expected — which sounds obvious, but it had been unintentionally disabled before, making it inconvenient to pull out a passage of the agent&#39;s reply. The composer gained a right-click menu, putting common actions within reach. Each of these is trivial on its own, but they&#39;re exactly the layer that decides whether a tool &quot;feels smooth to use.&quot; An interface where even copying text is awkward will erode goodwill no matter how strong the capability; smoothing these edges one by one is basic respect for the people who use it every day.</p>
+<h2>What this day means</h2>
+<p>The day&#39;s pieces together answer a plain question: does this platform deserve to be used long-term as a &quot;proper tool&quot;? Being able to open any project of your own says it&#39;s willing to accommodate your existing way of working; having a version number, changelog and shortcuts says it treats itself as a product that keeps evolving and is accountable to users; the engine adding instancing, build-time cooking and a standard runtime shell says the low level is seriously preparing for bigger scenes and more content; and bothering with details like whether text can be copied says it cares about your daily feel. Between &quot;can demo&quot; and &quot;can use daily&quot; lies exactly this kind of unglamorous but indispensable work.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/changelog/">← All daily updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/changelog/">Changelog</a>
+    <a href="/blog/">Blog</a>
+    <a href="/docs/">Docs</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/games/">Games</a>
+    <a href="/marketplace/">Marketplace</a>
+  </div>
+  <div class="col"><h4>Project</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

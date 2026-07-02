@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ForgeaX — AI-native personal game studio</title>
+<meta name="description" content="ForgeaX is an AI-native personal game studio. Turn ideas into playable games — through chat, an editor and more — while AI writes the engine code, live in your browser. Open source, Apache 2.0." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="ForgeaX" />
+<meta property="og:description" content="Your personal game studio." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/pt/" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://forgeax.github.io/#org","name":"ForgeaX","url":"https://forgeax.github.io/","logo":"https://forgeax.github.io/logo.svg","sameAs":["https://github.com/ForgeaX-Games"],"description":"AI-native personal game development studio: describe a game and AI writes the engine code, live in your browser. Open source, Apache 2.0."},
+{"@type":"WebSite","@id":"https://forgeax.github.io/#site","url":"https://forgeax.github.io/","name":"ForgeaX","publisher":{"@id":"https://forgeax.github.io/#org"},"inLanguage":["zh-CN","en"]}
+]}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-pt forgeax-site has-immersive">
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__base"></div>
+  <div class="ambient__morph"></div>
+  <div class="ambient__beam ambient__beam--top"></div>
+  <div class="ambient__beam ambient__beam--bottom"></div>
+  <div class="ambient__horizon"></div>
+  <div class="ambient__axis"></div>
+  <div class="ambient__pedestal"></div>
+  <div class="ambient__orb ambient__orb--lime"></div>
+  <div class="ambient__orb ambient__orb--teal"></div>
+  <div class="ambient__grid"></div>
+  <div class="ambient__noise"></div>
+  <div class="ambient__vignette"></div>
+</div>
+<canvas id="forgeParticles" class="forge-particles" aria-hidden="true"></canvas>
+<p class="immersive-hint" aria-hidden="true">Rolar</p>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/" data-l="en">English</a><a class="lang-item" href="/zh/" data-l="zh">中文</a><a class="lang-item" href="/ja/" data-l="ja">日本語</a><a class="lang-item" href="/ko/" data-l="ko">한국어</a><a class="lang-item" href="/es/" data-l="es">Español</a><a class="lang-item" href="/de/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/" data-l="fr">Français</a><a class="lang-item active" href="/pt/" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="hero motion-hero-in immersive-section" id="sec-hero" data-immersive-section>
+    <svg class="hero-logo" id="heroLogo" viewBox="-6.5 -13 90 90" shape-rendering="crispEdges" role="img" aria-label="ForgeaX">
+      <defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.5" result="b"/><feComposite in="SourceGraphic" in2="b" operator="over"/></filter></defs>
+      <g filter="url(#g)"><g fill="#fff"><rect x="15" y="30" width="10" height="10"/><rect x="55" y="30" width="10" height="10"/><rect x="15" y="60" width="10" height="10"/><rect x="55" y="60" width="10" height="10"/><rect x="25" y="40" width="30" height="20"/></g>
+        <g fill="#fff"><animate attributeName="opacity" values="0.7;1;0.7" keyTimes="0;0.25;1" dur="1.5s" repeatCount="indefinite"/><rect x="15" y="30" width="10" height="10"/><rect x="55" y="30" width="10" height="10"/><rect x="15" y="60" width="10" height="10"/><rect x="55" y="60" width="10" height="10"/><rect x="25" y="40" width="30" height="20"/></g></g>
+      <g filter="url(#g)" transform="translate(0,5)"><g fill="rgba(255,40,20,0.95)">
+        <rect x="35" y="35" width="10" height="5"/>
+        <rect x="30" y="30" width="20" height="5"><animate attributeName="x" values="30;29;31;30" dur="0.45s" repeatCount="indefinite"/></rect>
+        <rect x="25" y="25" width="30" height="5"><animate attributeName="x" values="25;23;27;25" dur="0.4s" repeatCount="indefinite"/></rect>
+        <rect x="20" y="20" width="40" height="5"><animate attributeName="x" values="20;17;23;20" dur="0.35s" repeatCount="indefinite"/></rect>
+        <rect x="25" y="10" width="30" height="10"><animate attributeName="x" values="25;20;30;25" dur="0.25s" repeatCount="indefinite"/><animate attributeName="y" values="10;5;15;10" dur="0.3s" repeatCount="indefinite"/></rect>
+        <rect x="30" y="-5" width="20" height="15"><animate attributeName="x" values="30;25;35;30" dur="0.15s" repeatCount="indefinite"/><animate attributeName="y" values="-5;-10;0;-5" dur="0.2s" repeatCount="indefinite"/></rect>
+        <rect x="25" y="0" width="10" height="10"><animate attributeName="x" values="25;20;30;25" dur="0.22s" repeatCount="indefinite"/><animate attributeName="y" values="0;-5;5;0" dur="0.28s" repeatCount="indefinite"/></rect>
+        <rect x="45" y="-5" width="10" height="10"><animate attributeName="x" values="45;50;40;45" dur="0.18s" repeatCount="indefinite"/><animate attributeName="y" values="-5;0;-10;-5" dur="0.26s" repeatCount="indefinite"/></rect>
+        <rect x="35" y="-15" width="5" height="5"><animate attributeName="opacity" values="1;0;1" dur="0.3s" repeatCount="indefinite"/><animate attributeName="y" values="-15;-25;-15" dur="0.3s" repeatCount="indefinite"/><animate attributeName="x" values="35;30;40;35" dur="0.2s" repeatCount="indefinite"/></rect>
+        <rect x="50" y="-5" width="5" height="5"><animate attributeName="opacity" values="0;1;0" dur="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="-5;-15;-5" dur="0.4s" repeatCount="indefinite"/><animate attributeName="x" values="50;55;45;50" dur="0.3s" repeatCount="indefinite"/></rect>
+        <rect x="25" y="-10" width="5" height="5"><animate attributeName="opacity" values="0;1;0" dur="0.35s" repeatCount="indefinite"/><animate attributeName="y" values="-10;-20;-10" dur="0.35s" repeatCount="indefinite"/><animate attributeName="x" values="25;20;30;25" dur="0.25s" repeatCount="indefinite"/></rect>
+      </g>
+      <g fill="rgba(255,140,0,0.95)">
+        <rect x="35" y="30" width="10" height="5"/>
+        <rect x="30" y="25" width="20" height="5"><animate attributeName="x" values="30;28;32;30" dur="0.4s" repeatCount="indefinite"/></rect>
+        <rect x="30" y="15" width="20" height="10"><animate attributeName="x" values="30;25;35;30" dur="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="15;10;20;15" dur="0.25s" repeatCount="indefinite"/></rect>
+        <rect x="35" y="5" width="10" height="10"><animate attributeName="y" values="5;0;10;5" dur="0.2s" repeatCount="indefinite"/><animate attributeName="x" values="35;30;40;35" dur="0.15s" repeatCount="indefinite"/></rect>
+      </g>
+      <g fill="rgba(255,220,50,0.95)">
+        <rect x="35" y="25" width="10" height="5"/>
+        <rect x="35" y="20" width="10" height="5"><animate attributeName="x" values="35;30;40;35" dur="0.18s" repeatCount="indefinite"/></rect>
+        <rect x="35" y="10" width="5" height="10"><animate attributeName="y" values="10;5;15;10" dur="0.15s" repeatCount="indefinite"/></rect>
+      </g></g>
+      <g id="strikeSparks" opacity="0" filter="url(#g)">
+        <animate id="sparkAnim" attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.24;0.25;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/>
+        <rect x="60" y="25" width="5" height="5" fill="rgba(255,200,0,1)"><animateTransform id="spark1" attributeName="transform" type="translate" values="0 0;0 0;10 -10;10 -10" keyTimes="0;0.24;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/></rect>
+        <rect x="65" y="20" width="5" height="5" fill="rgba(255,255,100,1)"><animateTransform id="spark2" attributeName="transform" type="translate" values="0 0;0 0;15 -5;15 -5" keyTimes="0;0.24;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/></rect>
+        <rect x="60" y="30" width="5" height="5" fill="rgba(255,200,0,1)"><animateTransform id="spark3" attributeName="transform" type="translate" values="0 0;0 0;10 5;10 5" keyTimes="0;0.24;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/></rect>
+      </g>
+      <g transform="translate(5,30)" filter="url(#g)"><g transform="rotate(-45 0 0)">
+        <animateTransform attributeName="transform" type="rotate" values="-45 0 0;-42 0 0;-48 0 0;-45 0 0" dur="2s" repeatCount="indefinite"/>
+        <animateTransform id="hammerStrike" attributeName="transform" type="rotate" values="-45 0 0;-50 0 0;10 0 0;-20 0 0;-45 0 0" keyTimes="0;0.15;0.25;0.35;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/>
+        <rect x="10" y="0" width="20" height="5" fill="#fff"/><rect x="30" y="-10" width="10" height="20" fill="#fff"/>
+      </g></g>
+    </svg>
+
+    <span class="badge"><span class="dot"></span>Código aberto · construído por um loop de desenvolvimento de IA · forgeax.github.io</span>
+    <h1>Seu<span class="grad">pessoal</span>estúdio de jogos.</h1>
+    <p class="sub">ForgeaX é um estúdio de desenvolvimento de jogos nativo de IA – transforme suas ideias em jogos jogáveis ​​enquanto a IA escreve o código do mecanismo, recarregando ao vivo em seu navegador. Mais incomum:<b>o mecanismo e a plataforma em si são escritos quase inteiramente por IA, linha por linha, em um ciclo de desenvolvimento autoexecutável</b>- e sua autoconstrução diária é registrada no<a href="/pt/changelog/">registro de alterações</a>, uma espécie de memória de desenvolvimento de longo prazo para a IA.</p>
+    <div class="cta">
+      <a class="btn primary" href="/pt/tutorials/"><span class="btn-fx" aria-hidden="true"></span>Comece</a>
+      <a class="btn ghost" href="/pt/games/">Ver jogos</a>
+    </div>
+  </section>
+
+  <section class="section reveal-on-scroll immersive-section" id="sec-stats" data-immersive-section>
+    <div class="stats motion-stagger">
+      <div class="stat stat--display"><div class="num">29</div><div class="lbl">Pacotes de motor @forgeax</div></div>
+      <div class="stat stat--display"><div class="num">4</div><div class="lbl">demonstrações de jogos jogáveis</div></div>
+      <div class="stat stat--display"><div class="num">RHI duplo</div><div class="lbl">WebGPU + wasm</div></div>
+      <div class="stat stat--display"><div class="num">Apache 2.0</div><div class="lbl">código aberto</div></div>
+    </div>
+  </section>
+
+  <section class="section reveal-on-scroll immersive-section spotlight-section" id="sec-features" data-immersive-section data-reveal-delay="1">
+    <h2>Deixe equipes menores fazerem jogos maiores.</h2>
+    <div class="grid c3 motion-stagger">
+      <div class="card card--tile"><div class="ico"><i data-lucide="gamepad-2"></i></div><h3>Muitas maneiras de criar</h3><p>Bate-papo, um editor visual e entrada de imagem/vídeo posteriormente - expresse suas ideias da maneira que mais lhe convier.</p></div>
+      <div class="card card--tile"><div class="ico"><i data-lucide="bot"></i></div><h3>Agente por design</h3><p>Os agentes planejam, projetam e escrevem o código do mecanismo; você define requisitos e analisa.</p></div>
+      <div class="card card--tile"><div class="ico"><i data-lucide="zap"></i></div><h3>Recarga a quente ao vivo</h3><p>Cada mudança chega à visualização instantaneamente – o que você diz é o que você toca.</p></div>
+      <div class="card card--tile"><div class="ico"><i data-lucide="boxes"></i></div><h3>Motor ECS real</h3><p>Um mecanismo de sistema de componente de entidade genuíno com renderização RHI dupla, em um estúdio de navegador.</p></div>
+      <div class="card card--tile"><div class="ico"><i data-lucide="brain"></i></div><h3>Jogabilidade nativa de IA</h3><p>Não apenas criando jogos com IA, mas também incorporando IA no próprio jogo: NPCs inteligentes, conteúdo generativo, experiências interativas de IA.</p></div>
+      <div class="card card--tile"><div class="ico"><i data-lucide="refresh-cw"></i></div><h3>Loop de desenvolvimento autoevolutivo</h3><p>O ciclo fechado do ForgeaX — um pipeline de requisitos → construção → verificação que aprende com seu próprio feedback e se torna mais estável com o tempo.</p></div>
+      <div class="card card--tile"><div class="ico"><i data-lucide="globe"></i></div><h3>Executa no navegador</h3><p>Com tecnologia WebGPU, web e desktop em uma pilha, instalado e funcionando em um minuto.</p></div>
+      <div class="card card--tile"><div class="ico"><i data-lucide="book-open"></i></div><h3>Código aberto</h3><p>Apache 2.0 — gratuito para bifurcar, usar, enviar e construir comercialmente.</p></div>
+    </div>
+  </section>
+
+  <section class="section reveal-on-scroll immersive-section spotlight-section" id="sec-ai" data-immersive-section data-reveal-delay="2">
+    <h2>Use a IA pela qual você já paga.</h2>
+    <p class="lead">O Forge é executado com a assinatura do agente de codificação que você já possui – sem uma segunda conta de IA. Conecte a ferramenta que você já usa ou apenas traga uma chave API.</p>
+    <div class="grid c3 motion-stagger">
+      <div class="card"><a class="ico ico-logo" href="https://claude.com/product/claude-code" target="_blank" rel="noopener" aria-label="Claude Code"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></a><h3><a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">Claude Code</a></h3><p>Dirija o Forge com seu<strong>Cláudio Pro/Max</strong>assinatura — ou uma chave de API Antrópica.</p></div>
+      <div class="card"><a class="ico ico-logo" href="https://developers.openai.com/codex" target="_blank" rel="noopener" aria-label="OpenAI Codex"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></a><h3><a href="https://developers.openai.com/codex" target="_blank" rel="noopener">OpenAI Codex</a></h3><p>Faça login com seu<strong>Bate-papoGPT Plus / Pro</strong>plano – ou uma chave de API OpenAI.</p></div>
+      <div class="card"><a class="ico ico-logo" href="https://cursor.com/cli" target="_blank" rel="noopener" aria-label="Cursor"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg></a><h3><a href="https://cursor.com/cli" target="_blank" rel="noopener">Cursor</a></h3><p>Conecte seu<strong>Cursor Pró</strong>assinatura por meio da CLI do Cursor Agent.</p></div>
+    </div>
+    <p class="lead" style="margin-top:14px">Sem dependência de fornecedor – use o agente mais adequado para você e troque a qualquer momento.</p>
+  </section>
+
+  <section class="section reveal-on-scroll immersive-section" id="sec-blog" data-immersive-section data-reveal-delay="2">
+    <div class="preview-head"><h2>Blog e opinião</h2><a class="all" href="/pt/blog/">Todos</a></div>
+    <div class="grid c2 motion-stagger">
+      <a class="card card--link" href="/pt/blog/skeletal-animation-milestone.html"><span class="tag brand">Atualizar</span><h3 style="margin-top:12px">Animação esquelética, de ponta a ponta</h3><p>De um arquivo FBX a uma transmissão suave de marcha lenta no jogo – a bruxa de Hellforge finalmente se move.</p><span class="more">Ler</span></a>
+      <a class="card card--link" href="/pt/blog/why-ai-native-engine.html"><span class="tag">Opinião</span><h3 style="margin-top:12px">Por que construir um mecanismo nativo de IA</h3><p>Quando a IA é o primeiro usuário do mecanismo, a API, os erros e o estado devem ser redesenhados de acordo com seu ponto de vista.</p><span class="more">Ler</span></a>
+    </div>
+  </section>
+
+  <section class="section reveal-on-scroll immersive-section" id="sec-start" data-immersive-section data-reveal-delay="2">
+    <div class="preview-head"><h2>Da ideia ao jogo jogável</h2><a class="all" href="/pt/docs/">Documentos</a></div>
+    <div class="grid c3 motion-stagger">
+      <a class="card card--link" href="/pt/tutorials/getting-started.html"><div class="ico"><i data-lucide="rocket"></i></div><h3>Início rápido</h3><p>Instale, inicie e diga seu primeiro “faça-me um jogo” para o Forge.</p><span class="more">Tutorial</span></a>
+      <a class="card card--link" href="/pt/docs/"><div class="ico"><i data-lucide="book-text"></i></div><h3>Documentos</h3><p>Conceitos, ambientes de trabalho, ativos, publicação — do ponto de vista do usuário.</p><span class="more">Documentos</span></a>
+      <a class="card card--link" href="/pt/games/"><div class="ico"><i data-lucide="joystick"></i></div><h3>Demonstrações de jogos</h3><p>FPS / ARPG / sobrevivência / teste de estresse — quatro demos jogáveis.</p><span class="more">Jogos</span></a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  var hero=document.getElementById('heroLogo');
+  if(hero){hero.addEventListener('click',function(){
+    ['hammerStrike','sparkAnim','spark1','spark2','spark3'].forEach(function(id){
+      var el=document.getElementById(id);if(el&&el.beginElement){try{el.beginElement()}catch(e){}}
+    });
+  });}
+</script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+<script src="/assets/immersive.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-12 · 引擎资产系统 v1 + 聊天深度打磨 — ForgeaX</title>
+<meta name="description" content="一昼夜、四条线并行推进:引擎拿到正式的资产系统,渲染立起一把"逐像素对齐"的质量尺并接进持续集成守门,沙盒里让 agent 自己"看"画面对不对,聊天面板做了上百次稳态打磨,后端则在安全与契约上扎了大量测试,最后用一次大重构把界面的热更新独立了出来。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-12 · 引擎资产系统 v1 + 聊天深度打磨 — ForgeaX" />
+<meta property="og:description" content="一昼夜、四条线并行推进:引擎拿到正式的资产系统,渲染立起一把"逐像素对齐"的质量尺并接进持续集成守门,沙盒里让 agent 自己"看"画面对不对,聊天面板做了上百次稳态打磨,后端则在安全与契约上扎了大量测试,最后用一次大重构把界面的热更新独立了出来。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-12.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-12.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-12.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-12.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-12</span></div>
+    <h1>引擎资产系统 v1 + 聊天深度打磨</h1>
+    <p class="standfirst">一昼夜、四条线并行推进:引擎拿到正式的资产系统,渲染立起一把&quot;逐像素对齐&quot;的质量尺并接进持续集成守门,沙盒里让 agent 自己&quot;看&quot;画面对不对,聊天面板做了上百次稳态打磨,后端则在安全与契约上扎了大量测试,最后用一次大重构把界面的热更新独立了出来。</p>
+    <div class="prose"><h2>一昼夜四条线:这一天的全景</h2>
+<p>这是迄今最密集的一天,从午夜一直推到次日清晨,四条线同时在跑:引擎在一套严格的七步闭环流程下连推多个特性与修复、聊天面板进入&quot;永不收工&quot;的稳态打磨、后端把安全与接口契约用测试一条条钉死、再加上收官时一场把界面热更新独立出来的大重构。把这么多动作压在一天里而不乱,靠的是两件事:一是每条线都有清晰的边界和验收标准,二是越靠近地基的改动越要可验证。下面按主题拆开讲,但要记住它们是同一天里咬合着往前滚的。</p>
+<h2>引擎资产系统 v1:用句柄引用游戏内容</h2>
+<p>这天引擎最重要的交付,是第一版资产系统。在此之前,模型、纹理、场景这些&quot;游戏内容&quot;还没有一套统一的管理方式;资产系统给了它们一个正式的身份:每一份资产都是一个结构化的对象,通过一个轻量的&quot;句柄&quot;来引用,而不是到处传递庞大的原始数据。句柄就像图书馆的索书号——你拿着它就能取到那本书,却不必把整本书抱在手里到处走。配套还做了一个示例房间场景来验证整条链路。这套机制的意义在于:从此游戏内容可以被结构化地引用、共享和复用,加载模型、贴图、场景都有了统一的入口。它是后面所有&quot;导入一个模型、把素材摆进场景&quot;功能的真正起点。</p>
+<h2>逐像素对齐基准:渲染质量不许偷偷退化</h2>
+<p>自研渲染最怕的不是某次画错,而是&quot;悄悄变差却没人发现&quot;——改了一处,某些画面比对照差了几个像素,肉眼一时看不出,日积月累就跑偏了。这天立了一把&quot;逐像素对齐&quot;的尺:用一个参照来逐像素比对引擎渲染出的画面,只要差异超出阈值,持续集成就直接亮红、当场拦下,不让有问题的改动合进主干。它把&quot;渲染对不对&quot;从一件靠人盯、靠感觉的事,变成了一道自动、客观、每次提交都跑的关卡。对一个要长期演进画质的引擎来说,这道守门是质量能稳住的前提——有了它,大胆改渲染才不至于提心吊胆。</p>
+<h2>沙盒视觉验证:让 agent 自己&quot;看&quot;画面对不对</h2>
+<p>让 AI 自动改游戏,有个绕不开的难题:它改完之后,怎么知道画面真的对了?如果只看代码有没有报错,很容易&quot;代码没崩、但画面是黑的&quot;还自以为成功。这天在沙盒里搭起一套视觉验证机制,并刻意把&quot;生产画面&quot;和&quot;检查画面&quot;两个角色分开:一边负责把游戏跑起来、截出画面,另一边负责对截出的画面做判断。角色分离的好处是验证更可信——不会出现&quot;自己改、自己拍、自己说没问题&quot;的自证陷阱。这一步是让 agent 从&quot;会写代码&quot;走向&quot;会对自己的产出负责&quot;的关键:它不再只是把代码丢出去,而是能闭着环看一眼&quot;我做出来的东西到底长什么样&quot;。</p>
+<h2>实例化渲染 + 多物体:一个方块小游戏当试金石</h2>
+<p>这天还用一个&quot;方块下落消除&quot;的小游戏 demo 来锤打引擎的多物体能力。这类游戏的特点是同屏会出现大量长得一样的方块,如果每一个都单独发一条绘制指令,开销会很快堆起来。引擎为此加上了&quot;实例化绘制&quot;:一次提交就能画出大批同种物体,把重复开销摊薄。配套还梳理了多物体的渲染路径,让&quot;很多个实体一起出现&quot;这件事走得又快又稳。用一个真正能玩的小游戏来验证,而不是抽象的测试,这本身也是一种纪律——能让一个真实游戏跑顺,远比跑通一段孤立的示例代码更有说服力。</p>
+<h2>聊天面板上百拍稳态打磨:成本、时长、多供应商</h2>
+<p>聊天面板这天进入&quot;永不收工&quot;的稳态打磨,上百次极小迭代集中在几件实用的事上。其一是把每一轮对话的真实成本和耗时显示出来,还做了自适应的金额格式——几分钱、几毛、几块各用合适的精度,让花了多少一目了然。其二是给&quot;用哪个编码后端&quot;做了一个可切换的选择器:可以为某次对话指定走哪一家,选择会被记住、能跨标签页同步、支持键盘上下选,还会在你选的那家不可用时给出提示。其三是把&quot;模型在长时间静默思考&quot;这种容易让人焦虑的状态做了体贴处理——显示已等待秒数、超过一定时间建议切换、对&quot;跑完却没有可见输出&quot;的情况给出占位说明。每一拍只动一处、改完自测、再记一笔。这条线之所以值得花上百拍,是因为它是用户每天盯得最久的界面:能力再强,读起来费劲、用起来心里没底,就谈不上信任。</p>
+<h2>后端的安全与契约加固:白名单、防穿越、大量测试</h2>
+<p>既然 agent 会真的读写你机器上的文件,后端这层就必须把&quot;它只能碰该碰的东西&quot;这件事做死。这天围绕文件与路径安全扎了一大批防线和测试:用白名单约束允许访问的路径、加上对&quot;目录穿越&quot;这类越权访问的防御、让写文件时拒绝覆盖一个已存在的目录、把对外返回里的用户主目录路径做脱敏(避免泄漏你机器上的真实路径)。与此同时,后端的各种接口契约也被一条条用测试钉住——什么样的输入该返回什么、边界情况怎么处理,都有测试守着,当天单元测试数量跨过了一个里程碑。这些工作没有一个是&quot;看得见的新功能&quot;,但它们决定了你敢不敢把一个能动手改文件的 AI 放进自己的项目里:边界清楚、行为可预期、回归有测试兜着,才谈得上放心。</p>
+<h2>收官重构:界面热更新独立化</h2>
+<p>跨到次日凌晨,这天用一场结构上的大重构收了官:把界面的热更新机制独立出来,并顺势把各部分各归其位——用户的游戏数据迁到实例自己的目录、引擎源码抽到统一的构建位置、环境配置上移到主仓根部、并理顺了嵌套目录里容易踩坑的布局。这类重构在用户那一侧几乎看不见任何变化,但它把&quot;改一处代码、界面立刻热更&quot;这条开发体验做得更干净、更不容易互相牵连。地基越清楚,后面盖得越快——把这件事放在一天的最后做,正是因为前面那么多新东西落下来之后,需要一次收拢让整棵树重新对齐。</p>
+<h2>这一天意味着什么</h2>
+<p>如果说前几天证明了&quot;对话能做出能跑的东西&quot;,这一天是在为&quot;能不能长期、可靠地做下去&quot;打地基。资产系统让内容可被结构化管理,逐像素基准与沙盒视觉验证让&quot;做出来的画面对不对&quot;有了客观裁判,后端的安全与测试让&quot;放手让 AI 动手&quot;变得可信,聊天打磨让人愿意每天用,收官重构让这一切在工程上保持整洁。它们合起来透露出一种取向:既要往前冲得快,也要在每一步都留下能验证、能回归、能复盘的扎实痕迹。这正是这份日志想给未来开发留下的范本——速度与严谨不是二选一,而是同一天里可以兼得的两件事。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

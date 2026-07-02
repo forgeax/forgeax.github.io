@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-23 · 资产检视器 + 切换不再卡顿 + Windows 兼容 — ForgeaX</title>
+<meta name="description" content="开源发布之后,这天是一轮扎实的打磨与硬化:编辑器新增了覆盖所有资产类型的检视器;在场景之间、编辑与试玩之间切换不再冷重启渲染器、不再黑屏卡顿;一批 Windows 兼容问题被扫清;引擎学会了从设备掉线中自愈、在受限环境下优雅降级;载入期还加了自动合约校验,终端版也补上了检查点回退。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-23 · 资产检视器 + 切换不再卡顿 + Windows 兼容 — ForgeaX" />
+<meta property="og:description" content="开源发布之后,这天是一轮扎实的打磨与硬化:编辑器新增了覆盖所有资产类型的检视器;在场景之间、编辑与试玩之间切换不再冷重启渲染器、不再黑屏卡顿;一批 Windows 兼容问题被扫清;引擎学会了从设备掉线中自愈、在受限环境下优雅降级;载入期还加了自动合约校验,终端版也补上了检查点回退。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-23.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-23.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-23.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-23.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-23.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-23.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-23.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-23.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-23.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-23.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-23</span></div>
+    <h1>资产检视器 + 切换不再卡顿 + Windows 兼容</h1>
+    <p class="standfirst">开源发布之后,这天是一轮扎实的打磨与硬化:编辑器新增了覆盖所有资产类型的检视器;在场景之间、编辑与试玩之间切换不再冷重启渲染器、不再黑屏卡顿;一批 Windows 兼容问题被扫清;引擎学会了从设备掉线中自愈、在受限环境下优雅降级;载入期还加了自动合约校验,终端版也补上了检查点回退。</p>
+    <div class="prose"><h2>发布之后,转身打磨</h2>
+<p>开源发布把项目交到了公众手里,而真正的考验从交出去那一刻才开始——更多的人、更多样的电脑、更挑剔的眼光,会把每一处不够顺、不够稳的地方都照出来。这一天就是发布之后的转身:不追新的炫目功能,而是沉下心来把已有的体验打磨得更顺、把底层硬化得更稳。资产检视器让创作者能看清自己手里的每一份素材;切换不卡顿消除了日常使用中最高频的一处顿挫;Windows 兼容让更多人连得进门;引擎自愈让意外不再轻易把人打断;载入期合约校验让 AI 改的代码错不出门。这些改动单看都不大,但它们瞄准的都是&quot;用起来到底顺不顺、稳不稳&quot;——而这恰恰是一个刚刚走向公众的项目最该立刻补强的地方。第一印象只有一次,发布之后的每一处打磨,都是在守护它。</p>
+<h2>资产检视器:任何资产都能看清</h2>
+<p>编辑器这天新增了一个资产检视面板,覆盖项目里所有类型的资产。它解决的是一个很基础却一直缺位的需求:当你的项目里堆了一大堆素材——网格、材质、纹理、动画、场景——你怎么快速看清某一个到底是什么样?以前往往只能看到一个名字,具体长什么样、有哪些属性,得真把它放进场景才知道。现在选中任意一个资产,右侧的检视面板就会按它的类型给出对应的预览和详情:选个网格能看到它的形状,选个材质能看到它的质感,选个纹理能看到那张图,选个动画能看到它的信息。配套还把&quot;内容浏览器&quot;和材质面板联动起来,从浏览到查看到编辑形成连贯的动线。这件事对创作者的意义是&quot;心里有数&quot;——一个稍大的项目动辄几十上百份资产,能随手点开看清每一份,才不至于在一堆模糊的名字里抓瞎,管理和复用素材的效率也随之提升。</p>
+<h2>切换不再卡顿:渲染上下文后台保活</h2>
+<p>这天修好了一个折磨人很久、且在日常使用中极高频的老问题:切换时的卡顿。此前,无论是在不同场景之间切换、还是在&quot;编辑&quot;和&quot;试玩&quot;两种模式之间来回切,系统都会把底层那套图形渲染整个推倒重来——画面先黑一下,重新初始化一遍,慢的时候甚至直接卡死。根因在于:每次切换都会重建渲染上下文,而重建一个图形上下文是一件相当昂贵、且在某些浏览器环境下容易出错的操作,你切得越频繁、它越容易出问题。这天的解法是&quot;保活&quot;:切换时不再推倒重建,而是把渲染上下文留在后台继续活着(只是移出可见区域而不是销毁),需要时直接复用。改成原地切换之后,在场景之间、在编辑与试玩之间切来切去都变得顺滑、即时,不再有黑屏和卡顿。对一个鼓励你反复&quot;改一下、看一眼、再改&quot;的创作工具来说,切换正是被触发得最频繁的动作之一;把这条路径从&quot;每次都重来&quot;改成&quot;随时秒切&quot;,直接消除了创作心流里最碍事的一处顿挫。</p>
+<h2>跨平台:Windows 兼容性修一批</h2>
+<p>既然已经开源、想让尽可能多的人用上,Windows 这块就必须啃下来。这天集中扫了一批 Windows 上的兼容问题,都是那种&quot;在另一个系统上没事、到了 Windows 就莫名其妙坏掉&quot;的典型坑:判断一个进程是否还活着的方式,在 Windows 的终端环境里得换一种写法才正确;创建新工程时要建的软链接,在 Windows 上会遇到权限限制,改用 Windows 原生的等价机制绕开;环境贴图(HDR 格式)的解码在 Windows 上也修对了。配套还把启动脚本做了跨平台加固。这些问题一个个都不起眼,但只要有一个没解决,Windows 用户就可能在安装、建工程、或第一次运行时被卡住,直接劝退。把这条从安装到跑起来的链路在 Windows 上完整跑通,等于向占据大半桌面市场的 Windows 用户敞开了大门——对一个刚开源、急需被更多人试用的项目,这一步的现实意义格外大。</p>
+<h2>引擎自愈:设备掉线能恢复,受限环境优雅降级</h2>
+<p>引擎这天在&quot;出意外也能扛住&quot;上推进了一大步。其一是设备/表面自愈:图形设备在运行中可能会因为各种原因突然掉线(比如系统资源紧张、显卡驱动重置),以前这往往意味着画面直接黑掉、无法恢复;现在引擎能侦测到这种掉线,并尝试自动把渲染重新建立起来,让画面缓过来,而不是就此死掉。其二是受限环境下的优雅降级:在某些能力较弱的浏览器环境里,引擎对显存容量的探测可能拿不到准确值,这天改成了在拿不到时退回一个安全的默认上限;当要渲染的内容超出容量时,也改成&quot;截断渲染一部分&quot;而不是整帧跳过,宁可少画一点也不让整个画面崩掉;底层的崩溃也被隔离成可恢复的错误。这些改动的共同主题是&quot;韧性&quot;:一个要面向各种各样真实设备、被普通人长时间使用的引擎,不可能假设一切都完美;真正成熟的标志,是在不完美发生时,它能扛住、能恢复、能退而求其次地继续工作,而不是一遇意外就彻底罢工。</p>
+<h2>载入期合约校验 + 场景回写</h2>
+<p>这天还给&quot;AI 写代码&quot;这条线又加了一道保险:载入期合约校验。当载入一个游戏时,系统会自动检查游戏代码与引擎接口是否对得上——所谓&quot;合约&quot;,就是引擎规定的那套调用约定;如果 AI 改完代码后,某处用错了接口、或者跨文件之间的接口对不上了,系统会把这种&quot;漂移&quot;用画面上的报错浮层直接、显眼地指出来,而不是等运行到一半才莫名其妙地崩。这等于在&quot;写完&quot;和&quot;跑起来&quot;之间,又设了一道自动门岗,把接口层面的错误当场拦下。与此同时,引擎打通了场景的&quot;回写&quot;:能把当前场景里的内容序列化保存成一份结构化的资产包,并支持从内容反查回它的标识。这为&quot;在编辑器里改完、立刻能存下来&quot;这条闭环打下了底层基础——编辑不只是看和调,改动还得能可靠地落盘保存。这两件事一前一后,都是在让&quot;创作的产物&quot;更可靠:既保证代码层面对得上,也保证编辑成果存得住。</p>
+<h2>终端版检查点回退 + 多 agent 协作细节</h2>
+<p>这天命令行/终端版也补上了和图形界面对齐的能力:检查点与回退。你可以把一段对话回退到此前某个检查点重新来过,不满意就退回去;还新增了会话恢复——中断之后,用一条命令就能接着上次的进度继续,不必从头再来;以及一个用来向你提问的浮层。聊天界面这边则继续打磨多 agent 协作的临场细节:当一个子 agent 把任务交接给另一个时,会显示清晰的接力标头让你看清交接关系;相关的 agent 会按&quot;出品家族&quot;分组,一屋子人各归各类;需要你拍板的敏感操作有了专门的权限确认卡片;agent 的头像也做了轻微的抬升和放大,让&quot;谁在动、谁在等你&quot;更一目了然。这些改动共同服务于一件事:当你同时指挥一群各有分工的 AI 协作时,整个过程要清楚、可控、随时退得回来——既看得懂它们在做什么,也始终握着叫停和回退的主动权。</p>
+<h2>这一天意味着什么</h2>
+<p>如果说前一天的开源发布是&quot;把门打开、请人进来&quot;,那这一天就是&quot;把屋里收拾得让人住得舒服&quot;。它没有惊天动地的新功能,通篇都是打磨与硬化:让你看清每一份资产、让切换不再卡你一下、让 Windows 用户进得了门、让引擎在意外面前扛得住、让 AI 的代码错不出门、让多 agent 协作清楚可控。这些事的共同指向,是&quot;可用性&quot;和&quot;可靠性&quot;——而这恰恰是一个刚刚迎来大量新用户的项目,最需要立刻补强的两件事。新用户不会因为某个炫目功能而留下,却很可能因为一次卡顿、一次崩溃、一次在 Windows 上跑不起来而转身离开。把这些不起眼的体验和稳定性问题一个个解决掉,看似平淡,实则是在为开源之后接踵而来的真实使用,把地基夯得更实。发布是起点,而不是终点;这一天,正是认真对待&quot;被人真正用起来&quot;这件事的开始。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

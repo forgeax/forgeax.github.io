@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-03 · An editor mode gets its roadmap + the engine preps for visual editing — ForgeaX</title>
+<meta name="description" content="Studio's path from play-only to edit-and-play is locked into a design blueprint; the engine adds field reflection, a swappable render pipeline and an AI-facing manual to enable a visual editor; and two parallel runtime kernels converge into one." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-03 · An editor mode gets its roadmap + the engine preps for visual editing — ForgeaX" />
+<meta property="og:description" content="Studio's path from play-only to edit-and-play is locked into a design blueprint; the engine adds field reflection, a swappable render pipeline and an AI-facing manual to enable a visual editor; and two parallel runtime kernels converge into one." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-06-03.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-03.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/docs/" data-nav="/docs/">Dokumente</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/games/" data-nav="/games/">Spiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Marktplatz</a>
+      <a href="/de/blog/" data-nav="/blog/">Blog</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-03.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-03.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-03.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-03.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-03.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-06-03.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-03.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-03.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Fragen Sie die KI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">In ChatGPT öffnen</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Geöffnet in Claude</a>
+          <button class="ask-item" id="copyMd">Seite als Markdown kopieren</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Täglich</span><span>2026-06-03</span></div>
+    <h1>An editor mode gets its roadmap + the engine preps for visual editing</h1>
+    <p class="standfirst">This day locked Studio&#39;s path from &quot;play-only&quot; to &quot;edit-and-play&quot; into a design blueprint; the engine pushed a stack of underlying capabilities in a single day — field reflection, a swappable render pipeline, an AI-facing engine manual — specifically to lay the groundwork for a visual editor; meanwhile two parallel runtime kernels converged into one, and game content kept moving toward structured assets.</p>
+    <div class="prose"><h2>Setting direction, laying foundations, and subtracting — all in one day</h2>
+<p>The day&#39;s items look scattered but orbit one goal: growing a new &quot;editor&quot; leg for Studio. Growing it takes three things at once. First, &quot;set direction&quot; — turning &quot;add an editing mode&quot; from spoken discussion into a formal design blueprint so the coming work has something to follow. Second, &quot;lay foundations&quot; — the engine filling in, at the bottom layer, the capabilities an editor genuinely needs; without them the upper interface is a castle in the air. Third, &quot;subtract&quot; — converging two historically-parallel runtime kernels into one, so the maintenance burden doesn&#39;t crush you before the new feature even appears. When a project reaches the threshold of adding a major capability, what&#39;s most tested isn&#39;t the speed of writing new code but whether you can simultaneously think the direction through, firm up the foundation, and shed the baggage — this day did all three.</p>
+<h2>An editor mode roadmap: from play-only to edit-and-play</h2>
+<p>Until now, Studio has mostly been the place to run and play-test a game: you chat with the AI, it writes code, and the right side runs the game for you. This day formally kicked off &quot;add an editing mode,&quot; captured as a full set of design and status documents — comparing the engine&#39;s existing capabilities, writing down the editing mode&#39;s feature spec, taking stock of how far the implementation has come, and offering a concrete design proposal. The goal is clear: you don&#39;t just watch a game run but can directly place objects, tweak properties and build scenes in a visual interface — true edit-and-play, where a change shows its effect right beside you at once. Writing it up as a document first, rather than diving straight into code, is because it touches the engine, the front end and the runtime in several places and deserves a clear blueprint before action; all the editor work over the coming days follows this blueprint. It&#39;s a signpost for Studio&#39;s move from a player&#39;s view toward a creator&#39;s view — from &quot;the AI builds it for you and you play,&quot; toward &quot;the AI and you edit together and you can step in anytime.&quot;</p>
+<h2>Field reflection lands: the property panel can build itself</h2>
+<p>The engine&#39;s key step this day was adding &quot;reflection metadata&quot; to component fields. Reflection, put plainly, lets a program &quot;describe itself&quot;: the system no longer needs to be told — it can read, for each property in each component, the name and type — this one&#39;s a number, that one&#39;s a color, another&#39;s a toggle. Why does this matter? Because the heaviest work in a visual editor is drawing an input control for each of hundreds of property kinds: a slider for numbers, a picker for colors, a checkbox for toggles. Hand-writing each one neither finishes nor keeps up with the engine&#39;s changes. With field reflection, the editor&#39;s property panel can &quot;build itself from the metadata&quot; — add a new property in the engine and the matching control appears in the panel automatically, with no extra handwork. This is exactly the underlying precondition that lets that editor blueprint genuinely land: first make the data self-describing, and only then can the interface be automated.</p>
+<h2>The render pipeline becomes swappable, so visual style isn&#39;t locked</h2>
+<p>The engine also made the &quot;render pipeline&quot; swappable this day. The render pipeline is the whole assembly line by which the engine turns a 3D scene into each frame on screen — deciding how light falls, how shadows are computed, how post effects stack. This pipeline used to be hardcoded into the engine: you could only use the one visual style it gave. This day exposed the pipeline&#39;s &quot;seam,&quot; so a project with special visual needs can drop in its own rendering flow and achieve a distinctive look beyond the engine&#39;s default. More importantly, the capability was validated by &quot;using it ourselves first&quot; — the engine&#39;s own rendering began running through this swappable pipeline, ensuring it&#39;s not decorative but genuinely usable. Proactively opening the seam of a core capability means the engine shifts from a &quot;take-it-as-given&quot; black box toward a platform where &quot;advanced users can deeply customize&quot; — especially crucial for creators chasing a distinctive visual identity.</p>
+<h2>An engine usage manual, written for the AI</h2>
+<p>The day also did something distinctive: writing an engine usage manual specifically for the AI. On this platform the main force actually writing game code is the AI agent, not a person — so &quot;make the engine usable&quot; must first mean &quot;make it legible and correctly usable to the AI.&quot; This manual isn&#39;t prose for humans but a structured usage spec for agents plus a set of directly-followable operational skills: how to create entities, attach components, use the asset system, and the correct posture for common tasks, all written in a form an agent can reliably follow. Its significance: a tool&#39;s &quot;documentation&quot; is no longer a side note for humans but a means of production that directly determines AI output quality — the better the AI understands the engine, the more correct and less rework-prone the games it writes for you. Treating &quot;the manual for the AI&quot; as a first-class citizen, written in earnest, is a fundamental difference in mindset between this AI-native platform and a traditional engine.</p>
+<h2>Two runtime kernels converge into one</h2>
+<p>The day also performed a heavy &quot;subtraction&quot;: formally retiring and archiving a historically-leftover standalone runtime kernel, with all the runtime duties it once carried already moved into the unified backend process. This single cut deleted nearly a hundred and fifty thousand lines of code, leaving only an empty shell as a historical marker. Why is this good? Because for a long time the system had two kernels capable of running agents at once, so any change had to be synced on both sides, and a moment&#39;s inattention left their behavior inconsistent — an invisible, ongoing maintenance tax. Once converged into a single kernel, all agent flows, capabilities and tools register and run in just one place, with no more &quot;two sides to keep aligned.&quot; Deleting a hundred and fifty thousand lines yet making the system more robust confirms a creed running through the whole project: progress isn&#39;t measured by lines written but by how many things you must hold in mind to understand and maintain the system — the complexity you can cut is itself the most valuable output.</p>
+<h2>Game content moves to assets + a replay-order fix</h2>
+<p>The content side also moved a step with the main line this day: enemies in the sample shooter changed from &quot;spawned one by one in code&quot; to &quot;scene asset instances.&quot; The difference between these approaches: enemies hardcoded in code can only be changed by a programmer, while enemies made into structured assets are easier to reuse and configure, and easier for the coming editor to recognize and place — so this too is groundwork for visual editing, letting &quot;things that will be edited&quot; exist in asset form ahead of time. Beyond that, the content-creation tools (node-style editing, scene-building and the like) got a batch of everyday polish: brush tools, a canvas fit-to-view, a scene toolbar, import round-trip fixes and more, making those workbenches smoother to use. A chat replay-ordering issue was also fixed: inter-agent and system messages now append correctly at the tail, so replaying a stretch of history matches exactly the order you saw live — for replay to be trustworthy, the order must be precise to the letter.</p>
+<h2>What this day means</h2>
+<p>This day is the textbook look of a project &quot;preparing to pivot&quot;: before tackling a big thing, first settling direction, foundation and baggage all at once. The editor blueprint gives &quot;where to go,&quot; the engine&#39;s field reflection, swappable pipeline and AI manual pave &quot;a road you can actually walk,&quot; while kernel convergence and assetization shed &quot;the old baggage that trips you up.&quot; Worth remembering: this day had not a single dazzling new button a user could click and play with that very day — its value is all underneath, the kind of &quot;if you don&#39;t lay the foundation today, tomorrow&#39;s tower can&#39;t be built&quot; work. A platform that evolves over the long run depends precisely on being willing to do this groundwork in earnest when there&#39;s no instant applause. From this day, the new &quot;editor&quot; leg has its drawings and its foundation; what follows is building it up, layer by layer.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle täglichen Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele. Open Source, Apache-Lizenz 2.0.</p>
+  </div>
+  <div class="col"><h4>Website</h4>
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/blog/">Blog</a>
+    <a href="/de/docs/">Dokumente</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/games/">Spiele</a>
+    <a href="/de/marketplace/">Marktplatz</a>
+  </div>
+  <div class="col"><h4>Projekt</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

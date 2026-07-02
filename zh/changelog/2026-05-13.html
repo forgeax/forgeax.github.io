@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-13 · 实时热重载预览 + 会话回放 — ForgeaX</title>
+<meta name="description" content="这天把"边说边看"的体感真正闭合:改动游戏文件,中间的预览自己刷新;重开一个会话,此前的来回完整回放。配套还让着色器能跨文件组合并热更新,新建游戏自带可运行的起点,agent 也总能知道你正在做哪个游戏。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-13 · 实时热重载预览 + 会话回放 — ForgeaX" />
+<meta property="og:description" content="这天把"边说边看"的体感真正闭合:改动游戏文件,中间的预览自己刷新;重开一个会话,此前的来回完整回放。配套还让着色器能跨文件组合并热更新,新建游戏自带可运行的起点,agent 也总能知道你正在做哪个游戏。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-13.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-13.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-13.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-13.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-13.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-13.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-13.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-13.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-13.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-13.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-13</span></div>
+    <h1>实时热重载预览 + 会话回放</h1>
+    <p class="standfirst">这天把&quot;边说边看&quot;的体感真正闭合:改动游戏文件,中间的预览自己刷新;重开一个会话,此前的来回完整回放。配套还让着色器能跨文件组合并热更新,新建游戏自带可运行的起点,agent 也总能知道你正在做哪个游戏。</p>
+    <div class="prose"><h2>承上启下:把&quot;边说边看&quot;做成肌肉记忆</h2>
+<p>前两天证明了&quot;对话能做出能跑的东西&quot;,也立起了渲染、资产、安全这些地基。这天的主题,是把这条闭环从&quot;能跑通一次&quot;打磨成&quot;用起来顺手&quot;——让改动即时可见、让历史不会丢、让 agent 不会搞错对象。这些听起来都是&quot;理所应当&quot;的体验,但每一项背后都是一处真实的工程缺口被补上。当这些缺口都补齐,平台才从&quot;能演示&quot;变成&quot;能长时间坐下来用&quot;。</p>
+<h2>实时热重载预览:改文件,画面自己变</h2>
+<p>这天给中间的预览接上了一座&quot;热重载桥&quot;:当某个游戏的文件发生变化,预览会自动刷新,把最新的样子呈现出来,而不需要你手动点重载。它的工作方式是后端持续盯着该游戏目录里的文件改动,一有变化就通过实时通道通知前端,前端随即让预览重新加载。这一步看似只是&quot;省了一次点击&quot;,实则是&quot;边说边看&quot;闭环里至关重要的一环:agent 一改完代码,你几乎立刻就能在画面上看到结果,对话与画面之间的延迟被压到最低。对长时间坐着做游戏的人来说,这种&quot;所改即所见&quot;的即时反馈,是把灵感和实现连起来的关键。</p>
+<h2>会话回放:重开一个会话,来回原样还原</h2>
+<p>和 AI 协作久了,会话历史就是你的宝贵资产——里面有你提过的需求、它做过的决定、走过的弯路。这天把会话历史落到一份持久的&quot;账本&quot;里,并让重新打开一个会话时能从账本完整回放此前的来回。技术上特别处理了一点:实时事件流里只带&quot;发生了什么&quot;的轻量记录、并不含完整文本,所以回放要从账本里把真正的内容重新组织出来,而不是简单重播事件。意义在于:你关掉再回来,上下文不会丢;一段历史可以随时翻回去看,就像它当时发生的样子。这让&quot;长期、多轮地做一个项目&quot;成为可能,而不是每次都从一张白纸开始。</p>
+<h2>着色器可组合 + 跨文件热更新</h2>
+<p>引擎这天给着色器加上了&quot;可组合&quot;的能力:着色器之间可以互相引入、共享片段、用宏定义参数化,而不必把所有代码都堆在一个文件里。更妙的是它支持跨文件的热更新——你改了被引用的那个公共片段,所有用到它的着色器都会跟着即时刷新。对做画面效果的人来说,这意味着可以像搭积木一样组织着色器代码:把通用的光照、噪声、色彩处理抽成可复用的模块,各处引用;改一处,处处生效,且立刻看到。它把&quot;写特效&quot;从&quot;对着一大坨代码反复试&quot;变成了&quot;组合可复用的模块并实时调&quot;,是渲染表达力上的一次实打实的扩容。</p>
+<h2>引擎统一控制台:一条执行通道,处处一致</h2>
+<p>引擎这天把&quot;控制台&quot;这条调试/检视通道做了统一抽象:后端收敛成单一的执行通道,命令行那侧则提供更轻量的只读检视入口。统一的好处是行为一致、心智简单——无论从哪里发起一次检视或执行,走的都是同一条规整的路径,而不是各处各写一套、行为还略有出入。这类抽象上的收敛在用户那一侧往往看不见,但它决定了系统会不会随着功能变多而越来越乱。把&quot;控制台该怎么工作&quot;在早期就收敛成一条权威通道,等于给后面所有要接进控制台的能力定了同一套规矩。</p>
+<h2>新建游戏自带可运行起点 + agent 总知道你在做哪个游戏</h2>
+<p>这天补上两处让&quot;新建游戏&quot;更顺的细节。其一:新建一个游戏时,系统会放进一个可直接运行的起点(一个转动的立方体起手式),于是你一建好就能看到画面,而不是面对空白发愣再从零写起。其二:把&quot;当前正在做哪个游戏&quot;这个上下文显式地喂进 agent 的系统提示里,让它清楚地知道现在该往哪个游戏里写代码。后者修的是一个很要命的隐患——多个游戏并存时,如果 agent 搞不清当前对象,很容易改错地方。把&quot;活动游戏&quot;做成一个明确、可靠传递的上下文,等于给 agent 装了一个不会指错的指南针。</p>
+<h2>后端继续扎实:更多测试、路径脱敏、命名校验</h2>
+<p>后端这天延续了&quot;用测试把行为钉死&quot;的节奏,又补了一大批端到端探针和单元测试。重点有几处:把游戏与项目的命名规则用大量用例锁住(什么样的名字合法、什么样的该被拒,边界都有测试守着),把对外返回里的用户主目录路径继续做脱敏(不泄漏你机器上的真实路径),并把构造系统提示这类关键逻辑抽成纯函数、单独可测。这些都不是亮眼功能,而是&quot;让一个能改你文件的系统值得信任&quot;的日常功夫。值得一提的是,这天还顺手适配了另一种编码后端的事件格式,让接入更多模型驱动方式更顺——多一个选择,体验却保持一致。</p>
+<h2>这一天意味着什么</h2>
+<p>把这天的几件事连起来看,主线非常清楚:让&quot;边说边做&quot;这件事不只是能成,而是用起来不硌手。改动即时可见(热重载)、历史完整可回(会话回放)、特效能像搭积木一样组织(可组合着色器)、agent 不会改错对象(活动游戏上下文)、后端值得托付(测试与脱敏)——每一项都在消除一个会打断心流的小摩擦。一个工具好不好用,往往不取决于它能不能做某件大事,而取决于做日常那一百件小事时顺不顺。这一天补的,正是这一百件小事里最关键的几件。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

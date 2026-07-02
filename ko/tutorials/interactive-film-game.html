@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Make an interactive film-game — ForgeaX</title>
+<meta name="description" content="Build a timed-tap, choice-driven interactive film-game from a spark or a script: AI breaks down the story, locks characters/locations/props, generates storyboards and video; you edit on a three-track timeline, play-test, and ship a self-contained webpage anyone can play. Includes the five-step flow, track design and FAQ." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Make an interactive film-game — ForgeaX" />
+<meta property="og:description" content="Build a timed-tap, choice-driven interactive film-game from a spark or a script: AI breaks down the story, locks characters/locations/props, generates storyboards and video; you edit on a three-track timeline, play-test, and ship a self-contained webpage anyone can play. Includes the five-step flow, track design and FAQ." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/ko/tutorials/interactive-film-game.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/" class="active">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/interactive-film-game.html" data-l="en">English</a><a class="lang-item" href="/zh/tutorials/interactive-film-game.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/interactive-film-game.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/tutorials/interactive-film-game.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/tutorials/interactive-film-game.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/interactive-film-game.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/interactive-film-game.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/interactive-film-game.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/tutorials/">← 튜토리얼로 돌아가기</a>
+    <div class="meta"><span class="tag brand">만들다</span><span>인터랙티브 영화 게임</span></div>
+    <h1>대화형 영화 게임 만들기</h1>
+    <p class="standfirst">단일 스파크 또는 전체 스크립트에서 시간 제한 탭과 분기 선택을 통해 구동되는 대화형 영화 게임을 구축하세요. AI는 스토리를 세분화하고 캐릭터와 위치를 고정하며 스토리보드와 비디오를 생성합니다. 편집하고, 플레이 테스트하고, 누구나 브라우저에서 열고 플레이할 수 있는 웹페이지로 제공합니다.</p>
+
+    <div class="prose">
+      <div class="note">✅ 오픈 소스(Apache-2.0). 다음은 흐름의 전체 개요입니다. 복제 및 설치에 대해서는 다음을 참조하세요.<a href="/ko/docs/">문서</a>.</div>
+
+      <h2>그것은 무엇입니까</h2>
+      <p>대화형 영화 게임은 플레이할 수 있는 단편 영화입니다. 장면은 짧은 드라마를 보는 것처럼 비디오와 이미지로 흐르지만 중요한 순간에는<strong>시간 제한 탭</strong>팝업이 나타나 몇 초 안에 반응하도록 요청합니다. 그리고 장면이 끝나면<strong>선택</strong>스토리를 다른 다음 비트로, 다른 엔딩으로 분기합니다.</p>
+      <p>당신은 조립<strong>스토리, 비주얼, 비트, 브랜치</strong>편집기에서; 플레이어가 얻는 것은 결정론적이고 재생 가능한 경험입니다. 동일한 선택은 동일한 경로를 따르며, 다른 선택은 새로운 스토리를 열어줍니다.</p>
+
+      <div class="note">💡 한 줄로 말하면 스토리, 속도 및 선택을 형성하는 것입니다. AI는 "촬영", "편집"을 처리하고 이를 브라우저에서 재생되는 것으로 변환합니다.</div>
+
+      <h2>무엇이 좋은가요?</h2>
+      <ul>
+        <li><strong>인터랙티브 단편/멀티엔딩 스토리</strong>— 관객이 주인공의 다음 행동을 결정하게 하세요. 하나의 이야기, 여러 가지 길.</li>
+        <li><strong>스토리 중심의 미니 게임</strong>— 엔진 코드가 필요 없이 대화, 서스펜스 및 시간 제한 반응을 가벼운 게임플레이로 전환합니다.</li>
+        <li><strong>교육/데모/교육</strong>— "내가 이것을 선택하면 어떻게 될까요?" 분기를 통해 프로세스 및 결정을 훈련합니다. — 일반 비디오보다 더 매력적입니다.</li>
+        <li><strong>프로토타이핑</strong>— 몇 시간 안에 플레이 가능한 러프 컷을 만들어 스토리와 느낌을 검증한 후 시작하세요.</li>
+      </ul>
+
+      <h2>대본에서 영화까지 5단계</h2>
+
+      <h3>① 스크립트: 불꽃에서 구조화된 스토리까지</h3>
+      <p>한 줄의 스파크, 개요 또는 전체 스크립트를 입력하세요. AI가 확장되고<strong>구조물</strong>이를 행위, 캐릭터, 관계 및 장면별 비트로 변환합니다. 긴 이야기요? 이전 설정을 일관되게 유지하면서 에피소드별로 계속 진행하세요.</p>
+
+      <h3>② 앵커: 먼저 모양을 잠급니다.</h3>
+      <p>시스템이 자동 추출됩니다.<strong>캐릭터, 위치, 주요 소품</strong>(및 해당 상태 및 변형)을 통해 해당 조회를 미리 잠글 수 있습니다. 이후의 모든 장면은 이러한 앵커에 맞춰 정렬되므로 캐릭터가 얼굴을 바꾸지 않고 위치가 표류하지 않습니다. 이는 전체 영화의 일관성을 유지하는 핵심 단계입니다.</p>
+
+      <h3>③ 스토리 트리·스토리보드: 스토리를 플레이 가능한 트리로 분할합니다.</h3>
+      <p>AI는 스토리를 다음과 같이 나눕니다.<strong>스토리보드 트리</strong>: 각 노드는 자동 생성된 이미지가 포함된 샷입니다. 자유롭게 배열할 수 있습니다. 순서를 바꾸고 모양을 바꾸고,<strong>분기 선택 추가</strong>(노드 다음에 두 개 이상의 경로를 분기함)<strong>시간 탭 설정</strong>긴장된 순간에. 트리는 플레이어가 선택할 수 있는 모든 경로입니다.</p>
+
+      <h3>④ 비디오 생성: 장면에 생기를 불어넣기</h3>
+      <p>보드가 제대로 보이면 스틸 사진을 사진으로 바꾸세요.<strong>동영상</strong>한 번의 클릭으로. 참조 이미지는 장면 전체에서 문자와 위치를 일관되게 유지합니다. 선택한 사람이 라인을 운반할 수 있습니다.<strong>목소리</strong>. 모든 것이 대화와 비트에 맞춰 타임라인에 배치됩니다.</p>
+
+      <h3>⑤ 편집 · 플레이 테스트: 타임라인을 미세 조정하고 플레이하면서 미세 조정</h3>
+      <p>미세 조정<strong>3트랙 타임라인</strong>: 대화를 정렬하고, 탭이 나타날 때 배치하고, 가지가 이어지는 곳에 연결합니다. 다음으로 뒤집기<strong>전체 화면 플레이 테스트</strong>언제든지 실제 플레이어처럼 경험하세요. 속도가 느려지거나, 탭이 너무 세거나, 나뭇가지가 흔들리는 느낌이 들 때마다 뒤로 물러나서 수정하고 다시 플레이하세요.</p>
+
+      <h2>3개 트랙: 대화/탭/분기</h2>
+      <p>영화 게임의 플레이 가능성은 각각 하나의 작업을 소유하는 세 가지 타임라인 트랙에서 비롯됩니다.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>길</th>
+            <th>제어 대상</th>
+            <th>디자인팁</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>대화</td>
+            <td>각 라인이 표시되는 시간과 길이는 음성으로 안내됩니다.</td>
+            <td>자막을 사진 및 음성과 동기화하세요.</td>
+          </tr>
+          <tr>
+            <td>탭</td>
+            <td>시간 제한 반응: 성공하려면 창 내에서 탭하세요.</td>
+            <td>장력이 최고조에 달하는 곳에 위치하십시오. 창문을 잔인하게 만들지 마세요</td>
+          </tr>
+          <tr>
+            <td>지점</td>
+            <td>다음 비트를 결정하는 장면 끝의 선택</td>
+            <td>두세 가지 옵션; 모든 선택을 중요하게 만드세요</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>더 나은 플레이를 위한 몇 가지 팁</h2>
+      <ul>
+        <li><strong>중요한 곳에 선택을 두세요</strong>— 플레이어에게 사소한 분기가 아닌 스토리를 진정으로 바꾸는 순간에 결정하도록 요청하세요.</li>
+        <li><strong>탭은 감정을 제공합니다</strong>— 액션, 대립, 긴장감을 시간에 맞춰 탭하여 "내가 참여하고 있습니다"를 증폭시킵니다.</li>
+        <li><strong>발산과 수렴의 혼합</strong>— 가지가 완전히 분리되어 있을 필요는 없습니다. 범위를 제정신으로 유지하면서 다양성을 추가하기 위해 일부를 메인 라인에 다시 합류시키십시오.</li>
+        <li><strong>먼저 짧게, 그 다음에는 길게</strong>— 끝에서 끝까지 작동하는 하나의 가장 짧은 완전한 경로를 얻은 다음 가지와 결말에 레이어를 추가합니다.</li>
+        <li><strong>자주 플레이 테스트를 해보세요</strong>— 플레이어로서 걸어가는 것은 일반적으로 타임라인을 쳐다보는 것보다 더 빨리 문제를 표면화합니다.</li>
+      </ul>
+
+      <h2>패키지 및 공유</h2>
+      <p>완성된 영화 게임<strong>하나의 독립형 웹페이지로 패키지화</strong>: 스토리, 이미지, 비디오, 탭 및 분기 로직이 모두 번들로 제공됩니다. 누구에게나 보내면 됩니다.<strong>모든 최신 브라우저에서 재생됩니다.</strong>— 설치가 필요 없고 GPU가 필요하지 않습니다.</p>
+      <p>프로젝트 내부에서는 다음과 같이 저장되고 주소가 지정됩니다.<strong>표준 게임 자산</strong>, 재사용, 참조, 재배포 또는 더 큰 프로젝트에 연결할 수 있습니다.</p>
+
+      <h2>FAQ</h2>
+      <ul>
+        <li><strong>플레이어가 설치해야 할 것이 있나요?</strong>아니요. 패키지는 웹페이지입니다. 브라우저에서 로컬로 또는 호스팅하여 엽니다.</li>
+        <li><strong>촬영하거나 편집할 수 없습니다. 그래도 사용할 수 있나요?</strong>예. 이야기와 선택을 구체화하세요. 생성과 정렬은 AI와 타임라인에 의해 처리됩니다.</li>
+        <li><strong>긴 이야기는 어떻습니까?</strong>괜찮습니다. 에피소드별로 계속 진행하세요. 각 에피소드는 이미 잠근 캐릭터와 위치에 맞춰 정렬됩니다.</li>
+        <li><strong>나중에 편집할 수 있나요?</strong>예. 이는 프로젝트에서 주소 지정이 가능한 자산입니다. 언제든지 편집기로 돌아가서 조정하고 다시 패키징할 수 있습니다.</li>
+      </ul>
+
+      <blockquote>영화를 촬영하거나 편집할 수 없나요? 괜찮습니다. 스토리를 전달하면 AI가 이를 재생할 수 있는 단편 영화로 변환합니다.</blockquote>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/ko/showcase/">완성된 데모 보기 →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

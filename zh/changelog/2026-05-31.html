@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-31 · 一个游戏打包成网站带走 + 天空盒与辉光 — ForgeaX</title>
+<meta name="description" content="这天迈出"从做出来到发出去"的一大步:一个游戏能整体导出成自包含的静态网站,丢到任何托管就能跑。场景有了真天空盒与辉光、组合物体摆放也对了;预览在带前缀的地址下也能正确加载;互动叙事的整条管线跑通了闭环。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-31 · 一个游戏打包成网站带走 + 天空盒与辉光 — ForgeaX" />
+<meta property="og:description" content="这天迈出"从做出来到发出去"的一大步:一个游戏能整体导出成自包含的静态网站,丢到任何托管就能跑。场景有了真天空盒与辉光、组合物体摆放也对了;预览在带前缀的地址下也能正确加载;互动叙事的整条管线跑通了闭环。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-31.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-31.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-31.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-31.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-31.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-31.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-31.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-31.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-31.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-31.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-31</span></div>
+    <h1>一个游戏打包成网站带走 + 天空盒与辉光</h1>
+    <p class="standfirst">这天迈出&quot;从做出来到发出去&quot;的一大步:一个游戏能整体导出成自包含的静态网站,丢到任何托管就能跑。场景有了真天空盒与辉光、组合物体摆放也对了;预览在带前缀的地址下也能正确加载;互动叙事的整条管线跑通了闭环。</p>
+    <div class="prose"><h2>从&quot;做出来&quot;到&quot;发出去&quot;</h2>
+<p>一个游戏平台,光能&quot;做出来&quot;还不够,得能&quot;发出去&quot;——让做好的东西离开工具、被别人玩到。这天最有分量的一件事,就是补上了&quot;导出&quot;这关:把一个游戏整体打包成一个谁都能托管、谁都能打开的网站。与此同时,引擎在画面氛围上添了天空盒和辉光,在部署灵活性上修通了带前缀地址的加载,在内容创作上把叙事管线跑成了闭环。一边是&quot;做得更好看&quot;,一边是&quot;做完能带走&quot;,这天同时在为创作的两端使劲:既让你做得开心,也让你的成果有去处。</p>
+<h2>一个游戏打包成网站带走</h2>
+<p>这是面向&quot;发布&quot;的一大步:现在能把一个游戏整体导出成一个自包含的静态网站——不需要带上整套 Studio,把导出的那个文件夹丢到任意一个静态托管上,它就能独立跑起来。换句话说,你在这里聊出来、做出来的游戏,可以直接打包带走、发给朋友玩、或者放到网上让所有人玩,而不被锁在这个工具里。配套出了第一个被导出的样例——一个名为 Sector Strike 的 FPS 游戏(自带场景与说明文档),用来跑通并验证整条导出链路。同时还修掉了一个关键 bug:之前后端的接口地址会被前端的路由规则错误地&quot;抢走&quot;,导致某些内嵌页面打不开;修对之后,导出的成品能稳定地把前后端的请求各自送对地方。从&quot;在工具里能玩&quot;到&quot;脱离工具也能玩&quot;,这条发布之路第一次真正打通。</p>
+<h2>天空盒 + Bloom 辉光,画面更有氛围</h2>
+<p>引擎这天出了两个一眼就能看出来的画面特性。其一是可见天空盒:场景的背景不再是一块死板的纯色,而是真有一片天空环境包裹着整个场景,远处有天、有氛围,空间感立刻不一样了。其二是 Bloom 辉光:给画面里的亮部加上一层柔和的光晕溢出——霓虹灯、强光源、发光的物体周围会泛出光晕,这是营造科幻、梦幻、夜景氛围最常用的一招。这两样都是直接作用于观感的&quot;氛围特效&quot;。底层还修通了一件要紧事:层级世界变换。父子节点的位置、旋转、缩放现在能正确地一层层传到渲染端,意味着组合物体——比如握着武器的角色、装着零件的载具——的各个部分终于能正确地跟着主体一起摆放、移动,而不再各自错位。氛围 + 正确的层级,合起来让场景既好看又&quot;摆得对&quot;。</p>
+<h2>带前缀的预览也能正确加载资源</h2>
+<p>这天还死磕了一条不显眼但很影响部署灵活性的链路:让预览在&quot;带路径前缀&quot;的地址下也能正确加载所有资源。很多真实的部署场景里,应用不是挂在网站根目录,而是挂在某个子路径下(比如某某网站下的一个子目录)——如果资源的地址没有把这个前缀算进去,加载就会找不到文件、报错。这天把从引擎到打包到资源索引的整条链路都对齐到&quot;尊重路径前缀&quot;,并锁了回归测试防止它再次走歪;还顺手修了启动流程,确保所需的全套运行件都先正确构建好才启动。它解决的是&quot;换个地方部署就加载失败&quot;这类最让人头疼的环境问题。把这条链路打通,意味着导出的游戏、内嵌的预览,无论被放到什么样的网址路径下,都能稳定地把资源找对、跑起来——这正是上面&quot;打包成网站带走&quot;能真正可用的底层保障。</p>
+<h2>互动叙事管线跑通完整闭环</h2>
+<p>面向影像叙事类游戏的剧情管线这天接成了端到端闭环。剧情本质上是一棵会分支的&quot;故事树&quot;,而把这棵树正确地画出来、跑起来,要解决一串棘手问题:重复编号的消歧、回头边的修复、跨度很长的连线如何绕行布置、以及启动时就自动挂载好让它一开始就可见——这些这天都修通了,整棵故事结构能正确呈现。负责叙事的那个 agent 也接上了整套管线工具,并会在跑的过程中实时播报进度。最关键的一处:整条管线跑完之后,系统会自动把这个 agent 重新唤回来做一段收尾总结,而不是跑到一半就停下、留个烂尾。这样一来,做一段有分支、有节奏的剧情,从开头到收尾就成了一条顺畅、看得见、会自己收口的流水线——叙事这条线从&quot;有工具&quot;真正走到了&quot;能完整跑完一遍&quot;。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天最重要的转变,是平台第一次有了完整的&quot;出口&quot;。在此之前,无论做得多好,游戏都还困在工具里;而&quot;导出成网站 + 在任意路径下都能正确加载&quot;这两件事合起来,让你的作品第一次能真正离开这里、走到别人面前。配上天空盒与辉光让它更好看、叙事闭环让它更完整,这天等于把&quot;创作—成型—发布&quot;这条链路的最后一环补上了。一个创作工具的价值,最终要由&quot;做出来的东西能不能被世界看到&quot;来兑现。从今天起,你在这里做的游戏,不再只是一个本地的演示,而是一个可以打包、可以托管、可以分享给任何人玩的真正作品。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

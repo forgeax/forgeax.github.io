@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-20 · Chat reconnects to the new backend + manage models & keys in settings — ForgeaX</title>
+<meta name="description" content="Chat reconnects to the rebuilt backend with clean REST session management, models and keys become manageable in settings, and the engine gains textured/multi-light lighting and camera roaming." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-20 · Chat reconnects to the new backend + manage models & keys in settings — ForgeaX" />
+<meta property="og:description" content="Chat reconnects to the rebuilt backend with clean REST session management, models and keys become manageable in settings, and the engine gains textured/multi-light lighting and camera roaming." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-20.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-20.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/docs/" data-nav="/docs/">ドキュメント</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-20.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-20.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-20.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-20.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-20.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-20.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-20.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-20.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">毎日</span><span>2026-05-20</span></div>
+    <h1>Chat reconnects to the new backend + manage models & keys in settings</h1>
+    <p class="standfirst">The backend re-poured the day before reconnected to the chat interface this day: creating, switching and deleting sessions all flow, history replays in full, and the process distinguishes system lines — incoming/outgoing/warning/error. Models and keys moved into the settings panel for visual management; the engine filled in textured and multi-light lighting and fixed first-person camera roaming.</p>
+    <div class="prose"><h2>From &quot;rewritten&quot; to &quot;reconnected&quot;</h2>
+<p>The day before, the backend was torn down and re-poured into a layered, crash-recoverable new architecture — but finishing the rewrite is only half the job; the new foundation has to actually reconnect to the interface and run a full chain end to end to count as landed. This day&#39;s through-line was &quot;reconnecting&quot;: wiring the chat interface to the new backend runtime, making everyday session actions — create, switch, delete, replay — all work on the new architecture, and moving model and key management into the interface along the way. In other words, the prior day proved &quot;the new foundation stands&quot;; this day proved &quot;the new foundation is usable.&quot; The most dangerous moment of a big rewrite is often not the rewrite itself but whether the upper layers can be reconnected smoothly without leaving broken glass everywhere — and this day cleared exactly that hurdle.</p>
+<h2>Chat reconnects to the new backend, with smoother sessions</h2>
+<p>The chat interface connected to the new backend runtime this day, and everyday session operations became orderly and smooth. Creating a session now has one consistent entry point rather than several doing their own thing; switching a session automatically opens its tab so your attention follows the content; deleting is one step. Reopening a session replays the prior back-and-forth in full from a durable record, with context intact. The process also categorizes system messages as incoming / outgoing / warning / error — so when a run goes wrong you can see at a glance which step it&#39;s stuck at and what kind it is, instead of staring at a tangled mass of output. These are the basics a &quot;session&quot; deserves as a daily unit, and this day delivered them solidly on the new architecture.</p>
+<h2>Sessions and history go through clean interfaces</h2>
+<p>While &quot;reconnecting,&quot; the backend converged the session and history capabilities into one clean set of interfaces. Creating and deleting a session goes through standard create/delete endpoints, with a default agent prepared automatically; creating an agent at the top level, or deleting it together with its dependents in one sweep, each has a clear corresponding command; history is read on demand through dedicated fetch interfaces rather than stuffing everything into the live stream. The underlying agent list is now maintained by &quot;scanning disk statelessly + watching file changes,&quot; with all agent-change events landing in a global log. Converging these capabilities into clear, single-responsibility interfaces means the upper layers (interface, command line, even other future clients) can all operate by the same rules instead of each writing their own — exactly where the prior day&#39;s layered architecture begins paying dividends.</p>
+<h2>Manage models and keys right in settings</h2>
+<p>This day moved two high-frequency but previously cumbersome things — &quot;which model, which key&quot; — into the interface. The model picker now reads the real list of available models, so what you pick is what actually takes effect, not a possibly-stale hardcoded list; and you can assign which model each agent uses individually, making it possible for different roles to use different tiers. Key entry moved into a persistent settings panel with an eye toggle to switch between showing and hiding the value — convenient to verify yet not left in plain sight forever. For users, this means filling in a key or switching models no longer requires dropping to the command line or digging through config files — things that always belonged in the interface now actually happen there. Lowering the bar on such operations is a key part of letting non-professional developers get started.</p>
+<h2>Engine: textured lighting + multiple lights in one scene</h2>
+<p>The engine&#39;s lighting kept filling in toward the practical this day. One is &quot;texture-driven lighting&quot;: using a texture to control how strongly different parts of a surface respond to light — making, say, a metal inlay brighter than the surrounding wood, or a worn spot darker — greatly enriching material detail rather than treating a whole surface as one uniform material. The other is &quot;multiple lights in one scene&quot;: several lights can be lit at once, combining point and spot casters. Together, these move lighting from &quot;only one lamp&quot; into &quot;arranging multiple lights to build depth, like a real scene.&quot; For anyone wanting atmospheric, tactile imagery, this is the most crucial stretch between &quot;lit&quot; and &quot;good-looking.&quot;</p>
+<h2>Engine: first-person camera roaming fixed + a textured scene</h2>
+<p>This day also fixed first-person camera roaming — WASD movement had been dead, rooted in a classic small pitfall: whether keyboard events read the &quot;physical key position&quot; or the &quot;character&quot; wasn&#39;t aligned, so presses did nothing. Once fixed, you can use WASD to walk around a scene and turn the view to look — the most basic interaction of any &quot;scene you can wander.&quot; Alongside, a textured scene was made to run end to end, and external asset address handling was corrected so textures are found correctly across deployment paths. Being able to walk freely into a scene lit by several lights and textured, and look around — this day pushed &quot;build a world you can wander&quot; a real step forward.</p>
+<h2>What this day means</h2>
+<p>This day turned the prior day&#39;s &quot;rewrite&quot; into something genuinely &quot;usable.&quot; The backend&#39;s new foundation reconnected to the interface, with everyday operations — sessions, models, keys — running smoothly on the new architecture and converged into clean interfaces; the engine advanced on lighting and camera in parallel, giving images more depth and scenes more walkability. On one side, smoothly reconnecting major low-level surgery to the upper layers with no lingering ills; on the other, steadily adding to experiences users directly feel — the two in parallel show a team that dares to do bone-deep refactors yet hasn&#39;t forgotten to make the product a bit better for users every day. Being able, right after a big rewrite, to reconnect the interface the same day and fill in close-to-hand experiences like model and key management is itself the best proof that &quot;the rewrite was done right.&quot;</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How AI gets a feature right — ForgeaX</title>
+<meta name="description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="How AI gets a feature right — ForgeaX" />
+<meta property="og:description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/blog/how-the-loop-works.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/blog/how-the-loop-works.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/blog/how-the-loop-works.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/" class="active">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/blog/how-the-loop-works.html" data-l="en">English</a><a class="lang-item" href="/zh/blog/how-the-loop-works.html" data-l="zh">中文</a><a class="lang-item" href="/ja/blog/how-the-loop-works.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/blog/how-the-loop-works.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/blog/how-the-loop-works.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/blog/how-the-loop-works.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/blog/how-the-loop-works.html" data-l="fr">Français</a><a class="lang-item" href="/pt/blog/how-the-loop-works.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/blog/">← Volver al blog</a>
+    <div class="meta"><span class="tag">Entre bastidores</span><span>10 de junio de 2026</span></div>
+    <h1>How AI gets a feature right</h1>
+    <p class="standfirst">AI doesn't get things right in one shot. ForgeaX uses an observable, traceable pipeline that guides each feature to a correct result, step by step.</p>
+    <div class="prose"><h2>A seven-step loop</h2>
+<p>Inside the engine, every feature goes through the same pipeline — requirements in, a working result out, with a readable record at each step:</p>
+<ol>
+<li><strong>Requirements</strong> — state what to build, with acceptance criteria.</li>
+<li><strong>Research</strong> — survey history, constraints and options.</li>
+<li><strong>Plan</strong> — set a strategy and break it into tasks.</li>
+<li><strong>Implement</strong> — write code and tests.</li>
+<li><strong>Verify</strong> — independent checks; any red blocks the merge.</li>
+<li><strong>Judgment</strong> — a human makes the final call.</li>
+<li><strong>Finalize</strong> — merge once it passes.</li>
+</ol>
+<h2>An orchestrator and sub-agents</h2>
+<p>An &quot;orchestrator&quot; drives the state machine, deciding which sub-agent to dispatch at each step and checking its output; sub-agents are role-specialized with their own context. Humans inject judgment at just two points: <strong>stating requirements</strong> and <strong>reviewing results</strong>.</p>
+<h2>No &quot;looks fine&quot; slipping through</h2>
+<p>Verification has two AI gates: one statically scans docs and APIs from an AI user&#39;s perspective, catching &quot;promised but not implemented&quot;; the other actually runs the demo in an isolated sandbox, captures screenshots, and re-checks them — guarding against &quot;tests green, screen black.&quot;</p>
+<h2>It gets steadier over time</h2>
+<p>After each feature, the friction encountered along the way is captured as feedback that upgrades the pipeline itself. The next feature automatically uses the improved version — the pipeline feeds on its own output and gets smarter.</p>
+<blockquote>
+<p>The result: AI produces not &quot;demo-grade&quot; code, but verified, replayable features a human can take over.</p>
+</blockquote>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/blog/why-ai-native-engine.html">Related: why an AI-native engine →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

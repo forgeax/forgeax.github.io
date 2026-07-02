@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-26 · Full-chain observability: see where it's slow at a glance — ForgeaX</title>
+<meta name="description" content="End-to-end trace+log telemetry follows one action from the UI through the backend to the agent and back, with a browser tracer and stall watchdog; the render debugger can now capture initial GPU state to faithfully reproduce black-screen bugs." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-26 · Full-chain observability: see where it's slow at a glance — ForgeaX" />
+<meta property="og:description" content="End-to-end trace+log telemetry follows one action from the UI through the backend to the agent and back, with a browser tracer and stall watchdog; the render debugger can now capture initial GPU state to faithfully reproduce black-screen bugs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-06-26.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-26.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-26.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-26.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-06-26.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-06-26.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-26.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-26.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-26.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-06-26</span></div>
+    <h1>Full-chain observability: see where it's slow at a glance</h1>
+    <p class="standfirst">This day connected &quot;traces + logs&quot; into one complete chain spanning the front end, backend and agents: an action sent from the UI, through the backend, into an agent&#39;s execution and back to the picture is traceable end to end, with a stall watchdog, so where it&#39;s slow or stuck is visible at a glance. The render-debugging tooling also learned to record initial state, letting the nastiest problems like &quot;black screen&quot; reproduce stably on replay.</p>
+    <div class="prose"><h2>A system you can&#39;t see, you can&#39;t control</h2>
+<p>As a system grows more complex and hands more and more steps to AI to run autonomously, a fundamental question surfaces: what&#39;s actually happening inside it? An action was sent, nothing responds for a while — is it stuck on the front end, the backend, or is some agent heads-down at work? From surface symptoms alone, you can only guess. What this day did is turn the whole system from a &quot;black box&quot; into a &quot;transparent box&quot;: making an action&#39;s full journey — from your click in the UI, through backend processing, through an agent executing turn by turn, back to the result on screen — traceable and visible all the way. It adds no new gameplay, yet is the precondition for steering a complex system long-term: only what you can see can you control, and only what you can control can you confidently hand more to. Observability is the starting point of all optimization and debugging — you cannot improve what you cannot clearly see.</p>
+<h2>One trace threading front end, backend and agents</h2>
+<p>The day&#39;s core work was connecting &quot;tracing&quot; into a chain that truly threads the full stack. Tracing means stamping an action with a single identifier so that, whatever layer of the system it flows through, it carries that identifier and leaves timestamps, so the fragments scattered everywhere can afterward be strung into one complete timeline by that identifier. What was achieved this day is passing that identifier from the front end all the way to the backend and into an agent&#39;s execution — any action can be reconstructed into the full trajectory of &quot;how long it spent on the front end first, then the backend, then which agent took over and how long that took.&quot; The technical key is correctly propagating this trace context down across every layer boundary instead of dropping it at the boundary (which would leave only isolated fragments that can&#39;t be assembled into a whole). Once this full-chain trace exists, the vaguest, hardest-to-investigate complaints — &quot;the system is slow&quot; or &quot;the system is stuck&quot; — gain a ruler that pinpoints precisely.</p>
+<h2>A browser tracer + a stall watchdog</h2>
+<p>Within this full-chain trace, the front-end segment got a dedicated browser-side tracer following the leg &quot;from your action in the UI to its final render.&quot; It addresses a very concrete confusion: sometimes you click or type and the interface is slow to respond — is the request not sent yet, is it waiting on the backend, or is the front end itself stuck rendering somewhere? The browser tracer breaks this leg into visible steps so you can see exactly which step it&#39;s stuck on. A &quot;stall watchdog&quot; came with it: it watches the rhythm of key flows and, the moment a step stalls beyond its expected time, flags the stall immediately, instead of leaving you staring at a frozen interface unsure whether it&#39;s dead or busy. For a tool centered on interface interaction, &quot;what is the front end busy with, is it stuck&quot; is users&#39; most direct and frequent question; bringing this leg into observability extends tracing&#39;s reach to the spot closest to the user.</p>
+<h2>Backend collection and reporting + each agent turn in the trace</h2>
+<p>The chain&#39;s other two segments were filled in alongside. The backend stood up a telemetry sink: traces and logs produced everywhere are collected here and reported out, and the trace context brought down from the front end is passed further on, ensuring an action&#39;s backend portion still hangs on the same trace line without a gap. The agent segment wove each turn of execution into the same trace — when an agent takes a task and runs a turn, how long that turn took and what it did is recorded as one node on this trace. Together these make &quot;full-chain&quot; live up to its name: from a front-end click, through backend processing, to an agent&#39;s turn-by-turn work, all strung on one line. For a platform whose core experience is &quot;directing a team of AI agents to work,&quot; &quot;what is each agent busy with this turn, where is it slow&quot; is exactly what should be visible; bringing agent execution into the trace means the AI&#39;s work process is no longer an un-peerable black box.</p>
+<h2>Graphics debugging: recording initial state to reproduce black-screen bugs</h2>
+<p>In the same spirit as observability, the render-debugging tooling got stronger this day. It could already &quot;capture a frame and replay it for comparison,&quot; but a key piece was missing: initial state. A picture is drawn step by step from some starting point, and if capture only recorded the drawing actions but not the initial contents of resources at the start, replay amounts to &quot;replaying from a wrong starting point,&quot; and some problems simply won&#39;t reproduce. This day filled that in: frame capture now also records the initial state of relevant resources, seeded into the replay to precisely rebuild the whole frame from an identical start. It&#39;s especially useful for the nastiest problems like &quot;the screen is black, objects vanished&quot; — often caused by some initial state being set wrong, previously very hard to locate because the replay couldn&#39;t reproduce it; now the black screen reproduces faithfully on replay, turning an &quot;occasional, uncatchable&quot; ghost bug into a concrete object that &quot;reproduces stably and can be studied and fixed repeatedly.&quot; It&#39;s two sides of the same coin as the day&#39;s full-chain tracing: one lets you see &quot;where the system is slow,&quot; the other &quot;where the picture is wrong.&quot;</p>
+<h2>What this day means</h2>
+<p>What this day added is a sense organ indispensable to a maturing system. Over many preceding days the platform kept growing new capabilities — moving characters, editable scenes, generatable assets, open-sourced to all; but the more capable and autonomous it gets, the more important it is to &quot;see clearly what&#39;s happening inside.&quot; A system that can&#39;t see its own interior can only guess when something goes wrong, doesn&#39;t know where slowness comes from, and eventually loses control for being undiagnosable. This day connected tracing into one line spanning front end, backend and agents, and let render debugging record initial state to reproduce picture problems stably — effectively giving the platform two pairs of eyes at once: one for performance and flow, one for picture and rendering. Making both &quot;what the system is doing&quot; and &quot;why the picture looks like this&quot; visible means that whatever comes next — optimizing speed, diagnosing faults, or confidently handing more autonomy to the AI — rests on reliable evidence. Capability decides &quot;what a platform can do,&quot; and observability decides &quot;how far it can be trusted&quot; — and this day filled in the latter.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

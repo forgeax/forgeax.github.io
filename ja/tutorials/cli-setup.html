@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clone & launch with your AI CLI — ForgeaX</title>
+<meta name="description" content="No manual steps — hand the repo URL to your AI coding CLI (Claude Code / Codex / Cursor / forgeax) and let it clone, install and launch ForgeaX." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Clone & launch with your AI CLI — ForgeaX" />
+<meta property="og:description" content="No manual steps — hand the repo URL to your AI coding CLI (Claude Code / Codex / Cursor / forgeax) and let it clone, install and launch ForgeaX." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/ja/tutorials/cli-setup.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/cli-setup.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/docs/" data-nav="/docs/">ドキュメント</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/" class="active">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/cli-setup.html" data-l="en">English</a><a class="lang-item" href="/zh/tutorials/cli-setup.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/tutorials/cli-setup.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/tutorials/cli-setup.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/cli-setup.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/cli-setup.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/cli-setup.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/cli-setup.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/tutorials/">← チュートリアルに戻る</a>
+    <div class="meta"><span class="tag brand">初心者</span><span>～3分</span></div>
+    <h1>AI CLI をクローンして ForgeaX を起動します</h1>
+    <p class="standfirst">最も AI ネイティブなインストール: 自分でコマンドを入力するのではなく、リポジトリをコーディング CLI エージェントに渡し、エージェントにクローンを作成、インストール、起動させ、ローカル URL をレポートさせます。</p>
+
+    <div class="prose">
+      <div class="note">✅ オープンソース (Apache-2.0)。以下のフローは、任意の AI コーディング CLI で機能します。</div>
+
+      <h2>必要なもの</h2>
+      <ul>
+        <li>シェル コマンドを実行できる AI コーディング CLI — 例:<strong>クロード・コード</strong>、<strong>コーデックス</strong>、<strong>カーソル</strong>、または ForgeaX 独自の<strong>フォーギアス</strong>CLI;</li>
+        <li><code>git</code>そして<a href="https://bun.sh" target="_blank" rel="noopener">バン</a>(プロジェクトのランタイム) がインストールされています。</li>
+        <li>AI モデル API キー (スタジオ内の Forge 用)。</li>
+      </ul>
+
+      <h2>CLI への 1 つの命令</h2>
+      <p>空のフォルダーで CLI を開き、次のように指定します。</p>
+      <pre><code>https://github.com/ForgeaX-Games/forgeax-studio (--recurse-submodules 付き) のクローンを作成し、そこに移動し、インストール スクリプトを実行して依存関係を設定し、開始スクリプトを実行して起動し、開くことができるローカル URL を教えてください。</code></pre>
+      <p>CLI はクローン作成、インストール、起動のステップ自体を実行し、途中で必要なもの (API キーなど) を要求します。完了すると、ローカル URL が取得されます。ブラウザで開くと、スタジオに入ることができます。</p>
+
+      <h2>マニュアル相当品（オプション）</h2>
+      <p>自分でやりたい場合は、おおよそ次のようになります。</p>
+      <pre><code>git clone --recurse-submodules \
+  https://github.com/ForgeaX-Games/forgeax-studio
+cd forgeax-studio
+bun fx setup     # install deps (+ add API key)
+bun fx start     # launch the studio</code></pre>
+      <p>これら<code>バンFX</code>コマンドはクロスプラットフォームです。macOS、Linux、Windows で同じであり、Windows では Git-Bash は必要ありません。次に、出力されたローカル URL を開きます。</p>
+      <p>次に向かうのは、<a href="/ja/tutorials/getting-started.html">クイックスタート</a>そしてあなたの最初のゲームを Forge に伝えてください。</p>
+
+      <blockquote>これが最もスムーズなインストールであるのはなぜですか? ForgeaX はそもそも AI 用に構築されているため、「セットアップ自体」さえエージェントに喜んで任せることができます。</blockquote>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/ja/tutorials/getting-started.html">次へ: 初めてのゲーム →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

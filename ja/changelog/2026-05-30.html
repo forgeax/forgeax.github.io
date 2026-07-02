@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-30 · A desktop app arrives + a shared game library — ForgeaX</title>
+<meta name="description" content="Studio runs as a native desktop app, multiple games share one library, agents call host tools by whitelist, the engine gains a multi-pass pipeline + audio + toggleable AA, and the repo is slimmed of binaries." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-30 · A desktop app arrives + a shared game library — ForgeaX" />
+<meta property="og:description" content="Studio runs as a native desktop app, multiple games share one library, agents call host tools by whitelist, the engine gains a multi-pass pipeline + audio + toggleable AA, and the repo is slimmed of binaries." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-30.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-30.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/docs/" data-nav="/docs/">ドキュメント</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-30.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-30.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-30.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-30.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-30.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-30.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-30.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-30.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">毎日</span><span>2026-05-30</span></div>
+    <h1>A desktop app arrives + a shared game library</h1>
+    <p class="standfirst">This day Studio could open as a native desktop app for the first time — close the front window and agents keep working in the background. Multiple games can share one library; agents can call host tools by whitelist right in chat; the engine added a multi-pass pipeline, audio and toggleable anti-aliasing; and the repo was slimmed.</p>
+    <div class="prose"><h2>From &quot;a browser tab&quot; to &quot;a real application&quot;</h2>
+<p>Before this, Studio lived in a browser tab — meaning its existence depended on that tab: close it, refresh, or have the browser crash, and everything in progress went with it. The day&#39;s headline was making it a standalone native desktop app, giving it &quot;its own window, its own process&quot; for the first time. Around this, the other lines made the platform more like a mature product: multiple games sharing content, agents calling capability more directly, the engine adding audio and multi-pass rendering, the repo slimming down. Upgrading &quot;can run in a browser&quot; to &quot;can stay open as an application long-term&quot; is the transformation this day most deserves to be remembered for.</p>
+<h2>A desktop app: close the front window, agents don&#39;t die</h2>
+<p>This day stood up the full shell for a desktop app: Studio can open as a native desktop window for the first time, not just a browser tab. It came with process keep-alive (keeping background services alive beyond the window), window management, and correct asset-root resolution when packaging the desktop build. It finally gives the earlier &quot;agents survive a closed browser&quot; capability a real desktop entry — that keep-alive used to be inside the browser, and now, with a native window, you can keep it open as a real application long-term: hand work to agents, close the front interface, and they keep running in the background; open the window when you want to check progress. A form that can stand alone as an &quot;application&quot; is the key leap from &quot;demo project&quot; to &quot;everyday tool.&quot;</p>
+<h2>Multiple games share one library</h2>
+<p>Multiple games can now share one game library: put common assets and components into a shared library, and each game carries its own &quot;index&quot; to reference them — no need to copy materials into every game. For a creator cultivating multiple works long-term, this means a series, or several prototypes, can cleanly reuse the same resources rather than scattering duplicate copies everywhere. A thoughtful optimization came with it: during development, an asset change in one game only rescans the resources of &quot;the game you&#39;re currently working on,&quot; not the whole workspace from scratch — with many games, that&#39;s the difference between &quot;takes effect instantly&quot; and &quot;wait a while every time.&quot; Sharing plus local rescan together make &quot;one person managing many games&quot; both space-efficient and snappy.</p>
+<h2>Agents call host tools by whitelist, right in chat</h2>
+<p>This day wired a &quot;whitelist&quot; channel through, from type definitions all the way to runtime. An agent can declare in its manifest &quot;which host tools I&#39;m allowed to call,&quot; and a &quot;host-tool bridge&quot; injects those declared tools into its conversation tool list; an old, hardcoded tool kit was retired along the way. Concretely: the agent responsible for story declared a set of narrative-related tools in its whitelist, so it can call a whole set of fine-grained narrative tools right in chat to arrange the plot, without routing through a separate kit. The value is &quot;explicit authorization, direct invocation&quot;: what each agent can use is spelled out in its manifest — safe and controllable, and making &quot;equip an agent with the capabilities it should have&quot; a declarative, maintainable thing. This is the basis for an agent system trending toward &quot;anyone can configure, each with its specialty.&quot;</p>
+<h2>Engine: a multi-pass render pipeline + audio + toggleable AA</h2>
+<p>The engine filled in several pieces this day. The rendering abstraction grew into a &quot;multi-pass&quot; pipeline — many advanced visual effects (especially post-processing) are essentially computed &quot;in several steps, layer over layer,&quot; and with a proper multi-pass structure such effects get a clean way to be built rather than crammed in. Anti-aliasing became runtime-toggleable, making it easy to compare on versus off and obvious while tuning. The engine also built an audio demo, validating &quot;games can make sound&quot; end to end (the sound system had been integrated earlier; this day got an audible sample). Physics fixed an &quot;idle&quot; bug — some objects used to be frozen in place under no forces, and now they fall, collide and move properly. Together, these firm up all three of the engine&#39;s experience lines — visuals, sound, physics — another notch toward &quot;can genuinely make a complete game.&quot;</p>
+<h2>Repo slimming: getting binaries out of the codebase</h2>
+<p>The engine also did a round of &quot;repo slimming&quot; this day: clearing bulky binary assets (sample materials, baseline images, build artifacts, etc.) out of the code repository, moving them to a dedicated resource repo or rebuilding them on demand, and establishing a continuous-integration check so no one accidentally stuffs binaries back into the codebase. Invisible to users, this genuinely improves the front-line dev experience: a smaller repo clones faster, has a cleaner history, and feels lighter day to day. For a project meant to evolve long-term, open-sourced, and cloned by more people to get started, &quot;only code in the codebase&quot; is a discipline worth keeping — it directly affects how long a newcomer (or a CI machine) waits and how much space it takes when first pulling the project down. Clearing this long-term burden early is a kindness to all future collaborators.</p>
+<h2>What this day means</h2>
+<p>The day&#39;s theme is growing the platform from &quot;a thing running in a browser&quot; into &quot;an application you can own and use long-term.&quot; The desktop shell gave it its own window and process; the shared game library lets you cultivate more than one work inside it; the whitelist tool channel makes the agent system more configurable and controllable; the engine&#39;s audio plus multi-pass rendering and the repo slimming reinforce the &quot;can build&quot; and &quot;runs for the long haul&quot; ends respectively. These differently-aimed changes point at one mark of maturity: it&#39;s no longer just a project demonstrating that &quot;conversation can make games,&quot; but a tool you&#39;d install on your computer, open daily and entrust long-term. The moment it can stand alone as an &quot;application,&quot; the product&#39;s identity changes.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

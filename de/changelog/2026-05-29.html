@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-29 · The engine gains physics & picking + a rebuilt UI foundation — ForgeaX</title>
+<meta name="description" content="The engine adds 2D/3D physics, click-to-pick and anti-aliasing, frustum culling for large scenes, a rebuilt modern UI foundation with a render-error safety net, material inheritance, active-game switching, and a reel workbench." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-29 · The engine gains physics & picking + a rebuilt UI foundation — ForgeaX" />
+<meta property="og:description" content="The engine adds 2D/3D physics, click-to-pick and anti-aliasing, frustum culling for large scenes, a rebuilt modern UI foundation with a render-error safety net, material inheritance, active-game switching, and a reel workbench." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-29.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-29.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/docs/" data-nav="/docs/">Dokumente</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/games/" data-nav="/games/">Spiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Marktplatz</a>
+      <a href="/de/blog/" data-nav="/blog/">Blog</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-29.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-29.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-29.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-29.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-29.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-29.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-29.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-29.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Fragen Sie die KI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">In ChatGPT öffnen</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Geöffnet in Claude</a>
+          <button class="ask-item" id="copyMd">Seite als Markdown kopieren</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Täglich</span><span>2026-05-29</span></div>
+    <h1>The engine gains physics & picking + a rebuilt UI foundation</h1>
+    <p class="standfirst">This day the engine knocked out several hard parts of making a game at once: 2D/3D physics, screen picking, anti-aliasing, plus frustum culling for smoother large scenes. The interface moved onto a modern component foundation with a render-error safety net; materials gained inheritance read-through, picking a game activates it, and a reel workbench joined the tool family.</p>
+    <div class="prose"><h2>From &quot;can render&quot; to &quot;can play&quot;</h2>
+<p>The engine&#39;s accumulated capabilities had mostly stayed on &quot;rendering correctly and beautifully&quot;; but a game needs more than looks — it has to be playable: objects must fall and collide, the player must be able to click and operate. The engine&#39;s through-line this day was knocking out at once the hard parts &quot;playable&quot; requires: physics, picking, anti-aliasing, performance culling. Meanwhile the interface side did a foundation upgrade, moving its whole interaction component set onto a more modern, stable implementation. Making &quot;what you build playable&quot; on one side and &quot;the tool you build with steadier&quot; on the other — this is a day the engine and interface crossed a quality threshold together.</p>
+<h2>A big engine boost: physics + click-to-pick + anti-aliasing</h2>
+<p>The engine knocked out three unavoidable parts of making a game at once this day. The headline is physics: a capability supporting both 2D and 3D was integrated, so objects now respond to gravity, collide and stack — platformers, brick-breakers, box-stacking and ball-rolling finally have real underlying support instead of hand-faked pretense. Next is screen picking: click an object on screen and select it precisely — the shared basis for &quot;click to select an object&quot; in the editor and &quot;click-based gameplay&quot; in the game. Third is anti-aliasing: object edges no longer show that staircase jaggedness, so the image looks clean and professional. Physics for &quot;can move,&quot; picking for &quot;can interact,&quot; anti-aliasing for &quot;looks presentable&quot; — with all three, the engine truly crosses from &quot;can render&quot; into &quot;can make a playable game.&quot;</p>
+<h2>Performance: frustum culling for smoother large scenes</h2>
+<p>The engine also added a key performance optimization this day: frustum culling. The idea is plain — don&#39;t bother drawing objects the camera can&#39;t currently see (those outside the view). Before this, objects in a scene might all be processed whether or not they were on screen, wasting a lot of compute as scenes grew; now the engine first judges whether each object is within the camera&#39;s visible range and skips the invisible ones outright. The bigger the scene and the more objects, the more this saves, so frame rates hold up far better in complex scenes. It complements the earlier instanced drawing (draw a big batch of identical objects at once): one cuts &quot;drawing duplicates,&quot; the other cuts &quot;drawing the invisible.&quot; Together, the engine is clearly better equipped to carry large, dense scenes.</p>
+<h2>A rebuilt UI foundation: a modern component library + render-error safety net</h2>
+<p>The interface did a &quot;replace the foundation&quot;-level upgrade this day: moving a whole set of interaction components — dialogs, dropdowns, menus, form controls — onto a modern, mature, reliable component base. The benefits are many — smoother interaction feel, more unified visuals, better accessibility; places that used to make do with the browser&#39;s native popups (those ugly, uncustomizable system prompt boxes) were upgraded to consistently-styled dialogs. More crucially, a &quot;render-error safety net&quot; was added underneath: if a UI component throws while rendering, the system isolates it rather than letting a local error freeze the whole startup screen into a blank. This looks like &quot;just swapping a UI library,&quot; but it actually lifts the interface from &quot;usable but fragile&quot; to &quot;robust and durable&quot; — for a tool you stare at for hours every day, whether the interface is stable directly decides whether using it feels safe.</p>
+<h2>Material inheritance read-through + picking a game activates it</h2>
+<p>Two more everyday-smoothing improvements landed this day. One: material inheritance became &quot;read-through&quot; — a property a child material doesn&#39;t explicitly set automatically falls through to the parent&#39;s value — so putting shared settings on the parent and overriding only differences on children makes a batch of unified-yet-slightly-varying materials both manageable and less error-prone. Two, and a critical one: picking or creating a game now genuinely &quot;activates&quot; it as the current game, with the background agent&#39;s working directory switching to match. Before this, with multiple games coexisting it was easy to have &quot;you&#39;re looking at this one while the agent edits that one&quot; — once whatever you pick is what gets targeted, this mismatch is eliminated. One makes materials maintainable, the other keeps operations unconfused — both key details in straightening out the complex matter of &quot;multiple contents coexisting.&quot;</p>
+<h2>A new reel workbench + engine debugging and a default-model upgrade</h2>
+<p>The tool family gained another member this day: a reel workbench for organizing cutscenes and cinematic content, one more handy tool for making games with narrative and staging. The engine side added a dedicated debugging-technique guide, distilling the routines for diagnosing rendering issues so people and AI can locate problems by following them. The backend upgraded the default model to a stronger tier, so the same conversation gets smarter responses. Individually small, these point one way: beyond the big &quot;playable&quot; and &quot;steadier&quot; blocks, nudging the tools&#39; coverage, the engine&#39;s debuggability and the AI&#39;s underlying capability each forward a bit. A platform&#39;s maturity rests both on a few big strides and on this kind of continuous small reinforcement.</p>
+<h2>What this day means</h2>
+<p>This is a day the engine and interface both &quot;came of age.&quot; The engine adding physics, picking, anti-aliasing and culling — these aren&#39;t decorative effects but the passing line for &quot;whether a thing can be called a game&quot;: it moves, it&#39;s interactive, it looks presentable, it runs a large scene. The interface moving onto a modern foundation with an error safety net lifts the shell you use for hours daily from &quot;usable&quot; to &quot;rugged.&quot; Together, they mark the platform beginning to have the full footing to make &quot;genuinely playable games&quot; — both the engine muscle that makes a game hold and the interface stability that makes people want to use it daily. From this day, &quot;make a playable game&quot; is no longer a vision but a toolset actually in hand.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle täglichen Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele. Open Source, Apache-Lizenz 2.0.</p>
+  </div>
+  <div class="col"><h4>Website</h4>
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/blog/">Blog</a>
+    <a href="/de/docs/">Dokumente</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/games/">Spiele</a>
+    <a href="/de/marketplace/">Marktplatz</a>
+  </div>
+  <div class="col"><h4>Projekt</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

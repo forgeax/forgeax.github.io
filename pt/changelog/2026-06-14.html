@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-14 · Effects stop washing white + walk-and-jump in imported scenes — ForgeaX</title>
+<meta name="description" content="A day-long hunt stops effects blowing the screen to white and keeps the fireball red; imported scenes become walkable with per-node collision, jumping and step-up; the 3D-generation workbench gains a viewer, five-dimension quality scoring and provider parameters; and the conversation loop is hardened against stalls." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-14 · Effects stop washing white + walk-and-jump in imported scenes — ForgeaX" />
+<meta property="og:description" content="A day-long hunt stops effects blowing the screen to white and keeps the fireball red; imported scenes become walkable with per-node collision, jumping and step-up; the 3D-generation workbench gains a viewer, five-dimension quality scoring and provider parameters; and the conversation loop is hardened against stalls." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-14.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-14.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-14.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-14.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-14.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-14.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-14.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-14.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-14.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-14.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-14.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Diário</span><span>2026-06-14</span></div>
+    <h1>Effects stop washing white + walk-and-jump in imported scenes</h1>
+    <p class="standfirst">Much of this day was held hostage by a stubborn visual bug — the fireball, bullets and explosions kept washing to a full-screen white board; after chasing down the real culprits, effects finally hold their color steadily. The same day, imported scenes went from &quot;look only&quot; to &quot;walk, jump and climb stairs&quot;; the 3D-generation workbench grew from &quot;produces a model&quot; to &quot;scores it, tunes it, views it from any angle&quot;; and the conversation and agent work loop closed a batch of stalls.</p>
+    <div class="prose"><h2>A day held by one bug — and a day of firming the foundation</h2>
+<p>Not every day adds new features. Much of this day was held up by a visual bug that looked simple but reached far: the fireball, bullets and explosions in a game kept washing to a glaring full-screen white, hiding even the character. This kind of &quot;polish day&quot; is equally crucial in product development — it adds nothing to what you can do, but decides how well you do what you already can. Several other lines ran in parallel the same day: turning an imported scene from static scenery into a level you can actually run and jump in, making the 3D-generation workbench not just produce models but help you judge and tune them, and continuing to tighten the sporadic stalls in the conversation and agent loop. Seen together, the day&#39;s theme isn&#39;t &quot;expansion&quot; but &quot;firming up&quot; — polishing what exists, spot by spot, until it truly holds up in use. It&#39;s not enough for a product to grow new branches; it must keep going back to make each branch solid.</p>
+<h2>No more screen-wide white-out: the fireball finally stays red</h2>
+<p>A visual problem that took a whole day to chase was fixed at the root. The symptom was extreme: in that bullet-survival game, firing a fireball, shooting or exploding washed the whole screen into a big white board, drowning character and scene in white light, unplayable. The difficulty was that it had no single cause but resulted from several effects stacking and resonating: bloom (which makes bright areas glow) set too strong, particles using a blend mode that &quot;only gets brighter as it layers,&quot; objects&#39; emissive maxed out, and bullet trails piling up layer on layer on the screen — each fine alone, but together they amplify one another and push the whole image to pure white. This day&#39;s fix chased down the culprits step by step using real screenshots, then addressed each: lowering bloom, switching particles and effects to a blend mode that &quot;doesn&#39;t distort when layered,&quot; dampening excessive emissive, changing bullets to normal transparent blending instead of ever-brighter, and outright removing the trail that smeared into white across the screen. It then restored ground shadows and tilted the directional light to make them visible, so light-and-dark gradation reads clearly again. For anyone wanting to build effect-rich games on the platform, this fills in, at the root, a very common and very hard-to-self-diagnose class of pitfall.</p>
+<h2>Imported scenes are walkable, with jumping and step-up</h2>
+<p>An imported warehouse scene went from &quot;scenery&quot; to &quot;playable&quot; this day. There were two prior problems: one, it had no collision at all, so a character entering dropped straight through the floor like a ghost into the void; two, its scale was wildly off, the whole warehouse shrunk way down so the character looked like a giant who couldn&#39;t fit through a door. This day first corrected the real scale so the warehouse and character match; then built per-node collision — each mesh part in the scene (walls, floor, crates, stairs and so on) computes its own bounding box, from which the system derives all at once &quot;where you can stand and walk.&quot; On top of that, jumping and automatic step-up were added: facing a not-too-tall step or ledge, the character automatically lifts a foot onto it instead of getting stuck. Now you can run, jump and climb stairs inside this warehouse and play it as a real level. The significance is extending the &quot;import external models&quot; road opened over the preceding days another stretch: a model isn&#39;t just viewable and placeable but now actually &quot;steppable and playable&quot; — going from a static showpiece to a game space with physics and interaction.</p>
+<h2>The 3D-generation workbench: scores, tunes and views from any angle</h2>
+<p>The 3D-generation workbench went from &quot;produces a model&quot; to &quot;helps you judge it and lets you tune it&quot; this day, shipping three big features in a day. First, a more professional previewer: supporting toggles for environment, shadows, wireframe and more display modes, so you can examine a generated model under different lighting and angles rather than one fixed view, making its details and problems easier to see. Second, five-dimension quality scoring: the system automatically rates a result on mesh, texture, topology, animation and overall, turning &quot;is this model any good&quot; from a subjective feeling into visible concrete metrics — especially when you generate several candidates at once, the score helps you quickly pick the best. Third, exposing the advanced parameters of each generation service: where you previously could only generate with defaults, you can now bring up each service&#39;s advanced options to control the result deliberately. Together these turn the workbench from a one-way black box of &quot;type text, get a model&quot; into an iterable loop of &quot;generate → evaluate → tune → regenerate&quot; — you&#39;re no longer passively accepting whatever the AI gives, but can watch the score and adjust the parameters to actively drive the result toward what you want.</p>
+<h2>Chat and agents are harder to get stuck</h2>
+<p>This day the backend and chat closed another batch of stall-prone links, focusing on the class of problem &quot;does the AI suddenly freeze mid-work.&quot; On the backend: when you abort an &quot;ask&quot; an agent raised to you, the interface now never freezes again — such an abort used to occasionally leave the whole interface stuck; and guards were added for model output, handling over-long or overflowing output gracefully rather than crashing. On the front end: streaming output (the model spilling text character by character) was throttled to avoid refreshing so often it drags the interface; a command-authorization UI was added, giving sensitive operations that need your confirmation a clear interaction; and the bug where the ask card occasionally got stuck on &quot;preparing options&quot; and was slow to show them was fixed. Individually fine-grained, these together target the same most anxiety-inducing experience — &quot;is it dead?&quot; An AI you hand tasks to run on its own for long stretches must never keep freezing and leaving you at a loss; plugging these stall points one by one is exactly the precondition for confidently handing it the background.</p>
+<h2>What this day means</h2>
+<p>This day discovered no dazzling new continent, but it demonstrated the equally indispensable other side of a product maturing: getting what exists right and solid. Curing the fireball white-out is making &quot;visual expression,&quot; already doable, genuinely good-looking; making imported scenes walkable extends the already-opened &quot;import models&quot; road into &quot;playable&quot;; the workbench learning to score and tune upgrades &quot;can generate&quot; into &quot;can use well&quot;; and the conversation loop&#39;s stall-resistance polishes &quot;usable&quot; into &quot;solid in use.&quot; Worth remembering: a fair part of this day was spent grinding against one bug — chasing down the layered culprits step by step with real screenshots. This refusal to let go, to fudge, this insistence on finding the root cause, is exactly the bedrock on which a tool earns long-term trust. Many can add bricks; rare are those willing to go back and tap each brick solid — and this day did the latter.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

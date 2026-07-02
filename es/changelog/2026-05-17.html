@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-17 · Inline 3D & image preview + @-mention pills — ForgeaX</title>
+<meta name="description" content="@-mention agents to talk to them directly, see the bus everywhere in the UI, preview models and images inline with mention pills, and a wave of engine consolidations: unified MeshRenderer + material handle, readPixels, console dependency inversion." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-17 · Inline 3D & image preview + @-mention pills — ForgeaX" />
+<meta property="og:description" content="@-mention agents to talk to them directly, see the bus everywhere in the UI, preview models and images inline with mention pills, and a wave of engine consolidations: unified MeshRenderer + material handle, readPixels, console dependency inversion." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-05-17.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-17.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-17.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-17.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-17.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-17.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-05-17.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-05-17.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-17.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-17.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-05-17</span></div>
+    <h1>Inline 3D & image preview + @-mention pills</h1>
+    <p class="standfirst">This day moved &quot;multi-agent collaboration&quot; from the background into plain sight: you can @ an agent to talk to it directly, capability health is shown across the whole interface, and assets preview inline in chat and come in as reference pills. The engine made a big batch of consolidations alongside: a unified mesh renderer, unified capture, console dependency inversion, and a full set of rendering tutorial examples.</p>
+    <div class="prose"><h2>Making collaboration visible and clickable</h2>
+<p>In the prior days the platform built the capability of &quot;multiple agents running long in the background + an event bus,&quot; but all of it was still hidden inside the system. This day&#39;s through-line was pushing that capability fully to the interface foreground: you can not only see the traffic between agents on the bus, but @ a specific agent by name, preview assets in place, and bring objects into the conversation as reference pills. In other words, what this day added isn&#39;t an isolated feature but the interaction layer that makes &quot;a team of agents collaborating&quot; something an ordinary person can actually operate. Once the backend&#39;s complexity is translated into interface elements you can read and click, multi-agent goes from &quot;technically runs&quot; to &quot;comfortable to use.&quot;</p>
+<h2>@ an agent to talk to it directly</h2>
+<p>Multi-agent collaboration took a key step this day: you can @ a specific agent by name in the conversation so it picks up that message and replies, rather than only talking to the lead and having it relay to others. A companion agent-hub panel went live, presenting at a glance which members are in the current &quot;team&quot; and what each is busy with. What this changes is the &quot;command style&quot; of collaboration: where you used to be able to speak only to the project manager, you can now go past the manager and address the member handling art, or the one handling levels, directly. For the core scenario of &quot;one person leading a team of AIs,&quot; named communication is the watershed from &quot;broadcast&quot; to &quot;precise command&quot; — you can finally say the right thing to the right member.</p>
+<h2>Bus status spread across the UI: capability health everywhere</h2>
+<p>Building on the prior day&#39;s wiring of the bus into the interface, this day spread &quot;which capabilities exist in the system and how healthy each is&quot; into every corner of the UI. The top bar gained a row of status lamps for categories like tools, skills and agents, each showing a count and health; the chat panel, sidebar and bus admin panel are likewise dotted with this &quot;little lamp + count + clickable deep-link&quot; presentation, where one click jumps to the matching detail. Its value is turning &quot;what does the system have right now and how is it doing&quot; into ambient information — you don&#39;t go look it up; a glance at the interface tells you. For a system with ever more capabilities, extensible by plugins, this omnipresent health visualization is key to always having a feel for &quot;what state it&#39;s in.&quot;</p>
+<h2>Inline asset preview + reference pills in chat</h2>
+<p>This day also made &quot;assets&quot; visible and referenceable in conversation. Chat can preview attachments in place: paste an image and get a thumbnail; drop a model file and it renders as a small viewable preview, without first wiring it into a running game to see what it looks like. When discussing a character or a texture, both sides see the same concrete thing rather than imagining their own. The companion &quot;reference pills&quot; let you type @ in the composer to turn an agent or a resource into a clickable tag — remembering what you used recently, showing a tooltip on hover, clickable back after insertion. Together, these turn &quot;bringing an asset into the conversation&quot; — which used to mean copying long paths and describing in words — into a direct drag-and-click action.</p>
+<h2>Engine: a unified mesh renderer + material handle + default-value fallback</h2>
+<p>The engine made important convergences at the rendering and component layers this day. In rendering, it unified to a single mesh renderer that references materials by a &quot;material handle&quot; — that is, how an object is drawn is uniformly described by &quot;a mesh plus a handle pointing to a material,&quot; both clear and easy to reuse one material across objects. On components, &quot;creating an entity&quot; and &quot;adding a component&quot; gained a default-value fallback chain: when you don&#39;t explicitly set a field, the system walks layered rules to find a sensible default rather than erroring or leaving it blank. This means writing game content can be &quot;write only the parts you care about, leave the rest to sensible defaults,&quot; greatly cutting boilerplate and error surface. Such convergence isn&#39;t a new feature but the key to the engine staying &quot;low-surprise, predictable&quot; as more people (and AI) use it.</p>
+<h2>Engine: unified capture + console dependency inversion + tutorial examples</h2>
+<p>The engine also cleaned up several spots of &quot;duplication&quot; and &quot;coupling&quot; this day. One: the &quot;screenshot&quot; logic once scattered across multiple examples, each its own copy, was unified into a standard renderer capability — one implementation usable everywhere, cutting duplication and making visual verification more consistent. Two: the &quot;console&quot; debug channel got dependency inversion — it no longer depends directly on concrete internal modules but works through an abstract interface, decoupling them — letting the console evolve more independently and letting plugins plug in a uniform way. Three: a full set of progressive rendering tutorial examples landed (from the most basic triangle and textures to input handling), and common capabilities like images, textures and input were internalized into the engine itself. These examples are both living documentation of the engine&#39;s capabilities and the best entry point for newcomers (and AI) to learn how to use it.</p>
+<h2>What this day means</h2>
+<p>The day&#39;s two lines — fully &quot;revealing&quot; multi-agent collaboration in the interface, and heavily &quot;converging&quot; rendering and components in the engine — seem unrelated but inside share one pursuit: keeping a rapidly-complicating system clear to people. On the interface side, @-mentions, capability health lamps, asset preview and reference pills together turn &quot;directing a team of AIs&quot; from abstract into concretely operable; on the engine side, the unified renderer, unified capture, dependency inversion and tutorial examples together keep the low level from growing messier as features balloon. A system that can evolve long-term must both grow outward in capability and keep order inward — and this day did exactly both at once.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

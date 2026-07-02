@@ -1,37 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" />
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>更新与观点 · Blog — ForgeaX</title>
-<meta name="description" content="ForgeaX 的开发更新、里程碑与技术观点。Development updates, milestones and opinions." />
+<title>Blog — ForgeaX</title>
+<meta name="description" content="Development updates, milestones and opinions from ForgeaX." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Blog — ForgeaX" />
+<meta property="og:description" content="Development updates, milestones and opinions from ForgeaX." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/blog/" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/blog/" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/blog/" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/blog/" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/blog/" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/blog/" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/blog/" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/blog/" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/blog/" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/blog/" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/blog/" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-131" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
 </head>
-<body class="lang-en">
-<div id="site-header"></div>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/docs/" data-nav="/docs/">Docs</a>
+      <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/games/" data-nav="/games/">Games</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Marketplace</a>
+      <a href="/blog/" data-nav="/blog/" class="active">Blog</a>
+      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/blog/" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/blog/" data-l="zh">中文</a><a class="lang-item" href="/ja/blog/" data-l="ja">日本語</a><a class="lang-item" href="/ko/blog/" data-l="ko">한국어</a><a class="lang-item" href="/es/blog/" data-l="es">Español</a><a class="lang-item" href="/de/blog/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/blog/" data-l="fr">Français</a><a class="lang-item" href="/pt/blog/" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Open in ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Open in Claude</a>
+          <button class="ask-item" id="copyMd">Copy page as Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
 <main class="wrap">
   <div class="page-head">
-    <h1><span data-lang="zh">观点</span><span data-lang="en">Blog &amp; opinion</span></h1>
-    <p><span data-lang="zh">关于"AI 怎么做游戏"的思考、里程碑回顾与深度文章 —— 偏人的视角与判断。想看 AI 逐日自建这套引擎的流水账,见<a href="/changelog/">更新日志</a>(它的长期开发记忆)。</span><span data-lang="en">Thinking on how AI builds games, milestone retrospectives and deep-dives — the human perspective and judgment. For the AI's day-by-day record of building this engine itself, see the <a href="/changelog/">changelog</a> (its long-term development memory).</span></p>
+    <h1>Blog &amp; opinion</h1>
+    <p>Thinking on how AI builds games, milestone retrospectives and deep-dives — the human perspective and judgment. For the AI's day-by-day record of building this engine itself, see the <a href="/changelog/">changelog</a> (its long-term development memory).</p>
   </div>
 
   <div class="read post-list" style="padding-top:10px">
     <a class="post-row" href="/blog/why-ai-native-engine.html">
-      <div class="meta"><span class="tag"><span data-lang="zh">观点</span><span data-lang="en">Opinion</span></span><span>2026-06-16</span></div>
-      <h3><span data-lang="zh">为什么要做一个 AI 原生引擎</span><span data-lang="en">Why build an AI-native engine</span></h3>
-      <p><span data-lang="zh">当 AI 成为引擎的第一用户,API、错误信息、状态形态都应该为 AI 的视角重新设计。这篇聊聊我们为此做的几个具体取舍。</span><span data-lang="en">When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made.</span></p>
+      <div class="meta"><span class="tag">Opinion</span><span>June 16, 2026</span></div>
+      <h3>Why build an AI-native engine</h3>
+      <p>When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made.</p>
     </a>
     <a class="post-row" href="/blog/how-the-loop-works.html">
-      <div class="meta"><span class="tag"><span data-lang="zh">幕后</span><span data-lang="en">Behind the scenes</span></span><span>2026-06-10</span></div>
-      <h3><span data-lang="zh">AI 是怎么把一个功能做对的</span><span data-lang="en">How AI gets a feature right</span></h3>
-      <p><span data-lang="zh">不靠"一次写对",而是用一条可观测、可回溯的流水线,让它逐步收敛到正确:需求 → 研究 → 计划 → 实现 → 验证 → 验收 → 合入。</span><span data-lang="en">Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize.</span></p>
+      <div class="meta"><span class="tag">Behind the scenes</span><span>June 10, 2026</span></div>
+      <h3>How AI gets a feature right</h3>
+      <p>Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize.</p>
     </a>
   </div>
 </main>
-<div id="site-footer"></div>
-<script src="/assets/site.js?v=forgeax-ui-130"></script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/changelog/">Changelog</a>
+    <a href="/blog/">Blog</a>
+    <a href="/docs/">Docs</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/games/">Games</a>
+    <a href="/marketplace/">Marketplace</a>
+  </div>
+  <div class="col"><h4>Project</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
 </body>
 </html>

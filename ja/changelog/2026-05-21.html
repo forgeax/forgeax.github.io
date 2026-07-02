@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-21 · A refreshed interface + an embeddable workbench — ForgeaX</title>
+<meta name="description" content="A system-level visual refresh (design tokens, icons, motion), an embeddable split-surface workbench, a cleaner session-centric dashboard, engine 2D sprite layers and lighting examples, and a simpler one-command start/stop." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-21 · A refreshed interface + an embeddable workbench — ForgeaX" />
+<meta property="og:description" content="A system-level visual refresh (design tokens, icons, motion), an embeddable split-surface workbench, a cleaner session-centric dashboard, engine 2D sprite layers and lighting examples, and a simpler one-command start/stop." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-21.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-21.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/docs/" data-nav="/docs/">ドキュメント</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-21.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-21.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-21.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-21.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-21.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-21.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-21.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-21.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">毎日</span><span>2026-05-21</span></div>
+    <h1>A refreshed interface + an embeddable workbench</h1>
+    <p class="standfirst">This day the interface got a system-level refresh: a unified design system, a full icon set, smooth motion, a new preview shell. The workbench grew a &quot;split-surface plugin&quot; architecture, hosting a full embedded tool window for the first time; the dashboard was rewritten session-centric and chat stopped crossing streams; the engine added 2D sprite layers and a full set of lighting examples, and start/stop was simplified to one command.</p>
+    <div class="prose"><h2>From prototype feel to product feel</h2>
+<p>For a while, most energy had gone into &quot;can it run at all&quot;; by this day the product reached the point of &quot;growing up&quot; in both visuals and structure. The through-line was systematically pushing the interface from a prototype assembled from features toward something that looks — and feels — like a finished product: a unified design language, consistent icons, smooth motion, and a clearer overall layout. At the same time, the workbench, dashboard and engine each advanced. Together they signal that this thing is no longer content with &quot;can demo&quot; but starts taking seriously the look and order of &quot;being opened and used every day, long-term.&quot; Pushing both — good-looking and usable — at once is the key leap from usable to pleasant.</p>
+<h2>A refreshed interface: unified design system, icons, motion</h2>
+<p>The interface got a system-level refresh this day. Underneath went a three-layer design-token structure — unifying base visual variables like color, border and spacing under one management rather than hardcoded styles scattered everywhere; this makes the whole app visually consistent by nature, so changing a theme in one place takes effect everywhere and maintenance cost drops sharply. A clean set of line icons was wired into the workbench and toolbars, making places that had made do with emoji or text professional and uniform. A motion layer was added: sidebar content and panels transition smoothly instead of snapping instantly, and the visual continuity makes interaction feel less jarring. The top structure was upgraded too. None of these is a &quot;feature&quot; on its own, but together they decide whether, on first opening it, you think it&#39;s a toy or a tool.</p>
+<h2>The workbench can host a full embedded tool window</h2>
+<p>The workbench upgraded to a &quot;split-surface plugin&quot; architecture this day: a tool can put its controls in the sidebar and also take over the entire main area to lay out a full working surface. This solves a real cramping — a tool needing a big canvas, like &quot;character generation,&quot; used to be squeezed into a small panel with no room to work; now it can live in the workbench as an embedded tool window filling the main area, working like professional software. The first tool migrated onto this architecture was the character-generation workbench, which now runs as its own embedded page. Chat also gained a /tool command to invoke a tool&#39;s capability directly, rather than describing it in natural language each time. The architecture&#39;s significance goes well beyond &quot;bigger windows&quot;: it defines &quot;how a third-party tool plugs into the workbench as a first-class citizen,&quot; a key step toward a platform extensible without limit by plugins.</p>
+<h2>A cleaner dashboard, chat that doesn&#39;t cross streams</h2>
+<p>The dashboard got a session-centric rewrite this day, narrowed to three clear views — overview, sessions, analytics — and retired some duplicate, outdated old pages. The most direct benefit: opening it no longer throws a pile of red errors but presents the current state cleanly and trustworthily. Chat also fixed an old annoyance — each conversation tab is now strictly bound to its own session, so switching sessions or jumping back from the dashboard won&#39;t bleed into the previous conversation&#39;s still-flowing output stream; the stop button is aligned with the backend&#39;s real run state, so clicking it actually stops. The version number is always visible and refreshes on returning to the window. These are the basics of &quot;not getting in your way day to day,&quot; filled in one by one this day.</p>
+<h2>Engine: 2D sprite layers + a full set of lighting examples</h2>
+<p>The engine advanced on both 2D and lighting this day. On 2D, a sprite layer was added: sprites can be layered and stacked in the correct order, finally giving 2D content (the front-to-back relationship of backgrounds, characters and UI elements) a proper foundation, no longer relying on manual hacks to control what sits on top of what. On lighting, a full progressive set of lighting examples was completed — from basic shading and materials to textured lighting, light casters and multiple lights in one scene, a series of chapters all made into runnable engine demos. These examples are both living documentation of the engine&#39;s lighting and ready teaching material for anyone (including AI) to learn &quot;how to light a scene with this engine.&quot; Advancing 2D and 3D together means the engine isn&#39;t lopsided — it can do flat as well as dimensional.</p>
+<h2>Simpler install and start/stop</h2>
+<p>This day thoroughly simplified install and start/stop. Now one command brings up the whole set of services, and one command stops it cleanly; the background runs a single long-running core service, no longer depending on a container environment or requiring a pile of installs first as before. A pitfall that once stalled newcomers on certain systems due to a failed container install was sidestepped along the way. For anyone getting started, the road &quot;from clone to running&quot; is squeezed to its shortest — the most concrete part of lowering the bar to use. However strong a platform, if the very first install step turns away half the people, its capability never gets through; paving the entrance flat is itself part of product strength.</p>
+<h2>What this day means</h2>
+<p>This was a day of upgrading the product&#39;s &quot;looks&quot; and &quot;skeleton&quot; at once. The visual refresh makes it look like a finished product, the split-surface workbench lets third-party tools genuinely move in, the clean dashboard and non-crossing chat keep daily use unobstructed, the engine&#39;s 2D layers and lighting examples make capability more complete, and the simplified install lets more people through the door. These changes span four different dimensions — good-looking, usable, extensible, approachable — yet point at one thing: making the platform worthy of being used long-term as a proper tool. Between &quot;a runnable prototype&quot; and &quot;a tool you&#39;re glad to open every day&quot; lies, often, not some killer feature but exactly this kind of full day of polishing roughness into refinement across many dimensions at once.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

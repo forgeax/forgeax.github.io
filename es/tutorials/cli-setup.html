@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clone & launch with your AI CLI — ForgeaX</title>
+<meta name="description" content="No manual steps — hand the repo URL to your AI coding CLI (Claude Code / Codex / Cursor / forgeax) and let it clone, install and launch ForgeaX." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Clone & launch with your AI CLI — ForgeaX" />
+<meta property="og:description" content="No manual steps — hand the repo URL to your AI coding CLI (Claude Code / Codex / Cursor / forgeax) and let it clone, install and launch ForgeaX." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/es/tutorials/cli-setup.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/cli-setup.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/cli-setup.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/" class="active">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/cli-setup.html" data-l="en">English</a><a class="lang-item" href="/zh/tutorials/cli-setup.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/cli-setup.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/cli-setup.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/tutorials/cli-setup.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/tutorials/cli-setup.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/cli-setup.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/cli-setup.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/tutorials/">← Volver a tutoriales</a>
+    <div class="meta"><span class="tag brand">Principiante</span><span>~3 minutos</span></div>
+    <h1>Haga que su AI CLI clone y ejecute ForgeaX</h1>
+    <p class="standfirst">La instalación más nativa de IA: no escriba los comandos usted mismo: entregue el repositorio a su agente de codificación CLI y déjelo clonar, instalar, iniciar e informar la URL local.</p>
+
+    <div class="prose">
+      <div class="note">✅ Código abierto (Apache-2.0). El siguiente flujo funciona con cualquier CLI de codificación AI.</div>
+
+      <h2>lo que necesitas</h2>
+      <ul>
+        <li>Una CLI de codificación de IA que puede ejecutar comandos de shell, p.<strong>Código Claude</strong>,<strong>Códice</strong>,<strong>Cursor</strong>, o el propio ForgeaX<strong>forjar</strong>CLI;</li>
+        <li><code>git</code>y<a href="https://bun.sh" target="_blank" rel="noopener">Bollo</a>(el tiempo de ejecución del proyecto) instalado;</li>
+        <li>una clave API del modelo AI (para Forge dentro del estudio).</li>
+      </ul>
+
+      <h2>Una instrucción para su CLI</h2>
+      <p>Abre tu CLI en una carpeta vacía y dale esto:</p>
+      <pre><code>Clona https://github.com/ForgeaX-Games/forgeax-studio (con --recurse-submodules), ingresa el cd, ejecuta el script de instalación para configurar las dependencias, luego ejecuta el script de inicio para iniciarlo y dime la URL local que puedo abrir.</code></pre>
+      <p>La CLI ejecuta los pasos de clonación/instalación/inicio por sí misma y le solicita cualquier cosa que necesite a lo largo del camino (como la clave API). Cuando termine, obtendrá una URL local: ábrala en el navegador y estará en el estudio.</p>
+
+      <h2>Equivalente manual (opcional)</h2>
+      <p>Si prefieres hacerlo tú mismo, el equivalente es aproximadamente:</p>
+      <pre><code>git clone --recurse-submodules \
+  https://github.com/ForgeaX-Games/forgeax-studio
+cd forgeax-studio
+bun fx setup     # install deps (+ add API key)
+bun fx start     # launch the studio</code></pre>
+      <p>Estos<code>bollo fx</code>Los comandos son multiplataforma: los mismos en macOS, Linux y Windows, sin necesidad de Git-Bash en Windows. Luego abra la URL local que imprime.</p>
+      <p>A continuación, dirígete a<a href="/es/tutorials/getting-started.html">Inicio rápido</a>y cuéntale a Forge tu primer juego.</p>
+
+      <blockquote>¿Por qué es esta la instalación más sencilla? Porque, en primer lugar, ForgeaX está diseñado para la IA; incluso "configurarse solo" es algo que estamos felices de entregarle a un agente.</blockquote>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/es/tutorials/getting-started.html">Siguiente: tu primer juego →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

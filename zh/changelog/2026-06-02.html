@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-02 · 一条命令开桌面应用 + 节点编辑器进商店 — ForgeaX</title>
+<meta name="description" content="这天一条命令就能拉起整个桌面 Studio;插件启动从写死改成按清单自动发现,一个可视化节点编辑器整体作为插件接进来、插件之间互不串台;聊天加了一组顺手交互、预览加了加载看门狗;引擎还做了一轮 ECS 大瘦身。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-02 · 一条命令开桌面应用 + 节点编辑器进商店 — ForgeaX" />
+<meta property="og:description" content="这天一条命令就能拉起整个桌面 Studio;插件启动从写死改成按清单自动发现,一个可视化节点编辑器整体作为插件接进来、插件之间互不串台;聊天加了一组顺手交互、预览加了加载看门狗;引擎还做了一轮 ECS 大瘦身。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-02.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-02.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-02.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-02.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-02.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-02.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-02.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-02.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-02.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-02.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-02</span></div>
+    <h1>一条命令开桌面应用 + 节点编辑器进商店</h1>
+    <p class="standfirst">这天一条命令就能拉起整个桌面 Studio;插件启动从写死改成按清单自动发现,一个可视化节点编辑器整体作为插件接进来、插件之间互不串台;聊天加了一组顺手交互、预览加了加载看门狗;引擎还做了一轮 ECS 大瘦身。</p>
+    <div class="prose"><h2>把&quot;开起来&quot;和&quot;接进来&quot;都做简单</h2>
+<p>这天的主线是两个&quot;变简单&quot;。一个是把&quot;开起来&quot;变简单:以前要在桌面端跑起整套 Studio,得记一串命令分别拉各个服务;现在一条命令搞定。另一个是把&quot;接进来&quot;变简单:以前给平台加一个新工具,启动逻辑得在代码里写死;现在改成&quot;按清单自动发现&quot;,任何符合约定的插件丢进来就能被识别、拉起。再加上聊天体验的一组打磨和引擎内部的一轮大瘦身,这天整体在做的,是把&quot;用起来&quot;和&quot;扩展起来&quot;两条路都铺得更平——让普通人更容易开,让开发者更容易接。</p>
+<h2>一条命令就能开桌面应用</h2>
+<p>桌面端这天有了一个一键启动器:一条命令就能起开发态、打包、直接打开应用、或一键收摊关停,配套文档把三种运行方式讲清楚——浏览器开发态、桌面开发态、以及打包后的桌面应用各适合什么场景。以前要在桌面端把整套 Studio 跑起来,得记住并按顺序敲一串命令分别拉起各个服务,出错了还不好收拾;现在普通人一句话就能把整个桌面端跑起来。底层还把服务的启停改成&quot;进程组&quot;方式:同一组服务一起拉起、退出时整组一起干净清理——这直接解决了一个长期的烦恼:关掉窗口后总有一堆&quot;僵尸进程&quot;残留在后台,悄悄占着端口和内存拖慢机器。把启动这道门槛削平,是让更多人愿意把它装到自己电脑上日常用的前提。</p>
+<h2>节点编辑器接进商店,插件互不串台</h2>
+<p>这天把插件的启动方式从&quot;一堆写死的逻辑&quot;改成了&quot;按清单自动发现&quot;:任何带有清单声明的独立插件,被丢进来就能被系统自动识别并拉起,不必再为每个插件改一遍主程序的启动代码。借着这套通用机制,一个完整的可视化节点编辑器(自带&quot;3D 低多边形&quot;和&quot;场景生成&quot;两个工作台)整体作为插件接了进来。配套还解决了一个隔离问题:每个插件现在拥有自己独立的工程根目录,几个工作台之间不再共享同一个工程、互相串台改错地方;开发时插件默认开启热更新,改一行代码立刻生效。这件事的意义在于:它把&quot;第三方工具如何接入&quot;从一次性的硬编码,变成了一套可复用、可自动发现、互相隔离的标准——这是平台朝&quot;插件生态&quot;演进的关键一步,让以后接入任何新工具都既干净又即插即用。</p>
+<h2>聊天更顺手 + 预览加载看门狗</h2>
+<p>对话面板这天加了一组让日常更顺手的交互:可以随手切换当前用的模型、按段回看历史对话(而不是在一长条里费劲翻)、顶栏新增了一些常用动作的入口,还有一个上下文用量环直观显示当前还剩多少额度。预览这边加了一个&quot;初次加载看门狗&quot;:如果加载后迟迟没出第一帧画面,它会自动重载、再试,直到画面真正渲染出来,而不是把你晾在一片白屏前干等——这类&quot;偶尔加载不出来需要手动刷一下&quot;的小毛病,最磨耐心,自动化掉之后体验顺很多。后端也顺手修了几处聊天会卡住的情况,并确保对话真正按你选的模型来跑。这些改动单个都不大,但合起来就是把每天最高频的那块界面,从&quot;能用&quot;打磨到&quot;跟手&quot;。</p>
+<h2>引擎 ECS 大瘦身:更少概念、更快、更好懂</h2>
+<p>引擎这天对它的核心——那套描述游戏世界的&quot;实体-组件-系统&quot;(ECS)体系——做了一轮力度很大的&quot;瘦身&quot;。它删掉或合并了好几个累赘的概念:不再需要单独&quot;注册组件&quot;这道手续、把&quot;本地变换&quot;和&quot;世界变换&quot;统一成一套不再分裂、把每个世界各自一份的组件编号折叠成一个全局统一的标识、去掉一些冗余的本地缓存、并把一块本不该和资产注册混在一起的职责剥离出去单独管理。这背后是一条贯穿整个项目的设计公理:衡量代码好坏的不是行数,而是&quot;读懂任意一处需要同时记住多少个概念&quot;——概念越少,人和 AI 读起来就越不容易出错。这类瘦身在用户那侧完全看不见,却直接决定了引擎在变得越来越大的同时,能不能始终保持&quot;拆得开、跑得快、改得动&quot;。把核心的概念噪音持续砍掉,是这台引擎能长期健康演进的内功。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的几件事看似各管一摊,内里却是同一种追求:把摩擦削掉。一键启动器削掉了&quot;开起来&quot;的摩擦,清单自动发现削掉了&quot;接进来&quot;的摩擦,聊天打磨和预览看门狗削掉了&quot;日常用&quot;的摩擦,ECS 瘦身则削掉了&quot;读代码、改代码&quot;的摩擦。一个平台要想被更多人用、被更多工具扩展、被长期维护,靠的往往不是某个炫目的大功能,而是把这一处处不起眼的摩擦一个个磨平。摩擦越少,门槛越低,愿意进来、愿意留下、愿意贡献的人就越多。这一天,正是在&quot;让一切都更顺一点&quot;这件朴素却根本的事上,同时往前推了好几步。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

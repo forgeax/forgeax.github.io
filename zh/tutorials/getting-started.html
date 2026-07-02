@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>快速开始 · Quick start — ForgeaX</title>
+<meta name="description" content="认识 ForgeaX 工作室，对 Forge 说出第一个需求，看它规划、写代码、实时跑出来。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="快速开始 · Quick start — ForgeaX" />
+<meta property="og:description" content="认识 ForgeaX 工作室，对 Forge 说出第一个需求，看它规划、写代码、实时跑出来。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/zh/tutorials/getting-started.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/tutorials/getting-started.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/getting-started.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/getting-started.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/getting-started.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/getting-started.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/getting-started.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/getting-started.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/getting-started.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/getting-started.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/getting-started.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/" class="active">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/getting-started.html" data-l="en">English</a><a class="lang-item active" href="/zh/tutorials/getting-started.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/tutorials/getting-started.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/getting-started.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/getting-started.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/getting-started.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/getting-started.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/getting-started.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/tutorials/">← 返回教程</a>
+    <div class="meta"><span class="tag brand">入门</span><span>约 5 分钟</span></div>
+    <h1>快速开始：你的第一款游戏</h1>
+    <p class="standfirst">ForgeaX 的核心用法只有一句话：<strong>把你想做的游戏描述给 Forge，剩下的交给它。</strong></p>
+
+    <div class="prose">
+      <div class="note">✅ 已开源（Apache-2.0）。完整安装命令见 <a href="/zh/docs/#download">下载与安装</a>；本篇讲"上手后的工作流"长什么样。</div>
+
+      <h2>1 · 启动工作室</h2>
+      <p>装好依赖后，一条启动命令会拉起工作室，浏览器打开后你会看到两块区域：</p>
+      <ul>
+        <li><strong>左边：对话区</strong> —— 你和 Forge（主 agent）聊天的地方；</li>
+        <li><strong>右边：预览区</strong> —— 你的游戏实时运行的画面。</li>
+      </ul>
+
+      <h2>2 · 说出你的第一个需求</h2>
+      <p>不用写任何代码，直接对 Forge 说，比如：</p>
+      <pre><code>做一个俯视角的小游戏：
+一个角色在场地里跑，按空格发射子弹，
+四周不断刷新敌人，打中就消失，记个分。</code></pre>
+      <p>Forge 会先把需求理清楚，必要时派子 agent 做规划与设计，然后<strong>自己编写引擎代码</strong>。</p>
+
+      <h2>3 · 看它跑起来</h2>
+      <p>代码一写好，就会<strong>热重载</strong>到右侧预览 —— 几乎是边写边出现。你不满意就继续说：</p>
+      <pre><code>子弹再快一点，敌人血量加倍，
+背景换成夜晚。</code></pre>
+      <p>每一句反馈都会变成一次新的迭代。这就是 ForgeaX 的基本循环：<strong>描述 → 生成 → 游玩 → 再描述</strong>。</p>
+
+      <h2>4 · 接下来</h2>
+      <ul>
+        <li>给角色加上动作与技能（动画、法术）；</li>
+        <li>用工作台生成美术资产（立绘、3D、特效、音乐）；</li>
+        <li>做多关卡、调数值平衡。</li>
+      </ul>
+      <p>这些会在后续教程里展开。先去 <a href="/zh/showcase/">案例</a> 看看别人用同一套流程做出了什么。</p>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/zh/showcase/">看看案例 →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

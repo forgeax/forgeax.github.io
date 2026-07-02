@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-12 · 角色真的动起来了 + 聊天更稳 — ForgeaX</title>
+<meta name="description" content="这天是当月提交量的峰值。带骨骼的角色第一次真正播放起了动画;配套的角色生成产线推进到"绑骨 + 加动作 + 减面",让"生成一个角色 → 让它动起来"连成一条线;聊天做了内存泄漏专项、流式生成时也能继续打字、还能弹出可点选的"询问卡片";编辑器能脱离主界面独立运行,跨界面消息全部双侧严格校验;监控台还多了一个可翻阅的知识库。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-12 · 角色真的动起来了 + 聊天更稳 — ForgeaX" />
+<meta property="og:description" content="这天是当月提交量的峰值。带骨骼的角色第一次真正播放起了动画;配套的角色生成产线推进到"绑骨 + 加动作 + 减面",让"生成一个角色 → 让它动起来"连成一条线;聊天做了内存泄漏专项、流式生成时也能继续打字、还能弹出可点选的"询问卡片";编辑器能脱离主界面独立运行,跨界面消息全部双侧严格校验;监控台还多了一个可翻阅的知识库。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-12.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-12.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-12.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-12.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-12</span></div>
+    <h1>角色真的动起来了 + 聊天更稳</h1>
+    <p class="standfirst">这天是当月提交量的峰值。带骨骼的角色第一次真正播放起了动画;配套的角色生成产线推进到&quot;绑骨 + 加动作 + 减面&quot;,让&quot;生成一个角色 → 让它动起来&quot;连成一条线;聊天做了内存泄漏专项、流式生成时也能继续打字、还能弹出可点选的&quot;询问卡片&quot;;编辑器能脱离主界面独立运行,跨界面消息全部双侧严格校验;监控台还多了一个可翻阅的知识库。</p>
+    <div class="prose"><h2>峰值的一天:角色、对话、架构同时收口</h2>
+<p>这是当月开发最密集的一天,但热闹之下有清晰的脉络。最有标志性的一件事,是角色第一次真正动了起来——这对一个做游戏的平台来说是绕不开的里程碑,因为没有会动的角色,大部分游戏就无从谈起;而它又恰好和角色生成产线&quot;绑骨、加动作&quot;的推进相互呼应,让&quot;凭空生成一个角色,再让它活过来&quot;这条完整链路第一次连通。另一条线落在&quot;对话&quot;这个你每天接触最多的界面上:修内存泄漏、流式时可输入、可点选的询问卡片,一组改动让它更稳也更顺。第三条线则更偏底层:把编辑器做成能独立运行的模块、给跨界面消息加上严格校验、把知识沉淀成可翻阅的库——这些是为长期可维护、可扩展打的底。能力、体验、架构,这天在三个层面上同时往前收了一程。</p>
+<h2>角色真的动起来了:骨骼动画整条链跑通</h2>
+<p>这是一个里程碑式的画面:一个带骨骼的角色模型,现在能真正播放它自带的动画——走、跑、跳的每一帧,都由动画系统驱动骨架、再带动表面网格变形,而不再是僵在原地的一尊雕像。技术上,这一步打通了骨骼动画最核心的环节:每一帧,系统会算出每根骨头当前在世界里的姿态,再乘上一个&quot;绑定时的初始姿态&quot;的逆变换,得到一组描述&quot;每根骨头相对初始位置偏移了多少&quot;的矩阵,把这组矩阵一次性传给显卡;顶点着色器读到它,就能按&quot;每个顶点受哪几根骨头影响、各影响多少&quot;把网格表面正确地变形——这套方法就是角色动画的标准做法。它建立在前一天打通的顶点数据链路和多格式模型导入之上,几天的铺垫到这天终于开花结果。现在示例里能让多个带骨骼的角色同时做动作。对一个以做游戏为目标的引擎来说,&quot;角色会动&quot;几乎是一切的前提——它一旦成立,后面的战斗、互动、表演才都有了根。</p>
+<h2>生成 → 绑骨 → 加动作:一条角色产线成形</h2>
+<p>和引擎让角色动起来相呼应,角色生成工作台这天推进到了一个关键里程碑:能给生成出来的模型自动绑骨、加动作,并配上一条减面产线。这几件事各自解决一个具体环节。&quot;绑骨&quot;是给一个静态的模型装上一副可驱动的骨架——只有装了骨架,模型才谈得上动;这一步传统上需要美术手工完成,既费时又需要专业技能。&quot;加动作&quot;是把标准的动作(走、跑、待机等)映射到这副骨架上,让角色一生成出来就自带一套基本动作。&quot;减面&quot;则是把生成出来往往面数过高、运行起来很重的模型,自动简化成游戏里跑得动的低模,同时尽量保留外观。把这三步和前面的&quot;文字 / 图生成模型&quot;接起来,就形成了一条完整的角色产线:你描述一个角色 → 它被生成出来 → 自动绑好骨架 → 套上动作 → 优化成能用的低模,最后直接是一个能放进游戏里走来走去的活角色。对没有美术和动画功底的人来说,这条产线把&quot;做一个会动的角色&quot;这件原本门槛极高的事,压缩成了几步自动化流程。</p>
+<h2>聊天更稳:专项修内存泄漏,挂一整天也不卡</h2>
+<p>聊天这天做了一轮针对稳定性的专项,核心是集中修掉了几处内存泄漏。所谓内存泄漏,就是程序用过的内存没被及时回收,越积越多,时间一长就把界面拖得越来越卡——对一个你可能要开着聊一整天的对话面板来说,这是最影响长时体验的隐患。这天从几个源头一一堵住:超长的对话历史会被限量保留,不再无限制地堆在内存里;向上翻看旧消息时改成分页加载,避免一次性把成千上万条消息全塞进页面把它撑垮;每条消息曾经会悄悄注册一个窗口缩放的监听器却不释放,越积越多,这个泄漏也被修掉了。这些问题平时不显眼,只在&quot;用得久&quot;时才暴露,但恰恰是它们决定了一个工具能不能被信任地长时间使用。把这些隐形的消耗一处处堵住,等于让聊天面板从&quot;用一会儿挺好、用久了发卡&quot;变成了&quot;开一整天也稳&quot;。</p>
+<h2>流式时也能打字 + AI 能向你提结构化的问题</h2>
+<p>聊天的交互这天也补了两处很实用的能力。一是&quot;流式期间可输入&quot;:以前模型还在一行行往外吐字时,输入框往往是锁住的,你得干等它说完才能打字;现在你可以一边看它输出、一边把下一条想说的话敲好,排进队列随时发出去,不必中断思路去等。二是 AI 能向你提&quot;结构化的问题&quot;:当 agent 需要你做个选择或确认时,它不再把问题混在一长段文字里让你费力辨认,而是直接弹出一张&quot;询问卡片&quot;——上面列出可点选的选项(单选或多选),也允许你填自定义答案。这件事的意义不只是好看:它把&quot;人机之间需要拍板的关键决策&quot;变成了一次清晰、明确、不会误读的交互。对一个 AI 主导、但人随时要介入做决定的协作模式来说,&quot;AI 怎么把问题清楚地抛给人、人怎么干脆地回答&quot;是个核心环节。把它做成规整的卡片,等于给这种关键时刻的对话装上了一个可靠的接口。</p>
+<h2>编辑器能独立运行 + 跨界面消息严格校验</h2>
+<p>这天还在架构上做了一件偏长远的事:把前端外壳抽成了一套可复用的应用框架,并提供了几个公开接口,于是编辑器可以脱离主界面、作为一个独立应用单独挂载运行。这让编辑器从&quot;只能长在主 Studio 里的一块&quot;变成了&quot;一个能被单独打开、被嵌入别处的模块&quot;——更模块化,也为后面把它装进桌面应用、嵌入其他页面等场景留好了空间。与此配套,底层把界面各部分之间、以及跨内嵌页面之间传递的消息全部加上了双侧严格校验:每一条消息在发出和接收两端都按预先定义好的结构核对一遍,格式不对就直接拦下不放行。这件事看似琐碎,实则关键——跨界面、跨内嵌页面的状态同步,过去是各种诡异 bug 的高发区:一边以为发对了、另一边收到的却是个对不上的东西,排查起来极其耗神。给每条消息都立一份明确的&quot;格式契约&quot;并双侧校验,等于从根上杜绝了&quot;瞎传一气、对不上号&quot;的隐患,让跨界面协作变得可预期、可信赖。</p>
+<h2>监控台多了一个可翻阅的知识库</h2>
+<p>这天给监控台加了一个完整的&quot;知识库&quot;标签页,可以在里面翻阅沉淀下来的资料与条目。它的左侧是一个分面筛选边栏,把条目按类型、标签、领域分组并可折叠;右侧是双列的条目网格,点开任意一条会弹出预览;顶部还有一组可点选的标签云。配套有一连串细节打磨——刷新有动画反馈、滚动条用主题色细条、分组标题可折叠等等,让翻阅体验顺手。为什么一个开发平台需要一个内建的知识库?因为当大量工作由 AI 推进时,沉淀下来的经验、规范、决策记录就成了团队和 AI 共同的&quot;记忆&quot;;把这些知识结构化地组织起来、能被随时检索翻阅,既方便人查阅,也是 AI 做事有据可依的基础。同一天还把指导整个项目的设计原则重新梳理成了&quot;几条压缩公理加两条边界&quot;的形式——核心信念始终如一:衡量系统好坏的不是代码多少,而是理解它需要同时记住多少个概念,概念越少越好。把知识可检索、把原则可表述,都是同一种追求:让这套日益复杂的系统,对人和 AI 都始终保持可理解。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天用当月最高的提交密度,在三个层面同时往前走了一程,而它们恰好覆盖了一个创作平台最重要的三件事。在&quot;能做什么&quot;上,角色动了起来、生成产线连成了线——这是能力的跃升,它把&quot;做一个有活角色的游戏&quot;这件原本遥远的事拉近了一大步。在&quot;用得怎样&quot;上,聊天更稳更顺、AI 能清楚地向你提问——这是体验的打磨,它让人和 AI 的协作更省心、更顺畅。在&quot;将来能走多远&quot;上,编辑器可独立、消息有契约、知识可检索——这是架构的远见,它决定了这套系统在不断长大时还能不能保持健康。一个真正想长期做下去的产品,从来不会只在某一个层面用力;它会像这一天一样,让能力、体验和根基彼此牵引、协同向前。角色动起来的那一刻很动人,但同样重要的,是它背后那条从生成到绑骨到播放的完整链路,以及支撑这一切的、越来越稳越来越清楚的底子。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

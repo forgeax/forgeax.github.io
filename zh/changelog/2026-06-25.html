@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-25 · 打开一个工程就渲染它 + agent 长期记忆 — ForgeaX</title>
+<meta name="description" content="这天发布了 v0.2.0,并把几处影响"信任感"的事一并做实:打开哪个工程就老老实实渲染哪个、不再有隐藏的"优先模式";每个 agent 有了统一的身份和能跨会话记住你的长期记忆;支持从任意位置把素材拖进对话;桌面开发支持到了 Windows;引擎还补上 2D 的 GPU 实例化与聚光灯阴影,并修好了一度全失效的辉光。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-25 · 打开一个工程就渲染它 + agent 长期记忆 — ForgeaX" />
+<meta property="og:description" content="这天发布了 v0.2.0,并把几处影响"信任感"的事一并做实:打开哪个工程就老老实实渲染哪个、不再有隐藏的"优先模式";每个 agent 有了统一的身份和能跨会话记住你的长期记忆;支持从任意位置把素材拖进对话;桌面开发支持到了 Windows;引擎还补上 2D 的 GPU 实例化与聚光灯阴影,并修好了一度全失效的辉光。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-25.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-25.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-25.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-25.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-25.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-25.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-25.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-25.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-25.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-25.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-25.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-25.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-25.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-25.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-25.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-25.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-25.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-25.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-25.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-25</span></div>
+    <h1>打开一个工程就渲染它 + agent 长期记忆</h1>
+    <p class="standfirst">这天发布了 v0.2.0,并把几处影响&quot;信任感&quot;的事一并做实:打开哪个工程就老老实实渲染哪个、不再有隐藏的&quot;优先模式&quot;;每个 agent 有了统一的身份和能跨会话记住你的长期记忆;支持从任意位置把素材拖进对话;桌面开发支持到了 Windows;引擎还补上 2D 的 GPU 实例化与聚光灯阴影,并修好了一度全失效的辉光。</p>
+    <div class="prose"><h2>第二个公开版本,围着&quot;可信&quot;打磨</h2>
+<p>这天发布了 v0.2.0——开源之后的第二个公开版本,首页也更新了&quot;新功能&quot;亮点。一个版本号的意义,不只是数字加一,而是把一段时间里攒下的改进打包成一个可以被引用、被下载、被信任的节点。而这天围绕这个版本所做的事,几乎都指向同一个关键词:可信。打开一个工程就如实渲染它,是让结果可信;agent 有稳定的身份、能记住你,是让协作者可信;素材能直接拖给 AI、不必反复描述,是让交互可信;Windows 也能开发、辉光不再失效,是让平台在更多环境下都可信。一个刚走向公众、正被越来越多人认真试用的产品,最该建立的就是这种&quot;它说到做到、它记得住、它在哪都靠谱&quot;的信任。这一天,正是把信任一处处坐实。</p>
+<h2>打开一个工程,就渲染那个工程</h2>
+<p>这天修正了一处概念上的别扭,而它修的其实是一种&quot;不可预测&quot;。此前在试玩时,系统会先按一套&quot;优先把它当成某种特殊形态&quot;的猜测去决定怎么渲染——这套启发式在某些情况下会让你打开同一个工程,得到的却不是它本身,而是被它&quot;猜&quot;成了别的样子。问题不在于这套猜测对不对,而在于它让结果变得不可预测:你点开一个东西,不能百分百确定会看到什么。这天把它改成了最直接、最朴素的行为——打开哪个工程,就老老实实渲染哪个工程,不再有任何隐藏的&quot;优先模式&quot;插在中间。配套地,编辑器还能用一条命令直接打开磁盘上的某个具体游戏来跑,而且这个游戏的路径由外层的宿主统一提供,不再被硬编码烤死在编辑器的库里(这让编辑器作为一个纯粹的工具更干净、更可复用)。&quot;所见即所选&quot;听起来理所当然,但一个工具真正做到&quot;你打开什么就一定得到什么、毫无意外&quot;,恰恰是可预测性的基石——而可预测,正是信任的前提。</p>
+<h2>agent 统一身份 + 能记住你的长期记忆</h2>
+<p>协作团队这天变得更&quot;像人&quot;、也更&quot;长情&quot;了。一方面,所有 agent 统一了身份呈现——用&quot;中文职能 + 英文名&quot;的方式命名,并把各自的人设补全,于是你面对的不再是一串功能模块,而是一群各有名字、各有性格、各司其职的伙伴。另一方面,也是更关键的一步:它们有了长期记忆。工作台里每个 agent 都有了一个结构化的&quot;长期记忆&quot;标签页和一本可翻阅的日记;系统会在每一轮对话结束时,自动把其中值得长期记住的内容沉淀下来;还会维护一份&quot;全局用户档案&quot;,随着你和它的相处而逐渐了解你的偏好、习惯、在做什么。为什么记忆这么重要?因为没有记忆的助手,每次都从一张白纸开始——你得反复交代同样的背景、同样的偏好,合作永远停留在&quot;初次见面&quot;。有了长期记忆,这些 agent 会记得你、记得过往的决定和教训,于是合作越久越省心、越懂你。对一个主打&quot;和一群 AI 长期协作做游戏&quot;的平台来说,让 AI&quot;记得住&quot;,是从&quot;工具&quot;走向&quot;伙伴&quot;的关键一跃。</p>
+<h2>从任意位置拖进对话 + 资产管线改进</h2>
+<p>交互这天又顺手了一截:现在可以跨界面把东西直接拖进对话。你能从资产浏览器、从各个面板里,把一批内容拖进聊天框,它们会排成一队&quot;引用胶囊&quot;一起递给 AI。这件事消除的是一种很常见的笨拙——以前想让 AI&quot;用这几个模型、这张贴图、这个场景里的那个对象&quot;,你得用语言一个个把它们描述清楚,既费劲又容易说不准;现在直接选好、拖过去,AI 立刻精确知道你指的是哪些。配套资产管线也继续打磨:支持删除、支持拖到对话,并重新生成了一批资产的内部标识,以解决导入素材时标识相互撞车的问题——这种撞车此前会导致某些资源莫名加载不出来。把&quot;指给 AI 看&quot;从&quot;用嘴描述&quot;升级成&quot;用手拖过去&quot;,看似只是一个小交互,实则大幅降低了人和 AI 之间传递具体素材时的摩擦。摩擦越小,协作越流畅。</p>
+<h2>Windows 桌面开发支持 + 引擎修复</h2>
+<p>桌面端的开发这天支持到了 Windows:可以在 Windows 下(通过 Git Bash)进行桌面开发,并修了 Windows 平台特有的链接问题,于是 Windows 用户也能在本地开发、调试桌面应用,而不只是网页端。这延续了近来持续往 Windows 兼容上投入的方向——把占据大半桌面市场的 Windows 用户,从&quot;只能用网页版&quot;进一步带到&quot;也能做桌面开发&quot;。引擎侧修了两处实打实的问题:其一,辉光(让画面亮部泛出柔和光晕的效果)此前因为三个叠加的 bug 已经完全失效,这次被彻底修复,画面的氛围感回来了;其二,很多大型模型常用的大顶点索引(一种能寻址更多顶点的格式)以前会在解析时被直接拒掉,导致复杂大网格导不进来,现在能正确保留,大模型导入不再报错。启动链路还加了一个可选项:当检测到引擎的构建产物已经过期时,可以选择让它自动重建(默认仍是提示你手动处理,以免意外触发重建)。这些都是在让平台在更多环境、更多素材、更复杂场景下都能稳稳跑起来。</p>
+<h2>引擎:2D 的 GPU 实例化 + 聚光灯阴影</h2>
+<p>引擎这天在 2D 性能和光照上各推进了一步。性能上,落地了针对精灵和瓦片地图的&quot;区块级 GPU 实例化&quot;:2D 游戏里常常有海量重复元素——满屏的瓦片、成片的弹幕、大量同样的小图块,以前是逐个发出绘制指令,数量一大就拖慢;现在能把同一区块里的同类元素合并成一桶、交给显卡一次性画出来,绘制调用大幅减少,大规模 2D 场景的性能因此质变。光照上,新增了聚光灯阴影:聚光灯是那种像手电筒、舞台追光一样有方向、有锥形照射范围的光源,现在它也能正确地投出阴影,做&quot;黑暗中一束光扫过、影子随之拉动&quot;这类效果有了底层支持。此外还把精灵的渲染管线做了归一——把原本为精灵单独写的一套特殊路径,合并进通用的渲染路径里,少了一套需要单独维护的分叉。这些改动有的让 2D 跑得更快、有的让光影更丰富、有的让引擎更简洁,共同把 2D 这条线又夯实了一层。</p>
+<h2>这一天意味着什么</h2>
+<p>v0.2.0 这个版本号,标记的是开源之后第一段沉淀的成果。而这一天最动人的一条线,其实是 agent 的长期记忆——它让&quot;和 AI 协作&quot;这件事第一次有了时间的维度。一个会记得你的伙伴,和一个每次都把你当陌生人的工具,是两种完全不同的关系;前者会越用越懂你,后者永远停在原地。配上&quot;打开什么就渲染什么&quot;的可预测、&quot;拖过去就行&quot;的低摩擦、&quot;Windows 也能开发&quot;的广覆盖、以及引擎一处处的修复与提速,这一天把整个平台往&quot;值得长期信赖、值得长期相处&quot;的方向又推了一大步。一个真正想陪用户走很久的工具,既要做到说到做到、处处可靠,也要做到记得住、懂你心——这一天,正是在这两件事上同时用力。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

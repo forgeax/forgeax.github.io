@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-04 · The editor mode is actually usable — ForgeaX</title>
+<meta name="description" content="Edit-and-play goes live: select objects, drag gizmos and save scenes; scenes become a document-driven source of truth with per-game persistence; characters and vehicles drag straight in and plugins navigate to each other; the engine adds anti-aliasing, 9-slice UI art, extensible asset formats and clearer load errors." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-04 · The editor mode is actually usable — ForgeaX" />
+<meta property="og:description" content="Edit-and-play goes live: select objects, drag gizmos and save scenes; scenes become a document-driven source of truth with per-game persistence; characters and vehicles drag straight in and plugins navigate to each other; the engine adds anti-aliasing, 9-slice UI art, extensible asset formats and clearer load errors." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-04.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-04.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-04.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-04.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-04.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-04.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-04.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-04.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-04.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-04.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-04.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/docs/" data-nav="/docs/">ドキュメント</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-04.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-04.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-04.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-04.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-04.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-04.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-04.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-04.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">毎日</span><span>2026-06-04</span></div>
+    <h1>The editor mode is actually usable</h1>
+    <p class="standfirst">The editor mode that was just a blueprint the day before became working features this day: select objects in the viewport, drag gizmos, auto-save — &quot;edit-and-play&quot; runs for the first time. Scenes became a document-driven single source of truth, one per game and following whichever game is open; characters and vehicles drag straight in and plugins navigate to one another carrying context; and in a single day the engine added anti-aliasing, 9-slice UI art, extensible asset formats and clearer load errors.</p>
+    <div class="prose"><h2>The blueprint lands: from &quot;watching it run&quot; to &quot;reaching in to change it&quot;</h2>
+<p>The editor blueprint set the day before entered implementation and ran through with no dawdling — a beautiful instance, across the whole project, of &quot;think it through, then build it at once.&quot; Before this, Studio was always a place of &quot;you speak, the AI builds, you watch&quot;: you describe what you want, the AI writes code, and the right side runs the game; but if any one thing wasn&#39;t to your liking, you could only keep describing it in words, unable to nudge it by hand. What this day added is exactly the &quot;by hand&quot; road: select, drag, save — these plainest of actions hold true in Studio for the first time. Meanwhile the engine filled in four or five capabilities underneath to back this road, and the content toolchain let assets flow more smoothly into the editor. In one line: for the first time, creative agency shifted from &quot;all handed to the AI&quot; to &quot;both human and AI can reach in.&quot;</p>
+<h2>Editor mode lands: select, drag gizmos, auto-save</h2>
+<p>This day Studio gained a real &quot;editor mode&quot; for the first time, built up steadily in two layers. First the &quot;editing surface&quot; was stood up — the editing interface is rendered live by the engine, so what you see is the game&#39;s true appearance rather than a separately-drawn approximation; then the &quot;editing brain&quot; was wired in — a command bus threads each of your actions into controllable instructions, paired with a scene tree on the left (listing what objects exist and who is whose child) and a property inspector on the right (select an object to see and edit its properties), plus live sync between editor and engine. In feel: you can click to select objects in the viewport, use a gizmo (that handle wrapped around an object that lets you drag, rotate and scale directly) to adjust position and pose, and drag assets from the asset panel into the scene. This &quot;surface + brain + sync&quot; structure is key — it means the editor isn&#39;t a hardcoded panel but a framework that grows alongside the engine&#39;s capabilities, and every later editing feature grows on top of it.</p>
+<h2>Scenes become &quot;document-driven&quot;: one per game, auto-following</h2>
+<p>This day also established something far-reaching: scenes are now &quot;document-driven&quot; — a game&#39;s scene is expressed as a structured document, and that document is the scene&#39;s sole authority; the editor reads it, the engine runs by it, and saving saves it. Behind this, a dedicated scene core landed as the single source of truth for these documented scenes. Persistence came with it — &quot;one scene per game, auto-saved, following whichever game is open&quot;: whichever game you open is the scene file you edit, and data no longer bleeds between games. Why does &quot;document-driven&quot; matter so much? Because it points &quot;human editing&quot; and &quot;AI editing&quot; at the same thing — drag an object and you change this document; the AI writes code and changes this same document; the two are naturally consistent rather than each editing their own copy. This day even the sample shooter template was changed to describe its static arena via this document, validating for the first time, with a real game, that the mechanism works.</p>
+<h2>Drag in characters and vehicles + jump between plugins</h2>
+<p>On the content-creation side, this day wired up the &quot;direct upload&quot; path: characters, NPCs and vehicles finished in the character workbench can be dragged straight in for use, and finishing an NPC auto-advances to the next step; several old bugs — not displaying across surfaces, vehicles landing in the wrong spot — were fixed along with it. Further, plugins can now navigate to one another: a click in the character tool, say, can carry the current context straight into the animation tool to keep going, with no hunting for windows or re-confirming which character it was. The animation workbench&#39;s four modules were also unified at once into a single design language, with tidy color and spacing, looking like one product rather than four parts bolted together. Together these thread the &quot;make a character → animate it → place it in the scene&quot; flow — which used to mean bouncing back and forth across several tools — into a smooth assembly line, whose endpoint is exactly that just-now-usable editor.</p>
+<h2>Engine: anti-aliasing + 9-slice UI art, a more refined look</h2>
+<p>The two engine pieces this day are both visible refinements. One is multi-sample anti-aliasing: without it, an object&#39;s slanted edges and outlines carry a fringe of fine &quot;jagged&quot; steps, especially obvious on diagonals and in the distance; with it, edges are softly smoothed and the whole image is instantly a notch cleaner. The other is 9-slice support: a fundamental of UI work — a button or panel&#39;s background image, if stretched whole, distorts its rounded corners; the 9-slice approach cuts the image into nine pieces so the &quot;four corners&quot; stay as-is while only the &quot;edges and middle&quot; stretch as needed, letting one image fit buttons and panels of any size without warping. Neither changes gameplay, but they directly decide whether a game &quot;looks refined.&quot; Making these basic look-and-feel capabilities solid is the precondition for users&#39; creations to be &quot;presentable&quot; — however good the gameplay, a fringe of jaggies and a distorted button cheapens it at first glance.</p>
+<h2>Engine: extensible asset formats + no more silent load failures</h2>
+<p>The engine also made two more &quot;skeletal&quot; changes this day. One: asset importing became extensible. The knowledge of &quot;which format, read how&quot; used to be hardcoded in the engine core, so the engine could only use the few formats it knew; this day that knowledge was inverted out of the core into something injectable from outside — meaning third parties can later teach the engine its own asset formats without touching the engine itself. This turns the engine from a closed &quot;eats only the prescribed ration&quot; system into an open, extensible platform. Two: a built-in mapping from resource ids to internal handles was added, with clearer errors. Before, if a component wasn&#39;t correctly defined or a referenced resource couldn&#39;t be found, the system often failed silently — the scene looked loaded, yet some object was inexplicably missing and you had no idea where it went wrong; now such cases are reported explicitly. Extensibility lets the engine &quot;grow open,&quot; and clear errors let it &quot;be debugged&quot; — both backstops for ever more complex content.</p>
+<h2>Behind the scenes: preferences follow you + no stale dev cache</h2>
+<p>The backend also tidied two unglamorous but experience-shaping things this day. One: browser preferences were persisted to the server, so the personal settings you tweak in the interface no longer live only in one browser but follow you, still there when you open up elsewhere. Two: an annoying dev-time phenomenon was fixed — a plugin&#39;s entry page used to be cached by the browser, so after changing code and refreshing you&#39;d still see the old version and doubt whether it took effect; this day that entry page was set to not cache, guaranteeing a refresh shows the latest. Individually trivial, such changes decide &quot;how comfortable it is to use&quot;: preferences not lost, refresh-is-fresh — seemingly obvious, yet genuinely achieving them takes picking at one spot after another. Smoothing these burrs is the daily homework of a tool moving from &quot;usable&quot; to &quot;pleasant.&quot;</p>
+<h2>What this day means</h2>
+<p>This day is a watershed: Studio began growing from a &quot;conversational game generator&quot; into a &quot;creation platform with both conversation and editing.&quot; What&#39;s most worth remembering isn&#39;t just the result &quot;the editor works,&quot; but how it landed — blueprint one day, running the next, and not an isolated panel piled on but the &quot;document-driven scene&quot; foundation, several engine underlying capabilities, and the content tools&#39; inflow path all aligned at once, so the editor was born standing on a structure that can keep growing. For users, from this day you can have the AI generate while you hand-tune yourself, both pointing at the same scene without fighting. For the platform, this step formally reconnected &quot;human creativity&quot; into the creative loop — the AI takes you from zero to eight-tenths, and you hand-add the remaining, most personal-taste two-tenths yourself.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

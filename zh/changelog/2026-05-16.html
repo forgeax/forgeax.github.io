@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-16 · 把 agent 总线搬进界面 + 仪表盘筛选 — ForgeaX</title>
+<meta name="description" content="前一天后端浇下的事件总线,这天浮到了水面上:agent 之间互相通信的总线第一次有了可视化入口,仪表盘也能按状态筛选与搜索。与此同时引擎学会了加载标准 3D 模型,并把组件系统的数据词汇收敛成一套统一、类型安全的体系。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-16 · 把 agent 总线搬进界面 + 仪表盘筛选 — ForgeaX" />
+<meta property="og:description" content="前一天后端浇下的事件总线,这天浮到了水面上:agent 之间互相通信的总线第一次有了可视化入口,仪表盘也能按状态筛选与搜索。与此同时引擎学会了加载标准 3D 模型,并把组件系统的数据词汇收敛成一套统一、类型安全的体系。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-16.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-16.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-16.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-16.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-16.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-16.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-16.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-16.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-16.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-16.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-16</span></div>
+    <h1>把 agent 总线搬进界面 + 仪表盘筛选</h1>
+    <p class="standfirst">前一天后端浇下的事件总线,这天浮到了水面上:agent 之间互相通信的总线第一次有了可视化入口,仪表盘也能按状态筛选与搜索。与此同时引擎学会了加载标准 3D 模型,并把组件系统的数据词汇收敛成一套统一、类型安全的体系。</p>
+    <div class="prose"><h2>把&quot;看不见的机器&quot;变得看得见</h2>
+<p>前一天后端默默浇下的那套插件运行时与事件总线,本身是&quot;看不见&quot;的——它在后台跑,用户感知不到。这天的主题,就是把这套看不见的机器接到界面上,让它变得可观察、可操作。一个系统一旦开始有&quot;多个 agent 通过总线互相通信&quot;这样的内部活动,如果这些活动全藏在后台,用户和开发者都会陷入&quot;它到底在干嘛&quot;的黑箱焦虑。所以这天做的事很明确:给总线开一扇窗、给任务列表加上筛选,让人能真正看清系统内部正在发生什么。可观察性不是锦上添花,而是一个复杂系统能不能被信任、被调试的前提。</p>
+<h2>可视化的 agent 总线</h2>
+<p>这天把 agent 之间互相通信的事件总线接进了界面。侧栏里出现了一盏&quot;总线健康灯&quot;,带着当前插件数量,一眼就能看出系统里挂了多少能力、状态是否正常;还有一个专门的总线管理面板被提升为一个顶层入口,在里面可以浏览各类事件、用键盘上下导航、点开任意一条记录就地展开看详情,甚至从一条记录一键深链跳到侧栏对应的事件类别。这一切的意义在于:多 agent 协作第一次&quot;看得见&quot;了——谁在跟谁说话、传递了什么、各类事件各有多少,都明明白白摆在眼前,而不再是后台一团你只能猜测的活动。对要长期靠&quot;一群 agent 协作&quot;来干活的平台,这扇窗是把抽象的协作变成可被理解、可被介入的具体画面的关键一步。</p>
+<h2>仪表盘:状态分布、筛选与搜索</h2>
+<p>随着同时在跑的任务越来越多,仅靠一条平铺的列表已经不够看了。这天给仪表盘加了几样实用工具:运行列表顶部多了一条&quot;状态分布条&quot;,一眼就能看出当前有多少在跑、多少完成、多少出错的整体态势;任务列表则支持按状态筛选、按标题搜索,让你能迅速从一大堆历史里定位到关心的那一个。这些都是很朴素的功能,但当你真的同时管着几十个任务时,它们决定了你是&quot;一眼掌握全局&quot;还是&quot;在长列表里大海捞针&quot;。把排查问题、回顾历史这两件高频操作做顺,本质上是在尊重用户的时间——当系统规模变大,好的筛选和搜索就是生产力本身。</p>
+<h2>引擎能加载标准 3D 模型(glTF)</h2>
+<p>引擎这天迈出了内容生态上很关键的一步:接入了对 glTF 这种标准 3D 模型格式的加载,并且是走前一天刚立起来的资产系统来加载的。glTF 是 3D 内容交换的通用格式,绝大多数建模工具和模型市场都支持它;能直接吃下 glTF,意味着海量现成的 3D 模型可以被搬进来用,而不必每个模型都手工重做。把它接到资产系统上而不是另起一套加载逻辑,也很关键——这样导入进来的模型自然就拥有了统一的身份和引用方式,能被结构化地管理、复用。对用户来说,这是&quot;做游戏需要的素材从哪来&quot;这个现实问题的一个重要答案:不只能让 AI 生成,也能把外部世界已有的标准模型直接拿进来。</p>
+<h2>引擎 ECS 词汇收敛成一套统一体系</h2>
+<p>引擎这天在底层做了一次重要的&quot;收敛&quot;。此前组件里不同的数据形态——字符串、定长/变长数组、缓冲区——各自有各自的处理方式和包装层,概念分散、读起来累。这天把它们统一收敛到同一套&quot;受管理资源&quot;的体系之下,并删掉了一堆多余的包装代码。配套还让&quot;创建实体&quot;这件事在类型上变得更严格:用更精确的类型约束去描述一个实体由哪些组件、什么数据构成,既能在编译期就挡住写错的情况,又把过去靠&quot;强制类型转换&quot;打的补丁一一清掉,并立了一道永久的检查防止它们卷土重来。这类工作在用户那侧完全看不见,但它体现的是一种核心工程取向:衡量代码好坏的标准不是行数,而是&quot;读懂任意一处需要同时记住多少概念&quot;——把分散的词汇收敛成一套,正是在给后面所有读这套代码的人(包括 AI)减负。</p>
+<h2>一种工作姿态:直接改 + 本地测试即门槛</h2>
+<p>这天还在工程文化上明确了一种工作姿态:对于足够清楚的改动,鼓励直接动手改,而不是事事都套用一套很重的流程;但与此同时,&quot;本地测试通过&quot;被立为不可绕过的门槛——你可以快,但不能不验证。这两条看似矛盾,其实是一体两面:正因为有自动化测试当兜底,直接改才不至于变成莽撞。把&quot;什么时候该走重流程、什么时候可以直改&quot;说清楚,本身就是一种对效率的尊重——不让简单的事被流程拖慢,也不让快变成质量失控的借口。这种对节奏的拿捏,是一个高速迭代的团队能长期既快又稳的隐形秘诀。</p>
+<h2>这一天意味着什么</h2>
+<p>把这天连起来看,是&quot;让系统对人透明&quot;的一天。后端那套复杂的内部机器被接到了界面上,变得可观察、可操作;引擎打开了通往海量标准模型的大门,内容来源不再受限;底层则通过词汇收敛让代码本身更易读、更可信。表面上看,可视化、模型加载、类型收敛是三件不相干的事,但它们指向同一个目标:让这个越来越复杂的系统,无论对用户、对开发者、还是对将来读代码的 AI,都保持&quot;看得懂、信得过&quot;。一个系统能走多远,往往不取决于它能堆多少功能,而取决于它在变复杂的同时还能不能保持透明——这一天,正是在为透明这件事投资。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

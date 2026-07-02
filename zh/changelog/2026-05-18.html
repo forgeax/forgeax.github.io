@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-18 · 打开任意目录当工作区 + 应用内版本与快捷键 — ForgeaX</title>
+<meta name="description" content="这天平台不再把你绑死在固定目录里:挑磁盘上任意一个文件夹就能开工。应用自己也长出了"版本意识"——状态栏显示当前版本、设置里能翻更新日志、配上全局快捷键。引擎则补上模型实例化、构建期纹理烘焙,以及一套完整的运行外壳与游戏主循环。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-18 · 打开任意目录当工作区 + 应用内版本与快捷键 — ForgeaX" />
+<meta property="og:description" content="这天平台不再把你绑死在固定目录里:挑磁盘上任意一个文件夹就能开工。应用自己也长出了"版本意识"——状态栏显示当前版本、设置里能翻更新日志、配上全局快捷键。引擎则补上模型实例化、构建期纹理烘焙,以及一套完整的运行外壳与游戏主循环。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-18.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-18.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-18.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-18.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-18.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-18.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-18.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-18.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-18.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-18.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-18</span></div>
+    <h1>打开任意目录当工作区 + 应用内版本与快捷键</h1>
+    <p class="standfirst">这天平台不再把你绑死在固定目录里:挑磁盘上任意一个文件夹就能开工。应用自己也长出了&quot;版本意识&quot;——状态栏显示当前版本、设置里能翻更新日志、配上全局快捷键。引擎则补上模型实例化、构建期纹理烘焙,以及一套完整的运行外壳与游戏主循环。</p>
+    <div class="prose"><h2>从&quot;绑死目录&quot;到&quot;打开任意工程&quot;</h2>
+<p>在此之前,你的游戏代码必须放进平台自带的某个固定目录里才能被它管理——这其实是个不小的束缚:它意味着你的项目得迁就工具,而不是工具迁就你的项目。这天的主线,是把这层束缚拆掉,让平台能打开磁盘上任意一个目录当作工作区。这看似只是一个&quot;选文件夹&quot;的小功能,背后却是产品定位上的一次松绑:从&quot;一个你必须按它的规矩摆放代码的应用&quot;,走向&quot;一个能接管你已有项目的开发平台&quot;。配合这天补上的版本意识与若干打磨,平台在&quot;像个正经工具一样被日常使用&quot;这件事上又踏实了一步。</p>
+<h2>打开任意目录当工作区</h2>
+<p>顶栏新增了一个项目切换器,点开是一个文件浏览器,你可以挑磁盘上任意一个目录把它当作当前工作区——不再强制把代码塞进自带的某个固定目录里。最近打开过的项目会被记下来,下次一键就能回到。更贴心的是:如果你选了一个空目录,系统会自动往里放一个可直接运行的默认游戏骨架,于是&quot;新建一个文件夹 → 立刻让 agent 在里面开工&quot;成了一条完全顺畅的路。对刚把仓库克隆下来的人来说,这意味着可以直接打开自己项目的目录开始干,而不必先学会这个平台的目录规矩。它把&quot;接入门槛&quot;实实在在地降了一截。</p>
+<h2>应用内版本号 + 更新日志 + 快捷键</h2>
+<p>这天给应用补上了一套&quot;版本意识&quot;。状态栏现在显示当前运行的版本号,并且会主动刷新——它在后台直接看实时的代码版本、文件一变就更新,你切回窗口就能确认自己跑的是不是最新,而不会盯着一个早已过期的旧号。设置里多了&quot;更新日志&quot;一栏,在产品内部就能翻看最近改了什么,不必跑去别处查。还多了&quot;快捷键&quot;一栏,配上一套全局快捷键,把常用操作变得可发现、可速记、随手可按。这些功能单看都很朴素,但它们共同传递一个信号:这不再是一个临时的实验品,而是一个会持续更新、值得你长期使用、并且认真对待&quot;用户怎么知道自己用的是哪一版&quot;的产品。</p>
+<h2>引擎:模型实例化 + 构建期纹理烘焙</h2>
+<p>引擎这天在性能与资产上各推进一块。性能上,标准 3D 模型支持了实例化绘制——当同一个模型在场景里成片出现(一排树、一群敌人)时,引擎能用一次提交把它们全画出来,开销大幅下降;导入模型时还会把模型里每个节点自带的名字带进引擎,方便后续辨认和操作。资产上,图片纹理改为在&quot;构建期&quot;就提前烘焙处理好,运行时按句柄直接取用,既加载更快也更稳定,不必每次运行都临时处理一遍。这两件事一个面向&quot;同屏物体很多&quot;,一个面向&quot;加载又快又稳&quot;,合起来是在为后面真正复杂、内容丰富的场景提前铺路。</p>
+<h2>引擎运行外壳与游戏主循环成型</h2>
+<p>引擎这天还补齐了一块结构性的地基:一套完整的&quot;运行外壳&quot;加上游戏主循环。运行外壳负责把一个游戏正确地启动起来、把每一帧的更新与渲染按固定节奏推进——这就是任何游戏在底层&quot;转起来&quot;的那台发动机。在此之前,各个示例往往各自拼装这套启动与循环逻辑;现在把它收敛成引擎自带的标准外壳,意味着写一个游戏可以从一个干净、统一的起点出发,而不必每次都重搭一遍骨架。这对&quot;让 AI 来写游戏&quot;尤其重要:起点越标准、越可预期,AI 写出来的代码就越容易跑对、越容易被复用。</p>
+<h2>顺手的小改进:文字可选中 + 输入框右键菜单</h2>
+<p>这天也抹平了几处日常的小别扭。聊天里的文字现在可以正常选中、复制了——这听起来理所当然,但在此之前它是被无意中禁掉的,想摘一段 agent 的回复出来都不方便。输入框也补上了右键菜单,把常用操作放到触手可及的地方。这类改动每一个都微不足道,但它们正是决定一个工具&quot;用着顺不顺手&quot;的那一层。一个连复制文字都别扭的界面,再强的能力也会被这点摩擦消磨掉好感;把这些边角一个个磨平,是对&quot;每天都要用它的人&quot;的基本尊重。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的几件事,合起来是在回答一个朴素的问题:这个平台,配不配被当成一个&quot;正经工具&quot;长期使用?能打开你自己的任意工程,说明它愿意迁就你已有的工作方式;有了版本号、更新日志和快捷键,说明它把自己当成一个会持续演进、需要对用户负责的产品;引擎补上实例化、构建期烘焙和标准运行外壳,说明底层在为更大的场景与更多的内容认真准备;连文字能不能复制这种细节都去抠,说明它在乎你每天用起来的手感。从能演示到能日用,中间隔着的正是这一类不显眼却不可少的功夫。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

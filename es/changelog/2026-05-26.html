@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-26 · One-tap context compaction + a WebGPU software fallback — ForgeaX</title>
+<meta name="description" content="One-tap /compact with a context-usage ring and slash autocomplete, a WebGPU software fallback so more machines run 3D, clean ECS game templates, 2D sprite-sheet animation, and engine robustness fixes." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-26 · One-tap context compaction + a WebGPU software fallback — ForgeaX" />
+<meta property="og:description" content="One-tap /compact with a context-usage ring and slash autocomplete, a WebGPU software fallback so more machines run 3D, clean ECS game templates, 2D sprite-sheet animation, and engine robustness fixes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-05-26.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-26.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-26.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-26.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-26.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-26.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-05-26.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-05-26.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-26.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-26.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-05-26</span></div>
+    <h1>One-tap context compaction + a WebGPU software fallback</h1>
+    <p class="standfirst">This day worked on &quot;keeping long conversations and all kinds of machines from breaking down&quot;: one-tap conversation compaction, a visible context gauge, autocompleting slash commands; and a software fallback for 3D when hardware acceleration is missing. New games start from a clean ECS template, and the engine added 2D sprite-sheet animation and a batch of robustness fixes.</p>
+    <div class="prose"><h2>Making &quot;long-term, broad use&quot; solid</h2>
+<p>Once capability is in place, the next question is: can it be used long-term and broadly? Long-term means whether a single conversation can last without the context overflowing; broad means whether it runs on all sorts of machines, not just the developer&#39;s high-end one. The day&#39;s items answer these two respectively: one-tap conversation compaction addresses &quot;chatting long enough hits the ceiling,&quot; and the WebGPU software fallback addresses &quot;no good GPU means a black screen.&quot; Add the clean new-game starting point, 2D animation and a batch of robustness fixes, and the through-line is clear: not new gimmicks, but making &quot;everyday long-running use on more machines&quot; solid.</p>
+<h2>One-tap compaction: /compact + a context-usage ring</h2>
+<p>Over long back-and-forth with a large model, the &quot;context&quot; it can hold piles up; near the limit, responses slow, quality drops, and it even starts forgetting. This day added a /compact command: one tap compresses the prior exchanges into a concise summary, freeing room to keep going, and the compaction itself doesn&#39;t burn a whole conversation turn — it&#39;s done directly on the backend. The composer also gained a &quot;context-usage ring&quot; that, like a fuel gauge, shows at a glance how much budget remains, so when it&#39;s getting full you can see it and proactively decide whether to tidy up. With slash-command autocomplete, typing / surfaces all available commands for quick selection. This set of changes faces head-on the core constraint of &quot;long-term collaboration with AI&quot; — context is finite; putting its management in the user&#39;s hands, done lightly, is what makes long sessions truly sustainable.</p>
+<h2>A WebGPU software fallback: 3D runs on more machines</h2>
+<p>3D rendering depends on a modern GPU&#39;s capabilities, but in reality some machines or environments can&#39;t get hardware acceleration — maybe the GPU is too old, maybe the runtime is constrained. Previously this meant a black screen, shutting those users out entirely. This day added a software fallback: when a hardware-accelerated rendering device can&#39;t be obtained, the system steps back and uses a software implementation to render the picture — slower, but at least it runs, shows and lets you keep working. Underneath, multi-level fallback was added (try the next path when one fails, error only as a last resort), with clearer diagnostics explaining why hardware acceleration wasn&#39;t taken (say, running under a non-secure origin). The significance is coverage: a platform for the mass market, wanting anyone to get started, can&#39;t assume everyone has a high-end machine; running on weaker machines too is what truly lowers the bar.</p>
+<h2>New games start from a clean ECS template</h2>
+<p>Creating a new game now generates from a clean, well-structured template organized along a proper architecture. This day rewrote that default template in a &quot;proper ECS architecture&quot; style, extracted it from an inline string into a version-controlled standalone file, and halved its line count — meaning the moment you create a game, you get a clean, compact base ready to build on, not a pile of boilerplate you must first understand before editing. The template and the system instructions fed to the AI were updated to the latest engine interfaces alongside. This matters especially for &quot;AI writing games&quot;: the AI continues from the template&#39;s shape, so the cleaner and more standard the template, the more likely the AI&#39;s code is correct and the easier it is for you to read and reuse. A good starting point saves countless later corrections.</p>
+<h2>2D sprite-sheet animation</h2>
+<p>The engine added 2D sprite-sheet animation this day: playing multiple frames from a &quot;sprite sheet&quot; (a series of action frames laid out in one image) in sequence, giving 2D character and effect animation a ready-made, standard approach. This is the most common animation method in 2D games — a little figure walking, a flame flickering, is essentially a few frames cycling quickly. Before this, 2D content could only be static sprites; with sheet animation, the 2D line can truly move. Together with the earlier sprite layers, it fills in the engine&#39;s 2D fundamentals: correct layering and stacking, plus making each sprite move. For anyone wanting to make a 2D game, this is the key step from &quot;can place images&quot; to &quot;can do animation.&quot;</p>
+<h2>Engine robustness: regression tests + a batch of rendering fixes</h2>
+<p>The engine also did a batch of unglamorous but important robustness work this day. Regression tests were added for several failure-prone situations — render queries, parent-child hierarchy, and the edge case of &quot;not a single light in the scene&quot; — pinning them down with tests so future changes elsewhere can&#39;t quietly break them. Some vaguely-named fields were renamed more accurately so the code is harder to misread; and a few compatibility issues that surfaced only after merging were fixed. These are the work of &quot;welding down newly added capability&quot;: after intensely adding many things over the prior days, this day went back to add tests and clean edges, ensuring they don&#39;t just &quot;run once&quot; but &quot;stay reliable going forward.&quot; Alternating fast iteration with steady consolidation is why this product line can keep running.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

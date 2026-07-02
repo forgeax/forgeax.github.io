@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-30 · 桌面 App 立起来 + 多游戏共用一个游戏库 — ForgeaX</title>
+<meta name="description" content="这天 Studio 第一次能作为原生桌面应用打开——关掉前台窗口、agent 也在后台照常干活。多个游戏可以共用一个游戏库;agent 能按白名单在对话里直接调宿主工具;引擎补上多通道渲染管线、音频与可切换抗锯齿;代码库也做了一次瘦身。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-30 · 桌面 App 立起来 + 多游戏共用一个游戏库 — ForgeaX" />
+<meta property="og:description" content="这天 Studio 第一次能作为原生桌面应用打开——关掉前台窗口、agent 也在后台照常干活。多个游戏可以共用一个游戏库;agent 能按白名单在对话里直接调宿主工具;引擎补上多通道渲染管线、音频与可切换抗锯齿;代码库也做了一次瘦身。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-30.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-30.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-30.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-30.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-30.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-30.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-30.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-30.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-30.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-30.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-30</span></div>
+    <h1>桌面 App 立起来 + 多游戏共用一个游戏库</h1>
+    <p class="standfirst">这天 Studio 第一次能作为原生桌面应用打开——关掉前台窗口、agent 也在后台照常干活。多个游戏可以共用一个游戏库;agent 能按白名单在对话里直接调宿主工具;引擎补上多通道渲染管线、音频与可切换抗锯齿;代码库也做了一次瘦身。</p>
+    <div class="prose"><h2>从&quot;浏览器里的标签页&quot;到&quot;一个真正的应用&quot;</h2>
+<p>在此之前,Studio 一直活在浏览器的一个标签页里——这意味着它的存在依附于那个标签:关掉、刷新、或者浏览器一崩,正在干活的一切就跟着没了。这天的头号大事,是把它做成一个能独立打开的原生桌面应用,让它第一次拥有&quot;自己的窗口、自己的进程&quot;。配合这件事,其余几条线也在让平台更像一个成熟产品:多个游戏能共享内容、agent 能更直接地调用能力、引擎补上音频与多通道渲染、代码库做减法。把&quot;能在浏览器里跑&quot;升级成&quot;能作为一个应用长期开着&quot;,是这天最值得记住的转变。</p>
+<h2>桌面 App 立起来:关掉前台窗口,agent 也不死</h2>
+<p>这天把桌面应用的整套外壳立了起来:Studio 第一次能作为一个原生桌面窗口打开,而不只是浏览器里的一个标签页。配套做了进程保活(让后台服务在窗口之外持续存活)、窗口管理,以及桌面打包时正确寻址资产根目录的能力。它和之前&quot;关浏览器 agent 不死&quot;的能力终于接上了一个真正的桌面入口——之前那套保活机制还是在浏览器里,如今有了原生窗口,你可以把它当一个真正的应用长期开着:把活交给 agent,关掉前台界面,它照常在后台跑;想看进度时再打开窗口。一个能独立成&quot;应用&quot;的形态,是从&quot;演示项目&quot;走向&quot;日常工具&quot;的关键一跃。</p>
+<h2>多个游戏共用一个游戏库</h2>
+<p>多个游戏现在可以共用同一个游戏库:把公共的资产、组件放进一个共享库里,各个游戏再带一份自己的&quot;索引&quot;去引用它们——不必每个游戏都把素材复制一份。对一个想长期经营多个作品的创作者来说,这意味着系列作之间、或多个原型之间可以干净地复用同一批资源,而不是到处散落着重复拷贝。工程上还做了一处贴心优化:开发时,某个游戏的资产发生变动,只会重扫&quot;当前正在做的那个游戏&quot;的资源,而不是把整个工作区从头扫一遍——游戏一多,这个差别就是&quot;改一下立刻生效&quot;和&quot;每次都要等半天&quot;的区别。共享 + 局部重扫,合起来让&quot;一个人管很多个游戏&quot;既省空间又不卡顿。</p>
+<h2>agent 能按白名单在对话里直接调宿主工具</h2>
+<p>这天打通了一条&quot;白名单&quot;通道,从类型定义一直贯通到运行时。一个 agent 可以在自己的清单里声明&quot;我被允许调用哪些宿主工具&quot;,系统的一座&quot;宿主工具桥&quot;就会把这些被声明的工具注入到它的对话工具列表里;借此还顺手退役了一套旧的、写死的工具包。落到实处:负责剧情的那个 agent 声明了一组叙事相关的工具白名单,于是它能直接在聊天里调用一整套细粒度的叙事工具来编排故事,而不必再绕一个专门的工具包。这套机制的价值在于&quot;授权清楚、调用直接&quot;:每个 agent 能用什么由它的清单白纸黑字写明,既安全可控,又让&quot;给某个 agent 配上它该有的能力&quot;变成一件声明式的、好维护的事——这是 agent 体系走向&quot;人人可配、各有所长&quot;的基础。</p>
+<h2>引擎:多通道渲染管线 + 音频 + 可切换抗锯齿</h2>
+<p>引擎这天补上了几块。渲染抽象升级成&quot;多通道&quot;管线——很多高级画面效果(尤其是后期处理)本质上是&quot;分好几步、一层叠一层&quot;地算出来的,有了多通道的正规结构,这类效果就有了清爽的搭建方式,而不是硬塞。抗锯齿做成了可运行时开关,方便直接对比开与关的画面差别,调效果时一目了然。引擎还做了一个音频示例,把&quot;游戏能出声&quot;这件事跑通验证(声音系统此前已接入,这天有了能听的样例)。物理上修了一个&quot;空转&quot;的问题——之前某些物体会被冻在原地不受力,现在能正常地掉落、碰撞、运动了。这些合起来,是把引擎的&quot;画面 + 声音 + 物理&quot;三条体验线都往&quot;真能做出一个完整游戏&quot;的方向又夯实了一层。</p>
+<h2>代码库瘦身:把二进制赶出代码库</h2>
+<p>这天引擎还做了一轮&quot;代码库瘦身&quot;:把那些大体积的二进制资产(示例素材、基准图片、编译产物等)从代码仓库里清理出去,改为放到专门的资源仓或在需要时重建,并立了一道持续集成的检查,确保以后不会再有人不小心把二进制塞进代码库。这件事用户看不见,但它实实在在地改善了一线开发体验:代码库变小,克隆更快、历史更干净、日常操作更轻快。对一个要长期演进、还希望对外开源、让更多人能克隆下来上手的项目来说,&quot;代码库里只放代码&quot;是一条值得坚持的纪律——它直接关系到一个新来的人(或一台 CI 机器)第一次把项目拉下来时,要等多久、占多少空间。把这种长期负担提前清理掉,是对未来所有协作者的善意。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的主旋律,是让平台从&quot;一个跑在浏览器里的东西&quot;长成&quot;一个可以独立拥有、长期使用的应用&quot;。桌面外壳给了它自己的窗口和进程;共享游戏库让你能在它里面经营不止一个作品;白名单工具通道让 agent 体系更可配、更可控;引擎补音频与多通道渲染、代码库瘦身,则分别在&quot;做得出&quot;&quot;跑得久&quot;两头加固。这些方向各异的改动,共同指向同一个成熟标志:它不再只是一个用来演示&quot;对话能做游戏&quot;的项目,而是一个你愿意装到电脑上、天天打开、长期托付的工具。能独立成&quot;应用&quot;的那一刻,产品的身份就变了。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

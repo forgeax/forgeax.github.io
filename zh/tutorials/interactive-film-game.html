@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>做一部可玩的互动影游 · Make an interactive film-game — ForgeaX</title>
+<meta name="description" content="用一句灵感或一部剧本做出限时点按 + 选择驱动的互动影游：AI 拆剧情、定角色场景道具、生成分镜与视频，你在三轨时间轴上剪辑、试玩，一键打包成谁都能在浏览器里打开就玩的网页。含五步流程、轨道设计与常见问题。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="做一部可玩的互动影游 · Make an interactive film-game — ForgeaX" />
+<meta property="og:description" content="用一句灵感或一部剧本做出限时点按 + 选择驱动的互动影游：AI 拆剧情、定角色场景道具、生成分镜与视频，你在三轨时间轴上剪辑、试玩，一键打包成谁都能在浏览器里打开就玩的网页。含五步流程、轨道设计与常见问题。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/zh/tutorials/interactive-film-game.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/" class="active">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/interactive-film-game.html" data-l="en">English</a><a class="lang-item active" href="/zh/tutorials/interactive-film-game.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/tutorials/interactive-film-game.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/interactive-film-game.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/interactive-film-game.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/interactive-film-game.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/interactive-film-game.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/interactive-film-game.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/tutorials/">← 返回教程</a>
+    <div class="meta"><span class="tag brand">创作</span><span>互动影游</span></div>
+    <h1>做一部可玩的互动影游</h1>
+    <p class="standfirst">给一句灵感或一整部剧本，做出"限时点按 + 选择决定走向"的互动影游 —— AI 帮你拆剧情、定下角色与场景、生成分镜与视频，你来剪辑、试玩，最后一键打包成谁都能在浏览器里打开就玩的网页。</p>
+
+    <div class="prose">
+      <div class="note">✅ 已开源（Apache-2.0）。下面是创作流程的完整概览；克隆与安装见 <a href="/zh/docs/">文档</a>。</div>
+
+      <h2>它是什么</h2>
+      <p>互动影游是"能玩的短片"。画面以视频和图片连续呈现，像看一部短剧；但在关键时刻，屏幕上会跳出<strong>限时点按</strong>——你得在几秒内做出反应；在一个场景结束时，又会给出<strong>选择</strong>，不同的选择把故事带向不同的下一幕，直到不同的结局。</p>
+      <p>你在编辑器里把<strong>剧情、画面、节奏点和分支</strong>拼装好，玩家最终拿到的是一段确定性的、可反复游玩的体验：同样的选择走同样的路，换个选择就解锁新的剧情。</p>
+
+      <div class="note">💡 一句话：你负责把故事讲清楚、把节奏和选择设计好；AI 负责把它"拍"出来、"剪"顺、变成能在浏览器里玩的成品。</div>
+
+      <h2>适合做什么</h2>
+      <ul>
+        <li><strong>互动短剧 / 多结局故事</strong> —— 让观众自己决定主角的下一步，一个故事玩出好几条线。</li>
+        <li><strong>剧情向小游戏</strong> —— 把对话、悬念和限时反应做成轻量玩法，不需要写一行引擎代码。</li>
+        <li><strong>教学 / 演示 / 培训</strong> —— 用"选了会怎样"的分支演练流程与决策，比纯视频更有参与感。</li>
+        <li><strong>原型与试水</strong> —— 几小时内做出可玩的雏形，先验证故事和玩法，再决定是否深做。</li>
+      </ul>
+
+      <h2>从剧本到成片，五步</h2>
+
+      <h3>① 剧本：从一句灵感到结构化故事</h3>
+      <p>丢进一句灵感、一段梗概，或一整部剧本都行。AI 会把它扩写并<strong>结构化</strong>成分幕、角色、人物关系和逐场的详细剧情。故事太长也不怕——可以一集一集往下续，保持前后设定连贯。</p>
+
+      <h3>② 锚点：先定"长什么样"</h3>
+      <p>系统自动从剧本里抽出<strong>角色、场景、关键道具</strong>（以及它们的不同状态与变体），让你先把"长什么样"定下来。之后所有画面都对齐这些锚点，所以人物不会换脸、场景不会跑偏——这是保持整部片一致性的关键一步。</p>
+
+      <h3>③ 剧情树 · 分镜：把故事拆成一棵可玩的树</h3>
+      <p>AI 把剧情拆成一棵<strong>分镜树</strong>：每个节点是一个镜头，自动生成对应画面。你在树上自由编排——调整顺序与结构、<strong>加入选择分支</strong>（在某个节点之后岔出两条以上的路）、给紧张时刻<strong>设上限时点按</strong>。整棵树就是玩家会经历的所有可能路线。</p>
+
+      <h3>④ 生成视频：让画面动起来</h3>
+      <p>分镜满意后，一键把镜头从静态画面生成<strong>视频</strong>。生成时可以带上参考图，让人物和场景在镜头里保持一致；台词可以配上选定的<strong>音色</strong>。所有素材统一落到时间轴上，和台词、节奏点对齐。</p>
+
+      <h3>⑤ 剪辑 · 试玩：在时间轴上精修，边玩边改</h3>
+      <p>在<strong>三轨时间轴</strong>上精修：对齐台词、安排点按出现的时刻、连接分支去向。随时切到<strong>"试玩"全屏</strong>，像真正的玩家一样体验一遍——哪里节奏拖了、哪个点按太难、哪条分支不通顺，回来就改，改完再玩。</p>
+
+      <h2>三条轨道：台词 / 点按 / 分支</h2>
+      <p>影游的"可玩性"主要由时间轴上的三条轨道决定，它们各管一件事：</p>
+      <table>
+        <thead>
+          <tr>
+            <th>轨道</th>
+            <th>管什么</th>
+            <th>设计要点</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>台词</td>
+            <td>每句话出现的时刻与时长，配上音色</td>
+            <td>让字幕和画面、语音对齐，别抢戏</td>
+          </tr>
+          <tr>
+            <td>点按</td>
+            <td>限时反应：在窗口内点中算成功</td>
+            <td>放在紧张/动作的高点，窗口别太苛刻</td>
+          </tr>
+          <tr>
+            <td>分支</td>
+            <td>场景结尾给出选择，决定下一幕去向</td>
+            <td>两到三个选项最好，让每个选择都有后果</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>设计得更好玩的几个要点</h2>
+      <ul>
+        <li><strong>把选择放在有分量的地方</strong> —— 让玩家在"真的会改变故事"的节点上做决定，而不是无关紧要的二选一。</li>
+        <li><strong>点按服务于情绪</strong> —— 在动作、对峙、悬念这些高点放限时点按，强化"我在参与"的感觉。</li>
+        <li><strong>分支收敛与发散并用</strong> —— 不必每条线都全程独立，适当让几条线再汇回主线，既有变化又控制工作量。</li>
+        <li><strong>先短后长</strong> —— 先做一条最短的完整线跑通体验，再往上加分支和结局。</li>
+        <li><strong>多试玩</strong> —— 自己当玩家走一遍，往往比反复看时间轴更能发现问题。</li>
+      </ul>
+
+      <h2>打包 · 分享</h2>
+      <p>做好的影游可以<strong>一键打包成一个自包含的网页</strong>：剧情、图片、视频、点按与分支逻辑全都打进去。把它发给别人，在任意现代浏览器里<strong>打开就能玩</strong>——不用安装任何东西，也不挑显卡。</p>
+      <p>在工程里，它还会作为一份<strong>标准游戏资产</strong>被保存与寻址，因此可以被复用、被引用，也方便再分发或接入更大的项目。</p>
+
+      <h2>常见问题</h2>
+      <ul>
+        <li><strong>玩家需要装东西吗？</strong> 不需要。打包出来就是一个网页，双击或托管后用浏览器打开即可。</li>
+        <li><strong>我不会拍片、不会剪辑，能用吗？</strong> 能。你只要把故事和选择讲清楚，生成与对齐都交给 AI 和时间轴。</li>
+        <li><strong>故事很长可以吗？</strong> 可以，按集续写，每集都对齐已定下的角色与场景锚点。</li>
+        <li><strong>之后还能改吗？</strong> 能。它在工程里是可寻址的资产，随时回到编辑器调整后重新打包。</li>
+      </ul>
+
+      <blockquote>不会拍片、不会剪辑也没关系 —— 把故事讲出来，AI 帮你把它变成一部能玩的短片。</blockquote>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/zh/showcase/">看看成品案例 →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

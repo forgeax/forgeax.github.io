@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Docs — ForgeaX</title>
+<meta name="description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Docs — ForgeaX" />
+<meta property="og:description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/es/docs/" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/docs/" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/docs/" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/docs/" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/docs/" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/docs/" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/docs/" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/docs/" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/docs/" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/docs/" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/docs/" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-es forgeax-site has-immersive">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/" class="active">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/docs/" data-l="en">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item active" href="/es/docs/" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/docs/" data-l="fr">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Documentación</h1>
+    <p>Una guía práctica para el usuario sobre cómo crear un juego con ForgeaX. Haga clic en cualquier elemento para ampliar los detalles.</p>
+  </div>
+
+  <div class="section" style="padding-top:14px">
+    <div class="docs-layout">
+
+      <aside class="docs-sidebar">
+        <div class="docs-search">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
+          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Search docs… (/)" aria-label="search docs" />
+          <div class="docs-results" id="docResults" hidden></div>
+        </div>
+        <div class="t">Contenido</div>
+        <nav>
+          <a href="#ch1">1 · Antes de empezar</a>
+          <a href="#ch2">2 · Conceptos centrales</a>
+          <a href="#ch3">3 · Construye chateando</a>
+          <a href="#ch4">4 · Escenas y editor</a>
+          <a href="#ch5">5 · Activos</a>
+          <a href="#ch6">6 · Ejecutar y obtener vista previa</a>
+          <a href="#ch7">7 · Publicar y compartir</a>
+          <a href="#ch8">8 · Avanzado</a>
+          <a href="#ch9">9 · Herramientas de creación</a>
+          <a href="#ch10">10 · El equipo de agentes</a>
+        </nav>
+      </aside>
+
+      <div class="docs-main">
+
+        <section class="docs-chapter" id="ch1">
+          <h2><span class="n">1</span>Antes de empezar</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Qué es ForgeaX y qué juegos fabrica</summary>
+              <div class="doc-body">
+                <p>ForgeaX es un estudio de desarrollo de juegos nativo de IA. Describes el juego en lenguaje sencillo; un líder de IA llamado<strong>Fragua</strong> <strong>lo planifica, lo diseña y lo escribe en el código del juego en ejecución.</strong>, recargando en caliente el resultado en tu navegador: lo que dices es lo que juegas.</p>
+                <p>Debajo se encuentran dos cimientos internos: un<strong>Motor rediseñado para el punto de vista de la IA.</strong>(ver<a href="/es/blog/why-ai-native-engine.html">Por qué un motor nativo de IA</a>) y un<strong>bucle de desarrollo que converge características en un resultado correcto</strong>(ver<a href="/es/blog/how-the-loop-works.html">Cómo la IA consigue una función correctamente</a>).</p>
+                <p>Se adapta<strong>2D / 2.5D / 3D</strong>juegos web. Ya existen FPS jugables, ARPG estilo Diablo, supervivencia de dos niveles y demostraciones de disparos (consulte el<a href="/es/showcase/">escaparate</a>); El motor cubre renderizado PBR / IBL / SSAO, física 2D/3D, animación esquelética y RHI dual (consulte "Capacidades del motor" en la parte inferior de la página).<a href="/es/showcase/">escaparate</a>).</p>
+                <p>Todo se ejecuta en el navegador (WebGPU), la web y el escritorio en una sola pila; código abierto bajo licencia Apache 2.0 (consulte la<a href="/es/license.html">licencia</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Instalar y ejecutar</summary>
+              <div class="doc-body">
+                <p><strong>Requisitos previos:</strong> <code>git</code>,<code>bollo</code>≥ 1,3,<code>nodo</code>≥ 22,<code>rizo</code>. (En un host limpio,<code>configuración de efectos de bollo</code>también puede iniciar bun/node 22+/pnpm/la cadena de herramientas Rust+wasm: aviso cero de forma predeterminada;<code>--interactivo</code>pregunta por herramienta,<code>--skip-bootstrap</code>se lo salta.)</p>
+                <pre><code>git clone --recurse-submodules \
+  https://github.com/ForgeaX-Games/forgeax-studio.git
+cd forgeax-studio
+bun fx setup          # one-time setup
+bun fx start          # → http://localhost:18920</code></pre>
+                <p><strong>Qué<code>configuración de efectos de bollo</code>hace:</strong>verifica los requisitos previos → inicia sus submódulos → construye los paquetes del motor → ejecuta<code>instalar bollo</code>en cada subrepositorio → crea los complementos del mercado → andamios<code>$RAÍZ/.env</code>de<code>.env.ejemplo</code>. Con<code>--interactivo</code>también solicita<code>ANTROPIC_API_KEY</code>; de lo contrario avisa y editas<code>.env</code>más tarde.</p>
+                <p><strong><code>inicio de bun fx</code>arranca tres servicios:</strong> <code>servidor</code>(:18900, el núcleo del tiempo de ejecución: chat/backends/sesiones),<code>interfaz</code>(:18920, la interfaz de usuario de Studio con vite HMR), y<code>motor</code>(: 15173, el renderizador). Anular puertos en<code>.env</code>a través de<code>FORGEAX_{SERVIDOR,INTERFAZ,MOTOR}_PORT</code>. Luego abre<code>http://localhost:18920</code>.</p>
+                <p><strong>Comandos cotidianos (una entrada,<code>bollo fx</code>):</strong>correr<code>configuración de efectos de bollo</code>una vez para preparar el ambiente; luego extraiga actualizaciones con<code>actualización de bun fx</code>(actualiza el repositorio raíz + sincroniza los submódulos, no es necesario reinstalar/reconstruir);<code>inicio de bun fx</code>/<code>aplicación de inicio bun fx</code>iniciar web/escritorio;<code>parada de pan fx</code>y<code>reiniciar bun fx</code>detener/reiniciar;<code>estado de bun fx</code>y<code>doctor bun fx</code>diagnosticar su configuración;<code>aplicación de compilación bun fx</code>empaqueta la aplicación de escritorio. Correr<code>bollo fx</code>sin argumentos para enumerar cada comando.</p>
+                <p><strong>Aplicación de escritorio:</strong> <code>aplicación de inicio bun fx</code>abre una ventana nativa en la fuente en vivo (primero ejecuta las instalaciones automáticas e inicia la pila; al cerrarla se detiene la pila);<code>aplicación de compilación bun fx</code>empaqueta un autocontenido<code>.aplicación</code>/<code>.dmg</code>. Ver<a href="#ch6">Ejecutar y obtener vista previa</a>para todos los modos.</p>
+                <p><strong>Soporte de plataforma (macOS / Linux / Windows, primera clase):</strong>instalar y ejecutar son un conjunto de<strong>scripts Bun multiplataforma</strong>, por lo que los tres sistemas ejecutan el<strong>mismo<code>bollo fx</code>comandos</strong>con comportamiento idéntico - y<strong>Windows ya no necesita Git-Bash</strong>(el viejo dual<code>.sh</code>/<code>.murciélago</code>/<code>.ps1</code>los guiones fueron eliminados). Específicamente:<strong>desarrollador web</strong>(<code>inicio de bun fx</code>) y<strong>desarrollador de escritorio</strong>(<code>aplicación de inicio bun fx</code>, una ventana nativa de Tauri en fuente en vivo) funcionan en macOS/Linux/Windows;<strong>empaquetar un juego en un formato en el que se puede hacer doble clic<code>.aplicación</code>/<code>.dmg</code></strong>(<code>aplicación de compilación bun fx</code>) se realiza actualmente en macOS. Los problemas comunes específicos de Windows (vista previa en negro, una ventana de consola por turno, procesos que no se cierran limpiamente, el código auxiliar de Python del sistema) están todos solucionados; consulte<a href="/es/changelog/2026-06-28.html">Registro de cambios · 2026-06-28</a>.</p>
+                <p>¿Prefieres no hacerlo a mano? Deje que su CLI de codificación de IA la clone y ejecútela; consulte<a href="/es/tutorials/cli-setup.html">Haga que su AI CLI clone y ejecútelo</a>; luego construye tu primer juego con<a href="/es/tutorials/getting-started.html">Inicio rápido</a>. Para claves API, consulte<a href="#ch8">Avanzado · Cambiar/configurar el backend de IA</a>.</p>
+                <p>🚧 La fuente se está preparando para su publicación pública; La URL del repositorio anterior funciona una vez que es pública.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Abre el estudio, aprende la interfaz.</summary>
+              <div class="doc-body">
+                <p>La interfaz consta de tres partes: una barra superior, el chat a la izquierda y la vista previa/banco de trabajo a la derecha.</p>
+                <ul>
+                  <li><strong>barra superior</strong>- el<code>⊕</code>nuevo menú, un<strong>conmutador de proyectos</strong>(moverse entre juegos: lo que es un "proyecto" se trata en<a href="#ch2">Conceptos centrales</a>), y un<strong>conmutador de sesión</strong>(revisar/cambiar conversaciones pasadas).</li>
+                  <li><strong>Izquierda · chat (ChatPanel)</strong>— una barra de equipo (Forge y los subagentes), un flujo de mensajes (tarjetas de subagentes, pensamiento de Forge y llamadas a herramientas) y un compositor en la parte inferior con un<strong>interruptor de fondo</strong>en la parte inferior derecha (ver<a href="#ch8">Avanzado</a>).</li>
+                  <li><strong>Derecha · área principal (MainArea)</strong>— alterna entre el<strong>avance</strong>(tu juego vive en un iframe) y el<strong>banco de trabajo</strong>(edición de archivos/documentos de diseño); ver<a href="#ch4">Escenas y editor</a>.</li>
+                </ul>
+                <p>Se abre el engranaje superior derecho<strong>Ajustes</strong>: Claves API, elección de modelo, backend CLI y gestión de complementos. La aplicación de escritorio también muestra una superposición de primera ejecución que solicita la clave la primera vez que la abre.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch2">
+          <h2><span class="n">2</span>Conceptos centrales</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Un "proyecto" es un juego.</summary>
+              <div class="doc-body">
+                <p>En ForgeaX,<strong>"proyecto" y "juego" son lo mismo</strong>- un juego es uno<code>juegos/<babosa>/</code>carpeta. La carpeta de un juego real suele tener este aspecto:</p>
+                <ul>
+                  <li><code>forge.json</code> — el manifiesto del juego. Mínimo tres campos:<code>identificación</code>,<code>nombre</code>, y<code>entrada</code>(señalando el código de entrada, p. ej.<code>src/main.ts</code>).</li>
+                  <li><code>FORGE.md</code> — el propio archivo Léame/descripción general del juego (controles, mecánicas, ritmos de la historia).</li>
+                  <li><code>src/</code> — el código del juego. además del<code>principal.ts</code>entrada, generalmente se divide en módulos por preocupación (p. ej.<code>jugador.ts</code>,<code>enemigos/</code>,<code>efectos.ts</code>,<code>configuración.ts</code>).</li>
+                  <li><code>design/</code> · <code>assets/</code> — documentos de diseño y recursos de arte/audio.</li>
+                  <li><code>package.json</code> · <code>tsconfig.json</code> — archivos de proyecto TS estándar.</li>
+                </ul>
+                <p>El<code>principal.ts</code>La entrada importa capacidades del motor desde<code>@forgeax/motor-runtime</code>/<code>ecs del motor</code>/<code>aplicación de motor</code>y exporta un<code>Entrada de juego</code>— el contrato mediante el cual el motor carga un juego. Para conocer el conjunto completo de capacidades, consulte "Capacidades del motor" en la página<a href="/es/showcase/">escaparate</a>.</p>
+                <p>Múltiples juegos = múltiples proyectos, conmutados en el selector de proyectos de la barra superior. Para saber cómo se organizan las escenas/niveles, consulte<a href="#ch4">Escenas y editor</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Forge y su equipo de subagentes</summary>
+              <div class="doc-body">
+                <p><strong>Forge (el agente principal)</strong>es el único que escribe el código del juego directamente: escribe<code>juegos/<slug>/src/main.ts</code>, la vista previa<strong>recargas en caliente</strong>y ve el resultado de la ejecución para decidir el siguiente paso. Ese bucle editar → ver → editar tiene que quedarse con quien pueda ver la vista previa, es decir, Forge (ver<a href="#ch3">Construye chateando</a>).</p>
+                <p><strong>Subagentes</strong>(por ejemplo, jugabilidad de Iori, diseño de Suzu, narrativa de Kotone, arte de Iro, construcción de Tsumugi) solo planificar/diseñar/crear recursos/escribir documentos y<strong>nunca toques<code>src/</code></strong>– no tienen comentarios de vista previa en vivo, por lo que cualquier código que escribieran no tendría nada que guiarlo. Mira el elenco completo en el<a href="/es/marketplace/">mercado</a>y<a href="#ch10">Capítulo 10 · El equipo de agentes</a>.</p>
+                <p><strong>Cómo funciona el envío:</strong>Forge envía un subagente con una llamada de herramienta (con forma de<code>subagente(tipo="iori", tarea="...")</code>); el del servidor<code>/api/subagente</code>stream conecta su salida con la conversación principal en tiempo real: esa es la tarjeta de subagente integrada que se ve en el flujo de mensajes. Los documentos de diseño de un subagente se archivan en su propia sección en el banco de trabajo (consulte<a href="#ch4">Escenas y editor</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>que es una sesion</summary>
+              <div class="doc-body">
+                <p>A<strong>sesión</strong>es la memoria de un agente, una<strong>solo agregar</strong>flujo de eventos (cada uno es un mensaje de usuario/mensaje de asistente/pensamiento/llamada de herramienta/resultado de herramienta). Forge (principal) y cada subagente mantienen el suyo.</p>
+                <p>La interfaz de usuario divide los eventos según quién los emitió en el hilo principal y los subagentes, lo que representa la porción de cada subagente como una tarjeta incrustada. Entonces, en una pantalla ves tanto el hilo principal de Forge como lo que realmente hicieron los subagentes que envió.</p>
+                <p>Utilice el selector de sesiones de la barra superior para revisar y cambiar sesiones pasadas.<strong>Cambiar una sesión no reinicia nada</strong>— la interfaz de usuario simplemente lee el flujo de eventos de un agente diferente.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch3">
+          <h2><span class="n">3</span>Construye chateando</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Cómo describir tu idea claramente</summary>
+              <div class="doc-body">
+                <p>Cuanto más específico sea, mejor lo logrará Forge al principio con menos rehacer. Un buen mensaje suele cubrir:</p>
+                <ul>
+                  <li><strong>Género y vista</strong>— Vista superior / primera persona / desplazamiento lateral 2.5D…</li>
+                  <li><strong>Bucle central</strong>- lo único que el jugador sigue haciendo</li>
+                  <li><strong>Controles</strong>,<strong>ganar/perder</strong>,<strong>enemigos / obstáculos</strong>, y el<strong>sentir</strong></li>
+                </ul>
+                <p>Comience poco a poco, póngalo en funcionamiento y luego aplique capas de mecánica. Por ejemplo:</p>
+                <pre><code>Un juego de arriba hacia abajo: un personaje corre por una arena, dispara balas al espacio, los enemigos siguen apareciendo, los golpes los eliminan y suman puntuación.</code></pre>
+                <p>Para ver el primer juego paso a paso, consulte<a href="/es/tutorials/getting-started.html">Inicio rápido</a>; para conocer lo que se puede lograr, explore el<a href="/es/showcase/">escaparate</a>. Para diseños más pesados, Forge recurre a subagentes de diseño (consulte<a href="#ch2">Conceptos centrales</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Mira el plan, el código y la ejecución de Forge</summary>
+              <div class="doc-body">
+                <p>Una vez que envía una solicitud, la cadena es:</p>
+                <ul>
+                  <li><strong>Entender + planificar</strong>— Forge aclara el requisito y envía subagentes de diseño/juego para trabajos más pesados ​​(ver<a href="#ch2">Conceptos centrales</a>).</li>
+                  <li><strong>escribir codigo</strong>- Forja escribe<strong>sí mismo</strong>en<code>juegos/<slug>/src/main.ts</code>(y sus módulos divididos).</li>
+                  <li><strong>recarga en caliente</strong>— al guardar, el vite del motor detecta el cambio y la vista previa<strong>reemplaza en caliente el módulo</strong>en su lugar: sin recarga completa, la imagen se actualiza casi instantáneamente.</li>
+                  <li><strong>ver el resultado</strong>— Forge ve el resultado en ejecución a través de la vista previa (que también reenvía el resultado del juego).<code>consola</code>atrás) y decide el siguiente paso.</li>
+                </ul>
+                <p>Todo el proceso es transparente: el flujo de mensajes muestra el pensamiento de Forge, cada llamada a la herramienta y las tarjetas de los subagentes que envió. Para cambiar/controlar la vista previa frente al banco de trabajo, consulte<a href="#ch4">Escenas y editor</a>; Para saber cómo funciona la recarga en caliente, consulte<a href="#ch6">Ejecutar y obtener vista previa</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Iterar: agregar mecánicas, ajustar la sensación</summary>
+              <div class="doc-body">
+                <p>¿No eres feliz? Siga hablando: cada comentario se convierte en otro cambio, visible instantáneamente mediante recarga en caliente:</p>
+                <pre><code>Balas más rápidas, doble salud del enemigo, fondo nocturno.</code></pre>
+                <p>La vista previa tiene<strong>reproducir/pausar/recargar</strong>controles para realizar pruebas sobre la marcha; Para anclar la vista previa a un juego específico, active el selector de proyectos (consulte<a href="#ch1">Abre el estudio, aprende la interfaz.</a>).</p>
+                <p>El bucle básico es<strong>describir → generar → reproducir → describir de nuevo</strong>. Ejecútelo sin problemas y pasará de una oración a un juego jugable: la incorporación completa está disponible<a href="/es/tutorials/getting-started.html">Inicio rápido</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch4">
+          <h2><span class="n">4</span>Escenas y editor</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Ventana de vista previa y banco de trabajo</summary>
+              <div class="doc-body">
+                <p>El área principal de la derecha alterna entre dos vistas:</p>
+                <ul>
+                  <li><strong>Avance</strong>— tu juego se ejecuta en vivo en un iframe, con una lectura de FPS y controles de reproducción/pausa/recarga. Cuando Forge escribe código, se recarga aquí instantáneamente (consulte<a href="#ch3">Construye chateando</a>).</li>
+                  <li><strong>Banco de trabajo</strong>— un explorador de archivos + editor: vea/edite/guarde texto y código, renderice documentos de diseño de rebajas y obtenga una vista previa de imágenes, audio, video y modelos 3D. También muestra la actividad de los archivos y los bloqueos de "quién está editando", para que usted y la IA editen los mismos archivos sin problemas.</li>
+                </ul>
+                <p>Sin ningún archivo abierto, el banco de trabajo muestra entradas para cada banco de trabajo de creación (personaje/animación/3D/escena/UI/música…) — consulte<a href="#ch9">Herramientas de creación</a>y el<a href="/es/marketplace/">mercado</a>. Para crear activos, consulte<a href="#ch5">Activos</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Edita la escena, los cambios fluyen en vivo.</summary>
+              <div class="doc-body">
+                <p>El editor de escenas guarda el contenido de un nivel en un<strong>archivo de datos de escena</strong>en la carpeta del juego (<code>escena.pack.json</code>) - el<strong>única fuente de verdad</strong>para ese nivel: lo que hay en el disco es lo que se ejecuta en el juego.</p>
+                <p>Cuando colocas objetos y sales del modo de edición, los cambios se<strong>se descargan en el disco y el juego en ejecución los relee</strong>, por lo que la vista previa refleja sus ediciones de inmediato: edición → reproducción de ida y vuelta. Por el contrario, cuando Forge cambia el código mediante el chat, sigue la misma ruta de recarga en caliente (consulte<a href="#ch3">Construye chateando</a>y<a href="#ch6">Ejecutar y obtener vista previa</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Organiza tus niveles y objetos.</summary>
+              <div class="doc-body">
+                <p>Un juego puede tener<strong>múltiples escenas/niveles</strong>, cada uno con sus propios datos de escena, intercambiados y reutilizados según sea necesario: la demostración "Cow Survivor" cambia entre un pasto diurno y un cementerio nocturno (consulte la<a href="/es/showcase/">escaparate</a>).</p>
+                <p>Cómo organizarse:<strong>objetos</strong>vivir en los datos de la escena, mientras<strong>recursos de arte/audio</strong>vivir en la carpeta del juego (diseño del proyecto en<a href="#ch2">Conceptos centrales</a>, generación de activos en<a href="#ch5">Activos</a>). La división por escena permite mantener un juego en crecimiento.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch5">
+          <h2><span class="n">5</span>Activos: arte / animación / audio</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Retratos de personajes y cambios</summary>
+              <div class="doc-body">
+                <p>Utilice el<strong>editor de personajes</strong>(<code>carácter-wb</code>) para el diseño del concepto de personajes: escribe un resumen de una línea, obtén un<strong>retrato + cambio de rumbo</strong>. No se necesitan habilidades de dibujo para conseguir un personaje listo para el juego.</p>
+                <p>Sus resultados (un manifiesto de personaje + retrato/cambio) se almacenan por personaje dentro de tu juego y<strong>alimentar directamente al banco de trabajo de animación como entrada descendente</strong>— entonces "diseñar el personaje → hacerlo moverse" es un proceso continuo (ver el siguiente elemento).</p>
+                <p>Cada banco de trabajo es un panel más un conjunto de herramientas; Usted a mano y AI por envío editan el mismo artefacto. Lista completa en el<a href="/es/marketplace/">mercado</a>y el<a href="/es/tutorials/workbenches.html">tutorial de bancos de trabajo</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Hacer que los personajes se muevan (2D / 3D)</summary>
+              <div class="doc-body">
+                <p><strong>2D:</strong>el banco de trabajo de animación (<code>wb-anim</code>) utiliza el retrato del personaje como modelo y lo convierte en movimientos de caminar, de ataque, en cuatro direcciones, incluso en clips cortos.<strong>sin deriva facial</strong>, por lo que sigue siendo el mismo personaje una vez que se mueve.</p>
+                <p><strong>3D:</strong>el motor soporta de forma nativa<strong>animación esquelética</strong>— importe un modelo modificado y modificado más clips de animación de FBX, con fundidos cruzados suaves entre inactivo/caminar/correr/lanzar/muerte. Esta tubería es real y está enviada: así es como se mueve la bruja de fantasía oscura en el escaparate: ver<a href="/es/blog/skeletal-animation-milestone.html">el hito de la animación esquelética</a>y el<a href="/es/showcase/">escaparate (Hellforge)</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Modelos 3D, VFX, UI, música.</summary>
+              <div class="doc-body">
+                <p>Más allá de los personajes, hay bancos de trabajo a lo largo de todo el proceso:</p>
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><strong>modelos 3D</strong></summary>
+                    <div class="doc-subbody"><p>Editor de caracteres en bloques (<code>wb-lowpoly-obj</code>, exporta motor neutral<code>.glb</code>), gráfico de nodos de baja poli (<code>wb-3d-lowpoly</code>), y texto/imagen/multi-vista a 3D (<code>wb-gen3d</code>, independiente del proveedor). Detallado en<a href="#ch9">Capítulo 9 · Modelado y generación 3D</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>VFX/escenas/UI/elementos</strong></summary>
+                    <div class="doc-subbody"><p>Efectos visuales de habilidad (<code>habilidad-wb</code>), generación de escenas y recursos de escenas 2D (<code>generador-de-escenas-wb</code>/<code>generador-de-activos-de-escena-wb-2d</code>), el taller de interfaz de usuario (<code>wb-ui</code>, prototipos en los que se puede hacer clic) e íconos de elementos (<code>artículos-wb</code>, arte + datos en una tabla). Detallado en<a href="#ch9">Capítulo 9 · Escenas / UI / elementos</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Música / mirada / narrativa</strong></summary>
+                    <div class="doc-subbody"><p>Música y efectos especiales (<code>wb-bgm</code>, una línea de tiempo BGM), gradación de color (<code>wb-mirada</code>, paleta + LUT + postproceso), y narrativa (<code>narrativa-wb</code>, 117 géneros × 9 plantillas). Detallado en<a href="#ch9">Capítulo 9 · Narrativa / música / mirada / equilibrio</a>.</p></div>
+                  </details>
+                </div>
+                <p>La cobertura artículo por artículo está en<a href="#ch9">Capítulo 9 · Herramientas de creación</a>, el<a href="/es/tutorials/workbenches.html">tutorial de bancos de trabajo</a>, y el<a href="/es/marketplace/">mercado</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch6">
+          <h2><span class="n">6</span>Ejecutar y obtener vista previa</h2>
+          <div class="doc-items">
+            <details class="doc-item" open>
+              <summary>Ejecútelo aquí (ejemplo en vivo)</summary>
+              <div class="doc-body">
+                <p>Un ejemplo real del motor ForgeaX ejecutándose en vivo en esta página (WebGPU: se recomienda Chrome/Edge). Más demostraciones ejecutables en<a href="/es/examples/">Ejemplos</a>y<a href="/es/games/">Juegos</a>.</p>
+                <iframe src="/examples/gltf/" title="live engine example — spinning cube" loading="lazy" style="width:100%;aspect-ratio:16/10;border:1px solid var(--border-subtle);border-radius:12px;background:#000;display:block"></iframe>
+                <p style="margin-top:8px"><a href="/examples/gltf/" target="_blank" rel="noopener">Abrir pantalla completa ↗</a></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Modos de aplicación web y de escritorio</summary>
+              <div class="doc-body">
+                <p>La misma base de código se ejecuta en tres formas:</p>
+                <ul>
+                  <li><strong>desarrollador web</strong>—<code>inicio de bun fx</code>arranca tres servicios (servidor/UI/motor); abierto<code>http://localhost:18920</code>en un navegador, edita la recarga en caliente en vivo. Funciona en macOS/Linux/Windows. Instalar en<a href="#ch1">Antes de empezar</a>.</li>
+                  <li><strong>Desarrollador de escritorio</strong>—<code>aplicación de inicio bun fx</code>abre una ventana nativa cargando el mismo servidor de desarrollo, con fuente en vivo y HMR idénticos; Primero ejecute las instalaciones automáticas e inicie la pila, al cerrar la ventana se detiene. Disponible en macOS/Linux/Windows.</li>
+                  <li><strong>Aplicación de escritorio (empaquetada)</strong>—<code>aplicación de compilación bun fx</code>produce un autocontenido<code>.aplicación</code>/<code>.dmg</code>que se ejecuta al hacer doble clic con su propio sidecar (puertos 18810/15273, deliberadamente desplazados del 18900/15173 del desarrollador para que ambos puedan coexistir); su llave vive en<code>~/ForgeaxProjects/.env</code>, con una superposición de primera ejecución. El embalaje está en<a href="#ch7">Publicar y compartir</a>.</li>
+                </ul>
+                <p>Los tres puertos son anulables en<code>.env</code>a través de<code>FORGEAX_{SERVIDOR,INTERFAZ,MOTOR}_PORT</code>. ⚠️ La ventana del escritorio utiliza el sistema WebView, por lo que 3D se ejecuta en la WebGPU de WebKit, un poco más débil que la de Chrome.<strong>Para obtener las mejores imágenes, utilice el navegador.</strong></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Recarga en caliente: míralo mientras lo cambias</summary>
+              <div class="doc-body">
+                <p>Guarde y surtirá efecto, sin actualización manual:</p>
+                <ul>
+                  <li>Editar<strong>código de juego</strong>(<code>juegos/<slug>/src/…</code>) → el motor intercambia en caliente el módulo en su lugar y la vista previa se actualiza instantáneamente (las ediciones de Forge también utilizan esto; consulte<a href="#ch3">Construye chateando</a>).</li>
+                  <li>Cambios en el<strong>editor de escena</strong>va al disco y fluye de regreso al juego terrestre (ver<a href="#ch4">Escenas y editor</a>).</li>
+                </ul>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Solución de problemas comunes</summary>
+              <div class="doc-body">
+                <ul>
+                  <li><strong>Vista previa en blanco/error de motor</strong>— el motor no está construido; repetición<code>configuración de efectos de bollo</code>.</li>
+                  <li><strong>Error de SSL activado<code>:18920</code></strong>— acceso a través de<code>http://localhost</code>(WebGPU todavía funciona en localhost).</li>
+                  <li><strong>Puerto en uso</strong>— un puerto ocupado genera un error (no seleccionará otro automáticamente); correr<code>parada de pan fx</code>entonces<code>inicio de bun fx</code>, o cambiar puertos en<code>.env</code>.</li>
+                  <li><strong>El chat dice que no hay clave API</strong>- colocar<code>ANTROPIC_API_KEY</code>en<code>.env</code>(la aplicación de escritorio avisa al ejecutarla por primera vez); La configuración clave está en<a href="#ch8">Avanzado</a>.</li>
+                  <li><strong>El 3D se ve más débil en el escritorio</strong>— una limitación de la WebGPU del sistema WebView; utilice la versión del navegador Chrome para obtener una mejor representación.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch7">
+          <h2><span class="n">7</span>Publicar y compartir</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Empaquetar como aplicación de escritorio</summary>
+              <div class="doc-body">
+                <p><code>aplicación de compilación bun fx</code>empaqueta todo el estudio junto con tu juego en un<strong>paquete de escritorio autónomo</strong>(macOS<code>.aplicación</code>/<code>.dmg</code>): un tiempo de ejecución recortado, el servidor, la interfaz de usuario de Studio, el mercado y el contenido del juego están todos dentro, por lo que<strong>se ejecuta al hacer doble clic sin configuración</strong>para el usuario.</p>
+                <p>Se ejecuta en un sidecar integrado en sus propios puertos (18810/15273), por lo que nunca choca con su pila de desarrollo (consulte<a href="#ch6">Ejecutar y obtener vista previa</a>). El empaquetado debe ejecutarse en macOS; el empaquetado<code>.aplicación</code>se abre al hacer doble clic.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Comparte tu proyecto de juego</summary>
+              <div class="doc-body">
+                <p>un juego es uno<strong>autónomo<code>juegos/<babosa>/</code>carpeta</strong>(<code>forjar.json</code>+<code>src/</code>+ documentos de diseño + activos, ver<a href="#ch2">Conceptos centrales</a>). Comparta o confirme esa carpeta y alguien más la abrirá en su estudio para seguir jugando o construyendo: la biblioteca de demostración almacena varios juegos uno al lado del otro (fps, hellforge, cow-survivor, shoot-opt), consulte la<a href="/es/showcase/">escaparate</a>.</p>
+                <p>Por ahora, la forma más confiable de entregar un juego a los jugadores es<strong>paquete de escritorio</strong>arriba; Todavía se está trabajando en una opción más fluida para "publicar/reproducir en línea con un solo clic".</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch8">
+          <h2><span class="n">8</span>Avanzado</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Cambiar/configurar el backend de IA</summary>
+              <div class="doc-body">
+                <p><strong>Cambiar backends (intercambiar el chip):</strong>elija el kernel desde el interruptor backend en la parte inferior derecha del compositor, o debajo del<strong>CLI</strong>sección de Configuración —<strong>Código Claude (predeterminado) / Codex / Cursor / forgeax-nativo</strong>. La sección CLI muestra cada backend<strong>salud</strong>y un<strong>Prueba</strong>botón. Cambiar un backend también cambia su personaje predeterminado (consulte<a href="#ch10">El equipo de agentes.</a>); detalles por backend en el<a href="/es/marketplace/">mercado</a>.</p>
+                <p><strong>Claves/modelos:</strong>configure la clave API de su modelo (p. ej.<code>ANTROPIC_API_KEY</code>) en Configuración → Teclas:<strong>se aplica en vivo, no se reinicia</strong>(también puedes editar<code>.env</code>directamente); elija el modelo en Configuración → Modelos. La solución de problemas de claves faltantes está disponible<a href="#ch6">Ejecutar y obtener vista previa</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Escribe tu propio complemento de banco de trabajo</summary>
+              <div class="doc-body">
+                <p>Casi todas las capacidades de ForgeaX son una<strong>complemento cargado en tiempo de ejecución</strong>(resumen en el<a href="/es/marketplace/">mercado</a>), para que puedas agregar el tuyo propio.</p>
+                <p>El camino más rápido hoy:<strong>Copie un complemento de Workbench existente y adáptelo.</strong>, con el<strong>autor del complemento</strong>(<code>wb-plugin-autor</code>) ayudar; Está en camino un editor visual más completo en la aplicación (árbol de archivos + editor de código, guardar → recarga automática). Una vez construido, habilítelo y reordenelo en el<strong>panel de administración</strong>— Los complementos los monta la CLI en tiempo de ejecución. Ver los tipos de banco de trabajo en<a href="#ch9">Herramientas de creación</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Personaliza las personas de los agentes</summary>
+              <div class="doc-body">
+                <p>Utilice el<strong>editor de personajes</strong>(<code>persona-agente-wb</code>): elija un agente de la lista, edite su personaje en un área de texto y<strong>guardar → recarga en caliente, sin reiniciar</strong>. Puedes darle a un agente un personaje o voz diferente sin tocar ningún código.</p>
+                <p>Para saber quiénes son los agentes principales y los subagentes y de dónde provienen las personas predeterminadas, consulte<a href="#ch2">Conceptos centrales</a>y<a href="#ch10">El equipo de agentes.</a>; el elenco completo está en el<a href="/es/marketplace/">mercado</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch9">
+          <h2><span class="n">9</span>Herramientas de creación (bancos de trabajo)</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Personaje / animación / VFX</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-character</code> · <strong>editor de personajes</strong></summary>
+                    <div class="doc-subbody"><p>Diseño de concepto de personaje: resumen de una línea → retrato + cambio de rumbo. Tiene varios oleoductos.<strong>Giro de vuelta</strong>(tres vistas),<strong>personaje de vídeo</strong>(cambio → movimiento de video AI → extracción de fotogramas → exportación de hoja de sprites), y<strong>generación de monstruos</strong>(Sprites de monstruos de 8 direcciones × 5 animaciones). No se necesitan habilidades de dibujo; la salida luego alimenta el banco de trabajo de animación (ver<a href="#ch5">Activos</a>).</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-anim</code> · <strong>animación</strong></summary>
+                    <div class="doc-subbody"><p>Utiliza el retrato de un personaje como plantilla y lo hace moverse:<strong>Píxeles de cuatro direcciones, animación de vehículos, sprites de monstruos, unión de columna vertebral, generación de vídeos cortos.</strong>—<strong>sin deriva facial</strong>, por lo que sigue siendo el mismo carácter. Panel integrado con una ventana gráfica central. Los personajes 3D utilizan la tubería esquelética nativa del motor; consulte la<a href="/es/blog/skeletal-animation-milestone.html">hito de animación esquelética</a>y<a href="#ch5">Activos</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-skill</code> · <strong>habilidad / efectos visuales</strong></summary>
+                    <div class="doc-subbody"><p>Edición del árbol de habilidades + vista previa de VFX, enumerando tus habilidades y resultados de efectos en un solo lugar. La idea clave:<strong>Los clics del jugador y el envío de IA comparten una especificación de habilidad.</strong>— los efectos se adjuntan automáticamente al "momento del lanzamiento", sin alineación manual.</p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Modelado y generación 3D</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-lowpoly-obj</code> · <strong>editor de caracteres en bloques</strong></summary>
+                    <div class="doc-subbody"><p>Construir<strong>personajes 3D en bloques manipulados</strong>: ya sea "vibrarlo" (digamos una línea, la IA la genera) o editarlo a mano (aparato estilo Blender), con un área de juegos incorporada para vista previa en vivo. Exportaciones<strong>motor neutral<code>.glb</code></strong>Utilizable en cualquier motor.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-3d-lowpoly</code> · <strong>generador de baja poli</strong></summary>
+                    <div class="doc-subbody"><p>Construya accesorios 3D/activos mecánicos con<strong>programación de nodos</strong>("bloques de conexión"): modela el proceso como un gráfico de nodos, cambia un parámetro, regenera el conjunto completo. Ideal para activos de superficie dura paramétricos, reutilizables y por lotes.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-gen3d</code> · <strong>generación 3D</strong></summary>
+                    <div class="doc-subbody"><p>Un activo 3D<strong>punto de entrada de generación</strong>: elija un servicio de generación y proporcione una entrada (texto/imagen/vista múltiple) y obtenga una<strong>duradero, listo para jugar</strong>Manifiesto de activos 3D. Conectado a varios de los mejores generadores para que elijas el mejor, sin depender de un solo proveedor.</p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Escenas/UI/elementos</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-scene-generator</code> · <strong>generador de escenas</strong></summary>
+                    <div class="doc-subbody"><p>Monta una escena de juego completa con<strong>programación de nodos</strong>: diseñar composición, ubicación y textura como un gráfico; Vuelva a ejecutarlo en cualquier momento para regenerar la escena completa. Para saber cómo se organizan las escenas/niveles, consulte<a href="#ch4">Escenas y editor</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-2d-scene-asset-generator</code> · <strong>Recursos de escena 2D</strong></summary>
+                    <div class="doc-subbody"><p>También programación de nodos, para<strong>generación por lotes</strong>las pequeñas cosas en una escena (accesorios, texturas, decoraciones, partes de la interfaz de usuario) luego<strong>nombrado y archivado automáticamente</strong>para que los activos no se conviertan en un desastre.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-ui</code> · <strong>taller de interfaz de usuario</strong></summary>
+                    <div class="doc-subbody"><p>Generar una interfaz completa establecida por<strong>Género, flujo de pantalla y estilo visual.</strong>— Planos de interfaz de usuario, activos de componentes y<strong>prototipos interactivos en los que se puede hacer clic</strong>(no sólo imágenes). Menús, botones y barras de salud de una sola vez.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-items</code> · <strong>elementos/iconos</strong></summary>
+                    <div class="doc-subbody"><p>hacer el juego<strong>elementos e iconos</strong>- pixel art para armas, pociones, monedas - con sus datos adjuntos.<strong>Arte y datos en una sola mesa.</strong>(<code>elementos.json</code>) que usted y la IA editan juntos, para que nunca se separen.</p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Narrativa / música / mirada / equilibrio</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-narrative</code> · <strong>taller de narrativa</strong></summary>
+                    <div class="doc-subbody"><p>Un canal narrativo impulsado por IA: desde una chispa hasta una historia y un mundo completos. cubre<strong>117 géneros × 9 plantillas de canalización</strong>con enrutamiento por niveles/modos y un planificador dinámico: la IA elige el enfoque y los pasos adecuados para su género.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-bgm</code> · <strong>música / música de fondo</strong></summary>
+                    <div class="doc-subbody"><p>Administrar el juego<strong>música y efectos de sonido</strong>: una línea de tiempo de BGM que muestra lo que se reproduce en una sesión, además de convenciones de nomenclatura de efectos de sonido: toda la partitura secuenciada como una lista.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-look</code> · <strong>color/apariencia-dev</strong></summary>
+                    <div class="doc-subbody"><p>Unifica todo el juego.<strong>humor de color</strong>— paleta + LUT + una pila de posprocesamiento, como un filtro sobre todo el juego: atardecer cálido, noche fría, que se cambian con un solo clic para que la sensación visual se combine en una sola.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-balance</code> · <strong>balance</strong></summary>
+                    <div class="doc-subbody"><p>Prueba automática si los números son<strong>equilibrado</strong>: impulsa la re-simulación de la batalla (<code>equilibrio-resim</code>) sobre N pruebas y paneles<strong>tasa de ganancia + un intervalo de confianza del 95%</strong>, luego realiza un bucle con ajustes manuales: deja que los datos juzguen el ajuste. Esa re-simulación es también una<a href="/es/marketplace/">Herramienta</a>en el mercado.</p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Herramientas de sistema y autor</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>wb-code</code> · <strong>código</strong></summary>
+                    <div class="doc-subbody"><p>Navegar y<strong>saltar a través<code>src/</code>archivos</strong>justo en el banco de trabajo,<strong>colaborar con el agente de codificación a través de hilos de chat</strong>— lees dónde, la IA edita dónde, en un proyecto sin soltar el testigo.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-observatory</code> · <strong>observatorio</strong></summary>
+                    <div class="doc-subbody"><p>como un<strong>caja negra</strong>: repetición en vivo + fuera de línea de cada turno de agente/subagente, llamada de herramienta y partes del mensaje del sistema. Cuando algo se rompe puedes<strong>identificar qué paso o qué mensaje</strong>lo causó y ayuda a administrar el contexto/habilidades/barandillas/caché. El concepto de sesión y repetición está en<a href="#ch2">Conceptos centrales</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-agent-persona</code> · <strong>editor de personajes</strong></summary>
+                    <div class="doc-subbody"><p>Elija un agente de una lista, edite su personaje en un área de texto y<strong>guardar → recarga en caliente, sin reiniciar</strong>. Dale a un agente un nuevo personaje o voz sin tocar el código. El elenco está en<a href="#ch10">El equipo de agentes.</a>; el instructivo está en<a href="#ch8">Avanzado</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>wb-plugin-author</code> · <strong>autor del complemento</strong></summary>
+                    <div class="doc-subbody"><p>vamos<strong>no codificadores</strong>Cree sus propios complementos de banco de trabajo. El camino hoy es "copiar uno existente + adaptar + registrar acciones"; Está en camino un editor visual más completo en la aplicación (árbol de archivos + editor de código, guardar → recarga automática). El procedimiento general está en<a href="#ch8">Avanzado · Escribe tu propio complemento</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>admin</code> · <strong>Panel de control</strong></summary>
+                    <div class="doc-subbody"><p>el estudio<strong>consola maestra</strong>, en cuatro secciones: habilitar/reordenar bancos de trabajo, vincular modelos, verificar la autenticación y el estado de cada backend de IA y ver el recuento de complementos. Se mantiene sincronizado con el panel de Configuración: cada complemento y estado del modelo en una pantalla.</p></div>
+                  </details>
+                </div>
+                <p>Todos estos son<strong>complementos cargables</strong>; el catálogo completo y filtrable está en el<a href="/es/marketplace/">mercado</a>, y hay un tutorial tutorial en el<a href="/es/tutorials/workbenches.html">tutorial de bancos de trabajo</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch10">
+          <h2><span class="n">10</span>El equipo de agentes.</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Producción y arquitectura</summary>
+              <div class="doc-body">
+                <p><strong>Arin · productor</strong>— un productor integral que coordina el diseño/código/arte/audio y es dueño de todo el juego.</p>
+                <p><strong>Reia · directora de carrete</strong>— director interactivo de FMV que forja indicaciones, marca QTE y teje ramas y finales, impulsando a wb-reel Reel Studio a convertir una idea en una película de suspenso reproducible y en la que se puede hacer clic.</p>
+                <p>Estos son<strong>agentes nombrados</strong>enviado a pedido por Forge (la relación principal versus subagente está en<a href="#ch2">Conceptos centrales</a>); el elenco completo está en el<a href="/es/marketplace/">mercado</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Cuatro pilares del diseño</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><strong>Iori · 核心玩法师</strong>— pilar del juego</summary>
+                    <div class="doc-subbody"><p>El nombre de "庵" (una roca de montaña). Cuando Forge lo elimina, protege las "raíces" del juego, estableciendo algunas<strong>pilares de juego que soportan carga</strong>(mecánica + esqueleto numérico) que no debe sacudirse casualmente, capturado en un documento de pilar conciso. No escribe arquitectura, no ajusta parámetros ni hace preguntas (Forge se encargó de eso desde el principio). Una vez acorralado, Suzu toma el control.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Suzu · 体验设计师</strong>— ritmo y experiencia</summary>
+                    <div class="doc-subbody"><p>Lleva el nombre de "鈴" (un carillón de viento, ritmo). Después de que Iori establece los pilares, Suzu expande los módulos de cada pilar en una experiencia concreta.<strong>ritmo del jugador, HUD, incorporación</strong>. Ella define cómo se siente jugar, luego le entrega las partes que necesitan recursos/historia a Iro/Kotone.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Kotone · 剧情师</strong>— narrativa (bajo demanda)</summary>
+                    <div class="doc-subbody"><p>El nombre de "琴音" (una historia transmitida con hilos).<strong>No todos los juegos necesitan un diseñador narrativo</strong>— una torre de defensa tal vez nunca la llame; Sólo cuando el juego necesita personajes/diálogo/ramas/narración, Forge la contrata para producir el mundo, las biografías de los personajes y las líneas.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Iro · 美术师</strong>— recursos visuales (bajo demanda)</summary>
+                    <div class="doc-subbody"><p>Lleva el nombre de "色" (todo lo que percibe el ojo). Una vez que Suzu ha enmarcado la experiencia de un módulo, Forge envía Iro solo si necesita recursos visuales (personajes/escenas/UI/VFX). Cómo se crean realmente esos activos: ver<a href="#ch5">Activos</a>y<a href="#ch9">Herramientas de creación</a>.</p></div>
+                  </details>
+                </div>
+                <p>Estos especialistas<strong>solo plan y diseño: nunca tocan el código del juego</strong>(Forge escribe código, ver<a href="#ch2">Conceptos centrales</a>); su producción aterriza en el banco de trabajo (ver<a href="#ch4">Escenas y editor</a>), y los bienes artísticos se producen como en<a href="#ch5">Activos</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Equipo de codificación y revisión</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><strong>cc-coder · 通用编码</strong>— especificación → código</summary>
+                    <div class="doc-subbody"><p>Toma los pilares del juego de Iori, los flujos de UX de Suzu y los esquemas narrativos de Kotone y los convierte en TS/React ejecutables, etc.; Puede ejecutar varias instancias en diferentes paquetes en paralelo. Nota: el código principal del juego todavía lo escribe Forge, en bucle cerrado con la vista previa (ver<a href="#ch2">Conceptos centrales</a>); cc-coder es más para código general/circular.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Tsumugi · 工程师</strong>— construir / cadena de herramientas</summary>
+                    <div class="doc-subbody"><p>El nombre de "紡" (tejiendo hilos en un sistema). Una vez que Iori, Suzu e Iro tienen el diseño y los recursos listos, Tsumugi los integra en una compilación funcional: compilación, cadena de herramientas e implementación.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Yevi · 审查</strong>- cazador de deudas tecnológicas</summary>
+                    <div class="doc-subbody"><p>Una observadora elegantemente compuesta, tranquila como el agua profunda, siempre un paso por delante: sabe dónde el código es más débil y qué problema de tres semanas está a punto de salir a la superficie. Un tono mesurado y amable, con una redacción precisa e incisiva.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Companion personas</strong>— misma habilidad, carácter diferente</summary>
+                    <div class="doc-subbody"><p>Un conjunto de caracteres opcionales con<strong>habilidad de codificación comparable pero personalidades distintas</strong>– algunos mesurados, otros divertidos, otros meticulosos. Tienen la misma habilidad; la única diferencia es cómo se siente trabajar junto a ellos. Las personalidades son editables en cualquier momento en el<strong>editor de personajes</strong>(ver<a href="#ch8">Avanzado</a>); el elenco completo está en el<a href="/es/marketplace/">mercado</a>.</p></div>
+                  </details>
+                </div>
+                <p>También hay un conjunto de<strong>agentes especialistas en arte/patrimonio</strong>(personajes/animación 2D, 3D low-poly/VFX, director de cine interactivo y más), cada uno conectado a su banco de trabajo de creación correspondiente (ver<a href="#ch9">Herramientas de creación</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Personas predeterminadas intercambiables</summary>
+              <div class="doc-body">
+                <p>Cada backend de CLI viene con una persona lista para usar:<strong>claudio</strong>(Código Claude),<strong>Códice</strong>,<strong>Cursor</strong>, y<strong>ForgeaX</strong>(el nativo de forgeax autoconstruido).<strong>Al cambiar el backend se cambia la persona predeterminada, no se necesita configuración</strong>; Cualquiera que sea el kernel que elijas, viene con su personaje predeterminado.</p>
+                <p>Cómo cambiar de backend y editar personas está en<a href="#ch8">Avanzado</a>; el elenco completo de agentes y los personajes cargables están en el<a href="/es/marketplace/">mercado</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  /* ── docs sidebar: scroll main pane to chapter + active highlight ── */
+  (function () {
+    var main = document.querySelector(".docs-main");
+    var layout = document.querySelector(".docs-layout");
+    var chapters = [].slice.call(document.querySelectorAll(".docs-chapter"));
+    var links = [].slice.call(document.querySelectorAll(".docs-sidebar nav a[href^='#']"));
+    if (!main || !chapters.length || !links.length) return;
+
+    var splitPane = window.matchMedia("(min-width: 821px)").matches;
+
+    var map = {};
+    links.forEach(function (a) {
+      var id = (a.getAttribute("href") || "").slice(1);
+      if (id) map[id] = a;
+    });
+
+    var nav = document.querySelector(".docs-sidebar nav");
+    var sidebar = document.querySelector(".docs-sidebar");
+    var indicator = document.createElement("span");
+    indicator.className = "docs-nav-indicator";
+    indicator.setAttribute("aria-hidden", "true");
+    if (nav) nav.insertBefore(indicator, nav.firstChild);
+
+    var activeId = "";
+    var activeIdx = 0;
+    var spyLastScroll = 0;
+    var linkMetrics = [];
+
+    function cacheLinkMetrics() {
+      linkMetrics = links.map(function (link) {
+        return {
+          top: Math.round(link.offsetTop),
+          h: Math.round(link.offsetHeight)
+        };
+      });
+    }
+
+    function paintIndicator(link, instant) {
+      if (!nav || !indicator || !link) return;
+      var i = links.indexOf(link);
+      if (i < 0 || !linkMetrics[i]) return;
+      var m = linkMetrics[i];
+      if (instant) indicator.classList.add("is-snapping");
+      nav.style.setProperty("--nav-ind-y", m.top + "px");
+      nav.style.setProperty("--nav-ind-h", m.h + "px");
+      nav.classList.add("is-ready");
+      if (instant) {
+        requestAnimationFrame(function () {
+          indicator.classList.remove("is-snapping");
+        });
+      }
+    }
+
+    function setActive(id, opts) {
+      opts = opts || {};
+      if (!id || id === activeId) return;
+      var link = map[id];
+      if (!link) return;
+
+      activeId = id;
+      activeIdx = links.indexOf(link);
+      if (activeIdx < 0) activeIdx = 0;
+      links.forEach(function (l) { l.classList.remove("active"); });
+      link.classList.add("active");
+      paintIndicator(link, !!opts.instant);
+
+      if (opts.scrollSidebar && splitPane && sidebar) {
+        var linkTop = link.offsetTop;
+        var linkBottom = linkTop + link.offsetHeight;
+        var viewTop = sidebar.scrollTop;
+        var viewBottom = viewTop + sidebar.clientHeight;
+        if (linkTop < viewTop + 8 || linkBottom > viewBottom - 8) {
+          sidebar.scrollTop = Math.max(0, linkTop - sidebar.clientHeight * 0.35);
+        }
+      }
+    }
+
+    function navOffset() {
+      var raw = getComputedStyle(document.documentElement).getPropertyValue("--nav-h");
+      return (parseFloat(raw) || 72) + 16;
+    }
+
+    function chapterTop(el) {
+      return el.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop;
+    }
+
+    var scrollLockUntil = 0;
+
+    function alignDocsPane(smooth) {
+      if (!splitPane || !layout) return;
+      var top = layout.getBoundingClientRect().top;
+      if (top > navOffset() && top < navOffset() + 48) return;
+      var y = window.scrollY + top - navOffset();
+      window.scrollTo({ top: Math.max(0, y), behavior: smooth ? "smooth" : "auto" });
+    }
+
+    function scrollToChapter(id, smooth) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      scrollLockUntil = Date.now() + (smooth === false ? 80 : 900);
+      setActive(id, { scrollSidebar: true, instant: smooth === false });
+
+      if (splitPane) {
+        alignDocsPane(smooth);
+        var top = chapterTop(el) - 8;
+        main.scrollTo({ top: Math.max(0, top), behavior: smooth === false ? "auto" : "smooth" });
+      } else {
+        var y = window.scrollY + el.getBoundingClientRect().top - navOffset();
+        window.scrollTo({ top: Math.max(0, y), behavior: smooth === false ? "auto" : "smooth" });
+      }
+
+      try { history.replaceState(null, "", "#" + id); } catch (_) { location.hash = id; }
+    }
+
+    function chapterInView() {
+      if (Date.now() < scrollLockUntil) return;
+
+      var idx = 0;
+      if (splitPane) {
+        var st = main.scrollTop;
+        var down = st >= spyLastScroll - 2;
+        spyLastScroll = st;
+        var offset = down ? 108 : 56;
+        var y = st + offset;
+        for (var i = 0; i < chapters.length; i++) {
+          if (chapterTop(chapters[i]) <= y) idx = i;
+        }
+      } else {
+        var mark = navOffset() + 12;
+        for (var j = 0; j < chapters.length; j++) {
+          if (chapters[j].getBoundingClientRect().top <= mark) idx = j;
+        }
+      }
+
+      if (idx === activeIdx) return;
+      if (chapters[idx] && chapters[idx].id) setActive(chapters[idx].id);
+    }
+
+    var hoverTimer = 0;
+    var hoverTarget = null;
+
+    links.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var id = (a.getAttribute("href") || "").slice(1);
+        if (!id || !document.getElementById(id)) return;
+        e.preventDefault();
+        scrollToChapter(id);
+      });
+      if (splitPane) {
+        a.addEventListener("mouseenter", function () {
+          if (!nav) return;
+          hoverTarget = a;
+          clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function () {
+            if (hoverTarget !== a || !nav) return;
+            nav.classList.add("is-tracking-hover");
+            links.forEach(function (l) { l.classList.remove("is-nav-hover"); });
+            a.classList.add("is-nav-hover");
+          }, 160);
+        });
+        a.addEventListener("mouseleave", function () {
+          if (!nav) return;
+          clearTimeout(hoverTimer);
+          if (hoverTarget === a) hoverTarget = null;
+          nav.classList.remove("is-tracking-hover");
+          a.classList.remove("is-nav-hover");
+        });
+      }
+    });
+
+    var scrollTimer;
+    function onScroll() {
+      if (scrollTimer) cancelAnimationFrame(scrollTimer);
+      scrollTimer = requestAnimationFrame(chapterInView);
+    }
+    main.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    window.addEventListener("hashchange", function () {
+      var id = (location.hash || "").replace("#", "");
+      if (id && document.getElementById(id)) scrollToChapter(id, false);
+    });
+
+    window.addEventListener("resize", function () {
+      cacheLinkMetrics();
+      if (activeId && map[activeId]) paintIndicator(map[activeId], true);
+    });
+
+    if (nav && window.ResizeObserver) {
+      new ResizeObserver(function () {
+        cacheLinkMetrics();
+        if (activeId && map[activeId]) paintIndicator(map[activeId], true);
+      }).observe(nav);
+    }
+
+    cacheLinkMetrics();
+    spyLastScroll = splitPane ? main.scrollTop : window.scrollY;
+
+    var initial = (location.hash || "").replace("#", "");
+    if (initial && document.getElementById(initial)) {
+      requestAnimationFrame(function () { scrollToChapter(initial, false); });
+    } else {
+      chapterInView();
+      if (!activeId && chapters[0]) setActive(chapters[0].id, { instant: true });
+    }
+  })();
+
+  /* ── docs in-page search ── */
+  (function () {
+    var input = document.getElementById("docSearch");
+    var box = document.getElementById("docResults");
+    if (!input || !box) return;
+    var entries = [];
+    document.querySelectorAll(".docs-chapter").forEach(function (ch) {
+      var h2 = ch.querySelector("h2");
+      var chTitle = (h2 ? h2.innerText : "").replace(/\s+/g, " ").trim();
+      entries.push({ el: ch, chapter: chTitle, title: chTitle, hay: ch.textContent.toLowerCase() });
+      ch.querySelectorAll("details.doc-item, details.doc-sub").forEach(function (d) {
+        var sum = d.querySelector(":scope > summary");
+        var title = sum ? sum.innerText.replace(/\s+/g, " ").trim() : "";
+        entries.push({ el: d, chapter: chTitle, title: title, hay: d.textContent.toLowerCase() });
+      });
+    });
+    function openTo(el) {
+      var p = el;
+      while (p) { if (p.tagName === "DETAILS") p.open = true; p = p.parentElement; }
+      var main = document.querySelector(".docs-main");
+      var splitPane = window.matchMedia("(min-width: 821px)").matches;
+      if (splitPane && main) {
+        var top = el.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop - 20;
+        main.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      } else {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      el.classList.add("doc-hit");
+      setTimeout(function () { el.classList.remove("doc-hit"); }, 1600);
+    }
+    function render(q) {
+      q = q.trim().toLowerCase();
+      if (!q) { box.hidden = true; box.innerHTML = ""; return; }
+      var hits = entries.filter(function (e) { return e.hay.indexOf(q) >= 0; }).slice(0, 16);
+      if (!hits.length) {
+        box.innerHTML = '<div class="empty">' + (window.forgeaxUi ? window.forgeaxUi("noMatches") : (document.body.classList.contains("lang-zh") ? "无匹配" : "No matches")) + "</div>";
+        box.hidden = false; return;
+      }
+      box.innerHTML = hits.map(function (e) {
+        var ctx = (e.title && e.title !== e.chapter) ? '<span class="rc">' + e.chapter + "</span>" : "";
+        return "<a>" + ctx + (e.title || e.chapter) + "</a>";
+      }).join("");
+      box.hidden = false;
+      [].slice.call(box.querySelectorAll("a")).forEach(function (a, i) {
+        a.addEventListener("click", function () { box.hidden = true; input.value = ""; openTo(hits[i].el); });
+      });
+    }
+    input.addEventListener("input", function () { render(input.value); });
+    input.addEventListener("keydown", function (e) { if (e.key === "Escape") { box.hidden = true; input.value = ""; input.blur(); } });
+    document.addEventListener("click", function (e) { if (!e.target.closest(".docs-search")) box.hidden = true; });
+    document.addEventListener("keydown", function (e) {
+      var a = document.activeElement;
+      if (e.key === "/" && a !== input && !/^(INPUT|TEXTAREA|SELECT)$/.test(a ? a.tagName : "")) { e.preventDefault(); input.focus(); }
+    });
+  })();
+</script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-22 · The project goes open source + the desktop app stops crash-looping — ForgeaX</title>
+<meta name="description" content="The project goes open source with rich bilingual docs across every module, per-module licenses and bring-your-own-agent; the desktop app's startup crash-loop is fixed by self-contained bundling; the website examples gallery becomes a live split view; and the engine lands asset-first startup, a simpler shadow toggle and a skinned-animation fix." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-22 · The project goes open source + the desktop app stops crash-looping — ForgeaX" />
+<meta property="og:description" content="The project goes open source with rich bilingual docs across every module, per-module licenses and bring-your-own-agent; the desktop app's startup crash-loop is fixed by self-contained bundling; the website examples gallery becomes a live split view; and the engine lands asset-first startup, a simpler shadow toggle and a skinned-animation fix." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-06-22.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-22.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/docs/" data-nav="/docs/">Dokumente</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/games/" data-nav="/games/">Spiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Marktplatz</a>
+      <a href="/de/blog/" data-nav="/blog/">Blog</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-22.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-22.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-22.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-22.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-22.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-06-22.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-22.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-22.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Fragen Sie die KI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">In ChatGPT öffnen</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Geöffnet in Claude</a>
+          <button class="ask-item" id="copyMd">Seite als Markdown kopieren</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Täglich</span><span>2026-06-22</span></div>
+    <h1>The project goes open source + the desktop app stops crash-looping</h1>
+    <p class="standfirst">This is a milestone day: the whole project formally goes open source — every module gets rich, illustrated bilingual docs and an open-source license, and supports &quot;bring your own agent subscription&quot;; the same day fixed the stubborn startup crash-loop of the packaged desktop app, turned the website examples gallery into a live split view, and landed asset-first startup, a simpler shadow toggle and a skinned-animation fix in the engine.</p>
+    <div class="prose"><h2>From &quot;for ourselves&quot; to &quot;for everyone&quot;</h2>
+<p>This day is a special node in a project&#39;s life: for the first time it handed itself, completely and presentably, to the public. Open-sourcing isn&#39;t just the act of &quot;making the code public&quot; — it means a whole set of preparation aimed at strangers: why should others understand what you&#39;re doing? why trust that it runs? why be willing to install and modify it themselves? Everything done this day answers these questions: writing bilingual docs for each module making clear &quot;what it is, how it collaborates, how to get started,&quot; putting open-source licenses in place so others can legally use and modify it, ensuring what&#39;s downloaded actually runs out of the box rather than missing pieces, clearing the roadblock of the desktop app crashing on launch, and making the website&#39;s examples show at a glance &quot;what this thing can build.&quot; For an internal project going open source, the hardest part is never publishing the code itself but re-polishing what &quot;only insiders understand&quot; into something &quot;anyone can pick up.&quot; That is exactly what this day did.</p>
+<h2>Open source: full bilingual docs + bring your own agent subscription</h2>
+<p>This day finished, in one pass, the public-facing polish for going open source. The core item: rich, illustrated bilingual (Chinese/English) docs across every core module and the overall super-project, all in one consistent three-part structure: part one on &quot;why it&#39;s different&quot; (what makes this platform special), part two on &quot;a seven-step human-AI collaboration loop&quot; (how human and AI turn an idea into a game step by step), part three a &quot;map of the modules&quot; (what parts the project comprises and what each handles). This consistent structure lets any stranger, whichever module they open first, quickly grasp it with the same mental model. The command-line side added a dedicated &quot;bring your own agent subscription&quot; section: you needn&#39;t be locked to one provider but can drive the whole platform with your own existing coding-agent subscription or API — choosing any of four mainstream options. Each sub-module also got its open-source license in place, so others can confidently use, modify and redistribute under clear terms. For a project wanting to be understood by a community and extended by developers, this set of docs and licenses is the first calling card it hands the world.</p>
+<h2>The desktop app stops crashing at startup</h2>
+<p>An open-source release must let people &quot;download and run,&quot; and the packaged desktop app at the time stumbled exactly there: it crash-looped on launch, the backend repeatedly reporting a missing core runtime module. The root cause was that the module and its dependencies were left out of the package, so the offline runtime naturally couldn&#39;t find them. This day&#39;s fix bundled the entire needed runtime dependency closure fully into the desktop package, ensuring everything is present even offline and it starts properly. Two related pitfalls were solved alongside: the desktop package switched to single-game bundling, sidestepping the old resource-identifier collision when multiple games coexist; and it now tolerates the occasional &quot;file just vanished&quot; hiccup while copying many files during the build — a transient flicker that previously aborted the whole build under strict error checking. After the fix, the desktop app launches and enters reliably instead of dying on startup. The significance lands right at the crux of the open-source release: however good a project, if people can&#39;t even open it after downloading, nothing else matters.</p>
+<h2>The examples gallery: browse the list and run a demo side by side</h2>
+<p>Accompanying the open-sourcing, the website&#39;s examples gallery was rebuilt into a &quot;browse-and-run&quot; split layout. The left side lists all examples with category filtering; the right side is a live preview frame that runs whichever example you click — no download, no leaving the page, click and see. It supports deep links too: share an example&#39;s URL and the other person lands straight on that one, handy for sharing and referencing. A plugin info generator was also built, automatically capturing each plugin&#39;s metadata into structured data, so gallery cards are no longer static, lifeless images but open a detail dialog on click. For a just-open-sourced project wanting people to quickly form an impression of &quot;what this thing can actually do,&quot; a click-and-play example gallery beats a thousand words of description — seeing a demo run with your own eyes is far more convincing than reading a paragraph.</p>
+<h2>Engine: asset-first startup + a shadow toggle + a skinned-animation fix</h2>
+<p>The engine had a big day too, advancing several things. One: an &quot;asset-first&quot; startup landed, with all six sample games migrated over — a game no longer relies on opening code to build the scene piece by piece but instantiates directly from a structured asset (scene description), cleaner and friendlier for a visual editor to read and write. Two: shadow control was simplified — where a directional light previously needed a separate &quot;shadow&quot; component to cast shadows, it&#39;s now folded into a toggle the directional light carries, turned on when you need casting; one fewer concept, more intuitive to use. Three: a real orientation bug in skinned animation was fixed — rotation data had been wrongly treated as another representation, so animated models imported from professional tools oriented wrong; fixed, the orientation is finally correct. Tilemaps also gained &quot;object-layer&quot; rendering (atop the cell grid, each cell can place an independent object with orientation, flip and pivot), making 2D levels more flexible; and asset registration and the renderer&#39;s health-recovery after accidents were hardened. Some improvements aim for cleaner architecture, some fix errors, some extend capability, but all make the engine&#39;s foundation more solid — right at the moment of open-sourcing, when it&#39;s about to be scrutinized and used by more people.</p>
+<h2>What this day means</h2>
+<p>This day&#39;s weight lies in the word &quot;outward.&quot; Before it, all the platform&#39;s progress faced inward, toward itself; from this day, it placed itself, completely, before the public for the first time — anyone can download, read, run, modify and contribute. Open-sourcing is the turning point where a project goes from &quot;a few people&#39;s work&quot; to &quot;a public thing,&quot; putting it into a larger context jointly scrutinized and joined by developers worldwide. Worth noting: nearly all the day&#39;s open-sourcing effort was &quot;considerate of others&quot;: writing clear docs so strangers understand; putting licenses in place so others use it with confidence; fixing the desktop crash and ensuring one-click running so first-time visitors aren&#39;t bounced; building the example gallery so people see its possibilities at a glance. A project willing to spend a whole day just to make itself &quot;friendlier to others&quot; shows, by that alone, that it&#39;s ready to step into a wider world. From this day, this AI game-making platform no longer belongs only to those who build it.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle täglichen Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele. Open Source, Apache-Lizenz 2.0.</p>
+  </div>
+  <div class="col"><h4>Website</h4>
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/blog/">Blog</a>
+    <a href="/de/docs/">Dokumente</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/games/">Spiele</a>
+    <a href="/de/marketplace/">Marktplatz</a>
+  </div>
+  <div class="col"><h4>Projekt</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

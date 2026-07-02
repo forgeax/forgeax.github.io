@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-21 · Generated 3D gets rigged and animated + automated editor QA — ForgeaX</title>
+<meta name="description" content="3D generation becomes self-serve end to end — configure keys, generate multi-view, auto-rig and pick animations from a browser, all in the plugin; the editor gains automated end-to-end QA, keep-alive groundwork and device-loss auto-recovery; the engine completes symmetric GPU and audio resource ownership; and games move to host-fed loading." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-21 · Generated 3D gets rigged and animated + automated editor QA — ForgeaX" />
+<meta property="og:description" content="3D generation becomes self-serve end to end — configure keys, generate multi-view, auto-rig and pick animations from a browser, all in the plugin; the editor gains automated end-to-end QA, keep-alive groundwork and device-loss auto-recovery; the engine completes symmetric GPU and audio resource ownership; and games move to host-fed loading." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-21.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-21.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-21.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-21.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-21.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-21.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-21.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-21.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-21.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-21.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Diário</span><span>2026-06-21</span></div>
+    <h1>Generated 3D gets rigged and animated + automated editor QA</h1>
+    <p class="standfirst">This day the 3D-generation workbench pushed another big step toward &quot;self-serve end to end&quot;: configure keys, generate, rig and pick animations, all in one flow; the editor gained automated end-to-end QA and &quot;keep-alive&quot; groundwork so it isn&#39;t killed when you switch away; the engine completed symmetric reclaim of GPU and audio resources so long play no longer bogs down; and games moved to a cleaner unified loading model.</p>
+    <div class="prose"><h2>Making capability more autonomous, and running more reliable</h2>
+<p>This day had two mutually-echoing lines. One is about &quot;autonomy&quot;: turning 3D generation from a tool you must watch and operate step by step into a pipeline that runs &quot;generate → rig → animate&quot; through in one breath, with keys and modes configurable by the user in the plugin. The other is about &quot;reliability&quot;: setting up automated QA for the editor, laying keep-alive groundwork for embedded running, and establishing a symmetric &quot;borrow it, return it&quot; rule for the engine&#39;s resource management. The former expands &quot;what can be done&quot;; the latter ensures &quot;whether what&#39;s made is stable and usable long-term.&quot; The more a tool wants users to hand it work to run on its own, the more it must invest in reliability — the more autonomous the capability, the higher the demand on underlying robustness. This day pushed both forward together.</p>
+<h2>3D generation takes on the whole job: keys, generate, rig, animate</h2>
+<p>The 3D-generation workbench pushed another big step toward end-to-end usable this day, with several things together forming a complete pipeline. First, generation switched to a multi-view approach — guiding generation from several angles for a steadier, more on-target model shape. Second, you can configure the keys for several generation services right in the plugin, with a &quot;real mode&quot; master switch deciding whether to actually call a service and produce a model or first try the flow with placeholders; handing keys and the switch to the user means everyone can use their own quota at their own pace. Third, and most key: rigging plus animation. A freshly-generated model is just a static shell; to make it move, you first fit it with a skeleton (rigging), then put concrete motions on that skeleton. Both steps can now be done in the workbench — rigging can be automatic, and motions are picked ready-made from a built-in &quot;motion browser.&quot; Stringing these together, &quot;generate a character from a sentence → give it a skeleton → make it move&quot; can be done end to end in one workbench for the first time, without exporting the model and fussing back and forth in other professional tools. For creators without modeling or animation skills, this pipeline compresses what used to take several professional programs and several stages into a few clicks in one panel.</p>
+<h2>Automated editor QA + it isn&#39;t killed on switching</h2>
+<p>This day set up an automated end-to-end health check for the editor. Specifically, a set of smoke tests automatically runs several different types of sample game — pure-code ones, ones with scene packs, ones that take the fallback path in a desktop environment — confirming each loads correctly in both edit and play without regressing. The value: the platform sees many changes every day, any of which could inadvertently break an existing game; with this automated check, the machine verifies all these samples before a change merges, keeping &quot;changing A broke B&quot; regressions out at the door. Meanwhile, the embedded editor was hardened, with groundwork laid for &quot;keep-alive&quot;: the editor runs inside an embedded page, and when you switch between tabs or hosts, the browser sometimes quietly reclaims the temporarily-invisible one, so on returning your running session is already dead. This day&#39;s hardening and keep-alive groundwork are precisely to keep such switching from interrupting your in-progress work. Underneath, &quot;auto-recover after a graphics device unexpectedly drops&quot; was built into the engine, so such low-level accidents interrupt creation less.</p>
+<h2>Symmetric resource reclaim: no more quiet GPU and audio leaks</h2>
+<p>The engine established a symmetric &quot;borrow it, return it&quot; rule for resource management this day, marking the closure of a whole underlying foundation layer. Symmetric means every &quot;request a resource&quot; operation must have a matching, explicit &quot;release the resource&quot; operation — GPU resources (textures, buffers and the like) got a full set of release primitives so they&#39;re cleanly reclaimed when done; audio resources got deterministic reclaim too, cleaned up exactly when they should be rather than by garbage-collection luck. Why does this matter so much? Because a game may run for a long stretch, constantly creating and discarding resources; if something is &quot;requested&quot; but no one is responsible for &quot;releasing&quot; it, these unused resources quietly pile up in video and audio memory, accumulating until the game grows laggier and finally crashes. This &quot;quiet leak&quot; is the most insidious, hardest-to-diagnose killer of large scenes and long sessions, because it doesn&#39;t error in normal use and only erupts after running long enough. Making resource lifecycles strictly symmetric and deterministically reclaimable institutionally eliminates this class of leak. This day also formally marked this whole foundation layer of the engine&#39;s roadmap as complete — meaning the engine&#39;s low-level resource governance reached a milestone, and more complex things can confidently be built atop it.</p>
+<h2>Games move to a cleaner unified loading model</h2>
+<p>This day also tidied the sample games&#39; loading approach, unifying them onto a cleaner model. Previously different games each had their own way of &quot;loading their own scene resources&quot; — some fetched, parsed and maintained their own catalog, logic scattered and prone to diverging. This day changed them to be fed uniformly by the &quot;host&quot;: a game no longer arranges its own loading but has the runtime environment carrying it prepare the scene resources and hand them over directly. Each game&#39;s scene-resource files were also moved to a unified location that can be auto-discovered by scanning. Such changes are entirely invisible to users, but they eliminate the duplication and divergence of &quot;a loading logic per game,&quot; putting all games on the same loading path. The benefit is twofold: later loading-related improvements need be made in just one place to benefit all games, no per-game adaptation; and problems are easier to diagnose — with everyone on the same path, a glitch means checking only that one path. Converging scattered approaches into one unified path is exactly the precondition for the whole game library to be consistently maintained and evolved.</p>
+<h2>What this day means</h2>
+<p>This day embodied two forces advancing together as an AI creation platform matures: one making capability more &quot;autonomous&quot; — 3D generation going from a tool requiring step-by-step human operation into a pipeline that runs the whole &quot;generate, rig, animate&quot; course on its own, with users controlling their own keys and modes; the other making the system more &quot;reliable&quot; — setting up automated QA for the editor, keep-alive for embedded running, symmetric reclaim for engine resources, and a unified loading path for games. These two forces seem one advancing and one guarding, but they&#39;re complementary: precisely because automated QA and robust resource governance back it up can more and more steps be handed to the AI to do autonomously; and the more steps handed over, the more indispensable these underlying safeguards become. A truly reliable automated system is never &quot;let go and ignore&quot; but &quot;weave the net tight before letting go.&quot; This day both wove that net tighter and confidently handed more over.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

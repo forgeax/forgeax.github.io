@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-09 · 给游戏装上"验车线" — ForgeaX</title>
+<meta name="description" content="这天给 AI 造游戏装上了一道"验车线":构建跑不过,AI 就不许宣布"做完了",而且具体的报错会被喂回去让它照着改。同一天引擎大踏步推进——多材质模型、集群多光源、解除对象数量上限、更直觉的游戏入口写法;编辑器开始显示真实几何;团队进度也有了可视化图表。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-09 · 给游戏装上"验车线" — ForgeaX" />
+<meta property="og:description" content="这天给 AI 造游戏装上了一道"验车线":构建跑不过,AI 就不许宣布"做完了",而且具体的报错会被喂回去让它照着改。同一天引擎大踏步推进——多材质模型、集群多光源、解除对象数量上限、更直觉的游戏入口写法;编辑器开始显示真实几何;团队进度也有了可视化图表。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-09.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-09.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-09.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-09.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-09.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-09.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-09.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-09.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-09</span></div>
+    <h1>给游戏装上"验车线"</h1>
+    <p class="standfirst">这天给 AI 造游戏装上了一道&quot;验车线&quot;:构建跑不过,AI 就不许宣布&quot;做完了&quot;,而且具体的报错会被喂回去让它照着改。同一天引擎大踏步推进——多材质模型、集群多光源、解除对象数量上限、更直觉的游戏入口写法;编辑器开始显示真实几何;团队进度也有了可视化图表。</p>
+    <div class="prose"><h2>让&quot;做完&quot;变成一件可验证的事</h2>
+<p>把游戏开发交给 AI,有一个绕不开的根本问题:你怎么知道它说的&quot;做完了&quot;是真的做完了?人会下意识地相信&quot;它说完成了就是完成了&quot;,但 AI 并不总是可靠——它可能改完代码就宣布大功告成,而你一打开却是黑屏。这天的主线,就是从机制上解决这个信任问题:不再让 AI&quot;自己说了算&quot;,而是用一道客观的、机器执行的检验把关。这与同一天引擎那一大批底层增强放在一起看,恰好构成一组互补——验车线保证&quot;它交付的东西真的能跑&quot;,引擎增强则保证&quot;它能交付的东西更丰富、更大、更好看&quot;。一边是质量的底线,一边是能力的上限,两头一起往前推,平台才既&quot;靠得住&quot;又&quot;做得了&quot;。</p>
+<h2>游戏&quot;验车线&quot;:构建跑不过,AI 不许说做完</h2>
+<p>此前 AI 在这里&quot;造游戏&quot;常有个让人头疼的毛病:改完代码就宣布&quot;完成&quot;,结果浏览器一打开是黑屏,甚至代码根本编译不过——你以为拿到了一个能玩的游戏,实际拿到的是一堆跑不起来的代码。这天给整个流程装上了一条&quot;验车线&quot;:后端新增了一个构建预检环节,在 AI 宣布完成之前,先实打实地把游戏编译一遍;同时在 AI 的行为准则里写死了一条铁律——必须构建通过,才被允许宣布做完。光拦住还不够,关键是要让 AI 能自己修好:构建报错的具体内容会被实时转发到 AI 能看到的地方,把详细的错误原因喂回给它,而不是丢一句冷冰冰的&quot;失败了&quot;。于是一个完整的自我纠错闭环成形了:创建游戏 → AI 写代码 → 后端跑构建 → 失败就给出具体错误 → AI 看着错误再改 → 直到真的通过。这件事的深远意义在于:它把&quot;做完&quot;从一句 AI 的主观声明,变成了一个可被客观验证的事实——当它说&quot;做好了&quot;,你能更放心地相信那是真的。</p>
+<h2>多材质模型:复杂模型终于&quot;各部位各材质&quot;</h2>
+<p>引擎这天补上了一项处理复杂模型的关键能力:一个模型可以包含多个&quot;子网格&quot;,每个子网格挂自己独立的材质槽。这听起来抽象,但用例非常具体——一个角色身上,盔甲是金属、衣服是布料、脸是皮肤,它们的质感、反光、颜色完全不同;一辆车,车身是喷漆、车窗是玻璃、轮胎是橡胶。此前模型往往只能整体套一种材质,这些不同部位的差异就被抹平,看起来要么全是塑料感、要么全是金属感,失真严重。现在引擎能把一个模型按部位拆成多个子网格,给每个部位分配各自的材质,复杂模型终于能正确地&quot;各部位各材质&quot;地渲染出来。配套还修了模型导入桥接的若干 bug,并让所有真实示例游戏跟着完成了数据格式的迁移。对创作者来说,这意味着从外部导入的那些精细模型,能以它们本来该有的样子被正确呈现,而不是被强行统一成一种材质。</p>
+<h2>更多灯光、更大场景:把规模的天花板抬高</h2>
+<p>引擎这天还从两个方向抬高了&quot;场景能做多大&quot;的天花板。一是光照:渲染走向了&quot;集群光照&quot;的路线——它的核心思路是把屏幕空间切分成许多小块,每块只计算真正影响到它的那几盏灯,从而让同一个场景里能容纳远比以前更多的光源而不至于拖垮性能。一个夜晚的城市、一个布满霓虹和路灯的街区,需要的正是大量灯光的同时存在,这条管线为这类场景打开了空间。二是容量:底层把存放对象数据的渲染缓冲改成了&quot;按需翻倍扩容&quot;——以前场景里的对象数量有一个大约一千的硬上限,超过就出问题;现在缓冲会随对象增多自动成倍扩张,这个上限被解除,大场景能塞下多得多的东西。这两项都是用户看不见、却直接决定&quot;你的野心能做到多大&quot;的底层功夫——它们本身不是某个具体玩法,而是让&quot;更宏大的场景&quot;这件事从不可能变为可能的前提。</p>
+<h2>更直觉的游戏入口写法</h2>
+<p>引擎这天还把&quot;创建一个游戏应用&quot;的入口写法重新做了梳理,分成更直觉的三层:一层管摄像机与画面基本设置,一层管打包构建的选项,一层管资源的接入方式。此前这些不同性质的参数是混在一起的,写起来容易混淆——尤其对要靠它来写代码的 AI 而言,参数越杂、越没有清晰的归类,写错的概率就越高。把它按职责分成清楚的三层之后,每一层是干什么的一目了然,AI 写起游戏来更顺手、更不容易出错。这件事和当天的&quot;验车线&quot;其实是一体两面:验车线在出口处把关,堵住错误的产物;而把 API 设计得更直觉,则是在入口处降低出错的概率。一个让 AI 来写代码的平台,既要在事后能检验,也要在事前让它更难写错——两者配合,产出的质量才能稳步提升。新建游戏的默认模板也一并升级,开箱就自带 HDR 天空和一个能操控的角色,让每个新游戏都从一个更体面的起点开始。</p>
+<h2>编辑器显示真实几何 + 更稳的回放</h2>
+<p>编辑器这天朝&quot;所见即所得&quot;又靠近了一步:现在它会预先加载模型文件,所以编辑视图里直接显示的是模型真实的几何形状,而不再是一个临时的占位方块。这看似细节,但影响很实在——你在编辑器里摆放、对齐、调整一个物体时,看到的就是它真正的样子,而不是凭空想象一个方块代表的东西最终会长成什么。底层资产管线也切到了引擎原生的场景包格式,编辑态同样带上了 HDR 天空,让编辑环境和最终运行环境进一步对齐。出错时,画面上的错误浮层会展开更详细的内层原因,而不只是一句笼统的报错,方便快速定位问题。此外还修了聊天回放里跨 agent 卡片的交错顺序——当你回看一段历史时,多个 AI 之间你来我往的发言能正确地穿插还原,和当时实时看到的顺序完全一致。这些改动共同服务于一件事:让你在编辑器里看到的、回放里看到的,都尽可能地接近真实。</p>
+<h2>把团队的进度画成图</h2>
+<p>这天还给团队的工作进度加上了可视化图表。当越来越多的工作由 AI agent 并行推进时,&quot;现在到底进行到哪了、还剩多少没做完&quot;就成了一个需要被看见的问题。新增的吞吐量与燃尽曲线把这些信息画成了随时间累积的双线图,再配上一个项目指标面板,团队一眼就能看到整体的推进节奏:这段时间完成了多少、还有多少在路上、速度是在加快还是放缓。对一个高度依赖自动化的开发流程来说,这种&quot;全局可见性&quot;非常重要——人虽然把大量具体执行交给了 AI,但必须始终对整体态势保持掌控,知道事情正朝什么方向、以什么速度推进。把进度画成图,正是让人从繁杂的执行细节里抽身出来、仍能稳稳把握全局的一种手段。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的两条主线,合起来回答了&quot;如何让 AI 可靠地造出好游戏&quot;这个核心命题的两个侧面。验车线回答的是&quot;可靠&quot;:通过客观的构建检验和具体的错误反馈,把&quot;做完&quot;从一句空话变成一个能被验证、能被自我纠正的事实——这是信任的基石。引擎的一系列增强回答的是&quot;好&quot;:多材质让模型更真实、集群光照与扩容让场景更宏大、更直觉的入口让 AI 更少出错——这是能力的拓展。一个由 AI 驱动的创作平台,最怕的就是&quot;看起来很厉害,实际交付靠不住&quot;;而这一天恰恰是在同时夯实&quot;靠得住&quot;和&quot;做得好&quot;这两件最根本的事。当机器既能力更强、又被更严格地检验时,人才能真正放心地把&quot;造一个游戏&quot;这件事托付出去。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,71 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" />
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>用工作台生成美术资产 · Generate art with the workbenches — ForgeaX</title>
-<meta name="description" content="ForgeaX 的创作工作台:角色、动画、3D、特效、场景、UI、音乐、叙事、数值 —— 从一句话到可进游戏的素材。" />
+<title>Generate art with the workbenches — ForgeaX</title>
+<meta name="description" content="ForgeaX creation workbenches: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Generate art with the workbenches — ForgeaX" />
+<meta property="og:description" content="ForgeaX creation workbenches: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/tutorials/workbenches.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/workbenches.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/workbenches.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-131" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
 </head>
-<body class="lang-en">
-<div id="site-header"></div>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/docs/" data-nav="/docs/">Docs</a>
+      <a href="/tutorials/" data-nav="/tutorials/" class="active">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/games/" data-nav="/games/">Games</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Marketplace</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/tutorials/workbenches.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/tutorials/workbenches.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/workbenches.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/workbenches.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/workbenches.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/workbenches.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/workbenches.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/workbenches.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Open in ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Open in Claude</a>
+          <button class="ask-item" id="copyMd">Copy page as Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
 <main>
   <article class="read article">
-    <a class="back" href="/tutorials/"><span data-lang="zh">← 返回教程</span><span data-lang="en">← Back to tutorials</span></a>
-    <div class="meta"><span class="tag brand"><span data-lang="zh">创作</span><span data-lang="en">Create</span></span><span data-lang="zh">概览</span><span data-lang="en">Overview</span></div>
-    <h1><span data-lang="zh">用工作台生成美术资产</span><span data-lang="en">Generate art with the workbenches</span></h1>
-    <p class="standfirst"><span data-lang="zh">除了对话,ForgeaX 还有一整套"工作台" —— 每个工作台是一个面板 + 一组工具,把一句话变成可进游戏的素材。你手点和 AI 派活,改的是同一份产物。</span><span data-lang="en">Beyond chatting, ForgeaX has a set of "workbenches" — each a panel plus a group of tools that turn a sentence into game-ready assets. You by hand and AI by dispatch edit the same artifact.</span></p>
+    <a class="back" href="/tutorials/">← Back to tutorials</a>
+    <div class="meta"><span class="tag brand">Create</span><span>Overview</span></div>
+    <h1>Generate art with the workbenches</h1>
+    <p class="standfirst">Beyond chatting, ForgeaX has a set of "workbenches" — each a panel plus a group of tools that turn a sentence into game-ready assets. You by hand and AI by dispatch edit the same artifact.</p>
 
     <div class="prose">
-      <div class="note"><span data-lang="zh">✅ 已开源(Apache-2.0)。下面是工作台体系的概览;克隆与安装见 <a href="/docs/">文档</a>。</span><span data-lang="en">✅ Open source (Apache-2.0). Below is an overview of the workbench system; for clone &amp; install see the <a href="/docs/">docs</a>.</span></div>
+      <div class="note">✅ Open source (Apache-2.0). Below is an overview of the workbench system; for clone &amp; install see the <a href="/docs/">docs</a>.</div>
 
-      <h2><span data-lang="zh">角色 · 动画 · 特效</span><span data-lang="en">Characters · animation · VFX</span></h2>
+      <h2>Characters · animation · VFX</h2>
       <ul>
-        <li><span data-lang="zh"><strong>角色编辑器</strong> —— 写一句人物设定,得到正面立绘 + 转身三视图。</span><span data-lang="en"><strong>Character editor</strong> — write a one-line brief, get a portrait plus a turnaround.</span></li>
-        <li><span data-lang="zh"><strong>动画</strong> —— 把静止角色变成会走、会打、四方向、带骨骼动作,甚至短视频;不串脸。</span><span data-lang="en"><strong>Animation</strong> — turn a still character into walking, attacking, four-direction, skeletal motion (even short clips) — without face drift.</span></li>
-        <li><span data-lang="zh"><strong>技能 / VFX</strong> —— 给技能配火光、刀光、光环等特效,自动挂到出手那一刻。</span><span data-lang="en"><strong>Skill / VFX</strong> — add effects like fire, slashes and auras, auto-attached to the moment of cast.</span></li>
+        <li><strong>Character editor</strong> — write a one-line brief, get a portrait plus a turnaround.</li>
+        <li><strong>Animation</strong> — turn a still character into walking, attacking, four-direction, skeletal motion (even short clips) — without face drift.</li>
+        <li><strong>Skill / VFX</strong> — add effects like fire, slashes and auras, auto-attached to the moment of cast.</li>
       </ul>
 
-      <h2><span data-lang="zh">3D 建模与生成</span><span data-lang="en">3D modeling &amp; generation</span></h2>
+      <h2>3D modeling &amp; generation</h2>
       <ul>
-        <li><span data-lang="zh"><strong>方块人编辑器</strong> —— 像捏积木小人一样做可动 3D 角色,一键导出标准 3D 文件。</span><span data-lang="en"><strong>Blocky-character editor</strong> — build rigged 3D characters like snapping blocks, export standard 3D files.</span></li>
-        <li><span data-lang="zh"><strong>低多边形生成器</strong> —— 用"连线搭积木"的节点方式做 3D 道具 / 机械,改一个参数全套重出。</span><span data-lang="en"><strong>Low-poly generator</strong> — build 3D props with a node-graph; change one parameter, regenerate the set.</span></li>
-        <li><span data-lang="zh"><strong>3D 生成</strong> —— 文字 / 图片直接变 3D 模型,接入多家最强生成服务,择优而用。</span><span data-lang="en"><strong>3D generation</strong> — text or image straight to a 3D model, plugged into several top generators, pick whichever's best.</span></li>
+        <li><strong>Blocky-character editor</strong> — build rigged 3D characters like snapping blocks, export standard 3D files.</li>
+        <li><strong>Low-poly generator</strong> — build 3D props with a node-graph; change one parameter, regenerate the set.</li>
+        <li><strong>3D generation</strong> — text or image straight to a 3D model, plugged into several top generators, pick whichever's best.</li>
       </ul>
 
-      <h2><span data-lang="zh">场景 · UI · 道具</span><span data-lang="en">Scenes · UI · items</span></h2>
+      <h2>Scenes · UI · items</h2>
       <ul>
-        <li><span data-lang="zh"><strong>场景生成器</strong> —— 自动"搭"出一整张游戏场景,做成流程图,想改随时重跑。</span><span data-lang="en"><strong>Scene generator</strong> — assemble a whole game scene as a graph you can re-run anytime.</span></li>
-        <li><span data-lang="zh"><strong>2D 场景资产生成器</strong> —— 批量生成道具、贴图、装饰、UI 小图,自动起名归档。</span><span data-lang="en"><strong>2D scene-asset generator</strong> — batch props, textures, decorations and UI bits, auto-named and filed.</span></li>
-        <li><span data-lang="zh"><strong>UI 工坊</strong> —— 按你的游戏类型出一套界面,不只是图,是能点的交互原型。</span><span data-lang="en"><strong>UI workbench</strong> — a UI set for your game type — not just images, a clickable prototype.</span></li>
-        <li><span data-lang="zh"><strong>道具 / 图标</strong> —— 做武器、药水、金币等图标,还配上数据,图与数据一张表。</span><span data-lang="en"><strong>Items / icons</strong> — weapons, potions, coins as icons with their data, art and numbers in one table.</span></li>
+        <li><strong>Scene generator</strong> — assemble a whole game scene as a graph you can re-run anytime.</li>
+        <li><strong>2D scene-asset generator</strong> — batch props, textures, decorations and UI bits, auto-named and filed.</li>
+        <li><strong>UI workbench</strong> — a UI set for your game type — not just images, a clickable prototype.</li>
+        <li><strong>Items / icons</strong> — weapons, potions, coins as icons with their data, art and numbers in one table.</li>
       </ul>
 
-      <h2><span data-lang="zh">叙事 · 音乐 · 调色 · 数值</span><span data-lang="en">Narrative · music · look · numbers</span></h2>
+      <h2>Narrative · music · look · numbers</h2>
       <ul>
-        <li><span data-lang="zh"><strong>叙事工坊</strong> —— 从一句灵感写出整套剧情和世界观,AI 自动选最合适的写法。</span><span data-lang="en"><strong>Narrative workbench</strong> — from a spark to a full story and world, with the AI picking a fitting approach.</span></li>
-        <li><span data-lang="zh"><strong>音乐 / BGM</strong> —— 管理背景音乐与音效,排好整局的配乐节奏。</span><span data-lang="en"><strong>Music / BGM</strong> — manage background music and sound effects, sequencing a whole session's score.</span></li>
-        <li><span data-lang="zh"><strong>色彩 / Look</strong> —— 一键统一全游戏的色调氛围,像给画面套滤镜。</span><span data-lang="en"><strong>Color / Look</strong> — unify the whole game's color mood in one click, like a filter over everything.</span></li>
-        <li><span data-lang="zh"><strong>平衡 / 数值</strong> —— 让 AI 反复打几千局,给出胜率与置信区间,数值好不好用数据说话。</span><span data-lang="en"><strong>Balance</strong> — have AI play thousands of matches and report win rates with confidence intervals; let data judge the tuning.</span></li>
+        <li><strong>Narrative workbench</strong> — from a spark to a full story and world, with the AI picking a fitting approach.</li>
+        <li><strong>Music / BGM</strong> — manage background music and sound effects, sequencing a whole session's score.</li>
+        <li><strong>Color / Look</strong> — unify the whole game's color mood in one click, like a filter over everything.</li>
+        <li><strong>Balance</strong> — have AI play thousands of matches and report win rates with confidence intervals; let data judge the tuning.</li>
       </ul>
 
-      <h2><span data-lang="zh">系统与作者工具</span><span data-lang="en">System &amp; author tools</span></h2>
+      <h2>System &amp; author tools</h2>
       <ul>
-        <li><span data-lang="zh"><strong>代码</strong> —— 在工作台里看代码、跳转文件,和写代码的 AI 一起改。</span><span data-lang="en"><strong>Code</strong> — browse code, jump between files, and edit alongside the coding AI.</span></li>
-        <li><span data-lang="zh"><strong>轨迹观察台</strong> —— 像黑匣子一样回放 AI 每一步,精确定位是哪一步出的问题。</span><span data-lang="en"><strong>Observatory</strong> — replay every step the AI took, like a black box, to pinpoint where things went wrong.</span></li>
-        <li><span data-lang="zh"><strong>插件作者</strong> —— 让不会编程的人也能做出自己的工作台插件。</span><span data-lang="en"><strong>Plugin author</strong> — let non-coders build their own workbench plugins.</span></li>
-        <li><span data-lang="zh"><strong>面板管理</strong> —— 工作室总控台:开关工作台、绑模型、看各家 AI 是否在线。</span><span data-lang="en"><strong>Admin</strong> — the studio control panel: toggle workbenches, bind models, see which AIs are online.</span></li>
+        <li><strong>Code</strong> — browse code, jump between files, and edit alongside the coding AI.</li>
+        <li><strong>Observatory</strong> — replay every step the AI took, like a black box, to pinpoint where things went wrong.</li>
+        <li><strong>Plugin author</strong> — let non-coders build their own workbench plugins.</li>
+        <li><strong>Admin</strong> — the studio control panel: toggle workbenches, bind models, see which AIs are online.</li>
       </ul>
 
-      <blockquote><span data-lang="zh">不会画画、不会建模、不会作曲也没关系 —— 描述出来,工作台帮你做出能直接进游戏的素材。</span><span data-lang="en">Can't draw, model or compose? That's fine — describe it, and the workbenches produce assets that drop straight into your game.</span></blockquote>
+      <blockquote>Can't draw, model or compose? That's fine — describe it, and the workbenches produce assets that drop straight into your game.</blockquote>
     </div>
-    <p style="margin-top:32px"><a class="btn primary" href="/showcase/"><span data-lang="zh">看看成品案例 →</span><span data-lang="en">See finished demos →</span></a></p>
+    <p style="margin-top:32px"><a class="btn primary" href="/showcase/">See finished demos →</a></p>
   </article>
 </main>
-<div id="site-footer"></div>
-<script src="/assets/site.js?v=forgeax-ui-130"></script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/changelog/">Changelog</a>
+    <a href="/blog/">Blog</a>
+    <a href="/docs/">Docs</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/games/">Games</a>
+    <a href="/marketplace/">Marketplace</a>
+  </div>
+  <div class="col"><h4>Project</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
 </body>
 </html>

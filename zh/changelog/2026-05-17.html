@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-17 · 聊天里直接预览模型与图片 + @提及 pill — ForgeaX</title>
+<meta name="description" content="这天把"多 agent 协作"从后台搬到了你眼前:可以直接 @ 一个 agent 跟它对话,能力健康度铺满整个界面,素材能在聊天里就地预览、用引用 pill 带进对话。引擎同时做了一大批收敛:统一的网格渲染器、统一的截图能力、控制台依赖反转,以及一整套渲染教学示例。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-17 · 聊天里直接预览模型与图片 + @提及 pill — ForgeaX" />
+<meta property="og:description" content="这天把"多 agent 协作"从后台搬到了你眼前:可以直接 @ 一个 agent 跟它对话,能力健康度铺满整个界面,素材能在聊天里就地预览、用引用 pill 带进对话。引擎同时做了一大批收敛:统一的网格渲染器、统一的截图能力、控制台依赖反转,以及一整套渲染教学示例。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-17.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-17.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-17.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-17.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-17.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-17.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-17.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-17.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-17.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-17.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-05-17</span></div>
+    <h1>聊天里直接预览模型与图片 + @提及 pill</h1>
+    <p class="standfirst">这天把&quot;多 agent 协作&quot;从后台搬到了你眼前:可以直接 @ 一个 agent 跟它对话,能力健康度铺满整个界面,素材能在聊天里就地预览、用引用 pill 带进对话。引擎同时做了一大批收敛:统一的网格渲染器、统一的截图能力、控制台依赖反转,以及一整套渲染教学示例。</p>
+    <div class="prose"><h2>让协作&quot;看得见、点得到&quot;</h2>
+<p>前几天平台搭好了&quot;多 agent 后台长跑 + 事件总线&quot;的能力,但这些都还藏在系统内部。这天的主线,是把这套能力彻底推到界面前台:你不仅能看见 agent 之间在总线上的往来,还能直接 @ 点名某个 agent、把素材就地预览出来、用引用胶囊把对象带进对话。换句话说,这天补的不是某个孤立功能,而是&quot;让一群 agent 协作&quot;这件事真正可被一个普通人操控的那层交互。当后台的复杂被翻译成你看得懂、点得到的界面元素,多 agent 才从&quot;技术上能跑&quot;变成&quot;用起来顺手&quot;。</p>
+<h2>直接 @ 一个 agent 跟它对话</h2>
+<p>这天多 agent 协作迈出关键一步:你可以在对话里直接用 @ 点名某个 agent,让它接住这条消息并回复,而不再是只能跟那个主控对话、由它转述给别人。配套上线了一个 agent 中枢面板,把当前这支&quot;团队&quot;里有哪些成员、各自在忙什么集中呈现出来。这件事改变的是协作的&quot;指挥方式&quot;:以前你像是只能对项目经理说话,现在你可以越过项目经理,直接找那个负责美术、或负责关卡的成员把话说清楚。对&quot;一个人带一支 AI 团队&quot;这个核心场景来说,能点名沟通是从&quot;群发&quot;走向&quot;精确指挥&quot;的分水岭——你终于能把对的话说给对的成员听。</p>
+<h2>总线状态铺满界面:处处看得见能力健康度</h2>
+<p>承接前一天把总线接进界面,这天把&quot;系统里有哪些能力、各自健不健康&quot;这件事铺到了界面的各个角落。顶栏多了一排状态灯,分别对应工具、技能、agent 等几类能力,各自显示数量和健康状态;聊天面板、侧栏、总线管理面板里也到处是这种&quot;小灯 + 计数 + 可点深链&quot;的呈现,点一下就能跳到对应的详情。它的价值在于把&quot;系统现在到底有什么、状态如何&quot;这件事变成一种环境信息——你不用专门去查,扫一眼界面就知道。对一个能力越来越多、还能被插件不断扩展的系统来说,这种无处不在的健康可视化,是让人始终对&quot;它现在是什么状态&quot;心里有底的关键。</p>
+<h2>聊天里就地预览素材 + 引用 pill</h2>
+<p>这天还让&quot;素材&quot;在对话里变得可见、可引用。聊天能就地预览附件:贴一张图片直接出缩略图,丢一个模型文件会渲染成一个可看的小预览,不必先塞进游戏里跑一遍才能看到它长什么样。讨论一个角色或一张贴图时,双方看到的是同一个具体的东西,而不是各自脑补。配套的&quot;引用胶囊&quot;则让你在输入框里打个 @ 就能把一个 agent 或一份资源做成一枚可点的标签——记得你最近用过哪些、悬停能看说明、插入后还能点回去。这两件事合起来,把&quot;把素材带进对话&quot;这件以前要靠复制长路径、靠文字描述的事,变成了一拖、一点的直接操作。</p>
+<h2>引擎:统一的网格渲染器 + 材质句柄 + 默认值回退</h2>
+<p>引擎这天在渲染与组件这两层做了重要收敛。渲染上,统一成了单一的网格渲染器,并用&quot;材质句柄&quot;来引用材质——也就是一个物体怎么被画出来,统一由&quot;网格 + 一个指向材质的句柄&quot;来描述,既清楚又便于复用同一份材质。组件这边,给&quot;创建实体&quot;和&quot;添加组件&quot;补上了一条默认值回退链:当你没显式给某个字段赋值时,系统会沿着多层规则去找一个合理的默认值,而不是报错或留空。这意味着写游戏内容时可以&quot;只写关心的部分,其余交给合理默认&quot;,大大减少样板和出错面。这类收敛不是新功能,而是让引擎在被越来越多人(和 AI)使用时,依然保持&quot;少惊讶、好预期&quot;的关键。</p>
+<h2>引擎:截图能力统一 + 控制台依赖反转 + 教学示例铺开</h2>
+<p>引擎这天还清理了几处&quot;重复&quot;与&quot;耦合&quot;。其一,把原本散落在多个示例里、各写一套的&quot;截屏&quot;逻辑统一成渲染器的一个标准能力,一处实现、处处可用,既减少重复又让视觉验证更一致。其二,对&quot;控制台&quot;这条调试通道做了依赖反转:它不再直接依赖具体的内部模块,而是通过一个抽象接口来工作,从而把彼此解耦——这让控制台能更独立地演进,也让插件能以统一方式接进来。其三,落地了一整套循序渐进的渲染教学示例(从最基础的三角形、纹理到输入处理),并把图像、纹理、输入这些通用能力内化进引擎本身。这些示例既是引擎能力的活文档,也是新人(和 AI)学习怎么用这套引擎的最好入口。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的两条线——界面上把多 agent 协作彻底&quot;显形&quot;,引擎里把渲染与组件大幅&quot;收敛&quot;——表面无关,内里却是同一种追求:让一个正在快速变复杂的系统,始终对人保持清楚。界面这边,@ 提及、能力健康灯、素材预览、引用胶囊,合起来让&quot;指挥一支 AI 团队&quot;从抽象变得具体可操作;引擎这边,统一渲染器、统一截图、依赖反转、教学示例,合起来让底层在功能膨胀的同时不至于越长越乱。一个能长期演进的系统,既要往外长出能力,也要往内保持秩序——这一天,正好同时在做这两件事。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

@@ -1,114 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" />
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>做一部可玩的互动影游 · Make an interactive film-game — ForgeaX</title>
-<meta name="description" content="用一句灵感或一部剧本做出限时点按 + 选择驱动的互动影游:AI 拆剧情、定角色场景道具、生成分镜与视频,你在三轨时间轴上剪辑、试玩,一键打包成谁都能在浏览器里打开就玩的网页。含五步流程、轨道设计与常见问题。" />
+<title>Make an interactive film-game — ForgeaX</title>
+<meta name="description" content="Build a timed-tap, choice-driven interactive film-game from a spark or a script: AI breaks down the story, locks characters/locations/props, generates storyboards and video; you edit on a three-track timeline, play-test, and ship a self-contained webpage anyone can play. Includes the five-step flow, track design and FAQ." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Make an interactive film-game — ForgeaX" />
+<meta property="og:description" content="Build a timed-tap, choice-driven interactive film-game from a spark or a script: AI breaks down the story, locks characters/locations/props, generates storyboards and video; you edit on a three-track timeline, play-test, and ship a self-contained webpage anyone can play. Includes the five-step flow, track design and FAQ." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-131" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
 </head>
-<body class="lang-en">
-<div id="site-header"></div>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/docs/" data-nav="/docs/">Docs</a>
+      <a href="/tutorials/" data-nav="/tutorials/" class="active">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/games/" data-nav="/games/">Games</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Marketplace</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/tutorials/interactive-film-game.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/tutorials/interactive-film-game.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/interactive-film-game.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/interactive-film-game.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/interactive-film-game.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/interactive-film-game.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/interactive-film-game.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/interactive-film-game.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Open in ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Open in Claude</a>
+          <button class="ask-item" id="copyMd">Copy page as Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
 <main>
   <article class="read article">
-    <a class="back" href="/tutorials/"><span data-lang="zh">← 返回教程</span><span data-lang="en">← Back to tutorials</span></a>
-    <div class="meta"><span class="tag brand"><span data-lang="zh">创作</span><span data-lang="en">Create</span></span><span data-lang="zh">互动影游</span><span data-lang="en">Interactive film-game</span></div>
-    <h1><span data-lang="zh">做一部可玩的互动影游</span><span data-lang="en">Make an interactive film-game</span></h1>
-    <p class="standfirst"><span data-lang="zh">给一句灵感或一整部剧本,做出"限时点按 + 选择决定走向"的互动影游 —— AI 帮你拆剧情、定下角色与场景、生成分镜与视频,你来剪辑、试玩,最后一键打包成谁都能在浏览器里打开就玩的网页。</span><span data-lang="en">From a single spark or a whole script, build an interactive film-game driven by timed taps and branching choices — AI breaks down the story, locks in characters and locations, generates storyboards and video; you edit, play-test, and ship it as a webpage anyone opens and plays in a browser.</span></p>
+    <a class="back" href="/tutorials/">← Back to tutorials</a>
+    <div class="meta"><span class="tag brand">Create</span><span>Interactive film-game</span></div>
+    <h1>Make an interactive film-game</h1>
+    <p class="standfirst">From a single spark or a whole script, build an interactive film-game driven by timed taps and branching choices — AI breaks down the story, locks in characters and locations, generates storyboards and video; you edit, play-test, and ship it as a webpage anyone opens and plays in a browser.</p>
 
     <div class="prose">
-      <div class="note"><span data-lang="zh">✅ 已开源(Apache-2.0)。下面是创作流程的完整概览;克隆与安装见 <a href="/docs/">文档</a>。</span><span data-lang="en">✅ Open source (Apache-2.0). Below is a full overview of the flow; for clone &amp; install see the <a href="/docs/">docs</a>.</span></div>
+      <div class="note">✅ Open source (Apache-2.0). Below is a full overview of the flow; for clone &amp; install see the <a href="/docs/">docs</a>.</div>
 
-      <h2><span data-lang="zh">它是什么</span><span data-lang="en">What it is</span></h2>
-      <p><span data-lang="zh">互动影游是"能玩的短片"。画面以视频和图片连续呈现,像看一部短剧;但在关键时刻,屏幕上会跳出<strong>限时点按</strong>——你得在几秒内做出反应;在一个场景结束时,又会给出<strong>选择</strong>,不同的选择把故事带向不同的下一幕,直到不同的结局。</span><span data-lang="en">An interactive film-game is a short film you can play. Scenes flow as video and images, like watching a short drama — but at key moments a <strong>timed tap</strong> pops up, asking you to react within seconds; and at the end of a scene a <strong>choice</strong> branches the story toward a different next beat, all the way to different endings.</span></p>
-      <p><span data-lang="zh">你在编辑器里把<strong>剧情、画面、节奏点和分支</strong>拼装好,玩家最终拿到的是一段确定性的、可反复游玩的体验:同样的选择走同样的路,换个选择就解锁新的剧情。</span><span data-lang="en">You assemble the <strong>story, visuals, beats and branches</strong> in the editor; what players get is a deterministic, replayable experience — the same choices follow the same path, a different choice unlocks new story.</span></p>
+      <h2>What it is</h2>
+      <p>An interactive film-game is a short film you can play. Scenes flow as video and images, like watching a short drama — but at key moments a <strong>timed tap</strong> pops up, asking you to react within seconds; and at the end of a scene a <strong>choice</strong> branches the story toward a different next beat, all the way to different endings.</p>
+      <p>You assemble the <strong>story, visuals, beats and branches</strong> in the editor; what players get is a deterministic, replayable experience — the same choices follow the same path, a different choice unlocks new story.</p>
 
-      <div class="note"><span data-lang="zh">💡 一句话:你负责把故事讲清楚、把节奏和选择设计好;AI 负责把它"拍"出来、"剪"顺、变成能在浏览器里玩的成品。</span><span data-lang="en">💡 In one line: you shape the story, the pacing and the choices; AI handles the "shooting", the "editing", and turning it into something that plays in a browser.</span></div>
+      <div class="note">💡 In one line: you shape the story, the pacing and the choices; AI handles the "shooting", the "editing", and turning it into something that plays in a browser.</div>
 
-      <h2><span data-lang="zh">适合做什么</span><span data-lang="en">What it's good for</span></h2>
+      <h2>What it's good for</h2>
       <ul>
-        <li><span data-lang="zh"><strong>互动短剧 / 多结局故事</strong> —— 让观众自己决定主角的下一步,一个故事玩出好几条线。</span><span data-lang="en"><strong>Interactive shorts / multi-ending stories</strong> — let the audience decide the protagonist's next move; one story, several paths.</span></li>
-        <li><span data-lang="zh"><strong>剧情向小游戏</strong> —— 把对话、悬念和限时反应做成轻量玩法,不需要写一行引擎代码。</span><span data-lang="en"><strong>Story-driven mini games</strong> — turn dialogue, suspense and timed reactions into light gameplay, no engine code required.</span></li>
-        <li><span data-lang="zh"><strong>教学 / 演示 / 培训</strong> —— 用"选了会怎样"的分支演练流程与决策,比纯视频更有参与感。</span><span data-lang="en"><strong>Teaching / demos / training</strong> — drill processes and decisions with "what if I pick this" branches — more engaging than plain video.</span></li>
-        <li><span data-lang="zh"><strong>原型与试水</strong> —— 几小时内做出可玩的雏形,先验证故事和玩法,再决定是否深做。</span><span data-lang="en"><strong>Prototyping</strong> — build a playable rough cut in hours to validate story and feel before committing.</span></li>
+        <li><strong>Interactive shorts / multi-ending stories</strong> — let the audience decide the protagonist's next move; one story, several paths.</li>
+        <li><strong>Story-driven mini games</strong> — turn dialogue, suspense and timed reactions into light gameplay, no engine code required.</li>
+        <li><strong>Teaching / demos / training</strong> — drill processes and decisions with "what if I pick this" branches — more engaging than plain video.</li>
+        <li><strong>Prototyping</strong> — build a playable rough cut in hours to validate story and feel before committing.</li>
       </ul>
 
-      <h2><span data-lang="zh">从剧本到成片,五步</span><span data-lang="en">From script to film, in five steps</span></h2>
+      <h2>From script to film, in five steps</h2>
 
-      <h3><span data-lang="zh">① 剧本:从一句灵感到结构化故事</span><span data-lang="en">① Script: from a spark to a structured story</span></h3>
-      <p><span data-lang="zh">丢进一句灵感、一段梗概,或一整部剧本都行。AI 会把它扩写并<strong>结构化</strong>成分幕、角色、人物关系和逐场的详细剧情。故事太长也不怕——可以一集一集往下续,保持前后设定连贯。</span><span data-lang="en">Drop in a one-line spark, a synopsis, or a whole script. AI expands and <strong>structures</strong> it into acts, characters, relationships and scene-by-scene beats. Long story? Continue it episode by episode while keeping earlier setups consistent.</span></p>
+      <h3>① Script: from a spark to a structured story</h3>
+      <p>Drop in a one-line spark, a synopsis, or a whole script. AI expands and <strong>structures</strong> it into acts, characters, relationships and scene-by-scene beats. Long story? Continue it episode by episode while keeping earlier setups consistent.</p>
 
-      <h3><span data-lang="zh">② 锚点:先定"长什么样"</span><span data-lang="en">② Anchors: lock the look first</span></h3>
-      <p><span data-lang="zh">系统自动从剧本里抽出<strong>角色、场景、关键道具</strong>(以及它们的不同状态与变体),让你先把"长什么样"定下来。之后所有画面都对齐这些锚点,所以人物不会换脸、场景不会跑偏——这是保持整部片一致性的关键一步。</span><span data-lang="en">The system auto-extracts <strong>characters, locations and key props</strong> (and their states and variants) so you can lock their look up front. Every later shot aligns to these anchors, so characters don't swap faces and locations don't drift — the key step for keeping the whole film consistent.</span></p>
+      <h3>② Anchors: lock the look first</h3>
+      <p>The system auto-extracts <strong>characters, locations and key props</strong> (and their states and variants) so you can lock their look up front. Every later shot aligns to these anchors, so characters don't swap faces and locations don't drift — the key step for keeping the whole film consistent.</p>
 
-      <h3><span data-lang="zh">③ 剧情树 · 分镜:把故事拆成一棵可玩的树</span><span data-lang="en">③ Story tree · storyboards: split the story into a playable tree</span></h3>
-      <p><span data-lang="zh">AI 把剧情拆成一棵<strong>分镜树</strong>:每个节点是一个镜头,自动生成对应画面。你在树上自由编排——调整顺序与结构、<strong>加入选择分支</strong>(在某个节点之后岔出两条以上的路)、给紧张时刻<strong>设上限时点按</strong>。整棵树就是玩家会经历的所有可能路线。</span><span data-lang="en">AI splits the story into a <strong>storyboard tree</strong>: each node is a shot with an auto-generated image. You arrange it freely — reorder and reshape, <strong>add branching choices</strong> (fork two or more paths after a node), and <strong>set timed taps</strong> on tense moments. The tree is every route a player can take.</span></p>
+      <h3>③ Story tree · storyboards: split the story into a playable tree</h3>
+      <p>AI splits the story into a <strong>storyboard tree</strong>: each node is a shot with an auto-generated image. You arrange it freely — reorder and reshape, <strong>add branching choices</strong> (fork two or more paths after a node), and <strong>set timed taps</strong> on tense moments. The tree is every route a player can take.</p>
 
-      <h3><span data-lang="zh">④ 生成视频:让画面动起来</span><span data-lang="en">④ Generate video: bring shots to life</span></h3>
-      <p><span data-lang="zh">分镜满意后,一键把镜头从静态画面生成<strong>视频</strong>。生成时可以带上参考图,让人物和场景在镜头里保持一致;台词可以配上选定的<strong>音色</strong>。所有素材统一落到时间轴上,和台词、节奏点对齐。</span><span data-lang="en">Once the boards look right, turn shots from stills into <strong>video</strong> in one click. Reference images keep characters and locations consistent across shots; lines can be carried by a chosen <strong>voice</strong>. Everything lands on the timeline, aligned to dialogue and beats.</span></p>
+      <h3>④ Generate video: bring shots to life</h3>
+      <p>Once the boards look right, turn shots from stills into <strong>video</strong> in one click. Reference images keep characters and locations consistent across shots; lines can be carried by a chosen <strong>voice</strong>. Everything lands on the timeline, aligned to dialogue and beats.</p>
 
-      <h3><span data-lang="zh">⑤ 剪辑 · 试玩:在时间轴上精修,边玩边改</span><span data-lang="en">⑤ Edit · play-test: fine-tune on the timeline, tweak as you play</span></h3>
-      <p><span data-lang="zh">在<strong>三轨时间轴</strong>上精修:对齐台词、安排点按出现的时刻、连接分支去向。随时切到<strong>"试玩"全屏</strong>,像真正的玩家一样体验一遍——哪里节奏拖了、哪个点按太难、哪条分支不通顺,回来就改,改完再玩。</span><span data-lang="en">Fine-tune on a <strong>three-track timeline</strong>: align dialogue, place when taps appear, wire where branches lead. Flip to a <strong>full-screen play-test</strong> anytime and experience it like a real player — wherever the pacing drags, a tap is too hard, or a branch feels off, jump back, fix it, and play again.</span></p>
+      <h3>⑤ Edit · play-test: fine-tune on the timeline, tweak as you play</h3>
+      <p>Fine-tune on a <strong>three-track timeline</strong>: align dialogue, place when taps appear, wire where branches lead. Flip to a <strong>full-screen play-test</strong> anytime and experience it like a real player — wherever the pacing drags, a tap is too hard, or a branch feels off, jump back, fix it, and play again.</p>
 
-      <h2><span data-lang="zh">三条轨道:台词 / 点按 / 分支</span><span data-lang="en">Three tracks: dialogue / taps / branches</span></h2>
-      <p><span data-lang="zh">影游的"可玩性"主要由时间轴上的三条轨道决定,它们各管一件事:</span><span data-lang="en">A film-game's playability comes from three timeline tracks, each owning one job:</span></p>
+      <h2>Three tracks: dialogue / taps / branches</h2>
+      <p>A film-game's playability comes from three timeline tracks, each owning one job:</p>
       <table>
         <thead>
           <tr>
-            <th><span data-lang="zh">轨道</span><span data-lang="en">Track</span></th>
-            <th><span data-lang="zh">管什么</span><span data-lang="en">What it controls</span></th>
-            <th><span data-lang="zh">设计要点</span><span data-lang="en">Design tip</span></th>
+            <th>Track</th>
+            <th>What it controls</th>
+            <th>Design tip</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span data-lang="zh">台词</span><span data-lang="en">Dialogue</span></td>
-            <td><span data-lang="zh">每句话出现的时刻与时长,配上音色</span><span data-lang="en">When each line shows and for how long, with a voice</span></td>
-            <td><span data-lang="zh">让字幕和画面、语音对齐,别抢戏</span><span data-lang="en">Keep subtitles in sync with picture and voice</span></td>
+            <td>Dialogue</td>
+            <td>When each line shows and for how long, with a voice</td>
+            <td>Keep subtitles in sync with picture and voice</td>
           </tr>
           <tr>
-            <td><span data-lang="zh">点按</span><span data-lang="en">Taps</span></td>
-            <td><span data-lang="zh">限时反应:在窗口内点中算成功</span><span data-lang="en">Timed reactions: tap within a window to succeed</span></td>
-            <td><span data-lang="zh">放在紧张/动作的高点,窗口别太苛刻</span><span data-lang="en">Place at tension peaks; don't make the window brutal</span></td>
+            <td>Taps</td>
+            <td>Timed reactions: tap within a window to succeed</td>
+            <td>Place at tension peaks; don't make the window brutal</td>
           </tr>
           <tr>
-            <td><span data-lang="zh">分支</span><span data-lang="en">Branches</span></td>
-            <td><span data-lang="zh">场景结尾给出选择,决定下一幕去向</span><span data-lang="en">Choices at scene end that decide the next beat</span></td>
-            <td><span data-lang="zh">两到三个选项最好,让每个选择都有后果</span><span data-lang="en">Two or three options; make every choice matter</span></td>
+            <td>Branches</td>
+            <td>Choices at scene end that decide the next beat</td>
+            <td>Two or three options; make every choice matter</td>
           </tr>
         </tbody>
       </table>
 
-      <h2><span data-lang="zh">设计得更好玩的几个要点</span><span data-lang="en">A few tips for better play</span></h2>
+      <h2>A few tips for better play</h2>
       <ul>
-        <li><span data-lang="zh"><strong>把选择放在有分量的地方</strong> —— 让玩家在"真的会改变故事"的节点上做决定,而不是无关紧要的二选一。</span><span data-lang="en"><strong>Put choices where they count</strong> — ask players to decide at moments that truly change the story, not trivial forks.</span></li>
-        <li><span data-lang="zh"><strong>点按服务于情绪</strong> —— 在动作、对峙、悬念这些高点放限时点按,强化"我在参与"的感觉。</span><span data-lang="en"><strong>Taps serve emotion</strong> — drop timed taps on action, confrontation and suspense to amplify "I'm in it".</span></li>
-        <li><span data-lang="zh"><strong>分支收敛与发散并用</strong> —— 不必每条线都全程独立,适当让几条线再汇回主线,既有变化又控制工作量。</span><span data-lang="en"><strong>Mix diverging and converging</strong> — branches needn't stay fully separate; let some rejoin the main line to add variety while keeping scope sane.</span></li>
-        <li><span data-lang="zh"><strong>先短后长</strong> —— 先做一条最短的完整线跑通体验,再往上加分支和结局。</span><span data-lang="en"><strong>Short first, then long</strong> — get one shortest complete path working end-to-end, then layer on branches and endings.</span></li>
-        <li><span data-lang="zh"><strong>多试玩</strong> —— 自己当玩家走一遍,往往比反复看时间轴更能发现问题。</span><span data-lang="en"><strong>Play-test often</strong> — walking it as a player usually surfaces issues faster than staring at the timeline.</span></li>
+        <li><strong>Put choices where they count</strong> — ask players to decide at moments that truly change the story, not trivial forks.</li>
+        <li><strong>Taps serve emotion</strong> — drop timed taps on action, confrontation and suspense to amplify "I'm in it".</li>
+        <li><strong>Mix diverging and converging</strong> — branches needn't stay fully separate; let some rejoin the main line to add variety while keeping scope sane.</li>
+        <li><strong>Short first, then long</strong> — get one shortest complete path working end-to-end, then layer on branches and endings.</li>
+        <li><strong>Play-test often</strong> — walking it as a player usually surfaces issues faster than staring at the timeline.</li>
       </ul>
 
-      <h2><span data-lang="zh">打包 · 分享</span><span data-lang="en">Package &amp; share</span></h2>
-      <p><span data-lang="zh">做好的影游可以<strong>一键打包成一个自包含的网页</strong>:剧情、图片、视频、点按与分支逻辑全都打进去。把它发给别人,在任意现代浏览器里<strong>打开就能玩</strong>——不用安装任何东西,也不挑显卡。</span><span data-lang="en">A finished film-game <strong>packages into one self-contained webpage</strong>: story, images, video, taps and branch logic all bundled in. Send it to anyone and it <strong>plays in any modern browser</strong> — no install, no GPU needed.</span></p>
-      <p><span data-lang="zh">在工程里,它还会作为一份<strong>标准游戏资产</strong>被保存与寻址,因此可以被复用、被引用,也方便再分发或接入更大的项目。</span><span data-lang="en">Inside a project it's also saved and addressed as a <strong>standard game asset</strong>, so it can be reused, referenced, redistributed, or wired into a larger project.</span></p>
+      <h2>Package &amp; share</h2>
+      <p>A finished film-game <strong>packages into one self-contained webpage</strong>: story, images, video, taps and branch logic all bundled in. Send it to anyone and it <strong>plays in any modern browser</strong> — no install, no GPU needed.</p>
+      <p>Inside a project it's also saved and addressed as a <strong>standard game asset</strong>, so it can be reused, referenced, redistributed, or wired into a larger project.</p>
 
-      <h2><span data-lang="zh">常见问题</span><span data-lang="en">FAQ</span></h2>
+      <h2>FAQ</h2>
       <ul>
-        <li><span data-lang="zh"><strong>玩家需要装东西吗?</strong> 不需要。打包出来就是一个网页,双击或托管后用浏览器打开即可。</span><span data-lang="en"><strong>Do players need to install anything?</strong> No. The package is a webpage — open it in a browser, locally or hosted.</span></li>
-        <li><span data-lang="zh"><strong>我不会拍片、不会剪辑,能用吗?</strong> 能。你只要把故事和选择讲清楚,生成与对齐都交给 AI 和时间轴。</span><span data-lang="en"><strong>I can't shoot or edit — can I still use it?</strong> Yes. Just shape the story and the choices; generation and alignment are handled by AI and the timeline.</span></li>
-        <li><span data-lang="zh"><strong>故事很长可以吗?</strong> 可以,按集续写,每集都对齐已定下的角色与场景锚点。</span><span data-lang="en"><strong>What about long stories?</strong> Fine — continue episode by episode, each aligned to the characters and locations you've already locked.</span></li>
-        <li><span data-lang="zh"><strong>之后还能改吗?</strong> 能。它在工程里是可寻址的资产,随时回到编辑器调整后重新打包。</span><span data-lang="en"><strong>Can I edit later?</strong> Yes. It's an addressable asset in your project — return to the editor, adjust, and repackage anytime.</span></li>
+        <li><strong>Do players need to install anything?</strong> No. The package is a webpage — open it in a browser, locally or hosted.</li>
+        <li><strong>I can't shoot or edit — can I still use it?</strong> Yes. Just shape the story and the choices; generation and alignment are handled by AI and the timeline.</li>
+        <li><strong>What about long stories?</strong> Fine — continue episode by episode, each aligned to the characters and locations you've already locked.</li>
+        <li><strong>Can I edit later?</strong> Yes. It's an addressable asset in your project — return to the editor, adjust, and repackage anytime.</li>
       </ul>
 
-      <blockquote><span data-lang="zh">不会拍片、不会剪辑也没关系 —— 把故事讲出来,AI 帮你把它变成一部能玩的短片。</span><span data-lang="en">Can't shoot or edit film? That's fine — tell the story, and AI turns it into a short film you can play.</span></blockquote>
+      <blockquote>Can't shoot or edit film? That's fine — tell the story, and AI turns it into a short film you can play.</blockquote>
     </div>
-    <p style="margin-top:32px"><a class="btn primary" href="/showcase/"><span data-lang="zh">看看成品案例 →</span><span data-lang="en">See finished demos →</span></a></p>
+    <p style="margin-top:32px"><a class="btn primary" href="/showcase/">See finished demos →</a></p>
   </article>
 </main>
-<div id="site-footer"></div>
-<script src="/assets/site.js?v=forgeax-ui-130"></script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/changelog/">Changelog</a>
+    <a href="/blog/">Blog</a>
+    <a href="/docs/">Docs</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/games/">Games</a>
+    <a href="/marketplace/">Marketplace</a>
+  </div>
+  <div class="col"><h4>Project</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
 </body>
 </html>

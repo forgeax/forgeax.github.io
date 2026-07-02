@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-10 · Build & runtime architecture takes shape — ForgeaX</title>
+<meta name="description" content="The ECS↔render bridge connects the game world to the screen, a benchmark spike sets a yardstick for performance, the front-end shell appears, and the agent gets a command system and smarter context compaction." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-10 · Build & runtime architecture takes shape — ForgeaX" />
+<meta property="og:description" content="The ECS↔render bridge connects the game world to the screen, a benchmark spike sets a yardstick for performance, the front-end shell appears, and the agent gets a command system and smarter context compaction." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-05-10.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-10.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-10.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-10.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-10.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-05-10.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-05-10.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-10.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-10.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-10.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-05-10</span></div>
+    <h1>Build & runtime architecture takes shape</h1>
+    <p class="standfirst">Day two formally connects the &quot;game world&quot; to the &quot;screen&quot;: the ECS↔render bridge runs, a benchmark sets a yardstick for performance, the Studio front-end shell appears for the first time, and the chat agent grows a command system and smarter context compaction. The foundation moves from &quot;can draw a frame&quot; to &quot;a runtime that actually turns.&quot;</p>
+    <div class="prose"><h2>From &quot;can draw a frame&quot; to &quot;the architecture takes shape&quot;</h2>
+<p>If day one answered &quot;can a pixel be drawn correctly in the browser,&quot; this day answers the next question: where the picture comes from. What actually moves in a game is a world model called ECS (Entity–Component–System) — every character, prop and camera is an &quot;entity,&quot; and their position, look and behavior are decided by &quot;components&quot; and &quot;systems.&quot; With rendering but no world model, the engine is just a drawing tool; with a world model but no rendering, the world stays invisible. This day&#39;s through-line is connecting those two halves, and along with it standing up the overall build-and-runtime architecture, the front-end shell, and several foundational agent capabilities — so every link in the &quot;generate a game by conversation&quot; chain begins to take form.</p>
+<h2>The ECS↔render bridge: connecting the world to the screen</h2>
+<p>The most pivotal step this day was producing a first working version of the bridge between the ECS world and the renderer. What it solves sounds plain yet is utterly fundamental: there&#39;s an &quot;entity&quot; in the world carrying components like position, orientation, mesh and material — how does the renderer know where on screen and in what form to draw it? The bridge is that translation channel — each frame it converts the world model&#39;s state into draw commands the renderer understands. With it, placing a moving object in the world makes it genuinely appear and move on screen, without hand-writing any drawing code. This is the turning point where the engine goes from &quot;two unrelated subsystems&quot; to &quot;one whole that turns&quot;; every later experience of &quot;place an object and it shows up on screen&quot; traces back to the bridge connected this day.</p>
+<h2>A dual-implementation benchmark: a yardstick for performance</h2>
+<p>On an engine&#39;s critical paths there&#39;s often more than one way to implement something, each with its own speed and trade-offs. This day built a &quot;dual-implementation benchmark&quot; probe: do the same thing two different ways and measure their real cost side by side. The value isn&#39;t which one won a single race, but that performance no longer rests on guesswork — any hunch that &quot;writing it this way might be faster&quot; can be measured on the spot with the same yardstick, avoiding a clever-looking decision that&#39;s actually slower. For an engine meant to evolve long-term and run on all kinds of devices, establishing &quot;how to compare performance objectively&quot; first is like assigning a referee to every future optimization, so fast and slow have evidence behind them.</p>
+<h2>The Studio front-end shell is born</h2>
+<p>A landmark also happened this day: the Studio front-end shell got its first rough form. Until then all capability lived on the engine and command-line side; but what the end user actually faces is a web interface they can open, chat in, and watch the picture on the right. The initial shell stood up this day is the &quot;skeletal starting point&quot; for the chat panel, preview window and various workbenches to come. It&#39;s bare for now, but the significance is that the product begins converging from &quot;a pile of capabilities&quot; toward &quot;a usable form.&quot; On one side an ever-harder engine foundation, on the other an interface starting to take shape — over the coming weeks the two dock into the Studio you see.</p>
+<h2>The agent grows a command system: a draft + /context</h2>
+<p>The chat agent took a step &quot;from plain conversation to commands&quot; this day: a design draft for a command system landed, and the spec for the /context command was pinned down first. A command system gives &quot;collaborating with AI&quot; a set of predictable, reusable shortcuts — instead of describing a frequent action in a roundabout sentence every time, one command triggers it precisely. /context, the first command to be specified, addresses exactly what matters most in long sessions: &quot;which context is the model currently holding.&quot; Settling the command system&#39;s shape and its first command first means later commands can grow from the same standard, rather than each being written its own way and clashing.</p>
+<h2>Smarter auto-compaction: by tool, by idle gap</h2>
+<p>Over long back-and-forth with AI, accumulated context grows ever longer, slowing responses and raising cost; but crude compaction throws away useful information. This day added two bits of cleverness to context compaction: one, treat it &quot;by tool&quot; — different tools&#39; results matter differently, so you can decide per-tool what to trim and what to keep instead of one-size-fits-all; two, trigger it &quot;by idle gap&quot; — do the compaction in the windows when you&#39;re not waiting on a result, hiding the cost at moments you won&#39;t notice rather than when you most want a fast reply. Together they let long sessions keep slimming down while disturbing you as little as possible. This careful accounting of &quot;how to manage model context&quot; is exactly where this platform treats things as real engineering from the start.</p>
+<h2>Robustness in tooling and terminal: fetch, keys, the event bus</h2>
+<p>This day also tidied a batch of details that make daily use less prone to going sideways. Both modes of the web-fetch tool got steadier: the deep mode&#39;s error messages are more specific and easier to diagnose, while the direct mode is forbidden from installing extra components on its own, making its behavior more controllable. Cursor movement in the terminal (line start/end) was moved onto clearer key routing, so focus and keystrokes line up more accurately. The event bus fixed a self-amplifying loop where an observer&#39;s error triggered new errors that snowballed on themselves — once that happens logs explode instantly, so cutting it off at the source matters. None of these are flashy new features; they&#39;re the work of carving out &quot;doesn&#39;t feel rough to use&quot; bit by bit.</p>
+<h2>Easier install and startup</h2>
+<p>Since the goal is &quot;running locally in minutes,&quot; the install-and-startup path can&#39;t be bumpy. This day reorganized the startup flow into modules, made it compatible with a newer package-manager version, added &quot;auto-install as a fallback when the runtime is missing,&quot; and aligned the cleanup script to the same conventions. For a platform that wants more people — including non-professional developers — to get started, the smoother the road &quot;from clone to seeing the picture,&quot; the lower the bar. Paving that road early saves everyone who later wants to try a string of potentially off-putting hassles.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

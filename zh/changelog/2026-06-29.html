@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-29 · Forge 学会组队:多个 agent 一起干活 — ForgeaX</title>
+<meta name="description" content="这天最大的变化,是 Forge 不再只能一个人埋头串着做,而是能拉起一支队伍:多个 agent 共享同一张任务看板、并行推进。同时,编辑器里单个 mesh 的场景资产能稳定落盘、重开和试玩都还在;出现了一键打包的界面雏形;你还能扫码用手机接管正在干活的 agent;聊天也不再因为某些复杂排版而卡死。此外,项目的日常命令也收敛到了一个统一入口 bun fx。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-29 · Forge 学会组队:多个 agent 一起干活 — ForgeaX" />
+<meta property="og:description" content="这天最大的变化,是 Forge 不再只能一个人埋头串着做,而是能拉起一支队伍:多个 agent 共享同一张任务看板、并行推进。同时,编辑器里单个 mesh 的场景资产能稳定落盘、重开和试玩都还在;出现了一键打包的界面雏形;你还能扫码用手机接管正在干活的 agent;聊天也不再因为某些复杂排版而卡死。此外,项目的日常命令也收敛到了一个统一入口 bun fx。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-29.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-29.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-29.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-29.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-29.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-29.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-29.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-29.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-29.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-29.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-29.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-29.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-29.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-29.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-29.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-29.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-29.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-29.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-29.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-29</span></div>
+    <h1>Forge 学会组队:多个 agent 一起干活</h1>
+    <p class="standfirst">这天最大的变化,是 Forge 不再只能一个人埋头串着做,而是能拉起一支队伍:多个 agent 共享同一张任务看板、并行推进。同时,编辑器里单个 mesh 的场景资产能稳定落盘、重开和试玩都还在;出现了一键打包的界面雏形;你还能扫码用手机接管正在干活的 agent;聊天也不再因为某些复杂排版而卡死。此外,项目的日常命令也收敛到了一个统一入口 <code>bun fx</code>。</p>
+    <div class="prose"><h2>从&quot;一个 Forge&quot;到&quot;一支队伍&quot;</h2>
+<p>到目前为止,Forge 接到一个需求,基本是自己一步步串着做:规划、写代码、验证,一件接一件。这对小任务够用,但当需求一大、可以拆成好几块互不依赖的活时,串行就成了瓶颈——明明能同时进行的事,却只能排着队等。这一天引入了多 agent 的 Team 模式:Forge 可以拉起若干&quot;队友&quot;agent,大家共享同一张任务看板,各自认领、并行推进,再把结果汇总回来。技术上,这背后是几件事的合力:一个能真正并发执行队友的执行器、一套让队友之间互通消息的进程内&quot;信箱&quot;、以及一张所有人都能看、能认领、状态一致的共享任务表。它把&quot;指挥一个 AI&quot;升级成了&quot;指挥一个 AI 团队&quot;。</p>
+<h2>默认就开,带一个&quot;队长视角&quot;</h2>
+<p>Team 模式这一天就默认开启了(也保留了一个开关,想关随时能关回单 agent)。为了让&quot;一群 agent 在干活&quot;不至于变成一团看不懂的乱麻,它配了一个&quot;队长视角&quot;:由一个协调者把活拆成任务、分派下去、盯着进度,你从这个视角能看清&quot;现在有谁在做什么、做到哪了&quot;。同时,系统会在合适的时候给参与的 agent 提示&quot;你现在处于团队协作模式&quot;,让它们的行为与单打独斗时有所区别——知道要认领看板上的任务、要和队友协作,而不是各干各的、重复劳动。默认开启,意味着这不是一个藏在角落的实验功能,而是 Forge 从这天起的默认工作方式之一。</p>
+<h2>编辑器:单个 mesh 也能稳稳留在场景里</h2>
+<p>编辑器这边补上了一块关键的可靠性。此前把一个单独的 mesh(模型网格)放进场景后,它的&quot;场景资产&quot;没能稳定地落盘保存,结果重开工程、或点▶试玩时,这块东西可能就不见了或渲染不出来。这一天让单 mesh 的场景资产能正确写回磁盘并持久化:你摆好的东西,关掉再打开还在,切到试玩模式也照常渲染。配套还做到了:把一个 mesh 拖进来时,能恢复它原本在 glTF 模型里带的材质,而不是变成一块没贴图的灰白。对&quot;所见即所得&quot;的编辑体验来说,&quot;我摆的东西会一直在&quot;是最基本的信任——这一天把这份信任补齐了。</p>
+<h2>一键打包的界面雏形 + 用手机接管</h2>
+<p>还有两件让&quot;把作品带走、随时盯着&quot;更顺的事。其一,编辑器顶栏出现了打包界面的雏形:打包的目标平台、引擎根目录的选择、历史记录等选项被搬到了可见的 UI 上(且支持中英文),让&quot;把游戏导出成可分发的成品&quot;这件事从命令行往图形界面靠拢了一步。其二,新增了&quot;扫码用手机接管&quot;的能力:扫一下二维码,就能在手机上和正在干活的 agent 双向收发消息——人离开电脑,也能随时看一眼进度、追加一句指令。这两件事方向一致:让创作不被钉死在一个固定的地方——既能把成品轻松带出去,也能把对它的掌控握在手机上。</p>
+<h2>更稳:聊天不再卡死 + 真实进程级测试</h2>
+<p>可靠性也没落下。聊天界面修掉了一个会让它在解析某些复杂 Markdown 排版时陷入死循环、最终吃光内存卡死的问题——往后再贴进奇怪格式的内容,也不会把对话窗口拖垮。底层还补上了一批&quot;真实进程级&quot;的端到端测试:不再只是在理想环境里跑跑,而是真的把程序当成完整进程拉起来,覆盖断点恢复、上下文整理、后台常驻、命令行界面等关键路径。测试这东西平时看不见,但它是&quot;敢不敢放心改、改了会不会悄悄坏掉&quot;的底气来源——多一层真实测试,就多一分往前走的安全垫。</p>
+<h2>日常命令统一到一个入口:bun fx</h2>
+<p>这天还把项目的日常操作命令做了一次收敛:过去散落的 setup / start / stop 等脚本,如今统一到一个入口 <code>bun fx &lt;命令&gt;</code> 之下,直接运行 <code>bun fx</code> 就会打印出所有可用命令的帮助。常用的有:<code>bun fx setup</code>(首次装好环境)、<code>bun fx update</code>(只拉取主仓最新代码并同步子模块——不再顺手重装依赖或重新构建插件,职责更单一、也更快)、<code>bun fx start</code>(默认起网页模式)、<code>bun fx start app</code>(起桌面模式),以及 <code>bun fx stop</code> / <code>bun fx restart</code>。把入口收敛成一个,意味着无论在 macOS、Linux 还是 Windows,记住一个 <code>bun fx</code> 就够了;同时也把&quot;更新代码&quot;和&quot;装环境&quot;这两件以前容易混在一起的事各归其位——日常拉更新更轻,也更不容易误触发一次完整重装。README、开发文档与公开站的说明都已同步到这个新入口。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天的关键词是&quot;放大&quot;。在此之前,Forge 的产能上限是&quot;一个 agent 能干多快&quot;;有了 Team 模式,这个上限被抬到了&quot;一支队伍能并行干多少&quot;——这是从单兵到团队的质变,意味着越大、越能拆分的需求,越能被同时推进、更快完成。围绕这个核心,这天又把几处体验补稳:编辑器里摆的东西会一直在、成品能从界面打包带走、人离开电脑也能用手机接着指挥、聊天不再被怪格式卡死。一边把 AI 的产能从&quot;一个&quot;放大到&quot;一群&quot;,一边把日常体验的每个角落收得更牢——能力的天花板和体验的地板,这一天一起往上抬了一截。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>

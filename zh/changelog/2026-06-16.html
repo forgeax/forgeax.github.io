@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-16 · 角色终于有影子了 + 编辑器完全独立 — ForgeaX</title>
+<meta name="description" content="这是开发量极大的一天。主角脚下终于投出了真实阴影——这背后是一整天的死磕;编辑器被重写成能完全独立运行的自包含外壳;整个代码库第一次有了自动化的质量闸门;引擎正式吃下专业建模格式、让动作之间能平滑过渡,还落了一套完整的 2D 瓦片地图系统。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-16 · 角色终于有影子了 + 编辑器完全独立 — ForgeaX" />
+<meta property="og:description" content="这是开发量极大的一天。主角脚下终于投出了真实阴影——这背后是一整天的死磕;编辑器被重写成能完全独立运行的自包含外壳;整个代码库第一次有了自动化的质量闸门;引擎正式吃下专业建模格式、让动作之间能平滑过渡,还落了一套完整的 2D 瓦片地图系统。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-16.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-16.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-16.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=plan-b-1" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-16.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-16.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-16.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-16.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-16.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-16.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-16.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-16.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-06-16</span></div>
+    <h1>角色终于有影子了 + 编辑器完全独立</h1>
+    <p class="standfirst">这是开发量极大的一天。主角脚下终于投出了真实阴影——这背后是一整天的死磕;编辑器被重写成能完全独立运行的自包含外壳;整个代码库第一次有了自动化的质量闸门;引擎正式吃下专业建模格式、让动作之间能平滑过渡,还落了一套完整的 2D 瓦片地图系统。</p>
+    <div class="prose"><h2>大体量的一天:既补细节,也立规矩</h2>
+<p>这一天的工作量很大,内容横跨&quot;补细节&quot;和&quot;立规矩&quot;两端。补细节的一面,是那些直接影响成品观感和手感的活:让角色在地面投出真实的影子、让动作之间平滑过渡、让引擎能吃下专业工具产出的模型、把 2D 瓦片地图这一整类能力补齐。立规矩的一面,则是一些看不见却影响深远的基础设施:把编辑器重写成能完全独立运行的模块、给整个代码库装上第一道自动化质量闸门、加固跨平台部署。前者让&quot;现在做出来的东西&quot;更好,后者让&quot;以后做东西的过程&quot;更稳。一个项目要走得远,这两手都得硬:既要不断打磨眼前看得见的体验,也要默默地把那些保证长期健康的规矩一条条立起来。这一天,正是两手并进的典型。</p>
+<h2>角色终于有影子了:一整天的死磕</h2>
+<p>前一天出炉的暗黑风格 ARPG 样例有个一眼就能看出的破绽:女巫主角脚下没有影子,整个人像一张贴图浮在半空,毫无&quot;踩在地上&quot;的实感。这天就专门跟这个影子死磕了一整天,过程非常曲折:先试着给带骨骼的角色专门写投影用的着色器、再用一个隐形的代理几何体来代替角色投影、又退而求其次做了一个贴在脚下的椭圆形&quot;假影子&quot;作为兜底;同时反复调整投射阴影所需的各个参数——给场景材质补上投影通道、把方向光调斜让影子拉长、调级联阴影的精度、压低天光强度让方向光的对比显出来、调月光的强度和方位。一路试下来,最后才定位到真正的症结:阴影的级联层数从 4 改成 1 才能稳定投出来——这其实牵出了引擎里一个更深的 bug(在试玩模式下,4 层级联的方向光阴影路径有问题),并被整理成一份详细的报告留给引擎团队。配套还把夜晚氛围调到位:昏暗的月光加上营地周围的几支火炬,营造出暗黑风格里&quot;夜里围着篝火清怪&quot;的气氛。这一整天的较真,换来的是一个看似微小、实则至关重要的效果:角色终于&quot;落了地&quot;。</p>
+<h2>编辑器能完全独立运行</h2>
+<p>编辑器的独立入口这天被整体重写成了一套真正自包含的外壳。此前虽然一直在朝&quot;独立&quot;努力,但那个独立访问入口其实还和主聊天界面藕断丝连——必须挂在主界面里才能跑起来,算不上真正独立。这天把它彻底拆开重写:自带一套可停靠的多面板布局,编辑器需要的九个面板都自己渲染、自己组织,完全不依赖主界面那一套。还加了一个一键引导脚本,在一台新机器上能自动把运行所需的各种构件准备好——包括底层渲染所需的二进制件,做到开箱就能编。这件事的意义,是让编辑器从&quot;主 Studio 的一个内嵌部分&quot;彻底变成了&quot;一个能单独打开、单独使用的完整应用&quot;。它既是模块化设计的一次彻底兑现,也为将来把编辑器嵌进其他产品、或者作为独立工具单独分发,铺平了道路。</p>
+<h2>整个代码库第一次有了 CI 闸门</h2>
+<p>这天给整个代码库装上了第一道自动化的质量闸门。所谓 CI(持续集成)闸门,就是每当有人提交一处改动,系统会自动跑一遍检查——这次上线的基础检查包含三关:类型检查(确认代码各部分的接口对得上)、构建(确认代码真能编译出来)、以及冒烟测试(跑一遍确认基本功能没崩)。三关全过,改动才被允许并入主干。这道闸门一立,立刻照出了之前在几个子项目里&quot;默默漂移&quot;了一阵的二十多处类型不一致问题——它们平时不报错,但其实已经埋下了隐患;当天就被分批清理干净。这件事的深远意义在于:从今天起,任何新的改动都不能再悄悄把这类问题带进主干了——机器会在门口自动拦下。对一个由大量 AI agent 高频并行改动的代码库来说,这种自动化的&quot;守门人&quot;尤其关键:人不可能盯住每一处改动,但闸门可以,而且它从不疲劳、从不徇私。把质量的底线交给自动化来守,正是一个项目从&quot;快速生长&quot;走向&quot;可持续生长&quot;的标志。</p>
+<h2>接专业模型格式 + 角色动作平滑过渡</h2>
+<p>引擎这天在角色与资产上补了两块实打实的能力。一是正式接入了专业建模工具直出的模型格式:这种格式能完整携带动画、骨骼乃至物理参数,而此前要把它用进来必须先转换成另一种网页通用格式,转换过程难免丢细节;现在引擎能直接读它,从专业工具流出的资产可以原汁原味地搬进游戏。二是让角色动作之间能平滑交叉过渡:以前从&quot;走&quot;切到&quot;跑&quot;、从&quot;待机&quot;切到&quot;攻击&quot;,往往是生硬的瞬间切换,看着很跳;现在多段动作之间能按比例混合、平滑衔接,角色的动作连贯自然了许多——这对动作类游戏的手感至关重要。此外还加了一个即时调试绘制工具,能在画面上直接画出辅助线、包围盒之类的标记,排查问题时所见即所得,比对着数字猜直观得多。这几样合起来,让&quot;做一个会动、且动得自然的角色&quot;这件事的工具链又完整了一截。</p>
+<h2>引擎落地完整的 2D 瓦片地图系统</h2>
+<p>引擎这天还系统性地把 2D 瓦片地图这一整类能力补齐落地了。瓦片地图是 2D 游戏最经典的搭建方式——把世界铺成一格一格的方块网格,每格放一张小图,拼出整张关卡。这天落地的不只是&quot;能显示&quot;,而是一整套完整的机制:瓦片集资产、瓦片图层、按区块高效提取渲染、瓦片的水平/垂直翻转与锚点处理、精灵的正确剔除与排序,以及一连串严格的数据校验在出错时快速报错。它还配了可运行的演示和自动化测试一路兜底。这件事把平台的 2D 能力从前些天的初步基础,推进到了&quot;能认真做一个 2D 游戏&quot;的程度。很多创作者心里的第一个游戏恰恰是 2D 的——一个横版、一个俯视角、一个像素风的世界;把 2D 这条路认真铺扎实,等于向这一大批创作者敞开了一扇门。3D 与 2D 两条腿都硬,平台能承接的游戏类型才足够宽。</p>
+<h2>这一天意味着什么</h2>
+<p>这一天用极大的工作量,同时回答了&quot;做得好不好&quot;和&quot;走得稳不稳&quot;两个问题。那个为了一块影子死磕一整天的过程,最能代表这个团队的态度:一个角色没有影子,在很多人看来或许是无关紧要的小瑕疵,但它直接决定了画面可不可信——而把它彻底解决,需要的不是糊弄过去,而是一层层试、一层层排,直到找到那个藏在引擎深处的真正症结,并诚实地把它记录下来。与此同时,编辑器的彻底独立、第一道 CI 闸门的建立、跨平台部署的加固,则是在为这种&quot;较真&quot;提供可持续的土壤——当质量的底线由自动化来守、当模块能各自独立演进,团队才能腾出手去打磨每一块影子。把眼前的体验做到极致,同时把长期的根基立得牢固,这一天两者兼得。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=plan-b-1"></script>
+</body>
+</html>
