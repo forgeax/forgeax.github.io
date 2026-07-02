@@ -1,0 +1,36 @@
+---
+description: forgeax-website changelog 编写规范
+globs: changelog/**/*.html, changelog/changelog.json
+alwaysApply: false
+---
+
+# Changelog 编写规范
+
+## 内容约束
+
+- **只写引擎相关的功能更新**：新功能、改进、Bug 修复等面向用户的引擎变更。
+- **禁止写入流程性/基础设施内容**：如"补齐 changelog"、"修复 CI"、"更新文档"、"凭据配置"等运维/工具链事项一律不写。
+- 判断标准：如果用户/开发者不会直接感知到这个变更，就不应该出现在 changelog 里。
+
+## HTML 防马赛克规则
+
+changelog HTML 页面采用 `data-lang` 属性做中英文切换，CSS 规则为 `[data-lang]{display:none}` + `body.lang-zh [data-lang="zh"]{display:revert}`。
+
+为避免渲染马赛克（文字重叠/乱码）：
+
+- **中文 `<span data-lang="zh">` 内部禁止使用 `<code>` 标签**，用普通文字替代。
+- 英文 `<span data-lang="en">` 内部可以使用 `<code>` 标签。
+- 整个 HTML 页面必须写成**单行**（所有内容在一行内），不要换行，避免渲染解析问题。
+- 每个条目的中英文 span 必须紧邻，中间不能有空白节点。
+
+```html
+<!-- ✅ 正确 -->
+<li><span data-lang="zh">Soul 记忆系统上线</span><span data-lang="en">Soul memory system launched</span></li>
+
+<!-- ❌ 错误：中文 span 内使用了 code 标签 -->
+<li><span data-lang="zh"><code>Soul</code> 记忆系统上线</span><span data-lang="en">Soul memory system launched</span></li>
+```
+
+## 推送约束
+
+- 修改完成后**不要直接推送**，先展示改动内容让用户确认，得到明确同意后再推送。
