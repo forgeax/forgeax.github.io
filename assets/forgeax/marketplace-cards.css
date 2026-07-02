@@ -360,7 +360,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: min(960px, calc(100vw - 32px));
+  max-width: min(1180px, calc(100vw - 32px));
   margin: 0;
   overflow: visible;
 }
@@ -567,8 +567,26 @@
   animation: mk-silk-fade 1.05s var(--site-ease-silk) 0.3s both;
 }
 
-.forgeax-site .mk-modal:not([hidden]) .mk-modal-preview-frame > * {
+.forgeax-site .mk-modal:not([hidden]) .mk-modal-preview-frame > *:not(.mk-preview-slide) {
   animation: mk-silk-pop 0.88s var(--site-ease-silk) 0.38s both;
+}
+
+.forgeax-site .mk-modal:not([hidden]) .mk-modal-preview-frame > .mk-preview-slide {
+  animation: mk-preview-fade-in 0.42s var(--site-ease-silk) 0.18s both;
+}
+
+@keyframes mk-preview-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.forgeax-site .mk-modal:not([hidden]) .mk-modal-preview.mk-preview-stage {
+  animation: mk-preview-panel-in 0.55s var(--site-ease-silk) 0.12s both;
+}
+
+@keyframes mk-preview-panel-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .forgeax-site .mk-modal:not([hidden]) .mk-modal-head {
@@ -584,7 +602,23 @@
 }
 
 .forgeax-site .mk-modal:not([hidden]) .mk-kw {
-  animation: mk-silk-up 0.78s var(--site-ease-silk) 0.48s both;
+  animation: mk-silk-up 0.78s var(--site-ease-silk) 0.42s both;
+}
+
+.forgeax-site .mk-modal:not([hidden]) .mk-preview-thumbs {
+  animation: mk-silk-up 0.78s var(--site-ease-silk) 0.46s both;
+}
+
+.forgeax-site .mk-kw span {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.35;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .forgeax-site .mk-modal:not([hidden]) .mk-modal-actions {
@@ -749,18 +783,337 @@
 
 .forgeax-site .mk-modal-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.35fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1.42fr);
   gap: 0;
   min-height: 420px;
 }
 
+.forgeax-site .mk-modal-main {
+  order: 1;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
 .forgeax-site .mk-modal-hero {
+  order: 2;
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 20px 18px 18px;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: none;
   background: transparent;
+}
+
+.forgeax-site .mk-modal-studio {
+  padding: 16px 18px 18px 20px;
+  gap: 10px;
+}
+
+.forgeax-site .mk-studio-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.forgeax-site .mk-studio-label {
+  color: rgba(var(--mk-accent-a), 0.88);
+  text-shadow: 0 0 12px rgba(var(--mk-accent-a), 0.28);
+}
+
+.forgeax-site .mk-studio-panel {
+  color: rgba(255, 255, 255, 0.42);
+  max-width: 62%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.forgeax-site .mk-studio-viewport {
+  flex: 1;
+  min-height: 280px;
+  aspect-ratio: 16 / 10;
+  border-radius: 0;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  perspective: none;
+}
+
+.forgeax-site .mk-preview-gallery {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--mk-accent-a), 0.16);
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 38%, rgba(var(--mk-accent-a), 0.08), transparent 72%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 48px -28px rgba(var(--mk-accent-a), 0.12);
+}
+
+.forgeax-site .mk-preview-stage {
+  flex: 1;
+  min-height: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.forgeax-site .mk-preview-thumbs {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  flex-shrink: 0;
+  height: 72px;
+  padding: 8px 8px 10px;
+  position: relative;
+  z-index: 6;
+  pointer-events: auto;
+  border-top: 1px solid rgba(var(--mk-accent-a), 0.12);
+  background: transparent;
+}
+
+.forgeax-site .mk-preview-thumbs-scroller {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.forgeax-site .mk-preview-thumbs-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.forgeax-site .mk-preview-thumbs-track {
+  display: flex;
+  gap: 6px;
+  height: 100%;
+  width: 100%;
+}
+
+.forgeax-site .mk-preview-thumbs-nav {
+  flex: 0 0 28px;
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(var(--mk-accent-a), 0.22);
+  border-radius: 6px;
+  background: rgba(var(--mk-accent-a), 0.08);
+  color: rgba(var(--mk-accent-a), 0.9);
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+}
+
+.forgeax-site .mk-preview-thumbs-nav:hover:not(:disabled):not(.is-disabled) {
+  background: rgba(var(--mk-accent-a), 0.16);
+  border-color: rgba(var(--mk-accent-a), 0.38);
+  color: rgb(var(--mk-accent-a));
+}
+
+.forgeax-site .mk-preview-thumbs-nav:disabled,
+.forgeax-site .mk-preview-thumbs-nav.is-disabled {
+  opacity: 0.32;
+  cursor: default;
+  pointer-events: none;
+}
+
+.forgeax-site .mk-preview-thumb {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 88px;
+  height: 100%;
+  min-height: 56px;
+  padding: 0;
+  border: 1px solid rgba(var(--mk-accent-a), 0.14);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.forgeax-site .mk-preview-thumb:hover {
+  border-color: rgba(var(--mk-accent-a), 0.28);
+  background: rgba(var(--mk-accent-a), 0.06);
+}
+
+.forgeax-site .mk-preview-thumb.is-active {
+  border-color: rgba(var(--mk-accent-a), 0.72);
+  background: rgba(var(--mk-accent-a), 0.1);
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--mk-accent-a), 0.22),
+    0 0 12px -4px rgba(var(--mk-accent-a), 0.35);
+}
+
+.forgeax-site .mk-preview-thumbs-track.is-single {
+  justify-content: flex-start;
+}
+
+.forgeax-site .mk-preview-thumbs-track.is-single .mk-preview-thumb {
+  flex: 0 0 auto;
+  width: 120px;
+  max-width: 42%;
+}
+
+.forgeax-site .mk-preview-thumb .mk-modal-preview-img {
+  position: static;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+}
+
+.forgeax-site .mk-preview-slide .mk-modal-preview-img {
+  position: static;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  opacity: 1;
+  background: rgba(8, 10, 18, 0.42);
+  transform: none;
+  filter: none;
+}
+
+.forgeax-site .mk-modal-preview-img--hero.is-zoomable {
+  cursor: zoom-in;
+}
+
+.forgeax-site .mk-preview-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 3vw, 40px);
+}
+
+.forgeax-site .mk-preview-lightbox[hidden] {
+  display: none !important;
+}
+
+.forgeax-site .mk-preview-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(4, 6, 10, 0.9);
+  cursor: zoom-out;
+}
+
+.forgeax-site .mk-preview-lightbox-panel {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: min(96vw, 1440px);
+  max-height: 92vh;
+}
+
+.forgeax-site .mk-preview-lightbox-img {
+  display: block;
+  max-width: min(96vw, 1440px);
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 28px 90px -24px rgba(0, 0, 0, 0.72);
+}
+
+.forgeax-site .mk-preview-lightbox-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(var(--mk-accent-a), 0.28);
+  border-radius: 999px;
+  background: rgba(8, 10, 18, 0.92);
+  color: rgba(var(--mk-accent-a), 0.92);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.forgeax-site .mk-preview-lightbox-close:hover {
+  background: rgba(var(--mk-accent-a), 0.14);
+  border-color: rgba(var(--mk-accent-a), 0.48);
+  color: rgb(var(--mk-accent-a));
+}
+
+body.mk-preview-lightbox-open {
+  overflow: hidden;
+}
+
+.forgeax-site .mk-preview-thumb .mk-avatar--thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  border-width: 0;
+  box-shadow: none;
+}
+
+.forgeax-site .mk-preview-thumb .mk-avatar--thumb video {
+  transform: scale(1.22) translate3d(0, -12%, 0);
+}
+
+.forgeax-site .mk-modal-studio .mk-halo-flow,
+.forgeax-site .mk-modal-studio .mk-hud-grid,
+.forgeax-site .mk-modal-studio .mk-hud-orbit,
+.forgeax-site .mk-modal-studio .mk-hud-radar,
+.forgeax-site .mk-modal-studio .mk-hud-crosshair,
+.forgeax-site .mk-modal-studio .mk-hud-corner,
+.forgeax-site .mk-modal-studio .mk-hud-readout {
+  display: none;
+}
+
+.forgeax-site .mk-modal-studio .mk-modal-stats {
+  display: none;
+}
+
+.forgeax-site .mk-studio-embed {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  background: #080a12;
+}
+
+.forgeax-site .mk-studio-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+}
+
+.forgeax-site .mk-modal-preview.mk-studio-viewport .mk-modal-preview-frame {
+  z-index: 4;
 }
 
 .forgeax-site .mk-modal-preview {
@@ -772,8 +1125,7 @@
   overflow: visible;
   background: transparent;
   box-shadow: none;
-  perspective: 640px;
-  perspective-origin: 50% 46%;
+  perspective: none;
   --mk-halo-warm: 255, 98, 48;
   --mk-halo-cool: 72, 198, 255;
 }
@@ -1439,19 +1791,38 @@
 .forgeax-site .mk-modal-preview-frame {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   z-index: 5;
 }
 
-.forgeax-site .mk-modal-preview-frame .mk-avatar {
-  width: 128px;
-  height: 128px;
+.forgeax-site .mk-preview-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--site-ease-silk);
+}
+
+.forgeax-site .mk-preview-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.forgeax-site .mk-modal-preview-frame .mk-avatar,
+.forgeax-site .mk-modal-preview-frame .mk-avatar--hero {
+  width: 196px;
+  height: 196px;
   border-width: 2px;
   box-shadow:
     0 0 0 4px rgba(var(--mk-accent-a), 0.08),
     0 0 48px -8px rgba(var(--mk-accent-a), 0.42);
+}
+
+.forgeax-site .mk-modal-preview-frame .mk-avatar--hero video {
+  transform: scale(1.32) translate3d(0, -16%, 0);
 }
 
 .forgeax-site .mk-modal-preview-frame .mk-avatar-cluster .mk-avatar {
@@ -1475,8 +1846,17 @@
   transition: opacity 0.35s var(--site-ease-silk);
 }
 
-.forgeax-site .mk-modal-preview-img.is-active {
+.forgeax-site .mk-preview-slide .mk-modal-preview-img,
+.forgeax-site .mk-preview-slide.is-active > .mk-modal-preview-img {
+  position: static;
+  inset: auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
   opacity: 1;
+  transition: none;
 }
 
 .forgeax-site .mk-modal-preview-placeholder {
@@ -1713,7 +2093,7 @@
 }
 
 .forgeax-site .mk-modal-main {
-  padding: 18px 52px 18px 20px;
+  padding: 18px 20px 18px 20px;
   overflow: auto;
   max-height: min(calc(86vh - 88px), 592px);
   scrollbar-width: thin;
@@ -1803,9 +2183,9 @@
   background: rgba(0, 0, 0, 0.14);
 }
 
-.forgeax-site .mk-modal:not([hidden]) .mk-modal-section:nth-of-type(1) { animation-delay: 0.42s; }
-.forgeax-site .mk-modal:not([hidden]) .mk-modal-section:nth-of-type(2) { animation-delay: 0.48s; }
-.forgeax-site .mk-modal:not([hidden]) .mk-modal-section:nth-of-type(3) { animation-delay: 0.54s; }
+.forgeax-site .mk-modal:not([hidden]) .mk-modal-section:nth-of-type(1) { animation-delay: 0.48s; }
+.forgeax-site .mk-modal:not([hidden]) .mk-modal-section:nth-of-type(2) { animation-delay: 0.54s; }
+.forgeax-site .mk-modal:not([hidden]) .mk-modal-section:nth-of-type(3) { animation-delay: 0.60s; }
 
 @keyframes mk-section-in {
   from {
@@ -2041,8 +2421,8 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px 18px;
-  padding: 8px 18px 6px;
+  gap: 8px 12px;
+  padding: 7px 18px 8px;
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.1em;
@@ -2050,8 +2430,33 @@
   color: var(--text-tertiary);
 }
 
+.forgeax-site .mk-hud-statusbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  min-width: 0;
+  flex: 1;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.forgeax-site .mk-hud-status-ver {
+  color: rgba(var(--mk-accent-a), 0.92);
+  font-weight: 600;
+  text-transform: none;
+}
+
+.forgeax-site .mk-hud-status-sep {
+  opacity: 0.32;
+  user-select: none;
+}
+
 .forgeax-site .mk-hud-footer-row .mk-hud-header-live {
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .forgeax-site .mk-hud-footer-item.mono {
@@ -2155,19 +2560,21 @@
     grid-template-columns: 1fr;
   }
 
-  .forgeax-site .mk-modal-hero {
+  .forgeax-site .mk-modal-main {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    max-height: none;
+    padding-right: 20px;
+  }
+
+  .forgeax-site .mk-modal-hero,
+  .forgeax-site .mk-modal-studio {
     padding-bottom: 14px;
   }
 
+  .forgeax-site .mk-studio-viewport,
   .forgeax-site .mk-modal-preview {
-    min-height: 200px;
-  }
-
-  .forgeax-site .mk-modal-main {
-    max-height: none;
-    padding-right: 48px;
+    min-height: 220px;
   }
 }
 
@@ -2177,6 +2584,7 @@
   .forgeax-site .mk-modal:not([hidden]) .mk-hud-header .mk-modal-x,
   .forgeax-site .mk-modal:not([hidden]) .mk-hud-header,
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-hero,
+  .forgeax-site .mk-modal:not([hidden]) .mk-modal-studio,
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-main,
   .forgeax-site .mk-modal:not([hidden]) .mk-hud-footer,
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-preview,
@@ -2188,6 +2596,7 @@
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-meta,
   .forgeax-site .mk-modal:not([hidden]) #mkmDesc,
   .forgeax-site .mk-modal:not([hidden]) .mk-kw,
+  .forgeax-site .mk-modal:not([hidden]) .mk-preview-thumbs,
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-actions,
   .forgeax-site .mk-modal:not([hidden]) .mk-stat,
   .forgeax-site .mk-modal:not([hidden]) .mk-modal-section,

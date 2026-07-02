@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css?v=forgeax-ui-151" />
-<link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=radar-hist-1" />
+<link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=mk-gallery-7" />
 <style>
   .mk-count{font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);margin:16px 0 12px}
   .mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
@@ -34,15 +34,15 @@
   .mk-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
   .mk-modal[hidden]{display:none}
   .mk-modal-backdrop{position:absolute;inset:0;z-index:0}
-  .mk-modal-anchor{position:relative;z-index:1;width:100%;max-width:min(960px,calc(100vw - 32px));margin:0;overflow:visible}
+  .mk-modal-anchor{position:relative;z-index:1;width:100%;max-width:min(1180px,calc(100vw - 32px));margin:0;overflow:visible}
   .mk-modal-card{position:relative;width:100%;max-height:min(90vh,calc(100vh - 48px));overflow:hidden;border-radius:26px;margin:0}
   .mk-modal-head h3{font-size:21px;font-weight:700;margin:0;line-height:1.3}
   .mk-modal-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--text-secondary,#9aa0aa);margin:10px 0 12px}
   .mk-modal-meta .mono{font-family:'Fira Mono',monospace}
   .mk-modal-card p#mkmDesc{color:var(--text-secondary,#c4c8d0);line-height:1.62;margin:0}
   .mk-caps{margin:0;padding-left:18px;color:var(--text-secondary,#c4c8d0);font-size:13.5px;line-height:1.7}
-  .mk-kw{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
-  .mk-kw span{font-size:12px;padding:3px 9px;border:1px solid var(--border,#2a2d35);border-radius:999px;color:var(--text-secondary,#9aa0aa);font-family:'Fira Mono',monospace}
+  .mk-kw{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 16px}
+  .mk-kw span{font-size:12px;padding:4px 10px;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:var(--text-secondary,#b8bcc4);font-family:'Fira Mono',monospace;background:rgba(0,0,0,.32);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
   .mk-meta-exp{font-size:11px;padding:2px 8px;border-radius:var(--radius-pill);background:rgba(212,255,72,.12);color:var(--accent,#D4FF48)}
 
   /* ── Agent cards: avatar slot on the right ──
@@ -459,8 +459,42 @@
       </button>
     </header>
     <div class="mk-modal-grid">
-      <aside class="mk-modal-hero">
-        <div class="mk-modal-preview mk-hud-panel" id="mkmPreview">
+      <div class="mk-modal-main">
+        <div class="mk-modal-head">
+          <span class="mk-modal-kind" id="mkmKind"></span>
+          <h3 id="mkmTitle"></h3>
+        </div>
+        <div class="mk-modal-meta" id="mkmMeta"></div>
+        <p id="mkmDesc"></p>
+        <div class="mk-kw" id="mkmKw"></div>
+        <div id="mkmModelsWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <h4><span data-lang="zh">基座模型</span><span data-lang="en">Model stack</span></h4>
+          <div class="mk-model-stack" id="mkmModels"></div>
+        </div>
+        <div id="mkmCapsWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <h4><span data-lang="zh">能力</span><span data-lang="en">Capabilities</span></h4>
+          <ul class="mk-caps" id="mkmCaps"></ul>
+        </div>
+        <div id="mkmTutorialWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <h4><span data-lang="zh">快速上手</span><span data-lang="en">Quick start</span></h4>
+          <ol class="mk-tutorial" id="mkmTutorial"></ol>
+        </div>
+        <div id="mkmHistoryWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <h4><span data-lang="zh">更新历史</span><span data-lang="en">Changelog</span></h4>
+          <ol class="mk-history" id="mkmHistory"></ol>
+        </div>
+        <div class="mk-modal-actions">
+          <a id="mkmRepo" class="mk-modal-btn mk-modal-btn--ghost" target="_blank" rel="noopener" href="#"></a>
+          <a id="mkmDocs" class="mk-modal-btn mk-modal-btn--primary" target="_blank" rel="noopener" href="#" hidden></a>
+        </div>
+      </div>
+      <aside class="mk-modal-hero mk-modal-studio">
+        <div class="mk-studio-chrome" aria-hidden="true">
+          <span class="mk-studio-label">STUDIO</span>
+          <span class="mk-studio-panel" id="mkmStudioPanel"></span>
+        </div>
+        <div class="mk-preview-gallery">
+        <div class="mk-modal-preview mk-hud-panel mk-studio-viewport mk-preview-stage" id="mkmPreview">
           <div class="mk-halo-flow" aria-hidden="true">
             <div class="mk-halo-ambient">
               <i class="mk-halo-pool mk-halo-pool--warm"></i>
@@ -590,48 +624,41 @@
           <div class="mk-hud-readout mk-hud-readout--tl" id="mkmReadoutId"></div>
           <div class="mk-hud-readout mk-hud-readout--tr" id="mkmReadoutVer"></div>
           <div class="mk-hud-readout mk-hud-readout--bl" id="mkmReadoutKind"></div>
+          <div class="mk-studio-embed" id="mkmStudioEmbed" hidden></div>
           <div class="mk-modal-preview-frame" id="mkmPreviewFrame"></div>
-          <div class="mk-modal-preview-dots" id="mkmPreviewDots" hidden></div>
         </div>
-        <div class="mk-modal-stats" id="mkmStats"></div>
+        <div class="mk-preview-thumbs" id="mkmPreviewThumbs" hidden>
+          <button type="button" class="mk-preview-thumbs-nav is-prev" id="mkmPreviewPrev" aria-label="Previous">
+            <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="chevron-left"></i></span>
+          </button>
+          <div class="mk-preview-thumbs-scroller" id="mkmPreviewThumbsScroller">
+            <div class="mk-preview-thumbs-track" id="mkmPreviewThumbsTrack"></div>
+          </div>
+          <button type="button" class="mk-preview-thumbs-nav is-next" id="mkmPreviewNext" aria-label="Next">
+            <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="chevron-right"></i></span>
+          </button>
+        </div>
+        </div>
+        <div class="mk-modal-stats" id="mkmStats" hidden aria-hidden="true"></div>
       </aside>
-      <div class="mk-modal-main">
-        <div class="mk-modal-head">
-          <span class="mk-modal-kind" id="mkmKind"></span>
-          <h3 id="mkmTitle"></h3>
-        </div>
-        <div class="mk-modal-meta" id="mkmMeta"></div>
-        <p id="mkmDesc"></p>
-        <div id="mkmModelsWrap" class="mk-modal-section mk-hud-panel" hidden>
-          <h4><span data-lang="zh">基座模型</span><span data-lang="en">Model stack</span></h4>
-          <div class="mk-model-stack" id="mkmModels"></div>
-        </div>
-        <div id="mkmCapsWrap" class="mk-modal-section mk-hud-panel" hidden>
-          <h4><span data-lang="zh">能力</span><span data-lang="en">Capabilities</span></h4>
-          <ul class="mk-caps" id="mkmCaps"></ul>
-        </div>
-        <div id="mkmTutorialWrap" class="mk-modal-section mk-hud-panel" hidden>
-          <h4><span data-lang="zh">快速上手</span><span data-lang="en">Quick start</span></h4>
-          <ol class="mk-tutorial" id="mkmTutorial"></ol>
-        </div>
-        <div id="mkmHistoryWrap" class="mk-modal-section mk-hud-panel" hidden>
-          <h4><span data-lang="zh">更新历史</span><span data-lang="en">Changelog</span></h4>
-          <ol class="mk-history" id="mkmHistory"></ol>
-        </div>
-        <div class="mk-kw" id="mkmKw"></div>
-        <div class="mk-modal-actions">
-          <a id="mkmRepo" class="mk-modal-btn mk-modal-btn--ghost" target="_blank" rel="noopener" href="#"></a>
-          <a id="mkmDocs" class="mk-modal-btn mk-modal-btn--primary" target="_blank" rel="noopener" href="#" hidden></a>
-        </div>
-      </div>
     </div>
     <footer class="mk-hud-footer" aria-hidden="true">
       <div class="mk-hud-footer-row">
+        <div class="mk-hud-statusbar" id="mkmHudStatus"></div>
         <span class="mk-hud-header-live"><i aria-hidden="true"></i> LIVE</span>
       </div>
     </footer>
     </div>
   </div>
+</div>
+<div id="mkPreviewLightbox" class="mk-preview-lightbox" hidden>
+  <button type="button" class="mk-preview-lightbox-backdrop" data-close-lightbox aria-label="Close preview"></button>
+  <figure class="mk-preview-lightbox-panel">
+    <button type="button" class="mk-preview-lightbox-close" data-close-lightbox aria-label="Close preview">
+      <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="x"></i></span>
+    </button>
+    <img class="mk-preview-lightbox-img" id="mkPreviewLightboxImg" alt="" />
+  </figure>
 </div>
 <script src="/assets/site.js?v=forgeax-ui-143"></script>
 <script src="/assets/marketplace/marketplace-card-icons.js?v=forgeax-ui-112"></script>
@@ -683,43 +710,167 @@
   function t(zh,en){ return '<span data-lang="zh">'+zh+'</span><span data-lang="en">'+en+'</span>'; }
   function pick(item, lang){ var n=item.querySelector('h3 [data-lang="'+lang+'"]'); return n?n.textContent.trim():""; }
 
-  function mountPreviewVisual(item, d, frame) {
+  var PREVIEW_BASE = "/assets/marketplace/previews";
+  var _previewManifest = null;
+  var _previewManifestPromise = null;
+
+  function loadPreviewManifest() {
+    if (_previewManifest) return Promise.resolve(_previewManifest);
+    if (_previewManifestPromise) return _previewManifestPromise;
+    _previewManifestPromise = fetch(PREVIEW_BASE + "/manifest.json?v=studio-previews-4")
+      .then(function (r) { return r.ok ? r.json() : { previews: {}, aliases: {} }; })
+      .catch(function () { return { previews: {}, aliases: {} }; })
+      .then(function (data) {
+        _previewManifest = data || { previews: {}, aliases: {} };
+        if (!_previewManifest.previews) _previewManifest.previews = {};
+        if (!_previewManifest.aliases) _previewManifest.aliases = {};
+        return _previewManifest;
+      });
+    return _previewManifestPromise;
+  }
+
+  function getStudioPreviewImages(d) {
+    var fromData = (d && d.previewImages) || [];
+    if (fromData.length) return fromData;
+    if (!_previewManifest) return [];
+    var previews = _previewManifest.previews || {};
+    var slug = d && d.slug;
+    if (!slug) return [];
+    if (previews[slug] && previews[slug].length) return previews[slug];
+    // Agent 卡片只用 agent-{slug}/ 侧边栏对话截图，不回退到关联工作台
+    if (d.kind === "agent") return [];
+    var aliases = _previewManifest.aliases || {};
+    if (aliases[slug] && previews[aliases[slug]] && previews[aliases[slug]].length) {
+      return previews[aliases[slug]];
+    }
+    return [];
+  }
+
+  function buildPreviewSlides(item, d) {
+    var isAgent = d && d.kind === "agent";
+    return getStudioPreviewImages(d).map(function (url, i) {
+      return {
+        type: "image",
+        src: url,
+        alt: (isAgent ? "Agent chat preview " : "Studio preview ") + (i + 1),
+        label: (isAgent ? "Chat " : "Studio ") + (i + 1)
+      };
+    });
+  }
+
+  function renderSlideContent(slide, isHero) {
+    if (slide.type === "image") {
+      var img = document.createElement("img");
+      img.className = "mk-modal-preview-img" + (isHero ? " mk-modal-preview-img--hero is-zoomable" : "");
+      img.src = slide.src;
+      img.alt = slide.alt || "";
+      img.loading = isHero ? "eager" : "lazy";
+      if (isHero) {
+        img.addEventListener("click", function (e) {
+          e.stopPropagation();
+          openPreviewLightbox(slide.src, slide.alt || "");
+        });
+      }
+      return img;
+    }
+    return null;
+  }
+
+  function openPreviewLightbox(src, alt) {
+    var lb = $("mkPreviewLightbox");
+    var img = $("mkPreviewLightboxImg");
+    if (!lb || !img) return;
+    img.src = src;
+    img.alt = alt || "";
+    lb.hidden = false;
+    document.body.classList.add("mk-preview-lightbox-open");
+    if (window.forgeaxRefreshIcons) window.forgeaxRefreshIcons(lb);
+  }
+
+  function closePreviewLightbox() {
+    var lb = $("mkPreviewLightbox");
+    var img = $("mkPreviewLightboxImg");
+    if (!lb) return;
+    lb.hidden = true;
+    if (img) {
+      img.src = "";
+      img.alt = "";
+    }
+    document.body.classList.remove("mk-preview-lightbox-open");
+  }
+
+  function getActivePreviewIndex() {
+    var frame = $("mkmPreviewFrame");
+    if (!frame) return 0;
+    var slides = frame.querySelectorAll(".mk-preview-slide");
+    for (var i = 0; i < slides.length; i++) {
+      if (slides[i].classList.contains("is-active")) return i;
+    }
+    return 0;
+  }
+
+  function setActivePreviewIndex(index) {
+    var frame = $("mkmPreviewFrame");
+    var track = $("mkmPreviewThumbsTrack");
+    if (!frame) return;
+    [].slice.call(frame.querySelectorAll(".mk-preview-slide")).forEach(function (sl, i) {
+      sl.classList.toggle("is-active", i === index);
+    });
+    if (track) {
+      [].slice.call(track.querySelectorAll(".mk-preview-thumb")).forEach(function (btn, i) {
+        btn.classList.toggle("is-active", i === index);
+        if (i === index) {
+          btn.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "smooth" });
+        }
+      });
+    }
+    if (window._mkSyncPreviewNav) window._mkSyncPreviewNav();
+  }
+
+  function wirePreviewThumbNav(slideCount) {
+    var prev = $("mkmPreviewPrev");
+    var next = $("mkmPreviewNext");
+    if (!prev || !next) return;
+
+    var multi = slideCount >= 2;
+    prev.hidden = !multi;
+    next.hidden = !multi;
+
+    if (!multi) {
+      window._mkSyncPreviewNav = null;
+      prev.onclick = null;
+      next.onclick = null;
+      return;
+    }
+
+    function syncNav() {
+      var idx = getActivePreviewIndex();
+      var atStart = idx <= 0;
+      var atEnd = idx >= slideCount - 1;
+      prev.disabled = atStart;
+      next.disabled = atEnd;
+      prev.classList.toggle("is-disabled", atStart);
+      next.classList.toggle("is-disabled", atEnd);
+    }
+
+    prev.onclick = function () {
+      var idx = getActivePreviewIndex();
+      if (idx > 0) setActivePreviewIndex(idx - 1);
+    };
+    next.onclick = function () {
+      var idx = getActivePreviewIndex();
+      if (idx < slideCount - 1) setActivePreviewIndex(idx + 1);
+    };
+
+    window._mkSyncPreviewNav = syncNav;
+    syncNav();
+    requestAnimationFrame(syncNav);
+  }
+
+  function mountPreviewVisualFallback(item, d, frame) {
     if (!frame) return;
     frame.innerHTML = "";
-    var previews = (d && d.previewImages) || [];
     var kind = (d && d.kind) || (item && item.getAttribute("data-kind")) || "agent";
-
-    previews.forEach(function (url, i) {
-      var img = document.createElement("img");
-      img.className = "mk-modal-preview-img" + (i === 0 ? " is-active" : "");
-      img.src = url;
-      img.alt = "";
-      img.loading = "lazy";
-      frame.appendChild(img);
-    });
-
-    var cluster = item && item.querySelector(".mk-avatar-cluster");
-    if (cluster) {
-      var c = document.createElement("div");
-      c.className = "mk-avatar-cluster mk-modal-visual-cluster";
-      [].slice.call(cluster.querySelectorAll(".mk-avatar")).forEach(function (slot) {
-        var s = document.createElement("div");
-        s.className = "mk-avatar";
-        s.setAttribute("data-agent", slot.getAttribute("data-agent") || "");
-        c.appendChild(s);
-      });
-      frame.appendChild(c);
-      return;
-    }
-
-    var av = item && item.querySelector(".mk-avatar");
-    if (av) {
-      var slot = document.createElement("div");
-      slot.className = "mk-avatar";
-      slot.setAttribute("data-agent", av.getAttribute("data-agent") || "");
-      frame.appendChild(slot);
-      return;
-    }
 
     if (d && window.forgeaxMountMarketplaceIcon) {
       var iconKind = d.kind === "cli-provider" ? "backend" : d.kind;
@@ -742,30 +893,133 @@
     frame.appendChild(ph);
   }
 
-  function mountPreviewDots(previews) {
-    var dots = $("mkmPreviewDots");
+  function mountPreviewGallery(item, d) {
     var frame = $("mkmPreviewFrame");
-    if (!dots || !frame || !previews || previews.length < 2) {
-      if (dots) dots.hidden = true;
+    var thumbsWrap = $("mkmPreviewThumbs");
+    var track = $("mkmPreviewThumbsTrack");
+    if (!frame) return;
+
+    frame.innerHTML = "";
+    if (track) track.innerHTML = "";
+    if (thumbsWrap) thumbsWrap.hidden = true;
+
+    loadPreviewManifest().then(function () {
+      var slides = buildPreviewSlides(item, d);
+      if (slides.length >= 1) {
+        slides.forEach(function (slide, i) {
+          var slideEl = document.createElement("div");
+          slideEl.className = "mk-preview-slide" + (i === 0 ? " is-active" : "");
+          var content = renderSlideContent(slide, true);
+          if (content) slideEl.appendChild(content);
+          frame.appendChild(slideEl);
+
+          if (track) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "mk-preview-thumb" + (i === 0 ? " is-active" : "");
+            var thumbInner = renderSlideContent(slide, false);
+            if (thumbInner) btn.appendChild(thumbInner);
+            if (slide.label) btn.setAttribute("title", slide.label);
+            btn.addEventListener("click", function () { setActivePreviewIndex(i); });
+            track.appendChild(btn);
+          }
+        });
+
+        if (track) track.classList.toggle("is-single", slides.length === 1);
+        if (thumbsWrap) thumbsWrap.hidden = false;
+        wirePreviewThumbNav(slides.length);
+        return;
+      }
+
+      mountPreviewVisualFallback(item, d, frame);
+    });
+  }
+
+  function mountPreviewVisual(item, d, frame) {
+    mountPreviewGallery(item, d);
+  }
+
+  function mountPreviewDots() {
+    /* replaced by mk-preview-thumbs gallery */
+  }
+
+  function mountFooterStatus(d, item) {
+    var el = $("mkmHudStatus");
+    if (!el) return;
+    if (!d) {
+      el.textContent = "";
       return;
     }
-    dots.hidden = false;
-    dots.innerHTML = "";
-    previews.forEach(function (_, i) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.setAttribute("aria-label", "Preview " + (i + 1));
-      if (i === 0) b.classList.add("is-active");
-      b.addEventListener("click", function () {
-        [].slice.call(frame.querySelectorAll(".mk-modal-preview-img")).forEach(function (img, j) {
-          img.classList.toggle("is-active", j === i);
-        });
-        [].slice.call(dots.querySelectorAll("button")).forEach(function (btn, j) {
-          btn.classList.toggle("is-active", j === i);
-        });
-      });
-      dots.appendChild(b);
-    });
+    var slug = d.slug || (item && item.getAttribute("data-slug")) || "—";
+    var idShort = String(d.id || slug).replace("@forgeax-plugin/", "");
+    var c = d.caps || {};
+    var kind = String(d.kind || "plugin")
+      .replace("cli-provider", "cli")
+      .replace("model-binding", "bind");
+    var parts = [
+      '<span class="mk-hud-status-ver">v' + esc(d.version || "—") + "</span>",
+      '<span class="mk-hud-status-sep">|</span>',
+      "<span>ID " + esc(idShort.toUpperCase()) + "</span>",
+      '<span class="mk-hud-status-sep">|</span>',
+      "<span>TOOL " + String(c.tools || 0) + "</span>",
+      '<span class="mk-hud-status-sep">|</span>',
+      "<span>SKILL " + String(c.skills || 0) + "</span>",
+      '<span class="mk-hud-status-sep">|</span>',
+      "<span>" + esc(kind.toUpperCase()) + "</span>",
+    ];
+    if (c.workbench) {
+      parts.push('<span class="mk-hud-status-sep">|</span>');
+      parts.push("<span>WB " + esc(String(c.workbench).toUpperCase()) + "</span>");
+    }
+    if (d.updated || d.created) {
+      parts.push('<span class="mk-hud-status-sep">|</span>');
+      parts.push("<span>UPD " + esc(d.updated || d.created) + "</span>");
+    }
+    el.innerHTML = parts.join("");
+  }
+
+  function mountStudioChrome(d) {
+    var panel = $("mkmStudioPanel");
+    if (!panel) return;
+    if (!d) {
+      panel.textContent = "";
+      return;
+    }
+    var wb = d.caps && d.caps.workbench;
+    panel.textContent = wb
+      ? String(wb).toUpperCase()
+      : String(d.slug || "").replace(/^wb-/, "").toUpperCase();
+  }
+
+  function mountStudioDemo(item, d) {
+    var embedWrap = $("mkmStudioEmbed");
+    var frame = $("mkmPreviewFrame");
+    if (embedWrap) {
+      embedWrap.innerHTML = "";
+      embedWrap.hidden = true;
+    }
+    if (frame) {
+      frame.hidden = false;
+      mountPreviewGallery(item, d);
+    }
+
+    var url = d && d.demoUrl;
+    if (!url || !embedWrap) return;
+
+    var iframe = document.createElement("iframe");
+    iframe.className = "mk-studio-iframe";
+    iframe.src = url;
+    iframe.setAttribute(
+      "title",
+      d.name ? (d.name.zh || d.name.en || "Studio demo") : "Studio demo"
+    );
+    iframe.loading = "lazy";
+    iframe.setAttribute("allow", "fullscreen");
+    embedWrap.appendChild(iframe);
+    embedWrap.hidden = false;
+    if (frame) frame.hidden = true;
+    var thumbs = $("mkmPreviewThumbs");
+    if (thumbs) thumbs.hidden = true;
   }
 
   function mountStats(d) {
@@ -915,14 +1169,12 @@
     $("mkmKind").innerHTML = kindLabel;
     $("mkmTitle").innerHTML = d ? t(esc(d.name.zh), esc(d.name.en)) : t(esc(fb.zh), esc(fb.en));
 
-    var previews = (d && d.previewImages) || [];
-    mountPreviewVisual(item, d, $("mkmPreviewFrame"));
-    mountPreviewDots(previews);
-    mountStats(d);
+    mountStudioDemo(item, d);
+    mountFooterStatus(d, item);
+    mountStudioChrome(d);
     mountModels(d);
     mountTutorial(d);
     mountHistory(d);
-    mountHudChrome(d, fb, item);
 
     var meta = [];
     if (d && d.experimental) {
@@ -990,7 +1242,7 @@
 
   function replayModalMotion(){
     [].slice.call(modal.querySelectorAll(
-      ".mk-modal-anchor, .mk-hud-header, .mk-modal-hero, .mk-modal-main, .mk-hud-footer, .mk-modal-preview, .mk-halo-flow, .mk-hud-orbit, .mk-hud-radar, .mk-modal-head, .mk-modal-meta, #mkmDesc, .mk-kw, .mk-modal-actions, .mk-stat, .mk-modal-section, .mk-stat-bar i, .mk-modal-preview-frame > *"
+      ".mk-modal-anchor, .mk-hud-header, .mk-modal-hero, .mk-modal-main, .mk-hud-footer, .mk-modal-preview, .mk-preview-thumbs, .mk-halo-flow, .mk-hud-orbit, .mk-hud-radar, .mk-modal-head, .mk-modal-meta, #mkmDesc, .mk-kw, .mk-modal-actions, .mk-stat, .mk-modal-section, .mk-stat-bar i, .mk-modal-preview-frame > *"
     )).forEach(function (el) {
       el.style.animation = "none";
       void el.offsetHeight;
@@ -1038,12 +1290,20 @@
     }
   }
   function closeModal(){
+    closePreviewLightbox();
     modal.hidden = true;
     unlockScroll();
     var frame = $("mkmPreviewFrame");
     if (frame) frame.innerHTML = "";
-    var dots = $("mkmPreviewDots");
-    if (dots) { dots.innerHTML = ""; dots.hidden = true; }
+    var embed = $("mkmStudioEmbed");
+    if (embed) { embed.innerHTML = ""; embed.hidden = true; }
+    var thumbs = $("mkmPreviewThumbs");
+    var track = $("mkmPreviewThumbsTrack");
+    if (track) track.innerHTML = "";
+    if (thumbs) thumbs.hidden = true;
+    window._mkSyncPreviewNav = null;
+    var status = $("mkmHudStatus");
+    if (status) status.textContent = "";
   }
 
   [].slice.call(document.querySelectorAll(".mk-item")).forEach(function (it) {
@@ -1056,7 +1316,21 @@
       closeModal();
     }
   });
-  document.addEventListener("keydown", function(e){ if (e.key==="Escape" && !modal.hidden) closeModal(); });
+  var previewLightbox = $("mkPreviewLightbox");
+  if (previewLightbox) {
+    previewLightbox.addEventListener("click", function (e) {
+      if (e.target.closest("[data-close-lightbox]")) closePreviewLightbox();
+    });
+  }
+  document.addEventListener("keydown", function(e){
+    if (e.key !== "Escape") return;
+    var lb = $("mkPreviewLightbox");
+    if (lb && !lb.hidden) {
+      closePreviewLightbox();
+      return;
+    }
+    if (!modal.hidden) closeModal();
+  });
   document.addEventListener("forgeax:langchange", function () {
     if (modal.hidden) return;
     var active = document.querySelector(".mk-item.is-active") || document.querySelector(".mk-item:not(.hide)");
@@ -1080,7 +1354,10 @@
   var BASE = "/assets/avatars";
   var IDLE_INDEX = 1; // 01.webm == 期待
   function pad(n){ return n < 10 ? "0" + n : String(n); }
-  function srcFor(agent){ return BASE + "/" + agent + "/" + pad(IDLE_INDEX) + ".webm"; }
+  function srcFor(agent, stateIndex) {
+    var idx = stateIndex || IDLE_INDEX;
+    return BASE + "/" + agent + "/" + pad(idx) + ".webm";
+  }
 
   function mkVideo() {
     var v = document.createElement("video");
@@ -1092,10 +1369,11 @@
   function playIdle(slot) {
     var agent = slot.getAttribute("data-agent");
     if (!agent) return;
+    var state = parseInt(slot.getAttribute("data-state") || String(IDLE_INDEX), 10);
     var v = slot.querySelector("video");
     if (!v) return;
     v.classList.add("is-front");
-    v.src = srcFor(agent);
+    v.src = srcFor(agent, state);
     v.load();
     v.play().catch(function(){});
   }
@@ -1121,6 +1399,7 @@
   }
 
   window.forgeaxEnsureAvatar = ensureVideo;
+  loadPreviewManifest();
 })();
 </script>
 </body>
