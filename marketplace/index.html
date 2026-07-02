@@ -729,25 +729,55 @@
     return _previewManifestPromise;
   }
 
+  function resolvePreviewSlug(d) {
+    if (!d || !d.slug) return "";
+    var slug = d.slug;
+    if (!_previewManifest) return slug;
+    var previews = _previewManifest.previews || {};
+    if (previews[slug] && previews[slug].length) return slug;
+    if (d.kind === "agent") return slug;
+    var aliases = _previewManifest.aliases || {};
+    if (aliases[slug] && previews[aliases[slug]] && previews[aliases[slug]].length) {
+      return aliases[slug];
+    }
+    return slug;
+  }
+
   function getStudioPreviewImages(d) {
     var fromData = (d && d.previewImages) || [];
     if (fromData.length) return fromData;
     if (!_previewManifest) return [];
     var previews = _previewManifest.previews || {};
-    var slug = d && d.slug;
+    var slug = resolvePreviewSlug(d);
     if (!slug) return [];
     if (previews[slug] && previews[slug].length) return previews[slug];
-    // Agent 卡片只用 agent-{slug}/ 侧边栏对话截图，不回退到关联工作台
-    if (d.kind === "agent") return [];
-    var aliases = _previewManifest.aliases || {};
-    if (aliases[slug] && previews[aliases[slug]] && previews[aliases[slug]].length) {
-      return previews[aliases[slug]];
-    }
+    if (d && d.kind === "agent") return [];
     return [];
+  }
+
+  function slideLabelText(slide, lang) {
+    if (slide && slide.label && typeof slide.label === "object") {
+      return slide.label[lang] || slide.label.en || slide.label.zh || "";
+    }
+    return slide && slide.label ? String(slide.label) : "";
   }
 
   function buildPreviewSlides(item, d) {
     var isAgent = d && d.kind === "agent";
+    var slug = resolvePreviewSlug(d);
+    var fromManifest = _previewManifest && _previewManifest.slides && slug && _previewManifest.slides[slug];
+    if (fromManifest && fromManifest.length) {
+      return fromManifest.map(function (slide, i) {
+        var label = slideLabelText(slide, "en") || slideLabelText(slide, "zh");
+        return {
+          type: slide.type || "image",
+          src: slide.src,
+          poster: slide.poster || "",
+          alt: label || ((isAgent ? "Agent chat preview " : "Studio preview ") + (i + 1)),
+          label: label || ((isAgent ? "Chat " : "Studio ") + (i + 1))
+        };
+      });
+    }
     return getStudioPreviewImages(d).map(function (url, i) {
       return {
         type: "image",
@@ -759,7 +789,19 @@
   }
 
   function renderSlideContent(slide, isHero) {
-    if (slide.type === "image") {
+    if (slide.type === "video") {
+      var video = document.createElement("video");
+      video.className = "mk-modal-preview-img" + (isHero ? " mk-modal-preview-img--hero" : "");
+      video.src = slide.src;
+      if (slide.poster) video.poster = slide.poster;
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.controls = false;
+      return video;
+    }
+    if (slide.type === "image" || !slide.type) {
       var img = document.createElement("img");
       img.className = "mk-modal-preview-img" + (isHero ? " mk-modal-preview-img--hero is-zoomable" : "");
       img.src = slide.src;
@@ -985,6 +1027,12 @@
       panel.textContent = "";
       return;
     }
+    var slug = d.slug || "";
+    var fromManifest = _previewManifest && _previewManifest.panelLabels && slug && _previewManifest.panelLabels[slug];
+    if (fromManifest) {
+      panel.textContent = String(fromManifest).toUpperCase();
+      return;
+    }
     var wb = d.caps && d.caps.workbench;
     panel.textContent = wb
       ? String(wb).toUpperCase()
@@ -1169,9 +1217,11 @@
     $("mkmKind").innerHTML = kindLabel;
     $("mkmTitle").innerHTML = d ? t(esc(d.name.zh), esc(d.name.en)) : t(esc(fb.zh), esc(fb.en));
 
-    mountStudioDemo(item, d);
+    loadPreviewManifest().then(function () {
+      mountStudioDemo(item, d);
+      mountStudioChrome(d);
+    });
     mountFooterStatus(d, item);
-    mountStudioChrome(d);
     mountModels(d);
     mountTutorial(d);
     mountHistory(d);
