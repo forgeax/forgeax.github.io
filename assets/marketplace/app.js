@@ -51,20 +51,34 @@
     function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
 
     // ── studio screenshot previews (runtime manifest + gallery + lightbox) ──
-    var PREVIEW_BASE = "/assets/marketplace/previews";
+    var PREVIEW_CACHE_VERSION = "studio-previews-8";
+
+    function resolvePreviewAssetUrl(path) {
+      if (!path) return path;
+      if (/^https?:\/\//i.test(path)) return path;
+      var p = String(path);
+      // Root-absolute paths must stay at site root (not /zh/assets/… on localized pages).
+      if (p.charAt(0) === "/") return p;
+      return new URL(p, window.location.origin + "/").href;
+    }
+
+    var PREVIEW_MANIFEST_URL =
+      resolvePreviewAssetUrl("/assets/marketplace/previews/manifest.json") + "?v=" + PREVIEW_CACHE_VERSION;
     var _previewManifest = null;
     var _previewManifestPromise = null;
 
     function loadPreviewManifest() {
       if (_previewManifest) return Promise.resolve(_previewManifest);
       if (_previewManifestPromise) return _previewManifestPromise;
-      _previewManifestPromise = fetch(PREVIEW_BASE + "/manifest.json?v=studio-previews-4")
-        .then(function (r) { return r.ok ? r.json() : { previews: {}, aliases: {} }; })
-        .catch(function () { return { previews: {}, aliases: {} }; })
+      _previewManifestPromise = fetch(PREVIEW_MANIFEST_URL)
+        .then(function (r) { return r.ok ? r.json() : { previews: {}, slides: {}, aliases: {}, panelLabels: {} }; })
+        .catch(function () { return { previews: {}, slides: {}, aliases: {}, panelLabels: {} }; })
         .then(function (data) {
-          _previewManifest = data || { previews: {}, aliases: {} };
+          _previewManifest = data || { previews: {}, slides: {}, aliases: {}, panelLabels: {} };
           if (!_previewManifest.previews) _previewManifest.previews = {};
+          if (!_previewManifest.slides) _previewManifest.slides = {};
           if (!_previewManifest.aliases) _previewManifest.aliases = {};
+          if (!_previewManifest.panelLabels) _previewManifest.panelLabels = {};
           return _previewManifest;
         });
       return _previewManifestPromise;
@@ -105,19 +119,52 @@
       return slide && slide.label ? String(slide.label) : "";
     }
 
+    function pickBilingual(obj, fallback) {
+      if (!obj) return fallback || "";
+      if (typeof obj === "string") return obj;
+      var lang = document.documentElement.lang === "zh" ? "zh" : "en";
+      return obj[lang] || obj.en || obj.zh || fallback || "";
+    }
+
+    function panelLabelForSlide(slide, d) {
+      if (slide && slide.panelLabel) return pickBilingual(slide.panelLabel, "");
+      var cat = slide && slide.category ? slide.category : "studio";
+      if (cat === "output" || cat === "ui") return "UI";
+      if (cat === "chat") return "CHAT";
+      if (cat === "demo") return "DEMO";
+      if (!d) return "";
+      var slug = d.slug || "";
+      var fromManifest = _previewManifest && _previewManifest.panelLabels && slug && _previewManifest.panelLabels[slug];
+      if (fromManifest) return String(fromManifest).toUpperCase();
+      var wb = d.caps && d.caps.workbench;
+      return wb
+        ? String(wb).toUpperCase()
+        : String(slug).replace(/^wb-/, "").toUpperCase();
+    }
+
+    function mountStudioChromeFromSlide(d, slide) {
+      var panel = $("mkmStudioPanel");
+      if (!panel) return;
+      if (!d) { panel.textContent = ""; return; }
+      panel.textContent = panelLabelForSlide(slide, d);
+    }
+
     // Structured slides from the manifest (image/video with poster + bilingual label); falls
     // back to a flat image list when a slug has no `slides` entry.
     function buildPreviewSlides(item, d) {
       var isAgent = d && d.kind === "agent";
       var slug = resolvePreviewSlug(d);
+      var pageLang = document.documentElement.lang === "zh" ? "zh" : "en";
       var fromManifest = _previewManifest && _previewManifest.slides && slug && _previewManifest.slides[slug];
       if (fromManifest && fromManifest.length) {
         return fromManifest.map(function (slide, i) {
-          var label = slideLabelText(slide, "en") || slideLabelText(slide, "zh");
+          var label = slideLabelText(slide, pageLang) || slideLabelText(slide, pageLang === "zh" ? "en" : "zh");
           return {
             type: slide.type || "image",
-            src: slide.src,
-            poster: slide.poster || "",
+            src: resolvePreviewAssetUrl(slide.src),
+            poster: slide.poster ? resolvePreviewAssetUrl(slide.poster) : "",
+            category: slide.category || (isAgent ? "chat" : "studio"),
+            panelLabel: slide.panelLabel || null,
             alt: label || ((isAgent ? "Agent chat preview " : "Studio preview ") + (i + 1)),
             label: label || ((isAgent ? "Chat " : "Studio ") + (i + 1)),
           };
@@ -126,8 +173,10 @@
       return getStudioPreviewImages(d).map(function (url, i) {
         return {
           type: "image",
-          src: url,
+          src: resolvePreviewAssetUrl(url),
           poster: "",
+          category: isAgent ? "chat" : "studio",
+          panelLabel: null,
           alt: (isAgent ? "Agent chat preview " : "Studio preview ") + (i + 1),
           label: (isAgent ? "Chat " : "Studio ") + (i + 1),
         };
@@ -167,13 +216,25 @@
       var track = $("mkmPreviewThumbsTrack");
       if (!frame) return;
       [].slice.call(frame.querySelectorAll(".mk-preview-slide")).forEach(function (sl, i) {
-        sl.classList.toggle("is-active", i === index);
+        var active = i === index;
+        sl.classList.toggle("is-active", active);
+        var vid = sl.querySelector("video");
+        if (vid) {
+          if (active) {
+            try { vid.play(); } catch (e) { /* autoplay blocked */ }
+          } else {
+            vid.pause();
+          }
+        }
       });
       if (track) {
         [].slice.call(track.querySelectorAll(".mk-preview-thumb")).forEach(function (btn, i) {
           btn.classList.toggle("is-active", i === index);
           if (i === index) btn.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "smooth" });
         });
+      }
+      if (window._mkPreviewSlides && window._mkPreviewSlides[index]) {
+        mountStudioChromeFromSlide(window._mkPreviewCardData, window._mkPreviewSlides[index]);
       }
       if (window._mkSyncPreviewNav) window._mkSyncPreviewNav();
     }
@@ -200,6 +261,24 @@
       requestAnimationFrame(syncNav);
     }
 
+    function wrapHeroMedia(node, slide) {
+      if (!node) return null;
+      var wrap = document.createElement("div");
+      wrap.className = "mk-preview-media";
+      var bgSrc = slide.type === "video" ? (slide.poster || slide.src) : slide.src;
+      if (bgSrc) {
+        var bg = document.createElement("img");
+        bg.className = "mk-preview-media-bg";
+        bg.src = bgSrc;
+        bg.alt = "";
+        bg.setAttribute("aria-hidden", "true");
+        bg.loading = "eager";
+        wrap.appendChild(bg);
+      }
+      wrap.appendChild(node);
+      return wrap;
+    }
+
     function renderSlideContent(slide, isHero) {
       if (slide.type === "video") {
         var video = document.createElement("video");
@@ -211,7 +290,7 @@
         video.muted = true;
         video.playsInline = true;
         video.controls = false;
-        return video;
+        return isHero ? wrapHeroMedia(video, slide) : video;
       }
       if (slide.type === "image" || !slide.type) {
         var img = document.createElement("img");
@@ -222,7 +301,7 @@
         if (isHero) {
           img.addEventListener("click", function (e) { e.stopPropagation(); openPreviewLightbox(slide.src, slide.alt || ""); });
         }
-        return img;
+        return isHero ? wrapHeroMedia(img, slide) : img;
       }
       return null;
     }
@@ -285,8 +364,11 @@
         // Guard against the modal being closed/reopened while the manifest was loading.
         if ($("mkmPreviewFrame") !== frame) return;
         var slides = buildPreviewSlides(item, d);
+        window._mkPreviewSlides = slides;
+        window._mkPreviewCardData = d;
 
         if (slides.length) {
+          mountStudioChromeFromSlide(d, slides[0]);
           slides.forEach(function (slide, i) {
             var slideEl = document.createElement("div");
             slideEl.className = "mk-preview-slide" + (i === 0 ? " is-active" : "");
@@ -624,6 +706,7 @@
       if (lb && !lb.hidden) { closePreviewLightbox(); return; }
       if (!modal.hidden) closeModal();
     });
+    window.forgeaxLoadPreviewManifest = loadPreviewManifest;
   })();
 
   // ── agent idle avatars (locked to the "期待" idle state, looping) ──

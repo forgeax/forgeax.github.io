@@ -571,8 +571,13 @@
   animation: mk-silk-pop 0.88s var(--site-ease-silk) 0.38s both;
 }
 
-.forgeax-site .mk-modal:not([hidden]) .mk-modal-preview-frame > .mk-preview-slide {
+/* Only fade-in the first active slide; animating every slide with `both` pins opacity:1 on all. */
+.forgeax-site .mk-modal:not([hidden]) .mk-modal-preview-frame > .mk-preview-slide.is-active {
   animation: mk-preview-fade-in 0.42s var(--site-ease-silk) 0.18s both;
+}
+
+.forgeax-site .mk-modal:not([hidden]) .mk-modal-preview-frame > .mk-preview-slide:not(.is-active) {
+  animation: none;
 }
 
 @keyframes mk-preview-fade-in {
@@ -804,8 +809,8 @@
 }
 
 .forgeax-site .mk-modal-studio {
-  padding: 16px 18px 18px 20px;
-  gap: 10px;
+  padding: 12px 14px 14px 16px;
+  gap: 8px;
 }
 
 .forgeax-site .mk-studio-chrome {
@@ -838,7 +843,7 @@
 .forgeax-site .mk-studio-viewport {
   flex: 1;
   min-height: 280px;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: auto;
   border-radius: 0;
   overflow: hidden;
   background: transparent;
@@ -852,14 +857,29 @@
   flex-direction: column;
   flex: 1;
   min-height: 0;
+  position: relative;
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(var(--mk-accent-a), 0.16);
-  background:
-    radial-gradient(ellipse 80% 70% at 50% 38%, rgba(var(--mk-accent-a), 0.08), transparent 72%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 18px 48px -28px rgba(var(--mk-accent-a), 0.12);
+  border: none;
+  /* One continuous gradient for stage + thumbs (matches the strip the user liked) */
+  background: linear-gradient(
+    180deg,
+    rgba(var(--mk-accent-a), 0.025) 0%,
+    rgba(var(--mk-accent-a), 0.04) 38%,
+    rgba(var(--mk-accent-a), 0.06) 72%,
+    rgba(var(--mk-accent-b), 0.1) 100%
+  );
+  box-shadow: none;
+}
+
+/* Feather preview edges into the modal — no hard border line */
+.forgeax-site .mk-preview-gallery .mk-hud-panel {
+  border: none;
+  border-radius: 0;
+}
+
+.forgeax-site .mk-preview-gallery .mk-hud-panel::before {
+  display: none;
 }
 
 .forgeax-site .mk-preview-stage {
@@ -881,13 +901,15 @@
   position: relative;
   z-index: 6;
   pointer-events: auto;
-  border-top: 1px solid rgba(var(--mk-accent-a), 0.12);
+  border-top: none;
   background: transparent;
 }
 
 .forgeax-site .mk-preview-thumbs-scroller {
   flex: 1;
   min-width: 0;
+  display: flex;
+  justify-content: center;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
@@ -898,10 +920,13 @@
 }
 
 .forgeax-site .mk-preview-thumbs-track {
-  display: flex;
+  display: inline-flex;
   gap: 6px;
   height: 100%;
-  width: 100%;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .forgeax-site .mk-preview-thumbs-nav {
@@ -911,21 +936,21 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  border: 1px solid rgba(var(--mk-accent-a), 0.22);
-  border-radius: 6px;
-  background: rgba(var(--mk-accent-a), 0.08);
+  border: none;
+  border-radius: 8px;
+  background: rgba(var(--mk-accent-a), 0.1);
   color: rgba(var(--mk-accent-a), 0.9);
   cursor: pointer;
   pointer-events: auto;
   position: relative;
   z-index: 2;
-  transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+  transition: background 0.2s, color 0.2s, opacity 0.2s, box-shadow 0.2s;
 }
 
 .forgeax-site .mk-preview-thumbs-nav:hover:not(:disabled):not(.is-disabled) {
-  background: rgba(var(--mk-accent-a), 0.16);
-  border-color: rgba(var(--mk-accent-a), 0.38);
+  background: rgba(var(--mk-accent-a), 0.18);
   color: rgb(var(--mk-accent-a));
+  box-shadow: 0 0 14px -4px rgba(var(--mk-accent-a), 0.35);
 }
 
 .forgeax-site .mk-preview-thumbs-nav:disabled,
@@ -936,35 +961,32 @@
 }
 
 .forgeax-site .mk-preview-thumb {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 88px;
+  flex: 0 0 88px;
+  width: 88px;
   height: 100%;
   min-height: 56px;
   padding: 0;
-  border: 1px solid rgba(var(--mk-accent-a), 0.14);
+  border: none;
   border-radius: 8px;
-  background: transparent;
+  background: rgba(var(--mk-accent-a), 0.05);
   cursor: pointer;
   overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: none;
 }
 
 .forgeax-site .mk-preview-thumb:hover {
-  border-color: rgba(var(--mk-accent-a), 0.28);
-  background: rgba(var(--mk-accent-a), 0.06);
+  background: rgba(var(--mk-accent-a), 0.09);
+  box-shadow: 0 0 14px -8px rgba(var(--mk-accent-a), 0.2);
 }
 
 .forgeax-site .mk-preview-thumb.is-active {
-  border-color: rgba(var(--mk-accent-a), 0.72);
-  background: rgba(var(--mk-accent-a), 0.1);
-  box-shadow:
-    inset 0 0 0 1px rgba(var(--mk-accent-a), 0.22),
-    0 0 12px -4px rgba(var(--mk-accent-a), 0.35);
+  background: rgba(var(--mk-accent-a), 0.12);
+  box-shadow: 0 0 16px -6px rgba(var(--mk-accent-a), 0.32);
 }
 
 .forgeax-site .mk-preview-thumbs-track.is-single {
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .forgeax-site .mk-preview-thumbs-track.is-single .mk-preview-thumb {
@@ -981,8 +1003,11 @@
   opacity: 1;
 }
 
-.forgeax-site .mk-preview-slide .mk-modal-preview-img {
-  position: static;
+.forgeax-site .mk-preview-slide.is-active > .mk-modal-preview-img,
+.forgeax-site .mk-preview-slide.is-active .mk-preview-media .mk-modal-preview-img,
+.forgeax-site .mk-preview-slide.is-active .mk-preview-media .mk-modal-preview-video {
+  position: relative;
+  z-index: 2;
   display: block;
   width: auto;
   height: auto;
@@ -991,9 +1016,36 @@
   object-fit: contain;
   object-position: center center;
   opacity: 1;
-  background: rgba(8, 10, 18, 0.42);
+  background: transparent;
   transform: none;
-  filter: none;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.22));
+}
+
+.forgeax-site .mk-preview-media {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.forgeax-site .mk-preview-media-bg {
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(52px) saturate(1.35) brightness(0.92);
+  opacity: 0.22;
+  pointer-events: none;
+  transform: scale(1.08);
+  mix-blend-mode: soft-light;
+}
+
+.forgeax-site .mk-preview-media::after {
+  display: none;
 }
 
 .forgeax-site .mk-modal-preview-img--hero.is-zoomable {
@@ -1795,6 +1847,15 @@ body.mk-preview-lightbox-open {
   z-index: 5;
 }
 
+.forgeax-site .mk-modal-preview-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  background: radial-gradient(ellipse 96% 90% at 50% 44%, transparent 68%, rgba(var(--mk-accent-b), 0.08) 100%);
+}
+
 .forgeax-site .mk-preview-slide {
   position: absolute;
   inset: 0;
@@ -1802,13 +1863,19 @@ body.mk-preview-lightbox-open {
   align-items: center;
   justify-content: center;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s var(--site-ease-silk);
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+  transition: opacity 0.35s var(--site-ease-silk), visibility 0.35s var(--site-ease-silk);
 }
 
 .forgeax-site .mk-preview-slide.is-active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+  z-index: 2;
 }
 
 .forgeax-site .mk-modal-preview-frame .mk-avatar,
@@ -1846,17 +1913,38 @@ body.mk-preview-lightbox-open {
   transition: opacity 0.35s var(--site-ease-silk);
 }
 
-.forgeax-site .mk-preview-slide .mk-modal-preview-img,
-.forgeax-site .mk-preview-slide.is-active > .mk-modal-preview-img {
-  position: static;
+.forgeax-site .mk-preview-slide.is-active > .mk-modal-preview-img,
+.forgeax-site .mk-preview-slide.is-active .mk-preview-media .mk-modal-preview-img {
+  position: relative;
+  z-index: 2;
   inset: auto;
+  display: block;
   width: auto;
   height: auto;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   opacity: 1;
+  background: transparent;
   transition: none;
+}
+
+.forgeax-site .mk-modal-preview-video,
+.forgeax-site .mk-preview-slide.is-active > .mk-modal-preview-video,
+.forgeax-site .mk-preview-slide.is-active .mk-preview-media .mk-modal-preview-video {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: transparent;
+}
+
+.forgeax-site .mk-preview-thumb .mk-modal-preview-video {
+  pointer-events: none;
 }
 
 .forgeax-site .mk-modal-preview-placeholder {
