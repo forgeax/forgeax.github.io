@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=c90f321e" />
+<link rel="stylesheet" href="/assets/styles.css?v=00d0d18d" />
 
 </head>
 <body class="lang-ko forgeax-site has-immersive">
@@ -72,9 +72,19 @@
   </div>
 
   <div class="section" style="padding-top:14px">
+    <button type="button" class="docs-mobilebar" id="docsMobileBar" aria-expanded="false" aria-controls="docsSidebar">
+      <span class="dmb-label">
+        <span class="dmb-kicker">내용물</span>
+        <span class="dmb-current" id="docsCurrent"></span>
+      </span>
+      <span class="dmb-icon" aria-hidden="true"><i data-lucide="list"></i></span>
+    </button>
+    <div class="docs-sheet-backdrop" id="docsBackdrop"></div>
+
     <div class="docs-layout">
 
-      <aside class="docs-sidebar">
+      <aside class="docs-sidebar" id="docsSidebar">
+        <div class="docs-sheet-handle" aria-hidden="true"></div>
         <div class="docs-search">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
           <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="문서 검색… (/)" aria-label="search docs" />
@@ -569,6 +579,46 @@ bun fx 시작 # → http://localhost:18920</code></pre>
 
     var nav = document.querySelector(".docs-sidebar nav");
     var sidebar = document.querySelector(".docs-sidebar");
+
+    /* ── mobile bottom-sheet TOC ── */
+    var mbar = document.getElementById("docsMobileBar");
+    var mcurrent = document.getElementById("docsCurrent");
+    var backdrop = document.getElementById("docsBackdrop");
+    function openSheet() {
+      document.body.classList.add("docs-sheet-open");
+      if (mbar) mbar.setAttribute("aria-expanded", "true");
+    }
+    function closeSheet() {
+      document.body.classList.remove("docs-sheet-open");
+      if (mbar) mbar.setAttribute("aria-expanded", "false");
+    }
+    window.forgeaxDocsCloseSheet = closeSheet;
+    if (mbar) mbar.addEventListener("click", function () {
+      document.body.classList.contains("docs-sheet-open") ? closeSheet() : openSheet();
+    });
+    if (backdrop) backdrop.addEventListener("click", closeSheet);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
+
+    /* main.wrap carries a transform (page-in animation, fill-mode:both), which
+       makes it the containing block for position:fixed descendants. Portal the
+       sheet + backdrop to <body> on mobile so the sheet pins to the viewport;
+       restore into the layout on desktop. */
+    var sheetLayout = sidebar ? sidebar.closest(".docs-layout") : null;
+    var sheetMq = window.matchMedia("(max-width: 820px)");
+    function syncSheetPortal() {
+      if (!sidebar) return;
+      if (sheetMq.matches) {
+        if (sidebar.parentNode !== document.body) document.body.appendChild(sidebar);
+        if (backdrop && backdrop.parentNode !== document.body) document.body.appendChild(backdrop);
+      } else {
+        closeSheet();
+        if (sheetLayout && sidebar.parentNode !== sheetLayout) sheetLayout.insertBefore(sidebar, sheetLayout.firstChild);
+      }
+    }
+    syncSheetPortal();
+    if (sheetMq.addEventListener) sheetMq.addEventListener("change", syncSheetPortal);
+    else if (sheetMq.addListener) sheetMq.addListener(syncSheetPortal);
+
     var indicator = document.createElement("span");
     indicator.className = "docs-nav-indicator";
     indicator.setAttribute("aria-hidden", "true");
@@ -614,6 +664,7 @@ bun fx 시작 # → http://localhost:18920</code></pre>
       if (activeIdx < 0) activeIdx = 0;
       links.forEach(function (l) { l.classList.remove("active"); });
       link.classList.add("active");
+      if (mcurrent) mcurrent.textContent = link.textContent;
       paintIndicator(link, !!opts.instant);
 
       if (opts.scrollSidebar && splitPane && sidebar) {
@@ -629,7 +680,9 @@ bun fx 시작 # → http://localhost:18920</code></pre>
 
     function navOffset() {
       var raw = getComputedStyle(document.documentElement).getPropertyValue("--nav-h");
-      return (parseFloat(raw) || 72) + 16;
+      var base = (parseFloat(raw) || 72) + 16;
+      if (mbar && mbar.offsetParent !== null) base += mbar.offsetHeight + 8;
+      return base;
     }
 
     var scrollLockUntil = 0;
@@ -667,6 +720,7 @@ bun fx 시작 # → http://localhost:18920</code></pre>
         var id = (a.getAttribute("href") || "").slice(1);
         if (!id || !document.getElementById(id)) return;
         e.preventDefault();
+        closeSheet();
         scrollToChapter(id);
       });
       if (splitPane) {
@@ -743,9 +797,12 @@ bun fx 시작 # → http://localhost:18920</code></pre>
       });
     });
     function openTo(el) {
+      if (window.forgeaxDocsCloseSheet) window.forgeaxDocsCloseSheet();
       var p = el;
       while (p) { if (p.tagName === "DETAILS") p.open = true; p = p.parentElement; }
       var navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 72;
+      var bar = document.getElementById("docsMobileBar");
+      if (bar && bar.offsetParent !== null) navH += bar.offsetHeight + 8;
       var top = window.scrollY + el.getBoundingClientRect().top - navH - 24;
       window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
       el.classList.add("doc-hit");
