@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Docs — ForgeaX</title>
-<meta name="description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<title>Documentos - ForgeaX</title>
+<meta name="description" content="Documentação do ForgeaX — um guia do usuário para construir um jogo com o ForgeaX: instalação, conceitos básicos, desenvolvimento orientado por chat, edição de cena, ativos, execução, publicação e tópicos avançados." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Docs — ForgeaX" />
-<meta property="og:description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<meta property="og:title" content="Documentos - ForgeaX" />
+<meta property="og:description" content="Documentação do ForgeaX — um guia do usuário para construir um jogo com o ForgeaX: instalação, conceitos básicos, desenvolvimento orientado por chat, edição de cena, ativos, execução, publicação e tópicos avançados." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/pt/docs/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -47,7 +47,7 @@
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
-        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/docs/" data-l="en">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item" href="/es/docs/" data-l="es">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/docs/" data-l="fr">Français</a><a class="lang-item active" href="/pt/docs/" data-l="pt" aria-current="true">Português</a></div>
@@ -77,7 +77,7 @@
       <aside class="docs-sidebar">
         <div class="docs-search">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
-          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Search docs… (/)" aria-label="search docs" />
+          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Pesquisar documentos… (/)" aria-label="search docs" />
           <div class="docs-results" id="docResults" hidden></div>
         </div>
         <div class="t">Conteúdo</div>
@@ -116,8 +116,8 @@
                 <pre><code>git clone --recurse-submodules \
   https://github.com/ForgeaX-Games/forgeax-studio.git
 cd forgeax-studio
-bun fx setup          # one-time setup
-bun fx start          # → http://localhost:18920</code></pre>
+configuração bun fx # configuração única
+bun fx start # → http://localhost:18920</code></pre>
                 <p><strong>O que<code>configuração bun fx</code>faz:</strong>verifica pré-requisitos → inicia submódulos → constrói os pacotes do mecanismo → executa<code>instalação de pão</code>em cada sub-repo → constrói os plugins do mercado → scaffolds<code>$ROOT/.env</code>de<code>.env.exemplo</code>. Com<code>--interativo</code>também solicita<code>ANTHROPIC_API_KEY</code>; senão ele avisa e você edita<code>.env</code>mais tarde.</p>
                 <p><strong><code>coque fx começar</code>inicializa três serviços:</strong> <code>servidor</code>(:18900, o núcleo do tempo de execução — chat/backends/sessões),<code>interface</code>(:18920, a UI do Studio com vite HMR) e<code>motor</code>(:15173, o renderizador). Substituir portas em<code>.env</code>através de<code>FORGEAX_{SERVIDOR,INTERFACE,ENGINE}_PORT</code>. Então abra<code>http://localhost:18920</code>.</p>
                 <p><strong>Comandos diários (uma entrada,<code>coque fx</code>):</strong>correr<code>configuração bun fx</code>uma vez para preparar o ambiente; mais tarde, obtenha atualizações com<code>atualização bun fx</code>(atualiza o repositório raiz + sincroniza submódulos, sem reinstalar/reconstruir);<code>coque fx começar</code>/<code>aplicativo bun fx start</code>iniciar web/desktop;<code>parada de bun fx</code>e<code>bun fx reiniciar</code>parar/reiniciar;<code>status de coque fx</code>e<code>médico bun fx</code>diagnosticar sua configuração;<code>aplicativo de construção bun fx</code>empacota o aplicativo de desktop. Correr<code>coque fx</code>sem argumentos para listar todos os comandos.</p>
@@ -529,7 +529,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                   <details class="doc-sub"><summary><strong>Yevi · 审查</strong>- caçador de dívidas de tecnologia</summary>
                     <div class="doc-subbody"><p>Uma observadora graciosamente composta, calma como águas profundas, sempre um passo à frente – ela sabe onde o código é mais fraco e qual problema de três semanas está prestes a vir à tona. Um tom comedido e suave, com palavras precisas e incisivas.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><strong>Companion personas</strong>- mesma habilidade, caráter diferente</summary>
+                  <details class="doc-sub"><summary><strong>Personagens companheiras</strong>- mesma habilidade, caráter diferente</summary>
                     <div class="doc-subbody"><p>Um conjunto de caracteres opcionais com<strong>habilidade de codificação comparável, mas personalidades distintas</strong>- alguns medidos, alguns brincalhões, alguns meticulosos. Eles têm a mesma habilidade; a única diferença é como é trabalhar ao lado deles. As personalidades podem ser editadas a qualquer momento no<strong>editor de personalidade</strong>(ver<a href="#ch8">Avançado</a>); o elenco completo está no<a href="/pt/marketplace/">mercado</a>.</p></div>
                   </details>
                 </div>

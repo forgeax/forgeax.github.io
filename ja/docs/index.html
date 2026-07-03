@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Docs — ForgeaX</title>
-<meta name="description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<title>ドキュメント — ForgeaX</title>
+<meta name="description" content="ForgeaX ドキュメント — ForgeaX を使用してゲームを構築するためのユーザー目線のガイド: インストール、コアコンセプト、チャット主導の開発、シーン編集、アセット、実行、公開、および高度なトピック。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Docs — ForgeaX" />
-<meta property="og:description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<meta property="og:title" content="ドキュメント — ForgeaX" />
+<meta property="og:description" content="ForgeaX ドキュメント — ForgeaX を使用してゲームを構築するためのユーザー目線のガイド: インストール、コアコンセプト、チャット主導の開発、シーン編集、アセット、実行、公開、および高度なトピック。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/ja/docs/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -47,7 +47,7 @@
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
-        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/docs/" data-l="en">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item active" href="/ja/docs/" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item" href="/es/docs/" data-l="es">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/docs/" data-l="fr">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
@@ -77,7 +77,7 @@
       <aside class="docs-sidebar">
         <div class="docs-search">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
-          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Search docs… (/)" aria-label="search docs" />
+          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="ドキュメントを検索… (/)" aria-label="search docs" />
           <div class="docs-results" id="docResults" hidden></div>
         </div>
         <div class="t">コンテンツ</div>
@@ -115,9 +115,9 @@
                 <p><strong>前提条件:</strong> <code>git</code>、<code>パン</code>≥ 1.3、<code>ノード</code>≥ 22、<code>カール</code>。 (クリーンなホストでは、<code>バンFXのセットアップ</code>bun / node 22+ / pnpm / Rust+wasm ツールチェーンをブートストラップすることもできます — デフォルトではプロンプトはありません。<code> - 相互の作用</code>ツールごとに質問します。<code>--スキップ-ブートストラップ</code>スキップします。）</p>
                 <pre><code>git clone --recurse-submodules \
   https://github.com/ForgeaX-Games/forgeax-studio.git
-cd forgeax-studio
-bun fx setup          # one-time setup
-bun fx start          # → http://localhost:18920</code></pre>
+cd forgeax-スタジオ
+bun fx セットアップ # ワンタイムセットアップ
+bun fx スタート # → http://localhost:18920</code></pre>
                 <p><strong>何<code>バンFXのセットアップ</code>行います:</strong>前提条件を検証 → サブモジュールを初期化 → エンジンパッケージを構築 → 実行<code>バンインストール</code>各サブリポジトリ内 → マーケットプレイスのプラグインを構築 → スキャフォールド<code>$ROOT/.env</code>から<code>.env.example</code>。と<code> - 相互の作用</code>また、<code>ANTHROPIC_API_KEY</code>;それ以外の場合は警告が表示され、編集することになります<code>.env</code>後で。</p>
                 <p><strong><code>バンFXスタート</code>3 つのサービスを起動します。</strong> <code>サーバ</code>(:18900、ランタイムコア — チャット/バックエンド/セッション)、<code>インタフェース</code>(:18920、vite HMR を使用した Studio UI)、および<code>エンジン</code>(:15173、レンダラー)。のポートを上書きする<code>.env</code>経由<code>FORGEAX_{サーバー、インターフェース、エンジン}_ポート</code>。次に開きます<code>http://ローカルホスト:18920</code>。</p>
                 <p><strong>日常的なコマンド (1 つのエントリ、<code>バンFX</code>):</strong>走る<code>バンFXのセットアップ</code>環境を準備するために一度。後で更新をプルします<code>バンFXのアップデート</code>(ルート リポジトリを更新 + サブモジュールを同期し、再インストール/再構築は行いません);<code>バンFXスタート</code>/<code>bun fx アプリを起動</code>Web/デスクトップを起動します。<code>バンFXストップ</code>そして<code>バンFXの再起動</code>停止/再起動;<code>バンFXのステータス</code>そして<code>バンFXドクター</code>セットアップを診断します。<code>bun fx ビルドアプリ</code>デスクトップアプリをパッケージ化します。走る<code>バンFX</code>引数なしですべてのコマンドをリストします。</p>
@@ -529,7 +529,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                   <details class="doc-sub"><summary><strong>Yevi · 审查</strong>— テクノロジー関連の負債ハンター</summary>
                     <div class="doc-subbody"><p>優雅に冷静な観察者で、深い水のように穏やかで、常に一歩先を行っています。彼女は、コードのどこが最も弱いのか、そして 3 週間前にどの問題が表面化しようとしているのかを知っています。慎重で穏やかな口調と、正確かつ鋭い言葉遣い。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><strong>Companion personas</strong>— 同じスキル、異なるキャラクター</summary>
+                  <details class="doc-sub"><summary><strong>コンパニオンペルソナ</strong>— 同じスキル、異なるキャラクター</summary>
                     <div class="doc-subbody"><p>オプションの文字のセット<strong>コーディングスキルは同等だが個性は異なる</strong>— ある者は慎重で、ある者は遊び心があり、ある者は細心の注意を払っています。彼らは同じ能力を持っています。唯一の違いは、彼らと一緒に仕事をするときの気分です。パーソナリティはいつでも編集できます。<strong>ペルソナエディター</strong>（見る<a href="#ch8">高度な</a>);フルキャストは<a href="/ja/marketplace/">市場</a>。</p></div>
                   </details>
                 </div>

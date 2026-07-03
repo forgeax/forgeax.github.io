@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Docs — ForgeaX</title>
-<meta name="description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<title>Documentos - ForgeaX</title>
+<meta name="description" content="Documentación de ForgeaX: una guía práctica para el usuario sobre cómo crear un juego con ForgeaX: instalación, conceptos básicos, desarrollo basado en chat, edición de escenas, activos, ejecución, publicación y temas avanzados." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Docs — ForgeaX" />
-<meta property="og:description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<meta property="og:title" content="Documentos - ForgeaX" />
+<meta property="og:description" content="Documentación de ForgeaX: una guía práctica para el usuario sobre cómo crear un juego con ForgeaX: instalación, conceptos básicos, desarrollo basado en chat, edición de escenas, activos, ejecución, publicación y temas avanzados." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/es/docs/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -47,7 +47,7 @@
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
-        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/docs/" data-l="en">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item active" href="/es/docs/" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/docs/" data-l="fr">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
@@ -77,7 +77,7 @@
       <aside class="docs-sidebar">
         <div class="docs-search">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
-          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Search docs… (/)" aria-label="search docs" />
+          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Buscar documentos… (/)" aria-label="search docs" />
           <div class="docs-results" id="docResults" hidden></div>
         </div>
         <div class="t">Contenido</div>
@@ -113,11 +113,11 @@
               <summary>Instalar y ejecutar</summary>
               <div class="doc-body">
                 <p><strong>Requisitos previos:</strong> <code>git</code>,<code>bollo</code>≥ 1,3,<code>nodo</code>≥ 22,<code>rizo</code>. (En un host limpio,<code>configuración de efectos de bollo</code>también puede iniciar bun/node 22+/pnpm/la cadena de herramientas Rust+wasm: aviso cero de forma predeterminada;<code>--interactivo</code>pregunta por herramienta,<code>--skip-bootstrap</code>se lo salta.)</p>
-                <pre><code>git clone --recurse-submodules \
+                <pre><code>git clone --recurse-submódulos \
   https://github.com/ForgeaX-Games/forgeax-studio.git
 cd forgeax-studio
-bun fx setup          # one-time setup
-bun fx start          # → http://localhost:18920</code></pre>
+configuración bun fx # configuración única
+inicio de bun fx # → http://localhost:18920</code></pre>
                 <p><strong>Qué<code>configuración de efectos de bollo</code>hace:</strong>verifica los requisitos previos → inicia sus submódulos → construye los paquetes del motor → ejecuta<code>instalar bollo</code>en cada subrepositorio → crea los complementos del mercado → andamios<code>$RAÍZ/.env</code>de<code>.env.ejemplo</code>. Con<code>--interactivo</code>también solicita<code>ANTROPIC_API_KEY</code>; de lo contrario avisa y editas<code>.env</code>más tarde.</p>
                 <p><strong><code>inicio de bun fx</code>arranca tres servicios:</strong> <code>servidor</code>(:18900, el núcleo del tiempo de ejecución: chat/backends/sesiones),<code>interfaz</code>(:18920, la interfaz de usuario de Studio con vite HMR), y<code>motor</code>(: 15173, el renderizador). Anular puertos en<code>.env</code>a través de<code>FORGEAX_{SERVIDOR,INTERFAZ,MOTOR}_PORT</code>. Luego abre<code>http://localhost:18920</code>.</p>
                 <p><strong>Comandos cotidianos (una entrada,<code>bollo fx</code>):</strong>correr<code>configuración de efectos de bollo</code>una vez para preparar el ambiente; luego extraiga actualizaciones con<code>actualización de bun fx</code>(actualiza el repositorio raíz + sincroniza los submódulos, no es necesario reinstalar/reconstruir);<code>inicio de bun fx</code>/<code>aplicación de inicio bun fx</code>iniciar web/escritorio;<code>parada de pan fx</code>y<code>reiniciar bun fx</code>detener/reiniciar;<code>estado de bun fx</code>y<code>doctor bun fx</code>diagnosticar su configuración;<code>aplicación de compilación bun fx</code>empaqueta la aplicación de escritorio. Correr<code>bollo fx</code>sin argumentos para enumerar cada comando.</p>
@@ -529,7 +529,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                   <details class="doc-sub"><summary><strong>Yevi · 审查</strong>- cazador de deudas tecnológicas</summary>
                     <div class="doc-subbody"><p>Una observadora elegantemente compuesta, tranquila como el agua profunda, siempre un paso por delante: sabe dónde el código es más débil y qué problema de tres semanas está a punto de salir a la superficie. Un tono mesurado y amable, con una redacción precisa e incisiva.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><strong>Companion personas</strong>— misma habilidad, carácter diferente</summary>
+                  <details class="doc-sub"><summary><strong>Personas acompañantes</strong>— misma habilidad, carácter diferente</summary>
                     <div class="doc-subbody"><p>Un conjunto de caracteres opcionales con<strong>habilidad de codificación comparable pero personalidades distintas</strong>– algunos mesurados, otros divertidos, otros meticulosos. Tienen la misma habilidad; la única diferencia es cómo se siente trabajar junto a ellos. Las personalidades son editables en cualquier momento en el<strong>editor de personajes</strong>(ver<a href="#ch8">Avanzado</a>); el elenco completo está en el<a href="/es/marketplace/">mercado</a>.</p></div>
                   </details>
                 </div>

@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Docs — ForgeaX</title>
-<meta name="description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<title>문서 — ForgeaX</title>
+<meta name="description" content="ForgeaX 문서 — ForgeaX를 사용하여 게임을 구축하기 위한 사용자 눈 가이드: 설치, 핵심 개념, 채팅 기반 개발, 장면 편집, 자산, 실행, 게시 및 고급 주제." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Docs — ForgeaX" />
-<meta property="og:description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<meta property="og:title" content="문서 — ForgeaX" />
+<meta property="og:description" content="ForgeaX 문서 — ForgeaX를 사용하여 게임을 구축하기 위한 사용자 눈 가이드: 설치, 핵심 개념, 채팅 기반 개발, 장면 편집, 자산, 실행, 게시 및 고급 주제." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/ko/docs/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -47,7 +47,7 @@
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
-        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/docs/" data-l="en">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item active" href="/ko/docs/" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/docs/" data-l="es">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/docs/" data-l="fr">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
@@ -77,7 +77,7 @@
       <aside class="docs-sidebar">
         <div class="docs-search">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
-          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Search docs… (/)" aria-label="search docs" />
+          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="문서 검색… (/)" aria-label="search docs" />
           <div class="docs-results" id="docResults" hidden></div>
         </div>
         <div class="t">내용물</div>
@@ -115,9 +115,9 @@
                 <p><strong>전제 조건:</strong> <code>자식</code>,<code>혈액 요소 질소</code>≥ 1.3,<code>마디</code>≥ 22,<code>컬</code>. (깨끗한 호스트에서는<code>롤빵 FX 설정</code>bun / node 22+ / pnpm / Rust+wasm 툴체인을 부트스트랩할 수도 있습니다. 기본적으로 프롬프트가 0입니다.<code>--대화형</code>도구별로 묻고,<code>--skip-부트스트랩</code>생략합니다.)</p>
                 <pre><code>git clone --recurse-submodules \
   https://github.com/ForgeaX-Games/forgeax-studio.git
-cd forgeax-studio
-bun fx setup          # one-time setup
-bun fx start          # → http://localhost:18920</code></pre>
+CD forgeax-스튜디오
+bun fx 설정 # 일회성 설정
+bun fx 시작 # → http://localhost:18920</code></pre>
                 <p><strong>무엇<code>롤빵 FX 설정</code>하다:</strong>전제조건 확인 → 하위 모듈 초기화 → 엔진 패키지 빌드 → 실행<code>롤빵 설치</code>각 하위 저장소에서 → 마켓플레이스 플러그인 빌드 → 스캐폴드<code>$ROOT/.env</code>~에서<code>.env.예제</code>. 와 함께<code>--대화형</code>그것은 또한 다음을 요구합니다.<code>ANTHROPIC_API_KEY</code>; 그렇지 않으면 경고하고 편집합니다.<code>.env</code>나중에.</p>
                 <p><strong><code>롤빵 FX 시작</code>세 가지 서비스를 부팅합니다.</strong> <code>섬기는 사람</code>(:18900, 런타임 코어 — 채팅/백엔드/세션),<code>인터페이스</code>(:18920, vite HMR이 포함된 Studio UI) 및<code>엔진</code>(:15173, 렌더러). 포트 재정의<code>.env</code>~을 통해<code>FORGEAX_{서버,인터페이스,엔진}_PORT</code>. 그런 다음 열어<code>http://localhost:18920</code>.</p>
                 <p><strong>일상적인 명령(1개 항목,<code>롤빵 FX</code>):</strong>달리다<code>롤빵 FX 설정</code>환경을 준비하기 위해 한 번; 나중에 업데이트를 가져옵니다.<code>롤빵 FX 업데이트</code>(루트 저장소 업데이트 + 하위 모듈 동기화, 재설치/재구축 없음)<code>롤빵 FX 시작</code>/<code>Bun FX 시작 앱</code>웹/데스크톱 실행;<code>롤빵 FX 중지</code>그리고<code>롤빵 FX 다시 시작</code>중지 / 다시 시작;<code>롤빵 FX 상태</code>그리고<code>롤빵 FX 의사</code>설정을 진단합니다.<code>Bun FX 빌드 앱</code>데스크톱 앱을 패키징합니다. 달리다<code>롤빵 FX</code>모든 명령을 나열하는 인수가 없습니다.</p>
@@ -529,7 +529,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                   <details class="doc-sub"><summary><strong>Yevi · 审查</strong>— 기술 부채 사냥꾼</summary>
                     <div class="doc-subbody"><p>깊은 물처럼 잔잔하고 우아하게 침착한 관찰자로서 항상 한발 앞서 있습니다. 그녀는 코드가 가장 약한 곳이 어디인지, 3주 전에 어떤 문제가 곧 표면화되는지 알고 있습니다. 정확하고 예리한 표현으로 측정되고 부드러운 톤.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><strong>Companion personas</strong>— 같은 스킬, 다른 성격</summary>
+                  <details class="doc-sub"><summary><strong>동반자 페르소나</strong>— 같은 스킬, 다른 성격</summary>
                     <div class="doc-subbody"><p>다음과 같은 선택적 문자 집합<strong>비슷한 코딩 기술이지만 개성이 뚜렷함</strong>— 일부는 측정되고, 일부는 장난스럽고, 일부는 꼼꼼합니다. 그들은 같은 능력을 가지고 있습니다. 유일한 차이점은 그들과 함께 일하는 느낌입니다. 개인정보는 언제든지 편집 가능합니다.<strong>페르소나 편집자</strong>(보다<a href="#ch8">고급의</a>); 전체 출연진은<a href="/ko/marketplace/">시장</a>.</p></div>
                   </details>
                 </div>

@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Docs — ForgeaX</title>
-<meta name="description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<title>Documents — ForgeaX</title>
+<meta name="description" content="Documentation ForgeaX — un guide pratique pour créer un jeu avec ForgeaX : installation, concepts de base, développement piloté par chat, édition de scènes, ressources, exécution, publication et sujets avancés." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Docs — ForgeaX" />
-<meta property="og:description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<meta property="og:title" content="Documents — ForgeaX" />
+<meta property="og:description" content="Documentation ForgeaX — un guide pratique pour créer un jeu avec ForgeaX : installation, concepts de base, développement piloté par chat, édition de scènes, ressources, exécution, publication et sujets avancés." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/fr/docs/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -47,7 +47,7 @@
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
-        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/docs/" data-l="en">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item" href="/es/docs/" data-l="es">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/docs/" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
@@ -77,7 +77,7 @@
       <aside class="docs-sidebar">
         <div class="docs-search">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
-          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Search docs… (/)" aria-label="search docs" />
+          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Rechercher des documents… (/)" aria-label="search docs" />
           <div class="docs-results" id="docResults" hidden></div>
         </div>
         <div class="t">Contenu</div>
@@ -116,8 +116,8 @@
                 <pre><code>git clone --recurse-submodules \
   https://github.com/ForgeaX-Games/forgeax-studio.git
 cd forgeax-studio
-bun fx setup          # one-time setup
-bun fx start          # → http://localhost:18920</code></pre>
+configuration bun fx # configuration unique
+chignon fx démarrer # → http://localhost:18920</code></pre>
                 <p><strong>Quoi<code>configuration du chignon fx</code>fait:</strong>vérifie les prérequis → initialise ses sous-modules → construit les packages du moteur → s'exécute<code>installation de chignon</code>dans chaque sous-dépôt → construit les plugins du marché → échafaudages<code>$RACINE/.env</code>depuis<code>.env.exemple</code>. Avec<code>--interactif</code>il demande également<code>ANTHROPIC_API_KEY</code>; sinon il prévient et vous éditez<code>.env</code>plus tard.</p>
                 <p><strong><code>chignon fx démarrer</code>démarre trois services :</strong> <code>serveur</code>(:18900, le noyau d'exécution — chat / backends / sessions),<code>interface</code>(:18920, l'interface utilisateur de Studio avec vite HMR), et<code>moteur</code>(:15173, le moteur de rendu). Remplacer les ports dans<code>.env</code>via<code>FORGEAX_{SERVEUR,INTERFACE,ENGINE}_PORT</code>. Puis ouvrez<code>http://localhost:18920</code>.</p>
                 <p><strong>Commandes quotidiennes (une entrée,<code>chignon fx</code>) :</strong>courir<code>configuration du chignon fx</code>une fois pour préparer l'environnement ; plus tard, extrayez les mises à jour avec<code>mise à jour de Bun FX</code>(met à jour le dépôt racine + synchronise les sous-modules, pas de réinstallation/reconstruction) ;<code>chignon fx démarrer</code>/<code>Application de démarrage Bun FX</code>lancer le Web/le bureau ;<code>chignon fx arrêter</code>et<code>redémarrage de Bun FX</code>arrêter/redémarrer ;<code>statut bun fx</code>et<code>chignon fx docteur</code>diagnostiquer votre configuration ;<code>application de création de bun fx</code>emballe l’application de bureau. Courir<code>chignon fx</code>sans arguments pour lister chaque commande.</p>
@@ -529,7 +529,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                   <details class="doc-sub"><summary><strong>Yevi · 审查</strong>– chasseur de dettes technologiques</summary>
                     <div class="doc-subbody"><p>Une observatrice gracieuse, calme comme l'eau profonde, toujours avec une longueur d'avance : elle sait où le code est le plus faible et quel problème vieux de trois semaines est sur le point de faire surface. Un ton mesuré et doux, avec une formulation précise et incisive.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><strong>Companion personas</strong>— même compétence, caractère différent</summary>
+                  <details class="doc-sub"><summary><strong>Personnages de compagnon</strong>— même compétence, caractère différent</summary>
                     <div class="doc-subbody"><p>Un ensemble de caractères facultatifs avec<strong>compétences de codage comparables mais personnalités distinctes</strong>– certains mesurés, certains ludiques, certains méticuleux. Ils ont la même capacité ; la seule différence est la sensation de travailler à leurs côtés. Les personnalités sont modifiables à tout moment dans<strong>éditeur de personnages</strong>(voir<a href="#ch8">Avancé</a>); le casting complet est dans le<a href="/fr/marketplace/">marché</a>.</p></div>
                   </details>
                 </div>

@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Docs — ForgeaX</title>
-<meta name="description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<title>Dokumente – ForgeaX</title>
+<meta name="description" content="ForgeaX-Dokumentation – eine Anleitung aus der Sicht des Benutzers zum Erstellen eines Spiels mit ForgeaX: Installation, Kernkonzepte, chatgesteuerte Entwicklung, Szenenbearbeitung, Assets, Ausführung, Veröffentlichung und fortgeschrittene Themen." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Docs — ForgeaX" />
-<meta property="og:description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<meta property="og:title" content="Dokumente – ForgeaX" />
+<meta property="og:description" content="ForgeaX-Dokumentation – eine Anleitung aus der Sicht des Benutzers zum Erstellen eines Spiels mit ForgeaX: Installation, Kernkonzepte, chatgesteuerte Entwicklung, Szenenbearbeitung, Assets, Ausführung, Veröffentlichung und fortgeschrittene Themen." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/de/docs/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -47,7 +47,7 @@
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
-        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/docs/" data-l="en">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item" href="/es/docs/" data-l="es">Español</a><a class="lang-item active" href="/de/docs/" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/docs/" data-l="fr">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
@@ -77,7 +77,7 @@
       <aside class="docs-sidebar">
         <div class="docs-search">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
-          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Search docs… (/)" aria-label="search docs" />
+          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Dokumente durchsuchen… (/)" aria-label="search docs" />
           <div class="docs-results" id="docResults" hidden></div>
         </div>
         <div class="t">Inhalt</div>
@@ -115,9 +115,9 @@
                 <p><strong>Voraussetzungen:</strong> <code>Idiot</code>,<code>Brötchen</code>≥ 1,3,<code>Knoten</code>≥ 22,<code>Locken</code>. (Auf einem sauberen Host,<code>Bun FX-Setup</code>kann auch Bun / Node 22+ / pnpm / die Rust+wasm-Toolchain booten – standardmäßig Null-Prompt;<code>--interaktiv</code>fragt pro Werkzeug,<code>--skip-bootstrap</code>überspringt es.)</p>
                 <pre><code>git clone --recurse-submodules \
   https://github.com/ForgeaX-Games/forgeax-studio.git
-cd forgeax-studio
-bun fx setup          # one-time setup
-bun fx start          # → http://localhost:18920</code></pre>
+CD Forgeax-Studio
+Bun FX Setup # einmaliges Setup
+bun fx start # → http://localhost:18920</code></pre>
                 <p><strong>Was<code>Bun FX-Setup</code>tut:</strong>überprüft die Voraussetzungen → initiiert die Submodule → erstellt die Engine-Pakete → führt sie aus<code>Brötchen installieren</code>in jedem Sub-Repo → baut die Marktplatz-Plugins → Gerüste auf<code>$ROOT/.env</code>aus<code>.env.example</code>. Mit<code>--interaktiv</code>es fordert auch dazu auf<code>ANTHROPIC_API_KEY</code>; andernfalls wird gewarnt und Sie bearbeiten<code>.env</code>später.</p>
                 <p><strong><code>Bun FX starten</code>bootet drei Dienste:</strong> <code>Server</code>(:18900, der Laufzeitkern – Chat / Backends / Sitzungen),<code>Schnittstelle</code>(:18920, die Studio-Benutzeroberfläche mit vite HMR) und<code>Motor</code>(:15173, der Renderer). Ports in überschreiben<code>.env</code>über<code>FORGEAX_{SERVER,INTERFACE,ENGINE}_PORT</code>. Dann öffnen<code>http://localhost:18920</code>.</p>
                 <p><strong>Alltägliche Befehle (ein Eintrag,<code>Brötchen fx</code>):</strong>laufen<code>Bun FX-Setup</code>einmal, um die Umgebung vorzubereiten; später Updates mit ziehen<code>Bun FX-Update</code>(aktualisiert das Root-Repo + synchronisiert Submodule, keine Neuinstallation/Neuerstellung);<code>Bun FX starten</code>/<code>Bun FX Start-App</code>Web/Desktop starten;<code>Bun FX Stopp</code>Und<code>bun fx neu starten</code>stoppen / neu starten;<code>Bun FX-Status</code>Und<code>Bun FX Arzt</code>Diagnostizieren Sie Ihr Setup.<code>Bun FX Build-App</code>Paketiert die Desktop-App. Laufen<code>Brötchen fx</code>ohne Argumente, um jeden Befehl aufzulisten.</p>
@@ -529,7 +529,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                   <details class="doc-sub"><summary><strong>Yevi · 审查</strong>– Tech-Schuldenjäger</summary>
                     <div class="doc-subbody"><p>Eine anmutige, gelassene Beobachterin, ruhig wie tiefes Wasser, immer einen Schritt voraus – sie weiß, wo der Code am schwächsten ist und welches drei Wochen alte Problem bald an die Oberfläche kommt. Ein maßvoller, sanfter Ton, mit präzisen und prägnanten Formulierungen.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><strong>Companion personas</strong>– gleiche Fähigkeit, anderer Charakter</summary>
+                  <details class="doc-sub"><summary><strong>Companion-Personas</strong>– gleiche Fähigkeit, anderer Charakter</summary>
                     <div class="doc-subbody"><p>Eine Reihe optionaler Zeichen mit<strong>vergleichbare Programmierfähigkeiten, aber unterschiedliche Persönlichkeiten</strong>– manche maßvoll, manche verspielt, manche akribisch. Sie haben die gleiche Fähigkeit; Der einzige Unterschied besteht darin, wie es sich anfühlt, mit ihnen zusammenzuarbeiten. Persönlichkeiten können jederzeit im bearbeitet werden<strong>Persona-Editor</strong>(sehen<a href="#ch8">Fortschrittlich</a>); Die komplette Besetzung ist im<a href="/de/marketplace/">Marktplatz</a>.</p></div>
                   </details>
                 </div>
