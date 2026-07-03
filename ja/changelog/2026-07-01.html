@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-01 · R4 frontend lands + viewport 2×2 redesign — ForgeaX</title>
-<meta name="description" content="R4 frontend app extraction completes with interface store slimming and studio boot wiring; the viewport gets a 2×2 run × display redesign; the editor no longer bakes game paths — Studio injects layout instead; bun fx update gains a color-coded structured report; and desktop builds harden for cross-platform packaging." />
+<title>2026-07-01 · R4 フロントエンド ランド + ビューポート 2×2 の再設計 — ForgeaX</title>
+<meta name="description" content="R4 フロントエンド アプリの抽出は、インターフェイス ストアのスリム化とスタジオ ブートの配線で完了します。ビューポートは 2×2 の実行×表示の再設計を取得します。エディターはゲーム パスをベイクしなくなり、代わりに Studio がレイアウトを挿入します。 bun fx アップデートにより、色分けされた構造化レポートが得られます。デスクトップ ビルドはクロスプラットフォーム パッケージング用に強化されます。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-01 · R4 frontend lands + viewport 2×2 redesign — ForgeaX" />
-<meta property="og:description" content="R4 frontend app extraction completes with interface store slimming and studio boot wiring; the viewport gets a 2×2 run × display redesign; the editor no longer bakes game paths — Studio injects layout instead; bun fx update gains a color-coded structured report; and desktop builds harden for cross-platform packaging." />
+<meta property="og:title" content="2026-07-01 · R4 フロントエンド ランド + ビューポート 2×2 の再設計 — ForgeaX" />
+<meta property="og:description" content="R4 フロントエンド アプリの抽出は、インターフェイス ストアのスリム化とスタジオ ブートの配線で完了します。ビューポートは 2×2 の実行×表示の再設計を取得します。エディターはゲーム パスをベイクしなくなり、代わりに Studio がレイアウトを挿入します。 bun fx アップデートにより、色分けされた構造化レポートが得られます。デスクトップ ビルドはクロスプラットフォーム パッケージング用に強化されます。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-07-01.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -69,20 +69,20 @@
   <article class="read article">
     <a class="back" href="/ja/changelog/">← 変更履歴</a>
     <div class="meta"><span class="tag brand">毎日</span><span>2026-07-01</span></div>
-    <h1>R4 frontend lands + viewport 2×2 redesign</h1>
-    <p class="standfirst">This day shipped several Studio changes you can feel in the editor: the R4 frontend apps (chat, workbench, settings, dashboard) finally wired into the boot chain with a slimmed interface store; the viewport moved from mutually exclusive Edit/Play toggles to a 2×2 run × display matrix; and the editor no longer hard-codes game paths — Studio injects the game layout instead. On top of that, <code>bun fx update</code> gained a color-coded structured report, and the desktop packaging script was hardened for cross-platform builds.</p>
-    <div class="prose"><h2>R4 frontend: from standalone submodules to actually running</h2>
-<p>After splitting chat, workbench, settings and dashboard into standalone submodules on June 30, this day was about &quot;turning them on.&quot; The interface package was slimmed to a pure AppKit layer (bus, broadcast, deep links, overlays); the four L2 apps each own agent preferences and file preview via the bus instead of crowding one big store. Studio&#39;s <code>main.tsx</code> now initializes <code>initAgentPrefs</code>, <code>initFilePreview</code>, <code>bootBroadcast</code> and daemon tick subscriptions at boot — the four modules are no longer &quot;subdirectories sitting there&quot; but formal parts of the editor. R4 went from plan to structure you can develop against daily.</p>
-<h2>Viewport 2×2: run mode × display mode</h2>
-<p>The editor viewport completed its 2×2 redesign this day. Before, Edit and Play were two mutually exclusive states — switching meant rebuilding the entire viewport. The new design splits &quot;run mode&quot; (Edit / Play) and &quot;display mode&quot; (Scene / Game) into two orthogonal dimensions forming a 2×2 matrix — you can see both the scene view and the game view at once, driven by different run states. AppMode became the single source of truth, with the interface and editor submodules aligned to this viewport semantics. It&#39;s a step toward a UE5-style editing experience: edit and preview on one screen without toggling back and forth.</p>
-<h2>Editor decouples game paths — Studio injects layout</h2>
-<p>The editor submodule shed its hard-coded dependency on game directories this day, becoming a layout-agnostic standalone package. Where game files live and what the URL prefix is no longer gets &quot;baked&quot; by the editor — the host (Studio) injects it: the main viewport iframe gets its path via EditSurfaceProps.gameRoot, localStorage keeps panel iframes pointed at the same game; launching the engine passes the disk scan dir and client URL prefix; desktop packaging also bakes the URL prefix so a frozen app serves game assets correctly. The editor can evolve independently while Studio owns project layout — clearer boundaries.</p>
-<h2>bun fx update: pull code and see everything at a glance</h2>
-<p>The first thing a developer does each morning is usually pull the latest code. Before, bun fx update would silently run git pull plus submodule sync — say nothing on success, and dump an opaque error on failure. This day added a structured update report: a color-coded table showing each submodule&#39;s pull result (success, skipped, conflict), its current branch, and the latest commit summary. If a submodule has local changes that needed stashing, it tells you explicitly. After one update you know what state the entire project is in — no more running git status in each submodule one by one.</p>
-<h2>Desktop packaging: cross-platform script + version baking</h2>
-<p>Desktop packaging was hardened this day too: build-desktop.ts became a cross-platform script with tests added; packaging vendors platform-io and agent-host into the sidecar, baking the version via lib/version.ts into the artifact instead of assembling it at runtime; and bun fx start gained a port-busy check that probes whether common ports are already in use before launch, so you don&#39;t end up with half a stack running and no idea why. None of these are flashy on their own, but they determine whether packaging and launching work smoothly on Windows and macOS.</p>
-<h2>What this day means</h2>
-<p>The theme of this day is &quot;boundaries landing.&quot; Yesterday&#39;s R4 split set the direction; today the four modules actually wired into the boot chain. The viewport 2×2 turned editing and previewing from mutually exclusive into composable. The editor handed game-directory ownership back to Studio. Each piece answers the same question: in this editor, who owns what? Once boundaries are clear, modules can iterate independently — touch chat without rebuilding workbench, swap the editor without touching Studio&#39;s project layout. Studio is moving from one big ball of mud to a set of modules with clear responsibilities.</p>
+    <h1>R4 フロントエンド ランド + ビューポート 2×2 の再設計</h1>
+    <p class="standfirst">この日、エディターで感じられるいくつかの Studio の変更がリリースされました。R4 フロントエンド アプリ (チャット、ワークベンチ、設定、ダッシュボード) は、スリム化されたインターフェイス ストアを使用してブート チェーンに最終的に接続されました。ビューポートは、相互に排他的な編集/再生切り替えから 2×2 実行×表示マトリックスに移行しました。エディターはゲーム パスをハードコーディングしなくなり、代わりに Studio がゲーム レイアウトを挿入します。それに加えて、「bun fx update」には色分けされた構造化レポートが追加され、デスクトップ パッケージ化スクリプトはクロスプラットフォーム ビルド向けに強化されました。</p>
+    <div class="prose"><h2>R4 フロントエンド: スタンドアロンのサブモジュールから実際の実行まで</h2>
+<p>6 月 30 日にチャット、ワークベンチ、設定、ダッシュボードをスタンドアロンのサブモジュールに分割した後、この日はそれらを「有効にする」ということでした。インターフェイス パッケージは、純粋な AppKit レイヤー (バス、ブロードキャスト、ディープ リンク、オーバーレイ) にスリム化されました。 4 つの L2 アプリはそれぞれエージェントの設定を所有し、1 つの大きなストアに混雑するのではなく、バス経由でファイル プレビューを行います。 Studio の <code>main.tsx</code> は、起動時に <code>initAgentPrefs</code>、<code>initFilePreview</code>、<code>bootBroadcast</code>、およびデーモン ティック サブスクリプションを初期化するようになりました。4 つのモジュールはもはや「そこにあるサブディレクトリ」ではなく、エディターの正式な部分です。 R4 は、計画から、毎日開発できる構造へと移行しました。</p>
+<h2>ビューポート 2×2: 実行モード × 表示モード</h2>
+<p>この日、エディターのビューポートの 2×2 の再設計が完了しました。以前は、編集と再生は 2 つの相互排他的な状態でした。切り替えるにはビューポート全体を再構築する必要がありました。新しい設計では、「実行モード」(編集/再生) と「表示モード」(シーン/ゲーム) が、2×2 マトリックスを形成する 2 つの直交する次元に分割されています。異なる実行状態によって駆動される、シーン ビューとゲーム ビューの両方を一度に見ることができます。 AppMode は、インターフェイスとエディターのサブモジュールがこのビューポートのセマンティクスに合わせて、唯一の信頼できる情報源になりました。これは、UE5 スタイルの編集エクスペリエンスへの一歩です。前後に切り替えることなく、1 つの画面で編集とプレビューを実行できます。</p>
+<h2>エディターがゲーム パスを分離 — スタジオがレイアウトを挿入</h2>
+<p>この日、エディターのサブモジュールはゲーム ディレクトリへのハードコーディングされた依存関係を取り除き、レイアウトに依存しないスタンドアロン パッケージになりました。ゲーム ファイルが存在する場所と URL プレフィックスがエディターによって「ベイク」されなくなりました。ホスト (スタジオ) がそれを挿入します。メイン ビューポート iframe は EditSurfaceProps.gameRoot 経由でパスを取得し、localStorage は同じゲームを指すパネル iframe を保持します。エンジンを起動すると、ディスク スキャン ディレクトリとクライアント URL プレフィックスが渡されます。デスクトップ パッケージ化では、フリーズしたアプリがゲーム アセットを正しく提供できるように、URL プレフィックスもベイク処理されます。 Studio がプロジェクト レイアウトを所有しながら、エディターは独立して進化でき、境界が明確になります。</p>
+<h2>bun fx アップデート: コードをプルして一目ですべてを確認</h2>
+<p>開発者が毎朝最初に行うことは、通常、最新のコードをプルすることです。以前は、bun fx update は git pull とサブモジュールの同期をサイレントに実行していました。成功した場合は何も言わず、失敗した場合は不透明なエラーをダンプしていました。この日は、構造化された更新レポートを追加しました。これは、各サブモジュールのプル結果 (成功、スキップ、競合)、現在のブランチ、および最新のコミットの概要を示す色分けされた表です。サブモジュールにスタッシュが必要なローカル変更がある場合は、明示的に通知されます。 1 回更新すると、プロジェクト全体がどのような状態にあるかがわかります。各サブモジュールで git status を 1 つずつ実行する必要はなくなります。</p>
+<h2>デスクトップ パッケージ化: クロスプラットフォーム スクリプト + バージョン ベイク</h2>
+<p>この日もデスクトップのパッケージ化が強化されました。build-desktop.ts はテストが追加されたクロスプラットフォーム スクリプトになりました。ベンダーのプラットフォーム io とエージェント ホストをサイドカーにパッケージ化し、実行時にアセンブルするのではなく、lib/version.ts 経由でバージョンをアーティファクトにベイクします。また、bun fx start には、起動前に共通ポートがすでに使用されているかどうかを調べるポートビジー チェックが追加されているため、スタックの半分が実行されているにもかかわらず、その理由がわからないという事態は発生しません。これらはどれもそれ自体は派手なものではありませんが、パッケージ化と起動が Windows と macOS でスムーズに動作するかどうかを決定します。</p>
+<h2>この日が意味するもの</h2>
+<p>この日のテーマは「境界着陸」。昨日の R4 スプリットが方向性を定めました。今日、4 つのモジュールが実際にブート チェーンに接続されました。ビューポート 2×2 は、編集とプレビューを相互排他的なものからコンポーザブルなものに変えました。編集者はゲーム ディレクトリの所有権を Studio に戻しました。各作品は同じ質問に答えています。この編集者では、誰が何を所有していますか?境界が明確になると、モジュールは独立して反復処理できるようになります。ワークベンチを再構築せずにチャットに触れたり、Studio のプロジェクト レイアウトに触れることなくエディターを交換したりできます。スタジオは、1 つの大きな泥の塊から、明確な責任を持つ一連のモジュールに移行しつつあります。</p>
 </div>
     <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
   </article>

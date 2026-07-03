@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>How AI gets a feature right — ForgeaX</title>
-<meta name="description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
+<title>AI が機能を適切に取得する方法 — ForgeaX</title>
+<meta name="description" content="まずは正しくやってみるのではなく、要件→調査→計画→実装→検証→判断→最終化という、観察可能で追跡可能なパイプラインを使用します。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="How AI gets a feature right — ForgeaX" />
-<meta property="og:description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
+<meta property="og:title" content="AI が機能を適切に取得する方法 — ForgeaX" />
+<meta property="og:description" content="まずは正しくやってみるのではなく、要件→調査→計画→実装→検証→判断→最終化という、観察可能で追跡可能なパイプラインを使用します。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ja/blog/how-the-loop-works.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -69,30 +69,30 @@
   <article class="read article">
     <a class="back" href="/ja/blog/">← ブログに戻る</a>
     <div class="meta"><span class="tag">舞台裏</span><span>2026年6月10日</span></div>
-    <h1>How AI gets a feature right</h1>
-    <p class="standfirst">AI doesn't get things right in one shot. ForgeaX uses an observable, traceable pipeline that guides each feature to a correct result, step by step.</p>
-    <div class="prose"><h2>A seven-step loop</h2>
-<p>Inside the engine, every feature goes through the same pipeline — requirements in, a working result out, with a readable record at each step:</p>
+    <h1>AI が機能を適切に取得する方法</h1>
+    <p class="standfirst">AIは一発で物事を正しく解決するわけではありません。 ForgeaX は、各機能を段階的に正しい結果に導く、観察可能で追跡可能なパイプラインを使用します。</p>
+    <div class="prose"><h2>7 ステップのループ</h2>
+<p>エンジン内では、すべての機能が同じパイプラインを通過します。つまり、要件が入力され、実行結果が出力され、各ステップで読み取り可能なレコードが生成されます。</p>
 <ol>
-<li><strong>Requirements</strong> — state what to build, with acceptance criteria.</li>
-<li><strong>Research</strong> — survey history, constraints and options.</li>
-<li><strong>Plan</strong> — set a strategy and break it into tasks.</li>
-<li><strong>Implement</strong> — write code and tests.</li>
-<li><strong>Verify</strong> — independent checks; any red blocks the merge.</li>
-<li><strong>Judgment</strong> — a human makes the final call.</li>
-<li><strong>Finalize</strong> — merge once it passes.</li>
+<li><strong>要件</strong> — 何を構築するかを受け入れ基準とともに記述します。</li>
+<li><strong>調査</strong> — 調査履歴、制約、およびオプション。</li>
+<li><strong>計画</strong> — 戦略を設定し、それをタスクに分割します。</li>
+<li><strong>実装</strong> — コードとテストを作成します。</li>
+<li><strong>検証</strong> — 独立したチェック。赤の場合はマージがブロックされます。</li>
+<li><strong>判断</strong> — 最終的な判断は人間が行います。</li>
+<li><strong>ファイナライズ</strong> — 合格したらマージします。</li>
 </ol>
-<h2>An orchestrator and sub-agents</h2>
-<p>An &quot;orchestrator&quot; drives the state machine, deciding which sub-agent to dispatch at each step and checking its output; sub-agents are role-specialized with their own context. Humans inject judgment at just two points: <strong>stating requirements</strong> and <strong>reviewing results</strong>.</p>
-<h2>No &quot;looks fine&quot; slipping through</h2>
-<p>Verification has two AI gates: one statically scans docs and APIs from an AI user&#39;s perspective, catching &quot;promised but not implemented&quot;; the other actually runs the demo in an isolated sandbox, captures screenshots, and re-checks them — guarding against &quot;tests green, screen black.&quot;</p>
-<h2>It gets steadier over time</h2>
-<p>After each feature, the friction encountered along the way is captured as feedback that upgrades the pipeline itself. The next feature automatically uses the improved version — the pipeline feeds on its own output and gets smarter.</p>
+<h2>オーケストレーターとサブエージェント</h2>
+<p>「オーケストレーター」はステート マシンを駆動し、各ステップでどのサブエージェントをディスパッチするかを決定し、その出力をチェックします。サブエージェントは、独自のコンテキストを持つ役割に特化したものです。人間が判断を下すのは、<strong>要件の表明</strong>と<strong>結果のレビュー</strong>という 2 つの時点だけです。</p>
+<h2>「見た目は大丈夫」がすり抜けることはありません</h2>
+<p>検証には 2 つの AI ゲートがあります。1 つは AI ユーザーの観点からドキュメントと API を静的にスキャンし、「約束されているが実装されていない」ものを検出します。もう 1 つは、隔離されたサンドボックスで実際にデモを実行し、スクリーンショットをキャプチャして再チェックします。これにより、「テストは緑、画面は黒」にならないようにします。</p>
+<h2>時間が経つにつれて安定していきます</h2>
+<p>各機能の後、途中で発生した摩擦がフィードバックとしてキャプチャされ、パイプライン自体がアップグレードされます。次の機能では、改良されたバージョンが自動的に使用されます。パイプラインは独自の出力をフィードし、よりスマートになります。</p>
 <blockquote>
-<p>The result: AI produces not &quot;demo-grade&quot; code, but verified, replayable features a human can take over.</p>
+<p>結果: AI は「デモグレード」のコードではなく、人間が引き継ぐことができる検証済みの再現可能な機能を生成します。</p>
 </blockquote>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/ja/blog/why-ai-native-engine.html">Related: why an AI-native engine →</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/blog/why-ai-native-engine.html">関連: なぜ AI ネイティブ エンジンなのか →</a></p>
   </article>
 </main>
 

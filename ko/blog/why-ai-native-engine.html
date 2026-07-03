@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Why build an AI-native engine — ForgeaX</title>
-<meta name="description" content="When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made." />
+<title>AI 기반 엔진을 구축하는 이유 — ForgeaX</title>
+<meta name="description" content="AI가 엔진의 첫 번째 사용자인 경우 API, 오류 메시지 및 상태는 AI의 관점에 맞게 재설계되어야 합니다. 우리는 몇 가지 구체적인 선택을 했습니다." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Why build an AI-native engine — ForgeaX" />
-<meta property="og:description" content="When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made." />
+<meta property="og:title" content="AI 기반 엔진을 구축하는 이유 — ForgeaX" />
+<meta property="og:description" content="AI가 엔진의 첫 번째 사용자인 경우 API, 오류 메시지 및 상태는 AI의 관점에 맞게 재설계되어야 합니다. 우리는 몇 가지 구체적인 선택을 했습니다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ko/blog/why-ai-native-engine.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -69,23 +69,23 @@
   <article class="read article">
     <a class="back" href="/ko/blog/">← 블로그로 돌아가기</a>
     <div class="meta"><span class="tag">의견</span><span>2026년 6월 16일</span></div>
-    <h1>Why build an AI-native engine</h1>
-    <p class="standfirst">Most game-engine APIs are written for humans. When AI becomes the one writing the code, the engine should look different.</p>
-    <div class="prose"><p>ForgeaX&#39;s core idea is simple: the user describes a game, and AI writes the engine code. That sounds like &quot;just a different author,&quot; but in practice existing engines aren&#39;t friendly to AI — they assume a reader who reads docs, guesses, and fills in context like a human does.</p>
-<p>Our stance is blunt: <strong>AI is the engine&#39;s first user. When &quot;friendly to AI&quot; conflicts with &quot;friendly to humans,&quot; AI wins.</strong> Here are a few concrete consequences.</p>
-<h2>1 · One source of truth, derive the rest</h2>
-<p>A fact is defined in exactly one place; everything else derives from it. Component fields, for instance, live inline in a schema — inspectors, debuggers and tooling read the schema instead of grepping source and guessing. AI doesn&#39;t need to &quot;remember&quot; conventions scattered everywhere, because there&#39;s only one place to look.</p>
-<h2>2 · Errors AI can understand and recover from</h2>
-<p>An error isn&#39;t just a human sentence you <code>throw</code>. We use a closed set of error codes, each carrying structured &quot;what / why / how to recover&quot; info. When AI hits an error, it knows what to change next — instead of treating the exception text as mysticism.</p>
-<h2>3 · Structured data instead of &quot;look at the screen&quot;</h2>
-<p>The hardest part of a rendering bug is that &quot;it looks wrong on screen.&quot; A human can stare at the monitor; AI can&#39;t. So the engine can capture a frame of render calls — draw calls, bindings, render targets, pipeline state — to read offline, replay, and inspect the full state at the Nth draw. A visual problem becomes data AI can <code>Read</code>.</p>
-<h2>4 · Two implementations that check each other</h2>
-<p>The render layer has two backend implementations (WebGPU and a wasm one) behind a single interface. They render side by side: the moment AI misuses an engine API, the other backend immediately diverges, surfacing the problem — far faster than waiting for a human review.</p>
+    <h1>AI 기반 엔진을 구축하는 이유</h1>
+    <p class="standfirst">대부분의 게임 엔진 API는 인간을 위해 작성되었습니다. AI가 코드를 작성하는 사람이 되면 엔진은 달라져야 합니다.</p>
+    <div class="prose"><p>ForgeaX의 핵심 아이디어는 간단합니다. 사용자가 게임을 설명하고 AI가 엔진 코드를 작성하는 것입니다. &quot;그저 다른 저자&quot;처럼 들리지만 실제로 기존 엔진은 AI에 우호적이지 않습니다. 독자가 인간처럼 문서를 읽고, 추측하고, 맥락을 채우는 것으로 가정합니다.</p>
+<p>우리의 입장은 무뚝뚝합니다. <strong>AI는 엔진의 첫 번째 사용자입니다. &quot;AI에게 친화적&quot;이 &quot;인간에게 친화적&quot;과 충돌할 때 AI가 승리합니다.</strong> 다음은 몇 가지 구체적인 결과입니다.</p>
+<h2>1 · 하나의 진실 소스, 나머지는 파생</h2>
+<p>사실은 정확히 한 곳에서 정의됩니다. 다른 모든 것은 그것에서 파생됩니다. 예를 들어 구성 요소 필드는 스키마에 인라인으로 존재합니다. 검사기, 디버거 및 도구는 소스를 파악하고 추측하는 대신 스키마를 읽습니다. AI는 볼 수 있는 곳이 한 곳뿐이기 때문에 곳곳에 흩어져 있는 관례를 &quot;기억&quot;할 필요가 없습니다.</p>
+<h2>2 · AI가 이해하고 복구할 수 있는 오류</h2>
+<p>오류는 단순히 &#39;던지는&#39; 인간의 문장이 아닙니다. 우리는 폐쇄형 오류 코드 세트를 사용하며, 각각은 구조화된 &quot;무엇/왜/복구 방법&quot; 정보를 전달합니다. AI에 오류가 발생하면 예외 텍스트를 신비주의로 취급하는 대신 다음에 무엇을 변경해야 할지 알고 있습니다.</p>
+<h2>3 · &#39;화면을 본다&#39;가 아닌 구조화된 데이터</h2>
+<p>렌더링 버그의 가장 어려운 부분은 &quot;화면에서 잘못 보인다&quot;는 것입니다. 인간은 모니터를 응시할 수 있습니다. AI는 할 수 없습니다. 따라서 엔진은 그리기 호출, 바인딩, 렌더링 대상, 파이프라인 상태 등의 렌더링 호출 프레임을 캡처하여 N번째 그리기에서 오프라인으로 읽고, 재생하고, 전체 상태를 검사할 수 있습니다. 시각적인 문제는 AI가 &#39;읽을 수 있는&#39; 데이터가 됩니다.</p>
+<h2>4 · 서로를 확인하는 두 가지 구현</h2>
+<p>렌더 레이어에는 단일 인터페이스 뒤에 두 개의 백엔드 구현(WebGPU 및 Wasm 구현)이 있습니다. 나란히 렌더링됩니다. AI가 엔진 API를 오용하는 순간 다른 백엔드는 즉시 분기되어 문제를 표면화합니다. 이는 사람의 검토를 기다리는 것보다 훨씬 빠릅니다.</p>
 <hr>
-<p>These designs share one yardstick: <strong>the fewer concepts a reader (human or AI) must hold in their head, the better.</strong> The more self-consistent and locally-indexable the API, the more often AI gets it right — and the easier it is for a human to take over.</p>
-<p>&quot;AI-native&quot; isn&#39;t a slogan — it&#39;s a long series of &quot;redo it for the AI&#39;s point of view&quot; decisions. We&#39;ll unpack more of them in the docs and future posts.</p>
+<p>이러한 디자인은 하나의 척도를 공유합니다. <strong>독자(인간 또는 AI)가 머릿속에 담아두어야 하는 개념이 적을수록 좋습니다.</strong> API의 자체 일관성이 높고 로컬 색인 생성이 가능할수록 AI가 올바른 작업을 수행하는 빈도가 높아지고 인간이 인계받기가 더 쉬워집니다.</p>
+<p>&quot;AI 네이티브&quot;는 슬로건이 아닙니다. &quot;AI의 관점에 맞게 다시 실행&quot;하는 일련의 긴 결정입니다. 우리는 문서와 향후 게시물에서 더 많은 내용을 풀어볼 것입니다.</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/ko/docs/">Browse the docs outline →</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/docs/">문서 개요 찾아보기 →</a></p>
   </article>
 </main>
 

@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Why build an AI-native engine — ForgeaX</title>
-<meta name="description" content="When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made." />
+<title>Por que construir um mecanismo nativo de IA — ForgeaX</title>
+<meta name="description" content="Quando a IA é o primeiro usuário do mecanismo, a API, as mensagens de erro e o estado devem ser redesenhados de acordo com seu ponto de vista. Algumas escolhas concretas que fizemos." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Why build an AI-native engine — ForgeaX" />
-<meta property="og:description" content="When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made." />
+<meta property="og:title" content="Por que construir um mecanismo nativo de IA — ForgeaX" />
+<meta property="og:description" content="Quando a IA é o primeiro usuário do mecanismo, a API, as mensagens de erro e o estado devem ser redesenhados de acordo com seu ponto de vista. Algumas escolhas concretas que fizemos." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/pt/blog/why-ai-native-engine.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -69,23 +69,23 @@
   <article class="read article">
     <a class="back" href="/pt/blog/">← Voltar ao blog</a>
     <div class="meta"><span class="tag">Opinião</span><span>16 de junho de 2026</span></div>
-    <h1>Why build an AI-native engine</h1>
-    <p class="standfirst">Most game-engine APIs are written for humans. When AI becomes the one writing the code, the engine should look different.</p>
-    <div class="prose"><p>ForgeaX&#39;s core idea is simple: the user describes a game, and AI writes the engine code. That sounds like &quot;just a different author,&quot; but in practice existing engines aren&#39;t friendly to AI — they assume a reader who reads docs, guesses, and fills in context like a human does.</p>
-<p>Our stance is blunt: <strong>AI is the engine&#39;s first user. When &quot;friendly to AI&quot; conflicts with &quot;friendly to humans,&quot; AI wins.</strong> Here are a few concrete consequences.</p>
-<h2>1 · One source of truth, derive the rest</h2>
-<p>A fact is defined in exactly one place; everything else derives from it. Component fields, for instance, live inline in a schema — inspectors, debuggers and tooling read the schema instead of grepping source and guessing. AI doesn&#39;t need to &quot;remember&quot; conventions scattered everywhere, because there&#39;s only one place to look.</p>
-<h2>2 · Errors AI can understand and recover from</h2>
-<p>An error isn&#39;t just a human sentence you <code>throw</code>. We use a closed set of error codes, each carrying structured &quot;what / why / how to recover&quot; info. When AI hits an error, it knows what to change next — instead of treating the exception text as mysticism.</p>
-<h2>3 · Structured data instead of &quot;look at the screen&quot;</h2>
-<p>The hardest part of a rendering bug is that &quot;it looks wrong on screen.&quot; A human can stare at the monitor; AI can&#39;t. So the engine can capture a frame of render calls — draw calls, bindings, render targets, pipeline state — to read offline, replay, and inspect the full state at the Nth draw. A visual problem becomes data AI can <code>Read</code>.</p>
-<h2>4 · Two implementations that check each other</h2>
-<p>The render layer has two backend implementations (WebGPU and a wasm one) behind a single interface. They render side by side: the moment AI misuses an engine API, the other backend immediately diverges, surfacing the problem — far faster than waiting for a human review.</p>
+    <h1>Por que construir um mecanismo nativo de IA</h1>
+    <p class="standfirst">A maioria das APIs de mecanismos de jogos são escritas para humanos. Quando a IA se tornar quem escreve o código, o mecanismo deverá parecer diferente.</p>
+    <div class="prose"><p>A ideia central do ForgeaX é simples: o usuário descreve um jogo e a IA escreve o código do motor. Isso soa como “apenas um autor diferente”, mas na prática os mecanismos existentes não são amigáveis ​​à IA – eles assumem um leitor que lê documentos, adivinha e preenche o contexto como um ser humano faz.</p>
+<p>Nossa postura é direta: <strong>A IA é o primeiro usuário do mecanismo. Quando “amigável à IA” entra em conflito com “amigável aos humanos”, a IA vence.</strong> Aqui estão algumas consequências concretas.</p>
+<h2>1 · Uma fonte de verdade, deriva o resto</h2>
+<p>Um fato é definido exatamente num lugar; tudo o mais deriva dele. Os campos de componentes, por exemplo, ficam embutidos em um esquema – inspetores, depuradores e ferramentas leem o esquema em vez de buscar a fonte e adivinhar. A IA não precisa “lembrar” convenções espalhadas por toda parte, porque só há um lugar para procurar.</p>
+<h2>2 · Erros que a IA pode compreender e recuperar</h2>
+<p>Um erro não é apenas uma frase humana que você “lança”. Usamos um conjunto fechado de códigos de erro, cada um contendo informações estruturadas do tipo &quot;o que/por que/como recuperar&quot;. Quando a IA encontra um erro, ela sabe o que mudar em seguida – em vez de tratar o texto da exceção como misticismo.</p>
+<h2>3 · Dados estruturados em vez de “olhar para a tela”</h2>
+<p>A parte mais difícil de um bug de renderização é que “parece errado na tela”. Um humano pode olhar para o monitor; A IA não pode. Assim, o mecanismo pode capturar um quadro de chamadas de renderização – chamadas de desenho, ligações, destinos de renderização, estado do pipeline – para ler offline, reproduzir e inspecionar o estado completo no enésimo sorteio. Um problema visual é que os dados que a IA pode <code>ler</code>.</p>
+<h2>4 · Duas implementações que se verificam</h2>
+<p>A camada de renderização possui duas implementações de back-end (WebGPU e uma wasm) atrás de uma única interface. Eles são renderizados lado a lado: no momento em que a IA faz uso indevido de uma API de mecanismo, o outro back-end diverge imediatamente, revelando o problema – muito mais rápido do que esperar por uma revisão humana.</p>
 <hr>
-<p>These designs share one yardstick: <strong>the fewer concepts a reader (human or AI) must hold in their head, the better.</strong> The more self-consistent and locally-indexable the API, the more often AI gets it right — and the easier it is for a human to take over.</p>
-<p>&quot;AI-native&quot; isn&#39;t a slogan — it&#39;s a long series of &quot;redo it for the AI&#39;s point of view&quot; decisions. We&#39;ll unpack more of them in the docs and future posts.</p>
+<p>Esses designs compartilham um critério: <strong>quanto menos conceitos um leitor (humano ou IA) tiver em mente, melhor.</strong> Quanto mais autoconsistente e indexável localmente a API, mais frequentemente a IA acerta — e mais fácil será para um humano assumir o controle.</p>
+<p>“IA-nativo” não é um slogan – é uma longa série de decisões de “refazer para o ponto de vista da IA”. Descompactaremos mais deles na documentação e em postagens futuras.</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/pt/docs/">Browse the docs outline →</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/docs/">Navegue pelo esboço dos documentos →</a></p>
   </article>
 </main>
 

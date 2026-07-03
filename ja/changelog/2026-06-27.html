@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-06-27 · A UE5-grade plan for the content browser & drag-to-scene, plus an editor QA gate — ForgeaX</title>
-<meta name="description" content="A design-first day: a UE5-grade plan for how assets are browsed and dragged into a scene, and the standalone editor placed under its own automated build-and-test gate so it can grow without quietly breaking." />
+<title>2026-06-27 · コンテンツ ブラウザーとシーンへのドラッグのための UE5 グレードのプラン、およびエディターの QA ゲート — ForgeaX</title>
+<meta name="description" content="設計初日: アセットを参照してシーンにドラッグする方法に関する UE5 グレードの計画と、スタンドアロン エディターが独自の自動化されたビルドとテスト ゲートの下に配置され、静かに壊れることなく拡張できるようにします。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-06-27 · A UE5-grade plan for the content browser & drag-to-scene, plus an editor QA gate — ForgeaX" />
-<meta property="og:description" content="A design-first day: a UE5-grade plan for how assets are browsed and dragged into a scene, and the standalone editor placed under its own automated build-and-test gate so it can grow without quietly breaking." />
+<meta property="og:title" content="2026-06-27 · コンテンツ ブラウザーとシーンへのドラッグのための UE5 グレードのプラン、およびエディターの QA ゲート — ForgeaX" />
+<meta property="og:description" content="設計初日: アセットを参照してシーンにドラッグする方法に関する UE5 グレードの計画と、スタンドアロン エディターが独自の自動化されたビルドとテスト ゲートの下に配置され、静かに壊れることなく拡張できるようにします。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-27.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -69,16 +69,16 @@
   <article class="read article">
     <a class="back" href="/ja/changelog/">← 変更履歴</a>
     <div class="meta"><span class="tag brand">毎日</span><span>2026-06-27</span></div>
-    <h1>A UE5-grade plan for the content browser & drag-to-scene, plus an editor QA gate</h1>
-    <p class="standfirst">A foundations day — no flashy new gameplay, but two things that make everything after it steadier: first, writing down a UE5-grade design for how assets get browsed and dragged into a scene; second, putting the standalone editor under its own automated quality gate, so it can grow new features without quietly breaking the old ones.</p>
-    <div class="prose"><h2>Why &quot;design first, then build&quot;</h2>
-<p>The more polished something needs to be — and the more it aims to match a mature tool&#39;s feature — the more it&#39;s worth thinking through and writing down before building. A content browser and &quot;drag a model into the scene&quot; sound simple, but what really decides whether they feel good is a thousand details: how assets are categorized, how thumbnails are generated, where a dropped item lands, how its orientation and scale are decided, how it snaps to existing objects. Improvised on the fly, these tend to end up inconsistent and entangled to change. This day first organized the interaction into a design doc benchmarked against UE5: using the industry&#39;s proven, comfortable patterns as the reference, pinning down &quot;what it should be&quot; before letting the AI implement it. For a project driven largely by AI, a clear design doc matters all the more — it is both the construction drawing for the AI and the yardstick for judging afterward whether it was done right.</p>
-<h2>A content browser &amp; drag-to-scene, benchmarked against UE5</h2>
-<p>The design targets the two most frequent acts in creation: finding an asset and placing it into the world. The &quot;content browser&quot; is benchmarked against the categorized, thumbnailed, searchable asset library of a mature engine — you should be able to browse every model, texture, scene and character in your project like flipping through a material cabinet, instead of hunting blindly in folders. &quot;Drag-to-scene&quot; then demands that path feel smooth and natural: grab a model from the browser, drop it into the 3D view, and it lands in the scene at a sensible position, orientation and size with its materials and references correctly wired — not a misplaced or untextured blob. Benchmarking both against a paradigm proven by millions of developers, like UE5&#39;s, means the goal isn&#39;t &quot;good enough to work&quot; but &quot;as comfortable as a professional engine.&quot; What this day delivered is the full design and parity checklist for that path, laying the blueprint for the real implementation that follows.</p>
-<h2>The editor gets its own QA gate</h2>
-<p>The other thing is about reliability. The visual editor has already become a part that builds and runs on its own; this day went further and gave it its own automated quality gate: every change must first pass a suite of automated build-and-check steps before it counts. It sounds unremarkable, yet it&#39;s the key to keeping any continuously growing component healthy. The editor will keep gaining panels, interactions and capabilities; without this gate, some change could quietly break another corner unnoticed until a user hits it. With it, problems are caught at the earliest and cheapest stage — the moment the change is made — instead of flowing to you. In other words, what this day added to the editor isn&#39;t a new feature but a guarantee of &quot;not regressing as it grows.&quot;</p>
-<h2>What this day means</h2>
-<p>Not every day should be a fireworks of new features. A tool that means to last and to be professional needs &quot;foundation days&quot; interleaved between the sprints: getting the direction clear, setting the standard, building the quality guardrails. The two things this day did are exactly that — a UE5-grade design setting a professional target for the most frequent path of &quot;how assets get used,&quot; and an automated QA gate insuring the fast-growing editor. Neither conjures anything on screen immediately, but together they decide whether the real building that follows can be fast, steady and pitfall-free. Aim high, rail it tight, and every later step lands on solid ground.</p>
+    <h1>コンテンツ ブラウザーとシーンへのドラッグのための UE5 グレードのプラン、およびエディターの QA ゲート</h1>
+    <p class="standfirst">基礎の日 — 派手な新しいゲームプレイはありませんが、その後のすべてをより安定させる 2 つのことが行われます。1 つは、アセットがどのように参照され、シーンにドラッグされるかについて UE5 グレードのデザインを書き留めることです。 2 つ目は、スタンドアロン エディターを独自の自動化された品質ゲートの下に置き、古い機能を静かに破壊することなく新しい機能を拡張できるようにすることです。</p>
+    <div class="prose"><h2>なぜ「最初に設計してから構築する」のか</h2>
+<p>何かをより洗練する必要があり、成熟したツールの機能に一致させることを目指すほど、構築する前によく考えて書き留める価値が高くなります。コンテンツ ブラウザーと「モデルをシーンにドラッグする」という言葉は簡単に聞こえますが、実際に快適かどうかを決定するのは、アセットの分類方法、サムネイルの生成方法、ドロップされたアイテムの着地位置、方向とスケールの決定方法、既存のオブジェクトへのスナップ方法など、さまざまな詳細です。即興で作られたこれらは、結果的に一貫性がなくなり、変化に巻き込まれる傾向があります。この日はまず、インタラクションを UE5 に対してベンチマークされた設計ドキュメントに整理しました。業界で実証済みの快適なパターンをリファレンスとして使用し、AI に実装させる前に「あるべき姿」を明確にしました。主に AI によって推進されるプロジェクトの場合、明確な設計ドキュメントがより重要になります。これは、AI の構造図であると同時に、それが正しく行われたかどうかを後で判断するための基準でもあります。</p>
+<h2>UE5 に対してベンチマークされたコンテンツ ブラウザーとシーンへのドラッグ</h2>
+<p>このデザインは、制作において最も頻繁に行われる 2 つの行為、つまりアセットを見つけてワールドに配置することをターゲットにしています。 「コンテンツ ブラウザ」は、成熟したエンジンの分類され、サムネイル化され、検索可能なアセット ライブラリに対してベンチマークされます。フォルダーを盲目的に探すのではなく、マテリアル キャビネットをめくるように、プロジェクト内のすべてのモデル、テクスチャ、シーン、キャラクターを参照できる必要があります。次に、「シーンへのドラッグ」では、パスがスムーズで自然であることが要求されます。ブラウザからモデルを取得し、3D ビューにドロップすると、マテリアルと参照が正しく配線された状態で、適切な位置、方向、サイズでシーンに着陸します。配置が間違っていたり、テクスチャが適用されていない BLOB ではありません。 UE5 など、何百万もの開発者によって実証されたパラダイムに対して両方のベンチマークを行うと、その目標は「動作するのに十分」ではなく、「プロのエンジンと同じくらい快適」であることを意味します。この日提供されたのは、そのパスの完全な設計とパリティ チェックリストであり、その後の実際の実装の青写真を示します。</p>
+<h2>エディターは独自の QA ゲートを取得します</h2>
+<p>もう一つは信頼性についてです。ビジュアル エディターはすでに、それ自体で構築および実行される部分になっています。この日はさらに進んで、独自の自動化された品質ゲートを設けました。すべての変更は、カウントされる前に、まず一連の自動化されたビルドとチェックのステップを通過する必要があります。目立たないように聞こえますが、これは継続的に成長するコンポーネントを健全に保つための鍵です。エディターはパネル、インタラクション、機能を追加し続けます。このゲートがないと、何らかの変更が行われて、ユーザーがそこに到達するまで気付かれないまま、別の角を静かに壊してしまう可能性があります。これにより、問題はすぐに、最も安価な段階、つまり変更が加えられた瞬間に、あなたに流れ込むのではなく、捕らえられます。言い換えれば、この日エディターに追加されたのは新しい機能ではなく、「成長しても後退しない」という保証です。</p>
+<h2>この日が意味するもの</h2>
+<p>毎日が新しい機能の打ち上げ花火である必要はありません。長持ちし、プロフェッショナルであることを意味するツールには、方向性を明確にし、標準を設定し、高品質のガードレールを構築するなど、スプリントの間に「基礎の日」を挟む必要があります。この日行われた 2 つのことは、まさにその通りでした。「アセットがどのように使用されるか」という最も頻繁に行われる経路にプロフェッショナルな目標を設定した UE5 グレードのデザインと、急成長するエディターを保証する自動化された QA ゲートです。どちらもすぐに画面上に何かを思い起こさせるわけではありませんが、その後に続く実際の建物が速く、安定して、落とし穴のないものにできるかどうかを一緒に決定します。目標を高く掲げ、しっかりとレールを踏むと、その後の一歩ごとにしっかりとした地面に着地します。</p>
 </div>
     <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
   </article>

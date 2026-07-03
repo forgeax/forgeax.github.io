@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Why build an AI-native engine — ForgeaX</title>
-<meta name="description" content="When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made." />
+<title>AI ネイティブ エンジンを構築する理由 — ForgeaX</title>
+<meta name="description" content="AI がエンジンの最初のユーザーである場合、API、エラー メッセージ、状態は AI の観点から再設計される必要があります。私たちが行ったいくつかの具体的な選択。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Why build an AI-native engine — ForgeaX" />
-<meta property="og:description" content="When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made." />
+<meta property="og:title" content="AI ネイティブ エンジンを構築する理由 — ForgeaX" />
+<meta property="og:description" content="AI がエンジンの最初のユーザーである場合、API、エラー メッセージ、状態は AI の観点から再設計される必要があります。私たちが行ったいくつかの具体的な選択。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ja/blog/why-ai-native-engine.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -69,23 +69,23 @@
   <article class="read article">
     <a class="back" href="/ja/blog/">← ブログに戻る</a>
     <div class="meta"><span class="tag">意見</span><span>2026年6月16日</span></div>
-    <h1>Why build an AI-native engine</h1>
-    <p class="standfirst">Most game-engine APIs are written for humans. When AI becomes the one writing the code, the engine should look different.</p>
-    <div class="prose"><p>ForgeaX&#39;s core idea is simple: the user describes a game, and AI writes the engine code. That sounds like &quot;just a different author,&quot; but in practice existing engines aren&#39;t friendly to AI — they assume a reader who reads docs, guesses, and fills in context like a human does.</p>
-<p>Our stance is blunt: <strong>AI is the engine&#39;s first user. When &quot;friendly to AI&quot; conflicts with &quot;friendly to humans,&quot; AI wins.</strong> Here are a few concrete consequences.</p>
-<h2>1 · One source of truth, derive the rest</h2>
-<p>A fact is defined in exactly one place; everything else derives from it. Component fields, for instance, live inline in a schema — inspectors, debuggers and tooling read the schema instead of grepping source and guessing. AI doesn&#39;t need to &quot;remember&quot; conventions scattered everywhere, because there&#39;s only one place to look.</p>
-<h2>2 · Errors AI can understand and recover from</h2>
-<p>An error isn&#39;t just a human sentence you <code>throw</code>. We use a closed set of error codes, each carrying structured &quot;what / why / how to recover&quot; info. When AI hits an error, it knows what to change next — instead of treating the exception text as mysticism.</p>
-<h2>3 · Structured data instead of &quot;look at the screen&quot;</h2>
-<p>The hardest part of a rendering bug is that &quot;it looks wrong on screen.&quot; A human can stare at the monitor; AI can&#39;t. So the engine can capture a frame of render calls — draw calls, bindings, render targets, pipeline state — to read offline, replay, and inspect the full state at the Nth draw. A visual problem becomes data AI can <code>Read</code>.</p>
-<h2>4 · Two implementations that check each other</h2>
-<p>The render layer has two backend implementations (WebGPU and a wasm one) behind a single interface. They render side by side: the moment AI misuses an engine API, the other backend immediately diverges, surfacing the problem — far faster than waiting for a human review.</p>
+    <h1>AI ネイティブ エンジンを構築する理由</h1>
+    <p class="standfirst">ほとんどのゲーム エンジン API は人間向けに作成されています。 AI がコードを書くようになると、エンジンは違ったものになるはずです。</p>
+    <div class="prose"><p>ForgeaX の核となるアイデアはシンプルです。ユーザーがゲームを説明し、AI がエンジン コードを作成します。これは「作者が違うだけ」のように聞こえますが、実際には既存のエンジンは AI に適していません。人間と同じようにドキュメントを読み、推測し、コンテキストを埋める読者を想定しています。</p>
+<p>私たちのスタンスは率直です: <strong>AI はエンジンの最初のユーザーです。 「AI に優しい」と「人間に優しい」が矛盾する場合、AI が勝ちます。</strong> 具体的な結果をいくつか示します。</p>
+<h2>1 · 真実の情報源は 1 つで、残りは導き出される</h2>
+<p>ファクトは正確に 1 か所で定義されます。他のすべてはそこから派生します。たとえば、コンポーネント フィールドはスキーマ内にインラインで存在します。インスペクター、デバッガー、ツールは、ソースを grep して推測する代わりにスキーマを読み取ります。 AI は、どこにでも点在する規則を「記憶」する必要がありません。見るべき場所は 1 つだけだからです。</p>
+<h2>2 · AI が理解して回復できるエラー</h2>
+<p>エラーは、単に人間が「投げる」文章ではありません。私たちはエラー コードの閉じたセットを使用しており、それぞれに構造化された「何を/なぜ/どのように回復するか」情報が含まれています。 AI はエラーに遭遇したとき、例外テキストを神秘主義として扱うのではなく、次に何を変更すべきかを認識します。</p>
+<h2>3 · 「画面を見る」のではなく構造化データ</h2>
+<p>レンダリングのバグで最も難しいのは、「画面上で間違って見える」ことです。人間はモニターを見つめることができます。 AIにはできません。そのため、エンジンはレンダー呼び出しのフレーム (描画呼び出し、バインディング、レンダー ターゲット、パイプライン状態) をキャプチャして、オフラインで読み取り、再生し、N 回目の描画で完全な状態を検査できます。視覚的な問題は、AI が「読み取る」ことができるデータになります。</p>
+<h2>4 · 相互にチェックする 2 つの実装</h2>
+<p>レンダー層には、単一のインターフェイスの背後に 2 つのバックエンド実装 (WebGPU と wasm 実装) があります。これらは並列してレンダリングされます。AI がエンジン API を悪用した瞬間に、もう一方のバックエンドが即座に分岐し、問題が表面化します。人間のレビューを待つよりもはるかに速くなります。</p>
 <hr>
-<p>These designs share one yardstick: <strong>the fewer concepts a reader (human or AI) must hold in their head, the better.</strong> The more self-consistent and locally-indexable the API, the more often AI gets it right — and the easier it is for a human to take over.</p>
-<p>&quot;AI-native&quot; isn&#39;t a slogan — it&#39;s a long series of &quot;redo it for the AI&#39;s point of view&quot; decisions. We&#39;ll unpack more of them in the docs and future posts.</p>
+<p>これらの設計には 1 つの基準があります。<strong>読者 (人間または AI) が頭の中に保持しなければならない概念が少ないほど、優れています。</strong> API の自己一貫性が高く、ローカルでインデックス付け可能であるほど、AI が正しく理解できる頻度が高くなります。また、人間が引き継ぎやすくなります。</p>
+<p>「AI ネイティブ」はスローガンではありません。それは、「AI の観点からやり直す」という長い一連の決定です。ドキュメントと将来の投稿でさらに詳しく説明します。</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/ja/docs/">Browse the docs outline →</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/docs/">ドキュメントの概要を参照 →</a></p>
   </article>
 </main>
 

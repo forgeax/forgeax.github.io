@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Why build an AI-native engine — ForgeaX</title>
-<meta name="description" content="When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made." />
+<title>Warum eine KI-native Engine entwickeln? — ForgeaX</title>
+<meta name="description" content="Wenn AI der erste Benutzer der Engine ist, sollten die API, Fehlermeldungen und der Status aus seiner Sicht neu gestaltet werden. Ein paar konkrete Entscheidungen, die wir getroffen haben." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Why build an AI-native engine — ForgeaX" />
-<meta property="og:description" content="When AI is the engine's first user, the API, error messages and state should be redesigned for its point of view. A few concrete choices we made." />
+<meta property="og:title" content="Warum eine KI-native Engine entwickeln? — ForgeaX" />
+<meta property="og:description" content="Wenn AI der erste Benutzer der Engine ist, sollten die API, Fehlermeldungen und der Status aus seiner Sicht neu gestaltet werden. Ein paar konkrete Entscheidungen, die wir getroffen haben." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/de/blog/why-ai-native-engine.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -69,23 +69,23 @@
   <article class="read article">
     <a class="back" href="/de/blog/">← Zurück zum Blog</a>
     <div class="meta"><span class="tag">Meinung</span><span>16. Juni 2026</span></div>
-    <h1>Why build an AI-native engine</h1>
-    <p class="standfirst">Most game-engine APIs are written for humans. When AI becomes the one writing the code, the engine should look different.</p>
-    <div class="prose"><p>ForgeaX&#39;s core idea is simple: the user describes a game, and AI writes the engine code. That sounds like &quot;just a different author,&quot; but in practice existing engines aren&#39;t friendly to AI — they assume a reader who reads docs, guesses, and fills in context like a human does.</p>
-<p>Our stance is blunt: <strong>AI is the engine&#39;s first user. When &quot;friendly to AI&quot; conflicts with &quot;friendly to humans,&quot; AI wins.</strong> Here are a few concrete consequences.</p>
-<h2>1 · One source of truth, derive the rest</h2>
-<p>A fact is defined in exactly one place; everything else derives from it. Component fields, for instance, live inline in a schema — inspectors, debuggers and tooling read the schema instead of grepping source and guessing. AI doesn&#39;t need to &quot;remember&quot; conventions scattered everywhere, because there&#39;s only one place to look.</p>
-<h2>2 · Errors AI can understand and recover from</h2>
-<p>An error isn&#39;t just a human sentence you <code>throw</code>. We use a closed set of error codes, each carrying structured &quot;what / why / how to recover&quot; info. When AI hits an error, it knows what to change next — instead of treating the exception text as mysticism.</p>
-<h2>3 · Structured data instead of &quot;look at the screen&quot;</h2>
-<p>The hardest part of a rendering bug is that &quot;it looks wrong on screen.&quot; A human can stare at the monitor; AI can&#39;t. So the engine can capture a frame of render calls — draw calls, bindings, render targets, pipeline state — to read offline, replay, and inspect the full state at the Nth draw. A visual problem becomes data AI can <code>Read</code>.</p>
-<h2>4 · Two implementations that check each other</h2>
-<p>The render layer has two backend implementations (WebGPU and a wasm one) behind a single interface. They render side by side: the moment AI misuses an engine API, the other backend immediately diverges, surfacing the problem — far faster than waiting for a human review.</p>
+    <h1>Warum eine KI-native Engine entwickeln?</h1>
+    <p class="standfirst">Die meisten Game-Engine-APIs sind für Menschen geschrieben. Wenn die KI den Code schreibt, sollte die Engine anders aussehen.</p>
+    <div class="prose"><p>Die Kernidee von ForgeaX ist einfach: Der Benutzer beschreibt ein Spiel und die KI schreibt den Engine-Code. Das klingt nach „nur ein anderer Autor“, aber in der Praxis sind bestehende Engines nicht KI-freundlich – sie gehen von einem Leser aus, der Dokumente liest, Vermutungen anstellt und Kontexte ausfüllt, wie es ein Mensch tut.</p>
+<p>Unsere Haltung ist klar: <strong>KI ist der erste Benutzer der Engine. Wenn „freundlich gegenüber KI“ und „freundlich gegenüber Menschen“ im Widerspruch stehen, gewinnt die KI.</strong> Hier sind einige konkrete Konsequenzen.</p>
+<h2>1 · Eine Quelle der Wahrheit, leiten Sie den Rest ab</h2>
+<p>Eine Tatsache wird an genau einer Stelle definiert; alles andere ergibt sich daraus. Komponentenfelder zum Beispiel sind in einem Schema integriert – Inspektoren, Debugger und Tools lesen das Schema, anstatt die Quelle zu durchsuchen und zu raten. KI muss sich nicht an überall verstreute Konventionen „merken“, denn es gibt nur einen Ort, an dem man suchen kann.</p>
+<h2>2 · Fehler, die die KI verstehen und beheben kann</h2>
+<p>Ein Fehler ist nicht nur ein menschlicher Satz, den man „wirft“. Wir verwenden einen geschlossenen Satz von Fehlercodes, von denen jeder strukturierte Informationen zum „Was/Warum/Wie wird wiederhergestellt“ enthält. Wenn die KI auf einen Fehler stößt, weiß sie, was als Nächstes geändert werden muss – anstatt den Ausnahmetext als Mystik zu behandeln.</p>
+<h2>3 · Strukturierte Daten statt „auf den Bildschirm schauen“</h2>
+<p>Das Schlimmste an einem Rendering-Fehler ist, dass „es auf dem Bildschirm falsch aussieht“. Ein Mensch kann auf den Monitor starren; KI kann nicht. So kann die Engine einen Frame von Render-Aufrufen erfassen – Draw-Aufrufe, Bindungen, Render-Ziele, Pipeline-Status –, um den vollständigen Status beim N-ten Draw offline zu lesen, wiederzugeben und zu überprüfen. Ein visuelles Problem wird zu Daten, die die KI „lesen“ kann.</p>
+<h2>4 · Zwei Implementierungen, die sich gegenseitig überprüfen</h2>
+<p>Die Renderebene verfügt über zwei Backend-Implementierungen (WebGPU und eine WASM-Implementierung) hinter einer einzigen Schnittstelle. Sie rendern nebeneinander: Sobald die KI eine Engine-API missbraucht, weicht das andere Backend sofort davon ab und bringt das Problem zum Vorschein – viel schneller, als auf eine menschliche Überprüfung zu warten.</p>
 <hr>
-<p>These designs share one yardstick: <strong>the fewer concepts a reader (human or AI) must hold in their head, the better.</strong> The more self-consistent and locally-indexable the API, the more often AI gets it right — and the easier it is for a human to take over.</p>
-<p>&quot;AI-native&quot; isn&#39;t a slogan — it&#39;s a long series of &quot;redo it for the AI&#39;s point of view&quot; decisions. We&#39;ll unpack more of them in the docs and future posts.</p>
+<p>Diese Designs haben einen gemeinsamen Maßstab: <strong>Je weniger Konzepte ein Leser (Mensch oder KI) im Kopf haben muss, desto besser.</strong> Je selbstkonsistenter und lokal indizierbarer die API, desto häufiger macht die KI alles richtig – und desto einfacher ist es für einen Menschen, die Kontrolle zu übernehmen.</p>
+<p>„KI-nativ“ ist kein Slogan – es ist eine lange Reihe von „Wiederholen Sie es aus Sicht der KI“-Entscheidungen. Wir werden mehr davon in den Dokumenten und zukünftigen Beiträgen entpacken.</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/de/docs/">Browse the docs outline →</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/docs/">Durchsuchen Sie die Dokumentenübersicht →</a></p>
   </article>
 </main>
 

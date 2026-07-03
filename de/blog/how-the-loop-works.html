@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>How AI gets a feature right — ForgeaX</title>
-<meta name="description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
+<title>Wie KI eine Funktion richtig macht — ForgeaX</title>
+<meta name="description" content="Nicht indem man es gleich beim ersten Versuch richtig macht, sondern mit einer beobachtbaren, nachvollziehbaren Pipeline: Anforderungen → Recherche → Plan → Umsetzung → Verifizierung → Beurteilung → Abschließen." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="How AI gets a feature right — ForgeaX" />
-<meta property="og:description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
+<meta property="og:title" content="Wie KI eine Funktion richtig macht — ForgeaX" />
+<meta property="og:description" content="Nicht indem man es gleich beim ersten Versuch richtig macht, sondern mit einer beobachtbaren, nachvollziehbaren Pipeline: Anforderungen → Recherche → Plan → Umsetzung → Verifizierung → Beurteilung → Abschließen." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/de/blog/how-the-loop-works.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -69,30 +69,30 @@
   <article class="read article">
     <a class="back" href="/de/blog/">← Zurück zum Blog</a>
     <div class="meta"><span class="tag">Hinter den Kulissen</span><span>10. Juni 2026</span></div>
-    <h1>How AI gets a feature right</h1>
-    <p class="standfirst">AI doesn't get things right in one shot. ForgeaX uses an observable, traceable pipeline that guides each feature to a correct result, step by step.</p>
-    <div class="prose"><h2>A seven-step loop</h2>
-<p>Inside the engine, every feature goes through the same pipeline — requirements in, a working result out, with a readable record at each step:</p>
+    <h1>Wie KI eine Funktion richtig macht</h1>
+    <p class="standfirst">KI schafft es nicht, die Dinge auf einen Schlag richtig zu machen. ForgeaX verwendet eine beobachtbare, nachvollziehbare Pipeline, die jede Funktion Schritt für Schritt zu einem korrekten Ergebnis führt.</p>
+    <div class="prose"><h2>Eine Sieben-Schritte-Schleife</h2>
+<p>Innerhalb der Engine durchläuft jedes Feature die gleiche Pipeline – Anforderungen rein, ein Arbeitsergebnis raus, mit einer lesbaren Aufzeichnung bei jedem Schritt:</p>
 <ol>
-<li><strong>Requirements</strong> — state what to build, with acceptance criteria.</li>
-<li><strong>Research</strong> — survey history, constraints and options.</li>
-<li><strong>Plan</strong> — set a strategy and break it into tasks.</li>
-<li><strong>Implement</strong> — write code and tests.</li>
-<li><strong>Verify</strong> — independent checks; any red blocks the merge.</li>
-<li><strong>Judgment</strong> — a human makes the final call.</li>
-<li><strong>Finalize</strong> — merge once it passes.</li>
+<li><strong>Anforderungen</strong> – Geben Sie an, was erstellt werden soll, und geben Sie Akzeptanzkriterien an.</li>
+<li><strong>Forschung</strong> – Umfrageverlauf, Einschränkungen und Optionen.</li>
+<li><strong>Planen</strong> – legen Sie eine Strategie fest und unterteilen Sie diese in Aufgaben.</li>
+<li><strong>Implementieren</strong> – Code und Tests schreiben.</li>
+<li><strong>Verifizieren</strong> – unabhängige Prüfungen; Jedes Rot blockiert die Zusammenführung.</li>
+<li><strong>Urteil</strong> – ein Mensch trifft die letzte Entscheidung.</li>
+<li><strong>Finalisieren</strong> – Zusammenführen, sobald es erfolgreich ist.</li>
 </ol>
-<h2>An orchestrator and sub-agents</h2>
-<p>An &quot;orchestrator&quot; drives the state machine, deciding which sub-agent to dispatch at each step and checking its output; sub-agents are role-specialized with their own context. Humans inject judgment at just two points: <strong>stating requirements</strong> and <strong>reviewing results</strong>.</p>
-<h2>No &quot;looks fine&quot; slipping through</h2>
-<p>Verification has two AI gates: one statically scans docs and APIs from an AI user&#39;s perspective, catching &quot;promised but not implemented&quot;; the other actually runs the demo in an isolated sandbox, captures screenshots, and re-checks them — guarding against &quot;tests green, screen black.&quot;</p>
-<h2>It gets steadier over time</h2>
-<p>After each feature, the friction encountered along the way is captured as feedback that upgrades the pipeline itself. The next feature automatically uses the improved version — the pipeline feeds on its own output and gets smarter.</p>
+<h2>Ein Orchestrator und Subagenten</h2>
+<p>Ein „Orchestrator“ steuert die Zustandsmaschine, entscheidet bei jedem Schritt, welcher Subagent gesendet werden soll, und überprüft seine Ausgabe. Unteragenten sind rollenspezialisiert und haben ihren eigenen Kontext. Der Mensch urteilt nur an zwei Stellen: <strong>Anforderungen angeben</strong> und <strong>Ergebnisse überprüfen</strong>.</p>
+<h2>Kein Durchrutschen von „Sieht gut aus“.</h2>
+<p>Die Verifizierung verfügt über zwei KI-Gates: eines scannt Dokumente und APIs statisch aus der Sicht eines KI-Benutzers und erkennt „versprochen, aber nicht implementiert“; Der andere führt die Demo tatsächlich in einer isolierten Sandbox aus, erfasst Screenshots und überprüft sie erneut – zum Schutz vor „Tests grün, Bildschirm schwarz“.</p>
+<h2>Mit der Zeit wird es stabiler</h2>
+<p>Nach jedem Feature wird die auf dem Weg auftretende Reibung als Feedback erfasst, das die Pipeline selbst verbessert. Die nächste Funktion nutzt automatisch die verbesserte Version – die Pipeline speist sich aus ihrer eigenen Ausgabe und wird intelligenter.</p>
 <blockquote>
-<p>The result: AI produces not &quot;demo-grade&quot; code, but verified, replayable features a human can take over.</p>
+<p>Das Ergebnis: KI produziert keinen „demotauglichen“ Code, sondern verifizierte, wiederspielbare Funktionen, die ein Mensch übernehmen kann.</p>
 </blockquote>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/de/blog/why-ai-native-engine.html">Related: why an AI-native engine →</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/blog/why-ai-native-engine.html">Verwandt: Warum eine KI-native Engine →</a></p>
   </article>
 </main>
 

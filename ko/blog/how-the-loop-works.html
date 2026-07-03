@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>How AI gets a feature right — ForgeaX</title>
-<meta name="description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
+<title>AI가 기능을 올바르게 가져오는 방법 — ForgeaX</title>
+<meta name="description" content="먼저 시도하는 것이 아니라 관찰 가능하고 추적 가능한 파이프라인(요구 사항 → 연구 → 계획 → 구현 → 확인 → 판단 → 마무리)을 사용합니다." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="How AI gets a feature right — ForgeaX" />
-<meta property="og:description" content="Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize." />
+<meta property="og:title" content="AI가 기능을 올바르게 가져오는 방법 — ForgeaX" />
+<meta property="og:description" content="먼저 시도하는 것이 아니라 관찰 가능하고 추적 가능한 파이프라인(요구 사항 → 연구 → 계획 → 구현 → 확인 → 판단 → 마무리)을 사용합니다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ko/blog/how-the-loop-works.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -69,30 +69,30 @@
   <article class="read article">
     <a class="back" href="/ko/blog/">← 블로그로 돌아가기</a>
     <div class="meta"><span class="tag">비하인드 스토리</span><span>2026년 6월 10일</span></div>
-    <h1>How AI gets a feature right</h1>
-    <p class="standfirst">AI doesn't get things right in one shot. ForgeaX uses an observable, traceable pipeline that guides each feature to a correct result, step by step.</p>
-    <div class="prose"><h2>A seven-step loop</h2>
-<p>Inside the engine, every feature goes through the same pipeline — requirements in, a working result out, with a readable record at each step:</p>
+    <h1>AI가 기능을 올바르게 가져오는 방법</h1>
+    <p class="standfirst">AI는 한 번에 문제를 해결하지 못합니다. ForgeaX는 각 기능을 단계별로 올바른 결과로 안내하는 관찰 가능하고 추적 가능한 파이프라인을 사용합니다.</p>
+    <div class="prose"><h2>7단계 루프</h2>
+<p>엔진 내부의 모든 기능은 동일한 파이프라인(요구 사항 입력, 작업 결과 출력, 각 단계에서 읽을 수 있는 기록)을 거칩니다.</p>
 <ol>
-<li><strong>Requirements</strong> — state what to build, with acceptance criteria.</li>
-<li><strong>Research</strong> — survey history, constraints and options.</li>
-<li><strong>Plan</strong> — set a strategy and break it into tasks.</li>
-<li><strong>Implement</strong> — write code and tests.</li>
-<li><strong>Verify</strong> — independent checks; any red blocks the merge.</li>
-<li><strong>Judgment</strong> — a human makes the final call.</li>
-<li><strong>Finalize</strong> — merge once it passes.</li>
+<li><strong>요구사항</strong> — 승인 기준과 함께 무엇을 빌드할지 명시합니다.</li>
+<li><strong>연구</strong> — 설문조사 기록, 제약 조건 및 옵션.</li>
+<li><strong>계획</strong> — 전략을 설정하고 이를 작업별로 세분화합니다.</li>
+<li><strong>구현</strong> — 코드를 작성하고 테스트합니다.</li>
+<li><strong>검증</strong> — 독립적인 점검; 빨간색은 병합을 차단합니다.</li>
+<li><strong>판단</strong> — 인간이 최종 결정을 내립니다.</li>
+<li><strong>완료</strong> — 통과하면 병합합니다.</li>
 </ol>
-<h2>An orchestrator and sub-agents</h2>
-<p>An &quot;orchestrator&quot; drives the state machine, deciding which sub-agent to dispatch at each step and checking its output; sub-agents are role-specialized with their own context. Humans inject judgment at just two points: <strong>stating requirements</strong> and <strong>reviewing results</strong>.</p>
-<h2>No &quot;looks fine&quot; slipping through</h2>
-<p>Verification has two AI gates: one statically scans docs and APIs from an AI user&#39;s perspective, catching &quot;promised but not implemented&quot;; the other actually runs the demo in an isolated sandbox, captures screenshots, and re-checks them — guarding against &quot;tests green, screen black.&quot;</p>
-<h2>It gets steadier over time</h2>
-<p>After each feature, the friction encountered along the way is captured as feedback that upgrades the pipeline itself. The next feature automatically uses the improved version — the pipeline feeds on its own output and gets smarter.</p>
+<h2>오케스트레이터 및 하위 에이전트</h2>
+<p>&quot;오케스트레이터&quot;는 상태 시스템을 구동하여 각 단계에서 파견할 하위 에이전트를 결정하고 해당 출력을 확인합니다. 하위 에이전트는 자체 컨텍스트에 따라 역할이 전문화됩니다. 인간은 <strong>요구사항 명시</strong>와 <strong>결과 검토</strong>라는 두 가지 지점에서만 판단을 주입합니다.</p>
+<h2>&quot;괜찮아 보이는데&quot;가 빠져나가는 일이 없습니다.</h2>
+<p>검증에는 두 개의 AI 게이트가 있습니다. 하나는 AI 사용자의 관점에서 문서와 API를 정적으로 스캔하여 &quot;약속되었지만 구현되지 않음&quot;을 포착합니다. 다른 하나는 실제로 격리된 샌드박스에서 데모를 실행하고 스크린샷을 캡처한 후 다시 확인하여 &quot;녹색 테스트, 검은 화면 테스트&quot;를 방지합니다.</p>
+<h2>시간이 지나면서 점점 안정되죠</h2>
+<p>각 기능 이후에 발생하는 마찰은 파이프라인 자체를 업그레이드하는 피드백으로 캡처됩니다. 다음 기능은 향상된 버전을 자동으로 사용합니다. 즉, 파이프라인이 자체 출력을 제공하고 더욱 스마트해집니다.</p>
 <blockquote>
-<p>The result: AI produces not &quot;demo-grade&quot; code, but verified, replayable features a human can take over.</p>
+<p>결과: AI는 &quot;데모급&quot; 코드가 아닌 인간이 대신할 수 있는 검증되고 재생 가능한 기능을 생성합니다.</p>
 </blockquote>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/ko/blog/why-ai-native-engine.html">Related: why an AI-native engine →</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/blog/why-ai-native-engine.html">관련 항목: AI 기반 엔진이 필요한 이유 →</a></p>
   </article>
 </main>
 
