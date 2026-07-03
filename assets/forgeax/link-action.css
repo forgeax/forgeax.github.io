@@ -1,0 +1,185 @@
+/* Link actions — flat in-card labels; section header entries */
+
+/* tags inside link cards — text only, no inner pill frame */
+.forgeax-site a.card .tag {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.forgeax-site a.card .tag.brand {
+  color: rgb(var(--theme-cool-a));
+  background: none !important;
+  border: none;
+}
+
+.forgeax-site a.card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* in-card jump — text only, no arrow */
+.forgeax-site .card .more {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin-top: 14px;
+  padding: 0;
+  width: fit-content;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: rgb(var(--theme-cool-a));
+  text-decoration: none;
+  transition: color var(--site-dur-fast) var(--site-ease-out);
+}
+
+.forgeax-site a.card .more {
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.forgeax-site a.card:hover .more {
+  color: color-mix(in srgb, rgb(var(--theme-cool-a)) 88%, #fff);
+}
+
+/* section header — frosted pill + always-on border flow */
+.forgeax-site .preview-head {
+  align-items: center;
+}
+
+.forgeax-site .preview-head a.all,
+.forgeax-site .mk-modal-card a.all {
+  --halo-angle: 0deg;
+  --all-flow-dur: 3.6s;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 116px;
+  min-height: 38px;
+  padding: 9px 34px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-background-canvas) 64%, transparent),
+      color-mix(in srgb, var(--color-background-canvas) 74%, transparent)
+    ) padding-box,
+    linear-gradient(
+      128deg,
+      rgba(var(--theme-cool-a), 0.46) 0%,
+      rgba(255, 255, 255, 0.12) 44%,
+      rgba(var(--theme-cool-b), 0.38) 100%
+    ) border-box !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 9%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, #000 14%, transparent),
+    var(--glass-shadow);
+  transition:
+    color var(--site-dur-hover) var(--halo-ease),
+    box-shadow var(--site-dur-hover) var(--halo-ease),
+    background var(--site-dur-hover) var(--halo-ease);
+}
+
+.forgeax-site .preview-head a.all > *,
+.forgeax-site .mk-modal-card a.all > * {
+  position: relative;
+  z-index: 1;
+}
+
+.forgeax-site .preview-head a.all::before,
+.forgeax-site .mk-modal-card a.all::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 2;
+  background: conic-gradient(
+    from var(--halo-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(var(--theme-cool-a), 0.08) 12deg,
+    rgba(var(--theme-cool-a), 0.52) 48deg,
+    rgba(255, 255, 255, 0.46) 64deg,
+    rgba(var(--theme-cool-b), 0.44) 84deg,
+    rgba(var(--theme-cool-b), 0.1) 124deg,
+    transparent 164deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 1;
+  animation: halo-edge-flow var(--all-flow-dur) linear infinite;
+}
+
+.forgeax-site .preview-head a.all::after,
+.forgeax-site .mk-modal-card a.all::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #fff 8%, transparent) 0%,
+    transparent 42%,
+    color-mix(in srgb, rgba(var(--theme-cool-a), 1) 4%, transparent) 100%
+  );
+}
+
+.forgeax-site .preview-head a.all:hover,
+.forgeax-site .mk-modal-card a.all:hover {
+  color: #fff;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-background-canvas) 72%, transparent),
+      color-mix(in srgb, var(--color-background-canvas) 80%, transparent)
+    ) padding-box,
+    linear-gradient(
+      128deg,
+      rgba(var(--theme-cool-a), 0.58) 0%,
+      rgba(255, 255, 255, 0.16) 44%,
+      rgba(var(--theme-cool-b), 0.5) 100%
+    ) border-box !important;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 12%, transparent),
+    var(--glass-shadow-hover),
+    0 0 0 1px rgba(var(--theme-cool-a), 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forgeax-site .preview-head a.all::before,
+  .forgeax-site .mk-modal-card a.all::before {
+    animation: none;
+  }
+}
