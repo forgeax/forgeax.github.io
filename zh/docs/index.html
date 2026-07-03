@@ -557,7 +557,6 @@ bun fx start          # → http://localhost:18920</code></pre>
   /* ── docs sidebar: scroll main pane to chapter + active highlight ── */
   (function () {
     var main = document.querySelector(".docs-main");
-    var layout = document.querySelector(".docs-layout");
     var chapters = [].slice.call(document.querySelectorAll(".docs-chapter"));
     var links = [].slice.call(document.querySelectorAll(".docs-sidebar nav a[href^='#']"));
     if (!main || !chapters.length || !links.length) return;
@@ -579,7 +578,6 @@ bun fx start          # → http://localhost:18920</code></pre>
 
     var activeId = "";
     var activeIdx = 0;
-    var spyLastScroll = 0;
     var linkMetrics = [];
 
     function cacheLinkMetrics() {
@@ -636,19 +634,7 @@ bun fx start          # → http://localhost:18920</code></pre>
       return (parseFloat(raw) || 72) + 16;
     }
 
-    function chapterTop(el) {
-      return el.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop;
-    }
-
     var scrollLockUntil = 0;
-
-    function alignDocsPane(smooth) {
-      if (!splitPane || !layout) return;
-      var top = layout.getBoundingClientRect().top;
-      if (top > navOffset() && top < navOffset() + 48) return;
-      var y = window.scrollY + top - navOffset();
-      window.scrollTo({ top: Math.max(0, y), behavior: smooth ? "smooth" : "auto" });
-    }
 
     function scrollToChapter(id, smooth) {
       var el = document.getElementById(id);
@@ -656,14 +642,8 @@ bun fx start          # → http://localhost:18920</code></pre>
       scrollLockUntil = Date.now() + (smooth === false ? 80 : 900);
       setActive(id, { scrollSidebar: true, instant: smooth === false });
 
-      if (splitPane) {
-        alignDocsPane(smooth);
-        var top = chapterTop(el) - 8;
-        main.scrollTo({ top: Math.max(0, top), behavior: smooth === false ? "auto" : "smooth" });
-      } else {
-        var y = window.scrollY + el.getBoundingClientRect().top - navOffset();
-        window.scrollTo({ top: Math.max(0, y), behavior: smooth === false ? "auto" : "smooth" });
-      }
+      var y = window.scrollY + el.getBoundingClientRect().top - navOffset();
+      window.scrollTo({ top: Math.max(0, y), behavior: smooth === false ? "auto" : "smooth" });
 
       try { history.replaceState(null, "", "#" + id); } catch (_) { location.hash = id; }
     }
@@ -672,20 +652,9 @@ bun fx start          # → http://localhost:18920</code></pre>
       if (Date.now() < scrollLockUntil) return;
 
       var idx = 0;
-      if (splitPane) {
-        var st = main.scrollTop;
-        var down = st >= spyLastScroll - 2;
-        spyLastScroll = st;
-        var offset = down ? 108 : 56;
-        var y = st + offset;
-        for (var i = 0; i < chapters.length; i++) {
-          if (chapterTop(chapters[i]) <= y) idx = i;
-        }
-      } else {
-        var mark = navOffset() + 12;
-        for (var j = 0; j < chapters.length; j++) {
-          if (chapters[j].getBoundingClientRect().top <= mark) idx = j;
-        }
+      var mark = navOffset() + 12;
+      for (var j = 0; j < chapters.length; j++) {
+        if (chapters[j].getBoundingClientRect().top <= mark) idx = j;
       }
 
       if (idx === activeIdx) return;
@@ -729,7 +698,6 @@ bun fx start          # → http://localhost:18920</code></pre>
       if (scrollTimer) cancelAnimationFrame(scrollTimer);
       scrollTimer = requestAnimationFrame(chapterInView);
     }
-    main.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("scroll", onScroll, { passive: true });
 
     window.addEventListener("hashchange", function () {
@@ -750,7 +718,6 @@ bun fx start          # → http://localhost:18920</code></pre>
     }
 
     cacheLinkMetrics();
-    spyLastScroll = splitPane ? main.scrollTop : window.scrollY;
 
     var initial = (location.hash || "").replace("#", "");
     if (initial && document.getElementById(initial)) {
@@ -780,14 +747,9 @@ bun fx start          # → http://localhost:18920</code></pre>
     function openTo(el) {
       var p = el;
       while (p) { if (p.tagName === "DETAILS") p.open = true; p = p.parentElement; }
-      var main = document.querySelector(".docs-main");
-      var splitPane = window.matchMedia("(min-width: 821px)").matches;
-      if (splitPane && main) {
-        var top = el.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop - 20;
-        main.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
-      } else {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      var navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 72;
+      var top = window.scrollY + el.getBoundingClientRect().top - navH - 24;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
       el.classList.add("doc-hit");
       setTimeout(function () { el.classList.remove("doc-hit"); }, 1600);
     }

@@ -33,8 +33,11 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg-canvas);color:var(--text-primary);
   font-family:var(--font-sans);font-size:16px;line-height:1.7;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+  display:flex;flex-direction:column;min-height:100vh;
 }
+/* content fills the space between sticky header and footer so the footer never floats up on short pages */
+body > main{flex:1 0 auto}
 a{color:inherit;text-decoration:none}
 img{max-width:100%}
 
@@ -423,7 +426,7 @@ body.lang-pt [data-lang="pt"]{display:revert}
 body.i18n-loading main{visibility:hidden}
 
 /* ── mobile reading: prevent horizontal overflow, keep text legible ──────── */
-html,body{max-width:100%;overflow-x:hidden}
+html,body{max-width:100%;overflow-x:clip}
 img,svg,video,pre,table,iframe{max-width:100%}
 /* long tokens / URLs / slugs must break instead of widening the page */
 p,li,h1,h2,h3,h4,blockquote,figcaption,
