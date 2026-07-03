@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-03 · Modo Play de Windows estabilizado + proxy de depuración LLM para desarrolladores — ForgeaX</title>
+<meta name="description" content="Modo Play de Windows estabilizado mediante corrección del stack de Socket del editor; nueva variable de entorno FORGEAX_DEBUG_PROXY captura tráfico de API LLM; empaquetado de aplicación de escritorio de Windows corregido; runtime reel-game diseñado como subclase de runtime de juego a nivel de motor." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-03 · Modo Play de Windows estabilizado + proxy de depuración LLM para desarrolladores — ForgeaX" />
+<meta property="og:description" content="Modo Play de Windows estabilizado mediante corrección del stack de Socket del editor; nueva variable de entorno FORGEAX_DEBUG_PROXY captura tráfico de API LLM; empaquetado de aplicación de escritorio de Windows corregido; runtime reel-game diseñado como subclase de runtime de juego a nivel de motor." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-07-03.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-03.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=c90f321e" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-03.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-03.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-03.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-03.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-07-03.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-07-03.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-03.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-03.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-07-03</span></div>
+    <h1>Modo Play de Windows estabilizado + proxy de depuración LLM para desarrolladores</h1>
+    <p class="standfirst">El modo Play en Windows ahora es estable gracias a una corrección del stack de Socket del editor; una nueva variable de entorno FORGEAX_DEBUG_PROXY permite a los desarrolladores capturar e inspeccionar todo el tráfico de la API LLM en tiempo real; se ha corregido el empaquetado de la aplicación de escritorio en Windows; y la arquitectura del runtime reel-game se ha diseñado como una subclase de runtime de juego a nivel de motor.</p>
+    <div class="prose"><h3>Modo Play de Windows: finalmente estable</h3>
+<p>El modo Play en Windows fallaba intermitentemente debido a un problema en el stack de Socket del editor. La exportación WebSocket subyacente faltaba en la ruta de compilación de escritorio, causando que el iframe de vista previa del motor perdiera la conexión con el host del editor. Esto se ha corregido — el modo Play en Windows ahora funciona tan fiablemente como en macOS.</p>
+<h3>Proxy de depuración LLM para desarrolladores</h3>
+<p>Se ha añadido una nueva variable de entorno opcional <code>FORGEAX_DEBUG_PROXY</code>. Cuando se establece, inicia un proxy HTTP local que captura todas las llamadas salientes a la API LLM (Anthropic, OpenAI, Gemini, etc.) y registra los pares solicitud/respuesta. Configúralo en tu <code>.env</code> y el proxy se inicia automáticamente con <code>bun fx start</code>.</p>
+<h3>Empaquetado de la aplicación de escritorio de Windows corregido</h3>
+<p>La compilación de escritorio Tauri 2 para Windows fallaba debido a una exportación de dependencia faltante en el paquete de interfaz. Esto se ha resuelto — <code>bun fx build app</code> ahora produce un instalador <code>.exe</code> funcional en Windows.</p>
+<h3>Arquitectura del runtime reel-game</h3>
+<p>Se ha establecido una especificación de diseño para el runtime reel-game (película interactiva), posicionándolo como una subclase de runtime de juego de primera clase dentro del motor. La implementación seguirá en próximas versiones.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=819151e2"></script>
+</body>
+</html>

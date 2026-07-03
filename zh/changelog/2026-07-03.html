@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-03 · Windows Play 模式稳定化 + 开发者 LLM 调试代理 — ForgeaX</title>
+<meta name="description" content="Windows Play 模式通过编辑器 Socket 栈修复实现稳定化；新增 FORGEAX_DEBUG_PROXY 环境变量捕获 LLM API 流量；Windows 桌面 app 打包已修复；影游 runtime 设计为引擎级 game runtime 子类。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-03 · Windows Play 模式稳定化 + 开发者 LLM 调试代理 — ForgeaX" />
+<meta property="og:description" content="Windows Play 模式通过编辑器 Socket 栈修复实现稳定化；新增 FORGEAX_DEBUG_PROXY 环境变量捕获 LLM API 流量；Windows 桌面 app 打包已修复；影游 runtime 设计为引擎级 game runtime 子类。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-03.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-03.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-03.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=c90f321e" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-03.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-03.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-03.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-03.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-03.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-03.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-03.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-03.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-07-03</span></div>
+    <h1>Windows Play 模式稳定化 + 开发者 LLM 调试代理</h1>
+    <p class="standfirst">编辑器 Socket 栈修复后，Windows 上的 Play 模式终于稳定了；新增 FORGEAX_DEBUG_PROXY 环境变量让开发者可以实时捕获和检查所有 LLM API 流量；Windows 桌面 app 打包问题已修复；影游 runtime 架构设计落地，作为引擎级 game runtime 子类。</p>
+    <div class="prose"><h3>Windows Play 模式：终于稳定了</h3>
+<p>Windows 上的 Play 模式之前一直间歇性失败，原因是编辑器的 Socket 栈有问题。底层的 WebSocket 导出在桌面构建路径中缺失，导致引擎预览 iframe 与编辑器宿主断开连接。现在已修复——Windows 上的 Play 模式和 macOS 一样稳定了。</p>
+<h3>开发者 LLM 调试代理</h3>
+<p>新增了一个可选的环境变量 <code>FORGEAX_DEBUG_PROXY</code>。设置后，它会启动一个本地 HTTP 代理，捕获所有外发的 LLM API 调用（Anthropic、OpenAI、Gemini 等），并记录请求/响应对。这对调试 agent 行为非常有价值——你能看到发送了什么 prompt、模型返回了什么、每次调用花了多长时间。在 <code>.env</code> 里设置即可，代理会随 <code>bun fx start</code> 自动启动。</p>
+<h3>Windows 桌面 app 打包修复</h3>
+<p>Windows 的 Tauri 2 桌面构建之前因 interface 包缺少一个依赖导出而失败。现已修复——<code>bun fx build app</code> 能在 Windows 上正常生成 <code>.exe</code> 安装包了。</p>
+<h3>影游 runtime 架构设计</h3>
+<p>影游（互动电影）runtime 的设计文档落地，将它定位为引擎内的一等公民 game runtime 子类。这意味着互动电影将共享与普通游戏相同的 ECS 管线、场景图和资产系统，而不再是独立的 sidecar。实现将在后续版本中跟进。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=819151e2"></script>
+</body>
+</html>
