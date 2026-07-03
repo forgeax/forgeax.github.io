@@ -112,36 +112,36 @@
   }
   if (!window.__forgeParticlesBoot && (detectForgePage() === "home" || document.body.classList.contains("has-immersive"))) {
     window.__forgeParticlesBoot = true;
-    loadScript("/assets/forge-scenes.js?v=forgeax-ui-84", function () {
-      loadScript("/assets/forge-particles.js?v=forgeax-ui-137", function () {
-        loadScript("/assets/light-field.js?v=forgeax-ui-138");
+    loadScript("/assets/forge-scenes.5e1dd588.js", function () {
+      loadScript("/assets/forge-particles.4e6877b8.js", function () {
+        loadScript("/assets/light-field.c9f175de.js");
       });
     });
   }
   if (document.querySelector(".page-head--cinema, .page-head")) {
-    loadScript("/assets/page-head-hero.js?v=forgeax-ui-92", function () {
+    loadScript("/assets/page-head-hero.8ae68f6f.js", function () {
       if (window.forgeaxInitPageHeadHero) window.forgeaxInitPageHeadHero();
     });
   }
 
   if (document.querySelector(".manifest-line")) {
-    loadScript("/assets/manifest-particles.js?v=forgeax-ui-106");
+    loadScript("/assets/manifest-particles.351022b3.js");
   }
 
   if (!window.__forgeLucideBoot) {
     window.__forgeLucideBoot = true;
     loadScript("https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js", function () {
-      loadScript("/assets/icons.js?v=forgeax-ui-84");
+      loadScript("/assets/icons.4da212e7.js");
     });
   }
   if (document.querySelector(".reveal-on-scroll") || document.body.classList.contains("forgeax-site")) {
-    loadScript("/assets/motion-scroll.js?v=forgeax-ui-84");
+    loadScript("/assets/motion-scroll.e4bed4f7.js");
   }
   if (document.querySelector(".spotlight-section, .stat--display, .docs-chapter h2")) {
-    loadScript("/assets/spotlight-surface.js?v=forgeax-ui-136");
+    loadScript("/assets/spotlight-surface.d6580d19.js");
   }
   if (document.querySelector(".post-list")) {
-    loadScript("/assets/blog-list-motion.js?v=forgeax-ui-84");
+    loadScript("/assets/blog-list-motion.2ba005cd.js");
   }
 
   /* desktop nav: center links in the slot between brand and actions (no overlap) */
