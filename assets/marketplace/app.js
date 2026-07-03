@@ -51,7 +51,7 @@
     function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
 
     // ── studio screenshot previews (runtime manifest + gallery + lightbox) ──
-    var PREVIEW_CACHE_VERSION = "studio-previews-13";
+    var PREVIEW_CACHE_VERSION = "studio-previews-14";
 
     function resolvePreviewAssetUrl(path) {
       if (!path) return path;
