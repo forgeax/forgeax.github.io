@@ -6,7 +6,7 @@
 
   var SECTION_SEL = ".spotlight-section";
   var STAT_SEL = ".stat--display";
-  var CARD_SEL = ".grid .card";
+  var CARD_SEL = ".grid .card, .ai-step, .ai-engine";
 
   function ensureCardLayers(card) {
     if (card.querySelector(".spotlight-surface__ring")) return;

@@ -138,7 +138,7 @@
     loadScript("/assets/motion-scroll.js?v=e4bed4f7");
   }
   if (document.querySelector(".spotlight-section, .stat--display, .docs-chapter h2")) {
-    loadScript("/assets/spotlight-surface.js?v=d6580d19");
+    loadScript("/assets/spotlight-surface.js?v=bda96c6c");
   }
   if (document.querySelector(".post-list")) {
     loadScript("/assets/blog-list-motion.js?v=2ba005cd");
