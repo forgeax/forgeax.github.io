@@ -712,10 +712,39 @@
   // ── agent idle avatars (locked to the "期待" idle state, looping) ──
   (function () {
     var BASE = "/assets/avatars";
-    var IDLE_INDEX = 1; // 01.webm == 期待
+    var IDLE_INDEX = 1; // 01 == 期待
+    var IDLE_VER = "3"; // cache-bust: bump whenever an avatar mp4/webm is re-exported
     function pad(n) { return n < 10 ? "0" + n : String(n); }
-    function srcFor(agent) { return BASE + "/" + agent + "/" + pad(IDLE_INDEX) + ".webm"; }
+    function urlFor(agent, ext) {
+      return BASE + "/" + agent + "/" + pad(IDLE_INDEX) + "." + ext + "?v=" + IDLE_VER;
+    }
 
+    /* Apple WebKit (desktop Safari + every iOS/iPadOS browser, all forced onto
+     * WebKit) decodes VP9/WebM but drops its alpha channel, so a transparent
+     * avatar renders as an opaque black disc. We serve those engines a
+     * HEVC-with-alpha .mp4 (real transparency) and everyone else the smaller
+     * VP9 .webm. Some Chromium builds can *decode* HEVC without compositing its
+     * alpha (→ black again), so we pick the source per-engine in JS rather than
+     * relying on <source> type negotiation. */
+    function isAppleWebkit() {
+      try {
+        var ua = navigator.userAgent || "";
+        var vendor = navigator.vendor || "";
+        var isIOS = /iP(hone|od|ad)/.test(ua) ||
+          (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); // iPadOS 13+
+        var isDesktopSafari = vendor.indexOf("Apple") > -1 &&
+          !/(Chrome|Chromium|Edg|OPR)\//.test(ua) && !isIOS;
+        return isIOS || isDesktopSafari;
+      } catch (e) { return false; }
+    }
+    var APPLE_WEBKIT = isAppleWebkit();
+
+    function addSource(v, agent, ext, type) {
+      var s = document.createElement("source");
+      s.src = urlFor(agent, ext);
+      s.type = type;
+      v.appendChild(s);
+    }
     function mkVideo() {
       var v = document.createElement("video");
       v.muted = true; v.playsInline = true; v.preload = "auto"; v.loop = true;
@@ -728,22 +757,45 @@
       var v = slot.querySelector("video");
       if (!v) return;
       v.classList.add("is-front");
-      v.src = srcFor(agent);
+      if (APPLE_WEBKIT) {
+        addSource(v, agent, "mp4", 'video/mp4; codecs="hvc1"');
+        addSource(v, agent, "webm", "video/webm"); // fallback if no mp4 exists
+      } else {
+        addSource(v, agent, "webm", "video/webm");
+      }
       v.load();
       v.play().catch(function () {});
     }
     function ensureVideo(slot) {
-      if (slot.querySelector("video")) return;
-      slot.appendChild(mkVideo());
-      playIdle(slot);
+      var v = slot.querySelector("video");
+      if (v) return v;
+      v = mkVideo();
+      slot.appendChild(v);
+      playIdle(slot); // lazily attaches sources + starts playback
+      return v;
+    }
+    // Enter viewport: create-then-play (first time) or resume a paused clip.
+    function resumeIdle(slot) {
+      var v = ensureVideo(slot);
+      if (v && v.paused) v.play().catch(function () {});
+    }
+    // Leave viewport: pause so offscreen avatars stop decoding (mobile perf).
+    // Only touches already-created videos; never forces creation.
+    function pauseIdle(slot) {
+      var v = slot.querySelector("video");
+      if (v && !v.paused) { try { v.pause(); } catch (e) {} }
     }
 
     if ("IntersectionObserver" in window) {
+      // Keep observing (no unobserve) so we can pause/resume across scrolls.
+      // On load/refresh the observer fires for every slot: those in view (plus
+      // the 200px margin) resume+play, the rest stay uncreated until scrolled to.
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) { ensureVideo(e.target); io.unobserve(e.target); }
+          if (e.isIntersecting) resumeIdle(e.target);
+          else pauseIdle(e.target);
         });
-      }, { rootMargin: "240px" });
+      }, { rootMargin: "200px" });
       [].slice.call(document.querySelectorAll(".mk-avatar")).forEach(function (s) { io.observe(s); });
     } else {
       [].slice.call(document.querySelectorAll(".mk-avatar")).forEach(ensureVideo);
