@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-07 · ECS 查询缓存 + 视口 Gizmo GPU 驱动化 + fx-math 独立包 — ForgeaX</title>
+<meta name="description" content="ECS archetype 查询缓存最高 3 倍迭代加速；视口 Gizmo 重构为 GPU 驱动实例化管线；fx-math 提取为独立可复用包；材质系统热重载；场景层级多根节点拖放。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-07 · ECS 查询缓存 + 视口 Gizmo GPU 驱动化 + fx-math 独立包 — ForgeaX" />
+<meta property="og:description" content="ECS archetype 查询缓存最高 3 倍迭代加速；视口 Gizmo 重构为 GPU 驱动实例化管线；fx-math 提取为独立可复用包；材质系统热重载；场景层级多根节点拖放。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-07.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=19c16142" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-07.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-07.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-07.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-07.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-07.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-07.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-07.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-07-07</span></div>
+    <h1>ECS 查询缓存 + 视口 Gizmo GPU 驱动化 + fx-math 独立包</h1>
+    <p class="standfirst">引擎 ECS 层现在缓存 archetype 匹配查询，大型场景迭代速度提升最高 3 倍；视口 Gizmo（平移/旋转/缩放手柄）从 CPU 侧即时模式重构为 GPU 驱动的实例化管线，消除了每帧 JS 开销；共享数学库已提取为独立的 fx-math 包，可在引擎、编辑器和 CLI 等子仓之间复用；材质系统支持热重载，PBR 调整无需重新进入 Play 模式即可即时生效；场景层级面板现在支持多根节点拖放，方便批量重组实体结构。</p>
+    <div class="prose"><h3>引擎：ECS 查询缓存与 archetype 索引</h3>
+<p>ECS 运行时现在跨帧缓存 archetype 匹配的组件查询。之前每次 <code>world.query(Position, Velocity)</code> 调用都会在每个 tick 执行完整的 archetype 扫描。引擎现在在首次查询时构建 archetype 索引，仅在 archetype 添加或移除时失效——这在大多数游戏循环中是罕见事件。在 10k+ 实体的场景中，基准测试显示迭代吞吐量提升最高 3 倍。</p>
+<h3>编辑器：视口 Gizmo 重构为 GPU 驱动管线</h3>
+<p>3D 视口中的平移、旋转和缩放 Gizmo 已从 CPU 侧即时模式 canvas 覆层重写为 GPU 驱动的实例化渲染管线。每个 Gizmo 手柄现在是一个实例化绘制调用，通过 color-ID 帧缓冲实现深度测试拾取。这消除了之前在密集场景中操作对象时导致明显卡顿的每帧 JavaScript 开销。</p>
+<h3>子仓：fx-math 提取为独立包</h3>
+<p>之前在引擎核心、编辑器和 CLI 包中重复存在的数学基元（<code>Vec2</code>、<code>Vec3</code>、<code>Vec4</code>、<code>Mat4</code>、<code>Quat</code>、<code>AABB</code>、<code>Ray</code> 等）已提取到独立的 <code>fx-math</code> 包中。三个子仓现在都依赖这唯一的真实来源，消除了引擎侧和编辑器侧数学库的漂移，同时总包体积减少约 40 KB。</p>
+<h3>引擎：材质系统热重载</h3>
+<p>在 Inspector 中编辑 PBR 材质参数（反照率、粗糙度、金属度、法线贴图等）现在无需停止并重启 Play 模式即可在视口中即时生效。引擎监视材质资产文件句柄，并在更改时触发 GPU 资源重新上传。这大幅缩短了美术迭代循环——调整一个粗糙度滑块，实时看到结果。</p>
+<h3>编辑器：场景层级面板支持多根节点拖放</h3>
+<p>场景层级面板现在支持同时选中并拖动多个根级实体。之前仅支持单实体拖动，大规模场景重组非常繁琐。现在可以 Ctrl+点击或 Shift+点击进行多选，然后拖动整个选择集重新设为新节点的子级或在层级中重新排序。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>

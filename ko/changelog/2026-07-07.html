@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-07 · ECS 쿼리 캐싱 + 뷰포트 기즈모 GPU 구동 + fx-math 독립 패키지 — ForgeaX</title>
+<meta name="description" content="ECS 아키타입 쿼리 캐싱으로 최대 3배 이터레이션 속도 향상. 뷰포트 기즈모를 GPU 기반 인스턴스화 파이프라인으로 리팩토링. fx-math를 독립 재사용 가능 패키지로 추출. 머티리얼 시스템 핫 리로드. 씬 계층 다중 루트 드래그 앤 드롭." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-07 · ECS 쿼리 캐싱 + 뷰포트 기즈모 GPU 구동 + fx-math 독립 패키지 — ForgeaX" />
+<meta property="og:description" content="ECS 아키타입 쿼리 캐싱으로 최대 3배 이터레이션 속도 향상. 뷰포트 기즈모를 GPU 기반 인스턴스화 파이프라인으로 리팩토링. fx-math를 독립 재사용 가능 패키지로 추출. 머티리얼 시스템 핫 리로드. 씬 계층 다중 루트 드래그 앤 드롭." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-07.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=19c16142" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-07.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-07.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-07.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-07-07.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-07-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-07.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-07.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-07.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-07-07</span></div>
+    <h1>ECS 쿼리 캐싱 + 뷰포트 기즈모 GPU 구동 + fx-math 독립 패키지</h1>
+    <p class="standfirst">엔진의 ECS 레이어가 아키타입 매칭 쿼리를 캐싱하여 대규모 씬에서 최대 3배 빠른 이터레이션을 제공합니다. 뷰포트 기즈모(이동/회전/스케일 핸들)가 CPU 측 즉시 모드에서 GPU 기반 인스턴스화 파이프라인으로 리팩토링되어 프레임당 JS 오버헤드가 제거되었습니다. 공유 수학 라이브러리가 독립적인 fx-math 패키지로 추출되어 엔진, 에디터, CLI 서브 리포지토리 전반에서 재사용 가능합니다. 머티리얼 시스템이 핫 리로드를 지원하여 PBR 조정이 Play 모드에 재진입하지 않고 즉시 반영됩니다. 씬 계층 패널이 다중 루트 드래그 앤 드롭을 처리하여 대량 엔티티 재구성이 가능합니다.</p>
+    <div class="prose"><h3>엔진: 아키타입 인덱싱을 통한 ECS 쿼리 캐싱</h3>
+<p>ECS 런타임이 프레임 간에 아키타입 매칭된 컴포넌트 쿼리를 캐싱합니다. 이전에는 <code>world.query(Position, Velocity)</code> 호출마다 매 틱 전체 아키타입 스캔을 수행했습니다. 엔진이 첫 쿼리 시 아키타입 인덱스를 구축하고 아키타입이 추가되거나 제거될 때만 무효화합니다. 10k+ 엔티티가 있는 씬에서 벤치마크 기준 이터레이션 처리량이 최대 3배 향상되었습니다.</p>
+<h3>에디터: 뷰포트 기즈모를 GPU 기반 파이프라인으로 리팩토링</h3>
+<p>3D 뷰포트의 이동, 회전, 스케일 기즈모가 CPU 측 즉시 모드 캔버스 오버레이에서 GPU 기반 인스턴스화 렌더링 파이프라인으로 재작성되었습니다. 각 기즈모 핸들이 단일 인스턴스화 드로우 콜이 되어 컬러 ID 프레임버퍼를 통한 깊이 테스트 피킹을 구현합니다. 밀집 씬에서 오브젝트 조작 시 프레임당 JavaScript 오버헤드가 제거되었습니다.</p>
+<h3>서브 리포: fx-math를 독립 패키지로 추출</h3>
+<p>엔진 코어, 에디터, CLI 패키지에 중복되어 있던 수학 프리미티브(<code>Vec2</code>, <code>Vec3</code>, <code>Vec4</code>, <code>Mat4</code>, <code>Quat</code>, <code>AABB</code>, <code>Ray</code> 등)가 독립적인 <code>fx-math</code> 패키지로 추출되었습니다. 세 서브 리포지토리 모두 이 단일 소스에 의존하게 되어 엔진 측과 에디터 측 수학 라이브러리 간의 드리프트가 해소되고 총 번들 크기가 약 40KB 감소했습니다.</p>
+<h3>엔진: 머티리얼 시스템 핫 리로드</h3>
+<p>Inspector에서 PBR 머티리얼 파라미터(알베도, 러프니스, 메탈릭, 노멀 맵 등) 편집이 Play 모드를 중지하고 재시작하지 않아도 뷰포트에 즉시 반영됩니다. 엔진이 머티리얼 에셋 파일 핸들을 감시하고 변경 시 GPU 리소스 재업로드를 트리거합니다.</p>
+<h3>에디터: 씬 계층 패널 다중 루트 드래그 앤 드롭</h3>
+<p>씬 계층 패널에서 여러 루트 레벨 엔티티를 동시에 선택하고 드래그할 수 있습니다. Ctrl+클릭 또는 Shift+클릭으로 다중 선택한 후 전체 선택을 드래그하여 새 노드 아래로 재부모화하거나 계층 내에서 재정렬할 수 있습니다.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>
