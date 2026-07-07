@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-07 · Hierarchy 多选操作 + AI 语义操作层 + 编辑器稳定性修复 — ForgeaX</title>
+<meta name="description" content="Hierarchy 多选支持批量删除和可见性同步；AI 语义操作层接入编辑器启动流程；GLB 导入启动崩溃已修复；资产 tooltip 溢出裁切已解决。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-07 · Hierarchy 多选操作 + AI 语义操作层 + 编辑器稳定性修复 — ForgeaX" />
+<meta property="og:description" content="Hierarchy 多选支持批量删除和可见性同步；AI 语义操作层接入编辑器启动流程；GLB 导入启动崩溃已修复；资产 tooltip 溢出裁切已解决。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-07.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-07.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=19c16142" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-07.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-07.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-07.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-07.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-07.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-07.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-07.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-07-07</span></div>
+    <h1>Hierarchy 多选操作 + AI 语义操作层 + 编辑器稳定性修复</h1>
+    <p class="standfirst">Hierarchy 面板现在支持 Shift 点击范围选择，可批量删除和切换可见性；新的 AI 语义操作层已接入编辑器启动管线；GLB 导入不再因 serializeMetaJson 修复而启动崩溃；资产面板 tooltip 不再被容器溢出裁切。</p>
+    <div class="prose"><h3>Hierarchy 面板：Shift 多选</h3>
+<p>Hierarchy 面板现在支持范围选择——按住 Shift 点击可选择一组连续节点。配合新的批量操作，你可以一次性删除多个实体或切换它们的可见性。场景清理工作流效率大幅提升。</p>
+<h3>AI 语义操作层</h3>
+<p>新的 AI 语义操作层已通过 <code>bootUiBridge</code> 接入编辑器启动管线。这为 AI 驱动的编辑命令奠定了基础——比如&quot;把所有灯光调暖&quot;或&quot;把这些道具组合成一栋建筑&quot;。该层在启动时即已激活，等待下游功能接入。</p>
+<h3>GLB 导入启动崩溃修复</h3>
+<p>项目中存在 GLB 资产时编辑器启动崩溃的问题已修复。根本原因是启动阶段 <code>serializeMetaJson</code> 缺少空值检查——资产元数据序列化器现在能优雅地处理边界情况。</p>
+<h3>资产面板 tooltip 定位修复</h3>
+<p>资产面板的 tooltip 有时会被父容器的溢出边界裁切，导致不可读。tooltip 现在通过 portal 渲染，确保无论面板滚动位置如何都能完整显示。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>
