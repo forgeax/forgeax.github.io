@@ -183,12 +183,37 @@
       });
     }
 
-    function openPreviewLightbox(src, alt) {
+    function openPreviewLightbox(opts) {
       var lb = $("mkPreviewLightbox");
       var img = $("mkPreviewLightboxImg");
+      var vid = $("mkPreviewLightboxVideo");
       if (!lb || !img) return;
-      img.src = src;
-      img.alt = alt || "";
+      var type = opts && opts.type === "video" ? "video" : "image";
+      if (type === "video" && vid) {
+        img.hidden = true;
+        img.removeAttribute("src");
+        img.alt = "";
+        vid.hidden = false;
+        vid.src = opts.src;
+        if (opts.poster) vid.poster = opts.poster;
+        else vid.removeAttribute("poster");
+        vid.muted = true;
+        vid.loop = true;
+        vid.currentTime = typeof opts.currentTime === "number" ? opts.currentTime : 0;
+        lb.hidden = false;
+        document.body.classList.add("mk-preview-lightbox-open");
+        try { vid.play(); } catch (e) { /* autoplay blocked */ }
+        return;
+      }
+      if (vid) {
+        vid.hidden = true;
+        try { vid.pause(); } catch (e) { /* ignore */ }
+        vid.removeAttribute("src");
+        vid.removeAttribute("poster");
+      }
+      img.hidden = false;
+      img.src = opts.src;
+      img.alt = opts.alt || "";
       lb.hidden = false;
       document.body.classList.add("mk-preview-lightbox-open");
       if (window.forgeaxRefreshIcons) window.forgeaxRefreshIcons(lb);
@@ -196,9 +221,16 @@
     function closePreviewLightbox() {
       var lb = $("mkPreviewLightbox");
       var img = $("mkPreviewLightboxImg");
+      var vid = $("mkPreviewLightboxVideo");
       if (!lb) return;
       lb.hidden = true;
-      if (img) { img.src = ""; img.alt = ""; }
+      if (img) { img.src = ""; img.alt = ""; img.hidden = false; }
+      if (vid) {
+        try { vid.pause(); } catch (e) { /* ignore */ }
+        vid.removeAttribute("src");
+        vid.removeAttribute("poster");
+        vid.hidden = true;
+      }
       document.body.classList.remove("mk-preview-lightbox-open");
     }
 
@@ -279,18 +311,206 @@
       return wrap;
     }
 
+    function formatVideoTime(sec) {
+      if (!isFinite(sec) || sec < 0) sec = 0;
+      var m = Math.floor(sec / 60);
+      var s = Math.floor(sec % 60);
+      return m + ":" + (s < 10 ? "0" : "") + s;
+    }
+
+    function wireVideoScrubber(player, video, playBtn, progress, fill, thumb, timeEl) {
+      var dragging = false;
+      var wasPlaying = false;
+
+      function syncPlayIcon() {
+        if (!playBtn) return;
+        var paused = video.paused;
+        playBtn.innerHTML = paused
+          ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
+        playBtn.setAttribute("aria-label", paused ? "Play" : "Pause");
+      }
+
+      function pctFromEvent(ev) {
+        var rect = progress.getBoundingClientRect();
+        var clientX = ev.touches && ev.touches.length ? ev.touches[0].clientX : ev.clientX;
+        var x = Math.max(0, Math.min(rect.width, clientX - rect.left));
+        return rect.width ? x / rect.width : 0;
+      }
+
+      function setProgress(pct, seek) {
+        pct = Math.max(0, Math.min(1, pct));
+        var pctStr = (pct * 100) + "%";
+        fill.style.width = pctStr;
+        thumb.style.left = pctStr;
+        progress.setAttribute("aria-valuenow", String(Math.round(pct * 100)));
+        if (seek && isFinite(video.duration) && video.duration > 0) {
+          video.currentTime = pct * video.duration;
+        }
+      }
+
+      function updateTime() {
+        var cur = video.currentTime || 0;
+        var dur = isFinite(video.duration) ? video.duration : 0;
+        timeEl.textContent = formatVideoTime(cur) + " / " + formatVideoTime(dur);
+        if (!dragging && dur > 0) setProgress(cur / dur, false);
+        syncPlayIcon();
+      }
+
+      video.addEventListener("timeupdate", updateTime);
+      video.addEventListener("loadedmetadata", updateTime);
+      video.addEventListener("durationchange", updateTime);
+      video.addEventListener("play", syncPlayIcon);
+      video.addEventListener("pause", syncPlayIcon);
+
+      if (playBtn) {
+        playBtn.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          if (video.paused) video.play().catch(function () {});
+          else video.pause();
+        });
+      }
+
+      function onPointerDown(ev) {
+        if (ev.button !== undefined && ev.button !== 0) return;
+        dragging = true;
+        wasPlaying = !video.paused;
+        try { video.pause(); } catch (e) { /* ignore */ }
+        player.classList.add("is-scrubbing");
+        setProgress(pctFromEvent(ev), true);
+        updateTime();
+        ev.preventDefault();
+        ev.stopPropagation();
+      }
+
+      function onPointerMove(ev) {
+        if (!dragging) return;
+        setProgress(pctFromEvent(ev), true);
+        updateTime();
+        ev.preventDefault();
+      }
+
+      function onPointerUp(ev) {
+        if (!dragging) return;
+        dragging = false;
+        player.classList.remove("is-scrubbing");
+        setProgress(pctFromEvent(ev), true);
+        updateTime();
+        if (wasPlaying) video.play().catch(function () {});
+      }
+
+      progress.addEventListener("mousedown", onPointerDown);
+      progress.addEventListener("touchstart", onPointerDown, { passive: false });
+      window.addEventListener("mousemove", onPointerMove);
+      window.addEventListener("touchmove", onPointerMove, { passive: false });
+      window.addEventListener("mouseup", onPointerUp);
+      window.addEventListener("touchend", onPointerUp);
+      window.addEventListener("touchcancel", onPointerUp);
+
+      progress.addEventListener("keydown", function (ev) {
+        if (!isFinite(video.duration) || video.duration <= 0) return;
+        var step = ev.key === "ArrowRight" ? 5 : ev.key === "ArrowLeft" ? -5 : 0;
+        if (!step) return;
+        ev.preventDefault();
+        video.currentTime = Math.max(0, Math.min(video.duration, video.currentTime + step));
+        updateTime();
+      });
+
+      syncPlayIcon();
+    }
+
+    function openVideoLightbox(slide, video) {
+      openPreviewLightbox({
+        type: "video",
+        src: slide.src,
+        poster: slide.poster || "",
+        alt: slide.alt || "",
+        currentTime: video && isFinite(video.currentTime) ? video.currentTime : 0,
+      });
+    }
+
+    function createPreviewVideo(slide, isHero) {
+      var video = document.createElement("video");
+      video.className = "mk-modal-preview-img mk-modal-preview-video" + (isHero ? " mk-modal-preview-img--hero is-zoomable" : "");
+      video.src = slide.src;
+      if (slide.poster) video.poster = slide.poster;
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.controls = false;
+      video.preload = "metadata";
+      if (!isHero) return video;
+
+      var player = document.createElement("div");
+      player.className = "mk-preview-video-player";
+
+      var stage = document.createElement("div");
+      stage.className = "mk-preview-video-stage";
+      stage.title = slide.label || slide.alt || "";
+      stage.addEventListener("click", function (e) {
+        if (e.target.closest(".mk-preview-video-controls")) return;
+        e.stopPropagation();
+        openVideoLightbox(slide, video);
+      });
+
+      var controls = document.createElement("div");
+      controls.className = "mk-preview-video-controls";
+
+      var playBtn = document.createElement("button");
+      playBtn.type = "button";
+      playBtn.className = "mk-preview-video-play";
+      playBtn.setAttribute("aria-label", "Pause");
+
+      var progress = document.createElement("div");
+      progress.className = "mk-preview-video-progress";
+      progress.setAttribute("role", "slider");
+      progress.setAttribute("aria-label", "Video progress");
+      progress.setAttribute("aria-valuemin", "0");
+      progress.setAttribute("aria-valuemax", "100");
+      progress.setAttribute("aria-valuenow", "0");
+      progress.tabIndex = 0;
+
+      var rail = document.createElement("div");
+      rail.className = "mk-preview-video-progress-rail";
+      var fill = document.createElement("div");
+      fill.className = "mk-preview-video-progress-fill";
+      var thumb = document.createElement("div");
+      thumb.className = "mk-preview-video-progress-thumb";
+      thumb.setAttribute("aria-hidden", "true");
+      rail.appendChild(fill);
+      rail.appendChild(thumb);
+      progress.appendChild(rail);
+
+      var timeEl = document.createElement("span");
+      timeEl.className = "mk-preview-video-time";
+      timeEl.textContent = "0:00 / 0:00";
+
+      var zoomBtn = document.createElement("button");
+      zoomBtn.type = "button";
+      zoomBtn.className = "mk-preview-video-zoom";
+      zoomBtn.setAttribute("aria-label", "Enlarge video");
+      zoomBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>';
+      zoomBtn.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        openVideoLightbox(slide, video);
+      });
+
+      controls.appendChild(playBtn);
+      controls.appendChild(progress);
+      controls.appendChild(timeEl);
+      controls.appendChild(zoomBtn);
+      stage.appendChild(video);
+      player.appendChild(stage);
+      player.appendChild(controls);
+      wireVideoScrubber(player, video, playBtn, progress, fill, thumb, timeEl);
+      return player;
+    }
+
     function renderSlideContent(slide, isHero) {
       if (slide.type === "video") {
-        var video = document.createElement("video");
-        video.className = "mk-modal-preview-img" + (isHero ? " mk-modal-preview-img--hero" : "");
-        video.src = slide.src;
-        if (slide.poster) video.poster = slide.poster;
-        video.autoplay = true;
-        video.loop = true;
-        video.muted = true;
-        video.playsInline = true;
-        video.controls = false;
-        return isHero ? wrapHeroMedia(video, slide) : video;
+        var node = createPreviewVideo(slide, isHero);
+        return isHero ? wrapHeroMedia(node, slide) : node;
       }
       if (slide.type === "image" || !slide.type) {
         var img = document.createElement("img");
@@ -299,7 +519,10 @@
         img.alt = slide.alt || "";
         img.loading = isHero ? "eager" : "lazy";
         if (isHero) {
-          img.addEventListener("click", function (e) { e.stopPropagation(); openPreviewLightbox(slide.src, slide.alt || ""); });
+          img.addEventListener("click", function (e) {
+            e.stopPropagation();
+            openPreviewLightbox({ type: "image", src: slide.src, alt: slide.alt || "" });
+          });
         }
         return isHero ? wrapHeroMedia(img, slide) : img;
       }
