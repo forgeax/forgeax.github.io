@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-07 · ECS 查询缓存 + 视口 Gizmo GPU 驱动化 + fx-math 独立包 — ForgeaX</title>
+<title>2026-07-06 · ECS 查询缓存 + 视口 Gizmo GPU 驱动化 + fx-math 独立包 — ForgeaX</title>
 <meta name="description" content="ECS archetype 查询缓存最高 3 倍迭代加速；视口 Gizmo 重构为 GPU 驱动实例化管线；fx-math 提取为独立可复用包；材质系统热重载；场景层级多根节点拖放。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-07 · ECS 查询缓存 + 视口 Gizmo GPU 驱动化 + fx-math 独立包 — ForgeaX" />
+<meta property="og:title" content="2026-07-06 · ECS 查询缓存 + 视口 Gizmo GPU 驱动化 + fx-math 独立包 — ForgeaX" />
 <meta property="og:description" content="ECS archetype 查询缓存最高 3 倍迭代加速；视口 Gizmo 重构为 GPU 驱动实例化管线；fx-math 提取为独立可复用包；材质系统热重载；场景层级多根节点拖放。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-06.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-07.html" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-06.html" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,7 +50,7 @@
         <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
         </button>
-        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-07.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-07.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-07.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-07.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-07.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-07.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-07.html" data-l="pt">Português</a></div>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-06.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-06.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-06.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-06.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-06.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-06.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-06.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-06.html" data-l="pt">Português</a></div>
       </div>
       <details class="ask-ai" id="askAi">
         <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
@@ -68,7 +68,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/zh/changelog/">← 更新日志</a>
-    <div class="meta"><span class="tag brand">每日</span><span>2026-07-07</span></div>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-07-06</span></div>
     <h1>ECS 查询缓存 + 视口 Gizmo GPU 驱动化 + fx-math 独立包</h1>
     <p class="standfirst">引擎 ECS 层现在缓存 archetype 匹配查询，大型场景迭代速度提升最高 3 倍；视口 Gizmo（平移/旋转/缩放手柄）从 CPU 侧即时模式重构为 GPU 驱动的实例化管线，消除了每帧 JS 开销；共享数学库已提取为独立的 fx-math 包，可在引擎、编辑器和 CLI 等子仓之间复用；材质系统支持热重载，PBR 调整无需重新进入 Play 模式即可即时生效；场景层级面板现在支持多根节点拖放，方便批量重组实体结构。</p>
     <div class="prose"><h3>引擎：ECS 查询缓存与 archetype 索引</h3>

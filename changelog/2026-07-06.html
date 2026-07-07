@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-07 · ECS query caching + viewport gizmo GPU-driven + fx-math standalone — ForgeaX</title>
+<title>2026-07-06 · ECS query caching + viewport gizmo GPU-driven + fx-math standalone — ForgeaX</title>
 <meta name="description" content="ECS archetype query caching for up to 3× iteration speedup; viewport gizmos refactored to GPU-driven instanced pipeline; fx-math extracted as standalone reusable package; material system hot-reload; scene hierarchy multi-root drag-and-drop." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-07 · ECS query caching + viewport gizmo GPU-driven + fx-math standalone — ForgeaX" />
+<meta property="og:title" content="2026-07-06 · ECS query caching + viewport gizmo GPU-driven + fx-math standalone — ForgeaX" />
 <meta property="og:description" content="ECS archetype query caching for up to 3× iteration speedup; viewport gizmos refactored to GPU-driven instanced pipeline; fx-math extracted as standalone reusable package; material system hot-reload; scene hierarchy multi-root drag-and-drop." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://forgeax.github.io/changelog/2026-07-07.html" />
+<meta property="og:url" content="https://forgeax.github.io/changelog/2026-07-06.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="canonical" href="https://forgeax.github.io/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-07.html" />
+<link rel="canonical" href="https://forgeax.github.io/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-06.html" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,7 +50,7 @@
         <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
         </button>
-        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-07-07.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-07-07.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-07.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-07.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-07.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-07.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-07.html" data-l="pt">Português</a></div>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-07-06.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-07-06.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-06.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-06.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-06.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-06.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-06.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-06.html" data-l="pt">Português</a></div>
       </div>
       <details class="ask-ai" id="askAi">
         <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
@@ -68,7 +68,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/changelog/">← Changelog</a>
-    <div class="meta"><span class="tag brand">Daily</span><span>2026-07-07</span></div>
+    <div class="meta"><span class="tag brand">Daily</span><span>2026-07-06</span></div>
     <h1>ECS query caching + viewport gizmo GPU-driven + fx-math standalone</h1>
     <p class="standfirst">The engine&#39;s ECS layer now caches archetype-matched queries, yielding up to 3× faster iteration on large scenes; viewport gizmos (translate/rotate/scale handles) have been refactored from CPU-side immediate-mode to a GPU-driven instanced pipeline, eliminating per-frame JS overhead; the shared math library has been extracted into a standalone fx-math package for reuse across engine, editor, and CLI sub-repos; the material system supports hot-reload so PBR tweaks appear instantly without re-entering Play mode; and the scene hierarchy panel now handles multi-root drag-and-drop for bulk entity reorganization.</p>
     <div class="prose"><h3>Engine: ECS query caching with archetype indexing</h3>

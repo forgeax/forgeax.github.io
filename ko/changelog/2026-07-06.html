@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-07 · ECS 쿼리 캐싱 + 뷰포트 기즈모 GPU 구동 + fx-math 독립 패키지 — ForgeaX</title>
+<title>2026-07-06 · ECS 쿼리 캐싱 + 뷰포트 기즈모 GPU 구동 + fx-math 독립 패키지 — ForgeaX</title>
 <meta name="description" content="ECS 아키타입 쿼리 캐싱으로 최대 3배 이터레이션 속도 향상. 뷰포트 기즈모를 GPU 기반 인스턴스화 파이프라인으로 리팩토링. fx-math를 독립 재사용 가능 패키지로 추출. 머티리얼 시스템 핫 리로드. 씬 계층 다중 루트 드래그 앤 드롭." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-07 · ECS 쿼리 캐싱 + 뷰포트 기즈모 GPU 구동 + fx-math 독립 패키지 — ForgeaX" />
+<meta property="og:title" content="2026-07-06 · ECS 쿼리 캐싱 + 뷰포트 기즈모 GPU 구동 + fx-math 독립 패키지 — ForgeaX" />
 <meta property="og:description" content="ECS 아키타입 쿼리 캐싱으로 최대 3배 이터레이션 속도 향상. 뷰포트 기즈모를 GPU 기반 인스턴스화 파이프라인으로 리팩토링. fx-math를 독립 재사용 가능 패키지로 추출. 머티리얼 시스템 핫 리로드. 씬 계층 다중 루트 드래그 앤 드롭." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-07-06.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-07.html" />
-<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-07.html" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-06.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-06.html" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,7 +50,7 @@
         <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
           <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
         </button>
-        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-07.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-07.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-07.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-07-07.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-07-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-07.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-07.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-07.html" data-l="pt">Português</a></div>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-06.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-06.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-06.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-07-06.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-07-06.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-06.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-06.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-06.html" data-l="pt">Português</a></div>
       </div>
       <details class="ask-ai" id="askAi">
         <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
@@ -68,7 +68,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/ko/changelog/">← 변경 내역</a>
-    <div class="meta"><span class="tag brand">일일</span><span>2026-07-07</span></div>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-07-06</span></div>
     <h1>ECS 쿼리 캐싱 + 뷰포트 기즈모 GPU 구동 + fx-math 독립 패키지</h1>
     <p class="standfirst">엔진의 ECS 레이어가 아키타입 매칭 쿼리를 캐싱하여 대규모 씬에서 최대 3배 빠른 이터레이션을 제공합니다. 뷰포트 기즈모(이동/회전/스케일 핸들)가 CPU 측 즉시 모드에서 GPU 기반 인스턴스화 파이프라인으로 리팩토링되어 프레임당 JS 오버헤드가 제거되었습니다. 공유 수학 라이브러리가 독립적인 fx-math 패키지로 추출되어 엔진, 에디터, CLI 서브 리포지토리 전반에서 재사용 가능합니다. 머티리얼 시스템이 핫 리로드를 지원하여 PBR 조정이 Play 모드에 재진입하지 않고 즉시 반영됩니다. 씬 계층 패널이 다중 루트 드래그 앤 드롭을 처리하여 대량 엔티티 재구성이 가능합니다.</p>
     <div class="prose"><h3>엔진: 아키타입 인덱싱을 통한 ECS 쿼리 캐싱</h3>
