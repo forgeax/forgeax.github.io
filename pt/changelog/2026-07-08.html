@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-08 · Revisão do Gizmo do viewport + colagem de imagem no Composer + i18n de persona do Agent + exportação iOS — ForgeaX</title>
+<meta name="description" content="Orientação de eixos locais do Gizmo de escala, seleção de quadro Focus, arredondamento decimal Inspector, entrada limitada ao canvas, posicionamento centroide de grupo, preservação de posição mundial ao mudar pai. Colagem de imagem Composer, personas bilíngues Agent, exportação iOS WKWebView debug." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-08 · Revisão do Gizmo do viewport + colagem de imagem no Composer + i18n de persona do Agent + exportação iOS — ForgeaX" />
+<meta property="og:description" content="Orientação de eixos locais do Gizmo de escala, seleção de quadro Focus, arredondamento decimal Inspector, entrada limitada ao canvas, posicionamento centroide de grupo, preservação de posição mundial ao mudar pai. Colagem de imagem Composer, personas bilíngues Agent, exportação iOS WKWebView debug." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-07-08.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-08.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=86c6d371" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-08.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-08.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-08.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-08.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-08.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-08.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-08.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-07-08.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Diário</span><span>2026-07-08</span></div>
+    <h1>Revisão do Gizmo do viewport + colagem de imagem no Composer + i18n de persona do Agent + exportação iOS</h1>
+    <p class="standfirst">Seis correções de viewport e Inspector foram implementadas hoje: o botão Focus aciona seleção de quadro adequada com ângulo zenital fixo; o Gizmo de escala orienta-se ao longo dos eixos locais da entidade; campos numéricos arredondam para 4 casas decimais; eventos do mouse são limitados ao canvas; nós de grupo posicionam-se no centroide dos filhos; e ao mudar de pai a posição mundial é preservada. No produto, o Composer suporta colagem de imagens, personas de Agent são bilíngues, e a exportação iOS inclui builds depuráveis de WKWebView.</p>
+    <div class="prose"><h3>Revisão do Gizmo do viewport — seis correções em um dia</h3>
+<p>O viewport do editor recebeu uma rodada concentrada de correções:</p>
+<ul>
+<li><strong>Botão Focus</strong>: agora aciona seleção de quadro adequada com ângulo zenital fixo.</li>
+<li><strong>Eixos locais do Gizmo de escala</strong>: o Gizmo de escala agora se orienta ao longo dos eixos de coordenadas locais da entidade.</li>
+<li><strong>Arredondamento numérico do Inspector</strong>: campos numéricos arredondam para 4 casas decimais, eliminando tremulação visual.</li>
+<li><strong>Entrada limitada ao canvas</strong>: eventos do mouse são limitados aos limites do canvas.</li>
+<li><strong>Posicionamento centroide de grupo</strong>: ao criar um grupo, o nó é posicionado no centroide geométrico de seus filhos.</li>
+<li><strong>Preservação de posição mundial ao mudar pai</strong>: arrastar uma entidade para um novo pai preserva sua posição no espaço mundial.</li>
+</ul>
+<h3>Colagem de imagem no Composer</h3>
+<p>Agora você pode colar imagens diretamente na entrada do chat do Composer.</p>
+<h3>Personas de Agent bilíngues</h3>
+<p>Todas as personas de Agent integradas agora incluem texto em inglês e chinês com memória de longo prazo.</p>
+<h3>Exportação iOS: builds depuráveis WKWebView</h3>
+<p>A exportação do projeto Xcode iOS agora define <code>WKWebView.isInspectable = true</code> em builds de depuração.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>

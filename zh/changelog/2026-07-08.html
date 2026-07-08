@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-08 · 视口 Gizmo 全面优化 + Composer 图片粘贴 + Agent 人设国际化 + iOS 导出 — ForgeaX</title>
+<meta name="description" content="缩放 Gizmo 局部轴定向、Focus 帧选择、Inspector 小数四舍五入、canvas 限定输入、Group 质心定位、重父级保持世界坐标；Composer 图片粘贴；Agent 双语人设；iOS WKWebView 调试导出。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-08 · 视口 Gizmo 全面优化 + Composer 图片粘贴 + Agent 人设国际化 + iOS 导出 — ForgeaX" />
+<meta property="og:description" content="缩放 Gizmo 局部轴定向、Focus 帧选择、Inspector 小数四舍五入、canvas 限定输入、Group 质心定位、重父级保持世界坐标；Composer 图片粘贴；Agent 双语人设；iOS WKWebView 调试导出。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-08.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-08.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-08.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=86c6d371" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-08.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-08.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-08.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-08.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-08.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-08.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-08.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-08.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-07-08</span></div>
+    <h1>视口 Gizmo 全面优化 + Composer 图片粘贴 + Agent 人设国际化 + iOS 导出</h1>
+    <p class="standfirst">今天落地了六项视口和 Inspector 修复：Focus 按钮触发正确的帧选择并固定俯视角；缩放 Gizmo 沿实体局部轴定向；数字字段四舍五入到 4 位小数防止显示抖动；鼠标事件限定在 canvas 范围内；Group 节点定位到子节点质心并延迟 Gizmo 刷新；重新父级时保持世界坐标和 Gizmo 世界空间同步。产品侧，Composer 支持图片粘贴，Agent 人设新增中英双语支持，iOS Xcode 项目导出新增 WKWebView 可调试构建。</p>
+    <div class="prose"><h3>视口 Gizmo 全面优化——一天六项修复</h3>
+<p>编辑器视口今天集中落地了一批修复：</p>
+<ul>
+<li><strong>Focus 按钮</strong>：现在触发正确的 <code>frameSelection</code> 并锁定到固定俯视角，一键将任意实体居中到视口。</li>
+<li><strong>缩放 Gizmo 局部轴</strong>：缩放 Gizmo 现在沿实体的局部坐标轴方向显示，而不是世界轴，旋转后的实体缩放操作更直观。</li>
+<li><strong>Inspector 数字四舍五入</strong>：Inspector 中的数字字段现在四舍五入到 4 位小数，消除了浮点噪声导致的小数长尾视觉抖动。</li>
+<li><strong>Canvas 限定输入</strong>：鼠标和指针事件被限定在 canvas 范围内——在视口外的点击和拖拽不再触发意外的场景交互。</li>
+<li><strong>Group 质心定位</strong>：创建分组时，Group 节点会放置在其子节点的几何质心位置，并延迟刷新 Gizmo 以避免视觉跳变。</li>
+<li><strong>重父级世界坐标保持</strong>：在 Hierarchy 中把实体拖到新的父节点下时，现在会保持其世界空间位置不变，Gizmo 在世界空间同步，操作手柄始终在预期位置。</li>
+</ul>
+<h3>Composer 图片粘贴</h3>
+<p>现在可以直接在 Composer 聊天输入框中粘贴图片——截图、剪贴板图片或文件——它们会作为消息附件发送。这简化了向 AI Agent 分享视觉参考的工作流。</p>
+<h3>Agent 人设双语支持</h3>
+<p>所有内置 Agent 人设（Arin、CC-Coder、Iori、Iro、Kotone、Reia、Suzu、Tsumugi、Yevi）现在同时提供英文和中文的人设文本和长期记忆，使 Agent 体验在两种语言之间保持一致。</p>
+<h3>iOS 导出：WKWebView 可调试构建</h3>
+<p>iOS Xcode 项目导出现在在 debug 构建中设置 <code>WKWebView.isInspectable = true</code>，允许你使用 Safari Web Inspector 连接在设备或模拟器上运行的游戏进行实时调试。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>
