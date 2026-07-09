@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-09 · Arquitetura de host de plugins + correções do modo Play + encaminhamento de atalhos de teclado + linha do tempo QTE de vídeo de jogo — ForgeaX</title>
+<meta name="description" content="Arquitetura de host de plugins com EventBus, comandos e PluginLoader; correções de skybox HDR, animação SSOT e captura de ponteiro no modo Play; encaminhamento de atalhos de teclado de iframes; linha do tempo QTE de vídeo de jogo com protocolo de extensão." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-09 · Arquitetura de host de plugins + correções do modo Play + encaminhamento de atalhos de teclado + linha do tempo QTE de vídeo de jogo — ForgeaX" />
+<meta property="og:description" content="Arquitetura de host de plugins com EventBus, comandos e PluginLoader; correções de skybox HDR, animação SSOT e captura de ponteiro no modo Play; encaminhamento de atalhos de teclado de iframes; linha do tempo QTE de vídeo de jogo com protocolo de extensão." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-07-09.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-09.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=86c6d371" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/games/" data-nav="/games/">Jogos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-09.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-09.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-09.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-09.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-09.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-09.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-07-09.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Diário</span><span>2026-07-09</span></div>
+    <h1>Arquitetura de host de plugins + correções do modo Play + encaminhamento de atalhos de teclado + linha do tempo QTE de vídeo de jogo</h1>
+    <p class="standfirst">A interface foi reconstruída em torno de uma arquitetura de host de plugins com EventBus tipado, CommandsRegistry, ContextKeys e PluginLoader com setup topológico. O modo Play recebeu correções críticas. Atalhos de teclado globais agora são encaminhados de iframes. A bancada de vídeo de jogo introduz uma linha do tempo QTE e um protocolo de extensão.</p>
+    <div class="prose"><h3>Arquitetura de host de plugins</h3>
+<p>A camada de interface foi reconstruída com EventBus tipado, CommandsRegistry, ContextKeys e PluginLoader com ordenação topológica.</p>
+<h3>Modo Play: correções críticas</h3>
+<ul>
+<li><strong>Skybox HDR</strong>: arquivos <code>.hdr</code> equirectangulares agora são processados corretamente.</li>
+<li><strong>SSOT de animação</strong>: eliminação de ticks duplicados.</li>
+<li><strong>Resolução GUID de cena</strong>: o botão Play roteia corretamente a cena padrão.</li>
+<li><strong>Captura vs bloqueio de ponteiro</strong>: conflito resolvido.</li>
+<li><strong>Sair da visualização do jogo</strong>: G/Esc funcionam corretamente no modo de edição.</li>
+</ul>
+<h3>Encaminhamento de atalhos de teclado</h3>
+<p>Atalhos globais são encaminhados dos iframes de edição/reprodução para o editor principal.</p>
+<h3>Bancada de vídeo de jogo: linha do tempo QTE</h3>
+<p>Linha do tempo QTE com momentos de aparição/acerto/desaparecimento e protocolo de extensão para edição baseada em grafos.</p>
+<h3>Micro-lotes de texto de chat em streaming</h3>
+<p>O chat de IA usa <code>requestAnimationFrame</code> para micro-lotes de texto em streaming.</p>
+<h3>Detecção de falha de inicialização do motor</h3>
+<p><code>bun fx start</code> agora detecta e reporta falhas de inicialização do motor.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/blog/">Blogue</a>
+    <a href="/pt/docs/">Documentos</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/games/">Jogos</a>
+    <a href="/pt/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Projeto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-09 · 플러그인 호스트 아키텍처 + Play 모드 수정 + 키보드 단축키 전달 + 게임 비디오 QTE 타임라인 — ForgeaX</title>
+<meta name="description" content="EventBus, 명령, PluginLoader를 갖춘 플러그인 호스트 아키텍처; Play 모드 HDR 스카이박스, 애니메이션 SSOT, 포인터 캡처 수정; iframe 키보드 단축키 전달; 게임 비디오 QTE 타임라인과 확장 프로토콜." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-09 · 플러그인 호스트 아키텍처 + Play 모드 수정 + 키보드 단축키 전달 + 게임 비디오 QTE 타임라인 — ForgeaX" />
+<meta property="og:description" content="EventBus, 명령, PluginLoader를 갖춘 플러그인 호스트 아키텍처; Play 모드 HDR 스카이박스, 애니메이션 SSOT, 포인터 캡처 수정; iframe 키보드 단축키 전달; 게임 비디오 QTE 타임라인과 확장 프로토콜." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-07-09.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-09.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=86c6d371" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-09.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-09.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-09.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-07-09.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-07-09.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-09.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-07-09</span></div>
+    <h1>플러그인 호스트 아키텍처 + Play 모드 수정 + 키보드 단축키 전달 + 게임 비디오 QTE 타임라인</h1>
+    <p class="standfirst">인터페이스가 타입화된 EventBus, CommandsRegistry, ContextKeys, 토폴로지 설정 PluginLoader를 갖춘 플러그인 호스트 아키텍처로 재구축되었습니다. Play 모드가 중요한 수정을 받았습니다. 글로벌 키보드 단축키가 iframe에서 전달됩니다. 게임 비디오 워크벤치에 QTE 타임라인과 확장 프로토콜이 도입되었습니다.</p>
+    <div class="prose"><h3>플러그인 호스트 아키텍처</h3>
+<p>인터페이스 레이어가 타입화된 EventBus, CommandsRegistry, ContextKeys, 토폴로지 정렬 PluginLoader를 갖춘 플러그인 호스트 아키텍처로 재구축되었습니다.</p>
+<h3>Play 모드: 중요 수정</h3>
+<ul>
+<li><strong>HDR 스카이박스</strong>: equirect <code>.hdr</code> 파일이 올바르게 베이크됩니다.</li>
+<li><strong>애니메이션 SSOT</strong>: 중복 틱 제거.</li>
+<li><strong>씬 GUID 해결</strong>: Play 버튼이 기본 씬을 올바르게 라우팅.</li>
+<li><strong>포인터 캡처 vs 포인터 잠금</strong>: 포인터 잠금 중 충돌 수정.</li>
+<li><strong>게임 뷰 종료</strong>: 편집 모드에서 G/Esc로 게임 뷰 종료 가능.</li>
+</ul>
+<h3>키보드 단축키 전달</h3>
+<p>글로벌 단축키가 편집/재생 iframe에서 메인 에디터로 전달됩니다.</p>
+<h3>게임 비디오 워크벤치: QTE 타임라인</h3>
+<p>게임 비디오 워크벤치에 QTE 타임라인(출현/히트/소멸 3개 순간)과 확장 프로토콜이 도입되었습니다.</p>
+<h3>스트림 채팅 텍스트 마이크로 배칭</h3>
+<p>AI 채팅이 <code>requestAnimationFrame</code>으로 스트림 텍스트를 마이크로 배칭하여 긴 응답 렌더링이 부드러워졌습니다.</p>
+<h3>엔진 시작 실패 감지</h3>
+<p><code>bun fx start</code>가 엔진 시작 실패를 감지하고 보고합니다.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>

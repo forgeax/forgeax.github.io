@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-09 · 插件宿主架构 + Play 模式修复 + 键盘快捷键转发 + 游戏视频 QTE 时间轴 — ForgeaX</title>
+<meta name="description" content="插件宿主架构含 EventBus、命令注册、PluginLoader；Play 模式 HDR 天空盒、动画 SSOT、指针捕获修复；iframe 键盘快捷键转发；游戏视频 QTE 时间轴与扩展协议。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-09 · 插件宿主架构 + Play 模式修复 + 键盘快捷键转发 + 游戏视频 QTE 时间轴 — ForgeaX" />
+<meta property="og:description" content="插件宿主架构含 EventBus、命令注册、PluginLoader；Play 模式 HDR 天空盒、动画 SSOT、指针捕获修复；iframe 键盘快捷键转发；游戏视频 QTE 时间轴与扩展协议。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-09.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-09.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-09.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=86c6d371" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-09.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-09.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-09.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-09.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-09.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-09.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-07-09</span></div>
+    <h1>插件宿主架构 + Play 模式修复 + 键盘快捷键转发 + 游戏视频 QTE 时间轴</h1>
+    <p class="standfirst">界面已围绕插件宿主架构重建，包含类型化 EventBus、CommandsRegistry、ContextKeys 和拓扑排序的 PluginLoader。Play 模式收到关键修复——等距矩形 HDR 天空盒加载、动画插件 SSOT、场景 GUID 解析、以及指针捕获不再与指针锁定冲突。全局键盘快捷键现在可从 iframe 转发。游戏视频工作台引入了 QTE 时间轴（出现/命中/消失三时刻）和图优先编辑的扩展协议。</p>
+    <div class="prose"><h3>插件宿主架构</h3>
+<p>界面层已围绕正式的插件宿主架构重建。关键组件包括：</p>
+<ul>
+<li><strong>EventBus</strong>：类型化事件、中间件和销毁语义</li>
+<li><strong>CommandsRegistry</strong>：条件谓词和注册钩子</li>
+<li><strong>ContextKeys</strong>：可观察的变化订阅</li>
+<li><strong>PluginLoader</strong>：拓扑依赖排序和能力门控的待处理队列</li>
+<li><strong>StorageApi</strong> 和 <strong>CapabilityRegistry</strong>：持久状态和插件能力</li>
+</ul>
+<p>此基础架构用可组合、可测试的插件系统替代了之前的整体式 store。面板（编辑器、聊天、Agent、文件、设置、仪表盘）现在由各个插件贡献，而非硬编码在应用壳中。</p>
+<h3>Play 模式：关键修复</h3>
+<p>修复了多个导致 Play 模式无法正确工作的 bug：</p>
+<ul>
+<li><strong>HDR 天空盒</strong>：等距矩形 <code>.hdr</code> 文件现在以 <code>kind:&#39;equirect&#39;</code> 烘焙，运行时天空盒正确加载。</li>
+<li><strong>动画 SSOT</strong>：动画插件现在自持 <code>AnimationAssetResolver</code>，消除重复 tick。</li>
+<li><strong>场景 GUID 解析</strong>：Play 按钮通过 <code>AssetRegistry.instantiate</code> 路由默认场景，防止重复播放时的 &quot;SharedRefReleasedError&quot;。</li>
+<li><strong>指针捕获 vs 指针锁定</strong>：指针锁定时不再调用 <code>setPointerCapture</code>，修复了游戏模板中的俯视相机锁定 bug。</li>
+<li><strong>退出游戏视图</strong>：在编辑模式下按 G 或 Esc 现在可以正确退出游戏视图。</li>
+</ul>
+<h3>键盘快捷键转发</h3>
+<p>全局快捷键（<code>Cmd+K</code> / <code>Ctrl+Shift+*</code> / <code>Esc</code>）现在从编辑和播放 iframe 转发到主编辑器，无论哪个帧获得焦点，命令面板和面板切换都能正常工作。编辑器编辑域快捷键（Delete、F2、Ctrl+D、Ctrl+A、G）也通过新的键盘路由器注册。</p>
+<h3>游戏视频工作台：QTE 时间轴</h3>
+<p>游戏视频工作台（wb-game-video）引入了 QTE（快速时间事件）时间轴，收敛为三个离散时刻——出现、命中和消失——替代之前的连续 <code>qte_window</code> 轨道。工作台还采用了图优先的编辑界面和扩展协议，允许第三方节点类型在运行时注册。</p>
+<h3>流式聊天文本微批处理</h3>
+<p>AI 聊天现在使用 <code>requestAnimationFrame</code> 对流式文本和思考 token 进行微批处理，长回复渲染更流畅。大段粘贴内容自动折叠为可展开的胶囊，保持对话视图整洁。</p>
+<h3>引擎启动失败检测</h3>
+<p><code>bun fx start</code> 现在能检测并报告引擎启动失败，而不是静默返回 500 错误。如果引擎进程崩溃或无法绑定端口，CLI 会显示清晰的错误信息。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>
