@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-12 · Limpieza del editor de reino único + superficie de activos/componentes Gateway + plugins de juego residentes en activos — ForgeaX</title>
+<meta name="description" content="Limpieza single-realm que retira puentes iframe/VAG heredados; superficie de importación+eliminación+lectura de componentes Gateway; plugins de juego residentes en activos; enrutamiento de consultas de mundo activo; operación addSceneAssetToScene; diseño de dock compartido; puente de diagnóstico DEV persiste en Play." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-12 · Limpieza del editor de reino único + superficie de activos/componentes Gateway + plugins de juego residentes en activos — ForgeaX" />
+<meta property="og:description" content="Limpieza single-realm que retira puentes iframe/VAG heredados; superficie de importación+eliminación+lectura de componentes Gateway; plugins de juego residentes en activos; enrutamiento de consultas de mundo activo; operación addSceneAssetToScene; diseño de dock compartido; puente de diagnóstico DEV persiste en Play." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-07-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=86c6d371" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-12.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-12.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-12.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-07-12.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-07-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-12.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-07-12</span></div>
+    <h1>Limpieza del editor de reino único + superficie de activos/componentes Gateway + plugins de juego residentes en activos</h1>
+    <p class="standfirst">El editor completa su migración single-realm: todas las proyecciones de protocolo iframe heredadas, puentes de telemetría VAG y hosts EditSurface obsoletos son retirados, reemplazados por un PanelBridge tipado y diseño de dock compartido. La API Gateway gana una superficie completa de lectura de activos y componentes, importación/eliminación convergida y plugins de juego residentes en activos.</p>
+    <div class="prose"><h3>Editor single-realm: retirada del protocolo heredado</h3>
+<p>El editor completa su migración single-realm:</p>
+<ul>
+<li><strong>PanelBridge tipado</strong> reemplaza <code>VAG_ASSETS_CHANGED</code> y todos los mensajes broadcast anónimos</li>
+<li><strong>Puente de telemetría VAG del runtime de edición</strong> eliminado</li>
+<li><strong>Host iframe EditSurface</strong> retirado — <code>VAG_SPAWN_ENTITY</code> y el receptor de control de previsualización eliminados</li>
+<li><strong>Terminología de superficie heredada</strong> limpiada en todo el editor</li>
+<li><strong>Diseño de dock compartido</strong> inyectado en todos los paneles del editor</li>
+</ul>
+<h3>Gateway: superficie de lectura de activos y componentes</h3>
+<ul>
+<li><strong>Superficie de lectura de activos</strong>: listar e inspeccionar activos catalogados por tipo, ruta y GUID</li>
+<li><strong>Importación + eliminación de activos</strong>: convergidos en <code>importAsset</code> / <code>deleteAsset</code></li>
+<li><strong>Superficie de lectura de componentes</strong>: <code>describeComponent</code> / <code>listComponents</code></li>
+<li><strong>Operación <code>addSceneAssetToScene</code></strong>: colocar un GUID de escena catalogado en la escena activa</li>
+<li><strong>Enrutamiento de consultas al mundo activo</strong>: las consultas siguen <code>activeWorld</code> durante el modo Play</li>
+<li><strong>Corrección de serialización de consultas</strong>: los campos <code>variable array&lt;T&gt;</code> se serializan como lista enumerable</li>
+</ul>
+<h3>Plugins de juego residentes en activos</h3>
+<p>Los plugins pueden alojar su lógica en un directorio de activos del juego. Los componentes se cargan en modo Edit, los sistemas en Play.</p>
+<h3>Puente de diagnóstico DEV persistente</h3>
+<p>El puente de diagnóstico del editor en proceso permanece activo durante el modo Play.</p>
+<h3>Correcciones</h3>
+<ul>
+<li><strong>Viewport</strong>: prevención del falso positivo <code>render-system-no-camera</code> al crear un juego</li>
+<li><strong>Enrutamiento de consultas</strong>: las lecturas del mundo Play se enrutan correctamente</li>
+</ul>
+<hr>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>

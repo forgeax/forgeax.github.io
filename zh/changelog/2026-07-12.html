@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-12 · 单域编辑器清理 + Gateway 资产/组件接口 + 资产内嵌游戏插件 — ForgeaX</title>
+<meta name="description" content="单域编辑器清理退役遗留 iframe/VAG 桥接；Gateway 资产导入+删除+组件读取接口；资产内嵌游戏插件；活跃世界查询路由；addSceneAssetToScene 操作；共享 Dock 布局；DEV 诊断桥接在 Play 模式持续存在。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-12 · 单域编辑器清理 + Gateway 资产/组件接口 + 资产内嵌游戏插件 — ForgeaX" />
+<meta property="og:description" content="单域编辑器清理退役遗留 iframe/VAG 桥接；Gateway 资产导入+删除+组件读取接口；资产内嵌游戏插件；活跃世界查询路由；addSceneAssetToScene 操作；共享 Dock 布局；DEV 诊断桥接在 Play 模式持续存在。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=86c6d371" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-12.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-12.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-12.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-12.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-07-12</span></div>
+    <h1>单域编辑器清理 + Gateway 资产/组件接口 + 资产内嵌游戏插件</h1>
+    <p class="standfirst">编辑器完成单域迁移——所有遗留的 iframe 协议投影、VAG 遥测桥接和废弃的 EditSurface 宿主已退役，由类型化 PanelBridge 和共享 Dock 布局替代。Gateway API 获得完整的资产和组件读取接口、统一的导入/删除通道以及资产内嵌游戏插件（组件在编辑模式加载，系统在 Play 模式加载）。活跃世界的查询路由、场景资产放置以及持久化 DEV 诊断桥接也一并完善。</p>
+    <div class="prose"><h3>单域编辑器：遗留协议退役</h3>
+<p>编辑器完成单域迁移。所有此前通过遗留 iframe 投影传递的通信现在均在进程内处理：</p>
+<ul>
+<li><strong>类型化 PanelBridge</strong> 替代 <code>VAG_ASSETS_CHANGED</code> 及所有匿名广播消息</li>
+<li><strong>编辑运行时 VAG 遥测桥接</strong> 移除——资产变更通知现在通过类型化通道流转</li>
+<li><strong>EditSurface iframe 宿主</strong> 退役——<code>VAG_SPAWN_ENTITY</code> 及相关废弃的编辑预览控制接收器已移除</li>
+<li><strong>遗留接口术语</strong> 在整个编辑器表面清理完毕</li>
+<li><strong>共享 Dock 布局</strong> 注入所有编辑器面板，替代各面板重复的布局定义</li>
+</ul>
+<h3>Gateway：资产与组件读取接口</h3>
+<p>编辑器 Gateway API（AI Agent 进入编辑器的程序化入口）获得重大新能力：</p>
+<ul>
+<li><strong>资产读取接口</strong>：按类型、路径和 GUID 列举和检视已目录化的资产</li>
+<li><strong>资产导入 + 删除</strong>：统一为一个标准入口——<code>importAsset</code> / <code>deleteAsset</code></li>
+<li><strong>组件读取接口</strong>：<code>describeComponent</code> 和 <code>listComponents</code>——AI Agent 现可枚举和检视任意实体上的 ECS 组件</li>
+<li><strong><code>addSceneAssetToScene</code> 操作</strong>：将已目录化的场景 GUID 直接放置到活跃场景中</li>
+<li><strong>活跃世界查询路由</strong>：查询现跟随 <code>activeWorld</code>，Play 模式下通过 gateway 入口读取游戏世界可正常工作</li>
+<li><strong><code>argsSchema</code> 强制校验</strong>：所有已定义的文档操作均强制校验参数模式，让 Agent 调度更安全</li>
+<li><strong>查询序列化修复</strong>：<code>variable array&lt;T&gt;</code> 字段现在序列化为可枚举列表，而非计数值</li>
+</ul>
+<h3>资产内嵌游戏插件</h3>
+<p>插件现在可以将逻辑放在游戏资产目录内。组件在编辑模式下加载用于创作，系统在 Play 模式下加载用于运行时执行。这消除了在编辑器包中预注册所有插件逻辑的要求。</p>
+<h3>DEV 诊断桥接：在 Play 模式持续存在</h3>
+<p>进程内编辑器诊断桥接（DEV 桥接）现在在 Play 模式下持续保持活跃，游戏启动或停止时编辑器诊断不再中断。</p>
+<h3>修复</h3>
+<ul>
+<li><strong>视口</strong>：防止游戏创建时 <code>render-system-no-camera</code> 产生误报</li>
+<li><strong>查询路由</strong>：Play 世界读取通过活跃世界 gateway 正确路由</li>
+</ul>
+<hr>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>
