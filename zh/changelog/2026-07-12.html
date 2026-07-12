@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-12 · 单域编辑器清理 + Gateway 资产/组件接口 + 资产内嵌游戏插件 — ForgeaX</title>
+<title>2026-07-12 · 引擎 Tier 2 运行时 + 单域编辑器清理 + Gateway 资产/组件接口 + 资产内嵌插件 — ForgeaX</title>
 <meta name="description" content="单域编辑器清理退役遗留 iframe/VAG 桥接；Gateway 资产导入+删除+组件读取接口；资产内嵌游戏插件；活跃世界查询路由；addSceneAssetToScene 操作；共享 Dock 布局；DEV 诊断桥接在 Play 模式持续存在。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-12 · 单域编辑器清理 + Gateway 资产/组件接口 + 资产内嵌游戏插件 — ForgeaX" />
+<meta property="og:title" content="2026-07-12 · 引擎 Tier 2 运行时 + 单域编辑器清理 + Gateway 资产/组件接口 + 资产内嵌插件 — ForgeaX" />
 <meta property="og:description" content="单域编辑器清理退役遗留 iframe/VAG 桥接；Gateway 资产导入+删除+组件读取接口；资产内嵌游戏插件；活跃世界查询路由；addSceneAssetToScene 操作；共享 Dock 布局；DEV 诊断桥接在 Play 模式持续存在。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-12.html" />
@@ -69,7 +69,7 @@
   <article class="read article">
     <a class="back" href="/zh/changelog/">← 更新日志</a>
     <div class="meta"><span class="tag brand">每日</span><span>2026-07-12</span></div>
-    <h1>单域编辑器清理 + Gateway 资产/组件接口 + 资产内嵌游戏插件</h1>
+    <h1>引擎 Tier 2 运行时 + 单域编辑器清理 + Gateway 资产/组件接口 + 资产内嵌插件</h1>
     <p class="standfirst">编辑器完成单域迁移——所有遗留的 iframe 协议投影、VAG 遥测桥接和废弃的 EditSurface 宿主已退役，由类型化 PanelBridge 和共享 Dock 布局替代。Gateway API 获得完整的资产和组件读取接口、统一的导入/删除通道以及资产内嵌游戏插件（组件在编辑模式加载，系统在 Play 模式加载）。活跃世界的查询路由、场景资产放置以及持久化 DEV 诊断桥接也一并完善。</p>
     <div class="prose"><h3>单域编辑器：遗留协议退役</h3>
 <p>编辑器完成单域迁移。所有此前通过遗留 iframe 投影传递的通信现在均在进程内处理：</p>
@@ -95,6 +95,32 @@
 <p>插件现在可以将逻辑放在游戏资产目录内。组件在编辑模式下加载用于创作，系统在 Play 模式下加载用于运行时执行。这消除了在编辑器包中预注册所有插件逻辑的要求。</p>
 <h3>DEV 诊断桥接：在 Play 模式持续存在</h3>
 <p>进程内编辑器诊断桥接（DEV 桥接）现在在 Play 模式下持续保持活跃，游戏启动或停止时编辑器诊断不再中断。</p>
+<h3>引擎：Tier 2 运行时分解</h3>
+<p>引擎运行时拆分为三个独立子系统：</p>
+<ul>
+<li><strong>assets-runtime</strong>：资产加载、注册和生命周期管理从核心渲染循环中解耦</li>
+<li><strong>picking</strong>：基于 GPU 的实体拾取作为独立子系统</li>
+<li><strong>graphics-extras</strong>：后处理效果、HDR 解析和图形工具从单体渲染器中提取</li>
+</ul>
+<h3>引擎：组件批量 vec 折叠 + 字段级临时标记</h3>
+<p>Light、Camera、Glyph、Tilemap、Collider 等组件字段已更新：</p>
+<ul>
+<li><strong>批量 vec 折叠</strong>：向量字段以紧凑数组存储和传输，降低序列化开销</li>
+<li><strong>字段级临时标记</strong>：逐字段 transient 注解防止运行时临时状态被持久化到磁盘</li>
+</ul>
+<p>Transform 序列化同样支持 vec 字段和字段级 transient。</p>
+<h3>引擎：<code>instantiateSceneFlat</code></h3>
+<p>新的 <code>instantiateSceneFlat</code> API 可在不插入合成层级根实体的情况下打开场景，实体直接出现在场景图顶层，与编辑器中的摆放方式完全一致。</p>
+<h3>引擎：后处理 resize 修复</h3>
+<p>后处理绑定组现在以 <code>TextureView</code> 标识为键，而非纹理尺寸。缩放视口不再遗留上一分辨率的过期绑定组，消除窗口缩放时的后处理画面损坏。</p>
+<h3>引擎：CSM 跨世界修复</h3>
+<p>检测到跨世界相机与光源配置时，方向光级联阴影贴图（CSM）在合并层重新计算，修复分裂世界场景中的阴影渲染问题。</p>
+<h3>引擎：RHI 调试空闲快速路径</h3>
+<p><code>FORGEAX_ENGINE_RHI_DEBUG=1</code> 在无捕获进行时的空闲开销现在接近零。调试插桩可以一直启用而不影响正常游戏帧率。</p>
+<h3>引擎：精灵视锥剔除修复</h3>
+<p>恢复 <code>BUILTIN_QUAD</code> AABB 和 M2.5 派发配对，修复精灵部分超出视锥时被错误剔除的问题。</p>
+<h3>引擎：FBX 加载器修复</h3>
+<p><code>fbx-wasm</code> 包现在以包含 Emscripten 生成的 <code>.mjs</code> 胶水文件的 <code>.tar.gz</code> 形式发布，修复因缺少加载器模块导致的 FBX 导入失败。</p>
 <h3>修复</h3>
 <ul>
 <li><strong>视口</strong>：防止游戏创建时 <code>render-system-no-camera</code> 产生误报</li>

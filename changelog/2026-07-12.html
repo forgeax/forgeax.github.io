@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-12 · Single-realm editor cleanup + Gateway asset/component surface + Asset-resident game plugins — ForgeaX</title>
+<title>2026-07-12 · Engine Tier 2 runtime + Single-realm editor + Gateway asset/component surface + Asset-resident plugins — ForgeaX</title>
 <meta name="description" content="Single-realm editor cleanup retiring legacy iframe/VAG bridges; Gateway asset import+delete+component read surface; asset-resident game plugins; active-world query routing; addSceneAssetToScene op; shared dock layout; DEV diagnostics bridge persists through Play." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-12 · Single-realm editor cleanup + Gateway asset/component surface + Asset-resident game plugins — ForgeaX" />
+<meta property="og:title" content="2026-07-12 · Engine Tier 2 runtime + Single-realm editor + Gateway asset/component surface + Asset-resident plugins — ForgeaX" />
 <meta property="og:description" content="Single-realm editor cleanup retiring legacy iframe/VAG bridges; Gateway asset import+delete+component read surface; asset-resident game plugins; active-world query routing; addSceneAssetToScene op; shared dock layout; DEV diagnostics bridge persists through Play." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/changelog/2026-07-12.html" />
@@ -69,7 +69,7 @@
   <article class="read article">
     <a class="back" href="/changelog/">← Changelog</a>
     <div class="meta"><span class="tag brand">Daily</span><span>2026-07-12</span></div>
-    <h1>Single-realm editor cleanup + Gateway asset/component surface + Asset-resident game plugins</h1>
+    <h1>Engine Tier 2 runtime + Single-realm editor + Gateway asset/component surface + Asset-resident plugins</h1>
     <p class="standfirst">The editor completes its single-realm migration — all legacy iframe protocol projections, VAG telemetry bridges, and dead EditSurface hosts are retired, replaced by a typed PanelBridge and shared dock layout. The Gateway API gains a full asset and component read surface, converged import/delete, and asset-resident game plugins that load their components in Edit and systems in Play. Active-world query routing, scene-asset placement, and a persistent DEV diagnostics bridge round out the release.</p>
     <div class="prose"><h3>Single-realm editor: legacy protocol retirement</h3>
 <p>The editor completes its single-realm migration. All communication that previously tunnelled through legacy iframe projections is now handled in-process:</p>
@@ -95,6 +95,32 @@
 <p>Plugins can now ship their logic inside a game asset directory. Components are loaded in Edit mode for authoring, while systems are loaded in Play mode for runtime execution. This removes the requirement to pre-register all plugin logic in the editor bundle.</p>
 <h3>DEV diagnostics bridge: persistent through Play</h3>
 <p>The in-process editor diagnostics bridge (<code>DEV bridge</code>) now stays alive during Play mode, enabling continuous editor diagnostics without interruption when the game starts or stops.</p>
+<h3>Engine: Tier 2 runtime decomposition</h3>
+<p>The engine runtime is split into three independent subsystems:</p>
+<ul>
+<li><strong>assets-runtime</strong>: asset loading, registry, and lifecycle management decoupled from the core render loop</li>
+<li><strong>picking</strong>: GPU-backed entity picking as a standalone subsystem</li>
+<li><strong>graphics-extras</strong>: post-process effects, HDR resolve, and graphics utilities extracted from the monolithic renderer</li>
+</ul>
+<h3>Engine: component batch vec-collapse + field-transient</h3>
+<p>ECS component fields across Lights, Camera, Glyph, Tilemap, and Collider components have been updated with:</p>
+<ul>
+<li><strong>Batch vec-collapse</strong>: vector fields are stored and transmitted as compact arrays, reducing serialization overhead</li>
+<li><strong>Field-level transient</strong>: per-field transient annotations prevent ephemeral runtime state from being persisted to disk</li>
+</ul>
+<p>Transform serialization also gains vec fields and field-level transient support.</p>
+<h3>Engine: <code>instantiateSceneFlat</code></h3>
+<p>A new <code>instantiateSceneFlat</code> API opens a scene without inserting a synthetic hierarchy root entity. This matches how scenes authored in the editor appear — entities appear at the top of the scene graph exactly as placed.</p>
+<h3>Engine: post-process resize fix</h3>
+<p>Post-process bind groups are now keyed on <code>TextureView</code> identity rather than texture dimensions. Resizing the viewport no longer leaves stale bind groups from the previous resolution, eliminating post-process corruption on window resize.</p>
+<h3>Engine: CSM cross-world fix</h3>
+<p>Directional cascade shadow maps (CSM) are recomputed at the merge layer when a cross-world camera + light configuration is detected, fixing shadow rendering in split-world scenes.</p>
+<h3>Engine: RHI debug idle fast-path</h3>
+<p><code>FORGEAX_ENGINE_RHI_DEBUG=1</code> now has a near-zero cost idle path when no capture is in progress. The debug instrumentation can be left enabled without affecting frame rate during normal gameplay.</p>
+<h3>Engine: sprite frustum cull fix</h3>
+<p>Restored <code>BUILTIN_QUAD</code> AABB and M2.5 dispatch pairing, fixing sprites being incorrectly culled when partially outside the frustum.</p>
+<h3>Engine: FBX loader fix</h3>
+<p>The <code>fbx-wasm</code> package now ships as a <code>.tar.gz</code> that includes the Emscripten-generated <code>.mjs</code> glue file, fixing FBX import failures caused by the missing loader module.</p>
 <h3>Fixes</h3>
 <ul>
 <li><strong>Viewport</strong>: prevent <code>render-system-no-camera</code> false positive on game create</li>

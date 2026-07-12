@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-12 · Limpeza do editor single-realm + superfície de asset/componente Gateway + plugins de jogo residentes em assets — ForgeaX</title>
+<title>2026-07-12 · Runtime Tier 2 do engine + editor single-realm + superfície Gateway + plugins residentes em assets — ForgeaX</title>
 <meta name="description" content="Limpeza single-realm removendo bridges iframe/VAG legadas; superfície de leitura import+delete+componente Gateway; plugins de jogo residentes em assets; roteamento de query do mundo ativo; operação addSceneAssetToScene; layout de dock compartilhado; bridge de diagnóstico DEV persiste no Play." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-12 · Limpeza do editor single-realm + superfície de asset/componente Gateway + plugins de jogo residentes em assets — ForgeaX" />
+<meta property="og:title" content="2026-07-12 · Runtime Tier 2 do engine + editor single-realm + superfície Gateway + plugins residentes em assets — ForgeaX" />
 <meta property="og:description" content="Limpeza single-realm removendo bridges iframe/VAG legadas; superfície de leitura import+delete+componente Gateway; plugins de jogo residentes em assets; roteamento de query do mundo ativo; operação addSceneAssetToScene; layout de dock compartilhado; bridge de diagnóstico DEV persiste no Play." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-07-12.html" />
@@ -69,7 +69,7 @@
   <article class="read article">
     <a class="back" href="/pt/changelog/">← Registro de alterações</a>
     <div class="meta"><span class="tag brand">Diário</span><span>2026-07-12</span></div>
-    <h1>Limpeza do editor single-realm + superfície de asset/componente Gateway + plugins de jogo residentes em assets</h1>
+    <h1>Runtime Tier 2 do engine + editor single-realm + superfície Gateway + plugins residentes em assets</h1>
     <p class="standfirst">O editor conclui sua migração single-realm — todas as projeções de protocolo iframe legadas, bridges de telemetria VAG e hosts EditSurface obsoletos são aposentados, substituídos por um PanelBridge tipado e layout de dock compartilhado. A API Gateway ganha uma superfície completa de leitura de assets e componentes, importação/exclusão convergida e plugins de jogo residentes em assets.</p>
     <div class="prose"><h3>Editor single-realm: aposentadoria do protocolo legado</h3>
 <p>O editor conclui sua migração single-realm:</p>
@@ -93,6 +93,16 @@
 <p>Plugins podem hospedar sua lógica em um diretório de assets do jogo. Componentes são carregados no modo Edit, sistemas no modo Play.</p>
 <h3>Bridge de diagnóstico DEV persistente</h3>
 <p>A bridge de diagnóstico do editor em processo permanece ativa durante o modo Play.</p>
+<h3>Engine: decomposição do runtime Tier 2</h3>
+<ul>
+<li><strong>assets-runtime</strong>: carregamento de assets, registro e ciclo de vida desacoplados do loop de renderização principal</li>
+<li><strong>picking</strong>: picking de entidades assistido por GPU como subsistema independente</li>
+<li><strong>graphics-extras</strong>: efeitos de pós-processamento, resolução HDR e utilitários gráficos extraídos do renderizador monolítico</li>
+</ul>
+<h3>Engine: vec-collapse em lote + transient em nível de campo</h3>
+<p>Campos vetoriais dos componentes Light, Camera, Glyph, Tilemap e Collider agora são armazenados e transmitidos como arrays compactos. Anotações transient em nível de campo evitam que estado efêmero do runtime seja persistido em disco. A serialização de Transform também ganha suporte a vec fields e transient por campo.</p>
+<h3>Engine: <code>instantiateSceneFlat</code>, correção de pós-processamento, CSM e mais</h3>
+<p>Nova API <code>instantiateSceneFlat</code> abre cenas sem entidade raiz sintética. Grupos de bind de pós-processamento indexados por identidade de <code>TextureView</code>. Recálculo do CSM direcional na camada de merge para configurações câmera+luz entre mundos. Caminho rápido em idle para <code>FORGEAX_ENGINE_RHI_DEBUG</code>. Correção de culling de frustum de sprites. <code>fbx-wasm</code> empacotado como <code>.tar.gz</code> com arquivo glue <code>.mjs</code>.</p>
 <h3>Correções</h3>
 <ul>
 <li><strong>Viewport</strong>: prevenção do falso positivo <code>render-system-no-camera</code> ao criar um jogo</li>

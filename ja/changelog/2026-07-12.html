@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-12 · シングルレルムエディタクリーンアップ + Gatewayアセット/コンポーネントサーフェス + アセット常駐ゲームプラグイン — ForgeaX</title>
+<title>2026-07-12 · エンジンTier 2ランタイム + シングルレルムエディタ + Gatewayアセット/コンポーネントサーフェス + アセット常駐プラグイン — ForgeaX</title>
 <meta name="description" content="シングルレルムエディタのレガシーiframe/VAGブリッジ廃止、Gatewayアセットインポート+削除+コンポーネント読み取りサーフェス、アセット常駐ゲームプラグイン、アクティブワールドクエリルーティング、addSceneAssetToSceneオペレーション、共有ドックレイアウト、Play中のDEV診断ブリッジ持続。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-12 · シングルレルムエディタクリーンアップ + Gatewayアセット/コンポーネントサーフェス + アセット常駐ゲームプラグイン — ForgeaX" />
+<meta property="og:title" content="2026-07-12 · エンジンTier 2ランタイム + シングルレルムエディタ + Gatewayアセット/コンポーネントサーフェス + アセット常駐プラグイン — ForgeaX" />
 <meta property="og:description" content="シングルレルムエディタのレガシーiframe/VAGブリッジ廃止、Gatewayアセットインポート+削除+コンポーネント読み取りサーフェス、アセット常駐ゲームプラグイン、アクティブワールドクエリルーティング、addSceneAssetToSceneオペレーション、共有ドックレイアウト、Play中のDEV診断ブリッジ持続。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-07-12.html" />
@@ -69,7 +69,7 @@
   <article class="read article">
     <a class="back" href="/ja/changelog/">← 変更履歴</a>
     <div class="meta"><span class="tag brand">毎日</span><span>2026-07-12</span></div>
-    <h1>シングルレルムエディタクリーンアップ + Gatewayアセット/コンポーネントサーフェス + アセット常駐ゲームプラグイン</h1>
+    <h1>エンジンTier 2ランタイム + シングルレルムエディタ + Gatewayアセット/コンポーネントサーフェス + アセット常駐プラグイン</h1>
     <p class="standfirst">エディタがシングルレルム移行を完了しました。すべてのレガシーiframeプロトコル投影、VAGテレメトリブリッジ、廃止されたEditSurfaceホストが廃止され、型付きPanelBridgeと共有ドックレイアウトに置き換えられました。Gateway APIはアセット・コンポーネントの読み取りサーフェス、統合されたインポート/削除、アセット常駐ゲームプラグイン（コンポーネントはEdit、システムはPlayでロード）を獲得しました。</p>
     <div class="prose"><h3>シングルレルムエディタ：レガシープロトコルの廃止</h3>
 <p>エディタがシングルレルム移行を完了しました。以前レガシーiframeプロジェクション経由で行われていた通信はすべてインプロセスで処理されます：</p>
@@ -93,6 +93,22 @@
 <p>プラグインがゲームアセットディレクトリ内にロジックを配置できるようになりました。コンポーネントはEditモードで、システムはPlayモードでロードされます。</p>
 <h3>DEV診断ブリッジ：Playモード中も持続</h3>
 <p>インプロセスエディタ診断ブリッジがPlayモード中も常にアクティブになりました。</p>
+<h3>エンジン：Tier 2ランタイム分解</h3>
+<ul>
+<li><strong>assets-runtime</strong>：アセット読み込み・レジストリ・ライフサイクル管理をコアレンダーループから分離</li>
+<li><strong>picking</strong>：GPU支援エンティティピッキングを独立サブシステム化</li>
+<li><strong>graphics-extras</strong>：ポストプロセス・HDRリゾルブ・グラフィクスユーティリティをモノリシックレンダラーから抽出</li>
+</ul>
+<h3>エンジン：コンポーネントバッチvec-collapse + フィールドレベルtransient</h3>
+<p>Light・Camera・Glyph・Tilemap・Colliderコンポーネントのベクトルフィールドがコンパクト配列で保存・転送されるようになり、シリアライズオーバーヘッドを削減。フィールドレベルtransientアノテーションによりエフェメラルなランタイム状態がディスクに保存されなくなりました。</p>
+<h3>エンジン：<code>instantiateSceneFlat</code></h3>
+<p>合成ルートエンティティを挿入せずにシーンを開く<code>instantiateSceneFlat</code> APIが追加されました。エディタでの配置のとおりシーングラフ最上位にエンティティが表示されます。</p>
+<h3>エンジン：ポストプロセスリサイズ修正</h3>
+<p>ポストプロセスバインドグループが<code>TextureView</code>アイデンティティでキー化されるようになり、ビューポートリサイズ時の古いバインドグループが残らなくなりました。</p>
+<h3>エンジン：CSMクロスワールド修正</h3>
+<p>クロスワールドカメラ+ライト構成検出時に方向光カスケードシャドウマップをマージレイヤーで再計算するよう修正。</p>
+<h3>エンジン：RHIデバッグアイドル高速パス・スプライト視錐台カリング修正・FBXローダー修正</h3>
+<p><code>FORGEAX_ENGINE_RHI_DEBUG=1</code>のアイドル時コストがほぼゼロに。スプライト視錐台カリングの誤動作を修正。<code>fbx-wasm</code>パッケージが<code>.mjs</code>グルーファイルを含む<code>.tar.gz</code>として配布されるよう修正。</p>
 <h3>修正</h3>
 <ul>
 <li><strong>ビューポート</strong>：ゲーム作成時の<code>render-system-no-camera</code>偽陽性を防止</li>

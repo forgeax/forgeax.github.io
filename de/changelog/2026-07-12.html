@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-12 · Single-Realm-Editor-Bereinigung + Gateway-Asset/Komponenten-Oberfläche + Asset-residente Spielplugins — ForgeaX</title>
+<title>2026-07-12 · Engine Tier-2-Runtime + Single-Realm-Editor + Gateway-Asset/Komponenten + Asset-residente Plugins — ForgeaX</title>
 <meta name="description" content="Single-Realm-Bereinigung mit Entfernung veralteter iframe/VAG-Brücken; Gateway-Asset-Import+Delete+Komponenten-Leseoberfläche; asset-residente Spielplugins; aktive-Welt-Query-Routing; addSceneAssetToScene-Operation; gemeinsames Dock-Layout; DEV-Diagnosebrücke bleibt im Play-Modus aktiv." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-12 · Single-Realm-Editor-Bereinigung + Gateway-Asset/Komponenten-Oberfläche + Asset-residente Spielplugins — ForgeaX" />
+<meta property="og:title" content="2026-07-12 · Engine Tier-2-Runtime + Single-Realm-Editor + Gateway-Asset/Komponenten + Asset-residente Plugins — ForgeaX" />
 <meta property="og:description" content="Single-Realm-Bereinigung mit Entfernung veralteter iframe/VAG-Brücken; Gateway-Asset-Import+Delete+Komponenten-Leseoberfläche; asset-residente Spielplugins; aktive-Welt-Query-Routing; addSceneAssetToScene-Operation; gemeinsames Dock-Layout; DEV-Diagnosebrücke bleibt im Play-Modus aktiv." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-07-12.html" />
@@ -69,7 +69,7 @@
   <article class="read article">
     <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
     <div class="meta"><span class="tag brand">Täglich</span><span>2026-07-12</span></div>
-    <h1>Single-Realm-Editor-Bereinigung + Gateway-Asset/Komponenten-Oberfläche + Asset-residente Spielplugins</h1>
+    <h1>Engine Tier-2-Runtime + Single-Realm-Editor + Gateway-Asset/Komponenten + Asset-residente Plugins</h1>
     <p class="standfirst">Der Editor schließt seine Single-Realm-Migration ab — alle Legacy-iframe-Protokollprojektionen, VAG-Telemetriebrücken und veralteten EditSurface-Hosts werden durch eine typisierte PanelBridge und gemeinsames Dock-Layout ersetzt. Die Gateway-API erhält eine vollständige Asset- und Komponenten-Leseoberfläche, konvergiertes Import/Delete und asset-residente Spielplugins.</p>
     <div class="prose"><h3>Single-Realm-Editor: Entfernung des Legacy-Protokolls</h3>
 <p>Der Editor schließt seine Single-Realm-Migration ab:</p>
@@ -93,6 +93,16 @@
 <p>Plugins können ihre Logik in einem Spielasset-Verzeichnis bereitstellen. Komponenten werden im Edit-Modus, Systeme im Play-Modus geladen.</p>
 <h3>DEV-Diagnosebrücke: dauerhaft aktiv</h3>
 <p>Die In-Process-Editor-Diagnosebrücke bleibt während des Play-Modus aktiv.</p>
+<h3>Engine: Tier-2-Runtime-Zerlegung</h3>
+<ul>
+<li><strong>assets-runtime</strong>: Asset-Laden, -Registry und -Lebenszyklus vom Core-Render-Loop entkoppelt</li>
+<li><strong>picking</strong>: GPU-gestütztes Entity-Picking als eigenständiges Subsystem</li>
+<li><strong>graphics-extras</strong>: Postprocessing-Effekte, HDR-Auflösung und Grafik-Utilities aus dem monolithischen Renderer extrahiert</li>
+</ul>
+<h3>Engine: Batch-Vec-Collapse + feldweises Transient</h3>
+<p>Vektorfelder in Light-, Camera-, Glyph-, Tilemap- und Collider-Komponenten werden jetzt als kompakte Arrays gespeichert und übertragen. Feldweise Transient-Annotierungen verhindern, dass ephemerer Runtime-Zustand auf Disk gespeichert wird. Transform-Serialisierung unterstützt ebenfalls Vec-Felder und feldweises Transient.</p>
+<h3>Engine: <code>instantiateSceneFlat</code>, Postprocessing-Fix, CSM und weitere Korrekturen</h3>
+<p>Neue <code>instantiateSceneFlat</code>-API öffnet Szenen ohne synthetische Wurzel-Entity. Postprocessing-Bindgruppen werden nach <code>TextureView</code>-Identität gehasht. Direktionales CSM wird bei Merge-Layer für Cross-World-Kamera+Licht neu berechnet. <code>FORGEAX_ENGINE_RHI_DEBUG</code> erhält einen Leerlauf-Fast-Path. Sprite-Frustum-Culling-Fix. <code>fbx-wasm</code> als <code>.tar.gz</code> mit <code>.mjs</code>-Glue-Datei verpackt.</p>
 <h3>Korrekturen</h3>
 <ul>
 <li><strong>Viewport</strong>: falsches <code>render-system-no-camera</code>-Positiv bei Spielerstellung verhindert</li>
