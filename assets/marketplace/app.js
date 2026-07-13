@@ -749,6 +749,27 @@
       }).join("");
     }
 
+    // Render the "Dedicated agent" section for workbench plugins with a preferredAgent binding.
+    // Data source: build-site.mjs > WB_PREFERRED_AGENT, injected into MK_DATA[slug].preferredAgent.
+    function mountPreferredAgent(d) {
+      var wrap = $("mkmAgentWrap");
+      if (!wrap) return;
+      var ag = d && d.preferredAgent;
+      if (!ag || !ag.agent) { wrap.hidden = true; return; }
+      wrap.hidden = false;
+      var av = $("mkmAgentAvatar");
+      if (av) {
+        // 切插件时头像 agent 可能变化：先清掉旧 <video>，避免 ensureVideo 复用旧 source。
+        var oldVid = av.querySelector("video");
+        if (oldVid) oldVid.parentNode.removeChild(oldVid);
+        av.setAttribute("data-agent", ag.avatarAgent || ag.agent);
+        if (window.forgeaxEnsureAvatar) window.forgeaxEnsureAvatar(av);
+      }
+      var nameEl = $("mkmAgentName"); if (nameEl) nameEl.textContent = ag.name || "";
+      var roleEl = $("mkmAgentRole"); if (roleEl) roleEl.textContent = ag.title || "";
+      var descEl = $("mkmAgentDesc"); if (descEl) descEl.textContent = ag.desc || "";
+    }
+
     // Studio viewport panel label: prefer the manifest's per-slug label, else the item's
     // workbench cap, else the slug (wb- prefix stripped).
     function mountStudioChrome(d) {
@@ -805,6 +826,7 @@
       mountModels(d);
       mountTutorial(d);
       mountHistory(d);
+      mountPreferredAgent(d);
       mountHudChrome(d, item);
 
       var meta = [];

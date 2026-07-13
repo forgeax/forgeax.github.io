@@ -71,6 +71,8 @@
   function initCard(item) {
     var kind = item.getAttribute("data-kind") || "";
     if (ICON_KINDS.indexOf(kind) < 0) return;
+    // 已有专属 agent 徽章的 workbench 卡片：不再挂载大 icon（避免右上角与徽章重叠、卡片过挤）
+    if (item.querySelector(".mk-agent-badge")) return;
 
     item.classList.add("is-mk-card");
     if (kind === "workbench") item.classList.add("is-workbench");
