@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-10 · Runtime Tier 2 + limpieza del editor + APIs de assets/componentes de Gateway + plugins de assets integrados — ForgeaX</title>
+<meta name="description" content="v0.3.15: runtime Tier 2, limpieza del editor de reino único, correcciones de jerarquía Edit/Play, visuales Hellforge, importación array-TRS y renderizado estable al redimensionar Play." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-10 · Runtime Tier 2 + limpieza del editor + APIs de assets/componentes de Gateway + plugins de assets integrados — ForgeaX" />
+<meta property="og:description" content="v0.3.15: runtime Tier 2, limpieza del editor de reino único, correcciones de jerarquía Edit/Play, visuales Hellforge, importación array-TRS y renderizado estable al redimensionar Play." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-07-10.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-07-10.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-10.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-10.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-10.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-10.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-10.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-10.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-10.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-10.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-10.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=86c6d371" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-10.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-10.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-10.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-10.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-07-10.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-07-10.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-10.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-10.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-07-10</span></div>
+    <h1>Runtime Tier 2 + limpieza del editor + APIs de assets/componentes de Gateway + plugins de assets integrados</h1>
+    <p class="standfirst">La versión v0.3.15 del 10 de julio incorpora un editor de reino único, jerarquía coherente entre Edit y Play, mejoras visuales de Hellforge, importación de assets array-TRS y renderizado más estable al redimensionar Play.</p>
+    <div class="prose"><h3>Editor y runtime</h3>
+<ul>
+<li>El editor ahora usa un layout Dock compartido y gestionado por el host, con un runtime de reino único más limpio.</li>
+<li>Edit y Play comparten el comportamiento de jerarquía, incluido el cambio de padre conservando la posición mundial y una ruta Play de solo lectura.</li>
+<li>Las APIs de assets y componentes Tier 2 se unificaron mediante Gateway.</li>
+</ul>
+<h3>Visuales y assets</h3>
+<ul>
+<li>Hellforge incorpora skybox HDR, postprocesado en runtime y partículas ambientales.</li>
+<li>La importación GLB/FBX migró al esquema de transformaciones array-TRS y mejoró el manejo de artefactos WASM de FBX.</li>
+<li>El redimensionamiento de Play reconstruye de forma segura los bindings de postprocesado y evita enviar texturas HDR destruidas.</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>
