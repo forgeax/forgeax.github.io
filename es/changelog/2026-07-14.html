@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-14 · Overlay de depuración de colisionadores, assets más seguros e importación de assets IA al juego — ForgeaX</title>
+<meta name="description" content="Overlay de colisionadores en viewport, CRUD de assets externos, prevención de pérdida de datos, importación de assets IA, sincronización física, funciones easing, manejo de errores CLI y corrección de inicio en Windows." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-14 · Overlay de depuración de colisionadores, assets más seguros e importación de assets IA al juego — ForgeaX" />
+<meta property="og:description" content="Overlay de colisionadores en viewport, CRUD de assets externos, prevención de pérdida de datos, importación de assets IA, sincronización física, funciones easing, manejo de errores CLI y corrección de inicio en Windows." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-07-14.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-14.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=f6076b43" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/docs/" data-nav="/docs/">Documentos</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/games/" data-nav="/games/">Juegos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
+      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-14.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-14.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-14.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-14.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-07-14.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-07-14.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-14.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-14.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
+          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">A diario</span><span>2026-07-14</span></div>
+    <h1>Overlay de depuración de colisionadores, assets más seguros e importación de assets IA al juego</h1>
+    <p class="standfirst">Hoy se añade un overlay de colisionadores en tiempo real en el viewport, se previene la pérdida de datos al guardar, se agrega CRUD de assets externos y se permite importar assets 3D generados por IA directamente al juego.</p>
+    <div class="prose"><h3>Overlay de depuración de colisionadores</h3>
+<ul>
+<li>Al seleccionar una entidad con un componente Collider, se proyecta un wireframe en tiempo real en el viewport para facilitar el ajuste de formas físicas.</li>
+<li>Los materiales del gizmo ya no proyectan sombras, manteniendo limpio el viewport.</li>
+</ul>
+<h3>Gestión de assets más segura</h3>
+<ul>
+<li>Los assets externos almacenados fuera del proyecto se gestionan mediante CRUD en el Content Browser, respaldado por archivos <code>.meta.json</code>.</li>
+<li>Guardar una escena fusiona automáticamente assets inline huérfanos, evitando la pérdida de datos.</li>
+<li>Deshacer la eliminación de entidades restaura correctamente los materiales asociados mediante el round-trip de GUID de assets de escena.</li>
+<li>Las duplicaciones anidadas dentro de transacciones se manejan de forma fiable.</li>
+<li>El Content Browser actualiza su catálogo al recargar, mostrando inmediatamente los assets montados tardíamente.</li>
+</ul>
+<h3>Importación de assets IA al juego</h3>
+<ul>
+<li>Los workbenches Gen3D y AI Asset ofrecen la acción &quot;Import to Game&quot;, permitiendo exportar modelos 3D generados por IA como personajes jugables directamente al proyecto.</li>
+</ul>
+<h3>Mejoras del motor</h3>
+<ul>
+<li>Los colisionadores físicos sincronizan su pose desde el componente Transform, corrigiendo el desfase entre formas visuales y físicas.</li>
+<li>Un nuevo namespace <code>easing</code> proporciona <code>smoothstep</code> y <code>smootherstep</code>.</li>
+<li><code>decodeImageBytes</code> está disponible en tiempo de ejecución para cargar texturas desde buffers de bytes.</li>
+<li>Las importaciones FBX hidratan su decodificador WASM automáticamente al instalar el paquete.</li>
+<li>El mount-override de componentes y los round-trips de referencias compartidas son ahora completamente fiables.</li>
+</ul>
+<h3>CLI y permisos</h3>
+<ul>
+<li>Los errores que antes desaparecían como respuestas vacías en la UI ahora se sintetizan en mensajes legibles.</li>
+<li>Un trust-gate unificado <code>settings.permissions</code> reemplaza las comprobaciones ad-hoc en los tres kernels.</li>
+</ul>
+<h3>Correcciones</h3>
+<ul>
+<li>Studio en Windows usa <code>tasklist</code> para verificar la supervivencia de procesos hijos, corrigiendo bloqueos de inicio en algunas máquinas.</li>
+<li>La selección de escenas del launcher usa GUID en lugar de índice, evitando selecciones erróneas tras reordenar escenas.</li>
+<li>Cow Survivor: se acotaron los errores de configuración física del jugador y se instancian los visuales de gameplay por GUID.</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones diarias</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Sitio</h4>
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/blog/">Blog</a>
+    <a href="/es/docs/">Documentos</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/games/">Juegos</a>
+    <a href="/es/marketplace/">Mercado</a>
+  </div>
+  <div class="col"><h4>Proyecto</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>

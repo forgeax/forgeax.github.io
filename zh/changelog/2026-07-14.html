@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-14 · 碰撞体调试叠加层、更安全的资源流程与 AI 资源导入游戏 — ForgeaX</title>
+<meta name="description" content="视口碰撞体调试叠加层、外部资源 CRUD、保存数据丢失防护、AI 资源导入游戏、物理同步、缓动函数、CLI 错误处理及 Windows 启动修复。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-14 · 碰撞体调试叠加层、更安全的资源流程与 AI 资源导入游戏 — ForgeaX" />
+<meta property="og:description" content="视口碰撞体调试叠加层、外部资源 CRUD、保存数据丢失防护、AI 资源导入游戏、物理同步、缓动函数、CLI 错误处理及 Windows 启动修复。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-14.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-14.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-14.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=f6076b43" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/docs/" data-nav="/docs/">文档</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-14.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-14.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-14.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-14.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-14.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-14.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-14.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-14.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-07-14</span></div>
+    <h1>碰撞体调试叠加层、更安全的资源流程与 AI 资源导入游戏</h1>
+    <p class="standfirst">今天的更新在视口中引入了实时碰撞体调试叠加层，保存时防止数据丢失，新增外部资源 CRUD 管理，并支持将 AI 生成的 3D 资源直接导入游戏。</p>
+    <div class="prose"><h3>碰撞体调试叠加层</h3>
+<ul>
+<li>选中带有 Collider 组件的实体时，视口会投影实时线框叠加层，让物理形状调整更加直观。</li>
+<li>Gizmo 和参数 Gizmo 材质不再投射阴影，保持视口整洁。</li>
+</ul>
+<h3>更安全的资源管理</h3>
+<ul>
+<li>存储在项目外部的资源现在可以通过 Content Browser 的 CRUD 操作管理，由 <code>.meta.json</code> sidecar 文件驱动。</li>
+<li>保存场景时会自动合并孤立的内联资源，避免因数据丢失而中断保存。</li>
+<li>撤销删除实体时，关联的材质通过场景资源 GUID 往返正确恢复。</li>
+<li>事务内嵌套复制操作现在能可靠处理。</li>
+<li>Content Browser 在重新加载时刷新目录，晚挂载的资源立即可见。</li>
+</ul>
+<h3>AI 资源导入游戏</h3>
+<ul>
+<li>Gen3D 和 AI Asset 工作台新增&quot;导入到游戏&quot;操作，可将 AI 生成的 3D 模型作为可玩角色直接导出到项目中。</li>
+</ul>
+<h3>引擎改进</h3>
+<ul>
+<li>物理碰撞体现在从 Transform 组件同步姿态，修复了视觉与物理形状之间的偏移。</li>
+<li>新增 <code>easing</code> 数学命名空间，提供 <code>smoothstep</code> 和 <code>smootherstep</code> 工具函数。</li>
+<li>运行时公开 <code>decodeImageBytes</code>，支持从原始字节缓冲区加载纹理。</li>
+<li>FBX 导入在包安装时自动加载 WASM 解码器，无需手动操作。</li>
+<li>组件挂载覆盖和共享引用往返现在完全可靠。</li>
+</ul>
+<h3>CLI 与权限</h3>
+<ul>
+<li>之前消失为空白 UI 响应的错误信息，现在会合成为可读的错误消息。</li>
+<li>统一的 <code>settings.permissions</code> 信任拦截面取代了三个内核中的分散检查。</li>
+</ul>
+<h3>Bug 修复</h3>
+<ul>
+<li>Windows 上 Studio 使用 <code>tasklist</code> 检查子进程存活状态，修复了部分机器上的启动卡住问题。</li>
+<li>启动器场景选择改用 GUID 而非索引，防止场景重排后选错。</li>
+<li>Cow Survivor：收窄了玩家物理初始化错误，并通过 GUID 实例化游戏视觉元素。</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>
