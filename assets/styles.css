@@ -14,15 +14,16 @@
 @import url('/assets/forgeax/spotlight-surface.css?v=765cc905');
 @import url('/assets/forgeax/immersive.css?v=917b2301');
 @import url('/assets/forgeax/visual-guide.css?v=8d98e4de');
-@import url('/assets/forgeax/hero-cta.css?v=f84f34f5');
+@import url('/assets/forgeax/hero-cta.css?v=71fe7f3b');
 @import url('/assets/forgeax/link-action.css?v=2b7aa7b8');
 @import url('/assets/forgeax/manifest-line.css?v=d8199bfb');
 @import url('/assets/forgeax/page-head-premium.css?v=1ceccf31');
 @import url('/assets/forgeax/blog-list.css?v=55f96b00');
-@import url('/assets/forgeax/icon-system.css?v=913c38c1');
+@import url('/assets/forgeax/icon-system.css?v=cafd054d');
 @import url('/assets/forgeax/neon-cta.css?v=210a9c52');
 @import url('/assets/forgeax/marketplace-bar.css?v=e95ac98b');
 @import url('/assets/forgeax/marketplace-cards.css?v=73a50263');
+@import url('/assets/forgeax/games-premium.css?v=745bd429');
 @import url('/assets/forgeax/marketplace-agents.css?v=c87e9203');
 @import url('/assets/forgeax/docs-premium.css?v=0be857a4');
 @import url('/assets/forgeax/tutorials-list.css?v=9993de3f');
@@ -500,7 +501,15 @@ code{overflow-wrap:anywhere;word-break:break-word}
 
 /* ── nav layout — JS centers links in brand↔actions slot (see layoutNavLinks in site.js) */
 @media (min-width:821px){
-  .forgeax-site .nav-inner{position:relative;max-width:min(1280px,calc(100% - 40px))}
+  /* Shared content rail. `width` is required on main: body is a column flex container and
+     main.wrap uses margin:auto, so without an explicit width flex shrink-wraps to content
+     (~intrinsic) instead of filling up to max-width — which looked like ~980px on 4K. */
+  .forgeax-site .nav-inner,
+  .forgeax-site main.wrap.gm-page{
+    position:relative;
+    width:min(1280px,calc(100% - 40px));
+    max-width:min(1280px,calc(100% - 40px));
+  }
   .forgeax-site .nav-brand{flex:0 0 auto!important;z-index:4}
   .forgeax-site .nav-right{flex:0 0 auto!important;margin-left:auto!important;z-index:4}
 }

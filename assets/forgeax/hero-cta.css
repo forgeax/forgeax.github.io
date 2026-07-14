@@ -4,7 +4,8 @@
   gap: 16px;
 }
 
-.forgeax-site.has-immersive .hero .cta .btn {
+.forgeax-site.has-immersive .hero .cta .btn,
+.forgeax-site.has-games-immersive .cta .btn {
   --halo-angle: 0deg;
   --cta-flow-dur: 3.2s;
   position: relative;
@@ -18,6 +19,7 @@
   font-weight: 600;
   letter-spacing: 0.015em;
   border: 1px solid transparent;
+  cursor: pointer;
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   box-shadow:
@@ -29,13 +31,15 @@
     background var(--site-dur-hover) var(--halo-ease);
 }
 
-.forgeax-site.has-immersive .hero .cta .btn > span:not(.btn-fx) {
+.forgeax-site.has-immersive .hero .cta .btn > span:not(.btn-fx),
+.forgeax-site.has-games-immersive .cta .btn > span:not(.btn-fx) {
   position: relative;
   z-index: 3;
 }
 
 /* flowing neon edge */
-.forgeax-site.has-immersive .hero .cta .btn::before {
+.forgeax-site.has-immersive .hero .cta .btn::before,
+.forgeax-site.has-games-immersive .cta .btn::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -49,7 +53,8 @@
   mask-composite: exclude;
 }
 
-.forgeax-site.has-immersive .hero .cta .btn::after {
+.forgeax-site.has-immersive .hero .cta .btn::after,
+.forgeax-site.has-games-immersive .cta .btn::after {
   content: "";
   position: absolute;
   inset: 1px;
@@ -65,7 +70,8 @@
 }
 
 /* primary — dense frosted plate + synced inner halo + particles */
-.forgeax-site.has-immersive .hero .cta .btn.primary {
+.forgeax-site.has-immersive .hero .cta .btn.primary,
+.forgeax-site.has-games-immersive .cta .btn.primary {
   color: var(--text-primary);
   background:
     linear-gradient(
@@ -85,7 +91,8 @@
     0 8px 28px rgba(0, 0, 0, 0.22);
 }
 
-.forgeax-site.has-immersive .hero .cta .btn.primary::before {
+.forgeax-site.has-immersive .hero .cta .btn.primary::before,
+.forgeax-site.has-games-immersive .cta .btn.primary::before {
   background: conic-gradient(
     from var(--halo-angle) at 50% 50%,
     transparent 0deg,
@@ -102,7 +109,8 @@
   animation: halo-edge-flow var(--cta-flow-dur) linear infinite;
 }
 
-.forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx {
+.forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx,
+.forgeax-site.has-games-immersive .cta .btn.primary .btn-fx {
   position: absolute;
   inset: 1px;
   border-radius: inherit;
@@ -112,7 +120,8 @@
 }
 
 /* inner halo — follows border hotspot */
-.forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::before {
+.forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::before,
+.forgeax-site.has-games-immersive .cta .btn.primary .btn-fx::before {
   content: "";
   position: absolute;
   inset: -55%;
@@ -134,7 +143,8 @@
 }
 
 /* micro particles — subtle drift + twinkle */
-.forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::after {
+.forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::after,
+.forgeax-site.has-games-immersive .cta .btn.primary .btn-fx::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -180,7 +190,8 @@
   }
 }
 
-.forgeax-site.has-immersive .hero .cta .btn.primary:hover {
+.forgeax-site.has-immersive .hero .cta .btn.primary:hover,
+.forgeax-site.has-games-immersive .cta .btn.primary:hover {
   transform: translate3d(0, -1px, 0);
   box-shadow:
     inset 0 1px 0 color-mix(in srgb, #fff 14%, transparent),
@@ -190,13 +201,15 @@
     0 12px 32px rgba(0, 0, 0, 0.24);
 }
 
-.forgeax-site.has-immersive .hero .cta .btn.primary:hover .btn-fx::before {
+.forgeax-site.has-immersive .hero .cta .btn.primary:hover .btn-fx::before,
+.forgeax-site.has-games-immersive .cta .btn.primary:hover .btn-fx::before {
   opacity: 1;
   filter: blur(18px);
 }
 
 /* ghost — frosted neutral neon edge, flow on hover */
-.forgeax-site.has-immersive .hero .cta .btn.ghost {
+.forgeax-site.has-immersive .hero .cta .btn.ghost,
+.forgeax-site.has-games-immersive .cta .btn.ghost {
   color: rgba(255, 255, 255, 0.9);
   background:
     linear-gradient(
@@ -212,7 +225,8 @@
     ) border-box !important;
 }
 
-.forgeax-site.has-immersive .hero .cta .btn.ghost::before {
+.forgeax-site.has-immersive .hero .cta .btn.ghost::before,
+.forgeax-site.has-games-immersive .cta .btn.ghost::before {
   background: conic-gradient(
     from var(--halo-angle) at 50% 50%,
     transparent 0deg,
@@ -226,18 +240,21 @@
   transition: opacity var(--halo-fade-dur) var(--halo-ease);
 }
 
-.forgeax-site.has-immersive .hero .cta .btn.ghost:hover {
+.forgeax-site.has-immersive .hero .cta .btn.ghost:hover,
+.forgeax-site.has-games-immersive .cta .btn.ghost:hover {
   transform: translate3d(0, -1px, 0);
   color: #fff;
   box-shadow: var(--glass-shadow-hover), 0 10px 28px rgba(0, 0, 0, 0.2);
 }
 
-.forgeax-site.has-immersive .hero .cta .btn.ghost:hover::before {
+.forgeax-site.has-immersive .hero .cta .btn.ghost:hover::before,
+.forgeax-site.has-games-immersive .cta .btn.ghost:hover::before {
   opacity: 0.85;
   animation: halo-edge-flow var(--halo-flow-dur, 4s) linear infinite;
 }
 
-.forgeax-site.has-immersive .hero .cta .btn:active {
+.forgeax-site.has-immersive .hero .cta .btn:active,
+.forgeax-site.has-games-immersive .cta .btn:active {
   transform: translate3d(0, 0, 0);
 }
 
@@ -275,9 +292,13 @@
 
 @media (prefers-reduced-motion: reduce) {
   .forgeax-site.has-immersive .hero .cta .btn.primary::before,
+  .forgeax-site.has-games-immersive .cta .btn.primary::before,
   .forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::before,
+  .forgeax-site.has-games-immersive .cta .btn.primary .btn-fx::before,
   .forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::after,
-  .forgeax-site.has-immersive .hero .cta .btn.ghost:hover::before {
+  .forgeax-site.has-games-immersive .cta .btn.primary .btn-fx::after,
+  .forgeax-site.has-immersive .hero .cta .btn.ghost:hover::before,
+  .forgeax-site.has-games-immersive .cta .btn.ghost:hover::before {
     animation: none;
   }
 }

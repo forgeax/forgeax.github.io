@@ -1,0 +1,951 @@
+/* Games gallery + detail — frosted glass, flowing halos, silk motion (aligned with homepage / marketplace) */
+
+.forgeax-site.has-games-immersive .gm-page {
+  position: relative;
+}
+
+/* ── page head ─────────────────────────────────────────────────────────── */
+.forgeax-site.has-games-immersive .gm-head.page-head--cinema h1 {
+  letter-spacing: -0.04em;
+}
+
+.forgeax-site.has-games-immersive .gm-head.page-head--cinema p {
+  color: var(--text-secondary);
+}
+
+/* ── shared glass control spec ─────────────────────────────────────────── */
+.forgeax-site .gm-pb,
+.forgeax-site .gm-fchip {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border-color: var(--glass-border-subtle);
+  box-shadow: var(--glass-shadow);
+  transition:
+    transform var(--site-dur-hover) var(--site-ease-silk),
+    background var(--site-dur-hover) var(--site-ease-silk),
+    border-color var(--site-dur-hover) var(--site-ease-out),
+    box-shadow var(--site-dur-hover) var(--site-ease-silk),
+    color var(--site-dur-hover) var(--site-ease-out);
+}
+
+.forgeax-site.has-games-immersive .gm-search {
+  --halo-angle: 0deg;
+  --gm-search-flow: 4.8s;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  min-width: 228px;
+  flex: 0 1 auto;
+  padding: 0 15px 0 13px;
+  margin: 0;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: text;
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--glass-frost) 100%, transparent) 0%,
+      transparent 52%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-background-canvas) 16%, transparent),
+      color-mix(in srgb, var(--color-background-canvas) 22%, transparent)
+    ) padding-box,
+    linear-gradient(
+      128deg,
+      rgba(var(--theme-cool-a), 0.2) 0%,
+      rgba(255, 255, 255, 0.09) 44%,
+      rgba(var(--theme-cool-b), 0.16) 100%
+    ) border-box;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--glass-shadow);
+  transition:
+    box-shadow var(--site-dur-hover) var(--site-ease-silk),
+    background var(--site-dur-hover) var(--site-ease-silk);
+}
+
+.forgeax-site.has-games-immersive .gm-search::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  background: conic-gradient(
+    from var(--halo-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(var(--theme-cool-a), 0.08) 16deg,
+    rgba(var(--theme-cool-a), 0.46) 54deg,
+    rgba(255, 255, 255, 0.28) 72deg,
+    rgba(var(--theme-cool-c), 0.32) 88deg,
+    rgba(var(--theme-cool-b), 0.38) 108deg,
+    rgba(var(--theme-cool-a), 0.1) 148deg,
+    transparent 192deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: opacity var(--halo-fade-dur, 0.38s) var(--halo-ease, var(--site-ease-silk));
+}
+
+.forgeax-site.has-games-immersive .gm-search::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.55;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, #fff 34%, rgba(var(--theme-cool-a), 0.2)) 38%,
+    color-mix(in srgb, #fff 36%, rgba(var(--theme-cool-b), 0.16)) 62%,
+    transparent
+  );
+}
+
+.forgeax-site.has-games-immersive .gm-search:focus-within {
+  box-shadow:
+    var(--glass-shadow-hover),
+    0 0 0 1px rgba(var(--theme-cool-a), 0.12),
+    0 0 32px -10px rgba(var(--theme-cool-a), 0.28),
+    0 0 52px -18px rgba(var(--theme-cool-b), 0.18);
+}
+
+.forgeax-site.has-games-immersive .gm-search:focus-within::before {
+  opacity: 1;
+  animation: halo-edge-flow var(--gm-search-flow) linear infinite;
+}
+
+.forgeax-site.has-games-immersive .gm-search:focus-within::after {
+  opacity: 0.88;
+}
+
+.forgeax-site.has-games-immersive .gm-search__icon {
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  transition:
+    color var(--site-dur-hover) var(--site-ease-out),
+    filter var(--site-dur-hover) var(--site-ease-out);
+}
+
+.forgeax-site.has-games-immersive .gm-search:focus-within .gm-search__icon {
+  color: rgb(var(--theme-cool-c));
+  filter: drop-shadow(0 0 10px rgba(var(--theme-cool-a), 0.35));
+}
+
+.forgeax-site.has-games-immersive .gm-search__input {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 9px 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+  caret-color: rgb(var(--theme-cool-c));
+}
+
+.forgeax-site.has-games-immersive .gm-search__input::placeholder {
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.forgeax-site.has-games-immersive .gm-search__input::-webkit-search-decoration,
+.forgeax-site.has-games-immersive .gm-search__input::-webkit-search-cancel-button,
+.forgeax-site.has-games-immersive .gm-search__input::-webkit-search-results-button,
+.forgeax-site.has-games-immersive .gm-search__input::-webkit-search-results-decoration {
+  display: none;
+  -webkit-appearance: none;
+}
+
+/* ── sort — custom listbox (matches gm-search frosted neon pill) ─────────── */
+.forgeax-site.has-games-immersive .gm-sort {
+  position: relative;
+  display: inline-flex;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.forgeax-site.has-games-immersive .gm-sort__trigger {
+  --halo-angle: 0deg;
+  --gm-sort-flow: 4.8s;
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 38px;
+  min-width: 148px;
+  width: 100%;
+  padding: 0 13px 0 15px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--glass-frost) 100%, transparent) 0%,
+      transparent 52%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-background-canvas) 16%, transparent),
+      color-mix(in srgb, var(--color-background-canvas) 22%, transparent)
+    ) padding-box,
+    linear-gradient(
+      128deg,
+      rgba(var(--theme-cool-a), 0.2) 0%,
+      rgba(255, 255, 255, 0.09) 44%,
+      rgba(var(--theme-cool-b), 0.16) 100%
+    ) border-box;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--glass-shadow);
+  transition:
+    box-shadow var(--site-dur-hover) var(--site-ease-silk),
+    background var(--site-dur-hover) var(--site-ease-silk),
+    color var(--site-dur-hover) var(--site-ease-out);
+}
+
+.forgeax-site.has-games-immersive .gm-sort__trigger::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  background: conic-gradient(
+    from var(--halo-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(var(--theme-cool-a), 0.08) 16deg,
+    rgba(var(--theme-cool-a), 0.46) 54deg,
+    rgba(255, 255, 255, 0.28) 72deg,
+    rgba(var(--theme-cool-c), 0.32) 88deg,
+    rgba(var(--theme-cool-b), 0.38) 108deg,
+    rgba(var(--theme-cool-a), 0.1) 148deg,
+    transparent 192deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: opacity var(--halo-fade-dur, 0.38s) var(--halo-ease, var(--site-ease-silk));
+}
+
+.forgeax-site.has-games-immersive .gm-sort__trigger::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.55;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, #fff 34%, rgba(var(--theme-cool-a), 0.2)) 38%,
+    color-mix(in srgb, #fff 36%, rgba(var(--theme-cool-b), 0.16)) 62%,
+    transparent
+  );
+}
+
+.forgeax-site.has-games-immersive .gm-sort.is-open .gm-sort__trigger,
+.forgeax-site.has-games-immersive .gm-sort__trigger:focus-visible {
+  color: var(--text-primary);
+  box-shadow:
+    var(--glass-shadow-hover),
+    0 0 0 1px rgba(var(--theme-cool-a), 0.12),
+    0 0 32px -10px rgba(var(--theme-cool-a), 0.28),
+    0 0 52px -18px rgba(var(--theme-cool-b), 0.18);
+}
+
+.forgeax-site.has-games-immersive .gm-sort.is-open .gm-sort__trigger::before,
+.forgeax-site.has-games-immersive .gm-sort__trigger:focus-visible::before {
+  opacity: 1;
+  animation: halo-edge-flow var(--gm-sort-flow) linear infinite;
+}
+
+.forgeax-site.has-games-immersive .gm-sort.is-open .gm-sort__trigger::after,
+.forgeax-site.has-games-immersive .gm-sort__trigger:focus-visible::after {
+  opacity: 0.88;
+}
+
+.forgeax-site.has-games-immersive .gm-sort__value {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.forgeax-site.has-games-immersive .gm-sort__chev {
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  transition:
+    transform var(--site-dur-hover) var(--site-ease-silk),
+    color var(--site-dur-hover) var(--site-ease-out),
+    filter var(--site-dur-hover) var(--site-ease-out);
+}
+
+.forgeax-site.has-games-immersive .gm-sort.is-open .gm-sort__chev {
+  transform: rotate(180deg);
+  color: rgb(var(--theme-cool-c));
+  filter: drop-shadow(0 0 8px rgba(var(--theme-cool-a), 0.35));
+}
+
+.forgeax-site.has-games-immersive .gm-sort__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  min-width: 100%;
+  z-index: 40;
+  margin: 0;
+  padding: 5px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, rgba(var(--theme-cool-a), 0.22) 40%, var(--glass-border-subtle));
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--glass-frost) 88%, transparent) 0%,
+      transparent 48%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-background-canvas) 28%, transparent),
+      color-mix(in srgb, var(--color-background-canvas) 38%, transparent)
+    );
+  backdrop-filter: blur(calc(var(--glass-blur) * 1.15)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 1.15)) saturate(var(--glass-saturate));
+  box-shadow:
+    var(--glass-shadow-hover),
+    0 0 0 1px rgba(var(--theme-cool-a), 0.08),
+    0 16px 40px -12px rgba(0, 0, 0, 0.45),
+    0 0 36px -14px rgba(var(--theme-cool-a), 0.22);
+  transform-origin: top center;
+  animation: gm-sort-menu-in 0.22s var(--site-ease-enter) both;
+}
+
+@keyframes gm-sort-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.forgeax-site.has-games-immersive .gm-sort__opt {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--site-dur-hover) var(--site-ease-silk),
+    color var(--site-dur-hover) var(--site-ease-out),
+    border-color var(--site-dur-hover) var(--site-ease-out),
+    box-shadow var(--site-dur-hover) var(--site-ease-silk);
+}
+
+.forgeax-site.has-games-immersive .gm-sort__opt:hover {
+  background: var(--glass-bg-hover);
+  color: var(--text-primary);
+}
+
+.forgeax-site.has-games-immersive .gm-sort__opt.is-on {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, rgb(var(--theme-cool-a)) 14%, transparent),
+      color-mix(in srgb, rgb(var(--theme-cool-b)) 10%, transparent)
+    );
+  border-color: color-mix(in srgb, rgba(var(--theme-cool-a), 0.35) 50%, transparent);
+  color: rgb(var(--theme-cool-c));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 12%, transparent),
+    0 0 20px -8px rgba(var(--theme-cool-a), 0.35);
+}
+
+.forgeax-site.has-games-immersive .gm-tabs {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 38px;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--glass-frost) 100%, transparent) 0%,
+      transparent 52%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-background-canvas) 16%, transparent),
+      color-mix(in srgb, var(--color-background-canvas) 22%, transparent)
+    ) padding-box,
+    linear-gradient(
+      128deg,
+      rgba(var(--theme-cool-a), 0.2) 0%,
+      rgba(255, 255, 255, 0.09) 44%,
+      rgba(var(--theme-cool-b), 0.16) 100%
+    ) border-box;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--glass-shadow);
+  transition:
+    box-shadow var(--site-dur-hover) var(--site-ease-silk),
+    background var(--site-dur-hover) var(--site-ease-silk);
+}
+
+.forgeax-site.has-games-immersive .gm-tabs::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.55;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, #fff 34%, rgba(var(--theme-cool-a), 0.2)) 38%,
+    color-mix(in srgb, #fff 36%, rgba(var(--theme-cool-b), 0.16)) 62%,
+    transparent
+  );
+}
+
+.forgeax-site.has-games-immersive .gm-tabs button {
+  position: relative;
+  z-index: 2;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 12.5px;
+  padding: 6px 11px;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition:
+    background var(--site-dur-hover) var(--site-ease-silk),
+    color var(--site-dur-hover) var(--site-ease-out),
+    box-shadow var(--site-dur-hover) var(--site-ease-silk),
+    border-color var(--site-dur-hover) var(--site-ease-out);
+}
+
+.forgeax-site.has-games-immersive .gm-tabs button:not(.on):hover {
+  background: color-mix(in srgb, var(--glass-bg-hover) 72%, transparent);
+  color: var(--text-primary);
+}
+
+.forgeax-site.has-games-immersive .gm-tabs button.on {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--glass-frost) 72%, transparent) 0%,
+      transparent 58%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-background-canvas) 24%, transparent),
+      color-mix(in srgb, var(--color-background-canvas) 32%, transparent)
+    );
+  border-color: color-mix(in srgb, rgba(var(--theme-cool-a), 0.32) 45%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 14%, transparent),
+    0 0 22px -10px rgba(var(--theme-cool-a), 0.28);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ── list cards — frosted glass + colorful flowing border on hover ─────── */
+.forgeax-site a.gm-card,
+.forgeax-site a.gm-spot-card {
+  --halo-angle: 0deg;
+  --halo-flow-dur: 4.6s;
+  --gm-accent-a: var(--theme-cool-a);
+  --gm-accent-b: var(--theme-cool-b);
+  --gm-fill-strong: 5%;
+  --gm-fill-soft: 2.5%;
+  --gm-edge-a: 0.12;
+  --gm-edge-b: 0.09;
+  --gm-halo-peak: 0.32;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--glass-frost) 100%, transparent) 0%,
+      transparent 46%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, rgb(var(--gm-accent-a)) var(--gm-fill-strong), var(--color-background-canvas) calc(100% - var(--gm-fill-strong))),
+      color-mix(in srgb, rgb(var(--gm-accent-a)) var(--gm-fill-soft), var(--color-background-canvas) calc(100% - var(--gm-fill-soft)))
+    ) padding-box,
+    linear-gradient(
+      128deg,
+      rgba(var(--gm-accent-a), var(--gm-edge-a)) 0%,
+      rgba(255, 255, 255, 0.08) 46%,
+      rgba(var(--gm-accent-b), var(--gm-edge-b)) 100%
+    ) border-box !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(168%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(168%);
+  box-shadow: var(--glass-shadow);
+  transition:
+    transform var(--site-dur-hover) var(--site-ease-silk),
+    box-shadow var(--site-dur-hover) var(--site-ease-silk),
+    background var(--site-dur-hover) var(--site-ease-silk);
+}
+
+.forgeax-site a.gm-card::before,
+.forgeax-site a.gm-spot-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0;
+  background: conic-gradient(
+    from var(--halo-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(var(--gm-accent-a), 0.1) 16deg,
+    rgba(var(--gm-accent-a), 0.58) 54deg,
+    rgba(255, 255, 255, 0.44) 70deg,
+    rgba(var(--theme-cool-c), 0.42) 82deg,
+    rgba(var(--gm-accent-b), 0.52) 98deg,
+    rgba(var(--gm-accent-b), 0.1) 144deg,
+    transparent 190deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: blur(0.35px);
+  transition: opacity var(--halo-fade-dur, 0.38s) var(--halo-ease, var(--site-ease-silk));
+  will-change: opacity, --halo-angle;
+}
+
+.forgeax-site a.gm-card::after,
+.forgeax-site a.gm-spot-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.55;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, #fff 32%, rgba(var(--gm-accent-a), 0.22)) 32%,
+    color-mix(in srgb, #fff 36%, rgba(var(--theme-cool-c), 0.18)) 50%,
+    color-mix(in srgb, #fff 32%, rgba(var(--gm-accent-b), 0.18)) 68%,
+    transparent
+  );
+  transition: opacity var(--site-dur-hover) var(--site-ease-silk);
+}
+
+.forgeax-site a.gm-card:hover,
+.forgeax-site a.gm-spot-card:hover {
+  --gm-fill-strong: 7%;
+  --gm-fill-soft: 3.5%;
+  --gm-edge-a: 0.22;
+  --gm-edge-b: 0.16;
+  --gm-halo-peak: 0.64;
+  transform: translate3d(0, -2px, 0);
+  box-shadow:
+    var(--glass-shadow-hover),
+    0 0 0 1px rgba(var(--gm-accent-a), 0.2),
+    0 0 48px -8px rgba(var(--gm-accent-a), 0.38),
+    0 0 80px -16px rgba(var(--gm-accent-b), 0.26);
+}
+
+.forgeax-site a.gm-card:hover::before,
+.forgeax-site a.gm-spot-card:hover::before {
+  opacity: 1;
+  filter: none;
+  animation: halo-edge-flow var(--halo-flow-dur, 4.6s) linear infinite;
+}
+
+.forgeax-site a.gm-card:hover::after,
+.forgeax-site a.gm-spot-card:hover::after {
+  opacity: 0.92;
+}
+
+.forgeax-site a.gm-card:active,
+.forgeax-site a.gm-spot-card:active {
+  transform: translate3d(0, -1px, 0) scale(0.998);
+  transition-duration: var(--site-dur-instant);
+}
+
+.forgeax-site .gm-card .thumb,
+.forgeax-site .gm-spot-card .thumb {
+  position: relative;
+  z-index: 5;
+}
+
+.forgeax-site .gm-card .badges,
+.forgeax-site .gm-spot-card .badges {
+  z-index: 6;
+}
+
+.forgeax-site .gm-card .body,
+.forgeax-site .gm-spot-card .body {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--glass-bg) 55%, transparent));
+}
+
+.forgeax-site .gm-grid.motion-stagger > .gm-card {
+  animation: site-reveal-up 0.95s var(--site-ease-silk) backwards;
+}
+
+.forgeax-site .gm-grid.motion-stagger > .gm-card:nth-child(1) { animation-delay: calc(var(--site-stagger) * 0); }
+.forgeax-site .gm-grid.motion-stagger > .gm-card:nth-child(2) { animation-delay: calc(var(--site-stagger) * 1); }
+.forgeax-site .gm-grid.motion-stagger > .gm-card:nth-child(3) { animation-delay: calc(var(--site-stagger) * 2); }
+.forgeax-site .gm-grid.motion-stagger > .gm-card:nth-child(4) { animation-delay: calc(var(--site-stagger) * 3); }
+.forgeax-site .gm-grid.motion-stagger > .gm-card:nth-child(5) { animation-delay: calc(var(--site-stagger) * 4); }
+.forgeax-site .gm-grid.motion-stagger > .gm-card:nth-child(6) { animation-delay: calc(var(--site-stagger) * 5); }
+.forgeax-site .gm-grid.motion-stagger > .gm-card:nth-child(n+7) { animation-delay: calc(var(--site-stagger) * 6); }
+
+/* ── hero carousel ─────────────────────────────────────────────────────── */
+.forgeax-site .gm-hero {
+  isolation: isolate;
+  border: 1px solid var(--glass-border-subtle) !important;
+  background: var(--glass-bg) !important;
+  box-shadow: var(--glass-shadow);
+}
+
+.forgeax-site .gm-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.35;
+  background: linear-gradient(
+    128deg,
+    rgba(var(--theme-cool-a), 0.14) 0%,
+    rgba(255, 255, 255, 0.06) 44%,
+    rgba(var(--theme-cool-b), 0.1) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.forgeax-site .gm-dots i {
+  transition:
+    transform var(--site-dur-hover) var(--site-ease-silk),
+    background var(--site-dur-hover) var(--site-ease-silk),
+    box-shadow var(--site-dur-hover) var(--site-ease-silk);
+}
+
+.forgeax-site .gm-dots i.on {
+  box-shadow: none;
+  transform: scale(1.08);
+}
+
+.forgeax-site .gm-dots i:hover:not(.on) {
+  background: rgba(255, 255, 255, 0.48);
+  transform: scale(1.08);
+}
+
+.forgeax-site.has-games-immersive .c-row .cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+/* games .cta — compact size (carousel); homepage hero-cta sizes unchanged */
+.forgeax-site.has-games-immersive .cta .btn {
+  min-height: 40px;
+  padding: 9px 28px;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  min-width: 0;
+  width: auto;
+  max-width: none;
+  cursor: pointer;
+}
+
+.forgeax-site.has-games-immersive .cta .btn.primary {
+  min-width: 120px;
+  padding-inline: 28px;
+}
+
+.forgeax-site.has-games-immersive .cta .btn.ghost {
+  min-width: 108px;
+  padding-inline: 24px;
+}
+
+.forgeax-site.has-games-immersive .cta span.btn {
+  cursor: not-allowed;
+}
+
+/* detail sidebar — stack homepage .cta pills full width */
+.forgeax-site.has-games-immersive .gm-acquire .cta {
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 10px;
+}
+
+.forgeax-site.has-games-immersive .gm-acquire .cta .btn {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 28px;
+  justify-content: center;
+  min-width: 0;
+}
+
+.forgeax-site.has-games-immersive .gm-acquire .cta .btn.primary,
+.forgeax-site.has-games-immersive .gm-acquire .cta .btn.ghost {
+  min-width: 0;
+  padding-inline: 28px;
+}
+
+/* ── flyout ────────────────────────────────────────────────────────────── */
+.forgeax-site .gm-fly {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
+  border-color: var(--glass-border);
+  box-shadow: var(--glass-shadow-hover);
+  transition:
+    opacity 0.28s var(--site-ease-silk),
+    transform 0.32s var(--site-ease-silk);
+  opacity: 0;
+  transform: translate3d(0, 6px, 0) scale(0.98);
+}
+
+.forgeax-site .gm-fly:not([hidden]) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.forgeax-site .gm-empty {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border-color: var(--glass-border-subtle);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ── detail page ───────────────────────────────────────────────────────── */
+.forgeax-site .gm-stage {
+  isolation: isolate;
+  border: 1px solid var(--glass-border-subtle) !important;
+  box-shadow: var(--glass-shadow);
+}
+
+.forgeax-site .gm-stage::before {
+  display: none;
+}
+
+.forgeax-site .gm-stage .poster .play {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.forgeax-site .gm-stage .poster:hover .play {
+  transform: scale(1.08);
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.52);
+}
+
+.forgeax-site .gm-sd-side {
+  padding: 22px 20px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--glass-border-subtle);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--glass-frost) 100%, transparent) 0%,
+      transparent 42%
+    ),
+    var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--glass-shadow);
+}
+
+.forgeax-site .gm-sd-side .eyebrow {
+  color: var(--text-tertiary);
+}
+
+.forgeax-site .gm-sec.reveal-on-scroll {
+  position: relative;
+  z-index: 2;
+}
+
+.forgeax-site .gm-pb:hover:not(.is-disabled) {
+  transform: translate3d(0, -1px, 0);
+  border-color: var(--glass-border);
+  box-shadow: var(--glass-shadow-hover);
+  color: var(--text-primary);
+}
+
+.forgeax-site .gm-pb.is-disabled,
+.forgeax-site .gm-pb.is-disabled:hover {
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--glass-shadow);
+}
+
+.forgeax-site .gm-sd-section {
+  padding: 24px 22px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border-subtle);
+  background: color-mix(in srgb, var(--glass-bg) 88%, transparent);
+  backdrop-filter: blur(calc(var(--glass-blur) * 0.75)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 0.75)) saturate(var(--glass-saturate));
+  box-shadow: var(--glass-shadow);
+}
+
+.forgeax-site .gm-sd-meta .v.tags a {
+  background: color-mix(in srgb, var(--glass-bg) 80%, rgb(var(--theme-cool-a)) 6%) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border-subtle);
+  transition: color var(--site-dur-hover) var(--site-ease-out), border-color var(--site-dur-hover) var(--site-ease-out);
+}
+
+.forgeax-site .gm-sd-meta .v.tags a:hover {
+  color: rgb(var(--theme-cool-a));
+  border-color: color-mix(in srgb, rgb(var(--theme-cool-a)) 28%, transparent);
+}
+
+.forgeax-site .gm-toast {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
+  border-color: var(--glass-border);
+  box-shadow: var(--glass-shadow-hover);
+  animation: gm-toast-in 0.42s var(--site-ease-silk) backwards;
+}
+
+@keyframes gm-toast-in {
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.forgeax-site .gm-back {
+  transition: color var(--site-dur-hover) var(--site-ease-out), transform var(--site-dur-hover) var(--site-ease-silk);
+}
+
+.forgeax-site .gm-back:hover {
+  transform: translate3d(-2px, 0, 0);
+}
+
+.forgeax-site .gm-detail-page .gm-sd-cols.reveal-on-scroll.is-inview,
+.forgeax-site .gm-sec.reveal-on-scroll.is-inview {
+  transition:
+    opacity var(--site-dur-reveal) var(--site-ease-enter),
+    transform var(--site-dur-reveal) var(--site-ease-enter);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forgeax-site .gm-hero::before,
+  .forgeax-site a.gm-card:hover::before,
+  .forgeax-site a.gm-spot-card:hover::before,
+  .forgeax-site.has-games-immersive .gm-search:focus-within::before,
+  .forgeax-site.has-games-immersive .gm-sort.is-open .gm-sort__trigger::before,
+  .forgeax-site.has-games-immersive .gm-sort__trigger:focus-visible::before {
+    animation: none !important;
+  }
+
+  .forgeax-site.has-games-immersive .gm-sort__menu {
+    animation: none !important;
+  }
+
+  .forgeax-site .gm-fly {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .forgeax-site .gm-grid.motion-stagger > .gm-card {
+    animation: none !important;
+  }
+}

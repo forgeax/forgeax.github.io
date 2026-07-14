@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spin Cube Template — ForgeaX</title>
+<meta name="description" content="The minimal GameEntry template — a spinning cube. Verify the engine, or start from the cleanest blank." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Spin Cube Template — ForgeaX" />
+<meta property="og:description" content="The minimal GameEntry template — a spinning cube. Verify the engine, or start from the cleanest blank." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/ko/games/detail/spin-cube.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/games/detail/spin-cube.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/games/detail/spin-cube.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/games/detail/spin-cube.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/games/detail/spin-cube.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/games/detail/spin-cube.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/games/detail/spin-cube.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/games/detail/spin-cube.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/games/detail/spin-cube.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/games/detail/spin-cube.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/games/detail/spin-cube.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+<style>
+  .gm-detail-page{padding-bottom:64px}
+  .gm-detail-top{margin-bottom:4px}
+  .gm-back{display:inline-flex;align-items:center;gap:7px;color:var(--text-secondary);font-size:13.5px;margin:8px 0 4px;text-decoration:none}
+  .gm-back:hover{color:var(--text-primary)}
+  .gm-crumb{color:var(--text-tertiary);font-family:var(--font-mono);font-size:12px;margin-left:10px}
+  .gm-sd-title h1{font-size:clamp(24px,3vw,30px);font-weight:700;letter-spacing:-.03em;margin:10px 0 0}
+  .gm-sd-cols{display:grid;grid-template-columns:1fr minmax(260px,340px);gap:30px;margin-top:16px}
+  .gm-stage{position:relative;border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:16/9;background:#000}
+  .gm-stage img{width:100%;height:100%;object-fit:cover;display:block}
+  .gm-stage .poster{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(0deg,rgba(0,0,0,.5),rgba(0,0,0,.1));text-decoration:none;color:inherit;z-index:1;cursor:pointer}
+  .gm-stage .poster.is-disabled{cursor:not-allowed}
+  .gm-stage .poster .play{width:66px;height:66px;border-radius:50%;color:#111;display:grid;place-items:center;font-size:24px}
+  .gm-stage .req{position:absolute;left:14px;bottom:12px;z-index:2;font-size:11.5px;color:rgba(255,255,255,.72);font-family:var(--font-mono);pointer-events:none}
+  .gm-playerbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .gm-pb{display:inline-flex;align-items:center;gap:7px;color:var(--text-secondary);border-radius:999px;padding:8px 14px;font-size:13px;font-family:inherit;cursor:pointer;line-height:1.3;text-decoration:none;border:1px solid var(--border-subtle)}
+  .gm-pb.is-disabled,.gm-pb:disabled{cursor:not-allowed;background:var(--bg-elevated);color:var(--text-tertiary);border-color:var(--border-subtle)}
+  .gm-live{font-family:var(--font-mono);font-size:11.5px;color:var(--text-tertiary);margin-left:auto}
+  .gm-sd-side .sh{font-size:22px;font-weight:700;letter-spacing:-.03em;margin:8px 0 4px;line-height:1.2}
+  .gm-sd-side .studio{font-size:13px;color:var(--text-secondary);margin-bottom:16px}
+  .gm-acquire{display:flex;flex-direction:column;gap:10px}
+  .gm-acquire .cta{display:flex;flex-direction:column;align-items:stretch;width:100%;gap:10px}
+  .gm-acquire .cta .btn{width:100%;justify-content:center;box-sizing:border-box;cursor:pointer}
+  .gm-acquire .cta span.btn{cursor:not-allowed}
+  .gm-sd-meta{margin-top:22px;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--border-subtle);padding-top:16px}
+  .gm-sd-meta .m{display:flex;gap:12px;font-size:13px}
+  .gm-sd-meta .k{color:var(--text-tertiary);min-width:64px;font-family:var(--font-mono);font-size:12px}
+  .gm-sd-meta .v{color:var(--text-secondary)}
+  .gm-sd-meta .v.tags{display:flex;flex-wrap:wrap;gap:6px}
+  .gm-sd-meta .v.tags a{border-radius:6px;padding:2px 8px;font-size:12px;color:var(--text-secondary);text-decoration:none}
+  .gm-sd-section{margin-top:28px}
+  .gm-sd-section h2{font-size:15px;font-weight:600;color:var(--text-secondary);padding-bottom:12px;border-bottom:1px solid var(--border-subtle);margin:0 0 18px}
+  .gm-sd-about{color:var(--text-secondary);font-size:15px;line-height:1.65;max-width:720px}
+  .gm-sysreq{display:grid;gap:10px}
+  .gm-sysreq .s{display:grid;grid-template-columns:140px 1fr;gap:12px;font-size:13.5px}
+  .gm-sysreq .k{color:var(--text-tertiary);font-family:var(--font-mono);font-size:12px}
+  .gm-toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:90;border-radius:12px;padding:12px 18px;font-size:13.5px;color:var(--text-primary);max-width:min(520px,92vw)}
+  .gm-toast .em{color:var(--brand);font-family:var(--font-mono);font-size:12.5px}
+  .gm-toast[hidden]{visibility:hidden;pointer-events:none;opacity:0}
+  @media(max-width:900px){.gm-sd-cols{grid-template-columns:1fr}}
+  @media(max-width:640px){.gm-sysreq .s{grid-template-columns:1fr}}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=f6076b43" />
+
+</head>
+<body class="lang-ko forgeax-site has-games-immersive has-immersive">
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__base"></div>
+  <div class="ambient__morph"></div>
+  <div class="ambient__beam ambient__beam--top"></div>
+  <div class="ambient__beam ambient__beam--bottom"></div>
+  <div class="ambient__horizon"></div>
+  <div class="ambient__axis"></div>
+  <div class="ambient__pedestal"></div>
+  <div class="ambient__orb ambient__orb--lime"></div>
+  <div class="ambient__orb ambient__orb--teal"></div>
+  <div class="ambient__grid"></div>
+  <div class="ambient__noise"></div>
+  <div class="ambient__vignette"></div>
+</div>
+<canvas id="forgeParticles" class="forge-particles" aria-hidden="true"></canvas>
+<p class="immersive-hint" aria-hidden="true">스크롤</p>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/" class="active">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/games/detail/spin-cube.html" data-l="en">English</a><a class="lang-item" href="/zh/games/detail/spin-cube.html" data-l="zh">中文</a><a class="lang-item" href="/ja/games/detail/spin-cube.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/games/detail/spin-cube.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/games/detail/spin-cube.html" data-l="es">Español</a><a class="lang-item" href="/de/games/detail/spin-cube.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/games/detail/spin-cube.html" data-l="fr">Français</a><a class="lang-item" href="/pt/games/detail/spin-cube.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap gm-page gm-detail-page">
+  <div class="gm-detail-top motion-hero-in">
+    <a class="gm-back" href="/ko/games/">← 목록으로</a>
+    <span class="gm-crumb">games / detail / spin-cube</span>
+    <div class="gm-sd-title"><h1>Spin Cube Template</h1></div>
+  </div>
+  <div class="gm-sd-cols reveal-on-scroll">
+    <div class="gm-sd-media">
+      <div class="gm-stage">
+        <a class="poster" href="/games/spin-cube/" target="_blank" rel="noopener"><img src="/assets/games/covers/spin-cube.jpg" alt=""><div class="play">▶</div></a>
+        <div class="req">새 탭에서 실행 · Chrome/Edge (WebGPU)</div>
+      </div>
+      <div class="gm-playerbar">
+        <a class="gm-pb" href="/games/spin-cube/" target="_blank" rel="noopener">↗ 새 탭에서 플레이</a>
+        <button type="button" class="gm-pb" data-gm-studio="spin-cube">◆ Studio에서 열기</button>
+        <span class="gm-live"><b>↗</b> /games/spin-cube/</span>
+      </div>
+    </div>
+    <aside class="gm-sd-side">
+      <div class="eyebrow">模板</div>
+      <h1 class="sh">Spin Cube Template</h1>
+      <div class="studio">ForgeaX Studio</div>
+      <div class="gm-acquire">
+        <div class="cta"><a class="btn primary" href="/games/spin-cube/" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span>플레이</a><span class="btn ghost">다운로드</span></div>
+      </div>
+      <div class="gm-sd-meta">
+        <div class="m"><span class="k">출시</span><span class="v">2026-05-18</span></div>
+        <div class="m"><span class="k">버전</span><span class="v">v1.0.0</span></div>
+        <div class="m"><span class="k">다운로드 크기</span><span class="v">—</span></div>
+        <div class="m"><span class="k">태그</span><span class="v tags"><a href="/ko/games/#/?tag=%E6%A8%A1%E6%9D%BF">模板</a><a href="/ko/games/#/?tag=%E6%9E%81%E7%AE%80">极简</a><a href="/ko/games/#/?tag=Hello%20World">Hello World</a><a href="/ko/games/#/?tag=%E5%BC%80%E6%94%BE%E5%B7%A5%E7%A8%8B">开放工程</a></span></div>
+      </div>
+    </aside>
+  </div>
+  <div class="gm-sd-section reveal-on-scroll"><h2>이 게임 소개</h2><div class="gm-sd-about">The minimal GameEntry template — a spinning cube. Verify the engine, or start from the cleanest blank.</div></div>
+  <div class="gm-sd-section reveal-on-scroll" data-reveal-delay="1"><h2>시스템 요구 사항</h2>
+    <div class="gm-sysreq">
+      <div class="s"><span class="k">런타임</span><span>브라우저에서 실행(설치 불필요)</span></div>
+      <div class="s"><span class="k">브라우저</span><span>Chrome / Edge 113+ (WebGPU)</span></div>
+      <div class="s"><span class="k">그래픽</span><span>WebGPU 지원 GPU</span></div>
+      <div class="s"><span class="k">엔진</span><span>forgeax-engine · WebGPU ECS</span></div>
+    </div>
+  </div>
+</main>
+<div class="gm-toast" id="gmToast" hidden></div>
+<script>window.GM_UI={"secAll":"전체 게임","secPlay":"플레이 가능","secEdit":"다운로드 가능","featured":"추천","play":"플레이","view":"상세 보기","download":"다운로드","downloadable":"다운로드 가능","playNewTab":"새 탭에서 플레이","openStudio":"Studio에서 열기","playReq":"새 탭에서 실행 · Chrome/Edge (WebGPU)","playSoon":"웹에서 플레이 가능한 빌드가 곧 제공됩니다.","openedTab":"새 탭에서 열림: ","studioHandoff":"Studio로 전달: ","downloadPlaceholder":"편집 가능한 프로젝트 다운로드 중(자리 표시자)","release":"출시","version":"버전","size":"다운로드 크기","tags":"태그","about":"이 게임 소개","sysreq":"시스템 요구 사항","runtime":"런타임","runtimeVal":"브라우저에서 실행(설치 불필요)","browser":"브라우저","graphics":"그래픽","graphicsVal":"WebGPU 지원 GPU","engine":"엔진","clearAll":"모두 지우기"};window.GM_GAME={"slug":"spin-cube","title":"Spin Cube Template"};</script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+<script src="/assets/games/detail.js?v=f92281ed"></script>
+</body>
+</html>
