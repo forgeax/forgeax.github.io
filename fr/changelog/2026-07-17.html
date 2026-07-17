@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-17 · AnimationPlayer automatique sur modèles skinnés, priors visuels génératifs et upload de workspace — ForgeaX</title>
+<meta name="description" content="AnimationPlayer automatique pour modèles skinnés et FBX, priors visuels génératifs, brokers FluxRT/Reactor, upload workspace tar.gz, bruit Perlin, correctifs import Play et nouveaux démos Bevy." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-17 · AnimationPlayer automatique sur modèles skinnés, priors visuels génératifs et upload de workspace — ForgeaX" />
+<meta property="og:description" content="AnimationPlayer automatique pour modèles skinnés et FBX, priors visuels génératifs, brokers FluxRT/Reactor, upload workspace tar.gz, bruit Perlin, correctifs import Play et nouveaux démos Bevy." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-07-17.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-17.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=f6076b43" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/docs/" data-nav="/docs/">Documents</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/games/" data-nav="/games/">Jeux</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Marché</a>
+      <a href="/fr/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-17.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-17.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-17.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-17.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-17.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-17.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-07-17.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-07-17.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Demandez à l'IA</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Ouvrir dans ChatGPT</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Ouvert à Claude</a>
+          <button class="ask-item" id="copyMd">Copier la page en tant que Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Tous les jours</span><span>2026-07-17</span></div>
+    <h1>AnimationPlayer automatique sur modèles skinnés, priors visuels génératifs et upload de workspace</h1>
+    <p class="standfirst">Aujourd&#39;hui, AnimationPlayer est monté automatiquement sur les entités skinnées (FBX inclus), des priors de source visuelle générative sont ajoutés au viewport, et l&#39;upload de workspace tar.gz avec dédup par hash est disponible depuis le CLI.</p>
+    <div class="prose"><h3>AnimationPlayer automatique sur modèles skinnés</h3>
+<ul>
+<li>L&#39;import de modèles skinnés (dont FBX) attache automatiquement un composant AnimationPlayer — aucune configuration manuelle pour jouer les animations.</li>
+</ul>
+<h3>Priors visuels génératifs</h3>
+<ul>
+<li>Le viewport gagne des priors de source visuelle générative, fournissant des références de construction de scène assistées par IA directement dans l&#39;éditeur.</li>
+<li>Brokers FluxRT et Reactor côté serveur pour les visuels génératifs en temps réel.</li>
+</ul>
+<h3>Upload de snapshot workspace</h3>
+<ul>
+<li>Le CLI peut uploader l&#39;intégralité du workspace en archive tar.gz avec déduplication par hash de contenu.</li>
+<li>Un token d&#39;upload partagé intégré est fourni par défaut — aucune configuration supplémentaire requise.</li>
+</ul>
+<h3>Corrections du mode Play</h3>
+<ul>
+<li>Les imports de jeux Play embarqués se résolvent correctement depuis le workspace de l&#39;éditeur.</li>
+<li>L&#39;évaluation headless utilise un renderer null-RHI de repli avec polyfill React Refresh (scénarios CI et aperçu corrigés).</li>
+</ul>
+<h3>Moteur : bruit Perlin et nouveaux démos</h3>
+<ul>
+<li><code>noise.perlin1d</code> disponible dans le namespace mathématique pour la génération procédurale.</li>
+<li>Nouveaux démos de référence Bevy : grille de matériaux PBR, éclairage, screen-shake 2D, clear-color, capture d&#39;écran et redimensionnement de fenêtre.</li>
+</ul>
+<h3>Workbench vidéo de jeu</h3>
+<ul>
+<li>Stage d&#39;overlay vidéo intégré dans GraphStudio.</li>
+<li>Gestion de la limite de durée vidéo pour les overlays interactifs.</li>
+</ul>
+<h3>Correction du Content Browser</h3>
+<ul>
+<li>Suppression d&#39;un slash initial erroné dans le packPath des assets empêchant le chargement de certains assets.</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour quotidiennes</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables. Open source, licence Apache 2.0.</p>
+  </div>
+  <div class="col"><h4>Site</h4>
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/blog/">Blogue</a>
+    <a href="/fr/docs/">Documents</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/games/">Jeux</a>
+    <a href="/fr/marketplace/">Marché</a>
+  </div>
+  <div class="col"><h4>Projet</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>

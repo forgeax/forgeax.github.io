@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-17 · 스킨 모델 AnimationPlayer 자동 마운트, 생성형 비주얼 프라이어, 워크스페이스 업로드 — ForgeaX</title>
+<meta name="description" content="스킨 모델과 FBX 자동 AnimationPlayer, 뷰포트 생성형 비주얼 프라이어, FluxRT/Reactor 브로커, 워크스페이스 tar.gz 업로드, 펄린 노이즈, Play 모드 임포트 수정, 새 Bevy 데모." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-17 · 스킨 모델 AnimationPlayer 자동 마운트, 생성형 비주얼 프라이어, 워크스페이스 업로드 — ForgeaX" />
+<meta property="og:description" content="스킨 모델과 FBX 자동 AnimationPlayer, 뷰포트 생성형 비주얼 프라이어, FluxRT/Reactor 브로커, 워크스페이스 tar.gz 업로드, 펄린 노이즈, Play 모드 임포트 수정, 새 Bevy 데모." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-07-17.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-17.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-17.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=f6076b43" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/docs/" data-nav="/docs/">문서</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-17.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-17.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-17.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-07-17.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-07-17.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-17.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-17.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-17.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-07-17</span></div>
+    <h1>스킨 모델 AnimationPlayer 자동 마운트, 생성형 비주얼 프라이어, 워크스페이스 업로드</h1>
+    <p class="standfirst">오늘은 스킨 엔티티(FBX 임포트 포함)에 AnimationPlayer를 자동 마운트하고, 뷰포트에 생성형 비주얼 소스 프라이어를 추가하며, CLI에서 콘텐츠 해시 중복 제거 기능이 있는 워크스페이스 tar.gz 업로드를 지원합니다.</p>
+    <div class="prose"><h3>스킨 모델 AnimationPlayer 자동 마운트</h3>
+<ul>
+<li>스킨 모델(FBX 포함) 임포트 시 AnimationPlayer 컴포넌트를 자동 부착. 수동 설정 없이 애니메이션을 재생할 수 있습니다.</li>
+</ul>
+<h3>생성형 비주얼 프라이어</h3>
+<ul>
+<li>뷰포트에 생성형 비주얼 소스 프라이어를 추가하여 에디터에서 AI 지원 씬 구축 참조를 직접 제공합니다.</li>
+<li>서버측 FluxRT 및 Reactor 브로커 추가(실시간 생성형 비주얼용).</li>
+</ul>
+<h3>워크스페이스 스냅샷 업로드</h3>
+<ul>
+<li>CLI에서 전체 워크스페이스를 tar.gz로 업로드 가능(콘텐츠 해시 중복 제거 포함).</li>
+<li>내장 공유 업로드 토큰이 기본 제공되어 추가 설정이 필요 없습니다.</li>
+</ul>
+<h3>Play 모드 수정</h3>
+<ul>
+<li>임베디드 Play 게임 임포트가 에디터 워크스페이스에서 올바르게 해석됩니다.</li>
+<li>헤드리스 평가가 null-RHI 렌더러로 폴백하고 React Refresh 폴리필을 제공합니다(CI 및 프리뷰 시나리오 수정).</li>
+</ul>
+<h3>엔진: 펄린 노이즈 및 새 데모</h3>
+<ul>
+<li>수학 네임스페이스에 <code>noise.perlin1d</code> 추가(절차적 생성용).</li>
+<li>새 Bevy 참조 데모: PBR 머티리얼 그리드, 라이팅, 2D 화면 흔들림, 클리어 컬러, 스크린샷, 윈도우 리사이즈.</li>
+</ul>
+<h3>게임 비디오 워크벤치</h3>
+<ul>
+<li>GraphStudio에 비디오 오버레이 스테이지 통합.</li>
+<li>인터랙티브 오버레이의 비디오 길이 제한 처리.</li>
+</ul>
+<h3>Content Browser 수정</h3>
+<ul>
+<li>에셋 packPath의 잘못된 선행 슬래시를 제거하여 일부 에셋 로딩 실패를 수정했습니다.</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=34bdc073"></script>
+</body>
+</html>
