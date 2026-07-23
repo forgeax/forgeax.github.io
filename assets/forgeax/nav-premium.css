@@ -133,6 +133,136 @@ body > .lang-menu-list,
   background: transparent !important;
 }
 
+.forgeax-site .nav-docs-menu {
+  position: relative;
+  pointer-events: auto;
+}
+
+.forgeax-site .nav-docs-menu > summary {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 10px;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.2;
+  list-style: none;
+}
+
+.forgeax-site.lang-zh .nav-docs-menu > summary {
+  padding: 8px 14px;
+  letter-spacing: 0.02em;
+}
+
+.forgeax-site .nav-docs-menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.forgeax-site .nav-docs-menu > summary::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.2s var(--site-ease-silk);
+}
+
+.forgeax-site .nav-docs-menu[open] > summary {
+  color: #fff;
+}
+
+.forgeax-site .nav-docs-menu[open] > summary::after {
+  transform: rotate(225deg) translate(-1px, -1px);
+}
+
+.forgeax-site .nav-docs-menu__panel {
+  --icon-container-size: 32px;
+  --icon-size-in-slot: 14px;
+  --icon-slot-padding: calc((var(--icon-container-size) - var(--icon-size-in-slot) - 2px) / 2);
+  position: absolute;
+  top: calc(100% + 22px);
+  left: 50%;
+  z-index: 20;
+  display: grid;
+  gap: 2px;
+  width: min(224px, calc(100vw - 32px));
+  padding: 7px;
+  border: 1px solid color-mix(in srgb, var(--border-default) 60%, transparent);
+  border-radius: 16px;
+  background:
+    linear-gradient(145deg, rgba(var(--theme-cool-b), 0.08), transparent 58%),
+    color-mix(in srgb, var(--bg-elevated) 90%, #0d0d0d);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(34px) saturate(165%);
+  -webkit-backdrop-filter: blur(34px) saturate(165%);
+  transform: translateX(-50%);
+}
+
+.forgeax-site .nav-links .nav-docs-menu__panel .nav-docs-menu__item {
+  display: grid;
+  grid-template-columns: var(--icon-container-size) minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 6px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  white-space: normal;
+}
+
+.forgeax-site .nav-docs-menu__icon {
+  margin: 0;
+}
+
+.forgeax-site .nav-docs-menu__item strong,
+.forgeax-site .nav-docs-menu__item small {
+  display: block;
+}
+
+.forgeax-site .nav-docs-menu__item strong {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.forgeax-site .nav-docs-menu__item small {
+  margin-top: 3px;
+  color: var(--text-tertiary);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.forgeax-site .nav-links .nav-docs-menu__panel .nav-docs-menu__item:hover,
+.forgeax-site .nav-links .nav-docs-menu__panel .nav-docs-menu__item:focus-visible {
+  color: var(--text-primary) !important;
+  background: color-mix(in srgb, var(--hover-surface) 76%, transparent) !important;
+  text-shadow: none;
+}
+
+.forgeax-site .nav-docs-menu:not([open]) > .nav-docs-menu__panel {
+  display: none;
+}
+
+@media (min-width: 1160px) {
+  .forgeax-site .nav-docs-menu:hover > .nav-docs-menu__panel,
+  .forgeax-site .nav-docs-menu:focus-within > .nav-docs-menu__panel {
+    display: grid;
+  }
+}
+
+.forgeax-site .nav-docs-menu__item:hover .nav-docs-menu__icon,
+.forgeax-site .nav-docs-menu__item:focus-visible .nav-docs-menu__icon {
+  border-color: color-mix(in srgb, rgb(var(--theme-cool-a)) 38%, transparent);
+  background: color-mix(in srgb, rgb(var(--theme-cool-a)) 10%, transparent);
+}
+
 .forgeax-site .nav-right {
   flex: 0 0 auto;
   min-width: 0;
@@ -199,6 +329,40 @@ body > .lang-menu-list,
   font-weight: 650;
   letter-spacing: -0.01em;
   line-height: 1.2;
+}
+
+@media (max-width: 1159px) {
+  .forgeax-site .nav-docs-menu > summary {
+    padding: 13px 14px;
+    font-size: 16px;
+  }
+
+  .forgeax-site .nav-docs-menu__panel {
+    position: static;
+    min-width: 0;
+    width: auto;
+    gap: 2px;
+    padding: 0 8px 8px 24px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .forgeax-site .nav-links .nav-docs-menu__panel .nav-docs-menu__item {
+    grid-template-columns: var(--icon-container-size) minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 12px;
+  }
+
+  .forgeax-site .nav-docs-menu__item strong {
+    font-size: 14px;
+  }
+
+  .forgeax-site .nav-docs-menu__item small {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 820px) {

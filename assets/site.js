@@ -223,6 +223,43 @@
   var burgerLinks = document.getElementById("navlinks");
   if (burger && burgerLinks) burger.addEventListener("click", function () { burgerLinks.classList.toggle("open"); });
 
+  /* Desktop docs menu opens on hover; preserve native disclosure behavior on mobile. */
+  document.querySelectorAll(".nav-docs-menu").forEach(function (menu) {
+    var summary = menu.querySelector("summary");
+    if (!summary) return;
+    var closeTimer = null;
+
+    function isDesktop() {
+      return window.matchMedia("(min-width: 1160px)").matches;
+    }
+    function cancelClose() {
+      if (closeTimer) {
+        window.clearTimeout(closeTimer);
+        closeTimer = null;
+      }
+    }
+    function openMenu() {
+      if (!isDesktop()) return;
+      cancelClose();
+      menu.open = true;
+    }
+    function closeMenuSoon() {
+      if (!isDesktop()) return;
+      cancelClose();
+      closeTimer = window.setTimeout(function () {
+        menu.open = false;
+        closeTimer = null;
+      }, 220);
+    }
+
+    menu.addEventListener("mouseenter", openMenu);
+    menu.addEventListener("mouseover", openMenu);
+    menu.addEventListener("mouseleave", closeMenuSoon);
+    summary.addEventListener("click", function (event) {
+      if (isDesktop()) event.preventDefault();
+    });
+  });
+
   /* language menu — items are <a> links to the target-language URL; panel portals to
      <body> so main content cannot steal clicks. Selecting an item just navigates. */
   (function wireLangMenu() {

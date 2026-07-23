@@ -155,11 +155,16 @@
 .forgeax-site .page-head--cinema p {
   position: relative;
   z-index: 2;
-  max-width: 36rem;
+  /*
+   * Let page introductions use the content rail on desktop instead of a narrow
+   * text column, so a short final Chinese fragment is not forced onto its own line.
+   */
+  max-width: min(70rem, 100%);
   margin: 16px auto 0;
   font-size: clamp(15px, 2.1vw, 17.5px);
   line-height: 1.62;
   letter-spacing: -0.012em;
+  text-wrap: balance;
   color: color-mix(in srgb, var(--text-secondary) 88%, transparent);
 }
 
