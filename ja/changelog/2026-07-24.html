@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-24 · v0.3.22 — Play モードフリーズ修正v2、ゲーム切替修正v2、エディタパネル貢献、ビデオアセット — ForgeaX</title>
-<meta name="description" content="v0.3.22 リリース：Play モード修正強化、エディタパネル貢献、ビデオアセット管理、Hellforge 垂直スライス計画。" />
+<title>2026-07-24 · v0.3.22 — Play モード・白画面修正、エディター UX、パネル拡張、動画アセット — ForgeaX</title>
+<meta name="description" content="ForgeaX Studio v0.3.22 リリースノート" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-24 · v0.3.22 — Play モードフリーズ修正v2、ゲーム切替修正v2、エディタパネル貢献、ビデオアセット — ForgeaX" />
-<meta property="og:description" content="v0.3.22 リリース：Play モード修正強化、エディタパネル貢献、ビデオアセット管理、Hellforge 垂直スライス計画。" />
+<meta property="og:title" content="2026-07-24 · v0.3.22 — Play モード・白画面修正、エディター UX、パネル拡張、動画アセット — ForgeaX" />
+<meta property="og:description" content="ForgeaX Studio v0.3.22 リリースノート" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-07-24.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -81,31 +81,32 @@
   <article class="read article">
     <a class="back" href="/ja/changelog/">← 変更履歴</a>
     <div class="meta"><span class="tag brand">毎日</span><span>2026-07-24</span></div>
-    <h1>v0.3.22 — Play モードフリーズ修正v2、ゲーム切替修正v2、エディタパネル貢献、ビデオアセット</h1>
-    <p class="standfirst">Play モードの表示一時停止をアクティブアプリの動的解決に強化、ゲーム作成時の白画面競合を完全修正、エディタパネル貢献と統合ビデオアセット管理を追加。</p>
-    <div class="prose"><h3>Play mode freeze fix (enhanced)</h3>
+    <h1>v0.3.22 — Play モード・白画面修正、エディター UX、パネル拡張、動画アセット</h1>
+    <p class="standfirst">Play モードのフリーズ修正、白画面修正、エディター UX 改善、ポート分離、パネル拡張、動画アセット管理、Onboarding tour 強化、Hellforge 垂直スライス。</p>
+    <div class="prose"><h3>修正</h3>
 <ul>
-<li><code>installVisibilityPause</code> now dynamically resolves the active app (editorApp vs playApp) when the viewport is hidden/shown. Switching from Scene (Play mode) to the AI view and back correctly pauses and resumes the play app&#39;s frame loop instead of the editor app.</li>
+<li>fix(editor): ビュー切り替え後も Play モードがフリーズしなくなりました</li>
+<li>fix(interface): 新規・切り替えたゲームで白画面が出なくなりました — エンジンが完全に準備できてからビューポートを読み込みます</li>
+<li>fix(editor): Hierarchy 検索の二重 X ボタンを修正、全折りたたみ時も Scene ルートは展開状態を維持</li>
+<li>fix(editor): Content Browser のキーボード Delete キーがすべてのアセットタイプで動作するように</li>
+<li>fix(studio): エディター gateway のポート分離 — standalone editor が Studio のポートと競合しなくなりました</li>
+<li>fix(workbench): AI workspace の初期化方法を最適化</li>
+<li>fix: エンジンアップグレードの互換性を強化</li>
+<li>fix(cli): パッケージ後の実行時に zod 依存が見つからない問題を修正</li>
 </ul>
-<h3>Game creation blank screen fix (enhanced)</h3>
+<h3>新機能</h3>
 <ul>
-<li><code>setPinnedSlug</code> is now deferred until after <code>activateGame</code> + <code>waitForEngineSettled</code>, preventing <code>EditRealm</code> from remounting the viewport while the engine Vite server is still restarting. Eliminates the 502 race condition on pack-index and asset fetches.</li>
+<li>feat: エディターパネル拡張（Panel Contributions）— プラグインがカスタムパネルを登録可能に</li>
+<li>feat: 動画アセットの統合管理</li>
+<li>feat: Activity Rail ナビゲーション + サイズ変更可能なチャットパネル</li>
+<li>feat(interface): Onboarding tour が複数アンカー領域の結合に対応</li>
+<li>feat(server): Game charter をアセット駆動に</li>
+<li>feat(harness): <code>.forgeax</code> ディレクトリに skills をインストール</li>
 </ul>
-<h3>Editor panel contributions</h3>
+<h3>Hellforge</h3>
 <ul>
-<li>Plugins can now register custom editor panels via the panel contributions extension API.</li>
-</ul>
-<h3>Video asset management</h3>
-<ul>
-<li>Unified video asset management across the editor, with integrated upload, preview, and timeline editing.</li>
-</ul>
-<h3>Activity Rail and chat</h3>
-<ul>
-<li>Activity Rail now supports plugin navigation entries. Chat panel is resizable.</li>
-</ul>
-<h3>Hellforge vertical slice</h3>
-<ul>
-<li>Landed the full vertical-slice polish plan (PR0–PR7) for the Hellforge demo game, covering quality camera, dodge/finisher, VFX data model, atmosphere/grade, modular seeded dungeon, cinematic ownership, and production audio.</li>
+<li>垂直スライス磨き込み計画 + PR0-PR7 サブプランが着地</li>
+<li>PR1 クオリティルームカメラ、PR2a ドッジフィニッシャー連結、PR2b VFX データモデル、PR2c 雰囲気とグレーディング、PR3 モジュラーシードダンジョン</li>
 </ul>
 </div>
     <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>

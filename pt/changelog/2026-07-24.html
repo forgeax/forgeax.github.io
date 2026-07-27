@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-24 · v0.3.22 — Correção modo Play v2, correção troca jogo v2, contribuições painel editor, assets de vídeo — ForgeaX</title>
-<meta name="description" content="Versão v0.3.22: correções aprimoradas do modo Play, contribuições de painel do editor, gerenciamento de assets de vídeo, planos de fatia vertical Hellforge." />
+<title>2026-07-24 · v0.3.22 — Correções de modo Play e tela branca, UX do editor, contribuições de painéis, recursos de vídeo — ForgeaX</title>
+<meta name="description" content="Notas de versão do ForgeaX Studio v0.3.22" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-24 · v0.3.22 — Correção modo Play v2, correção troca jogo v2, contribuições painel editor, assets de vídeo — ForgeaX" />
-<meta property="og:description" content="Versão v0.3.22: correções aprimoradas do modo Play, contribuições de painel do editor, gerenciamento de assets de vídeo, planos de fatia vertical Hellforge." />
+<meta property="og:title" content="2026-07-24 · v0.3.22 — Correções de modo Play e tela branca, UX do editor, contribuições de painéis, recursos de vídeo — ForgeaX" />
+<meta property="og:description" content="Notas de versão do ForgeaX Studio v0.3.22" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-07-24.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -81,31 +81,32 @@
   <article class="read article">
     <a class="back" href="/pt/changelog/">← Registro de alterações</a>
     <div class="meta"><span class="tag brand">Diário</span><span>2026-07-24</span></div>
-    <h1>v0.3.22 — Correção modo Play v2, correção troca jogo v2, contribuições painel editor, assets de vídeo</h1>
-    <p class="standfirst">Pausa de visibilidade do modo Play aprimorada com resolução dinâmica do app ativo, correção completa da tela branca ao criar jogo, contribuições de painel do editor e gerenciamento unificado de assets de vídeo.</p>
-    <div class="prose"><h3>Play mode freeze fix (enhanced)</h3>
+    <h1>v0.3.22 — Correções de modo Play e tela branca, UX do editor, contribuições de painéis, recursos de vídeo</h1>
+    <p class="standfirst">Correção de congelamento do modo Play, correção de tela branca, melhorias de UX do editor, isolamento de portas, contribuições de painéis, gerenciamento de recursos de vídeo, aprimoramento do onboarding tour e vertical slice de Hellforge.</p>
+    <div class="prose"><h3>Correções</h3>
 <ul>
-<li><code>installVisibilityPause</code> now dynamically resolves the active app (editorApp vs playApp) when the viewport is hidden/shown. Switching from Scene (Play mode) to the AI view and back correctly pauses and resumes the play app&#39;s frame loop instead of the editor app.</li>
+<li>fix(editor): o modo Play não congela mais ao alternar entre visualizações</li>
+<li>fix(interface): jogos novos ou trocados não mostram mais tela branca — o viewport carrega após o motor estar totalmente pronto</li>
+<li>fix(editor): correção do botão X duplo na busca da Hierarchy; a raiz da Scene permanece expandida ao recolher tudo</li>
+<li>fix(editor): a tecla Delete do teclado no Content Browser agora funciona para todos os tipos de recurso</li>
+<li>fix(studio): isolamento de portas do gateway do editor — o standalone editor não conflita mais com as portas do Studio</li>
+<li>fix(workbench): inicialização do AI workspace otimizada</li>
+<li>fix: reforço de compatibilidade na atualização do motor</li>
+<li>fix(cli): corrigida a dependência zod ausente em tempo de execução após o empacotamento</li>
 </ul>
-<h3>Game creation blank screen fix (enhanced)</h3>
+<h3>Novidades</h3>
 <ul>
-<li><code>setPinnedSlug</code> is now deferred until after <code>activateGame</code> + <code>waitForEngineSettled</code>, preventing <code>EditRealm</code> from remounting the viewport while the engine Vite server is still restarting. Eliminates the 502 race condition on pack-index and asset fetches.</li>
+<li>feat: Contribuições de painéis do editor — plugins podem registrar painéis personalizados</li>
+<li>feat: gerenciamento unificado de recursos de vídeo</li>
+<li>feat: navegação Activity Rail + painel de chat redimensionável</li>
+<li>feat(interface): o onboarding tour suporta a união de regiões com múltiplas âncoras</li>
+<li>feat(server): game charter orientado a recursos</li>
+<li>feat(harness): instalar skills no diretório <code>.forgeax</code></li>
 </ul>
-<h3>Editor panel contributions</h3>
+<h3>Hellforge</h3>
 <ul>
-<li>Plugins can now register custom editor panels via the panel contributions extension API.</li>
-</ul>
-<h3>Video asset management</h3>
-<ul>
-<li>Unified video asset management across the editor, with integrated upload, preview, and timeline editing.</li>
-</ul>
-<h3>Activity Rail and chat</h3>
-<ul>
-<li>Activity Rail now supports plugin navigation entries. Chat panel is resizable.</li>
-</ul>
-<h3>Hellforge vertical slice</h3>
-<ul>
-<li>Landed the full vertical-slice polish plan (PR0–PR7) for the Hellforge demo game, covering quality camera, dodge/finisher, VFX data model, atmosphere/grade, modular seeded dungeon, cinematic ownership, and production audio.</li>
+<li>plano de polimento do vertical slice + subplanos PR0-PR7 integrados</li>
+<li>PR1 câmera da sala de qualidade, PR2a costura do finalizador de esquiva, PR2b modelo de dados de VFX, PR2c atmosfera e gradação, PR3 masmorra semente modular</li>
 </ul>
 </div>
     <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>

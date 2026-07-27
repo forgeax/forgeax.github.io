@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-07-24 · v0.3.22 — Play 모드 정지 수정 v2, 게임 전환 수정 v2, 에디터 패널 기여, 비디오 에셋 — ForgeaX</title>
-<meta name="description" content="v0.3.22 릴리스: Play 모드 수정 강화, 에디터 패널 기여, 비디오 에셋 관리, Hellforge 수직 슬라이스 계획." />
+<title>2026-07-24 · v0.3.22 — Play 모드·빈 화면 수정, 에디터 UX, 패널 기여, 비디오 에셋 — ForgeaX</title>
+<meta name="description" content="ForgeaX Studio v0.3.22 릴리스 노트" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-07-24 · v0.3.22 — Play 모드 정지 수정 v2, 게임 전환 수정 v2, 에디터 패널 기여, 비디오 에셋 — ForgeaX" />
-<meta property="og:description" content="v0.3.22 릴리스: Play 모드 수정 강화, 에디터 패널 기여, 비디오 에셋 관리, Hellforge 수직 슬라이스 계획." />
+<meta property="og:title" content="2026-07-24 · v0.3.22 — Play 모드·빈 화면 수정, 에디터 UX, 패널 기여, 비디오 에셋 — ForgeaX" />
+<meta property="og:description" content="ForgeaX Studio v0.3.22 릴리스 노트" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-07-24.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -81,31 +81,32 @@
   <article class="read article">
     <a class="back" href="/ko/changelog/">← 변경 내역</a>
     <div class="meta"><span class="tag brand">일일</span><span>2026-07-24</span></div>
-    <h1>v0.3.22 — Play 모드 정지 수정 v2, 게임 전환 수정 v2, 에디터 패널 기여, 비디오 에셋</h1>
-    <p class="standfirst">Play 모드 가시성 일시정지를 활성 앱 동적 해결로 강화, 게임 생성 빈 화면 경쟁 조건 완전 수정, 에디터 패널 기여 및 통합 비디오 에셋 관리 추가.</p>
-    <div class="prose"><h3>Play mode freeze fix (enhanced)</h3>
+    <h1>v0.3.22 — Play 모드·빈 화면 수정, 에디터 UX, 패널 기여, 비디오 에셋</h1>
+    <p class="standfirst">Play 모드 정지 수정, 빈 화면 수정, 에디터 UX 개선, 포트 격리, 패널 기여, 비디오 에셋 관리, Onboarding tour 강화, Hellforge 버티컬 슬라이스.</p>
+    <div class="prose"><h3>수정</h3>
 <ul>
-<li><code>installVisibilityPause</code> now dynamically resolves the active app (editorApp vs playApp) when the viewport is hidden/shown. Switching from Scene (Play mode) to the AI view and back correctly pauses and resumes the play app&#39;s frame loop instead of the editor app.</li>
+<li>fix(editor): 뷰 전환 후에도 Play 모드가 더 이상 멈추지 않습니다</li>
+<li>fix(interface): 새로 만들거나 전환한 게임에서 빈 화면이 나타나지 않습니다 — 엔진이 완전히 준비된 후 뷰포트를 로드합니다</li>
+<li>fix(editor): Hierarchy 검색의 이중 X 버튼 수정, 전체 접기 시 Scene 루트는 펼친 상태 유지</li>
+<li>fix(editor): Content Browser의 키보드 Delete 키가 모든 에셋 유형에서 동작합니다</li>
+<li>fix(studio): 에디터 gateway 포트 격리 — standalone editor가 더 이상 Studio 포트와 충돌하지 않습니다</li>
+<li>fix(workbench): AI workspace 초기화 방식 최적화</li>
+<li>fix: 엔진 업그레이드 호환성 강화</li>
+<li>fix(cli): 패키징 후 런타임에 zod 의존성을 찾지 못하던 문제 수정</li>
 </ul>
-<h3>Game creation blank screen fix (enhanced)</h3>
+<h3>기능</h3>
 <ul>
-<li><code>setPinnedSlug</code> is now deferred until after <code>activateGame</code> + <code>waitForEngineSettled</code>, preventing <code>EditRealm</code> from remounting the viewport while the engine Vite server is still restarting. Eliminates the 502 race condition on pack-index and asset fetches.</li>
+<li>feat: 에디터 패널 기여(Panel Contributions) — 플러그인이 커스텀 패널을 등록할 수 있습니다</li>
+<li>feat: 통합 비디오 에셋 관리</li>
+<li>feat: Activity Rail 내비게이션 + 크기 조절 가능한 채팅 패널</li>
+<li>feat(interface): Onboarding tour가 다중 앵커 영역 결합을 지원합니다</li>
+<li>feat(server): 에셋 기반 game charter</li>
+<li>feat(harness): <code>.forgeax</code> 디렉터리에 skills 설치</li>
 </ul>
-<h3>Editor panel contributions</h3>
+<h3>Hellforge</h3>
 <ul>
-<li>Plugins can now register custom editor panels via the panel contributions extension API.</li>
-</ul>
-<h3>Video asset management</h3>
-<ul>
-<li>Unified video asset management across the editor, with integrated upload, preview, and timeline editing.</li>
-</ul>
-<h3>Activity Rail and chat</h3>
-<ul>
-<li>Activity Rail now supports plugin navigation entries. Chat panel is resizable.</li>
-</ul>
-<h3>Hellforge vertical slice</h3>
-<ul>
-<li>Landed the full vertical-slice polish plan (PR0–PR7) for the Hellforge demo game, covering quality camera, dodge/finisher, VFX data model, atmosphere/grade, modular seeded dungeon, cinematic ownership, and production audio.</li>
+<li>버티컬 슬라이스 다듬기 계획 + PR0-PR7 세부 계획 반영</li>
+<li>PR1 퀄리티 룸 카메라, PR2a 회피 피니셔 연결, PR2b VFX 데이터 모델, PR2c 분위기 및 그레이딩, PR3 모듈형 시드 던전</li>
 </ul>
 </div>
     <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
