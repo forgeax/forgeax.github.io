@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-28 · 材质编辑器、本地坐标 Gizmo、多选与 Play 模式稳定性 — ForgeaX</title>
+<meta name="description" content="材质编辑器 M1、本地坐标 Gizmo、恒定大小 Gizmo、多选、层级树自动展开、文件夹校验、布局持久化修复、Play 模式稳定性、Hierarchy 性能优化、资源 CRUD 修复、ActivityRail、顶部菜单栏、游戏切换与 AI Carrier 管理器。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-28 · 材质编辑器、本地坐标 Gizmo、多选与 Play 模式稳定性 — ForgeaX" />
+<meta property="og:description" content="材质编辑器 M1、本地坐标 Gizmo、恒定大小 Gizmo、多选、层级树自动展开、文件夹校验、布局持久化修复、Play 模式稳定性、Hierarchy 性能优化、资源 CRUD 修复、ActivityRail、顶部菜单栏、游戏切换与 AI Carrier 管理器。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-07-28.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-28.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=4b0c16d2" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <details class="nav-docs-menu">
+        <summary>文档</summary>
+        <div class="nav-docs-menu__panel">
+          <a class="nav-docs-menu__item" href="/zh/docs/" data-nav="/docs/">
+            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
+            <span><strong>开发文档</strong></span>
+          </a>
+          <a class="nav-docs-menu__item" href="/docs/cli/">
+            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
+            <span><strong>ForgeaX CLI</strong></span>
+          </a>
+        </div>
+      </details>
+      <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/games/" data-nav="/games/">游戏</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
+      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
+      <a href="/zh/about.html" data-nav="/about.html">关于</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-28.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-07-28.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-07-28.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-28.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-28.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-28.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-28.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
+          <button class="ask-item" id="copyMd">复制为 Markdown</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/changelog/">← 更新日志</a>
+    <div class="meta"><span class="tag brand">每日</span><span>2026-07-28</span></div>
+    <h1>材质编辑器、本地坐标 Gizmo、多选与 Play 模式稳定性</h1>
+    <p class="standfirst">本次更新带来了可编辑的材质编辑器、本地坐标系 Gizmo 旋转、Content Browser 的 Ctrl/Shift 多选、性能优化的 Hierarchy 面板，以及全面的 Play 模式稳定性修复。</p>
+    <div class="prose"><h3>材质编辑器 M1</h3>
+<ul>
+<li>全新可编辑的材质编辑器上线——可在编辑器中直接修改 PBR 材质参数（基础色、金属度、粗糙度、纹理），完整支持撤销/重做。</li>
+<li>材质修改即时保存，资源目录自动更新。</li>
+</ul>
+<h3>本地坐标系 Gizmo</h3>
+<ul>
+<li>Transform Gizmo 在本地坐标模式下会跟随选中物体的旋转，与主流 3D 编辑器行为一致。</li>
+<li>视口工具栏新增 World/Local 坐标切换。</li>
+<li>Gizmo 在任意相机距离下保持恒定屏幕大小。</li>
+</ul>
+<h3>Content Browser 多选</h3>
+<ul>
+<li>支持 Ctrl+单击逐个切换选择、Shift+单击连续范围选择，适用于所有类型（资源、文件夹、文件）。</li>
+<li>新建文件夹名称输入会过滤非法字符；删除确认使用引擎内置风格弹窗，不再使用浏览器原生弹窗。</li>
+</ul>
+<h3>Hierarchy 面板改进</h3>
+<ul>
+<li>选中节点时自动展开其祖先节点链并滚动到可见区域。</li>
+<li>消除 Play 模式下全树重渲染——仅更新变化的行，大幅提升大型场景下的帧率。</li>
+<li>搜索、全部折叠和文件夹图标修复。</li>
+</ul>
+<h3>Play 模式稳定性</h3>
+<ul>
+<li>在编辑器和 Agents 工作区之间切换不再导致 Play 模式状态异常。</li>
+<li>Play 模式下视口隐藏时正确暂停/恢复。</li>
+<li>场景保存不再触发完整重载——仅刷新资源缓存。</li>
+<li>启动时资源完整性扫描自动检测和修复损坏的元数据。</li>
+</ul>
+<h3>Asset Inspector CRUD 修复</h3>
+<ul>
+<li>Asset Inspector 中的 Duplicate、Rename、Delete 操作不再因资源路径包含绝对 URL 而报 400 错误。</li>
+</ul>
+<h3>界面：Activity Rail 与顶部菜单</h3>
+<ul>
+<li>全新 Activity Rail 提供工作区导航，搭配固定可调整大小的聊天栏。</li>
+<li>数据驱动的顶部菜单栏替代原有静态菜单，&quot;文件 → 打开项目&quot;直接打开游戏列表弹窗。</li>
+<li>修复布局持久化——拖拽或重置面板后刷新不再丢失布局。</li>
+<li>插件侧边栏跟随系统语言进行国际化。</li>
+</ul>
+<h3>Studio：AI Carrier 管理器</h3>
+<ul>
+<li>无头 AI Carrier 管理器支持运行时 Agent 的握手协议管理。</li>
+<li>AnyDev 初始化速度提升，优化了工具链加载。</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>站点</h4>
+    <a href="/zh/changelog/">更新日志</a>
+    <a href="/zh/blog/">观点</a>
+    <a href="/zh/docs/">开发文档</a>
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/games/">游戏</a>
+    <a href="/zh/marketplace/">插件市场</a>
+  </div>
+  <div class="col"><h4>项目</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/about.html">关于 / 愿景</a>
+    <a href="/zh/license.html">版权说明</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=f56c0484"></script>
+</body>
+</html>

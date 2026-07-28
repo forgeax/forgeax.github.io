@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-28 · マテリアルエディタ、ローカル空間ギズモ、マルチセレクト、Playモード安定性 — ForgeaX</title>
+<meta name="description" content="マテリアルエディタM1、ローカル空間ギズモ、定サイズギズモ、マルチセレクト、Hierarchy自動展開、フォルダ検証、ドックレイアウト修正、Playモード安定性、Hierarchyパフォーマンス、アセットCRUD修正、ActivityRail、トップメニューバー、ゲーム切替、AIキャリアスーパーバイザー。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-28 · マテリアルエディタ、ローカル空間ギズモ、マルチセレクト、Playモード安定性 — ForgeaX" />
+<meta property="og:description" content="マテリアルエディタM1、ローカル空間ギズモ、定サイズギズモ、マルチセレクト、Hierarchy自動展開、フォルダ検証、ドックレイアウト修正、Playモード安定性、Hierarchyパフォーマンス、アセットCRUD修正、ActivityRail、トップメニューバー、ゲーム切替、AIキャリアスーパーバイザー。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-07-28.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-28.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-28.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=4b0c16d2" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <details class="nav-docs-menu">
+        <summary>ドキュメント</summary>
+        <div class="nav-docs-menu__panel">
+          <a class="nav-docs-menu__item" href="/ja/docs/" data-nav="/docs/">
+            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
+            <span><strong>ドキュメント</strong></span>
+          </a>
+          <a class="nav-docs-menu__item" href="/docs/cli/">
+            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
+            <span><strong>ForgeaX CLI</strong></span>
+          </a>
+        </div>
+      </details>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-28.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-28.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-07-28.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-28.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-28.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-28.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-28.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">毎日</span><span>2026-07-28</span></div>
+    <h1>マテリアルエディタ、ローカル空間ギズモ、マルチセレクト、Playモード安定性</h1>
+    <p class="standfirst">今回のアップデートでは、書き込み可能なマテリアルエディタ、ローカル空間ギズモ回転、Content BrowserでのCtrl/Shiftマルチセレクト、パフォーマンス最適化されたHierarchyパネル、包括的なPlayモード安定性修正を提供します。</p>
+    <div class="prose"><h3>マテリアルエディタ M1</h3>
+<ul>
+<li>書き込み可能なマテリアルエディタが利用可能に。PBRマテリアルパラメータ（ベースカラー、メタリック、ラフネス、テクスチャ）をエディタ内で直接編集でき、完全なUndo/Redoをサポート。</li>
+<li>マテリアル変更は即座に保存され、アセットカタログが自動更新。</li>
+</ul>
+<h3>ローカル空間ギズモ</h3>
+<ul>
+<li>トランスフォームギズモがローカル空間モードで選択オブジェクトの回転に追従（主要3Dエディタと同じ挙動）。</li>
+<li>Viewportツールバーにワールド/ローカル座標切替を追加。</li>
+<li>カメラ距離に関わらずギズモが一定の画面サイズを維持。</li>
+</ul>
+<h3>Content Browserマルチセレクト</h3>
+<ul>
+<li>Ctrl+クリックで個別トグル、Shift+クリックで連続範囲選択がすべてのアイテムタイプ（アセット・フォルダ・ファイル）で動作。</li>
+<li>フォルダ名入力で不正文字を検証、削除確認にエンジンのテーマダイアログを使用。</li>
+</ul>
+<h3>Hierarchyパネル改善</h3>
+<ul>
+<li>ノード選択時に祖先チェーンを自動展開し、ビューにスクロール。</li>
+<li>Playモード中の全ツリー再レンダリングを排除し、大規模シーンでフレームレートが大幅向上。</li>
+</ul>
+<h3>Playモード安定性</h3>
+<ul>
+<li>エディタとAgentsワークスペースの切替でPlayモード状態が壊れなくなりました。</li>
+<li>Play中にViewportを非表示にした際の正しいPause/Resume。</li>
+<li>シーン保存で完全リロードが発生しなくなり、アセットキャッシュのみ更新。</li>
+<li>起動時アセット整合性スキャンで破損メタデータを自動修復。</li>
+</ul>
+<h3>Asset Inspector CRUD修正</h3>
+<ul>
+<li>Asset InspectorのDuplicate/Rename/Deleteがアセットパスの絶対URLにより400エラーになる問題を修正。</li>
+</ul>
+<h3>インターフェース：Activity Railとトップメニュー</h3>
+<ul>
+<li>新Activity Railがワークスペースナビゲーションを提供（固定リサイズ可能チャットカラム付き）。</li>
+<li>データ駆動トップメニューバーにより「ファイル→プロジェクトを開く」がゲームリストモーダルに直結。</li>
+<li>ドックレイアウトの永続化修正。</li>
+<li>プラグインサイドバーがシステム言語に追従。</li>
+</ul>
+<h3>Studio：AIキャリアスーパーバイザー</h3>
+<ul>
+<li>ヘッドレスAIキャリアスーパーバイザーがハンドシェイクプロトコルでランタイムエージェントを管理。</li>
+<li>AnyDev初期化の高速化。</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=f56c0484"></script>
+</body>
+</html>
