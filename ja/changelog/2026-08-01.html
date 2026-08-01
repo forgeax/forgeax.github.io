@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-08-01 · Asset Canvasワークフロー、シーン制作の強化、デスクトップ安定性 — ForgeaX</title>
+<meta name="description" content="Asset Canvas統合、共有Workbench Host、ゲーム単位プロジェクト、シーン制作強化、ヘッドレスAIキャリア互換、デスクトップIPCナビゲーション、Play起動、プレビューアセット、ローカルランタイム修正。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-08-01 · Asset Canvasワークフロー、シーン制作の強化、デスクトップ安定性 — ForgeaX" />
+<meta property="og:description" content="Asset Canvas統合、共有Workbench Host、ゲーム単位プロジェクト、シーン制作強化、ヘッドレスAIキャリア互換、デスクトップIPCナビゲーション、Play起動、プレビューアセット、ローカルランタイム修正。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-08-01.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-08-01.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-08-01.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-08-01.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-08-01.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-08-01.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-08-01.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-08-01.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-08-01.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-08-01.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-08-01.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=4b0c16d2" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <details class="nav-docs-menu">
+        <summary>ドキュメント</summary>
+        <div class="nav-docs-menu__panel">
+          <a class="nav-docs-menu__item" href="/ja/docs/" data-nav="/docs/">
+            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
+            <span><strong>ドキュメント</strong></span>
+          </a>
+          <a class="nav-docs-menu__item" href="/docs/cli/">
+            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
+            <span><strong>ForgeaX CLI</strong></span>
+          </a>
+        </div>
+      </details>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
+      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-08-01.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-08-01.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-08-01.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-08-01.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-08-01.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-08-01.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-08-01.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-08-01.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
+          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">毎日</span><span>2026-08-01</span></div>
+    <h1>Asset Canvasワークフロー、シーン制作の強化、デスクトップ安定性</h1>
+    <p class="standfirst">ForgeaX Studio 0.3.23では、Asset Canvasワークフロー、より明確なシーン制作境界、ゲーム単位の安定したプロジェクト統合を追加し、デスクトップナビゲーションやPlay起動などを修正しました。</p>
+    <div class="prose"><h3>Asset Canvasとゲームプロジェクト</h3>
+<ul>
+<li>Asset Canvasと共有Workbench Hostを統合し、アセット編成、モデルサービス、メディアアダプターを統一。</li>
+<li>ゲームがプロジェクト単位になり、ビデオゲームと<code>wb-game-video</code>ワークフローが安定して統合されました。</li>
+</ul>
+<h3>シーン制作とランタイム</h3>
+<ul>
+<li>シーンの作成、複製、削除、デフォルトシーン、フィールド編集の境界を明確化。</li>
+<li>ヘッドレスAIキャリアスーパーバイザーとWave 1 gameplay carrier互換により、ローカル実行を改善。</li>
+</ul>
+<h3>デスクトップとローカル開発の修正</h3>
+<ul>
+<li>パッケージ版デスクトップのTauri IPCを復元し、「プロジェクトを開く」などのネイティブ操作が再び動作。</li>
+<li>gameroot外のローカルディレクトリも「プロジェクトを開く」で利用可能。</li>
+<li>Play起動、プレビューアセットパス、WebGL2 FXAAフォールバック、シーン保存を安定化。</li>
+<li>重複タブを防ぎ、ローカルワークスペースとサブモジュールの初期化を強化。</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
+  </div>
+  <div class="col"><h4>サイト</h4>
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/blog/">ブログ</a>
+    <a href="/ja/docs/">ドキュメント</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/games/">ゲーム</a>
+    <a href="/ja/marketplace/">市場</a>
+  </div>
+  <div class="col"><h4>プロジェクト</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=f56c0484"></script>
+</body>
+</html>
