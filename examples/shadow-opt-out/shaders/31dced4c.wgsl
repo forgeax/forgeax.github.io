@@ -1,60 +1,107 @@
-#define_import_path shadow_opt_out::cutout_shadow
+struct ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX {
+    worldViewProj: mat4x4<f32>,
+    lightDir: vec3<f32>,
+    lightColor: vec3<f32>,
+    cameraPos: vec3<f32>,
+    lightViewProj_A: mat4x4<f32>,
+    inverseViewProj: mat4x4<f32>,
+    lightViewProj_B: mat4x4<f32>,
+    lightViewProj_C: mat4x4<f32>,
+    lightViewProj_D: mat4x4<f32>,
+    splitPlanes: array<vec4<f32>, 4>,
+    cascadeCount: f32,
+    cascadeBlend: f32,
+    depthBias: f32,
+    normalBias: f32,
+    pcfKernelSize: f32,
+    spotLightViewProj: array<mat4x4<f32>, 4>,
+}
 
-// apps/hello/shadow-opt-out/shaders/cutout-shadow.wgsl
-// feat-20260609-pipeline-driven-pass-selector-shadowcaster-via-mat T-018
-// AC-17 cutout shadow shader: alpha-test discard in fragment stage so the
-// shadow map produces a cutout pattern instead of a solid silhouette.
-// AI users register this via ShaderRegistry.registerMaterialShader and
-// reference it in a MaterialPassDescriptor with name='ShadowCaster' and
-// tags={LightMode:'ShadowCaster'}.
+struct ShadowCasterCascadeX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX {
+    index: u32,
+    isSpot: u32,
+    shadowCasterPadB: u32,
+    shadowCasterPadC: u32,
+    spotLightViewProj: mat4x4<f32>,
+}
 
-#import forgeax_view::common::{View, Mesh, InstanceData, ShadowCasterCascade, view, shadowCasterCascade, meshes, instances}
+struct MeshX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX {
+    worldFromLocal: mat4x4<f32>,
+    normalMatrix: mat3x3<f32>,
+}
 
-// The shadow depth pass binds a position-only vertex buffer (12-float
-// stride, @location(0) only — see pipeline-builder.ts shadow-caster branch),
-// so VsInput must declare only @location(0). A normal input would force a
-// vertex-layout mismatch against the depth pass's buffer layout.
+struct InstanceDataX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX {
+    localFromInstance: mat4x4<f32>,
+}
+
 struct VsInput {
-  @location(0) position : vec3<f32>,
-};
+    @location(0) position: vec3<f32>,
+}
 
 struct VsOut {
-  @builtin(position) clip : vec4<f32>,
-  @location(0) worldPos   : vec3<f32>,
-};
-
-fn _cascadeLightViewProj(layer : u32) -> mat4x4<f32> {
-  switch (layer) {
-    case 0u: { return view.lightViewProj_A; }
-    case 1u: { return view.lightViewProj_B; }
-    case 2u: { return view.lightViewProj_C; }
-    default: { return view.lightViewProj_D; }
-  }
+    @builtin(position) clip: vec4<f32>,
+    @location(0) worldPos: vec3<f32>,
 }
 
-@vertex
-fn vs_main(in : VsInput, @builtin(instance_index) idx : u32) -> VsOut {
-  let worldPos = meshes[0].worldFromLocal * instances[idx].localFromInstance * vec4<f32>(in.position, 1.0);
-  var out : VsOut;
-  // Per-cascade lightViewProj selection mirrors the built-in
-  // shadow_caster.wgsl so the cutout shadow is correct for cascadeCount > 1
-  // (the shadow pass writes the active cascade index into binding 7 before
-  // each cascade's encoder submit).
-  out.clip = _cascadeLightViewProj(shadowCasterCascade.index) * worldPos;
-  out.worldPos = worldPos.xyz;
-  return out;
+@group(0) @binding(0) 
+var<uniform> viewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX;
+@group(0) @binding(7) 
+var<uniform> shadowCasterCascadeX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX: ShadowCasterCascadeX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX;
+@group(2) @binding(0) 
+var<storage> meshesX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX: array<MeshX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX>;
+@group(3) @binding(0) 
+var<storage> instancesX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX: array<InstanceDataX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX>;
+
+fn _cascadeLightViewProj(layer: u32) -> mat4x4<f32> {
+    switch layer {
+        case 0u: {
+            let _e3 = viewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX.lightViewProj_A;
+            return _e3;
+        }
+        case 1u: {
+            let _e6 = viewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX.lightViewProj_B;
+            return _e6;
+        }
+        case 2u: {
+            let _e9 = viewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX.lightViewProj_C;
+            return _e9;
+        }
+        default: {
+            let _e12 = viewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX.lightViewProj_D;
+            return _e12;
+        }
+    }
 }
 
-// Cutout pattern: discard fragments whose world-space X falls inside a
-// vertical grid of holes (every 0.5 units along X, hole width 0.15).
-// World-space Z modulo 0.5 also creates holes along the Z axis.
-// Result: a checkerboard-cutout shadow on the cube surface.
-@fragment
-fn fs_main(in : VsOut) -> @builtin(frag_depth) f32 {
-  let hole_x = abs((in.worldPos.x + 0.25) % 1.0 - 0.5) < 0.15;
-  let hole_z = abs((in.worldPos.z + 0.25) % 1.0 - 0.5) < 0.15;
-  if (hole_x && hole_z) {
-    discard;
-  }
-  return in.clip.z / in.clip.w;
+@vertex 
+fn vs_main(in: VsInput, @builtin(instance_index) idx: u32) -> VsOut {
+    var out: VsOut;
+
+    let _e3 = meshesX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX[0].worldFromLocal;
+    let _e9 = instancesX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX[idx].localFromInstance;
+    let worldPos = ((_e3 * _e9) * vec4<f32>(in.position, 1f));
+    let _e19 = shadowCasterCascadeX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX.index;
+    let _e20 = _cascadeLightViewProj(_e19);
+    out.clip = (_e20 * worldPos);
+    out.worldPos = worldPos.xyz;
+    let _e24 = out;
+    return _e24;
+}
+
+@fragment 
+fn fs_main(in_1: VsOut) -> @builtin(frag_depth) f32 {
+    var local: bool;
+
+    let hole_x = (abs((((in_1.worldPos.x + 0.25f) % 1f) - 0.5f)) < 0.15f);
+    let hole_z = (abs((((in_1.worldPos.z + 0.25f) % 1f) - 0.5f)) < 0.15f);
+    if hole_x {
+        local = hole_z;
+    } else {
+        local = false;
+    }
+    let _e26 = local;
+    if _e26 {
+        discard;
+    }
+    return (in_1.clip.z / in_1.clip.w);
 }
