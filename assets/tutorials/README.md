@@ -1,15 +1,13 @@
-# Tutorial media slot
+# Tutorial media
 
-Reserved for the interactive film-game demo. Production currently ships **without** the video.
+Interactive film-game demo used on `/tutorials/interactive-film-game.html`.
 
-## Files to drop here
+## Files
 
-- `interactive-film-game-demo.mp4`
-- `interactive-film-game-demo-poster.jpg`
+- `interactive-film-game-demo.mp4` — 1080p H.264 web encode (`+faststart`)
+- `interactive-film-game-demo-poster.jpg` — poster frame
 
-## Restore on the tutorial page
-
-In `templates/pages/tutorials-interactive-film-game.html`, replace the one-line demo-video comment under the standfirst with:
+## Page markup
 
 ```html
 <figure class="media-embed">
