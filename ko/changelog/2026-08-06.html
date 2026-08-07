@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-08-06 · AI 네이티브 에디터 제어, 비디오 워크플로, 새로워진 Studio — ForgeaX</title>
+<meta name="description" content="타입 기반 에디터 스크립트, AI 네이티브 제작, Kino 비디오 생성, Material Instance 및 파티클 VFX 에디터, 전역 탭, 엣지 드로어, Save Content, 새 게임과 안정성 수정." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-08-06 · AI 네이티브 에디터 제어, 비디오 워크플로, 새로워진 Studio — ForgeaX" />
+<meta property="og:description" content="타입 기반 에디터 스크립트, AI 네이티브 제작, Kino 비디오 생성, Material Instance 및 파티클 VFX 에디터, 전역 탭, 엣지 드로어, Save Content, 새 게임과 안정성 수정." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-08-06.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-08-06.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-08-06.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-08-06.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-08-06.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-08-06.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-08-06.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-08-06.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-08-06.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-08-06.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-08-06.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <details class="nav-docs-menu">
+        <summary>문서</summary>
+        <div class="nav-docs-menu__panel">
+          <a class="nav-docs-menu__item" href="/ko/docs/" data-nav="/docs/">
+            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
+            <span><strong>문서</strong></span>
+          </a>
+          <a class="nav-docs-menu__item" href="/docs/cli/">
+            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
+            <span><strong>ForgeaX CLI</strong></span>
+          </a>
+        </div>
+      </details>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/games/" data-nav="/games/">계략</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
+      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-08-06.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-08-06.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-08-06.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-08-06.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-08-06.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-08-06.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-08-06.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-08-06.html" data-l="pt">Português</a></div>
+      </div>
+      <details class="ask-ai" id="askAi">
+        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
+        <div class="ask-menu">
+          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
+          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
+          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
+        </div>
+      </details>
+      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">일일</span><span>2026-08-06</span></div>
+    <h1>AI 네이티브 에디터 제어, 비디오 워크플로, 새로워진 Studio</h1>
+    <p class="standfirst">ForgeaX Studio 0.3.24는 라이브 에디터의 타입 기반 AI 제어, 게임별 비디오 생성, 향상된 머티리얼 및 VFX 제작, 새로 설계된 페이지·패널 작업 공간과 시작·Play·데스크톱 안정성 수정을 제공합니다.</p>
+    <div class="prose"><h3>AI 네이티브 제작 및 미디어</h3>
+<ul>
+<li>타입 기반 스크립트 전송으로 에이전트가 안정적이고 관측 가능한 Gateway를 통해 라이브 에디터를 제어할 수 있습니다.</li>
+<li>Kino와 비디오 Workbench를 통합하고 생성 도구와 미디어를 활성 게임별로 격리했습니다.</li>
+</ul>
+<h3>에디터 및 작업 공간</h3>
+<ul>
+<li>Material Instance 및 파티클 VFX 에디터와 함께 sRGB 색상, 에셋 재가져오기, 뷰포트 피킹을 개선했습니다.</li>
+<li>전역 문서 탭, UE 스타일 엣지 드로어, 푸터 패널, 도킹 가능한 Settings 패널, Save Content 대화상자를 추가했습니다.</li>
+<li>카메라 로밍, 다중 오브젝트 Gizmo, 표시 단축키, 대형 Hierarchy 가상화, 혼합 값 편집으로 씬 작업을 가속합니다.</li>
+</ul>
+<h3>게임 및 안정성</h3>
+<ul>
+<li>새 게임 Echofall: Shattered Skies를 제공하며 새 프로젝트는 완전한 엔진 기본 템플릿을 사용합니다.</li>
+<li>새 게임 및 Play 시작, macOS 뷰포트 크기 조절, Windows 씬 오류, WebGPU 재로딩, CLI 시작, Android 패키징 안정성을 높였습니다.</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <div class="col"><h4>대지</h4>
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/blog/">블로그</a>
+    <a href="/ko/docs/">문서</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/games/">계략</a>
+    <a href="/ko/marketplace/">시장</a>
+  </div>
+  <div class="col"><h4>프로젝트</h4>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </div>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script src="/assets/site.js?v=f56c0484"></script>
+</body>
+</html>
