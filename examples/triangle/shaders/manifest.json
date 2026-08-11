@@ -155,16 +155,16 @@
       "glsl": ""
     },
     {
-      "hash": "4b0a7bfd",
-      "wgsl": "struct View {\n    worldViewProj: mat4x4<f32>,\n    lightDir: vec3<f32>,\n    lightColor: vec3<f32>,\n    cameraPos: vec3<f32>,\n}\n\nstruct Mesh {\n    worldFromLocal: mat4x4<f32>,\n}\n\n@group(0) @binding(0) \nvar<uniform> view: View;\n@group(2) @binding(0) \nvar<storage> meshes: array<Mesh>;\n\n",
-      "bindings": "[{\"label\":\"@group(0)\",\"entries\":[{\"binding\":0,\"visibility\":0,\"buffer\":{\"type\":\"uniform\",\"hasDynamicOffset\":false,\"minBindingSize\":0}}]},{\"label\":\"@group(2)\",\"entries\":[{\"binding\":0,\"visibility\":0,\"buffer\":{\"type\":\"read-only-storage\",\"hasDynamicOffset\":false,\"minBindingSize\":0}}]}]",
+      "hash": "054d80ed",
+      "wgsl": "fn d_ggx(nDotH: f32, a: f32) -> f32 {\n    let a2_ = (a * a);\n    let f = ((((nDotH * a2_) - nDotH) * nDotH) + 1f);\n    return (a2_ / ((3.1415927f * f) * f));\n}\n\nfn v_smith(nDotV: f32, nDotL: f32, a_1: f32) -> f32 {\n    let a2_1 = (a_1 * a_1);\n    let gv = (nDotL * sqrt((((nDotV * nDotV) * (1f - a2_1)) + a2_1)));\n    let gl = (nDotV * sqrt((((nDotL * nDotL) * (1f - a2_1)) + a2_1)));\n    return (0.5f / max((gv + gl), 0.00001f));\n}\n\nfn f_schlick(vDotH: f32, f0_: vec3<f32>) -> vec3<f32> {\n    return (f0_ + ((vec3(1f) - f0_) * pow((1f - vDotH), 5f)));\n}\n\n",
+      "bindings": "[]",
       "uvSetCount": 0,
       "glsl": ""
     },
     {
-      "hash": "054d80ed",
-      "wgsl": "fn d_ggx(nDotH: f32, a: f32) -> f32 {\n    let a2_ = (a * a);\n    let f = ((((nDotH * a2_) - nDotH) * nDotH) + 1f);\n    return (a2_ / ((3.1415927f * f) * f));\n}\n\nfn v_smith(nDotV: f32, nDotL: f32, a_1: f32) -> f32 {\n    let a2_1 = (a_1 * a_1);\n    let gv = (nDotL * sqrt((((nDotV * nDotV) * (1f - a2_1)) + a2_1)));\n    let gl = (nDotV * sqrt((((nDotL * nDotL) * (1f - a2_1)) + a2_1)));\n    return (0.5f / max((gv + gl), 0.00001f));\n}\n\nfn f_schlick(vDotH: f32, f0_: vec3<f32>) -> vec3<f32> {\n    return (f0_ + ((vec3(1f) - f0_) * pow((1f - vDotH), 5f)));\n}\n\n",
-      "bindings": "[]",
+      "hash": "4b0a7bfd",
+      "wgsl": "struct View {\n    worldViewProj: mat4x4<f32>,\n    lightDir: vec3<f32>,\n    lightColor: vec3<f32>,\n    cameraPos: vec3<f32>,\n}\n\nstruct Mesh {\n    worldFromLocal: mat4x4<f32>,\n}\n\n@group(0) @binding(0) \nvar<uniform> view: View;\n@group(2) @binding(0) \nvar<storage> meshes: array<Mesh>;\n\n",
+      "bindings": "[{\"label\":\"@group(0)\",\"entries\":[{\"binding\":0,\"visibility\":0,\"buffer\":{\"type\":\"uniform\",\"hasDynamicOffset\":false,\"minBindingSize\":0}}]},{\"label\":\"@group(2)\",\"entries\":[{\"binding\":0,\"visibility\":0,\"buffer\":{\"type\":\"read-only-storage\",\"hasDynamicOffset\":false,\"minBindingSize\":0}}]}]",
       "uvSetCount": 0,
       "glsl": ""
     },
@@ -415,17 +415,17 @@
       "uvSetCount": 1
     },
     {
-      "identifier": "hello_triangle::view",
-      "sourcePath": "/home/runner/work/forgeax-website/forgeax-website/_engine/apps/hello/triangle/src/shaders/view.wgsl",
-      "composedWgsl": "struct View {\n    worldViewProj: mat4x4<f32>,\n    lightDir: vec3<f32>,\n    lightColor: vec3<f32>,\n    cameraPos: vec3<f32>,\n}\n\nstruct Mesh {\n    worldFromLocal: mat4x4<f32>,\n}\n\n@group(0) @binding(0) \nvar<uniform> view: View;\n@group(2) @binding(0) \nvar<storage> meshes: array<Mesh>;\n\n",
+      "identifier": "hello_triangle::brdf",
+      "sourcePath": "/home/runner/work/forgeax-website/forgeax-website/_engine/apps/hello/triangle/src/shaders/brdf.wgsl",
+      "composedWgsl": "fn d_ggx(nDotH: f32, a: f32) -> f32 {\n    let a2_ = (a * a);\n    let f = ((((nDotH * a2_) - nDotH) * nDotH) + 1f);\n    return (a2_ / ((3.1415927f * f) * f));\n}\n\nfn v_smith(nDotV: f32, nDotL: f32, a_1: f32) -> f32 {\n    let a2_1 = (a_1 * a_1);\n    let gv = (nDotL * sqrt((((nDotV * nDotV) * (1f - a2_1)) + a2_1)));\n    let gl = (nDotV * sqrt((((nDotL * nDotL) * (1f - a2_1)) + a2_1)));\n    return (0.5f / max((gv + gl), 0.00001f));\n}\n\nfn f_schlick(vDotH: f32, f0_: vec3<f32>) -> vec3<f32> {\n    return (f0_ + ((vec3(1f) - f0_) * pow((1f - vDotH), 5f)));\n}\n\n",
       "paramSchema": "[]",
       "variants": [],
       "uvSetCount": 0
     },
     {
-      "identifier": "hello_triangle::brdf",
-      "sourcePath": "/home/runner/work/forgeax-website/forgeax-website/_engine/apps/hello/triangle/src/shaders/brdf.wgsl",
-      "composedWgsl": "fn d_ggx(nDotH: f32, a: f32) -> f32 {\n    let a2_ = (a * a);\n    let f = ((((nDotH * a2_) - nDotH) * nDotH) + 1f);\n    return (a2_ / ((3.1415927f * f) * f));\n}\n\nfn v_smith(nDotV: f32, nDotL: f32, a_1: f32) -> f32 {\n    let a2_1 = (a_1 * a_1);\n    let gv = (nDotL * sqrt((((nDotV * nDotV) * (1f - a2_1)) + a2_1)));\n    let gl = (nDotV * sqrt((((nDotL * nDotL) * (1f - a2_1)) + a2_1)));\n    return (0.5f / max((gv + gl), 0.00001f));\n}\n\nfn f_schlick(vDotH: f32, f0_: vec3<f32>) -> vec3<f32> {\n    return (f0_ + ((vec3(1f) - f0_) * pow((1f - vDotH), 5f)));\n}\n\n",
+      "identifier": "hello_triangle::view",
+      "sourcePath": "/home/runner/work/forgeax-website/forgeax-website/_engine/apps/hello/triangle/src/shaders/view.wgsl",
+      "composedWgsl": "struct View {\n    worldViewProj: mat4x4<f32>,\n    lightDir: vec3<f32>,\n    lightColor: vec3<f32>,\n    cameraPos: vec3<f32>,\n}\n\nstruct Mesh {\n    worldFromLocal: mat4x4<f32>,\n}\n\n@group(0) @binding(0) \nvar<uniform> view: View;\n@group(2) @binding(0) \nvar<storage> meshes: array<Mesh>;\n\n",
       "paramSchema": "[]",
       "variants": [],
       "uvSetCount": 0
