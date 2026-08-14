@@ -23,9 +23,29 @@
         pointer-events: none;
         user-select: none;
       }
+      #mm-controls {
+        position: fixed;
+        right: 16px;
+        top: 16px;
+        display: grid;
+        gap: 6px;
+        width: 300px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid #2a2f48;
+        color: #e0e6f8;
+      }
+      #mm-controls button { cursor: pointer; }
+      #mm-state {
+        margin: 0;
+        max-height: 300px;
+        overflow: auto;
+        font-size: 11px;
+        white-space: pre-wrap;
+      }
     </style>
     <script type="module">(function(){var c=document.querySelector("#app")||document.querySelector("canvas");if(!c)return;function fit(){var d=window.devicePixelRatio||1,w=Math.max(1,Math.round(c.clientWidth*d)),h=Math.max(1,Math.round(c.clientHeight*d));if(c.width!==w||c.height!==h){c.width=w;c.height=h;}}function z(){fit();window.dispatchEvent(new Event("resize"));}fit();if(window.ResizeObserver){try{new ResizeObserver(z).observe(c);}catch(e){}}addEventListener("resize",fit);requestAnimationFrame(z);setTimeout(z,120);setTimeout(z,500);})();</script>
-<script type="module" crossorigin src="/examples/multi-material/assets/main-BlO5OyAU.js"></script>
+<script type="module" crossorigin src="/examples/multi-material/assets/main-iVzmd9Rk.js"></script>
     <link rel="modulepreload" crossorigin href="/examples/multi-material/assets/chunk-DtRyYLXJ.js">
     <link rel="modulepreload" crossorigin href="/examples/multi-material/assets/preload-helper-BiVMxIJS.js">
     <link rel="modulepreload" crossorigin href="/examples/multi-material/assets/dist-BU8_q-c8.js">
@@ -36,6 +56,12 @@
     <canvas id="app"></canvas>
     <div id="mm-hud">
       submeshes=2: [0] triangle-list (red filled quad) + [1] line-list (cyan wire box)
+    </div>
+    <div id="mm-controls">
+      <button id="mm-overflow" type="button">Inject overflow</button>
+      <button id="mm-repair" type="button">Repair slot 0</button>
+      <button id="mm-cleanup" type="button">Cleanup defaults</button>
+      <pre id="mm-state">waiting for first frame</pre>
     </div>
   </body>
 </html>
