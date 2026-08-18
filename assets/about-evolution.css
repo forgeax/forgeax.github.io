@@ -189,6 +189,7 @@
   pointer-events: none;
 }
 
+.about-evolution__poster,
 .about-evolution__canvas {
   z-index: 1;
   position: absolute;
@@ -196,15 +197,27 @@
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+}
+
+.about-evolution__poster {
   background: radial-gradient(circle at 50% 38%, #f7f7f5, #cfd1cf 70%);
 }
 
+.about-evolution__canvas {
+  z-index: 2;
+  background: transparent;
+}
+
 .about-evolution__video {
+  z-index: 0;
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  opacity: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .001;
   pointer-events: none;
 }
 

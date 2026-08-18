@@ -12,6 +12,7 @@
   var STAGES = ['1.0', '2.0', '3.0', '4.0', '5.0', '6.0'];
   var slider = root.querySelector('.about-evolution__slider');
   var video = root.querySelector('.about-evolution__video');
+  var poster = root.querySelector('.about-evolution__poster');
   var canvas = root.querySelector('.about-evolution__canvas');
   var loadState = root.querySelector('.about-evolution__load');
   var status = root.querySelector('.about-evolution__status');
@@ -22,7 +23,8 @@
   var markers = Array.prototype.slice.call(root.querySelectorAll('.about-evolution__markers li'));
   var tickTrack = root.querySelector('.about-evolution__ticks');
   var ticks = [];
-  var ready = false;
+  var desiredScore = DEFAULT_SCORE;
+  var decoderAwake = false;
   var seekFrame = 0;
 
   function clamp(value, min, max) {
@@ -65,10 +67,14 @@
     context.imageSmoothingEnabled = true;
     context.imageSmoothingQuality = 'high';
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    poster.hidden = true;
+    loadState.hidden = true;
+    status.textContent = root.dataset.ready;
   }
 
   function requestFrame(score) {
-    if (!ready || !Number.isFinite(video.duration)) return;
+    desiredScore = score;
+    if (video.readyState < 1 || !Number.isFinite(video.duration)) return;
     var model = modelFor(score);
     var last = Math.max(0, video.duration - 1 / VIDEO_FPS);
     var target = model.progress * last;
@@ -77,9 +83,36 @@
       if (Math.abs(video.currentTime - target) < 0.001) {
         drawFrame();
       } else {
-        video.currentTime = target;
+        try { video.currentTime = target; } catch (error) {}
       }
     });
+  }
+
+  function wakeDecoder() {
+    if (decoderAwake) {
+      requestFrame(desiredScore);
+      return;
+    }
+    decoderAwake = true;
+    video.muted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', 'true');
+    status.textContent = root.dataset.loading;
+
+    var playback;
+    try { playback = video.play(); } catch (error) { playback = null; }
+    if (playback && typeof playback.then === 'function') {
+      playback.then(function () {
+        video.pause();
+        requestFrame(desiredScore);
+      }).catch(function () {
+        requestFrame(desiredScore);
+      });
+    } else {
+      video.pause();
+      requestFrame(desiredScore);
+    }
   }
 
   function update(score, shouldSeek) {
@@ -115,27 +148,23 @@
     update(Number(slider.value), true);
   });
 
-  video.addEventListener('loadeddata', function () {
-    ready = true;
-    slider.disabled = false;
-    loadState.hidden = true;
-    status.textContent = root.dataset.ready;
-    update(Number(slider.value), true);
-    drawFrame();
-  }, { once: true });
+  slider.addEventListener('pointerdown', wakeDecoder, { passive: true });
+  slider.addEventListener('touchstart', wakeDecoder, { passive: true });
+  slider.addEventListener('keydown', wakeDecoder);
+
+  video.addEventListener('loadedmetadata', function () {
+    requestFrame(desiredScore);
+  });
 
   video.addEventListener('seeked', drawFrame);
   video.addEventListener('error', function () {
-    ready = false;
-    slider.disabled = true;
-    loadState.hidden = false;
-    loadState.classList.add('is-error');
-    loadState.textContent = root.dataset.error;
+    poster.hidden = false;
+    loadState.hidden = true;
     status.textContent = root.dataset.error;
   }, { once: true });
 
   window.addEventListener('resize', drawFrame, { passive: true });
   update(DEFAULT_SCORE, false);
-  status.textContent = root.dataset.loading;
+  status.textContent = root.dataset.ready;
   video.load();
 })();
