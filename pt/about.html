@@ -23,13 +23,14 @@
 <link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/about.html" />
 <link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/about.html" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+<link rel="stylesheet" href="/assets/about-evolution.css?v=b590a307" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
 
 </head>
-<body class="lang-pt forgeax-site">
+<body class="lang-pt forgeax-site about-page">
 
 <nav class="nav">
   <div class="nav-inner">
@@ -78,12 +79,64 @@
 </nav>
 
 <main>
-  <div class="wrap page-head">
-    <h1>Sobre ForgeaX</h1>
-    <p>Ferramentas de desenvolvimento de jogos, desenvolvidas para a era da IA.</p>
-  </div>
+  <section class="about-evolution" id="forgeax-evolution" data-stage="2"
+    style="--strength:.5;--stage-progress:.5"
+    data-loading="Carregando a sequência contínua…"
+    data-ready="O ponto vermelho marca a versão atual"
+    data-error="Não foi possível carregar a sequência. Atualize a página.">
+    <div class="about-evolution__masthead">
+      <div>
+        <p class="about-evolution__eyebrow">Da ideia à concretização</p>
+        <h1>Sobre ForgeaX</h1>
+        <p class="about-evolution__intro">Ferramentas de desenvolvimento de jogos, desenvolvidas para a era da IA.</p>
+      </div>
+      <div class="about-evolution__meter" aria-live="polite">
+        <span>Versão</span>
+        <output class="about-evolution__version" for="about-evolution-slider">3.5</output>
+      </div>
+    </div>
 
-  <article class="read article" style="padding-top:20px">
+    <div class="about-evolution__portrait-zone" aria-labelledby="about-evolution-stage-label">
+      <p class="about-evolution__ghost" aria-hidden="true">3.0</p>
+      <div class="about-evolution__portrait">
+        <div class="about-evolution__halo" aria-hidden="true"></div>
+        <canvas class="about-evolution__canvas" width="800" height="800" aria-hidden="true"></canvas>
+        <video class="about-evolution__video" preload="auto" muted playsinline tabindex="-1" aria-hidden="true"
+          src="/assets/about/forgeax-evolution.mp4"></video>
+        <div class="about-evolution__scan" aria-hidden="true"></div>
+        <span class="about-evolution__corner about-evolution__corner--tl" aria-hidden="true"></span>
+        <span class="about-evolution__corner about-evolution__corner--tr" aria-hidden="true"></span>
+        <span class="about-evolution__corner about-evolution__corner--bl" aria-hidden="true"></span>
+        <span class="about-evolution__corner about-evolution__corner--br" aria-hidden="true"></span>
+        <div class="about-evolution__load" role="status">Carregando a sequência contínua…</div>
+      </div>
+      <div class="about-evolution__stage-readout">
+        <span id="about-evolution-stage-label">Etapa atual</span>
+        <p class="about-evolution__stage">3.0</p>
+        <span class="about-evolution__stage-index">VER 3.0 / 6.0</span>
+      </div>
+    </div>
+
+    <div class="about-evolution__controls" aria-label="Versão">
+      <p class="about-evolution__status" role="status">Carregando a sequência contínua…</p>
+      <div class="about-evolution__range-wrap">
+        <div class="about-evolution__ticks" aria-hidden="true"></div>
+        <input id="about-evolution-slider" class="about-evolution__slider" type="range"
+          min="-15" max="15" step="0.01" value="0" disabled
+          aria-label="Versão" aria-valuetext="3.5">
+      </div>
+      <ol class="about-evolution__markers" aria-hidden="true">
+        <li class="is-passed">1.0</li><li class="is-passed">2.0</li><li class="is-current">3.0</li><li>4.0</li><li>5.0</li><li>6.0</li>
+      </ol>
+      <p class="about-evolution__hint"><span aria-hidden="true">←</span>Arraste o ponto vermelho para ver o ForgeaX evoluir de 1.0 a 6.0.<span aria-hidden="true">→</span></p>
+      <a class="about-evolution__continue" href="#about-story">
+        <span class="about-evolution__continue-label">Conheça o ForgeaX</span>
+        <span class="about-evolution__continue-arrow" aria-hidden="true">↓</span>
+      </a>
+    </div>
+  </section>
+
+  <article class="read article about-story" id="about-story">
     <div class="prose">
       <p>ForgeaX é um<strong>Estúdio de jogos pessoais nativo de IA</strong>. Acreditamos que a barreira para a criação de jogos está sendo redefinida pela IA.</p>
       <p>Nossa visão é direta:<strong>deixe equipes menores, com IA, criarem jogos que antes exigiam jogos muito maiores.</strong>Não para substituir os criadores, mas para entregar a engenharia pesada e a produção entre a “ideia” e o “jogo jogável” à IA.</p>
@@ -168,5 +221,6 @@
 </footer>
 
 <script src="/assets/site.js?v=f56c0484"></script>
+<script src="/assets/about-evolution.js?v=0fd0b7b1"></script>
 </body>
 </html>
