@@ -14,6 +14,7 @@
   var video = root.querySelector('.about-evolution__video');
   var poster = root.querySelector('.about-evolution__poster');
   var canvas = root.querySelector('.about-evolution__canvas');
+  var loader = root.querySelector('.about-evolution__loader');
   var loadState = root.querySelector('.about-evolution__load');
   var status = root.querySelector('.about-evolution__status');
   var version = root.querySelector('.about-evolution__version');
@@ -68,6 +69,7 @@
     context.imageSmoothingQuality = 'high';
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     poster.hidden = true;
+    loader.hidden = true;
     loadState.hidden = true;
     status.textContent = root.dataset.ready;
   }
@@ -159,12 +161,13 @@
   video.addEventListener('seeked', drawFrame);
   video.addEventListener('error', function () {
     poster.hidden = false;
+    loader.hidden = true;
     loadState.hidden = true;
     status.textContent = root.dataset.error;
   }, { once: true });
 
   window.addEventListener('resize', drawFrame, { passive: true });
   update(DEFAULT_SCORE, false);
-  status.textContent = root.dataset.ready;
+  status.textContent = root.dataset.loading;
   video.load();
 })();
