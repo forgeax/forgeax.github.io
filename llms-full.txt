@@ -100,6 +100,27 @@ User-facing guide; chapters are being filled in:
 7. Publish & share — export your game; share it to play.
 8. Advanced — switch/configure the AI backend; write workbench plugins; customize agent personas.
 
+## Engine + SDK setup for AI
+
+The complete machine-readable setup contract is [the Engine + SDK AI guide](https://forgeax.github.io/download/engine-ai.html).
+
+> [!IMPORTANT]
+> Probe npm before changing files. If `@forgeax/engine-sdk` returns 404, stop and report that the SDK carrier is not published; never guess a version or use a private GitHub Release.
+
+| Surface | Package | Action |
+|:--|:--|:--|
+| Runtime + CLI | `@forgeax/engine` | Install in an existing ForgeaX game, or invoke with `pnpm dlx` to fetch the SDK. |
+| npm SDK carrier | `@forgeax/engine-sdk` | Let `forgeax sdk install` fetch the exact version-matched carrier; it intentionally omits `store/pnpm`, so the generated project installs its locked Engine dependencies from npm. Do not add it as a runtime dependency. |
+
+When both registry versions exist and match, run:
+
+```bash
+pnpm dlx @forgeax/engine@<version> sdk install <empty-sdk-dir> --version <version>
+<sdk-dir>/bin/forgeax new <game-dir>
+```
+
+The game directory must be outside the SDK root. For an existing ForgeaX game (with `forge.json`, `package.json`, and its entry module), install `@forgeax/engine` and run `forgeax init` instead of using SDK `new`.
+
 ---
 
 ## License
