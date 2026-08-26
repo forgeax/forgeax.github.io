@@ -1,43 +1,45 @@
-# ForgeaX Engine + SDK bootstrap contract for AI
+# ForgeaX Engine + SDK: AI bootstrap contract
 
-This is a machine instruction. Execute only the paths below. Do not guess versions,
+You are an AI coding agent. Execute this contract exactly. Do not guess versions,
 URLs, packages, or recovery steps.
 
-## Package roles
+## Mandatory rules
 
-- `@forgeax/engine` is the public Engine runtime and `forgeax` CLI.
-- `@forgeax/engine-sdk` is the version-matched npm carrier for the built SDK. Do not add
-  it to a game's `package.json`.
-- Do not install `@forgeax/engine-*` focused packages one by one unless their README
-  explicitly requires a focused import.
+1. Use the public npm registry. `@forgeax/engine` is the public runtime and `forgeax`
+   CLI. `@forgeax/engine-sdk` is the matching SDK carrier, not a game runtime
+   dependency; never add it to the game's `package.json`.
+2. After SDK installation, read `$SDK_ROOT/AGENTS.md` in full before running `new` or
+   changing anything. It is the SDK authority. After game creation, read
+   `$GAME_ROOT/AGENTS.md` in full before editing code or assets. It is the game
+   authority. Follow both files; do not replace them with this page.
+   In the game, `forge.json` owns configuration, entry, and plugins; stable GUIDs own
+   asset identity; `skills/` is the single skill source of truth.
+3. `sdk-manifest.json` is the SDK archive authority. Do not hand-edit the SDK stage,
+   manifest, offline store, generated `dist/`, `node_modules/`, or `.forgeax/` state.
+4. The SDK root and every child of it are forbidden game targets. Use a sibling or
+   another external absolute path. `forgeax new` must not overwrite an existing path.
+5. Direct edit is the default. Do not start the ForgeaX closed loop unless the user
+   explicitly authorizes it for the current task.
+6. The CLI is the only product tool entry. Prefer `--json`; discover operations with
+   `forgeax list`, `describe`, and `run` instead of guessing inputs.
 
-## Registry and version rules
-
-- Use the public npm registry. Do not use a private GitHub Release.
-- The npm SDK carrier intentionally omits the offline `store/pnpm`; `sdk install` uses
-  the generated lockfile and the npm registry for Engine dependencies.
-- Before changing files, probe both packages and require an exact version match.
-- If `npm view @forgeax/engine-sdk version` returns 404, stop and report:
-  `@forgeax/engine-sdk is not published; bootstrap cannot continue.`
-- If either lookup fails or versions differ, stop and report the exact output. Never guess.
-
-## New game: run from an empty parent directory
+## Resolve and require one exact release
 
 Requirements: Node.js `>=22.13.0`, pnpm `>=10.33.0 <11`, npm registry access, and an
-empty parent directory. The SDK and game directories must be siblings.
+empty parent directory.
 
 ```sh
 set -eu
 
-ENGINE_VERSION="$(npm view @forgeax/engine version)"
+ENGINE_VERSION="$(npm view @forgeax/engine version 2>/dev/null || true)"
 SDK_VERSION="$(npm view @forgeax/engine-sdk version 2>/dev/null || true)"
 
 if [ -z "$ENGINE_VERSION" ]; then
-  echo "@forgeax/engine version lookup failed; stop and report." >&2
+  echo "@forgeax/engine is not resolvable from public npm; stop and report." >&2
   exit 20
 fi
 if [ -z "$SDK_VERSION" ]; then
-  echo "@forgeax/engine-sdk is not published; stop and report." >&2
+  echo "@forgeax/engine-sdk is not published on public npm; stop and report." >&2
   exit 21
 fi
 if [ "$ENGINE_VERSION" != "$SDK_VERSION" ]; then
@@ -47,11 +49,13 @@ fi
 
 SDK_ROOT="$PWD/forgeax-sdk-$SDK_VERSION"
 GAME_ROOT="$PWD/forgeax-game"
-test ! -e "$SDK_ROOT" || { echo "SDK target exists; do not overwrite." >&2; exit 23; }
-test ! -e "$GAME_ROOT" || { echo "Game target exists; do not overwrite." >&2; exit 24; }
+test ! -e "$SDK_ROOT" || { echo "SDK target exists; do not overwrite." >&2; exit 22; }
+test ! -e "$GAME_ROOT" || { echo "Game target exists; do not overwrite." >&2; exit 23; }
 
 pnpm dlx "@forgeax/engine@$ENGINE_VERSION" sdk install "$SDK_ROOT" --version "$SDK_VERSION"
+cat "$SDK_ROOT/AGENTS.md"
 "$SDK_ROOT/bin/forgeax" new "$GAME_ROOT"
+cat "$GAME_ROOT/AGENTS.md"
 
 cd "$GAME_ROOT"
 pnpm forgeax skill verify --json
@@ -61,29 +65,29 @@ pnpm build
 pnpm dev
 ```
 
-The default template is `empty`. Add `--template game-default` only when a complete
-sample is explicitly wanted. Never run `forgeax new` inside `SDK_ROOT`. Read the
-generated game's `AGENTS.md` before editing code or assets.
+The npm carrier intentionally omits the offline `store/pnpm`; its lockfile installs
+the matching Engine dependencies from npm. The default template is `empty` with
+`src/main.ts`; use `--template game-default` only when a complete sample is explicitly
+requested.
+`forgeax new` is transactional and installs the SDK `skills/` as ordinary files plus
+rebuildable Agent discovery links. If `skill verify --json` is not OK, run
+`skill install --json`, verify again, and stop on any remaining error.
 
-## Existing game: only for an already valid ForgeaX game
+## Existing ForgeaX game
 
-The directory must already contain `forge.json`, `package.json`, and the entry module
-named by `forge.json#entry`. Use an exact Engine version when reproducing a build:
+If the target already contains `forge.json`, `package.json`, and its entry module, do
+not run `new` or install the SDK carrier into the game. Read its `AGENTS.md`, then use:
 
 ```sh
-cd /path/to/existing-forgeax-game
 ENGINE_VERSION="$(npm view @forgeax/engine version)"
 pnpm add "@forgeax/engine@$ENGINE_VERSION"
 pnpm exec forgeax init
-pnpm exec forgeax skill verify --json
-pnpm exec forgeax doctor --json
+pnpm forgeax skill verify --json
+pnpm forgeax doctor --json
 ```
 
-Do not use this path for a blank directory. Do not add the SDK carrier to the game
-runtime. Do not overwrite an existing SDK or game directory.
+## Report
 
-## Reporting
-
-Report the Engine version, SDK version, absolute SDK and game paths, every command run,
-and the first structured error. A successful result includes `skill verify --json`,
-`doctor --json`, `test`, and `build` output.
+Report both versions, absolute SDK/game paths, every command, structured verification
+output, and the first error. A successful new game has the SDK and game `AGENTS.md`
+read, `skill verify --json`, `doctor --json`, tests, and build all passing.
