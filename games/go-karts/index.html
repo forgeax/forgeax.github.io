@@ -1,18 +1,44 @@
 <!doctype html>
 <html lang="en">
   <head>
-<script>(function(){var N='__wgpu_notice';function show(){if(document.getElementById(N))return;var d=document.createElement('div');d.id=N;d.style.cssText='position:fixed;inset:0;display:grid;place-items:center;background:#0b0d10;color:#e6e6e6;font:15px/1.6 system-ui,sans-serif;text-align:center;padding:24px;z-index:2147483647';d.innerHTML='<div><div style="font-size:44px">\u26A1</div><p><b>This game needs WebGPU</b></p><p style="opacity:.75;max-width:32em">Your browser doesn\u2019t have working WebGPU. Open in <b>Chrome or Edge</b> (latest). \u8FD9\u4E2A\u6E38\u620F\u9700\u8981 WebGPU\uFF0C\u8BF7\u7528\u6700\u65B0\u7248 Chrome / Edge \u6253\u5F00\u3002</p></div>';(document.body||document.documentElement).appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.appendChild(d);},2500);}async function chk(){var ok=false;try{if(navigator.gpu){var a=await navigator.gpu.requestAdapter();ok=!!a;}}catch(e){}if(!ok){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',show);else show();}}chk();})();</script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
     <title>萌宠卡丁车（ForgeaX）</title>
     <style>
-      html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: system-ui, sans-serif; }
-      #app, canvas { width: 100vw; height: 100vh; display: block; }
+      html, body, #app-shell, #app { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+      body { background: #05070b; }
+      #app { display: block; }
+      #app-shell { position: relative; }
+      #game-ui { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+      #game-ui > * { pointer-events: auto; }
+      #forgeax-fatal { position: fixed; inset: 0; z-index: 2147483647; display: none; place-items: center; padding: 24px; background: #0b0d10; color: #e6e6e6; font: 15px/1.6 system-ui, sans-serif; text-align: center; white-space: pre-wrap; }
     </style>
-    <script type="module">var c=document.querySelector("#app")||document.querySelector("canvas");function z(){var d=window.devicePixelRatio||1;if(c&&c.tagName==="CANVAS"){c.width=Math.max(1,Math.round(c.clientWidth*d));c.height=Math.max(1,Math.round(c.clientHeight*d));}}z();addEventListener("resize",z);</script>
-<script type="module" crossorigin src="/games/go-karts/assets/.export-gen.b7558ba7.index-DS-RQLah.js"></script>
+    <script type="module" crossorigin src="/games/go-karts/assets/index-Bc0xrmB2.js"></script>
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/chunk-CilyBKbf.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/preload-helper-p9cH1RK5.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-dodkeU9z.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-Dt813bjY.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-D_lp0nyf.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist--kudphYl.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-rN1q1aVW.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-Bsq6p7YP.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-CoeM7BzE.js">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app-shell"><canvas id="app"></canvas><div id="game-ui"></div></div><div id="forgeax-fatal" role="alert"></div>
+    <script>
+      (() => {
+        const show = (reason) => {
+          const notice = document.querySelector('#forgeax-fatal');
+          if (!(notice instanceof HTMLElement)) return;
+          const message = reason instanceof Error ? reason.message : String(reason ?? 'Unknown startup failure');
+          notice.textContent = 'ForgeaX game failed to start.\n' + message;
+          notice.style.display = 'grid';
+        };
+        window.addEventListener('error', (event) => show(event.error ?? event.message));
+        window.addEventListener('unhandledrejection', (event) => show(event.reason));
+      })();
+    </script>
   </body>
 </html>
