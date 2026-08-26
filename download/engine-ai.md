@@ -20,16 +20,28 @@ URLs, packages, or recovery steps.
    another external absolute path. `forgeax new` must not overwrite an existing path.
 5. Direct edit is the default. Do not start the ForgeaX closed loop unless the user
    explicitly authorizes it for the current task.
-6. The CLI is the only product tool entry. Prefer `--json`; discover operations with
+6. The user's machine must provide pnpm `>=11.7.0 <12`. Check `pnpm --version`
+   before any bootstrap or project command; if it is unavailable or unsupported,
+   stop and report the exact version instead of silently switching versions.
+7. The CLI is the only product tool entry. Prefer `--json`; discover operations with
    `forgeax list`, `describe`, and `run` instead of guessing inputs.
 
 ## Resolve and require one exact release
 
-Requirements: Node.js `>=22.13.0`, pnpm `>=10.33.0 <11`, npm registry access, and an
+Requirements: Node.js `>=22.13.0`, pnpm `>=11.7.0 <12`, npm registry access, and an
 empty parent directory.
 
 ```sh
 set -eu
+
+PNPM_VERSION="$(pnpm --version 2>/dev/null || true)"
+case "$PNPM_VERSION" in
+  11.7.*|11.8.*|11.9.*|11.[1-9][0-9].*) ;;
+  *)
+    echo "pnpm >=11.7.0 <12 is required on the user's machine; found ${PNPM_VERSION:-unavailable}. Activate pnpm 11.7.0+ and retry." >&2
+    exit 19
+    ;;
+esac
 
 ENGINE_VERSION="$(npm view @forgeax/engine version 2>/dev/null || true)"
 SDK_VERSION="$(npm view @forgeax/engine-sdk version 2>/dev/null || true)"
@@ -54,6 +66,7 @@ test ! -e "$GAME_ROOT" || { echo "Game target exists; do not overwrite." >&2; ex
 
 pnpm dlx "@forgeax/engine@$ENGINE_VERSION" sdk install "$SDK_ROOT" --version "$SDK_VERSION"
 cat "$SDK_ROOT/AGENTS.md"
+(cd "$SDK_ROOT" && "$SDK_ROOT/bin/forgeax" init)
 "$SDK_ROOT/bin/forgeax" new "$GAME_ROOT"
 cat "$GAME_ROOT/AGENTS.md"
 
@@ -66,9 +79,10 @@ pnpm dev
 ```
 
 The npm carrier intentionally omits the offline `store/pnpm`; its lockfile installs
-the matching Engine dependencies from npm. The default template is `empty` with
-`src/main.ts`; use `--template game-default` only when a complete sample is explicitly
-requested.
+the matching Engine dependencies from npm. The SDK-root `forgeax init` is mandatory
+after download: it checks the user's Node/pnpm/platform tuple and prepares native
+dependencies before `new`. The default template is `empty` with `src/main.ts`; use
+`--template game-default` only when a complete sample is explicitly requested.
 `forgeax new` is transactional and installs the SDK `skills/` as ordinary files plus
 rebuildable Agent discovery links. If `skill verify --json` is not OK, run
 `skill install --json`, verify again, and stop on any remaining error.
@@ -88,6 +102,7 @@ pnpm forgeax doctor --json
 
 ## Report
 
-Report both versions, absolute SDK/game paths, every command, structured verification
-output, and the first error. A successful new game has the SDK and game `AGENTS.md`
-read, `skill verify --json`, `doctor --json`, tests, and build all passing.
+Report Engine, SDK, and actual user-machine pnpm versions, absolute SDK/game paths,
+every command, structured verification output, and the first error. A successful new
+game has the SDK and game `AGENTS.md` read, SDK-root `init`, `skill verify --json`,
+`doctor --json`, tests, and build all passing.
