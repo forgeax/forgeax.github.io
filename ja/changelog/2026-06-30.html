@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-ja forgeax-site">
@@ -36,24 +36,10 @@
     <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>ドキュメント</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/ja/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>ドキュメント</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/ja/" data-nav="/">ホーム</a>
       <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
       <a href="/ja/examples/" data-nav="/examples/">例</a>
-      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
-      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
-      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
       <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
       <a href="/ja/about.html" data-nav="/about.html">について</a>
     </div>
@@ -64,15 +50,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-30.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-30.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-30.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-30.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-30.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-30.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-30.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-30.html" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
-          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
     </div>
   </div>
 </nav>
@@ -80,7 +59,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/ja/changelog/">← 変更履歴</a>
-    <div class="meta"><span class="tag brand">毎日</span><span>2026-06-30</span></div>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-30</span></div>
     <h1>アーキテクチャがバンドルされていない: 4 つのフロントエンド モジュールがスタンドアロン + OSS ミラー強化</h1>
     <p class="standfirst">この日は大規模な建築の解体でした。スタジオの 4 つの最大のフロントエンド パッケージ (チャット、ワークベンチ、設定、ダッシュボード) はスタンドアロンのサブモジュール (R4 プラン) に抽出されました。 CLI 依存関係クロージャは独自のリポジトリに分離されました。パブリック OSS ミラーは、実際のビルド CI、PR ベースのプッシュ、および管理バイパス保護を獲得しました。ビューポート 2×2 の再設計仕様が登場しました。夜間リリース v0.3.3 は自動的に出荷されます。</p>
     <div class="prose"><h2>R4: フロントエンドを真に独立したモジュールに分割する</h2>
@@ -96,7 +75,7 @@
 <h2>この日が意味するもの</h2>
 <p>この日のキーワードは「境界」。プロジェクトがラピッド プロトタイピングから成熟期に移行するときに、最も重要なことの 1 つは、コード内に明確な境界線を引くことです。つまり、どの部分が独立したモジュールで、誰が誰に依存し、どれが単独でリリースできるかです。 R4 分割と CLI 依存関係の抽出により、メイン リポジトリ内に境界が描画されます。 OSS ミラーを強化すると、内部リポジトリとパブリック リポジトリの間に境界線が引かれます。ブランチ保護と PR フローは、「人」と「コード変更」の間に境界線を引きます。境界が明確になると、各部分が独立して進化、テスト、リリースできるようになり、プロジェクトは「1 人で大きな泥のボールを押す」状態から「それぞれが独自に前進する明確なモジュールのセット」に移行できます。</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての毎日の更新</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
   </article>
 </main>
 
@@ -105,24 +84,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
   </div>
-  <div class="col"><h4>サイト</h4>
+  <nav class="foot-links" aria-label="サイト">
     <a href="/ja/changelog/">変更履歴</a>
-    <a href="/ja/blog/">ブログ</a>
-    <a href="/ja/docs/">ドキュメント</a>
     <a href="/ja/tutorials/">チュートリアル</a>
     <a href="/ja/examples/">例</a>
-    <a href="/ja/games/">ゲーム</a>
-    <a href="/ja/marketplace/">市場</a>
-  </div>
-  <div class="col"><h4>プロジェクト</h4>
+    <a href="/ja/marketplace/">プラグイン</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
     <a href="/ja/about.html">について</a>
     <a href="/ja/license.html">ライセンス</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

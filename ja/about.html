@@ -23,38 +23,23 @@
 <link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/about.html" />
 <link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/about.html" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
-<link rel="stylesheet" href="/assets/about-evolution.css?v=d88d844b" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
-<body class="lang-ja forgeax-site about-page">
+<body class="lang-ja forgeax-site">
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>ドキュメント</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/ja/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>ドキュメント</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/ja/" data-nav="/">ホーム</a>
       <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
       <a href="/ja/examples/" data-nav="/examples/">例</a>
-      <a href="/ja/games/" data-nav="/games/">ゲーム</a>
-      <a href="/ja/marketplace/" data-nav="/marketplace/">市場</a>
-      <a href="/ja/blog/" data-nav="/blog/">ブログ</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
       <a href="/ja/changelog/" data-nav="/changelog/">変更履歴</a>
       <a href="/ja/about.html" data-nav="/about.html" class="active">について</a>
     </div>
@@ -65,103 +50,29 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/about.html" data-l="en">English</a><a class="lang-item" href="/zh/about.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/about.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/about.html" data-l="ko">한국어</a><a class="lang-item" href="/es/about.html" data-l="es">Español</a><a class="lang-item" href="/de/about.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/about.html" data-l="fr">Français</a><a class="lang-item" href="/pt/about.html" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AIに聞く</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPTで開く</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">クロードで開く</a>
-          <button class="ask-item" id="copyMd">ページをマークダウンとしてコピー</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
     </div>
   </div>
 </nav>
 
 <main>
-  <section class="about-evolution" id="forgeax-evolution" data-stage="2"
-    style="--strength:.5;--stage-progress:.5"
-    data-loading="連続映像を読み込み中…"
-    data-ready="赤い点が現在のバージョンです"
-    data-error="人物映像を読み込めません。再読み込みしてください。">
-    <div class="about-evolution__masthead">
-      <div>
-        <p class="about-evolution__eyebrow">アイデアから具現化へ</p>
-        <h1>ForgeaX について</h1>
-        <p class="about-evolution__intro">AI の時代に向けて構築されたゲーム開発ツール。</p>
-      </div>
-      <div class="about-evolution__meter" aria-live="polite">
-        <span>バージョン</span>
-        <output class="about-evolution__version" for="about-evolution-slider">3.5</output>
-      </div>
+  <div class="wrap page-head">
+    <h1>ForgeaX について</h1>
+    <p>AI の時代に向けて構築されたゲーム開発ツール。</p>
+  </div>
+
+  <div class="read about-read">
+    <div class="read-tags" data-read-tags role="tablist" aria-label="読む">
+      <a class="read-tag is-active" href="#intro" data-read-tag="intro" role="tab" aria-selected="true">紹介</a>
+      <a class="read-tag" href="#how-it-works" data-read-tag="how-it-works" role="tab" aria-selected="false">仕組み</a>
+      <a class="read-tag" href="#inside" data-read-tag="inside" role="tab" aria-selected="false">中身</a>
+      <a class="read-tag" href="#why-ai-native-engine" data-read-tag="why-ai-native-engine" role="tab" aria-selected="false">AIネイティブエンジン</a>
     </div>
 
-    <div class="about-evolution__portrait-zone" aria-labelledby="about-evolution-stage-label">
-      <p class="about-evolution__ghost" aria-hidden="true">3.0</p>
-      <div class="about-evolution__portrait">
-        <div class="about-evolution__halo" aria-hidden="true"></div>
-        <img class="about-evolution__poster" src="/assets/about/forgeax-evolution-3.5.jpg"
-          width="800" height="800" alt="" aria-hidden="true" fetchpriority="high">
-        <canvas class="about-evolution__canvas" width="800" height="800" aria-hidden="true"></canvas>
-        <video class="about-evolution__video" preload="auto" muted playsinline webkit-playsinline="true"
-          x5-playsinline="true" x5-video-player-type="h5-page" tabindex="-1" aria-hidden="true"
-          src="/assets/about/forgeax-evolution.mp4"></video>
-        <div class="about-evolution__loader" role="status" aria-label="連続映像を読み込み中…">
-          <span class="about-evolution__loader-orbit" aria-hidden="true"></span>
-          <span class="about-evolution__loader-ring" aria-hidden="true"></span>
-          <span class="about-evolution__loader-core" aria-hidden="true">×</span>
-        </div>
-        <div class="about-evolution__scan" aria-hidden="true"></div>
-        <span class="about-evolution__corner about-evolution__corner--tl" aria-hidden="true"></span>
-        <span class="about-evolution__corner about-evolution__corner--tr" aria-hidden="true"></span>
-        <span class="about-evolution__corner about-evolution__corner--bl" aria-hidden="true"></span>
-        <span class="about-evolution__corner about-evolution__corner--br" aria-hidden="true"></span>
-        <div class="about-evolution__load" role="status" hidden>連続映像を読み込み中…</div>
-      </div>
-      <div class="about-evolution__stage-readout">
-        <span id="about-evolution-stage-label">現在の段階</span>
-        <p class="about-evolution__stage">3.0</p>
-        <span class="about-evolution__stage-index">VER 3.0 / 6.0</span>
-      </div>
-    </div>
-
-    <div class="about-evolution__controls" aria-label="バージョン">
-      <p class="about-evolution__status" role="status">連続映像を読み込み中…</p>
-      <div class="about-evolution__range-wrap">
-        <div class="about-evolution__ticks" aria-hidden="true"></div>
-        <input id="about-evolution-slider" class="about-evolution__slider" type="range"
-          min="-15" max="15" step="0.01" value="0"
-          aria-label="バージョン" aria-valuetext="3.5">
-      </div>
-      <ol class="about-evolution__markers" aria-hidden="true">
-        <li class="is-passed">1.0</li><li class="is-passed">2.0</li><li class="is-current">3.0</li><li>4.0</li><li>5.0</li><li>6.0</li>
-      </ol>
-      <p class="about-evolution__hint"><span aria-hidden="true">←</span>赤い点をドラッグして、ForgeaX が 1.0 から 6.0 へ進化する様子をご覧ください。<span aria-hidden="true">→</span></p>
-      <a class="about-evolution__continue" href="#about-story">
-        <span class="about-evolution__continue-label">ForgeaX をもっと知る</span>
-        <span class="about-evolution__continue-arrow" aria-hidden="true">↓</span>
-      </a>
-    </div>
-  </section>
-
-  <article class="read article about-story" id="about-story">
-    <div class="prose">
+    <article class="read-panel is-active prose" id="intro" data-read-panel="intro">
       <p>ForgeaX は、<strong>AIネイティブのパーソナルゲームスタジオ</strong>。私たちは、ゲーム制作の障壁が AI によって再定義されつつあると信じています。</p>
       <p>私たちのビジョンは次のとおりです。<strong>これまでは大規模なチームが必要だったゲームを、AI を使って小規模なチームで作成できるようになります。</strong>クリエイターを置き換えるのではなく、「アイデア」と「プレイ可能なゲーム」の間の重要なエンジニアリングと制作を AI に任せます。</p>
-
-      <h2>仕組み</h2>
-      <p>スタジオでは、チャットを通じて、ビジュアル エディターで直接作業し、（後で）画像やビデオなどの入力を使用して、Forge と呼ばれる AI リードに必要なゲームについて説明します。計画を立て、必要に応じて専門のサブエージェントを導入します (ゲームプレイ、デザイン、アートなど)。<strong>エンジンコード自体を書きます</strong>、結果をライブブラウザプレビューにホットリロードします。</p>
-      <p>その下には 2 つの社内基盤があります。<strong>AIの観点から再設計されたエンジン</strong>(AI が読み書きし、エラーを理解できるようにするため)、および<strong>AI を正しく検証可能な結果に導く開発ループ</strong>(要件は入力、再生可能な出力は出力、すべてのステップは観察可能で追跡可能)。</p>
-
-      <h2>中には何が入っているのか</h2>
-      <p>4 つの部分が連携して動作します。</p>
-      <ul>
-        <li><strong>AIネイティブエンジン</strong>— デュアル RHI レンダリング (WebGPU + wasm バックエンド)、PBR/IBL/SSAO、2D/3D 物理学、glTF/FBX アセット、およびスケルトン アニメーションを備えた TypeScript ECS エンジン。その API、エラー、状態は、AI が読み書きできるように形成されています。</li>
-        <li><strong>自己進化する開発ループ (ForgeaX クローズド ループ)</strong>— オーケストレーターと役割に特化したサブエージェントによって駆動される 7 ステップのパイプライン (要件 → 調査 → 計画 → 実装 → 検証 → 判断 → 最終化)、AI レビューと各ビルドを実際に実行してスクリーンショットを撮るサンドボックスを備えています。自身のフィードバックから学習し、時間の経過とともにより安定して成長します。</li>
-        <li><strong>AI ネイティブのゲームプレイ</strong>— AI を使用してゲームを作成するだけでなく、インテリジェントな NPC、生成コンテンツ、インタラクティブな AI エクスペリエンスなど、プレイ自体に AI を組み込むことも可能です。</li>
-        <li><strong>スタジオと編集者</strong>— ライブ プレビューの横にあるチャット パネルと、編集内容が Web 上またはデスクトップ アプリとして実行中のゲームに直接反映されるビジュアル シーン エディターです。</li>
-        <li><strong>エージェントチームと作成ツール</strong>— 制作、ゲームプレイ、デザイン、ナラティブ、アート、コーディングのための名前付きエージェントに加え、キャラクター、アニメーション、3D モデル、VFX、UI、音楽などを生成するワークベンチのマーケットプレイス。</li>
-      </ul>
 
       <h2>私たちがいる場所</h2>
       <p>現在の段階は、<strong>AI でアイデアをプレイ可能なゲームに変える</strong>: PBR レンダリング、物理学、骨格アニメーションをカバーするエンジンを使用して、スタジオでプレイ可能な FPS、ARPG、サバイバル、シューティングのデモをすでに作成できます。出荷可能な品質に向けて、この段階を磨き続けます。</p>
@@ -170,12 +81,68 @@
       <p>ForgeaX ツール レイヤーは、以下に基づいてライセンス供与されています。<strong>Apache ライセンス 2.0</strong>— 誰でも自由にフォーク、使用、商用ビルド、再配布できます。私たちは、コミュニティが一緒に構築できるオープンなプロジェクトにしたいと考えています。を参照してください。<a href="/ja/license.html">ライセンスページ</a>。</p>
 
       <blockquote class="manifest-line">小さなチームがより大きなゲームを作れるようにしましょう。</blockquote>
-    </div>
+    </article>
+
+    <article class="read-panel prose" id="how-it-works" data-read-panel="how-it-works" data-read-alias="how-the-loop-works">
+      <p>スタジオでは、チャットを通じて、ビジュアル エディターで直接作業し、（後で）画像やビデオなどの入力を使用して、Forge と呼ばれる AI リードに必要なゲームについて説明します。計画を立て、必要に応じて専門のサブエージェントを導入します (ゲームプレイ、デザイン、アートなど)。<strong>エンジンコード自体を書きます</strong>、結果をライブブラウザプレビューにホットリロードします。</p>
+      <p>その下には 2 つの社内基盤があります。<strong>AIの観点から再設計されたエンジン</strong>(AI が読み書きし、エラーを理解できるようにするため)、および<strong>AI を正しく検証可能な結果に導く開発ループ</strong>(要件は入力、再生可能な出力は出力、すべてのステップは観察可能で追跡可能)。</p>
+      <div id="how-the-loop-works"><h2>7 ステップのループ</h2>
+<p>エンジン内では、すべての機能が同じパイプラインを通過します。つまり、要件が入力され、実行結果が出力され、各ステップで読み取り可能なレコードが生成されます。</p>
+<ol>
+<li><strong>要件</strong> — 何を構築するかを受け入れ基準とともに記述します。</li>
+<li><strong>調査</strong> — 調査履歴、制約、およびオプション。</li>
+<li><strong>計画</strong> — 戦略を設定し、それをタスクに分割します。</li>
+<li><strong>実装</strong> — コードとテストを作成します。</li>
+<li><strong>検証</strong> — 独立したチェック。赤の場合はマージがブロックされます。</li>
+<li><strong>判断</strong> — 最終的な判断は人間が行います。</li>
+<li><strong>ファイナライズ</strong> — 合格したらマージします。</li>
+</ol>
+<h2>オーケストレーターとサブエージェント</h2>
+<p>「オーケストレーター」はステート マシンを駆動し、各ステップでどのサブエージェントをディスパッチするかを決定し、その出力をチェックします。サブエージェントは、独自のコンテキストを持つ役割に特化したものです。人間が判断を下すのは、<strong>要件の表明</strong>と<strong>結果のレビュー</strong>という 2 つの時点だけです。</p>
+<h2>「見た目は大丈夫」がすり抜けることはありません</h2>
+<p>検証には 2 つの AI ゲートがあります。1 つは AI ユーザーの観点からドキュメントと API を静的にスキャンし、「約束されているが実装されていない」ものを検出します。もう 1 つは、隔離されたサンドボックスで実際にデモを実行し、スクリーンショットをキャプチャして再チェックします。これにより、「テストは緑、画面は黒」にならないようにします。</p>
+<h2>時間が経つにつれて安定していきます</h2>
+<p>各機能の後、途中で発生した摩擦がフィードバックとしてキャプチャされ、パイプライン自体がアップグレードされます。次の機能では、改良されたバージョンが自動的に使用されます。パイプラインは独自の出力をフィードし、よりスマートになります。</p>
+<blockquote>
+<p>結果: AI は「デモグレード」のコードではなく、人間が引き継ぐことができる検証済みの再現可能な機能を生成します。</p>
+</blockquote>
+</div>
+    </article>
+
+    <article class="read-panel prose" id="inside" data-read-panel="inside">
+      <p>4 つの部分が連携して動作します。</p>
+      <ul>
+        <li><strong>AIネイティブエンジン</strong>— デュアル RHI レンダリング (WebGPU + wasm バックエンド)、PBR/IBL/SSAO、2D/3D 物理学、glTF/FBX アセット、およびスケルトン アニメーションを備えた TypeScript ECS エンジン。その API、エラー、状態は、AI が読み書きできるように形成されています。</li>
+        <li><strong>自己進化する開発ループ (ForgeaX クローズド ループ)</strong>— オーケストレーターと役割に特化したサブエージェントによって駆動される 7 ステップのパイプライン (要件 → 調査 → 計画 → 実装 → 検証 → 判断 → 最終化)、AI レビューと各ビルドを実際に実行してスクリーンショットを撮るサンドボックスを備えています。自身のフィードバックから学習し、時間の経過とともにより安定して成長します。</li>
+        <li><strong>AI ネイティブのゲームプレイ</strong>— AI を使用してゲームを作成するだけでなく、インテリジェントな NPC、生成コンテンツ、インタラクティブな AI エクスペリエンスなど、プレイ自体に AI を組み込むことも可能です。</li>
+        <li><strong>スタジオと編集者</strong>— ライブ プレビューの横にあるチャット パネルと、編集内容が Web 上またはデスクトップ アプリとして実行中のゲームに直接反映されるビジュアル シーン エディターです。</li>
+        <li><strong>エージェントチームと作成ツール</strong>— 制作、ゲームプレイ、デザイン、ナラティブ、アート、コーディングのための名前付きエージェントに加え、キャラクター、アニメーション、3D モデル、VFX、UI、音楽などを生成するワークベンチのマーケットプレイス。</li>
+      </ul>
+    </article>
+
+    <article class="read-panel prose" id="why-ai-native-engine" data-read-panel="why-ai-native-engine">
+      <p class="standfirst">ほとんどのゲーム エンジン API は人間向けに作成されています。 AI がコードを書くようになると、エンジンは違ったものになるはずです。</p>
+      <p>ForgeaX の核となるアイデアはシンプルです。ユーザーがゲームを説明し、AI がエンジン コードを作成します。これは「作者が違うだけ」のように聞こえますが、実際には既存のエンジンは AI に適していません。人間と同じようにドキュメントを読み、推測し、コンテキストを埋める読者を想定しています。</p>
+<p>私たちのスタンスは率直です: <strong>AI はエンジンの最初のユーザーです。 「AI に優しい」と「人間に優しい」が矛盾する場合、AI が勝ちます。</strong> 具体的な結果をいくつか示します。</p>
+<h2>1 · 真実の情報源は 1 つで、残りは導き出される</h2>
+<p>ファクトは正確に 1 か所で定義されます。他のすべてはそこから派生します。たとえば、コンポーネント フィールドはスキーマ内にインラインで存在します。インスペクター、デバッガー、ツールは、ソースを grep して推測する代わりにスキーマを読み取ります。 AI は、どこにでも点在する規則を「記憶」する必要がありません。見るべき場所は 1 つだけだからです。</p>
+<h2>2 · AI が理解して回復できるエラー</h2>
+<p>エラーは、単に人間が「投げる」文章ではありません。私たちはエラー コードの閉じたセットを使用しており、それぞれに構造化された「何を/なぜ/どのように回復するか」情報が含まれています。 AI はエラーに遭遇したとき、例外テキストを神秘主義として扱うのではなく、次に何を変更すべきかを認識します。</p>
+<h2>3 · 「画面を見る」のではなく構造化データ</h2>
+<p>レンダリングのバグで最も難しいのは、「画面上で間違って見える」ことです。人間はモニターを見つめることができます。 AIにはできません。そのため、エンジンはレンダー呼び出しのフレーム (描画呼び出し、バインディング、レンダー ターゲット、パイプライン状態) をキャプチャして、オフラインで読み取り、再生し、N 回目の描画で完全な状態を検査できます。視覚的な問題は、AI が「読み取る」ことができるデータになります。</p>
+<h2>4 · 相互にチェックする 2 つの実装</h2>
+<p>レンダー層には、単一のインターフェイスの背後に 2 つのバックエンド実装 (WebGPU と wasm 実装) があります。これらは並列してレンダリングされます。AI がエンジン API を悪用した瞬間に、もう一方のバックエンドが即座に分岐し、問題が表面化します。人間のレビューを待つよりもはるかに速くなります。</p>
+<hr>
+<p>これらの設計には 1 つの基準があります。<strong>読者 (人間または AI) が頭の中に保持しなければならない概念が少ないほど、優れています。</strong> API の自己一貫性が高く、ローカルでインデックス付け可能であるほど、AI が正しく理解できる頻度が高くなります。また、人間が引き継ぎやすくなります。</p>
+<p>「AI ネイティブ」はスローガンではありません。それは、「AI の観点からやり直す」という長い一連の決定です。ドキュメントと将来の投稿でさらに詳しく説明します。</p>
+
+    </article>
+
     <p class="cta-row">
       <a class="btn primary" href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub でフォローしてください</a>
       <a class="btn ghost" href="/ja/showcase/">ショーケースを見る</a>
     </p>
-  </article>
+  </div>
 
   <section class="wrap section">
     <h2>リポジトリ</h2>
@@ -210,25 +177,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。オープンソース、Apache License 2.0。</p>
   </div>
-  <div class="col"><h4>サイト</h4>
+  <nav class="foot-links" aria-label="サイト">
     <a href="/ja/changelog/">変更履歴</a>
-    <a href="/ja/blog/">ブログ</a>
-    <a href="/ja/docs/">ドキュメント</a>
     <a href="/ja/tutorials/">チュートリアル</a>
     <a href="/ja/examples/">例</a>
-    <a href="/ja/games/">ゲーム</a>
-    <a href="/ja/marketplace/">市場</a>
-  </div>
-  <div class="col"><h4>プロジェクト</h4>
+    <a href="/ja/marketplace/">プラグイン</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
     <a href="/ja/about.html">について</a>
     <a href="/ja/license.html">ライセンス</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
-<script src="/assets/about-evolution.js?v=6249c7fb"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

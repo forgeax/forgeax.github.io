@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Tutoriels — ForgeaX</title>
-<meta name="description" content="Tutoriels ForgeaX : créez votre premier jeu à partir de zéro." />
+<meta name="description" content="Tutoriels et docs ForgeaX : de l'installation à votre premier jeu." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="Tutoriels — ForgeaX" />
-<meta property="og:description" content="Tutoriels ForgeaX : créez votre premier jeu à partir de zéro." />
+<meta property="og:description" content="Tutoriels et docs ForgeaX : de l'installation à votre premier jeu." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/fr/tutorials/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -36,24 +36,10 @@
     <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Documents</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/fr/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Documents</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/fr/" data-nav="/">Accueil</a>
       <a href="/fr/tutorials/" data-nav="/tutorials/" class="active">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
-      <a href="/fr/games/" data-nav="/games/">Jeux</a>
-      <a href="/fr/marketplace/" data-nav="/marketplace/">Marché</a>
-      <a href="/fr/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/fr/changelog/" data-nav="/changelog/">Journal des modifications</a>
       <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
@@ -64,15 +50,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/" data-l="en">English</a><a class="lang-item" href="/zh/tutorials/" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/tutorials/" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/tutorials/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Demandez à l'IA</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Ouvrir dans ChatGPT</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Ouvert à Claude</a>
-          <button class="ask-item" id="copyMd">Copier la page en tant que Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
     </div>
   </div>
 </nav>
@@ -80,59 +59,59 @@
 <main class="wrap">
   <div class="page-head">
     <h1>Tutoriels</h1>
-    <p>Pas à pas, d'une phrase à un jeu jouable. Plus à venir.</p>
+    <p>Installation, Studio et CLI au même endroit. Des tutoriels pour commencer ; la doc quand vous en avez besoin.</p>
   </div>
 
   <div class="section tut-section">
     <div class="grid tut-grid">
       <a class="card card--link tut-card" href="/fr/tutorials/cli-setup.html">
-        <div class="tut-card__meta">
+        <div class="tut-card__head">
           <div class="ico"><i data-lucide="terminal"></i></div>
+          <h3 class="tut-card__title">Faites cloner votre AI CLI et lancez-le</h3>
           <span class="tag brand">Débutant</span>
         </div>
-        <h3 class="tut-card__title">Faites cloner votre AI CLI et lancez-le</h3>
         <p class="tut-card__desc">Remettez le dépôt à Claude Code / Codex / Cursor / forgeax CLI et laissez-le cloner, installer et lancer.</p>
       </a>
       <a class="card card--link tut-card" href="/fr/tutorials/getting-started.html">
-        <div class="tut-card__meta">
+        <div class="tut-card__head">
           <div class="ico"><i data-lucide="rocket"></i></div>
+          <h3 class="tut-card__title">Démarrage rapide · votre premier jeu</h3>
           <span class="tag brand">Débutant</span>
         </div>
-        <h3 class="tut-card__title">Démarrage rapide · votre premier jeu</h3>
         <p class="tut-card__desc">Apprenez le studio, faites votre première demande à Forge, regardez-le planifier, coder et exécuter en direct.</p>
       </a>
-      <div class="card tut-card tut-card--soon">
-        <div class="tut-card__meta">
-          <div class="ico"><i data-lucide="hourglass"></i></div>
-          <span class="tag">Bientôt</span>
-        </div>
-        <h3 class="tut-card__title">Ajoutez du mouvement et des compétences à un personnage</h3>
-        <p class="tut-card__desc">Importez un personnage, connectez des clips d'animation, ajoutez un sort de boule de feu.</p>
-      </div>
       <a class="card card--link tut-card" href="/fr/tutorials/workbenches.html">
-        <div class="tut-card__meta">
+        <div class="tut-card__head">
           <div class="ico"><i data-lucide="palette"></i></div>
+          <h3 class="tut-card__title">Générez de l'art avec les établis</h3>
           <span class="tag brand">Créer</span>
         </div>
-        <h3 class="tut-card__title">Générez de l'art avec les établis</h3>
         <p class="tut-card__desc">Découvrez les ateliers de création (personnages, animation, 3D, VFX, interface utilisateur, musique) depuis une phrase jusqu'aux ressources prêtes pour le jeu.</p>
       </a>
       <a class="card card--link tut-card" href="/fr/tutorials/interactive-film-game.html">
-        <div class="tut-card__meta">
+        <div class="tut-card__head">
           <div class="ico"><i data-lucide="clapperboard"></i></div>
+          <h3 class="tut-card__title">Réaliser un film-jeu interactif</h3>
           <span class="tag brand">Créer</span>
         </div>
-        <h3 class="tut-card__title">Réaliser un film-jeu interactif</h3>
         <p class="tut-card__desc">Spark ou script → ancres → storyboards → vidéo → play-test, puis envoyez une page Web que tout le monde peut lire.</p>
       </a>
-      <div class="card tut-card tut-card--soon">
-        <div class="tut-card__meta">
-          <div class="ico"><i data-lucide="hourglass"></i></div>
-          <span class="tag">Bientôt</span>
+      <a class="card card--link tut-card" id="docs" href="/fr/docs/">
+        <div class="tut-card__head">
+          <div class="ico"><i data-lucide="book-open"></i></div>
+          <h3 class="tut-card__title">Guide Studio</h3>
+          <span class="tag brand">Docs</span>
         </div>
-        <h3 class="tut-card__title">Construisez un jeu à plusieurs niveaux</h3>
-        <p class="tut-card__desc">Changement de niveau, réutilisation de scènes et équilibrage des nombres.</p>
-      </div>
+        <p class="tut-card__desc">Concepts, ateliers, ressources, publication — un guide du point de vue de l'utilisateur.</p>
+      </a>
+      <a class="card card--link tut-card" href="/docs/cli/">
+        <div class="tut-card__head">
+          <div class="ico"><i data-lucide="terminal"></i></div>
+          <h3 class="tut-card__title">ForgeaX CLI</h3>
+          <span class="tag brand">Docs</span>
+        </div>
+        <p class="tut-card__desc">Lancer le moteur depuis le terminal : installation, workflows, MCP, permissions et référence des commandes.</p>
+      </a>
     </div>
   </div>
 </main>
@@ -142,24 +121,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables. Open source, licence Apache 2.0.</p>
   </div>
-  <div class="col"><h4>Site</h4>
+  <nav class="foot-links" aria-label="Site">
     <a href="/fr/changelog/">Journal des modifications</a>
-    <a href="/fr/blog/">Blogue</a>
-    <a href="/fr/docs/">Documents</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
-    <a href="/fr/games/">Jeux</a>
-    <a href="/fr/marketplace/">Marché</a>
-  </div>
-  <div class="col"><h4>Projet</h4>
+    <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
     <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

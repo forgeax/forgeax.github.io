@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-de forgeax-site">
@@ -36,24 +36,10 @@
     <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Dokumente</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/de/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Dokumente</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/de/" data-nav="/">Startseite</a>
       <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
-      <a href="/de/games/" data-nav="/games/">Spiele</a>
-      <a href="/de/marketplace/" data-nav="/marketplace/">Marktplatz</a>
-      <a href="/de/blog/" data-nav="/blog/">Blog</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
       <a href="/de/about.html" data-nav="/about.html">Um</a>
     </div>
@@ -64,15 +50,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-15.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-15.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-15.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-15.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-15.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-06-15.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-15.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-15.html" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Fragen Sie die KI</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">In ChatGPT öffnen</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Geöffnet in Claude</a>
-          <button class="ask-item" id="copyMd">Seite als Markdown kopieren</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
     </div>
   </div>
 </nav>
@@ -80,7 +59,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
-    <div class="meta"><span class="tag brand">Täglich</span><span>2026-06-15</span></div>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-06-15</span></div>
     <h1>Ein Dark-Fantasy-ARPG-Beispiel + Modell hochladen und verwenden</h1>
     <p class="standfirst">An diesem Tag erschien ein Dark-Fantasy-Action-RPG-Beispiel mit einem animierten Helden, das die in den letzten Tagen aufgebauten Skelettanimationen, Kameras, Kämpfe und Beleuchtung zum ersten Mal in echtes Gameplay einfügte; Wenn Sie jetzt ein Modell hochladen, können Sie es sofort im Spiel sehen und verwenden, ein End-to-End-Pfad. Sie können die Konversation auch zurücksetzen und auf eine beliebige frühere Nachricht zurückgreifen. und die Engine bereitete sich auf die Aufnahme professioneller Modellformate vor und führte ein geräteübergreifendes „Record-and-Replay“-Debug-Setup durch.</p>
     <div class="prose"><h2>Die Teile zu einem Spiel zusammenfügen, das sich tatsächlich bewegt</h2>
@@ -96,7 +75,7 @@
 <h2>Was dieser Tag bedeutet</h2>
 <p>Das denkwürdigste an diesem Tag ist der Wendepunkt, den das Dark-Fantasy-ARPG-Beispiel markiert: Die Plattform besteht nicht mehr nur aus isolierten Fähigkeitspunkten wie „kann einen sich bewegenden Charakter erstellen“, „kann Modelle importieren“, „kann Licht und Schatten werfen“, sondern fügt sie zum ersten Mal zu einem vollständigen Spiel mit einem Helden, Kameras, Kampf und Atmosphäre zusammen. Der Wert von Fähigkeitspunkten hängt letztendlich davon ab, ob sie als vollständige Einheit zusammenspielen können – und dieser Tag gab ein klares Ja. Die anderen Dinge rund um das Ganze drängten darauf, „mehr Leuten die Möglichkeit zu geben, ihre eigenen Spiele reibungsloser zusammenzustellen“: Der sofort nutzbare Modell-Upload senkte die Hürde für die Nutzung von Assets; Das Zurücksetzen auf eine beliebige Nachricht verringerte die psychologische Belastung durch Versuch und Irrtum. Indem der Weg für professionelle Formate geebnet wurde, wurden die Quellen der möglichen Vermögenswerte erweitert. Dank der Aufnahme-und-Wiedergabe-Funktion konnten visuelle Probleme leichter erkannt und behoben werden. Von der Ansammlung von Teilen über den Zusammenbau einer ganzen Maschine bis hin zum Polieren jedes einzelnen Schritts des Zusammenbaus, um einen reibungslosen Ablauf zu gewährleisten – dieser Tag war ein wichtiger Schritt in Richtung des Ziels, „jedem ein echtes Spiel zusammenbauen zu lassen“.</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle täglichen Updates</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
   </article>
 </main>
 
@@ -105,24 +84,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele. Open Source, Apache-Lizenz 2.0.</p>
   </div>
-  <div class="col"><h4>Website</h4>
+  <nav class="foot-links" aria-label="Website">
     <a href="/de/changelog/">Änderungsprotokoll</a>
-    <a href="/de/blog/">Blog</a>
-    <a href="/de/docs/">Dokumente</a>
     <a href="/de/tutorials/">Tutorials</a>
     <a href="/de/examples/">Beispiele</a>
-    <a href="/de/games/">Spiele</a>
-    <a href="/de/marketplace/">Marktplatz</a>
-  </div>
-  <div class="col"><h4>Projekt</h4>
+    <a href="/de/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
     <a href="/de/about.html">Um</a>
     <a href="/de/license.html">Lizenz</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

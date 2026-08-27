@@ -1,12 +1,12 @@
-/* Marketplace filter bar — tabs + search share one control spec */
+/* Plugin filter bar */
 
 .forgeax-site .mk-bar {
   position: sticky;
   top: var(--nav-h);
   z-index: 50;
   background: rgba(13, 13, 13, 0.86);
-  backdrop-filter: saturate(160%) blur(10px);
   -webkit-backdrop-filter: saturate(160%) blur(10px);
+  backdrop-filter: saturate(160%) blur(10px);
   margin: 8px 0 0;
   padding: 12px 0;
   border-bottom: 1px solid var(--border-subtle);
@@ -17,14 +17,14 @@
 }
 
 .forgeax-site .mk-tabs {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
-  flex-wrap: wrap;
   align-items: center;
+  width: 100%;
 }
 
-.forgeax-site .mk-tab,
-.forgeax-site .mk-search {
+.forgeax-site .mk-tab {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -45,6 +45,7 @@
 .forgeax-site .mk-tab {
   gap: 6px;
   padding: 0 13px 0 11px;
+  width: 100%;
   color: var(--text-secondary);
   background: var(--bg-base);
   cursor: pointer;
@@ -72,10 +73,6 @@
   opacity: 1;
 }
 
-.forgeax-site .mk-tab[data-kind="all"] .mk-tab-ico {
-  color: var(--text-tertiary);
-}
-
 .forgeax-site .mk-tab[data-kind="agent"] .mk-tab-ico {
   color: #c4a3ff;
 }
@@ -84,24 +81,8 @@
   color: #c8dc88;
 }
 
-.forgeax-site .mk-tab[data-kind="skill"] .mk-tab-ico {
-  color: #ddb06a;
-}
-
 .forgeax-site .mk-tab[data-kind="backend"] .mk-tab-ico {
   color: #8eb0e8;
-}
-
-.forgeax-site .mk-tab[data-kind="tool"] .mk-tab-ico {
-  color: #7ad4c0;
-}
-
-.forgeax-site .mk-tab[data-kind="binding"] .mk-tab-ico {
-  color: #f094b8;
-}
-
-.forgeax-site .mk-tab.active[data-kind="all"] .mk-tab-ico {
-  color: var(--brand-light);
 }
 
 .forgeax-site .mk-tab:hover {
@@ -111,37 +92,4 @@
 
 .forgeax-site .mk-tab.active {
   cursor: default;
-}
-
-.forgeax-site .mk-search {
-  margin-left: auto;
-  gap: 8px;
-  padding: 0 14px;
-  min-width: 210px;
-  background: var(--bg-base);
-}
-
-.forgeax-site .mk-search .ui-icon {
-  flex-shrink: 0;
-  color: var(--text-tertiary);
-}
-
-.forgeax-site .mk-search input {
-  flex: 1;
-  min-width: 0;
-  background: none;
-  border: 0;
-  outline: 0;
-  padding: 0;
-  margin: 0;
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: 13.5px;
-  font-weight: 600;
-  line-height: 1.15;
-}
-
-.forgeax-site .mk-search input::placeholder {
-  color: var(--text-tertiary);
-  font-weight: 500;
 }

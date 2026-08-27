@@ -68,7 +68,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-pt forgeax-site has-games-immersive has-immersive">
@@ -87,31 +87,24 @@
   <div class="ambient__vignette"></div>
 </div>
 <canvas id="forgeParticles" class="forge-particles" aria-hidden="true"></canvas>
-<p class="immersive-hint" aria-hidden="true">Rolar</p>
+<!-- Lives outside <main>: main.home-v2 carries a transform, which would make it the
+     containing block for this position:fixed cue. -->
+<a class="scroll-cue" href="#sec-proof">
+  <span class="scroll-cue__label">Role para saber mais</span>
+  <span class="scroll-cue__ring" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+  </span>
+</a>
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Documentos</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/pt/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Documentos</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/pt/" data-nav="/">Início</a>
       <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
       <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
-      <a href="/pt/games/" data-nav="/games/" class="active">Jogos</a>
-      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
-      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/pt/changelog/" data-nav="/changelog/">Registro de alterações</a>
       <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
     </div>
@@ -122,22 +115,15 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/games/detail/go-karts.html" data-l="en">English</a><a class="lang-item" href="/zh/games/detail/go-karts.html" data-l="zh">中文</a><a class="lang-item" href="/ja/games/detail/go-karts.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/games/detail/go-karts.html" data-l="ko">한국어</a><a class="lang-item" href="/es/games/detail/go-karts.html" data-l="es">Español</a><a class="lang-item" href="/de/games/detail/go-karts.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/games/detail/go-karts.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/games/detail/go-karts.html" data-l="pt" aria-current="true">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
-          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
     </div>
   </div>
 </nav>
 
 <main class="wrap gm-page gm-detail-page">
   <div class="gm-detail-top motion-hero-in">
-    <a class="gm-back" href="/pt/games/">← Voltar à lista</a>
+    <a class="gm-back" href="/pt/#sec-showcase">← Voltar</a>
     <span class="gm-crumb">games / detail / go-karts</span>
     <div class="gm-sd-title"><h1>Pet Go-Karts</h1></div>
   </div>
@@ -164,7 +150,7 @@
         <div class="m"><span class="k">Lançamento</span><span class="v">2026-08-02</span></div>
         <div class="m"><span class="k">Versão</span><span class="v">v0.9.0</span></div>
         <div class="m"><span class="k">Tamanho do download</span><span class="v">—</span></div>
-        <div class="m"><span class="k">Tags</span><span class="v tags"><a href="/pt/games/#/?tag=%E7%AB%9E%E9%80%9F">竞速</a><a href="/pt/games/#/?tag=%E5%8D%A1%E4%B8%81%E8%BD%A6">卡丁车</a><a href="/pt/games/#/?tag=3D">3D</a><a href="/pt/games/#/?tag=%E8%BD%A6%E5%BA%93%E9%80%89%E8%A3%85">车库选装</a></span></div>
+        <div class="m"><span class="k">Tags</span><span class="v tags"><a href="/pt/#sec-showcase">竞速</a><a href="/pt/#sec-showcase">卡丁车</a><a href="/pt/#sec-showcase">3D</a><a href="/pt/#sec-showcase">车库选装</a></span></div>
       </div>
     </aside>
   </div>
@@ -186,25 +172,21 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
   </div>
-  <div class="col"><h4>Site</h4>
+  <nav class="foot-links" aria-label="Site">
     <a href="/pt/changelog/">Registro de alterações</a>
-    <a href="/pt/blog/">Blogue</a>
-    <a href="/pt/docs/">Documentos</a>
     <a href="/pt/tutorials/">Tutoriais</a>
     <a href="/pt/examples/">Exemplos</a>
-    <a href="/pt/games/">Jogos</a>
-    <a href="/pt/marketplace/">Mercado</a>
-  </div>
-  <div class="col"><h4>Projeto</h4>
+    <a href="/pt/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
     <a href="/pt/about.html">Sobre</a>
     <a href="/pt/license.html">Licença</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 <script src="/assets/games/detail.js?v=f92281ed"></script>
 </body>
 </html>

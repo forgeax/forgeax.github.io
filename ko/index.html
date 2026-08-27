@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ForgeaX — AI 기반 개인 게임 스튜디오</title>
-<meta name="description" content="ForgeaX는 AI 기반 개인 게임 스튜디오입니다. AI가 브라우저에 실시간으로 엔진 코드를 작성하는 동안 채팅, 편집기 등을 통해 아이디어를 플레이 가능한 게임으로 전환하세요. Open source, Apache 2.0." />
+<title>ForgeaX — AI 네이티브 게임 제작 엔진</title>
+<meta name="description" content="ForgeaX는 전문 창작자를 위한 AI 네이티브 게임 제작 엔진입니다. 에이전트·엔진·에셋·테스트·빌드가 하나의 루프로 묶여 버티컬 슬라이스부터 정식 출시까지 이어집니다. 오픈소스, Apache 2.0." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="ForgeaX" />
-<meta property="og:description" content="개인 게임 스튜디오." />
+<meta property="og:description" content="전문 창작자를 위한 AI 네이티브 게임 제작 엔진." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/ko/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -30,12 +30,148 @@
 ]}
 </script>
 
+<style>
+  /* Width rail for .gm-page is shared with .nav-inner in assets/styles.css (1280 desktop). */
+  .gm-page{padding-bottom:64px}
+  .gm-head{margin-bottom:8px}
+  .gm-sec{margin-top:8px}
+  .gm-hero:not([hidden]){margin:28px 0 38px}
+  .gm-sec-head{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:20px}
+  .gm-sec-head h2{font-size:20px;font-weight:650;letter-spacing:-.02em;margin:0}
+  .gm-toolbar{display:flex;align-items:center;gap:12px;margin-left:auto;flex-wrap:wrap}
+  .gm-tabs{display:flex;gap:4px;align-items:center;border-radius:999px;padding:3px}
+  .gm-tabs button{background:none;border:1px solid transparent;color:var(--text-secondary);font-size:12.5px;padding:6px 11px;border-radius:999px;cursor:pointer;font-family:inherit;line-height:1.3;white-space:nowrap;box-sizing:border-box}
+  .gm-tabs button.on{font-weight:600}
+  .gm-tagbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:-4px 0 18px}
+  .gm-fchip{display:inline-flex;align-items:center;gap:6px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:999px;padding:4px 10px;font-size:12.5px;color:var(--text-secondary)}
+  .gm-fchip b{color:var(--text-primary);font-weight:600}
+  .gm-fchip .x{cursor:pointer;opacity:.7;border:none;background:none;color:inherit;font:inherit;padding:0 0 0 2px}
+  .gm-fchip .x:hover{opacity:1;color:var(--text-primary)}
+  .gm-tagbar .clear{background:none;border:none;color:var(--brand);font-size:12.5px;cursor:pointer;font-family:inherit;padding:4px 6px}
+  /* Card grid — match demo: minmax(300px), 16:9 thumb, title-only body */
+  .gm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+  a.gm-card{text-decoration:none;color:inherit}
+  .gm-card{cursor:pointer;border-radius:14px;overflow:hidden;text-align:left;color:inherit;font:inherit;padding:0;display:flex;flex-direction:column;width:100%}
+  .gm-card[hidden]{display:none!important}
+  .gm-card .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg-elevated)}
+  .gm-card .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--site-dur-silk, 0.92s) var(--site-ease-silk, ease)}
+  .gm-card:hover .thumb img{transform:scale(1.05)}
+  .gm-card .thumb .fade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.5),transparent 45%);pointer-events:none}
+  .gm-card .badges{position:absolute;left:12px;bottom:12px;display:flex;gap:6px;z-index:2}
+  .gm-card .badge.edit{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:none;padding:0;color:var(--text-on-bright);background:var(--brand);box-shadow:0 4px 14px color-mix(in srgb,var(--brand) 28%,transparent)}
+  .gm-card .badge.edit .ui-icon{width:17px;height:17px;color:inherit}
+  .gm-card .badge.edit .ui-icon svg{width:17px;height:17px;stroke:currentColor;fill:none}
+  .gm-card .body{padding:14px 15px 16px;flex:1;display:flex;flex-direction:column}
+  .gm-card .body h3{font-size:16px;font-weight:600;letter-spacing:-.01em;margin:0;line-height:1.3}
+  .gm-empty{text-align:center;color:var(--text-tertiary);border:1px dashed var(--border-subtle);border-radius:14px;padding:40px 24px;margin-top:8px}
+
+  /* hero carousel — horizontal track slide */
+  .gm-hero{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:21/9;cursor:default}
+  .gm-hero-track{display:flex;height:100%;transition:transform .85s cubic-bezier(.22,1,.36,1);will-change:transform}
+  .gm-cslide{position:relative;flex:0 0 100%;width:100%;height:100%;min-height:0;overflow:hidden}
+  .gm-cslide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 8s linear}
+  .gm-cslide.is-active img{transform:scale(1)}
+  .gm-cslide .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.38) 46%,transparent 78%);pointer-events:none}
+  .gm-cslide .c-inner{position:absolute;left:0;bottom:0;padding:38px 44px;max-width:62%;z-index:2}
+  .gm-cslide .c-inner > *{opacity:0;transform:translate3d(0,16px,0);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
+  .gm-cslide.is-active .c-inner > *{opacity:1;transform:translate3d(0,0,0)}
+  .gm-cslide.is-active .c-inner > *:nth-child(1){transition-delay:.06s}
+  .gm-cslide.is-active .c-inner > *:nth-child(2){transition-delay:.12s}
+  .gm-cslide.is-active .c-inner > *:nth-child(3){transition-delay:.18s}
+  .gm-cslide.is-active .c-inner > *:nth-child(4){transition-delay:.24s}
+  .gm-cslide.is-active .c-inner > *:nth-child(5){transition-delay:.3s}
+  .gm-cslide .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+  .gm-cslide h2{font-size:clamp(24px,3.4vw,40px);font-weight:700;letter-spacing:-.035em;line-height:1.06;margin:8px 0 0;color:#fff}
+  .gm-cslide h2 a{color:inherit;text-decoration:none}
+  .gm-cslide h2 a:hover{color:var(--brand)}
+  /* hero CTAs — see hero-cta.css (.cta .btn.primary / .btn.ghost), same as homepage */
+  .c-row .cta .btn{
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .c-row .cta .btn .btn-fx{
+    position:absolute;
+    inset:1px;
+    pointer-events:none;
+  }
+  .c-row .cta .btn > span:not(.btn-fx){
+    position:relative;
+    z-index:3;
+  }
+  .c-row .cta span.btn{cursor:not-allowed}
+  .gm-cslide p{margin-top:11px;color:rgba(255,255,255,.82);font-size:15px;max-width:520px;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .gm-cslide .c-row{margin-top:20px}
+  .gm-cslide .c-meta{display:flex;gap:16px;margin-top:16px;font-size:12px;color:rgba(255,255,255,.55);font-family:var(--font-mono)}
+  .gm-dots{position:absolute;right:18px;bottom:16px;display:flex;gap:7px;z-index:10;pointer-events:auto}
+  .gm-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;display:block;position:relative;border:none;padding:0}
+  .gm-dots i::after{content:'';position:absolute;inset:-10px}
+  .gm-dots i.on{background:var(--brand)}
+
+  /* mobile featured — vertical stack only (no horizontal scroll) */
+  .gm-featured-mobile{display:none;margin:20px 0 30px;max-width:100%;overflow:hidden}
+  .gm-mobile-label{font-size:13px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);margin:0 0 12px;font-family:var(--font-mono)}
+  .gm-featured-stack{display:flex;flex-direction:column;gap:14px;max-width:100%}
+  a.gm-spot-card{width:100%;max-width:100%;box-sizing:border-box;text-decoration:none;color:inherit;border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  a.gm-spot-card:active{opacity:.92}
+  .gm-spot-card .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg-elevated)}
+  .gm-spot-card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .gm-spot-card .thumb .fade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.5),transparent 45%)}
+  .gm-spot-card .body{padding:12px 14px 14px}
+  .gm-spot-card .body h3{font-size:15px;font-weight:600;margin:0;line-height:1.3;letter-spacing:-.01em}
+  .gm-spot-card .body p{margin:6px 0 0;font-size:12.5px;color:var(--text-secondary);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* flyout — demo: 320px, right of card */
+  .gm-fly{position:fixed;z-index:80;width:320px;pointer-events:none;border-radius:12px;overflow:hidden}
+  .gm-fly-body{padding:14px 16px}
+  .gm-fly-body h4{font-size:15.5px;font-weight:600;margin:0}
+  .gm-fly-desc{font-size:12.5px;color:var(--text-secondary);margin-top:9px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .gm-fly-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+  .gm-fly-tags span{font-size:10.5px;color:var(--text-secondary);background:rgba(255,255,255,.06);border-radius:5px;padding:2px 8px}
+
+  .gm-hero[hidden],.gm-featured-mobile[hidden],.gm-tagbar[hidden],.gm-empty[hidden]{display:none!important}
+  .gm-fly[hidden]{visibility:hidden;pointer-events:none;opacity:0}
+
+  /* ≥768px: cinematic carousel; <768px: vertical featured stack (no horizontal scroll) */
+  @media(max-width:767px){
+    .gm-page{overflow-x:clip;max-width:100%}
+    .gm-hero:not([hidden]){display:none!important}
+    .gm-featured-mobile:not([hidden]){display:block}
+    .gm-grid{grid-template-columns:1fr}
+  }
+  @media(min-width:768px){
+    .gm-featured-mobile{display:none!important}
+  }
+
+  @media(max-width:900px){
+    .gm-cslide .c-inner{max-width:88%}
+    .gm-hero{aspect-ratio:16/9}
+  }
+  @media(max-width:640px){
+    .gm-sec-head{align-items:stretch}
+    .gm-toolbar{margin-left:0;width:100%}
+    .gm-toolbar .gm-search{flex:1;min-width:0}
+    .gm-toolbar .gm-search__input{font-size:16px}
+    .gm-toolbar .gm-sort{flex:1;min-width:0}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .gm-hero-track{transition:none!important}
+    .gm-cslide img{transition:none!important;transform:scale(1)!important}
+    .gm-cslide .c-inner > *{transition:none!important;opacity:1!important;transform:none!important}
+    .gm-card,.gm-spot-card{transition:none}
+  }
+</style>
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
-<body class="lang-ko forgeax-site has-immersive">
+<body class="lang-ko forgeax-site has-immersive home-immersive">
 <div class="ambient" aria-hidden="true">
   <div class="ambient__base"></div>
   <div class="ambient__morph"></div>
@@ -51,31 +187,24 @@
   <div class="ambient__vignette"></div>
 </div>
 <canvas id="forgeParticles" class="forge-particles" aria-hidden="true"></canvas>
-<p class="immersive-hint" aria-hidden="true">스크롤</p>
+<!-- Lives outside <main>: main.home-v2 carries a transform, which would make it the
+     containing block for this position:fixed cue. -->
+<a class="scroll-cue" href="#sec-proof">
+  <span class="scroll-cue__label">스크롤해서 자세히 보기</span>
+  <span class="scroll-cue__ring" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+  </span>
+</a>
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>문서</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/ko/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>문서</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/ko/" data-nav="/" class="active">홈</a>
       <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
       <a href="/ko/examples/" data-nav="/examples/">예</a>
-      <a href="/ko/games/" data-nav="/games/">계략</a>
-      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
-      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">플러그인</a>
       <a href="/ko/changelog/" data-nav="/changelog/">변경 내역</a>
       <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
     </div>
@@ -86,202 +215,326 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/" data-l="en">English</a><a class="lang-item" href="/zh/" data-l="zh">中文</a><a class="lang-item" href="/ja/" data-l="ja">日本語</a><a class="lang-item active" href="/ko/" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/" data-l="es">Español</a><a class="lang-item" href="/de/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/" data-l="fr">Français</a><a class="lang-item" href="/pt/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
-          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">다운로드</a>
     </div>
   </div>
 </nav>
 
-<main class="wrap">
+<main class="wrap home-v2">
 
-  <section class="hero motion-hero-in immersive-section" id="sec-hero" data-immersive-section>
-    <svg class="hero-logo" id="heroLogo" viewBox="-6.5 -13 90 90" shape-rendering="crispEdges" role="img" aria-label="ForgeaX">
-      <defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.5" result="b"/><feComposite in="SourceGraphic" in2="b" operator="over"/></filter></defs>
-      <g filter="url(#g)"><g fill="#fff"><rect x="15" y="30" width="10" height="10"/><rect x="55" y="30" width="10" height="10"/><rect x="15" y="60" width="10" height="10"/><rect x="55" y="60" width="10" height="10"/><rect x="25" y="40" width="30" height="20"/></g>
-        <g fill="#fff"><animate attributeName="opacity" values="0.7;1;0.7" keyTimes="0;0.25;1" dur="1.5s" repeatCount="indefinite"/><rect x="15" y="30" width="10" height="10"/><rect x="55" y="30" width="10" height="10"/><rect x="15" y="60" width="10" height="10"/><rect x="55" y="60" width="10" height="10"/><rect x="25" y="40" width="30" height="20"/></g></g>
-      <g filter="url(#g)" transform="translate(0,5)"><g fill="rgba(255,40,20,0.95)">
-        <rect x="35" y="35" width="10" height="5"/>
-        <rect x="30" y="30" width="20" height="5"><animate attributeName="x" values="30;29;31;30" dur="0.45s" repeatCount="indefinite"/></rect>
-        <rect x="25" y="25" width="30" height="5"><animate attributeName="x" values="25;23;27;25" dur="0.4s" repeatCount="indefinite"/></rect>
-        <rect x="20" y="20" width="40" height="5"><animate attributeName="x" values="20;17;23;20" dur="0.35s" repeatCount="indefinite"/></rect>
-        <rect x="25" y="10" width="30" height="10"><animate attributeName="x" values="25;20;30;25" dur="0.25s" repeatCount="indefinite"/><animate attributeName="y" values="10;5;15;10" dur="0.3s" repeatCount="indefinite"/></rect>
-        <rect x="30" y="-5" width="20" height="15"><animate attributeName="x" values="30;25;35;30" dur="0.15s" repeatCount="indefinite"/><animate attributeName="y" values="-5;-10;0;-5" dur="0.2s" repeatCount="indefinite"/></rect>
-        <rect x="25" y="0" width="10" height="10"><animate attributeName="x" values="25;20;30;25" dur="0.22s" repeatCount="indefinite"/><animate attributeName="y" values="0;-5;5;0" dur="0.28s" repeatCount="indefinite"/></rect>
-        <rect x="45" y="-5" width="10" height="10"><animate attributeName="x" values="45;50;40;45" dur="0.18s" repeatCount="indefinite"/><animate attributeName="y" values="-5;0;-10;-5" dur="0.26s" repeatCount="indefinite"/></rect>
-        <rect x="35" y="-15" width="5" height="5"><animate attributeName="opacity" values="1;0;1" dur="0.3s" repeatCount="indefinite"/><animate attributeName="y" values="-15;-25;-15" dur="0.3s" repeatCount="indefinite"/><animate attributeName="x" values="35;30;40;35" dur="0.2s" repeatCount="indefinite"/></rect>
-        <rect x="50" y="-5" width="5" height="5"><animate attributeName="opacity" values="0;1;0" dur="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="-5;-15;-5" dur="0.4s" repeatCount="indefinite"/><animate attributeName="x" values="50;55;45;50" dur="0.3s" repeatCount="indefinite"/></rect>
-        <rect x="25" y="-10" width="5" height="5"><animate attributeName="opacity" values="0;1;0" dur="0.35s" repeatCount="indefinite"/><animate attributeName="y" values="-10;-20;-10" dur="0.35s" repeatCount="indefinite"/><animate attributeName="x" values="25;20;30;25" dur="0.25s" repeatCount="indefinite"/></rect>
-      </g>
-      <g fill="rgba(255,140,0,0.95)">
-        <rect x="35" y="30" width="10" height="5"/>
-        <rect x="30" y="25" width="20" height="5"><animate attributeName="x" values="30;28;32;30" dur="0.4s" repeatCount="indefinite"/></rect>
-        <rect x="30" y="15" width="20" height="10"><animate attributeName="x" values="30;25;35;30" dur="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="15;10;20;15" dur="0.25s" repeatCount="indefinite"/></rect>
-        <rect x="35" y="5" width="10" height="10"><animate attributeName="y" values="5;0;10;5" dur="0.2s" repeatCount="indefinite"/><animate attributeName="x" values="35;30;40;35" dur="0.15s" repeatCount="indefinite"/></rect>
-      </g>
-      <g fill="rgba(255,220,50,0.95)">
-        <rect x="35" y="25" width="10" height="5"/>
-        <rect x="35" y="20" width="10" height="5"><animate attributeName="x" values="35;30;40;35" dur="0.18s" repeatCount="indefinite"/></rect>
-        <rect x="35" y="10" width="5" height="10"><animate attributeName="y" values="10;5;15;10" dur="0.15s" repeatCount="indefinite"/></rect>
-      </g></g>
-      <g id="strikeSparks" opacity="0" filter="url(#g)">
-        <animate id="sparkAnim" attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.24;0.25;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/>
-        <rect x="60" y="25" width="5" height="5" fill="rgba(255,200,0,1)"><animateTransform id="spark1" attributeName="transform" type="translate" values="0 0;0 0;10 -10;10 -10" keyTimes="0;0.24;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/></rect>
-        <rect x="65" y="20" width="5" height="5" fill="rgba(255,255,100,1)"><animateTransform id="spark2" attributeName="transform" type="translate" values="0 0;0 0;15 -5;15 -5" keyTimes="0;0.24;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/></rect>
-        <rect x="60" y="30" width="5" height="5" fill="rgba(255,200,0,1)"><animateTransform id="spark3" attributeName="transform" type="translate" values="0 0;0 0;10 5;10 5" keyTimes="0;0.24;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/></rect>
-      </g>
-      <g transform="translate(5,30)" filter="url(#g)"><g transform="rotate(-45 0 0)">
-        <animateTransform attributeName="transform" type="rotate" values="-45 0 0;-42 0 0;-48 0 0;-45 0 0" dur="2s" repeatCount="indefinite"/>
-        <animateTransform id="hammerStrike" attributeName="transform" type="rotate" values="-45 0 0;-50 0 0;10 0 0;-20 0 0;-45 0 0" keyTimes="0;0.15;0.25;0.35;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/>
-        <rect x="10" y="0" width="20" height="5" fill="#fff"/><rect x="30" y="-10" width="10" height="20" fill="#fff"/>
-      </g></g>
-    </svg>
-
-    <span class="badge"><span class="dot"></span>오픈 소스 · AI 개발 루프로 구축 · forgeax.github.io</span>
-    <h1>당신의<span class="grad">개인의</span>게임 스튜디오.</h1>
-    <p class="sub">ForgeaX는 AI 기반 게임 개발 스튜디오입니다. AI가 엔진 코드를 작성하고 브라우저에서 실시간으로 핫 리로드되는 동안 아이디어를 플레이 가능한 게임으로 바꿔보세요. 더 특이한 점은 다음과 같습니다.<b>엔진과 플랫폼 자체는 자체 실행 개발 루프에서 거의 전적으로 AI에 의해 한 줄씩 작성됩니다.</b>— 그리고 일일 자체 빌드는<a href="/ko/changelog/">변경 내역</a>, AI를 위한 일종의 장기 개발 메모리입니다.</p>
-    <div class="cta">
-      <a class="btn primary" href="/ko/tutorials/"><span class="btn-fx" aria-hidden="true"></span>시작하기</a>
-      <a class="btn ghost" href="/ko/games/">게임 보기</a>
-    </div>
-  </section>
-
-  <section class="section reveal-on-scroll immersive-section" id="sec-stats" data-immersive-section>
-    <div class="stats motion-stagger">
-      <div class="stat stat--display"><div class="num">29</div><div class="lbl">@forgeax 엔진 패키지</div></div>
-      <div class="stat stat--display"><div class="num">4</div><div class="lbl">플레이 가능한 게임 데모</div></div>
-      <div class="stat stat--display"><div class="num">듀얼 RHI</div><div class="lbl">WebGPU + wasm</div></div>
-      <div class="stat stat--display"><div class="num">Apache 2.0</div><div class="lbl">오픈 소스</div></div>
-    </div>
-  </section>
-
-  <section class="section reveal-on-scroll immersive-section spotlight-section" id="sec-features" data-immersive-section data-reveal-delay="1">
-    <h2>소규모 팀이 더 큰 게임을 만들 수 있도록 하세요.</h2>
-    <div class="grid c3 motion-stagger">
-      <div class="card card--tile"><div class="ico"><i data-lucide="gamepad-2"></i></div><h3>다양한 창작 방법</h3><p>채팅, 시각적 편집기, 나중에 이미지/비디오 입력 등 원하는 방식으로 아이디어를 표현하세요.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="bot"></i></div><h3>설계상 에이전트</h3><p>에이전트는 엔진 코드를 계획, 설계 및 작성합니다. 요구 사항을 설정하고 검토합니다.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="zap"></i></div><h3>실시간 핫 리로드</h3><p>모든 변경 사항은 즉시 미리보기에 표시됩니다. 말하는 내용이 바로 플레이되는 내용입니다.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="boxes"></i></div><h3>실제 ECS 엔진</h3><p>브라우저 스튜디오에서 듀얼 RHI 렌더링을 갖춘 진정한 엔터티-컴포넌트-시스템 엔진입니다.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="brain"></i></div><h3>AI 기반 게임플레이</h3><p>AI로 게임을 만드는 것뿐만 아니라 지능형 NPC, 생성 콘텐츠, 대화형 AI 경험 등 플레이 자체에 AI를 구축합니다.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="refresh-cw"></i></div><h3>스스로 진화하는 개발 루프</h3><p>ForgeaX 폐쇄 루프는 요구 사항 → 빌드 → 자체 피드백을 통해 학습하고 시간이 지남에 따라 꾸준히 성장하는 파이프라인을 확인합니다.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="globe"></i></div><h3>브라우저에서 실행</h3><p>WebGPU 기반, 웹과 데스크탑이 하나의 스택에 있으며 1분 안에 실행됩니다.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="book-open"></i></div><h3>오픈 소스</h3><p>Apache 2.0 — 무료로 포크하고, 사용하고, 배송하고, 상업적으로 구축할 수 있습니다.</p></div>
-    </div>
-  </section>
-
-  <section class="section reveal-on-scroll immersive-section spotlight-section" id="sec-ai" data-immersive-section data-reveal-delay="2">
-    <h2 class="ai-head">당신만의 <span class="grad">AI 에이전트</span>를 사용하세요</h2>
-    <div class="ai-cols">
-      <div class="ai-panel">
-        <div class="ai-panel-title">두뇌는 ForgeaX에, 엔진은 당신에게</div>
-        <div class="ai-steps motion-stagger">
-          <div class="ai-step"><div class="ai-num">1</div><div><h4>ForgeaX가 두뇌를 제공</h4><p>자체 개발한 오케스트레이션 커널과 페르소나 Forge: 멀티 에이전트 팀이 계획, 위임, 엔진 코드 작성, 결과 보고를 담당합니다.</p></div></div>
-          <div class="ai-step"><div class="ai-num">2</div><div><h4>로컬 CLI가 엔진을 제공</h4><p>이미 요금을 내고 있는 코딩 에이전트(또는 일반 API 키)를 추론 백엔드로 연결하세요. AI에 두 번 결제할 필요가 없습니다.</p></div></div>
-          <div class="ai-step"><div class="ai-num">3</div><div><h4>한 곳에서 언제든 전환</h4><p>패널에서 프로바이더를 고르기만 하면 엔진이 교체됩니다. 페르소나와 워크플로는 그대로, 코드를 다시 쓸 필요가 없습니다.</p></div></div>
-        </div>
+  <!-- §1 · Hero — copy + closed-loop demo (first viewport) -->
+  <section class="hero hero--split motion-hero-in immersive-section" id="sec-hero" data-immersive-section>
+    <div class="hero-stage">
+    <div class="hero-lede">
+      <div class="brandmark">
+        <img class="brandmark__mark" src="/logo.svg?v=3" alt="ForgeaX" width="76" height="76" />
+        <span class="brandmark__word">Forge<b>aX</b></span>
       </div>
-
-      <div class="ai-panel">
-        <div class="ai-panel-title">선택할 수 있는 7가지 추론 엔진</div>
-        <div class="ai-engines motion-stagger">
-          <div class="ai-engine">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">forgeax cli</span><span class="ai-desc">자체 완결형 forgeax-cli — 바로 사용할 수 있는 권장 CLI입니다.</span></span>
+      <h1><span class="grad">전문 창작자</span>를 위한 AI 네이티브 게임 제작 엔진</h1>
+      <p class="sub">버티컬 슬라이스부터 출시까지 — 작은 팀이 더 큰 게임을 완성하도록.</p>
+      <div class="cta cta--pair">
+        <div class="cta-path dl" data-download>
+          <a class="btn primary" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span>클라이언트 다운로드</span></a>
+          <div class="dl-card" data-download-card>
+            <a class="dl-card__row" data-download-opt="mac">
+              <span>macOS ARM64</span>
+              <span class="dl-card__now" data-download-now hidden>현재 기기</span>
+            </a>
+            <a class="dl-card__row" data-download-opt="win">
+              <span>Windows x64</span>
+              <span class="dl-card__now" data-download-now hidden>현재 기기</span>
+            </a>
+            <a class="dl-card__row dl-card__row--all" data-download-all href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">
+              <span>모든 버전</span>
+            </a>
           </div>
+        </div>
+        <div class="cta-path">
+          <div class="cta-path__anchor">
+            <button class="btn ghost" type="button" data-editor-install aria-expanded="false" aria-controls="fxEditorInstall"><span>로컬 Agent 연결</span></button>
+            <div class="hero-editor" id="fxEditorInstall"
+              data-install-bin="npx -y @forgeax/game"
+              data-step1-label="1. ForgeaX 플러그인 설치"
+              data-step1-note="일부 Agent는 설치 후 재시작이 필요할 수 있습니다."
+              data-step2-label="2. 프로젝트 초기화"
+              data-step2-note="빈 로컬 디렉터리를 프로젝트 폴더로 선택한 뒤 실행:">
+              <p class="hero-editor__lead">연동 안내를 복사하고 해당 로컬 앱을 엽니다. 대화창에 붙여 넣어도 됩니다.</p>
+              <div class="hero-editor__cmd">
+                <code data-editor-prompt></code>
+                <button type="button" class="hero-editor__copy" data-copy-cmd data-open-agent data-copied="복사됨">복사하고 붙여넣기</button>
+              </div>
+              <a class="hero-editor__more" href="/ko/tutorials/">전체 안내 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="hero-points">
+        <li>에이전트가 실제 파이프라인 안에서 일합니다: 씬, 코드, 에셋, 테스트, 빌드.</li>
+        <li>엔진, 에셋 제작, 자동 테스트, 패키징이 하나의 루프 안에 있습니다.</li>
+        <li>검토 가능하고 감사 가능하며 출시 가능합니다. 일회성 프롬프트가 아니라 팀을 위한 설계입니다.</li>
+      </ul>
+      <p class="hero-note">ForgeaX Studio를 설치하면 전체 제작 워크플로를 사용할 수 있습니다. <a href="/ko/tutorials/getting-started.html">설치 가이드 보기 →</a></p>
+    </div>
 
-          <a class="ai-engine" href="https://claude.com/product/claude-code" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">Claude Code</span><span class="ai-desc">당신의 <strong>Claude Pro / Max</strong> 구독 또는 Anthropic API 키를 사용하세요.</span></span>
-          </a>
+    <!-- Demo frame. Idea Lab used to take this over from a secondary CTA; the
+         editor-install path now stays in the left column so the loop remains visible. -->
+    <div class="hero-panel" id="fxIdeaLab" data-hero-panel data-stage="demo">
 
-          <a class="ai-engine" href="https://developers.openai.com/codex" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">OpenAI Codex</span><span class="ai-desc">당신의 <strong>ChatGPT Plus / Pro</strong> 요금제에 로그인하거나 OpenAI API 키를 사용하세요.</span></span>
-          </a>
+    <div class="loop" data-loop>
+      <div class="loop__body">
+        <div class="loop__stage">
+          <div class="loop__media-block">
+            <figure class="loop__media">
+            <video
+              class="loop__video"
+              data-loop-video
+              playsinline
+              muted
+              loop
+              preload="metadata"
+              aria-label="클로즈드 루프 데모 영상"
+            ></video>
+            <button class="loop__playbtn" type="button" data-loop-play hidden aria-label="데모 재생">
+              <span aria-hidden="true"></span>
+            </button>
+            <div class="loop__pager" role="tablist" aria-orientation="horizontal" aria-label="루프 실행 중">
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-1" aria-controls="loop-panel-1" aria-selected="true" aria-label="요구사항 전달" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-2" aria-controls="loop-panel-2" aria-selected="false" tabindex="-1" aria-label="계획 작성" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-3" aria-controls="loop-panel-3" aria-selected="false" tabindex="-1" aria-label="씬, 코드, 에셋 수정" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-4" aria-controls="loop-panel-4" aria-selected="false" tabindex="-1" aria-label="자동 테스트" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-5" aria-controls="loop-panel-5" aria-selected="false" tabindex="-1" aria-label="변경 검토" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-6" aria-controls="loop-panel-6" aria-selected="false" tabindex="-1" aria-label="승인 후 병합" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-7" aria-controls="loop-panel-7" aria-selected="false" tabindex="-1" aria-label="패키지 빌드" data-loop-step></button>
+            </div>
+          </figure>
+          <p class="loop__credit">ForgeaX로 제작한 게임 데모</p>
+        </div>
 
-          <a class="ai-engine" href="https://cursor.com/cli" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">Cursor</span><span class="ai-desc">Cursor Agent CLI를 통해 당신의 <strong>Cursor Pro</strong> 구독을 연결하세요.</span></span>
-          </a>
+          <div class="loop__caption">
+            <div class="loop__panel is-active" role="tabpanel" id="loop-panel-1" aria-labelledby="loop-tab-1" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov">
+              <h3>요구사항 전달</h3>
+              <p class="lp-bubble">한 마디로 원하는 걸 말하면, AI가 이어서 진행합니다.</p>
+            </div>
 
-          <a class="ai-engine" href="https://www.kimi.com/code/" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7L12 2Z"/><path d="m19 16 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">Kimi Code</span><span class="ai-desc">Kimi 멤버십 또는 Moonshot AI API 키를 사용하세요.</span></span>
-          </a>
+            <div class="loop__panel" role="tabpanel" id="loop-panel-2" aria-labelledby="loop-tab-2" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>계획 작성</h3>
+              <p class="lp-bubble">AI가 먼저 단계를 정리한 다음 손을 댑니다.</p>
+            </div>
 
-          <a class="ai-engine" href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="m8 10 2 2-2 2M12.5 14H16"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">DeepSeek Harness</span><span class="ai-desc">로컬 <code>dsh</code> CLI를 DeepSeek API Base URL과 키로 사용하세요. 개발자 프리뷰이며 모델과 프로필은 dsh가 관리합니다.</span></span>
-          </a>
+            <div class="loop__panel" role="tabpanel" id="loop-panel-3" aria-labelledby="loop-tab-3" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>씬, 코드, 에셋 수정</h3>
+              <p class="lp-bubble">AI가 씬, 코드, 에셋을 직접 고칩니다. 파일을 직접 만질 필요는 없습니다.</p>
+            </div>
 
-          <a class="ai-engine" href="https://www.codebuddy.ai/" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2.5"/><path d="M12 8V4M12 4h-1.5M12 4h1.5"/><circle cx="9" cy="13" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="13" r="1" fill="currentColor" stroke="none"/><path d="M2 12v3M22 12v3"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">CodeBuddy</span><span class="ai-desc"><strong>CodeBuddy Code</strong> CLI로 구동 — 로그인을 자체 관리하며 바로 연결됩니다.</span></span>
-          </a>
+            <div class="loop__panel" role="tabpanel" id="loop-panel-4" aria-labelledby="loop-tab-4" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>자동 테스트</h3>
+              <p class="lp-bubble">AI가 직접 실행하고 테스트합니다. 손으로 눌러볼 필요는 없습니다.</p>
+            </div>
+
+            <div class="loop__panel" role="tabpanel" id="loop-panel-5" aria-labelledby="loop-tab-5" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>변경 검토</h3>
+              <p class="lp-bubble">모든 변경을 펼쳐 보여 줍니다. 마음에 안 들면 되돌릴 수 있습니다.</p>
+            </div>
+
+            <div class="loop__panel" role="tabpanel" id="loop-panel-6" aria-labelledby="loop-tab-6" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>승인 후 병합</h3>
+              <p class="lp-bubble">당신이 동의한 뒤에야 메인에 들어갑니다. AI가 혼자 합치지 않습니다.</p>
+            </div>
+
+            <div class="loop__panel" role="tabpanel" id="loop-panel-7" aria-labelledby="loop-tab-7" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>패키지 빌드</h3>
+              <p class="lp-bubble">바로 건네 플레이할 수 있는 패키지로 만듭니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- State 2 · the agent itself. The conversation is the whole surface. -->
+    <div class="fxi fxi--chat" data-fxi-chat role="region" tabindex="-1" aria-label="Idea Lab · 버티컬 슬라이스 Brief">
+      <div class="fxi__body">
+        <iframe class="fxi__frame" title="Idea Lab · 버티컬 슬라이스 Brief" data-fxi-frame></iframe>
+
+        <div class="fxi__boot" data-fxi-boot>
+          <span class="fxi__spinner" aria-hidden="true"></span>
+          <p>Idea Lab Agent를 불러오는 중…</p>
+        </div>
+
+        <div class="fxi__state" data-fxi-waitlist hidden>
+          <h3>곧 공개됩니다</h3>
+          <p>Idea Lab은 비공개 테스트 중입니다. Brief 흐름은 곧 여기에 열립니다.</p>
+          <a class="fxi__cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">클라이언트 다운로드</a>
+        </div>
+      </div>
+
+      <div class="fxi__note" data-fxi-limit hidden>
+        <span>체험 턴을 모두 사용했습니다. Studio에서 이어가세요.</span>
+        <a data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">클라이언트 다운로드</a>
+      </div>
+    </div>
+
+    <!-- State 3 · the brief. Arrives only on forgeax:gdd, and its only forward
+         move is the client download. -->
+    <div class="fxi fxi--brief" data-fxi-brief role="region" tabindex="-1" aria-label="버티컬 슬라이스 Brief">
+      <div class="fxi__bar">
+        <button class="fxi__bare" type="button" data-fxi-brief-back>
+          <i data-lucide="chevron-left" aria-hidden="true"></i>
+          <span>대화로 돌아가기</span>
+        </button>
+        <span class="fxi__file"><i data-lucide="file-text" aria-hidden="true"></i>vertical-slice-brief.md</span>
+      </div>
+
+      <div class="fxi__docHead">
+        <h3>버티컬 슬라이스 Brief</h3>
+        <p>이 Brief를 ForgeaX Studio로 가져가면 Agent가 여기서부터 이어받습니다 — 첫 작업, 범위, 리스크.</p>
+      </div>
+
+      <pre class="fxi__gdd" data-fxi-gdd tabindex="0"></pre>
+
+      <div class="fxi__foot cta">
+        <button class="fxi__ghost" type="button" data-fxi-copy data-copied="복사됨">Brief 복사</button>
+        <a class="btn primary" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span data-download-label>클라이언트 다운로드</span></a>
+      </div>
+    </div>
+
+    </div>
+    </div>
+
+  </section>
+
+  <!-- §2 · Editor → CLI → engine -->
+  <section class="section reveal-on-scroll immersive-section" id="sec-proof" data-immersive-section>
+    <div class="pitch-grid">
+      <article class="pitch-card">
+        <div class="pitch-card__head">
+          <span class="ico" aria-hidden="true"><i data-lucide="app-window"></i></span>
+          <h3>AI 네이티브 에디터</h3>
+        </div>
+        <p>엔진과 에디터가 하나의 완전한 클라이언트에 들어 있습니다. 보고 클릭할 수 있는 화면입니다.</p>
+        <div class="pitch-card__get">
+          <a class="btn ghost" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span>클라이언트 다운로드</span></a>
+        </div>
+      </article>
+      <article class="pitch-card">
+        <div class="pitch-card__head">
+          <span class="ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
+          <h3>오픈소스 CLI</h3>
+        </div>
+        <p>Codex, Cursor 같은 로컬 AI 에디터에 연결해, 쓰던 도구로 Forge를 돌립니다.</p>
+        <div class="pitch-card__get">
+          <button type="button" class="btn ghost" data-copy-cmd data-copy-prompt data-copied="복사됨"><span>연동 안내 복사</span></button>
+        </div>
+      </article>
+      <article class="pitch-card">
+        <div class="pitch-card__head">
+          <span class="ico" aria-hidden="true"><i data-lucide="layers"></i></span>
+          <h3>프로덕션 파이프라인</h3>
+        </div>
+        <p>엔진 코어가 안정적입니다. 로컬 제작 도구가 직접 호출하니, 화면과 플레이가 맞습니다.</p>
+        <div class="pitch-card__get">
+          <a class="btn ghost" href="https://github.com/ForgeaX-Games/forgeax-engine" target="_blank" rel="noopener"><span>엔진 알아보기</span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- §3 · Games made with Forge — same hero + cards as the retired /games/ gallery -->
+  <section class="section reveal-on-scroll immersive-section" id="sec-showcase" data-immersive-section data-reveal-delay="1">
+    <div class="sec-head">
+      <div>
+        <h2>게임 사례</h2>
+      </div>
+    </div>
+    <div class="gm-hero" id="gmHero" aria-roledescription="carousel" aria-label="추천">
+      <div class="gm-hero-track">
+        <div class="gm-cslide is-active" data-i="0" role="group" aria-roledescription="slide">
+          <img src="/assets/games/covers/hellforge.webp" alt="">
+          <div class="veil"></div>
+          <div class="c-inner">
+            <div class="eyebrow">추천</div>
+            <h2><a href="/ko/games/detail/hellforge.html">ForgeaX: Hellforge</a></h2>
+            <p>Dark-fantasy ARPG vertical slice — a sorceress with skeletal animation, from Cinderwatch camp into the Ashen Reach.</p>
+            <div class="c-row"><div class="cta"><span class="btn primary"><span class="btn-fx" aria-hidden="true"></span><span>플레이</span></span><a class="btn ghost" href="/ko/games/detail/hellforge.html">상세 보기</a></div></div>
+            <div class="c-meta"><span>ARPG · 3D · 骨骼动画</span></div>
+          </div>
         </div>
       </div>
     </div>
-    <p class="ai-note">벤더 종속 없음 —— <strong>편한 AI를 언제든 자유롭게 전환하세요.</strong></p>
-  </section>
-
-  <section class="section reveal-on-scroll immersive-section" id="sec-blog" data-immersive-section data-reveal-delay="2">
-    <div class="preview-head"><h2>블로그 및 의견</h2><a class="all" href="/ko/blog/">모두</a></div>
-    <div class="grid c2 motion-stagger">
-      <a class="card card--link" href="/ko/blog/skeletal-animation-milestone.html"><span class="tag brand">업데이트</span><h3 style="margin-top:12px">뼈대 애니메이션, 끝에서 끝까지</h3><p>FBX 파일부터 게임 내 부드러운 유휴 ⇔ 걷기 ⇔ 시전까지 — Hellforge의 마녀가 마침내 움직입니다.</p><span class="more">읽다</span></a>
-      <a class="card card--link" href="/ko/blog/why-ai-native-engine.html"><span class="tag">의견</span><h3 style="margin-top:12px">AI 기반 엔진을 구축하는 이유</h3><p>AI가 엔진의 첫 번째 사용자일 때 API, 오류 및 상태는 AI의 관점에 맞게 재설계되어야 합니다.</p><span class="more">읽다</span></a>
+    <section class="gm-featured-mobile" id="gmFeaturedMobile" aria-label="추천">
+      <h2 class="gm-mobile-label">추천</h2>
+      <div class="gm-featured-stack" id="gmFeaturedStack">
+        <a class="gm-spot-card" href="/ko/games/detail/hellforge.html" data-slug="hellforge">
+          <div class="thumb"><img src="/assets/games/covers/hellforge.webp" alt="" loading="lazy"><div class="fade"></div></div>
+          <div class="body"><h3>ForgeaX: Hellforge</h3><p>Dark-fantasy ARPG vertical slice — a sorceress with skeletal animation, from Cinderwatch camp into the Ashen Reach.</p></div>
+        </a>
+      </div>
+    </section>
+    <div class="gm-grid motion-stagger">
+      <a class="gm-card" href="/ko/games/detail/planet-snake.html" data-slug="planet-snake" data-featured="1" data-order="7" data-updated="2026-08-24" data-edit="0" data-tags="动作,生存,3D">
+        <div class="thumb"><img src="/assets/games/covers/planet-snake.jpg" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>Planet Snake</h3></div>
+      </a>
+      <a class="gm-card" href="/ko/games/detail/go-karts.html" data-slug="go-karts" data-featured="1" data-order="5" data-updated="2026-08-02" data-edit="0" data-tags="竞速,卡丁车,3D,车库选装">
+        <div class="thumb"><img src="/assets/games/covers/go-karts.jpg" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>Pet Go-Karts</h3></div>
+      </a>
+      <a class="gm-card" href="/ko/games/detail/shoot-opt.html" data-slug="shoot-opt" data-featured="1" data-order="40" data-updated="2026-06-10" data-edit="1" data-tags="飞机大战,弹幕射击,俯视角,3D">
+        <div class="thumb"><img src="/assets/games/covers/shoot-opt.jpg" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>Aurora Knights</h3></div>
+      </a>
     </div>
   </section>
 
-  <section class="section reveal-on-scroll immersive-section" id="sec-start" data-immersive-section data-reveal-delay="2">
-    <div class="preview-head"><h2>아이디어에서 플레이 가능한 게임으로</h2><a class="all" href="/ko/docs/">문서</a></div>
-    <div class="grid c3 motion-stagger">
-      <a class="card card--link" href="/ko/tutorials/getting-started.html"><div class="ico"><i data-lucide="rocket"></i></div><h3>빠른 시작</h3><p>설치하고 실행한 후 Forge에 첫 번째 "게임 만들기"를 말해보세요.</p><span class="more">지도 시간</span></a>
-      <a class="card card--link" href="/ko/docs/"><div class="ico"><i data-lucide="book-text"></i></div><h3>문서</h3><p>사용자의 관점에서 본 개념, 작업대, 자산, 출판.</p><span class="more">문서</span></a>
-      <a class="card card--link" href="/ko/games/"><div class="ico"><i data-lucide="joystick"></i></div><h3>게임 데모</h3><p>FPS / ARPG / 생존 / 스트레스 테스트 — 4가지 플레이 가능한 데모.</p><span class="more">계략</span></a>
+  <!-- §5 · Founding Studios (secondary band) -->
+  <section class="section reveal-on-scroll immersive-section" id="sec-founding" data-immersive-section data-reveal-delay="2">
+    <div class="founding">
+      <div>
+        <h2>진행 중인 프로젝트가 있는 스튜디오라면</h2>
+        <p>Founding Studios는 초기 파트너 프로그램입니다. 밀착 지원, 함께 만드는 사례 연구, 로드맵 우선순위를 제공합니다.</p>
+      </div>
+      <a class="more" href="mailto:forgeax@outlook.com?subject=ForgeaX%20%E2%80%94%20Founding%20Studios">협업 문의 →</a>
+    </div>
+  </section>
+
+  <!-- §6 · Closing CTA -->
+  <section class="section reveal-on-scroll immersive-section" id="sec-end" data-immersive-section data-reveal-delay="2">
+    <div class="endcta">
+      <h2>클라이언트로 시작하세요</h2>
+      <p>ForgeaX Studio를 설치하면 전체 제작 루프에 들어갈 수 있습니다. 먼저 구조를 보고 싶다면 튜토리얼부터 읽으세요.</p>
+      <div class="cta">
+        <a class="btn primary" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span data-download-label>클라이언트 다운로드</span></a>
+        <a class="btn ghost" href="/ko/tutorials/"><span>튜토리얼 읽기</span></a>
+      </div>
     </div>
   </section>
 
 </main>
+<script>window.FX_EXPERIENCE={"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","installGuideUrl":"/tutorials/getting-started.html","contactEmail":"forgeax@outlook.com","chatUrl":"/idea/?app=chat&embed=1","chatOrigin":"","studioDeepLink":"forgeax://idea","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}};</script>
 
-<script>
-  var hero=document.getElementById('heroLogo');
-  if(hero){hero.addEventListener('click',function(){
-    ['hammerStrike','sparkAnim','spark1','spark2','spark3'].forEach(function(id){
-      var el=document.getElementById(id);if(el&&el.beginElement){try{el.beginElement()}catch(e){}}
-    });
-  });}
-</script>
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
   </div>
-  <div class="col"><h4>대지</h4>
+  <nav class="foot-links" aria-label="대지">
     <a href="/ko/changelog/">변경 내역</a>
-    <a href="/ko/blog/">블로그</a>
-    <a href="/ko/docs/">문서</a>
     <a href="/ko/tutorials/">튜토리얼</a>
     <a href="/ko/examples/">예</a>
-    <a href="/ko/games/">계략</a>
-    <a href="/ko/marketplace/">시장</a>
-  </div>
-  <div class="col"><h4>프로젝트</h4>
+    <a href="/ko/marketplace/">플러그인</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
     <a href="/ko/about.html">에 대한</a>
     <a href="/ko/license.html">특허</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 <script src="/assets/immersive.js?v=822d32e9"></script>
+<script src="/assets/home-v2.js?v=d68c8083"></script>
 </body>
 </html>

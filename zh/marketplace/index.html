@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>插件市场 · Marketplace — ForgeaX</title>
-<meta name="description" content="ForgeaX 的插件市场:按类型筛选并搜索 agent、工作台、技能、CLI 后端、工具与模型绑定。一切能力都是运行时加载的插件。" />
+<title>插件 — ForgeaX</title>
+<meta name="description" content="浏览 ForgeaX 的 Agent、工作台与 CLI 后端插件。一切能力都是运行时加载的插件。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="插件市场 · Marketplace — ForgeaX" />
-<meta property="og:description" content="ForgeaX 的插件市场:按类型筛选并搜索 agent、工作台、技能、CLI 后端、工具与模型绑定。一切能力都是运行时加载的插件。" />
+<meta property="og:title" content="插件 — ForgeaX" />
+<meta property="og:description" content="浏览 ForgeaX 的 Agent、工作台与 CLI 后端插件。一切能力都是运行时加载的插件。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/zh/marketplace/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -23,22 +23,13 @@
 <link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/marketplace/" />
 <link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/marketplace/" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
-<link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=73a50263" />
+<link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=eece033b" />
 <style>
   .mk-count{font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);margin:16px 0 12px}
   .mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
   .mk-item{padding:16px}
   .mk-item.hide{display:none !important}
-  .mk-item .kind{display:inline-block;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.6px;
-    padding:2px 8px;border-radius:var(--radius-pill);margin-bottom:9px}
-  .k-agent{background:rgba(196,163,255,.14);color:#c4a3ff;border:1px solid rgba(196,163,255,.28)}
-  .k-wb{background:rgba(178,198,98,.13);color:#c8dc88;border:1px solid rgba(178,198,98,.28)}
-  .k-skill{background:rgba(208,148,78,.13);color:#ddb06a;border:1px solid rgba(208,148,78,.28)}
-  .k-backend{background:rgba(102,148,225,.13);color:#8eb0e8;border:1px solid rgba(102,148,225,.28)}
-  .k-tool{background:rgba(88,205,182,.12);color:#7ad4c0;border:1px solid rgba(88,205,182,.26)}
-  .k-binding{background:rgba(236,122,158,.13);color:#f094b8;border:1px solid rgba(236,122,158,.28)}
-  .mk-item h3{font-size:15px;font-weight:700;line-height:1.3}
-  .mk-item .slug{font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);font-weight:400;display:block;margin-top:2px}
+  .mk-item h3{font-size:15px;font-weight:700;line-height:1.3;margin:0}
   .mk-item p{color:var(--text-secondary);font-size:13.5px;margin-top:7px}
   .mk-item a{color:var(--brand)}
   .mk-empty{display:none;color:var(--text-tertiary);text-align:center;padding:36px 0}
@@ -62,7 +53,7 @@
   /* ── Agent cards: avatar slot on the right ── */
   .mk-item.is-agent{display:flex;gap:14px;align-items:flex-start}
   .mk-item.is-agent .mk-agent-main{flex:1;min-width:0}
-  .mk-item.is-agent h3{margin-top:4px}
+  .mk-item.is-agent h3{margin-top:0}
   .mk-avatar{
     width:64px;height:64px;flex-shrink:0;border-radius:50%;overflow:hidden;
     background:rgba(196,163,255,.08);
@@ -111,16 +102,6 @@
   .mk-item[data-slug="agent-cc-coder"] .mk-companions{margin-top:4px;gap:4px}
   .mk-item[data-slug="agent-cc-coder"] .mk-companion{padding:1px 7px;font-size:11px}
 
-  /* Plugin cards (workbench / skill / backend / tool / binding): .ico slot on the right */
-  .mk-item.is-mk-card{display:flex;gap:10px;align-items:flex-start}
-  .mk-item.is-mk-card .mk-card-main{flex:1;min-width:0}
-  .mk-item.is-mk-card h3{margin-top:2px}
-  .mk-item.is-mk-card .mk-card-icon.ico{
-    width:var(--icon-container-size);
-    height:var(--icon-container-size);
-    margin-top:2px;
-    flex-shrink:0;
-  }
   .mk-modal-icon.ico{
     width:var(--icon-container-size);
     height:var(--icon-container-size);
@@ -131,7 +112,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -141,24 +122,10 @@
     <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>文档</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/zh/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>开发文档</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/zh/" data-nav="/">主页</a>
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
-      <a href="/zh/games/" data-nav="/games/">游戏</a>
-      <a href="/zh/marketplace/" data-nav="/marketplace/" class="active">插件市场</a>
-      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/" class="active">插件</a>
       <a href="/zh/changelog/" data-nav="/changelog/">更新日志</a>
       <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
@@ -169,60 +136,33 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/marketplace/" data-l="en">English</a><a class="lang-item active" href="/zh/marketplace/" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/marketplace/" data-l="ja">日本語</a><a class="lang-item" href="/ko/marketplace/" data-l="ko">한국어</a><a class="lang-item" href="/es/marketplace/" data-l="es">Español</a><a class="lang-item" href="/de/marketplace/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/marketplace/" data-l="fr">Français</a><a class="lang-item" href="/pt/marketplace/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
-          <button class="ask-item" id="copyMd">复制为 Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
     </div>
   </div>
 </nav>
 
 <main class="wrap">
   <div class="page-head">
-    <h1>插件市场</h1>
-    <p>在 ForgeaX 里,几乎一切能力都是一枚<strong>可装载插件</strong>。按类型筛选、搜索,启用、排序,甚至自己写。</p>
+    <h1>插件</h1>
+    <p>在 ForgeaX 里,几乎一切能力都是一枚<strong>可装载插件</strong>。按类型浏览、启用、排序,甚至自己写。</p>
   </div>
 
   <div class="mk-bar">
     <div class="mk-tabs">
-      <button class="mk-tab active" data-kind="all">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
-        全部
+      <button class="mk-tab active" data-kind="workbench">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="blocks"></i></span>
+        工作台
       </button>
       <button class="mk-tab" data-kind="agent">
         <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="bot"></i></span>
         Agent
       </button>
-      <button class="mk-tab" data-kind="workbench">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="blocks"></i></span>
-        工作台
-      </button>
-      <button class="mk-tab" data-kind="skill">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="wand-sparkles"></i></span>
-        技能
-      </button>
       <button class="mk-tab" data-kind="backend">
         <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
         CLI 后端
       </button>
-      <button class="mk-tab" data-kind="tool">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="wrench"></i></span>
-        工具
-      </button>
-      <button class="mk-tab" data-kind="binding">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="link-2"></i></span>
-        模型绑定
-      </button>
     </div>
-    <label class="mk-search">
-      <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
-      <input id="mkSearch" type="search" placeholder="搜索…" aria-label="搜索插件" />
-    </label>
   </div>
 
   <div class="mk-count" id="mkCount"></div>
@@ -230,56 +170,49 @@
   <div class="mk-grid" id="mkGrid">
     <div class="mk-item is-agent" data-slug="agent-arin" data-kind="agent" data-search="arin producer 制作人 统筹 production">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>Arin · 制作人<span class="slug">producer</span></h3>
+        <h3>Arin · 制作人</h3>
         <p>全能制作人,统筹策划 / 程序 / 美术 / 音效。</p>
       </div>
       <div class="mk-avatar" data-agent="arin"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-reia" data-kind="agent" data-search="reia reel fmv 影游 互动影片 导演 director interactive film qte">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>Reia · 影游导演<span class="slug">reel</span></h3>
+        <h3>Reia · 影游导演</h3>
         <p>互动影游导演 —— 拼提示词、定 QTE 节拍、织分支与多结局。</p>
       </div>
       <div class="mk-avatar" data-agent="reia"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-iori" data-kind="agent" data-search="iori gameplay 玩法 pillar mechanics">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>Iori · 玩法柱<span class="slug">pillar</span></h3>
+        <h3>Iori · 玩法柱</h3>
         <p>核心玩法师 —— 玩法柱 + 数值骨架。</p>
       </div>
       <div class="mk-avatar" data-agent="iori"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-suzu" data-kind="agent" data-search="suzu design experience 体验设计 hud onboarding">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>Suzu · 体验设计<span class="slug">design</span></h3>
+        <h3>Suzu · 体验设计</h3>
         <p>玩家节拍 / HUD / onboarding。</p>
       </div>
       <div class="mk-avatar" data-agent="suzu"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-kotone" data-kind="agent" data-search="kotone narrative 叙事 story world dialogue">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>Kotone · 叙事<span class="slug">narrative</span></h3>
+        <h3>Kotone · 叙事</h3>
         <p>世界观 / 角色 bio / 对白。</p>
       </div>
       <div class="mk-avatar" data-agent="kotone"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-iro" data-kind="agent" data-search="iro art 美术 sprite vfx ui">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>Iro · 美术<span class="slug">art</span></h3>
+        <h3>Iro · 美术</h3>
         <p>立绘 / sprite / VFX / UI 统筹。</p>
       </div>
       <div class="mk-avatar" data-agent="iro"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-cc-coder" data-kind="agent" data-search="coder coding 编码 cc-coder code companion personas 陪伴人格 character mochi rin sakura kaede kumo 糯糯 凛 樱 小枫 蛛蛛">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>cc-coder · 编码<span class="slug">coder</span></h3>
+        <h3>cc-coder · 编码</h3>
         <p>通用编码 —— 把 spec 落成可运行代码。可选不同性格陪伴。</p>
         <div class="mk-companions" aria-label="companion personas">
         <span class="mk-companion is-shown" data-persona="mochi">糯糯</span>
@@ -293,228 +226,196 @@
     </div>
     <div class="mk-item is-agent" data-slug="agent-tsumugi" data-kind="agent" data-search="tsumugi build ci 工程 toolchain">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>Tsumugi · 工程<span class="slug">build</span></h3>
+        <h3>Tsumugi · 工程</h3>
         <p>构建 / CI / 工具链 / 部署。</p>
       </div>
       <div class="mk-avatar" data-agent="tsumugi"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-yevi" data-kind="agent" data-search="yevi review 审查 tech debt reviewer">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>Yevi · 审查<span class="slug">review</span></h3>
+        <h3>Yevi · 审查</h3>
         <p>技术审查 —— 发现并清理技术债。</p>
       </div>
       <div class="mk-avatar" data-agent="yevi"></div>
     </div>
     <div class="mk-rowbreak" aria-hidden="true"></div>
     <div class="mk-item" data-slug="wb-character" data-kind="workbench" data-search="wb-character 角色编辑器 portrait 立绘 turnaround character">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="character-designer-2d" title="2D 角色设计师">
         <div class="mk-avatar mk-avatar-sm" data-agent="character-designer-2d"></div>
         <span class="mk-agent-role">2D 角色设计师</span>
       </div>
-      <h3>角色编辑器<span class="slug">wb-character</span></h3>
+      <h3>角色编辑器</h3>
       <p>一句人设 → 正面立绘 + 转身三视图。</p>
     </div>
     <div class="mk-item" data-slug="wb-anim" data-kind="workbench" data-search="wb-anim 动画 animation walk attack sprite">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="animator-2d" title="2D 动画设计师">
         <div class="mk-avatar mk-avatar-sm" data-agent="animator-2d"></div>
         <span class="mk-agent-role">2D 动画设计师</span>
       </div>
-      <h3>动画<span class="slug">wb-anim</span></h3>
+      <h3>动画</h3>
       <p>把静止角色变成会走、会打、带骨骼的动作。</p>
     </div>
     <div class="mk-item" data-slug="wb-skill" data-kind="workbench" data-search="wb-skill 技能 vfx 特效 effects fireball">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="vfx-artist-3d" title="3D 特效设计师">
         <div class="mk-avatar mk-avatar-sm" data-agent="vfx-artist-3d"></div>
         <span class="mk-agent-role">3D 特效设计师</span>
       </div>
-      <h3>技能 / 特效<span class="slug">wb-skill</span></h3>
+      <h3>技能 / 特效</h3>
       <p>火光、刀光、光环等技能特效,自动挂到出手那一刻。</p>
     </div>
     <div class="mk-item" data-slug="wb-lowpoly-obj" data-kind="workbench" data-search="wb-lowpoly-obj 方块人 blocky rigged 3d character">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="cc-coder" title="cc-coder · 通用编码师">
         <div class="mk-avatar mk-avatar-sm" data-agent="cc-coder"></div>
         <span class="mk-agent-role">通用编码师</span>
       </div>
-      <h3>方块人编辑器<span class="slug">wb-lowpoly-obj</span></h3>
+      <h3>方块人编辑器</h3>
       <p>像捏积木一样做可动 3D 角色,导出标准 3D 文件。</p>
     </div>
     <div class="mk-item" data-slug="wb-3d-lowpoly" data-kind="workbench" data-search="wb-3d-lowpoly 低多边形 node graph 3d props">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="lowpoly" title="Poly · 低多边形建模师">
         <div class="mk-avatar mk-avatar-sm" data-agent="lowpoly"></div>
         <span class="mk-agent-role">低多边形建模师</span>
       </div>
-      <h3>3D 低多边形生成器<span class="slug">wb-3d-lowpoly</span></h3>
+      <h3>3D 低多边形生成器</h3>
       <p>用连线节点做 3D 道具 / 机械,改参数全套重出。</p>
     </div>
     <div class="mk-item" data-slug="wb-gen3d" data-kind="workbench" data-search="wb-gen3d 3d 生成 text image to 3d model">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="gen3d" title="Gen3D · 3D 角色生成师">
         <div class="mk-avatar mk-avatar-sm" data-agent="gen3d"></div>
         <span class="mk-agent-role">3D 角色生成师</span>
       </div>
-      <h3>3D 角色生成<span class="slug">wb-gen3d</span></h3>
+      <h3>3D 角色生成</h3>
       <p>文字 / 图片直接变 3D 模型,接入多家生成服务。</p>
     </div>
     <div class="mk-item" data-slug="wb-2d-scene-asset-generator" data-kind="workbench" data-search="wb-2d-scene-asset-generator 2d 场景资产 props textures">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="mira" title="Mira · 织绘师">
         <div class="mk-avatar mk-avatar-sm" data-agent="iro"></div>
         <span class="mk-agent-role">2D 场景资产生成师</span>
       </div>
-      <h3>2D 场景资产生成器<span class="slug">wb-2d-scene-asset-generator</span></h3>
+      <h3>2D 场景资产生成器</h3>
       <p>批量生成道具、贴图、装饰、UI 小图,自动归档。</p>
     </div>
     <div class="mk-item" data-slug="wb-scene-generator" data-kind="workbench" data-search="wb-scene-generator 场景生成器 scene build graph">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="sino" title="Sino · 场景构图师">
         <div class="mk-avatar mk-avatar-sm" data-agent="iro"></div>
         <span class="mk-agent-role">场景构图师</span>
       </div>
-      <h3>场景生成器<span class="slug">wb-scene-generator</span></h3>
+      <h3>场景生成器</h3>
       <p>自动搭出一整张游戏场景,做成可重跑的流程图。</p>
     </div>
     <div class="mk-item" data-slug="wb-ui" data-kind="workbench" data-search="wb-ui ui 工坊 menu button health bar prototype">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="ui-designer" title="游戏 UI 设计师">
         <div class="mk-avatar mk-avatar-sm" data-agent="ui-designer"></div>
         <span class="mk-agent-role">游戏 UI 设计师</span>
       </div>
-      <h3>UI 工坊<span class="slug">wb-ui</span></h3>
+      <h3>UI 工坊</h3>
       <p>按游戏类型出一套可点的交互界面原型。</p>
     </div>
     <div class="mk-item" data-slug="wb-narrative" data-kind="workbench" data-search="wb-narrative 叙事工坊 story world template">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="kotone" title="Kotone · 剧情师">
         <div class="mk-avatar mk-avatar-sm" data-agent="kotone"></div>
         <span class="mk-agent-role">剧情师</span>
       </div>
-      <h3>叙事工坊<span class="slug">wb-narrative</span></h3>
+      <h3>叙事工坊</h3>
       <p>从一句灵感写出整套剧情与世界观。</p>
     </div>
     <div class="mk-item" data-slug="wb-reel" data-kind="workbench" data-search="wb-reel 影游 fmv interactive video">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="reia" title="Reia · 影游导演">
         <div class="mk-avatar mk-avatar-sm" data-agent="reia"></div>
         <span class="mk-agent-role">影游导演</span>
       </div>
-      <h3>影游工坊<span class="slug">wb-reel</span></h3>
+      <h3>影游工坊</h3>
       <p>一句灵感或一部剧本,做出限时点按 + 选择驱动的互动影游。</p>
     </div>
     <div class="mk-item" data-slug="wb-items" data-kind="workbench" data-search="wb-items 道具 图标 icons weapon potion data">
-      <span class="kind k-wb">Workbench</span>
-      <h3>道具 / 图标<span class="slug">wb-items</span></h3>
+      <h3>道具 / 图标</h3>
       <p>武器、药水、金币等图标,图与数据一张表。</p>
     </div>
     <div class="mk-item" data-slug="wb-look" data-kind="workbench" data-search="wb-look 色彩 调色 color grading filter">
-      <span class="kind k-wb">Workbench</span>
-      <h3>色彩 / Look<span class="slug">wb-look</span></h3>
+      <h3>色彩 / Look</h3>
       <p>一键统一全游戏的色调氛围。</p>
     </div>
     <div class="mk-item" data-slug="wb-bgm" data-kind="workbench" data-search="wb-bgm 音乐 bgm sound sfx timeline">
-      <span class="kind k-wb">Workbench</span>
-      <h3>音乐 / BGM<span class="slug">wb-bgm</span></h3>
+      <h3>音乐 / BGM</h3>
       <p>管理背景音乐与音效,排好整局配乐节奏。</p>
     </div>
     <div class="mk-item" data-slug="wb-balance" data-kind="workbench" data-search="wb-balance 平衡 数值 winrate simulation">
-      <span class="kind k-wb">Workbench</span>
-      <h3>平衡 / 数值<span class="slug">wb-balance</span></h3>
+      <h3>平衡 / 数值</h3>
       <p>让 AI 跑几千局,给出胜率与置信区间。</p>
     </div>
     <div class="mk-item" data-slug="wb-code" data-kind="workbench" data-search="wb-code 代码 browse files collaborate">
-      <span class="kind k-wb">Workbench</span>
-      <h3>代码<span class="slug">wb-code</span></h3>
+      <h3>代码</h3>
       <p>在工作台看代码、跳转文件,和编码 AI 一起改。</p>
     </div>
     <div class="mk-item" data-slug="wb-observatory" data-kind="workbench" data-search="wb-observatory 轨迹 观察台 replay trace blackbox">
-      <span class="kind k-wb">Workbench</span>
-      <h3>轨迹观察台<span class="slug">wb-observatory</span></h3>
+      <h3>轨迹观察台</h3>
       <p>像黑匣子一样回放 AI 每一步,精确定位问题。</p>
     </div>
     <div class="mk-item" data-slug="wb-agent-persona" data-kind="workbench" data-search="wb-agent-persona 人格编辑器 persona character edit">
-      <span class="kind k-wb">Workbench</span>
-      <h3>人格编辑器<span class="slug">wb-agent-persona</span></h3>
+      <h3>人格编辑器</h3>
       <p>改 AI 助手的性格设定,存一下马上生效。</p>
     </div>
     <div class="mk-item" data-slug="wb-plugin-author" data-kind="workbench" data-search="wb-plugin-author 插件作者 make plugin wizard nocode">
-      <span class="kind k-wb">Workbench</span>
-      <h3>插件作者<span class="slug">wb-plugin-author</span></h3>
+      <h3>插件作者</h3>
       <p>让不会编程的人也能做出自己的工作台插件。</p>
     </div>
     <div class="mk-item" data-slug="admin" data-kind="workbench" data-search="admin 面板管理 control panel toggle bind models">
-      <span class="kind k-wb">Workbench</span>
-      <h3>面板管理<span class="slug">admin</span></h3>
+      <h3>面板管理</h3>
       <p>工作室总控台:开关工作台、绑模型、看 AI 在线状态。</p>
     </div>
     <div class="mk-item" data-slug="cli-claude-code" data-kind="backend" data-search="claude code anthropic default backend cli">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>Claude Code<span class="slug">default</span></h3>
+      <h3>Claude Code</h3>
       <p>默认后端。</p>
       <p><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener">github.com/anthropics/claude-code →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-codex" data-kind="backend" data-search="codex openai backend cli">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>Codex<span class="slug">openai</span></h3>
+      <h3>Codex</h3>
       <p>OpenAI Codex 后端。</p>
       <p><a href="https://github.com/openai/codex" target="_blank" rel="noopener">github.com/openai/codex →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-cursor-agent" data-kind="backend" data-search="cursor agent backend cli">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>Cursor<span class="slug">cursor</span></h3>
+      <h3>Cursor</h3>
       <p>Cursor 智能体后端。</p>
       <p><a href="https://cursor.com" target="_blank" rel="noopener">cursor.com →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-kimi-code" data-kind="backend" data-search="kimi code moonshot cli backend terminal coding agent">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>Kimi Code<span class="slug">moonshot</span></h3>
+      <h3>Kimi Code</h3>
       <p>终端 AI coding agent，可使用 Kimi 会员或 Moonshot AI API Key。</p>
       <p><a href="https://github.com/MoonshotAI/kimi-code" target="_blank" rel="noopener">github.com/MoonshotAI/kimi-code →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-deepseek-harness" data-kind="backend" data-search="deepseek harness dsh cli backend headless developer preview">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>DeepSeek Harness<span class="slug">deepseek</span></h3>
+      <h3>DeepSeek Harness</h3>
       <p>Developer Preview：需要本地 dsh 可执行文件、DeepSeek API Base URL 与 API Key；模型由 dsh profile 管理，每次 headless 任务只返回最终结果。</p>
       <p><a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">github.com/deepseek-ai/deepseek-harness →</a></p>
     </div>
     <div class="mk-item" data-slug="skill-author-plugin" data-kind="skill" data-search="author-plugin skill make plugin">
-      <span class="kind k-skill">Skill</span>
-      <h3>插件作者技能<span class="slug">author-plugin</span></h3>
+      <h3>插件作者技能</h3>
       <p>从空白做出一个可加载插件。</p>
     </div>
     <div class="mk-item" data-slug="cli-forgeax" data-kind="backend" data-search="forgeax-cli self-built own backend default persona">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>forgeax-cli<span class="slug">self-built</span></h3>
+      <h3>forgeax-cli</h3>
       <p>forgeax-cli 后端 —— 不被任何厂商绑死，可随时切换引擎。</p>
     </div>
     <div class="mk-item" data-slug="skill-make-game-design" data-kind="skill" data-search="make-game-design skill game design gdd">
-      <span class="kind k-skill">Skill</span>
-      <h3>游戏设计<span class="slug">make-game-design</span></h3>
+      <h3>游戏设计</h3>
       <p>生成一份游戏设计。</p>
     </div>
     <div class="mk-item" data-slug="tool-balance-resim" data-kind="tool" data-search="balance-resim tool battle simulation winrate">
-      <span class="kind k-tool">Tool</span>
-      <h3>战斗重模拟<span class="slug">balance-resim</span></h3>
+      <h3>战斗重模拟</h3>
       <p>反复跑局得出胜率与置信区间,给数值平衡当依据。</p>
     </div>
     <div class="mk-item" data-slug="model-anthropic-text" data-kind="binding" data-search="anthropic-text model binding channel">
-      <span class="kind k-binding">Binding</span>
-      <h3>Anthropic 文本通道<span class="slug">anthropic-text</span></h3>
+      <h3>Anthropic 文本通道</h3>
       <p>把抽象档位映射成具体厂商模型。</p>
     </div>
   </div>
   <div class="mk-empty" id="mkEmpty">没有匹配的插件。</div>
 
   <section class="section">
-    <h2>它怎么加载 · 你怎么扩展</h2>
+    <h2>把 ForgeaX 变成你的创作工具</h2>
     <div class="grid c2">
-      <div class="card"><h3>运行时加载</h3><p>CLI 启动时按需挂载插件;agent 的人格只在被派发那一刻加载,共享部分同时附加给编排者与执行者。</p></div>
-      <div class="card"><h3>你能做什么</h3><p>在「面板管理 / admin」里启用、排序工作台,切换 AI 后端;也能用「插件作者」从空白写出第一个可加载插件。</p></div>
+      <div class="card"><h3>定制自己的 Agent</h3><p>为不同创作任务设定角色、能力和协作方式。需要时直接调用,让它按照你的工作习惯参与项目。</p></div>
+      <div class="card"><h3>定制自己的插件</h3><p>把常用流程和专业能力封装成可复用的插件,安装到 ForgeaX 中持续使用,也可以分享给团队。</p></div>
     </div>
   </section>
 
@@ -760,26 +661,22 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
   </div>
-  <div class="col"><h4>站点</h4>
+  <nav class="foot-links" aria-label="站点">
     <a href="/zh/changelog/">更新日志</a>
-    <a href="/zh/blog/">观点</a>
-    <a href="/zh/docs/">开发文档</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
-    <a href="/zh/games/">游戏</a>
-    <a href="/zh/marketplace/">插件市场</a>
-  </div>
-  <div class="col"><h4>项目</h4>
+    <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
     <a href="/zh/about.html">关于 / 愿景</a>
     <a href="/zh/license.html">版权说明</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
-<script src="/assets/marketplace/marketplace-card-icons.js?v=16ddcbed"></script>
-<script src="/assets/marketplace/app.js?v=a6bc9750"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
+<script src="/assets/marketplace/marketplace-card-icons.js?v=a78276a8"></script>
+<script src="/assets/marketplace/app.js?v=e318a295"></script>
 </body>
 </html>

@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ForgeaX: estudio de juegos personales nativo de IA</title>
-<meta name="description" content="ForgeaX es un estudio de juegos personales nativo de IA. Convierte ideas en juegos jugables (a través del chat, un editor y más) mientras la IA escribe el código del motor en vivo en tu navegador. Código abierto, Apache 2.0." />
+<title>ForgeaX — motor de producción de videojuegos AI-native</title>
+<meta name="description" content="ForgeaX es un motor de producción de videojuegos AI-native para creadores profesionales: agentes, motor, assets, pruebas y builds en un mismo ciclo cerrado, del vertical slice al lanzamiento. Código abierto, Apache 2.0." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="ForgeaX" />
-<meta property="og:description" content="Tu estudio de juegos personal." />
+<meta property="og:description" content="Motor de producción de videojuegos AI-native para creadores profesionales." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/es/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -30,12 +30,148 @@
 ]}
 </script>
 
+<style>
+  /* Width rail for .gm-page is shared with .nav-inner in assets/styles.css (1280 desktop). */
+  .gm-page{padding-bottom:64px}
+  .gm-head{margin-bottom:8px}
+  .gm-sec{margin-top:8px}
+  .gm-hero:not([hidden]){margin:28px 0 38px}
+  .gm-sec-head{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:20px}
+  .gm-sec-head h2{font-size:20px;font-weight:650;letter-spacing:-.02em;margin:0}
+  .gm-toolbar{display:flex;align-items:center;gap:12px;margin-left:auto;flex-wrap:wrap}
+  .gm-tabs{display:flex;gap:4px;align-items:center;border-radius:999px;padding:3px}
+  .gm-tabs button{background:none;border:1px solid transparent;color:var(--text-secondary);font-size:12.5px;padding:6px 11px;border-radius:999px;cursor:pointer;font-family:inherit;line-height:1.3;white-space:nowrap;box-sizing:border-box}
+  .gm-tabs button.on{font-weight:600}
+  .gm-tagbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:-4px 0 18px}
+  .gm-fchip{display:inline-flex;align-items:center;gap:6px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:999px;padding:4px 10px;font-size:12.5px;color:var(--text-secondary)}
+  .gm-fchip b{color:var(--text-primary);font-weight:600}
+  .gm-fchip .x{cursor:pointer;opacity:.7;border:none;background:none;color:inherit;font:inherit;padding:0 0 0 2px}
+  .gm-fchip .x:hover{opacity:1;color:var(--text-primary)}
+  .gm-tagbar .clear{background:none;border:none;color:var(--brand);font-size:12.5px;cursor:pointer;font-family:inherit;padding:4px 6px}
+  /* Card grid — match demo: minmax(300px), 16:9 thumb, title-only body */
+  .gm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+  a.gm-card{text-decoration:none;color:inherit}
+  .gm-card{cursor:pointer;border-radius:14px;overflow:hidden;text-align:left;color:inherit;font:inherit;padding:0;display:flex;flex-direction:column;width:100%}
+  .gm-card[hidden]{display:none!important}
+  .gm-card .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg-elevated)}
+  .gm-card .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--site-dur-silk, 0.92s) var(--site-ease-silk, ease)}
+  .gm-card:hover .thumb img{transform:scale(1.05)}
+  .gm-card .thumb .fade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.5),transparent 45%);pointer-events:none}
+  .gm-card .badges{position:absolute;left:12px;bottom:12px;display:flex;gap:6px;z-index:2}
+  .gm-card .badge.edit{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:none;padding:0;color:var(--text-on-bright);background:var(--brand);box-shadow:0 4px 14px color-mix(in srgb,var(--brand) 28%,transparent)}
+  .gm-card .badge.edit .ui-icon{width:17px;height:17px;color:inherit}
+  .gm-card .badge.edit .ui-icon svg{width:17px;height:17px;stroke:currentColor;fill:none}
+  .gm-card .body{padding:14px 15px 16px;flex:1;display:flex;flex-direction:column}
+  .gm-card .body h3{font-size:16px;font-weight:600;letter-spacing:-.01em;margin:0;line-height:1.3}
+  .gm-empty{text-align:center;color:var(--text-tertiary);border:1px dashed var(--border-subtle);border-radius:14px;padding:40px 24px;margin-top:8px}
+
+  /* hero carousel — horizontal track slide */
+  .gm-hero{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:21/9;cursor:default}
+  .gm-hero-track{display:flex;height:100%;transition:transform .85s cubic-bezier(.22,1,.36,1);will-change:transform}
+  .gm-cslide{position:relative;flex:0 0 100%;width:100%;height:100%;min-height:0;overflow:hidden}
+  .gm-cslide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 8s linear}
+  .gm-cslide.is-active img{transform:scale(1)}
+  .gm-cslide .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.38) 46%,transparent 78%);pointer-events:none}
+  .gm-cslide .c-inner{position:absolute;left:0;bottom:0;padding:38px 44px;max-width:62%;z-index:2}
+  .gm-cslide .c-inner > *{opacity:0;transform:translate3d(0,16px,0);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
+  .gm-cslide.is-active .c-inner > *{opacity:1;transform:translate3d(0,0,0)}
+  .gm-cslide.is-active .c-inner > *:nth-child(1){transition-delay:.06s}
+  .gm-cslide.is-active .c-inner > *:nth-child(2){transition-delay:.12s}
+  .gm-cslide.is-active .c-inner > *:nth-child(3){transition-delay:.18s}
+  .gm-cslide.is-active .c-inner > *:nth-child(4){transition-delay:.24s}
+  .gm-cslide.is-active .c-inner > *:nth-child(5){transition-delay:.3s}
+  .gm-cslide .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+  .gm-cslide h2{font-size:clamp(24px,3.4vw,40px);font-weight:700;letter-spacing:-.035em;line-height:1.06;margin:8px 0 0;color:#fff}
+  .gm-cslide h2 a{color:inherit;text-decoration:none}
+  .gm-cslide h2 a:hover{color:var(--brand)}
+  /* hero CTAs — see hero-cta.css (.cta .btn.primary / .btn.ghost), same as homepage */
+  .c-row .cta .btn{
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .c-row .cta .btn .btn-fx{
+    position:absolute;
+    inset:1px;
+    pointer-events:none;
+  }
+  .c-row .cta .btn > span:not(.btn-fx){
+    position:relative;
+    z-index:3;
+  }
+  .c-row .cta span.btn{cursor:not-allowed}
+  .gm-cslide p{margin-top:11px;color:rgba(255,255,255,.82);font-size:15px;max-width:520px;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .gm-cslide .c-row{margin-top:20px}
+  .gm-cslide .c-meta{display:flex;gap:16px;margin-top:16px;font-size:12px;color:rgba(255,255,255,.55);font-family:var(--font-mono)}
+  .gm-dots{position:absolute;right:18px;bottom:16px;display:flex;gap:7px;z-index:10;pointer-events:auto}
+  .gm-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;display:block;position:relative;border:none;padding:0}
+  .gm-dots i::after{content:'';position:absolute;inset:-10px}
+  .gm-dots i.on{background:var(--brand)}
+
+  /* mobile featured — vertical stack only (no horizontal scroll) */
+  .gm-featured-mobile{display:none;margin:20px 0 30px;max-width:100%;overflow:hidden}
+  .gm-mobile-label{font-size:13px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);margin:0 0 12px;font-family:var(--font-mono)}
+  .gm-featured-stack{display:flex;flex-direction:column;gap:14px;max-width:100%}
+  a.gm-spot-card{width:100%;max-width:100%;box-sizing:border-box;text-decoration:none;color:inherit;border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  a.gm-spot-card:active{opacity:.92}
+  .gm-spot-card .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg-elevated)}
+  .gm-spot-card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .gm-spot-card .thumb .fade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.5),transparent 45%)}
+  .gm-spot-card .body{padding:12px 14px 14px}
+  .gm-spot-card .body h3{font-size:15px;font-weight:600;margin:0;line-height:1.3;letter-spacing:-.01em}
+  .gm-spot-card .body p{margin:6px 0 0;font-size:12.5px;color:var(--text-secondary);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* flyout — demo: 320px, right of card */
+  .gm-fly{position:fixed;z-index:80;width:320px;pointer-events:none;border-radius:12px;overflow:hidden}
+  .gm-fly-body{padding:14px 16px}
+  .gm-fly-body h4{font-size:15.5px;font-weight:600;margin:0}
+  .gm-fly-desc{font-size:12.5px;color:var(--text-secondary);margin-top:9px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .gm-fly-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+  .gm-fly-tags span{font-size:10.5px;color:var(--text-secondary);background:rgba(255,255,255,.06);border-radius:5px;padding:2px 8px}
+
+  .gm-hero[hidden],.gm-featured-mobile[hidden],.gm-tagbar[hidden],.gm-empty[hidden]{display:none!important}
+  .gm-fly[hidden]{visibility:hidden;pointer-events:none;opacity:0}
+
+  /* ≥768px: cinematic carousel; <768px: vertical featured stack (no horizontal scroll) */
+  @media(max-width:767px){
+    .gm-page{overflow-x:clip;max-width:100%}
+    .gm-hero:not([hidden]){display:none!important}
+    .gm-featured-mobile:not([hidden]){display:block}
+    .gm-grid{grid-template-columns:1fr}
+  }
+  @media(min-width:768px){
+    .gm-featured-mobile{display:none!important}
+  }
+
+  @media(max-width:900px){
+    .gm-cslide .c-inner{max-width:88%}
+    .gm-hero{aspect-ratio:16/9}
+  }
+  @media(max-width:640px){
+    .gm-sec-head{align-items:stretch}
+    .gm-toolbar{margin-left:0;width:100%}
+    .gm-toolbar .gm-search{flex:1;min-width:0}
+    .gm-toolbar .gm-search__input{font-size:16px}
+    .gm-toolbar .gm-sort{flex:1;min-width:0}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .gm-hero-track{transition:none!important}
+    .gm-cslide img{transition:none!important;transform:scale(1)!important}
+    .gm-cslide .c-inner > *{transition:none!important;opacity:1!important;transform:none!important}
+    .gm-card,.gm-spot-card{transition:none}
+  }
+</style>
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
-<body class="lang-es forgeax-site has-immersive">
+<body class="lang-es forgeax-site has-immersive home-immersive">
 <div class="ambient" aria-hidden="true">
   <div class="ambient__base"></div>
   <div class="ambient__morph"></div>
@@ -51,31 +187,24 @@
   <div class="ambient__vignette"></div>
 </div>
 <canvas id="forgeParticles" class="forge-particles" aria-hidden="true"></canvas>
-<p class="immersive-hint" aria-hidden="true">Voluta</p>
+<!-- Lives outside <main>: main.home-v2 carries a transform, which would make it the
+     containing block for this position:fixed cue. -->
+<a class="scroll-cue" href="#sec-proof">
+  <span class="scroll-cue__label">Desplázate para ver más</span>
+  <span class="scroll-cue__ring" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+  </span>
+</a>
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Documentos</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/es/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Documentos</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/es/" data-nav="/" class="active">Inicio</a>
       <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
       <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
-      <a href="/es/games/" data-nav="/games/">Juegos</a>
-      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
-      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/es/changelog/" data-nav="/changelog/">Registro de cambios</a>
       <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
     </div>
@@ -86,202 +215,326 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/" data-l="en">English</a><a class="lang-item" href="/zh/" data-l="zh">中文</a><a class="lang-item" href="/ja/" data-l="ja">日本語</a><a class="lang-item" href="/ko/" data-l="ko">한국어</a><a class="lang-item active" href="/es/" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/" data-l="fr">Français</a><a class="lang-item" href="/pt/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
-          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
     </div>
   </div>
 </nav>
 
-<main class="wrap">
+<main class="wrap home-v2">
 
-  <section class="hero motion-hero-in immersive-section" id="sec-hero" data-immersive-section>
-    <svg class="hero-logo" id="heroLogo" viewBox="-6.5 -13 90 90" shape-rendering="crispEdges" role="img" aria-label="ForgeaX">
-      <defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.5" result="b"/><feComposite in="SourceGraphic" in2="b" operator="over"/></filter></defs>
-      <g filter="url(#g)"><g fill="#fff"><rect x="15" y="30" width="10" height="10"/><rect x="55" y="30" width="10" height="10"/><rect x="15" y="60" width="10" height="10"/><rect x="55" y="60" width="10" height="10"/><rect x="25" y="40" width="30" height="20"/></g>
-        <g fill="#fff"><animate attributeName="opacity" values="0.7;1;0.7" keyTimes="0;0.25;1" dur="1.5s" repeatCount="indefinite"/><rect x="15" y="30" width="10" height="10"/><rect x="55" y="30" width="10" height="10"/><rect x="15" y="60" width="10" height="10"/><rect x="55" y="60" width="10" height="10"/><rect x="25" y="40" width="30" height="20"/></g></g>
-      <g filter="url(#g)" transform="translate(0,5)"><g fill="rgba(255,40,20,0.95)">
-        <rect x="35" y="35" width="10" height="5"/>
-        <rect x="30" y="30" width="20" height="5"><animate attributeName="x" values="30;29;31;30" dur="0.45s" repeatCount="indefinite"/></rect>
-        <rect x="25" y="25" width="30" height="5"><animate attributeName="x" values="25;23;27;25" dur="0.4s" repeatCount="indefinite"/></rect>
-        <rect x="20" y="20" width="40" height="5"><animate attributeName="x" values="20;17;23;20" dur="0.35s" repeatCount="indefinite"/></rect>
-        <rect x="25" y="10" width="30" height="10"><animate attributeName="x" values="25;20;30;25" dur="0.25s" repeatCount="indefinite"/><animate attributeName="y" values="10;5;15;10" dur="0.3s" repeatCount="indefinite"/></rect>
-        <rect x="30" y="-5" width="20" height="15"><animate attributeName="x" values="30;25;35;30" dur="0.15s" repeatCount="indefinite"/><animate attributeName="y" values="-5;-10;0;-5" dur="0.2s" repeatCount="indefinite"/></rect>
-        <rect x="25" y="0" width="10" height="10"><animate attributeName="x" values="25;20;30;25" dur="0.22s" repeatCount="indefinite"/><animate attributeName="y" values="0;-5;5;0" dur="0.28s" repeatCount="indefinite"/></rect>
-        <rect x="45" y="-5" width="10" height="10"><animate attributeName="x" values="45;50;40;45" dur="0.18s" repeatCount="indefinite"/><animate attributeName="y" values="-5;0;-10;-5" dur="0.26s" repeatCount="indefinite"/></rect>
-        <rect x="35" y="-15" width="5" height="5"><animate attributeName="opacity" values="1;0;1" dur="0.3s" repeatCount="indefinite"/><animate attributeName="y" values="-15;-25;-15" dur="0.3s" repeatCount="indefinite"/><animate attributeName="x" values="35;30;40;35" dur="0.2s" repeatCount="indefinite"/></rect>
-        <rect x="50" y="-5" width="5" height="5"><animate attributeName="opacity" values="0;1;0" dur="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="-5;-15;-5" dur="0.4s" repeatCount="indefinite"/><animate attributeName="x" values="50;55;45;50" dur="0.3s" repeatCount="indefinite"/></rect>
-        <rect x="25" y="-10" width="5" height="5"><animate attributeName="opacity" values="0;1;0" dur="0.35s" repeatCount="indefinite"/><animate attributeName="y" values="-10;-20;-10" dur="0.35s" repeatCount="indefinite"/><animate attributeName="x" values="25;20;30;25" dur="0.25s" repeatCount="indefinite"/></rect>
-      </g>
-      <g fill="rgba(255,140,0,0.95)">
-        <rect x="35" y="30" width="10" height="5"/>
-        <rect x="30" y="25" width="20" height="5"><animate attributeName="x" values="30;28;32;30" dur="0.4s" repeatCount="indefinite"/></rect>
-        <rect x="30" y="15" width="20" height="10"><animate attributeName="x" values="30;25;35;30" dur="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="15;10;20;15" dur="0.25s" repeatCount="indefinite"/></rect>
-        <rect x="35" y="5" width="10" height="10"><animate attributeName="y" values="5;0;10;5" dur="0.2s" repeatCount="indefinite"/><animate attributeName="x" values="35;30;40;35" dur="0.15s" repeatCount="indefinite"/></rect>
-      </g>
-      <g fill="rgba(255,220,50,0.95)">
-        <rect x="35" y="25" width="10" height="5"/>
-        <rect x="35" y="20" width="10" height="5"><animate attributeName="x" values="35;30;40;35" dur="0.18s" repeatCount="indefinite"/></rect>
-        <rect x="35" y="10" width="5" height="10"><animate attributeName="y" values="10;5;15;10" dur="0.15s" repeatCount="indefinite"/></rect>
-      </g></g>
-      <g id="strikeSparks" opacity="0" filter="url(#g)">
-        <animate id="sparkAnim" attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.24;0.25;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/>
-        <rect x="60" y="25" width="5" height="5" fill="rgba(255,200,0,1)"><animateTransform id="spark1" attributeName="transform" type="translate" values="0 0;0 0;10 -10;10 -10" keyTimes="0;0.24;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/></rect>
-        <rect x="65" y="20" width="5" height="5" fill="rgba(255,255,100,1)"><animateTransform id="spark2" attributeName="transform" type="translate" values="0 0;0 0;15 -5;15 -5" keyTimes="0;0.24;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/></rect>
-        <rect x="60" y="30" width="5" height="5" fill="rgba(255,200,0,1)"><animateTransform id="spark3" attributeName="transform" type="translate" values="0 0;0 0;10 5;10 5" keyTimes="0;0.24;0.4;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/></rect>
-      </g>
-      <g transform="translate(5,30)" filter="url(#g)"><g transform="rotate(-45 0 0)">
-        <animateTransform attributeName="transform" type="rotate" values="-45 0 0;-42 0 0;-48 0 0;-45 0 0" dur="2s" repeatCount="indefinite"/>
-        <animateTransform id="hammerStrike" attributeName="transform" type="rotate" values="-45 0 0;-50 0 0;10 0 0;-20 0 0;-45 0 0" keyTimes="0;0.15;0.25;0.35;1" dur="0.6s" begin="indefinite" repeatCount="1" fill="remove"/>
-        <rect x="10" y="0" width="20" height="5" fill="#fff"/><rect x="30" y="-10" width="10" height="20" fill="#fff"/>
-      </g></g>
-    </svg>
-
-    <span class="badge"><span class="dot"></span>Código abierto · construido por un bucle de desarrollo de IA · forgeax.github.io</span>
-    <h1>Su<span class="grad">personal</span>estudio de juegos.</h1>
-    <p class="sub">ForgeaX es un estudio de desarrollo de juegos nativo de IA: convierte tus ideas en juegos jugables mientras la IA escribe el código del motor y lo recarga en vivo en tu navegador. Más inusual:<b>El motor y la plataforma en sí están escritos casi en su totalidad por IA, línea por línea, en un ciclo de desarrollo autónomo.</b>- y su autoconstrucción día a día se registra en el<a href="/es/changelog/">registro de cambios</a>, una especie de memoria de desarrollo a largo plazo para la IA.</p>
-    <div class="cta">
-      <a class="btn primary" href="/es/tutorials/"><span class="btn-fx" aria-hidden="true"></span>empezar</a>
-      <a class="btn ghost" href="/es/games/">Ver juegos</a>
-    </div>
-  </section>
-
-  <section class="section reveal-on-scroll immersive-section" id="sec-stats" data-immersive-section>
-    <div class="stats motion-stagger">
-      <div class="stat stat--display"><div class="num">29</div><div class="lbl">Paquetes de motor @forgeax</div></div>
-      <div class="stat stat--display"><div class="num">4</div><div class="lbl">demostraciones de juegos jugables</div></div>
-      <div class="stat stat--display"><div class="num">RHI doble</div><div class="lbl">WebGPU + wasm</div></div>
-      <div class="stat stat--display"><div class="num">Apache 2.0</div><div class="lbl">fuente abierta</div></div>
-    </div>
-  </section>
-
-  <section class="section reveal-on-scroll immersive-section spotlight-section" id="sec-features" data-immersive-section data-reveal-delay="1">
-    <h2>Deje que los equipos más pequeños hagan juegos más grandes.</h2>
-    <div class="grid c3 motion-stagger">
-      <div class="card card--tile"><div class="ico"><i data-lucide="gamepad-2"></i></div><h3>Muchas maneras de crear</h3><p>Chat, un editor visual y entrada de imágenes/videos más tarde: expresa tus ideas de la manera que más te convenga.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="bot"></i></div><h3>Agentico por diseño</h3><p>Los agentes planifican, diseñan y escriben el código del motor; usted establece requisitos y revisa.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="zap"></i></div><h3>Recarga en vivo en vivo</h3><p>Cada cambio aparece en la vista previa al instante: lo que dices es lo que juegas.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="boxes"></i></div><h3>Motor ECS real</h3><p>Un motor genuino de sistema de componentes de entidad con renderizado RHI dual, en un estudio de navegador.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="brain"></i></div><h3>Jugabilidad nativa de IA</h3><p>No solo crear juegos con IA, sino también incorporar la IA en el juego mismo: NPC inteligentes, contenido generativo, experiencias interactivas de IA.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="refresh-cw"></i></div><h3>Bucle de desarrollo autoevolutivo</h3><p>El circuito cerrado de ForgeaX: un canal de requisitos → construcción → verificación que aprende de sus propios comentarios y crece de manera más estable con el tiempo.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="globe"></i></div><h3>Se ejecuta en el navegador</h3><p>Web y escritorio con tecnología WebGPU en una sola pila, listo y funcionando en un minuto.</p></div>
-      <div class="card card--tile"><div class="ico"><i data-lucide="book-open"></i></div><h3>Código abierto</h3><p>Apache 2.0: libre de bifurcar, usar, enviar y construir comercialmente.</p></div>
-    </div>
-  </section>
-
-  <section class="section reveal-on-scroll immersive-section spotlight-section" id="sec-ai" data-immersive-section data-reveal-delay="2">
-    <h2 class="ai-head">Usa tu propio <span class="grad">agente de IA</span></h2>
-    <div class="ai-cols">
-      <div class="ai-panel">
-        <div class="ai-panel-title">El cerebro vive en ForgeaX, el motor es tuyo</div>
-        <div class="ai-steps motion-stagger">
-          <div class="ai-step"><div class="ai-num">1</div><div><h4>ForgeaX aporta el cerebro</h4><p>Un núcleo de orquestación propio más la persona Forge: un equipo multiagente que planifica, delega, escribe el código del motor e informa de los resultados.</p></div></div>
-          <div class="ai-step"><div class="ai-num">2</div><div><h4>Tu CLI local aporta el motor</h4><p>Conecta el agente de programación que ya pagas (o una simple clave de API) como backend de razonamiento: sin una segunda factura de IA.</p></div></div>
-          <div class="ai-step"><div class="ai-num">3</div><div><h4>Cambia en un solo lugar, cuando quieras</h4><p>Elige un proveedor en el panel para cambiar el motor; tus personas y flujos de trabajo siguen igual, sin código que reescribir.</p></div></div>
-        </div>
+  <!-- §1 · Hero — copy + closed-loop demo (first viewport) -->
+  <section class="hero hero--split motion-hero-in immersive-section" id="sec-hero" data-immersive-section>
+    <div class="hero-stage">
+    <div class="hero-lede">
+      <div class="brandmark">
+        <img class="brandmark__mark" src="/logo.svg?v=3" alt="ForgeaX" width="76" height="76" />
+        <span class="brandmark__word">Forge<b>aX</b></span>
       </div>
-
-      <div class="ai-panel">
-        <div class="ai-panel-title">Siete motores de inferencia para elegir</div>
-        <div class="ai-engines motion-stagger">
-          <div class="ai-engine">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">forgeax cli</span><span class="ai-desc">Un forgeax-cli autocontenido: la CLI recomendada y lista para usar.</span></span>
+      <h1>Motor de producción de videojuegos AI-native para <span class="grad">creadores profesionales</span>.</h1>
+      <p class="sub">Del vertical slice al lanzamiento: que un equipo pequeño saque un juego más grande.</p>
+      <div class="cta cta--pair">
+        <div class="cta-path dl" data-download>
+          <a class="btn primary" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span>Descargar el cliente</span></a>
+          <div class="dl-card" data-download-card>
+            <a class="dl-card__row" data-download-opt="mac">
+              <span>macOS ARM64</span>
+              <span class="dl-card__now" data-download-now hidden>Este dispositivo</span>
+            </a>
+            <a class="dl-card__row" data-download-opt="win">
+              <span>Windows x64</span>
+              <span class="dl-card__now" data-download-now hidden>Este dispositivo</span>
+            </a>
+            <a class="dl-card__row dl-card__row--all" data-download-all href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">
+              <span>Todas las versiones</span>
+            </a>
           </div>
+        </div>
+        <div class="cta-path">
+          <div class="cta-path__anchor">
+            <button class="btn ghost" type="button" data-editor-install aria-expanded="false" aria-controls="fxEditorInstall"><span>Conectar un agente local</span></button>
+            <div class="hero-editor" id="fxEditorInstall"
+              data-install-bin="npx -y @forgeax/game"
+              data-step1-label="1. Instala el plugin de ForgeaX"
+              data-step1-note="Algunos agentes pueden necesitar reiniciarse después de instalar."
+              data-step2-label="2. Inicializa el proyecto"
+              data-step2-note="Elige un directorio local vacío como carpeta del proyecto y ejecuta:">
+              <p class="hero-editor__lead">Copia la instrucción y abre la app local correspondiente, o pégala en el chat.</p>
+              <div class="hero-editor__cmd">
+                <code data-editor-prompt></code>
+                <button type="button" class="hero-editor__copy" data-copy-cmd data-open-agent data-copied="Copiado">Copiar y pegar</button>
+              </div>
+              <a class="hero-editor__more" href="/es/tutorials/">Guía completa →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="hero-points">
+        <li>Los agentes trabajan dentro del pipeline real: escenas, código, assets, pruebas y builds.</li>
+        <li>Motor, producción de assets, pruebas automáticas y empaquetado en un solo ciclo cerrado.</li>
+        <li>Revisable, auditable y publicable: pensado para equipos, no para prompts sueltos.</li>
+      </ul>
+      <p class="hero-note">Instalar ForgeaX Studio te da el flujo de producción completo. <a href="/es/tutorials/getting-started.html">Ver la guía de instalación →</a></p>
+    </div>
 
-          <a class="ai-engine" href="https://claude.com/product/claude-code" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">Claude Code</span><span class="ai-desc">Usa tu suscripción <strong>Claude Pro / Max</strong>, o una clave de API de Anthropic.</span></span>
-          </a>
+    <!-- Demo frame. Idea Lab used to take this over from a secondary CTA; the
+         editor-install path now stays in the left column so the loop remains visible. -->
+    <div class="hero-panel" id="fxIdeaLab" data-hero-panel data-stage="demo">
 
-          <a class="ai-engine" href="https://developers.openai.com/codex" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">OpenAI Codex</span><span class="ai-desc">Inicia sesión en tu plan <strong>ChatGPT Plus / Pro</strong>, o usa una clave de API de OpenAI.</span></span>
-          </a>
+    <div class="loop" data-loop>
+      <div class="loop__body">
+        <div class="loop__stage">
+          <div class="loop__media-block">
+            <figure class="loop__media">
+            <video
+              class="loop__video"
+              data-loop-video
+              playsinline
+              muted
+              loop
+              preload="metadata"
+              aria-label="Grabación de la demo del ciclo"
+            ></video>
+            <button class="loop__playbtn" type="button" data-loop-play hidden aria-label="Reproducir demo">
+              <span aria-hidden="true"></span>
+            </button>
+            <div class="loop__pager" role="tablist" aria-orientation="horizontal" aria-label="Ciclo en marcha">
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-1" aria-controls="loop-panel-1" aria-selected="true" aria-label="Plantear el requisito" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-2" aria-controls="loop-panel-2" aria-selected="false" tabindex="-1" aria-label="Redactar un plan" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-3" aria-controls="loop-panel-3" aria-selected="false" tabindex="-1" aria-label="Editar escena, código, assets" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-4" aria-controls="loop-panel-4" aria-selected="false" tabindex="-1" aria-label="Ejecutar y probar" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-5" aria-controls="loop-panel-5" aria-selected="false" tabindex="-1" aria-label="Revisar los cambios" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-6" aria-controls="loop-panel-6" aria-selected="false" tabindex="-1" aria-label="Aprobar y fusionar" data-loop-step></button>
+              <button class="loop__dot" type="button" role="tab" id="loop-tab-7" aria-controls="loop-panel-7" aria-selected="false" tabindex="-1" aria-label="Empaquetar una build" data-loop-step></button>
+            </div>
+          </figure>
+          <p class="loop__credit">Demo de juego hecha con ForgeaX</p>
+        </div>
 
-          <a class="ai-engine" href="https://cursor.com/cli" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">Cursor</span><span class="ai-desc">Conecta tu suscripción <strong>Cursor Pro</strong> mediante la CLI de Cursor Agent.</span></span>
-          </a>
+          <div class="loop__caption">
+            <div class="loop__panel is-active" role="tabpanel" id="loop-panel-1" aria-labelledby="loop-tab-1" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov">
+              <h3>Plantear el requisito</h3>
+              <p class="lp-bubble">Dices en una frase lo que quieres, y la IA lo recoge y sigue.</p>
+            </div>
 
-          <a class="ai-engine" href="https://www.kimi.com/code/" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7L12 2Z"/><path d="m19 16 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">Kimi Code</span><span class="ai-desc">Usa tu membresía de Kimi o una clave de API de Moonshot AI.</span></span>
-          </a>
+            <div class="loop__panel" role="tabpanel" id="loop-panel-2" aria-labelledby="loop-tab-2" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>Redactar un plan</h3>
+              <p class="lp-bubble">La IA ordena los pasos primero y luego empieza a cambiar.</p>
+            </div>
 
-          <a class="ai-engine" href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="m8 10 2 2-2 2M12.5 14H16"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">DeepSeek Harness</span><span class="ai-desc">Usa la CLI local <code>dsh</code> con tu API Base URL y clave de DeepSeek. Vista previa para desarrolladores; dsh gestiona el modelo y el perfil.</span></span>
-          </a>
+            <div class="loop__panel" role="tabpanel" id="loop-panel-3" aria-labelledby="loop-tab-3" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>Editar escena, código, assets</h3>
+              <p class="lp-bubble">La IA puede cambiar la escena, editar el código y añadir assets. Tú no tienes que tocar los archivos.</p>
+            </div>
 
-          <a class="ai-engine" href="https://www.codebuddy.ai/" target="_blank" rel="noopener">
-            <span class="ai-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2.5"/><path d="M12 8V4M12 4h-1.5M12 4h1.5"/><circle cx="9" cy="13" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="13" r="1" fill="currentColor" stroke="none"/><path d="M2 12v3M22 12v3"/></svg></span>
-            <span class="ai-ebody"><span class="ai-name">CodeBuddy</span><span class="ai-desc">Impulsado por la CLI de <strong>CodeBuddy Code</strong>: gestiona su propio inicio de sesión, listo para usar.</span></span>
-          </a>
+            <div class="loop__panel" role="tabpanel" id="loop-panel-4" aria-labelledby="loop-tab-4" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>Ejecutar y probar</h3>
+              <p class="lp-bubble">La IA lo ejecuta y lo prueba sola: no tienes que ir pulsando a mano.</p>
+            </div>
+
+            <div class="loop__panel" role="tabpanel" id="loop-panel-5" aria-labelledby="loop-tab-5" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>Revisar los cambios</h3>
+              <p class="lp-bubble">Cada cambio se despliega para que lo revises, y puedes devolverlo.</p>
+            </div>
+
+            <div class="loop__panel" role="tabpanel" id="loop-panel-6" aria-labelledby="loop-tab-6" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>Aprobar y fusionar</h3>
+              <p class="lp-bubble">Nada entra en la línea principal hasta que tú digas que sí.</p>
+            </div>
+
+            <div class="loop__panel" role="tabpanel" id="loop-panel-7" aria-labelledby="loop-tab-7" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
+              <h3>Empaquetar una build</h3>
+              <p class="lp-bubble">Empaqueta una build que puedes enviar directo a quien vaya a probarla.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- State 2 · the agent itself. The conversation is the whole surface. -->
+    <div class="fxi fxi--chat" data-fxi-chat role="region" tabindex="-1" aria-label="Idea Lab · Brief de vertical slice">
+      <div class="fxi__body">
+        <iframe class="fxi__frame" title="Idea Lab · Brief de vertical slice" data-fxi-frame></iframe>
+
+        <div class="fxi__boot" data-fxi-boot>
+          <span class="fxi__spinner" aria-hidden="true"></span>
+          <p>Despertando al agente de Idea Lab…</p>
+        </div>
+
+        <div class="fxi__state" data-fxi-waitlist hidden>
+          <h3>Disponible muy pronto</h3>
+          <p>Idea Lab está en pruebas privadas. El flujo del brief llegará aquí en breve.</p>
+          <a class="fxi__cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar el cliente</a>
+        </div>
+      </div>
+
+      <div class="fxi__note" data-fxi-limit hidden>
+        <span>Se acabaron los turnos de prueba. Continúa en Studio.</span>
+        <a data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar el cliente</a>
+      </div>
+    </div>
+
+    <!-- State 3 · the brief. Arrives only on forgeax:gdd, and its only forward
+         move is the client download. -->
+    <div class="fxi fxi--brief" data-fxi-brief role="region" tabindex="-1" aria-label="Brief de vertical slice">
+      <div class="fxi__bar">
+        <button class="fxi__bare" type="button" data-fxi-brief-back>
+          <i data-lucide="chevron-left" aria-hidden="true"></i>
+          <span>Volver a la conversación</span>
+        </button>
+        <span class="fxi__file"><i data-lucide="file-text" aria-hidden="true"></i>vertical-slice-brief.md</span>
+      </div>
+
+      <div class="fxi__docHead">
+        <h3>Brief de vertical slice</h3>
+        <p>Lleva el brief a ForgeaX Studio y el agente sigue desde aquí: primeras tareas, alcance y riesgos.</p>
+      </div>
+
+      <pre class="fxi__gdd" data-fxi-gdd tabindex="0"></pre>
+
+      <div class="fxi__foot cta">
+        <button class="fxi__ghost" type="button" data-fxi-copy data-copied="Copiado">Copiar brief</button>
+        <a class="btn primary" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span data-download-label>Descargar el cliente</span></a>
+      </div>
+    </div>
+
+    </div>
+    </div>
+
+  </section>
+
+  <!-- §2 · Editor → CLI → engine -->
+  <section class="section reveal-on-scroll immersive-section" id="sec-proof" data-immersive-section>
+    <div class="pitch-grid">
+      <article class="pitch-card">
+        <div class="pitch-card__head">
+          <span class="ico" aria-hidden="true"><i data-lucide="app-window"></i></span>
+          <h3>Editor AI-native</h3>
+        </div>
+        <p>El motor y el editor viven en un solo cliente completo: un espacio visual que se ve y se pulsa.</p>
+        <div class="pitch-card__get">
+          <a class="btn ghost" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span>Descargar el cliente</span></a>
+        </div>
+      </article>
+      <article class="pitch-card">
+        <div class="pitch-card__head">
+          <span class="ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
+          <h3>CLI de código abierto</h3>
+        </div>
+        <p>Se conecta a Codex, Cursor y otros editores de IA locales, para correr Forge con tus propias herramientas.</p>
+        <div class="pitch-card__get">
+          <button type="button" class="btn ghost" data-copy-cmd data-copy-prompt data-copied="Copiado"><span>Copiar instrucción de acceso</span></button>
+        </div>
+      </article>
+      <article class="pitch-card">
+        <div class="pitch-card__head">
+          <span class="ico" aria-hidden="true"><i data-lucide="layers"></i></span>
+          <h3>Pipeline de producción</h3>
+        </div>
+        <p>Un núcleo de motor estable. Las herramientas de producción locales lo llaman en directo: imagen y jugabilidad encajan.</p>
+        <div class="pitch-card__get">
+          <a class="btn ghost" href="https://github.com/ForgeaX-Games/forgeax-engine" target="_blank" rel="noopener"><span>Conocer el motor</span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- §3 · Games made with Forge — same hero + cards as the retired /games/ gallery -->
+  <section class="section reveal-on-scroll immersive-section" id="sec-showcase" data-immersive-section data-reveal-delay="1">
+    <div class="sec-head">
+      <div>
+        <h2>Made with ForgeaX</h2>
+      </div>
+    </div>
+    <div class="gm-hero" id="gmHero" aria-roledescription="carousel" aria-label="Destacados">
+      <div class="gm-hero-track">
+        <div class="gm-cslide is-active" data-i="0" role="group" aria-roledescription="slide">
+          <img src="/assets/games/covers/hellforge.webp" alt="">
+          <div class="veil"></div>
+          <div class="c-inner">
+            <div class="eyebrow">Destacados</div>
+            <h2><a href="/es/games/detail/hellforge.html">ForgeaX: Hellforge</a></h2>
+            <p>Dark-fantasy ARPG vertical slice — a sorceress with skeletal animation, from Cinderwatch camp into the Ashen Reach.</p>
+            <div class="c-row"><div class="cta"><span class="btn primary"><span class="btn-fx" aria-hidden="true"></span><span>Jugar</span></span><a class="btn ghost" href="/es/games/detail/hellforge.html">Ver</a></div></div>
+            <div class="c-meta"><span>ARPG · 3D · 骨骼动画</span></div>
+          </div>
         </div>
       </div>
     </div>
-    <p class="ai-note">Sin dependencia de proveedor: <strong>usa la IA que prefieras y cámbiala cuando quieras.</strong></p>
-  </section>
-
-  <section class="section reveal-on-scroll immersive-section" id="sec-blog" data-immersive-section data-reveal-delay="2">
-    <div class="preview-head"><h2>Blog y opinión</h2><a class="all" href="/es/blog/">Todo</a></div>
-    <div class="grid c2 motion-stagger">
-      <a class="card card--link" href="/es/blog/skeletal-animation-milestone.html"><span class="tag brand">Actualizar</span><h3 style="margin-top:12px">Animación esquelética, de principio a fin.</h3><p>Desde un archivo FBX hasta un idle↔walk↔cast fluido en el juego: la bruja de Hellforge finalmente se mueve.</p><span class="more">Leer</span></a>
-      <a class="card card--link" href="/es/blog/why-ai-native-engine.html"><span class="tag">Opinión</span><h3 style="margin-top:12px">¿Por qué construir un motor nativo de IA?</h3><p>Cuando la IA es el primer usuario del motor, la API, los errores y el estado deben rediseñarse desde su punto de vista.</p><span class="more">Leer</span></a>
+    <section class="gm-featured-mobile" id="gmFeaturedMobile" aria-label="Destacados">
+      <h2 class="gm-mobile-label">Destacados</h2>
+      <div class="gm-featured-stack" id="gmFeaturedStack">
+        <a class="gm-spot-card" href="/es/games/detail/hellforge.html" data-slug="hellforge">
+          <div class="thumb"><img src="/assets/games/covers/hellforge.webp" alt="" loading="lazy"><div class="fade"></div></div>
+          <div class="body"><h3>ForgeaX: Hellforge</h3><p>Dark-fantasy ARPG vertical slice — a sorceress with skeletal animation, from Cinderwatch camp into the Ashen Reach.</p></div>
+        </a>
+      </div>
+    </section>
+    <div class="gm-grid motion-stagger">
+      <a class="gm-card" href="/es/games/detail/planet-snake.html" data-slug="planet-snake" data-featured="1" data-order="7" data-updated="2026-08-24" data-edit="0" data-tags="动作,生存,3D">
+        <div class="thumb"><img src="/assets/games/covers/planet-snake.jpg" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>Planet Snake</h3></div>
+      </a>
+      <a class="gm-card" href="/es/games/detail/go-karts.html" data-slug="go-karts" data-featured="1" data-order="5" data-updated="2026-08-02" data-edit="0" data-tags="竞速,卡丁车,3D,车库选装">
+        <div class="thumb"><img src="/assets/games/covers/go-karts.jpg" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>Pet Go-Karts</h3></div>
+      </a>
+      <a class="gm-card" href="/es/games/detail/shoot-opt.html" data-slug="shoot-opt" data-featured="1" data-order="40" data-updated="2026-06-10" data-edit="1" data-tags="飞机大战,弹幕射击,俯视角,3D">
+        <div class="thumb"><img src="/assets/games/covers/shoot-opt.jpg" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>Aurora Knights</h3></div>
+      </a>
     </div>
   </section>
 
-  <section class="section reveal-on-scroll immersive-section" id="sec-start" data-immersive-section data-reveal-delay="2">
-    <div class="preview-head"><h2>De la idea al juego jugable</h2><a class="all" href="/es/docs/">Documentos</a></div>
-    <div class="grid c3 motion-stagger">
-      <a class="card card--link" href="/es/tutorials/getting-started.html"><div class="ico"><i data-lucide="rocket"></i></div><h3>Inicio rápido</h3><p>Instala, inicia y di tu primer "hazme un juego" en Forge.</p><span class="more">Tutorial</span></a>
-      <a class="card card--link" href="/es/docs/"><div class="ico"><i data-lucide="book-text"></i></div><h3>Documentos</h3><p>Conceptos, bancos de trabajo, activos, publicaciones, desde el ángulo del usuario.</p><span class="more">Documentos</span></a>
-      <a class="card card--link" href="/es/games/"><div class="ico"><i data-lucide="joystick"></i></div><h3>Demostraciones de juegos</h3><p>FPS / ARPG / supervivencia / prueba de estrés: cuatro demostraciones jugables.</p><span class="more">Juegos</span></a>
+  <!-- §5 · Founding Studios (secondary band) -->
+  <section class="section reveal-on-scroll immersive-section" id="sec-founding" data-immersive-section data-reveal-delay="2">
+    <div class="founding">
+      <div>
+        <h2>Estudios con un proyecto ya en marcha</h2>
+        <p>Founding Studios es un programa de socios tempranos: soporte cercano, casos de estudio construidos juntos y prioridad en la hoja de ruta.</p>
+      </div>
+      <a class="more" href="mailto:forgeax@outlook.com?subject=ForgeaX%20%E2%80%94%20Founding%20Studios">Hablemos →</a>
+    </div>
+  </section>
+
+  <!-- §6 · Closing CTA -->
+  <section class="section reveal-on-scroll immersive-section" id="sec-end" data-immersive-section data-reveal-delay="2">
+    <div class="endcta">
+      <h2>Empieza por el cliente</h2>
+      <p>Instala ForgeaX Studio para el ciclo de producción completo. O empieza por los tutoriales para ver cómo funciona el ciclo.</p>
+      <div class="cta">
+        <a class="btn primary" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span data-download-label>Descargar el cliente</span></a>
+        <a class="btn ghost" href="/es/tutorials/"><span>Leer los tutoriales</span></a>
+      </div>
     </div>
   </section>
 
 </main>
+<script>window.FX_EXPERIENCE={"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","installGuideUrl":"/tutorials/getting-started.html","contactEmail":"forgeax@outlook.com","chatUrl":"/idea/?app=chat&embed=1","chatOrigin":"","studioDeepLink":"forgeax://idea","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}};</script>
 
-<script>
-  var hero=document.getElementById('heroLogo');
-  if(hero){hero.addEventListener('click',function(){
-    ['hammerStrike','sparkAnim','spark1','spark2','spark3'].forEach(function(id){
-      var el=document.getElementById(id);if(el&&el.beginElement){try{el.beginElement()}catch(e){}}
-    });
-  });}
-</script>
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
   </div>
-  <div class="col"><h4>Sitio</h4>
+  <nav class="foot-links" aria-label="Sitio">
     <a href="/es/changelog/">Registro de cambios</a>
-    <a href="/es/blog/">Blog</a>
-    <a href="/es/docs/">Documentos</a>
     <a href="/es/tutorials/">Tutoriales</a>
     <a href="/es/examples/">Ejemplos</a>
-    <a href="/es/games/">Juegos</a>
-    <a href="/es/marketplace/">Mercado</a>
-  </div>
-  <div class="col"><h4>Proyecto</h4>
+    <a href="/es/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
     <a href="/es/about.html">Acerca de</a>
     <a href="/es/license.html">Licencia</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 <script src="/assets/immersive.js?v=822d32e9"></script>
+<script src="/assets/home-v2.js?v=d68c8083"></script>
 </body>
 </html>

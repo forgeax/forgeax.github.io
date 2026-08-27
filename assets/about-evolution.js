@@ -6,7 +6,7 @@
 
   var MIN_SCORE = -15;
   var MAX_SCORE = 15;
-  var DEFAULT_SCORE = 0;
+  var DEFAULT_SCORE = 15;
   var VIDEO_FPS = 30;
   var FRAME_COUNT = 241;
   var STAGES = ['1.0', '2.0', '3.0', '4.0', '5.0', '6.0'];

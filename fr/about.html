@@ -23,38 +23,23 @@
 <link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/about.html" />
 <link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/about.html" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
-<link rel="stylesheet" href="/assets/about-evolution.css?v=d88d844b" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
-<body class="lang-fr forgeax-site about-page">
+<body class="lang-fr forgeax-site">
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Documents</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/fr/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Documents</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/fr/" data-nav="/">Accueil</a>
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
-      <a href="/fr/games/" data-nav="/games/">Jeux</a>
-      <a href="/fr/marketplace/" data-nav="/marketplace/">Marché</a>
-      <a href="/fr/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/fr/changelog/" data-nav="/changelog/">Journal des modifications</a>
       <a href="/fr/about.html" data-nav="/about.html" class="active">À propos</a>
     </div>
@@ -65,103 +50,29 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/about.html" data-l="en">English</a><a class="lang-item" href="/zh/about.html" data-l="zh">中文</a><a class="lang-item" href="/ja/about.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/about.html" data-l="ko">한국어</a><a class="lang-item" href="/es/about.html" data-l="es">Español</a><a class="lang-item" href="/de/about.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/about.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/about.html" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Demandez à l'IA</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Ouvrir dans ChatGPT</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Ouvert à Claude</a>
-          <button class="ask-item" id="copyMd">Copier la page en tant que Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
     </div>
   </div>
 </nav>
 
 <main>
-  <section class="about-evolution" id="forgeax-evolution" data-stage="2"
-    style="--strength:.5;--stage-progress:.5"
-    data-loading="Chargement de la séquence continue…"
-    data-ready="Le point rouge indique la version actuelle"
-    data-error="Impossible de charger la séquence. Actualisez la page.">
-    <div class="about-evolution__masthead">
-      <div>
-        <p class="about-evolution__eyebrow">De l’idée à l’incarnation</p>
-        <h1>À propos de ForgeaX</h1>
-        <p class="about-evolution__intro">Des outils de développement de jeux, conçus pour l’ère de l’IA.</p>
-      </div>
-      <div class="about-evolution__meter" aria-live="polite">
-        <span>Version</span>
-        <output class="about-evolution__version" for="about-evolution-slider">3.5</output>
-      </div>
+  <div class="wrap page-head">
+    <h1>À propos de ForgeaX</h1>
+    <p>Des outils de développement de jeux, conçus pour l’ère de l’IA.</p>
+  </div>
+
+  <div class="read about-read">
+    <div class="read-tags" data-read-tags role="tablist" aria-label="Lire">
+      <a class="read-tag is-active" href="#intro" data-read-tag="intro" role="tab" aria-selected="true">Présentation</a>
+      <a class="read-tag" href="#how-it-works" data-read-tag="how-it-works" role="tab" aria-selected="false">Comment ça marche</a>
+      <a class="read-tag" href="#inside" data-read-tag="inside" role="tab" aria-selected="false">Ce qu'il y a dedans</a>
+      <a class="read-tag" href="#why-ai-native-engine" data-read-tag="why-ai-native-engine" role="tab" aria-selected="false">Moteur natif IA</a>
     </div>
 
-    <div class="about-evolution__portrait-zone" aria-labelledby="about-evolution-stage-label">
-      <p class="about-evolution__ghost" aria-hidden="true">3.0</p>
-      <div class="about-evolution__portrait">
-        <div class="about-evolution__halo" aria-hidden="true"></div>
-        <img class="about-evolution__poster" src="/assets/about/forgeax-evolution-3.5.jpg"
-          width="800" height="800" alt="" aria-hidden="true" fetchpriority="high">
-        <canvas class="about-evolution__canvas" width="800" height="800" aria-hidden="true"></canvas>
-        <video class="about-evolution__video" preload="auto" muted playsinline webkit-playsinline="true"
-          x5-playsinline="true" x5-video-player-type="h5-page" tabindex="-1" aria-hidden="true"
-          src="/assets/about/forgeax-evolution.mp4"></video>
-        <div class="about-evolution__loader" role="status" aria-label="Chargement de la séquence continue…">
-          <span class="about-evolution__loader-orbit" aria-hidden="true"></span>
-          <span class="about-evolution__loader-ring" aria-hidden="true"></span>
-          <span class="about-evolution__loader-core" aria-hidden="true">×</span>
-        </div>
-        <div class="about-evolution__scan" aria-hidden="true"></div>
-        <span class="about-evolution__corner about-evolution__corner--tl" aria-hidden="true"></span>
-        <span class="about-evolution__corner about-evolution__corner--tr" aria-hidden="true"></span>
-        <span class="about-evolution__corner about-evolution__corner--bl" aria-hidden="true"></span>
-        <span class="about-evolution__corner about-evolution__corner--br" aria-hidden="true"></span>
-        <div class="about-evolution__load" role="status" hidden>Chargement de la séquence continue…</div>
-      </div>
-      <div class="about-evolution__stage-readout">
-        <span id="about-evolution-stage-label">Étape actuelle</span>
-        <p class="about-evolution__stage">3.0</p>
-        <span class="about-evolution__stage-index">VER 3.0 / 6.0</span>
-      </div>
-    </div>
-
-    <div class="about-evolution__controls" aria-label="Version">
-      <p class="about-evolution__status" role="status">Chargement de la séquence continue…</p>
-      <div class="about-evolution__range-wrap">
-        <div class="about-evolution__ticks" aria-hidden="true"></div>
-        <input id="about-evolution-slider" class="about-evolution__slider" type="range"
-          min="-15" max="15" step="0.01" value="0"
-          aria-label="Version" aria-valuetext="3.5">
-      </div>
-      <ol class="about-evolution__markers" aria-hidden="true">
-        <li class="is-passed">1.0</li><li class="is-passed">2.0</li><li class="is-current">3.0</li><li>4.0</li><li>5.0</li><li>6.0</li>
-      </ol>
-      <p class="about-evolution__hint"><span aria-hidden="true">←</span>Faites glisser le point rouge pour voir ForgeaX évoluer de 1.0 à 6.0.<span aria-hidden="true">→</span></p>
-      <a class="about-evolution__continue" href="#about-story">
-        <span class="about-evolution__continue-label">Découvrir ForgeaX</span>
-        <span class="about-evolution__continue-arrow" aria-hidden="true">↓</span>
-      </a>
-    </div>
-  </section>
-
-  <article class="read article about-story" id="about-story">
-    <div class="prose">
+    <article class="read-panel is-active prose" id="intro" data-read-panel="intro">
       <p>ForgeaX est un<strong>Studio de jeux personnels natif d'IA</strong>. Nous pensons que l’IA redéfinit les obstacles à la création de jeux.</p>
       <p>Notre vision est directe :<strong>laissez des équipes plus petites, avec l’IA, créer des jeux qui nécessitaient auparavant des jeux beaucoup plus grands.</strong>Non pas pour remplacer les créateurs, mais pour confier à l'IA l'ingénierie et la production lourdes entre « l'idée » et le « jeu jouable ».</p>
-
-      <h2>Comment ça marche</h2>
-      <p>Dans le studio, vous décrivez le jeu que vous souhaitez à un responsable de l'IA appelé Forge – via le chat, en travaillant directement dans un éditeur visuel et (plus tard) avec des entrées telles que des images et des vidéos. Il planifie, fait appel à des sous-agents spécialisés en cas de besoin (gameplay, design, art…), puis<strong>écrit lui-même le code moteur</strong>, en rechargeant à chaud le résultat dans un aperçu du navigateur en direct.</p>
-      <p>En dessous se trouvent deux fondations internes : un<strong>moteur repensé pour le point de vue de l'IA</strong>(pour que l'IA puisse le lire, l'écrire et comprendre ses erreurs), et un<strong>boucle de développement qui maintient l'IA à un résultat correct et vérifiable</strong>(exigences entrantes, sortie jouable, chaque étape observable et traçable).</p>
-
-      <h2>Qu'y a-t-il à l'intérieur</h2>
-      <p>Quatre pièces fonctionnent ensemble :</p>
-      <ul>
-        <li><strong>Un moteur natif d’IA</strong>— un moteur TypeScript ECS avec rendu double RHI (WebGPU + un backend wasm), PBR/IBL/SSAO, physique 2D/3D, ressources glTF/FBX et animation squelettique. Ses API, ses erreurs et son état sont conçus pour que l'IA puisse lire et écrire.</li>
-        <li><strong>Une boucle de développement auto-évolutive (la boucle fermée ForgeaX)</strong>— un pipeline en sept étapes (exigences → recherche → planifier → mettre en œuvre → vérifier → jugement → finaliser) piloté par un orchestrateur et des sous-agents spécialisés par rôle, avec examen par l'IA et un bac à sable qui exécute et capture d'écran chaque build ; il apprend de ses propres retours et se développe de manière plus stable avec le temps.</li>
-        <li><strong>Un gameplay natif de l'IA</strong>- pas seulement créer des jeux avec l'IA, mais intégrer l'IA dans le jeu lui-même : PNJ intelligents, contenu génératif, expériences interactives d'IA.</li>
-        <li><strong>Le studio & éditeur</strong>- un panneau de discussion à côté d'un aperçu en direct et un éditeur de scène visuelle dont les modifications reviennent directement dans le jeu en cours, sur le Web ou en tant qu'application de bureau.</li>
-        <li><strong>Une équipe d'agents & des outils de création</strong>- des agents nommés pour la production, le gameplay, la conception, la narration, l'art et le codage, ainsi qu'un marché d'établis qui génèrent des personnages, des animations, des modèles 3D, des effets visuels, une interface utilisateur, de la musique et bien plus encore.</li>
-      </ul>
 
       <h2>Où nous sommes</h2>
       <p>L'étape actuelle est<strong>transformer des idées en jeux jouables avec l'IA</strong>: on peut déjà faire des démos jouables de FPS, ARPG, survie et shooter en studio, avec un moteur couvrant le rendu PBR, la physique et l'animation squelettique. Nous continuerons à peaufiner cette étape vers une qualité livrable.</p>
@@ -170,12 +81,68 @@
       <p>La couche d'outils ForgeaX est sous licence<strong>Licence Apache 2.0</strong>- n'importe qui peut librement créer, utiliser, construire commercialement et redistribuer. Nous voulons que ce soit un projet ouvert que la communauté peut construire ensemble. Voir le<a href="/fr/license.html">page de licence</a>.</p>
 
       <blockquote class="manifest-line">Laissez les petites équipes créer des jeux plus importants.</blockquote>
-    </div>
+    </article>
+
+    <article class="read-panel prose" id="how-it-works" data-read-panel="how-it-works" data-read-alias="how-the-loop-works">
+      <p>Dans le studio, vous décrivez le jeu que vous souhaitez à un responsable de l'IA appelé Forge – via le chat, en travaillant directement dans un éditeur visuel et (plus tard) avec des entrées telles que des images et des vidéos. Il planifie, fait appel à des sous-agents spécialisés en cas de besoin (gameplay, design, art…), puis<strong>écrit lui-même le code moteur</strong>, en rechargeant à chaud le résultat dans un aperçu du navigateur en direct.</p>
+      <p>En dessous se trouvent deux fondations internes : un<strong>moteur repensé pour le point de vue de l'IA</strong>(pour que l'IA puisse le lire, l'écrire et comprendre ses erreurs), et un<strong>boucle de développement qui maintient l'IA à un résultat correct et vérifiable</strong>(exigences entrantes, sortie jouable, chaque étape observable et traçable).</p>
+      <div id="how-the-loop-works"><h2>Une boucle en sept étapes</h2>
+<p>À l&#39;intérieur du moteur, chaque fonctionnalité passe par le même pipeline : les exigences sont entrées, un résultat de travail est obtenu, avec un enregistrement lisible à chaque étape :</p>
+<ol>
+<li><strong>Exigences</strong> — indiquez ce qu&#39;il faut construire, avec des critères d&#39;acceptation.</li>
+<li><strong>Recherche</strong> — historique de l&#39;enquête, contraintes et options.</li>
+<li><strong>Planifier</strong> : définissez une stratégie et divisez-la en tâches.</li>
+<li><strong>Implémenter</strong> — écrivez du code et des tests.</li>
+<li><strong>Vérifier</strong> — contrôles indépendants ; tout rouge bloque la fusion.</li>
+<li><strong>Jugement</strong> — un humain prend la décision finale.</li>
+<li><strong>Finaliser</strong> — fusionner une fois le processus réussi.</li>
+</ol>
+<h2>Un orchestrateur et des sous-agents</h2>
+<p>Un « orchestrateur » pilote la machine à états, décidant quel sous-agent envoyer à chaque étape et vérifiant sa sortie ; les sous-agents sont spécialisés dans leur rôle et dans leur propre contexte. Les humains injectent du jugement sur seulement deux points : <strong>énoncer les exigences</strong> et <strong>examiner les résultats</strong>.</p>
+<h2>Aucun &quot;ça a l&#39;air bien&quot; ne passe à travers</h2>
+<p>La vérification comporte deux portes IA : l&#39;une analyse statiquement les documents et les API du point de vue d&#39;un utilisateur IA, détectant &quot;promis mais non mis en œuvre&quot; ; l&#39;autre exécute la démo dans un bac à sable isolé, capture des captures d&#39;écran et les revérifie – en se protégeant contre les « tests verts, écran noir ».</p>
+<h2>Il se stabilise avec le temps</h2>
+<p>Après chaque fonctionnalité, les frictions rencontrées en cours de route sont capturées sous forme de commentaires qui améliorent le pipeline lui-même. La fonctionnalité suivante utilise automatiquement la version améliorée : le pipeline se nourrit de sa propre sortie et devient plus intelligent.</p>
+<blockquote>
+<p>Le résultat : l&#39;IA ne produit pas du code de « qualité démo », mais des fonctionnalités vérifiées et rejouables qu&#39;un humain peut prendre en charge.</p>
+</blockquote>
+</div>
+    </article>
+
+    <article class="read-panel prose" id="inside" data-read-panel="inside">
+      <p>Quatre pièces fonctionnent ensemble :</p>
+      <ul>
+        <li><strong>Un moteur natif d’IA</strong>— un moteur TypeScript ECS avec rendu double RHI (WebGPU + un backend wasm), PBR/IBL/SSAO, physique 2D/3D, ressources glTF/FBX et animation squelettique. Ses API, ses erreurs et son état sont conçus pour que l'IA puisse lire et écrire.</li>
+        <li><strong>Une boucle de développement auto-évolutive (la boucle fermée ForgeaX)</strong>— un pipeline en sept étapes (exigences → recherche → planifier → mettre en œuvre → vérifier → jugement → finaliser) piloté par un orchestrateur et des sous-agents spécialisés par rôle, avec examen par l'IA et un bac à sable qui exécute et capture d'écran chaque build ; il apprend de ses propres retours et se développe de manière plus stable avec le temps.</li>
+        <li><strong>Un gameplay natif de l'IA</strong>- pas seulement créer des jeux avec l'IA, mais intégrer l'IA dans le jeu lui-même : PNJ intelligents, contenu génératif, expériences interactives d'IA.</li>
+        <li><strong>Le studio & éditeur</strong>- un panneau de discussion à côté d'un aperçu en direct et un éditeur de scène visuelle dont les modifications reviennent directement dans le jeu en cours, sur le Web ou en tant qu'application de bureau.</li>
+        <li><strong>Une équipe d'agents & des outils de création</strong>- des agents nommés pour la production, le gameplay, la conception, la narration, l'art et le codage, ainsi qu'un marché d'établis qui génèrent des personnages, des animations, des modèles 3D, des effets visuels, une interface utilisateur, de la musique et bien plus encore.</li>
+      </ul>
+    </article>
+
+    <article class="read-panel prose" id="why-ai-native-engine" data-read-panel="why-ai-native-engine">
+      <p class="standfirst">La plupart des API des moteurs de jeu sont écrites pour les humains. Lorsque l’IA devient celle qui écrit le code, le moteur devrait être différent.</p>
+      <p>L&#39;idée principale de ForgeaX est simple : l&#39;utilisateur décrit un jeu et l&#39;IA écrit le code du moteur. Cela ressemble à &quot;juste un auteur différent&quot;, mais en pratique, les moteurs existants ne sont pas compatibles avec l&#39;IA - ils supposent qu&#39;un lecteur lit des documents, devine et remplit le contexte comme le fait un humain.</p>
+<p>Notre position est directe : <strong>L&#39;IA est le premier utilisateur du moteur. Lorsque « convivial pour l&#39;IA » entre en conflit avec « convivial pour les humains », l&#39;IA gagne.</strong> Voici quelques conséquences concrètes.</p>
+<h2>1 · Une source de vérité, dérivez le reste</h2>
+<p>Un fait est défini exactement à un seul endroit ; tout le reste en dérive. Les champs de composants, par exemple, sont intégrés dans un schéma : les inspecteurs, les débogueurs et les outils lisent le schéma au lieu de rechercher la source et de deviner. L’IA n’a pas besoin de « se souvenir » des conventions éparpillées partout, car il n’y a qu’un seul endroit où chercher.</p>
+<h2>2 · Erreurs que l&#39;IA peut comprendre et récupérer</h2>
+<p>Une erreur n’est pas simplement une phrase humaine que vous « lancez ». Nous utilisons un ensemble fermé de codes d&#39;erreur, chacun contenant des informations structurées « quoi/pourquoi/comment récupérer ». Lorsque l’IA détecte une erreur, elle sait quoi changer ensuite – au lieu de traiter le texte d’exception comme du mysticisme.</p>
+<h2>3 · Des données structurées au lieu de « regarder l&#39;écran »</h2>
+<p>La partie la plus difficile d&#39;un bug de rendu est que &quot;cela ne semble pas correct à l&#39;écran&quot;. Un humain peut regarder le moniteur ; L’IA ne le peut pas. Ainsi, le moteur peut capturer une trame d&#39;appels de rendu (appels de dessin, liaisons, cibles de rendu, état du pipeline) pour lire hors ligne, rejouer et inspecter l&#39;état complet au Nième tirage. Un problème visuel devient des données que l&#39;IA peut « lire ».</p>
+<h2>4 · Deux implémentations qui se vérifient</h2>
+<p>La couche de rendu a deux implémentations backend (WebGPU et wasm) derrière une seule interface. Ils s&#39;affichent côte à côte : dès que l&#39;IA utilise mal l&#39;API d&#39;un moteur, l&#39;autre backend diverge immédiatement, faisant apparaître le problème - bien plus rapidement que d&#39;attendre un examen humain.</p>
+<hr>
+<p>Ces conceptions partagent un critère commun : <strong>moins un lecteur (humain ou IA) doit avoir de concepts en tête, mieux c&#39;est.</strong> Plus l&#39;API est cohérente et indexable localement, plus l&#39;IA réussit souvent - et plus il est facile pour un humain de prendre le relais.</p>
+<p>&quot;AI-native&quot; n&#39;est pas un slogan, c&#39;est une longue série de décisions &quot;à refaire pour le point de vue de l&#39;IA&quot;. Nous en dévoilerons davantage dans la documentation et les prochains articles.</p>
+
+    </article>
+
     <p class="cta-row">
       <a class="btn primary" href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Suivez-nous sur GitHub</a>
       <a class="btn ghost" href="/fr/showcase/">Voir la vitrine</a>
     </p>
-  </article>
+  </div>
 
   <section class="wrap section">
     <h2>Dépôts</h2>
@@ -210,25 +177,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables. Open source, licence Apache 2.0.</p>
   </div>
-  <div class="col"><h4>Site</h4>
+  <nav class="foot-links" aria-label="Site">
     <a href="/fr/changelog/">Journal des modifications</a>
-    <a href="/fr/blog/">Blogue</a>
-    <a href="/fr/docs/">Documents</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
-    <a href="/fr/games/">Jeux</a>
-    <a href="/fr/marketplace/">Marché</a>
-  </div>
-  <div class="col"><h4>Projet</h4>
+    <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
     <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
-<script src="/assets/about-evolution.js?v=6249c7fb"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

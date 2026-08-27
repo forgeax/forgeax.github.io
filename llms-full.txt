@@ -34,15 +34,7 @@ How it works: In the studio you describe the game you want to an AI lead called 
 
 Underneath are two in-house foundations: an engine redesigned for the AI's point of view (so AI can read it, write it, and understand its errors), and a development loop that pushes AI to get it right (requirements in, playable output out, every step observable and traceable).
 
-Where we are: the current stage is turning ideas into playable games with AI — playable FPS, ARPG, survival and shooter demos exist, with an engine covering PBR rendering, physics and skeletal animation. Longer term we also watch: AI and humans co-designing games, interoperating with the open-source ecosystem, and how AI world-models might evolve what an "engine" is.
-
-Open source: the ForgeaX tool layer is licensed under Apache License 2.0.
-
-> Let smaller teams make bigger games.
-
----
-
-## Blog: Why build an AI-native engine (opinion)
+### Why an AI-native engine
 
 Most game-engine APIs are written for humans. When AI becomes the one writing the code, the engine should look different. ForgeaX's stance: **AI is the engine's first user. When "friendly to AI" conflicts with "friendly to humans," AI wins.** Concretely:
 
@@ -53,17 +45,15 @@ Most game-engine APIs are written for humans. When AI becomes the one writing th
 
 Common yardstick: the fewer concepts a reader (human or AI) must hold in their head, the better.
 
----
+### How AI gets a feature right
 
-## Blog: Skeletal animation, end to end (update, 2026-06-15)
+Not by getting it right first try, but with an observable, traceable pipeline: requirements → research → plan → implement → verify → judgment → finalize. An orchestrator drives the state machine; humans inject judgment at two points: stating requirements and reviewing results. Verification has two AI gates (static docs/API review, plus a sandbox that actually runs and screenshots). After each feature, friction is captured as feedback that upgrades the pipeline itself.
 
-From an FBX file, to mesh + skeleton + animation clips in the engine, to smooth idle ↔ walk ↔ cast in-game — Hellforge's witch finally moves for real.
+Where we are: the current stage is turning ideas into playable games with AI — playable FPS, ARPG, survival and shooter demos exist, with an engine covering PBR rendering, physics and skeletal animation. Longer term we also watch: AI and humans co-designing games, interoperating with the open-source ecosystem, and how AI world-models might evolve what an "engine" is.
 
-Pipeline (four steps): ① FBX import — parse the model into sub-assets (mesh, skeleton, skin weights, clips). ② Skeleton/skinning — a skin shader that deforms vertices with the bones. ③ Clip playback — an AnimationPlayer driving multiple channels with a columnar (SoA) layout. ④ Crossfade — smooth transitions between idle/walk/cast.
+Open source: the ForgeaX tool layer is licensed under Apache License 2.0.
 
-Cashed out in Hellforge, a Diablo-style ARPG demo: a 2.5D top-down witch casting Fire Bolt, with 5 clips (idle/walk/run/cast/death) referenced by GUID, and a full 30-second loop (leave camp → meet a monster → kill with a spell → grab loot → return). It plugs in declaratively through the game's forge.json.
-
-Next: BlendTree (blend walk/run by speed), Mask (layered regions), IK (foot planting, hand alignment).
+> Let smaller teams make bigger games.
 
 ---
 

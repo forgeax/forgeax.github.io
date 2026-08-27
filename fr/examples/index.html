@@ -24,42 +24,32 @@
 <link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/examples/" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
 <style>
-  .ex-shell{display:flex;height:calc(100vh - var(--nav-h, 60px));overflow:hidden}
-  .ex-side{width:300px;flex:none;display:flex;flex-direction:column;background:var(--bg-elevated);border-right:1px solid var(--border-subtle)}
-  .ex-side-head{padding:16px 16px 12px;border-bottom:1px solid var(--border-subtle)}
-  .ex-side-head h1{font-size:18px;font-weight:800;margin:0 0 4px}
-  .ex-side-head p{font-size:12px;color:var(--text-tertiary);margin:0 0 10px}
-  #exFilter{width:100%;padding:8px 10px;background:var(--bg-base);border:1px solid var(--border-subtle);border-radius:var(--radius-md);color:var(--text-primary);font-size:13px;outline:none}
-  #exFilter:focus{border-color:var(--border-strong)}
-  .ex-list{flex:1;overflow:auto;padding:8px}
-  .ex-item{display:block;padding:9px 11px;border-radius:var(--radius-md);color:var(--text-secondary);text-decoration:none;border:1px solid transparent;margin-bottom:2px}
-  .ex-item:hover{background:var(--bg-floating);color:var(--text-primary)}
-  .ex-item.is-active{background:rgba(212,255,72,.10);border-color:rgba(212,255,72,.30);color:var(--text-primary)}
-  .ex-item.is-disabled{opacity:.4;pointer-events:none}
-  .ex-item-t{display:block;font-size:14px;font-weight:600;line-height:1.3}
-  .ex-item-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
-  .ex-item-tags .tag{font-size:10.5px}
-  .ex-stamp{padding:10px 16px;border-top:1px solid var(--border-subtle);font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary)}
-  .ex-view{flex:1;display:flex;flex-direction:column;min-width:0}
-  .ex-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border-subtle)}
-  .ex-bar-title{font-weight:700;font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .ex-bar-title small{color:var(--text-secondary);font-weight:400;margin-left:10px;font-size:13px}
-  .ex-bar-actions{display:flex;align-items:center;gap:14px;flex:none}
-  .ex-badge{font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary)}
-  .ex-bar-actions a{color:var(--brand);font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap}
-  .ex-frame-wrap{flex:1;position:relative;background:#0b0d10}
-  #exFrame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
-  @media (max-width:760px){
-    .ex-shell{flex-direction:column;height:auto}
-    .ex-side{width:auto;border-right:0;border-bottom:1px solid var(--border-subtle)}
-    .ex-list{max-height:210px}
-    .ex-view{height:72vh}
-  }
+  .ex-item.is-hidden,.ex-group.is-hidden,.ex-sec.is-hidden{display:none!important}
+  .ex-item--show{padding:11px 12px;margin-bottom:4px}
+  .ex-item--show .ex-item-t{font-size:14.5px}
+  .ex-item-b{display:-webkit-box;margin-top:4px;font-size:12px;line-height:1.4;color:var(--text-tertiary);font-weight:400;
+    -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ex-group{margin:8px 0 0;border-top:1px solid var(--border-subtle);padding-top:6px}
+  .ex-group-sum{list-style:none;display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 12px;
+    border-radius:var(--radius-md);color:var(--text-secondary);user-select:none}
+  .ex-group-sum::-webkit-details-marker,.ex-group-sum::marker{display:none}
+  .ex-group-sum::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+    transform:rotate(-45deg);flex:none;margin-top:-2px}
+  .ex-group[open]>.ex-group-sum::before{transform:rotate(45deg);margin-top:0}
+  .ex-group-sum:hover{background:var(--bg-floating);color:var(--text-primary)}
+  .ex-group-t{font-size:13px;font-weight:700;letter-spacing:.01em}
+  .ex-group-n{margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);
+    padding:1px 7px;border-radius:var(--radius-pill);border:1px solid var(--border-subtle)}
+  .ex-group-body{padding:2px 0 6px}
+  .ex-sec-h{padding:8px 12px 3px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)}
+  .ex-item--sub{padding:8px 12px 8px 16px}
+  .ex-item--sub .ex-item-t{font-size:13px;font-weight:600}
+  .ex-empty{padding:12px;font-size:13px;color:var(--text-tertiary);margin:0}
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -69,24 +59,10 @@
     <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Documents</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/fr/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Documents</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/fr/" data-nav="/">Accueil</a>
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/" class="active">Exemples</a>
-      <a href="/fr/games/" data-nav="/games/">Jeux</a>
-      <a href="/fr/marketplace/" data-nav="/marketplace/">Marché</a>
-      <a href="/fr/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/fr/changelog/" data-nav="/changelog/">Journal des modifications</a>
       <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
@@ -97,15 +73,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/examples/" data-l="en">English</a><a class="lang-item" href="/zh/examples/" data-l="zh">中文</a><a class="lang-item" href="/ja/examples/" data-l="ja">日本語</a><a class="lang-item" href="/ko/examples/" data-l="ko">한국어</a><a class="lang-item" href="/es/examples/" data-l="es">Español</a><a class="lang-item" href="/de/examples/" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/examples/" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/examples/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Demandez à l'IA</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Ouvrir dans ChatGPT</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Ouvert à Claude</a>
-          <button class="ask-item" id="copyMd">Copier la page en tant que Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
     </div>
   </div>
 </nav>
@@ -114,120 +83,177 @@
   <aside class="ex-side">
     <div class="ex-side-head">
       <h1>Exemples de moteurs</h1>
-      <p>Choisissez-en un : il est diffusé en direct sur la droite.</p>
-      <input id="exFilter" type="text" autocomplete="off" placeholder="Filtrer les exemples…" aria-label="Filtrer les exemples" />
+      <p>Choisissez une démo — elle tourne en direct à droite. Les bases sont dans Fundamentals. Glissez les scènes 3D pour orbiter ; molette pour zoomer.</p>
     </div>
     <nav class="ex-list" id="exList">
-        <a class="ex-item" data-id="triangle" href="/examples/triangle/">
+        <a class="ex-item ex-item--show" data-id="gltf-instancing" href="/examples/gltf-instancing/">
+          <span class="ex-item-t">Instanciation glTF</span>
+          <span class="ex-item-b">Quatre cubes éclairés, un maillage, un draw — instancing GPU depuis un glTF.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="hdrp-lighting" href="/examples/hdrp-lighting/">
+          <span class="ex-item-t">Éclairage groupé</span>
+          <span class="ex-item-b">256 feux ponctuels éclairés efficacement avec un pipeline groupé vers l'avant.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="physics" href="/examples/physics/">
+          <span class="ex-item-t">Physique</span>
+          <span class="ex-item-b">Physique des corps rigides via Rapier (wasm) pilotant les transformations ECS.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="sprite" href="/examples/sprite/">
+          <span class="ex-item-t">Sprites</span>
+          <span class="ex-item-b">Sprites 2D — quads groupés, profondeur de calque et Y-sort JRPG.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="2d-flashlight" href="/examples/2d-flashlight/">
+          <span class="ex-item-t">Lampe 2D</span>
+          <span class="ex-item-b">Scène 2D éclairée — spot balayé et lumière ponctuelle douce.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="sprite-lit" href="/examples/sprite-lit/">
+          <span class="ex-item-t">Éclairage sprite</span>
+          <span class="ex-item-b">Quatre quads sprite-lit et un cube PBR sous les mêmes lumières directionnelle, ponctuelle et spot.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="room" href="/examples/room/">
+          <span class="ex-item-t">Pièce</span>
+          <span class="ex-item-b">Un petit intérieur — boîte, sphère et plan en scène imbriquée.</span>
+        </a>
+        <details class="ex-group" data-group="fundamentals">
+          <summary class="ex-group-sum">
+            <span class="ex-group-t">Fondamentaux</span>
+            <span class="ex-group-n" aria-hidden="true">20</span>
+          </summary>
+          <div class="ex-group-body">
+        <div class="ex-sec" data-sec="getting-started">
+          <div class="ex-sec-h">Prise en main</div>
+        <a class="ex-item ex-item--sub" data-id="triangle" href="/examples/triangle/">
           <span class="ex-item-t">Bonjour Triangle</span>
           <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">wgsl</span></span>
         </a>
-        <a class="ex-item" data-id="topology" href="/examples/topology/">
+        <a class="ex-item ex-item--sub" data-id="cube" href="/examples/cube/">
+          <span class="ex-item-t">Cube</span>
+          <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">mesh</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="topology" href="/examples/topology/">
           <span class="ex-item-t">Topologie primitive</span>
           <span class="ex-item-tags"><span class="tag">basics</span><span class="tag">geometry</span></span>
         </a>
-        <a class="ex-item" data-id="transform-hierarchy" href="/examples/transform-hierarchy/">
+        <a class="ex-item ex-item--sub" data-id="transform-hierarchy" href="/examples/transform-hierarchy/">
           <span class="ex-item-t">Transformer la hiérarchie</span>
           <span class="ex-item-tags"><span class="tag">transform</span><span class="tag">scene-graph</span></span>
         </a>
-        <a class="ex-item" data-id="gltf" href="/examples/gltf/">
+        </div>
+        <div class="ex-sec" data-sec="mesh-assets">
+          <div class="ex-sec-h">Maillages et assets</div>
+        <a class="ex-item ex-item--sub" data-id="gltf" href="/examples/gltf/">
           <span class="ex-item-t">Modèle glTF</span>
           <span class="ex-item-tags"><span class="tag">gltf</span><span class="tag">mesh</span><span class="tag">pbr</span></span>
         </a>
-        <a class="ex-item" data-id="multi-material" href="/examples/multi-material/">
+        <a class="ex-item ex-item--sub" data-id="multi-material" href="/examples/multi-material/">
           <span class="ex-item-t">Maille multi-matériaux</span>
           <span class="ex-item-tags"><span class="tag">mesh</span><span class="tag">materials</span></span>
         </a>
-        <a class="ex-item" data-id="gltf-instancing" href="/examples/gltf-instancing/">
-          <span class="ex-item-t">Instanciation glTF</span>
-          <span class="ex-item-tags"><span class="tag">instancing</span><span class="tag">performance</span></span>
-        </a>
-        <a class="ex-item" data-id="custom-shader" href="/examples/custom-shader/">
+        <a class="ex-item ex-item--sub" data-id="custom-shader" href="/examples/custom-shader/">
           <span class="ex-item-t">Shader personnalisé</span>
           <span class="ex-item-tags"><span class="tag">shader</span><span class="tag">wgsl</span><span class="tag">materials</span></span>
         </a>
-        <a class="ex-item" data-id="picking" href="/examples/picking/">
+        </div>
+        <div class="ex-sec" data-sec="two-d">
+          <div class="ex-sec-h">2D</div>
+        <a class="ex-item ex-item--sub" data-id="tilemap" href="/examples/tilemap/">
+          <span class="ex-item-t">Tilemap</span>
+          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="tilemap-object-layer" href="/examples/tilemap-object-layer/">
+          <span class="ex-item-t">Objets tilemap</span>
+          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
+        </a>
+        </div>
+        <div class="ex-sec" data-sec="scene">
+          <div class="ex-sec-h">Scène</div>
+        <a class="ex-item ex-item--sub" data-id="multi-world" href="/examples/multi-world/">
+          <span class="ex-item-t">Multi-monde</span>
+          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">ecs</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="entity-visibility" href="/examples/entity-visibility/">
+          <span class="ex-item-t">Visibilité d’entité</span>
+          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">visibility</span></span>
+        </a>
+        </div>
+        <div class="ex-sec" data-sec="interaction">
+          <div class="ex-sec-h">Interaction et culling</div>
+        <a class="ex-item ex-item--sub" data-id="picking" href="/examples/picking/">
           <span class="ex-item-t">Sélection de GPU</span>
           <span class="ex-item-tags"><span class="tag">picking</span><span class="tag">interaction</span></span>
         </a>
-        <a class="ex-item" data-id="debug-draw" href="/examples/debug-draw/">
+        <a class="ex-item ex-item--sub" data-id="debug-draw" href="/examples/debug-draw/">
           <span class="ex-item-t">Dessin de débogage</span>
           <span class="ex-item-tags"><span class="tag">debug</span><span class="tag">tooling</span></span>
         </a>
-        <a class="ex-item" data-id="culling" href="/examples/culling/">
+        <a class="ex-item ex-item--sub" data-id="culling" href="/examples/culling/">
           <span class="ex-item-t">Abattage du tronc</span>
           <span class="ex-item-tags"><span class="tag">performance</span><span class="tag">culling</span></span>
         </a>
-        <a class="ex-item" data-id="hdrp-lighting" href="/examples/hdrp-lighting/">
-          <span class="ex-item-t">Éclairage groupé</span>
-          <span class="ex-item-tags"><span class="tag">lighting</span><span class="tag">performance</span></span>
-        </a>
-        <a class="ex-item" data-id="shadow-opt-out" href="/examples/shadow-opt-out/">
-          <span class="ex-item-t">Ombres</span>
-          <span class="ex-item-tags"><span class="tag">shadows</span><span class="tag">lighting</span></span>
-        </a>
-        <a class="ex-item" data-id="fxaa" href="/examples/fxaa/">
-          <span class="ex-item-t">FXAA</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">anti-aliasing</span></span>
-        </a>
-        <a class="ex-item" data-id="bloom" href="/examples/bloom/">
-          <span class="ex-item-t">Floraison</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">bloom</span><span class="tag">hdr</span></span>
-        </a>
-        <a class="ex-item" data-id="level-switch" href="/examples/level-switch/">
+        <a class="ex-item ex-item--sub" data-id="level-switch" href="/examples/level-switch/">
           <span class="ex-item-t">Commutation de niveau</span>
           <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">gameplay</span></span>
         </a>
-        <a class="ex-item" data-id="tonemap" href="/examples/tonemap/">
+        <a class="ex-item ex-item--sub" data-id="character" href="/examples/character/">
+          <span class="ex-item-t">Contrôleur de perso</span>
+          <span class="ex-item-tags"><span class="tag">physics</span><span class="tag">character</span><span class="tag">input</span></span>
+        </a>
+        </div>
+        <div class="ex-sec" data-sec="lighting-post">
+          <div class="ex-sec-h">Éclairage et post</div>
+        <a class="ex-item ex-item--sub" data-id="shadow-opt-out" href="/examples/shadow-opt-out/">
+          <span class="ex-item-t">Ombres</span>
+          <span class="ex-item-tags"><span class="tag">shadows</span><span class="tag">lighting</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="fxaa" href="/examples/fxaa/">
+          <span class="ex-item-t">FXAA</span>
+          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">anti-aliasing</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="bloom" href="/examples/bloom/">
+          <span class="ex-item-t">Floraison</span>
+          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">bloom</span><span class="tag">hdr</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="tonemap" href="/examples/tonemap/">
           <span class="ex-item-t">Carte des tons</span>
           <span class="ex-item-tags"><span class="tag">hdr</span><span class="tag">tonemap</span></span>
         </a>
-        <a class="ex-item" data-id="physics" href="/examples/physics/">
-          <span class="ex-item-t">Physique</span>
-          <span class="ex-item-tags"><span class="tag">physics</span><span class="tag">rapier</span></span>
-        </a>
+        </div>
+          </div>
+        </details>
     </nav>
 
   </aside>
   <section class="ex-view">
     <div class="ex-bar">
       <div class="ex-bar-title" id="exTitle"></div>
-      <div class="ex-bar-actions">
-        <span class="ex-badge">démo en direct</span>
-        <a id="exOpen" target="_blank" rel="noopener" href="#">Ouvrir ↗</a>
-      </div>
     </div>
     <div class="ex-frame-wrap">
-      <iframe id="exFrame" title="ForgeaX example" allow="fullscreen" src="about:blank"></iframe>
+      <iframe id="exFrame" title="ForgeaX example" allow="gpu; fullscreen" src="about:blank"></iframe>
     </div>
   </section>
 </main>
-<script>window.EX_DATA=[{"id":"triangle","ok":true,"href":"/examples/triangle/","title":"Bonjour Triangle","blurb":"Le pipeline WebGPU/WebGL2 minimal : un triangle, WGSL compilé par shader."},{"id":"topology","ok":true,"href":"/examples/topology/","title":"Topologie primitive","blurb":"Points, lignes, bandes de lignes et triangles : les types primitifs dessinés par un GPU."},{"id":"transform-hierarchy","ok":true,"href":"/examples/transform-hierarchy/","title":"Transformer la hiérarchie","blurb":"Transformations parent/enfant – nœuds en orbite pilotés par un graphique de scène."},{"id":"gltf","ok":true,"href":"/examples/gltf/","title":"Modèle glTF","blurb":"Chargez et restituez un actif glTF 2.0 avec des matériaux PBR."},{"id":"multi-material","ok":true,"href":"/examples/multi-material/","title":"Maille multi-matériaux","blurb":"Un maillage, plusieurs sous-maillages, chacun avec son propre matériau et sa propre topologie."},{"id":"gltf-instancing","ok":true,"href":"/examples/gltf-instancing/","title":"Instanciation glTF","blurb":"Des milliers d'instances d'un maillage en un seul tirage : un anneau planétaire."},{"id":"custom-shader","ok":true,"href":"/examples/custom-shader/","title":"Shader personnalisé","blurb":"Un shader de matériau personnalisé : une surface pulsée pilotée par votre propre WGSL."},{"id":"picking","ok":true,"href":"/examples/picking/","title":"Sélection de GPU","blurb":"Cliquez pour sélectionner : l'identifiant d'objet par pixel est lu à partir du GPU."},{"id":"debug-draw","ok":true,"href":"/examples/debug-draw/","title":"Dessin de débogage","blurb":"Lignes et formes en mode immédiat pour visualiser une scène."},{"id":"culling","ok":true,"href":"/examples/culling/","title":"Abattage du tronc","blurb":"Seul ce que la caméra peut voir est dessiné : l’élimination des troncs au travail."},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"Éclairage groupé","blurb":"256 feux ponctuels éclairés efficacement avec un pipeline groupé vers l'avant."},{"id":"shadow-opt-out","ok":true,"href":"/examples/shadow-opt-out/","title":"Ombres","blurb":"Ombres projetées en temps réel, avec désactivation par objet."},{"id":"fxaa","ok":true,"href":"/examples/fxaa/","title":"FXAA","blurb":"Anticrénelage approximatif rapide en tant que passe post-traitement."},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"Floraison","blurb":"Floraison HDR – passe-lumière + flou séparable + composite."},{"id":"level-switch","ok":true,"href":"/examples/level-switch/","title":"Commutation de niveau","blurb":"Basculez entre les niveaux au moment de l’exécution sans rechargement complet."},{"id":"tonemap","ok":true,"href":"/examples/tonemap/","title":"Carte des tons","blurb":"HDR à afficher — Opérateurs de cartographie tonale ACES / Reinhard."},{"id":"physics","ok":true,"href":"/examples/physics/","title":"Physique","blurb":"Physique des corps rigides via Rapier (wasm) pilotant les transformations ECS."}];</script>
+<script>window.EX_DATA=[{"id":"gltf-instancing","ok":true,"href":"/examples/gltf-instancing/","title":"Instanciation glTF","blurb":"Quatre cubes éclairés, un maillage, un draw — instancing GPU depuis un glTF."},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"Éclairage groupé","blurb":"256 feux ponctuels éclairés efficacement avec un pipeline groupé vers l'avant."},{"id":"physics","ok":true,"href":"/examples/physics/","title":"Physique","blurb":"Physique des corps rigides via Rapier (wasm) pilotant les transformations ECS."},{"id":"sprite","ok":true,"href":"/examples/sprite/","title":"Sprites","blurb":"Sprites 2D — quads groupés, profondeur de calque et Y-sort JRPG."},{"id":"2d-flashlight","ok":true,"href":"/examples/2d-flashlight/","title":"Lampe 2D","blurb":"Scène 2D éclairée — spot balayé et lumière ponctuelle douce."},{"id":"sprite-lit","ok":true,"href":"/examples/sprite-lit/","title":"Éclairage sprite","blurb":"Quatre quads sprite-lit et un cube PBR sous les mêmes lumières directionnelle, ponctuelle et spot."},{"id":"room","ok":true,"href":"/examples/room/","title":"Pièce","blurb":"Un petit intérieur — boîte, sphère et plan en scène imbriquée."},{"id":"triangle","ok":true,"href":"/examples/triangle/","title":"Bonjour Triangle","blurb":"Le pipeline WebGPU/WebGL2 minimal : un triangle, WGSL compilé par shader."},{"id":"cube","ok":true,"href":"/examples/cube/","title":"Cube","blurb":"Un cube éclairé qui tourne — premier maillage 3D via le chemin ECS."},{"id":"topology","ok":true,"href":"/examples/topology/","title":"Topologie primitive","blurb":"Points, lignes, bandes de lignes et triangles : les types primitifs dessinés par un GPU."},{"id":"transform-hierarchy","ok":true,"href":"/examples/transform-hierarchy/","title":"Transformer la hiérarchie","blurb":"Transformations parent/enfant – nœuds en orbite pilotés par un graphique de scène."},{"id":"gltf","ok":true,"href":"/examples/gltf/","title":"Modèle glTF","blurb":"Chargez et restituez un actif glTF 2.0 avec des matériaux PBR."},{"id":"multi-material","ok":true,"href":"/examples/multi-material/","title":"Maille multi-matériaux","blurb":"Un maillage, plusieurs sous-maillages, chacun avec son propre matériau et sa propre topologie."},{"id":"custom-shader","ok":true,"href":"/examples/custom-shader/","title":"Shader personnalisé","blurb":"Un shader de matériau personnalisé : une surface pulsée pilotée par votre propre WGSL."},{"id":"tilemap","ok":true,"href":"/examples/tilemap/","title":"Tilemap","blurb":"Tilemap 2D — caméra orthographique sur une couche de tuiles."},{"id":"tilemap-object-layer","ok":true,"href":"/examples/tilemap-object-layer/","title":"Objets tilemap","blurb":"Objets tuile par entité — arbres multi-cellules, flip/pivot et Y-sort de sprites."},{"id":"multi-world","ok":true,"href":"/examples/multi-world/","title":"Multi-monde","blurb":"Deux mondes ECS composés dans une frame — lumières et maillages fusionnent, caméra chez le owner."},{"id":"entity-visibility","ok":true,"href":"/examples/entity-visibility/","title":"Visibilité d’entité","blurb":"Masquer, hériter et forcer Visibility — un parent peut disparaître, l’enfant reste dessiné."},{"id":"picking","ok":true,"href":"/examples/picking/","title":"Sélection de GPU","blurb":"Cliquez pour sélectionner : l'identifiant d'objet par pixel est lu à partir du GPU."},{"id":"debug-draw","ok":true,"href":"/examples/debug-draw/","title":"Dessin de débogage","blurb":"Lignes et formes en mode immédiat pour visualiser une scène."},{"id":"culling","ok":true,"href":"/examples/culling/","title":"Abattage du tronc","blurb":"Seul ce que la caméra peut voir est dessiné : l’élimination des troncs au travail."},{"id":"level-switch","ok":true,"href":"/examples/level-switch/","title":"Commutation de niveau","blurb":"Basculez entre les niveaux au moment de l’exécution sans rechargement complet."},{"id":"character","ok":true,"href":"/examples/character/","title":"Contrôleur de perso","blurb":"WASD + capsule de saut — moveAndSlide cinématique dans le monde physique."},{"id":"shadow-opt-out","ok":true,"href":"/examples/shadow-opt-out/","title":"Ombres","blurb":"Ombres projetées en temps réel, avec désactivation par objet."},{"id":"fxaa","ok":true,"href":"/examples/fxaa/","title":"FXAA","blurb":"Anticrénelage approximatif rapide en tant que passe post-traitement."},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"Floraison","blurb":"Floraison HDR – passe-lumière + flou séparable + composite."},{"id":"tonemap","ok":true,"href":"/examples/tonemap/","title":"Carte des tons","blurb":"HDR à afficher — Opérateurs de cartographie tonale ACES / Reinhard."}];window.EX_NAV={"landing":"gltf-instancing"};</script>
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables. Open source, licence Apache 2.0.</p>
   </div>
-  <div class="col"><h4>Site</h4>
+  <nav class="foot-links" aria-label="Site">
     <a href="/fr/changelog/">Journal des modifications</a>
-    <a href="/fr/blog/">Blogue</a>
-    <a href="/fr/docs/">Documents</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
-    <a href="/fr/games/">Jeux</a>
-    <a href="/fr/marketplace/">Marché</a>
-  </div>
-  <div class="col"><h4>Projet</h4>
+    <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
     <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
-<script src="/assets/examples/app.js?v=177938ad"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
+<script src="/assets/examples/app.js?v=fccb28e6"></script>
 </body>
 </html>

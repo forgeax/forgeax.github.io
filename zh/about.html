@@ -23,38 +23,23 @@
 <link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/about.html" />
 <link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/about.html" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
-<link rel="stylesheet" href="/assets/about-evolution.css?v=d88d844b" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
-<body class="lang-zh forgeax-site about-page">
+<body class="lang-zh forgeax-site">
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>文档</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/zh/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>开发文档</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/zh/" data-nav="/">主页</a>
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
-      <a href="/zh/games/" data-nav="/games/">游戏</a>
-      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
-      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
       <a href="/zh/changelog/" data-nav="/changelog/">更新日志</a>
       <a href="/zh/about.html" data-nav="/about.html" class="active">关于</a>
     </div>
@@ -65,103 +50,29 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/about.html" data-l="en">English</a><a class="lang-item active" href="/zh/about.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/about.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/about.html" data-l="ko">한국어</a><a class="lang-item" href="/es/about.html" data-l="es">Español</a><a class="lang-item" href="/de/about.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/about.html" data-l="fr">Français</a><a class="lang-item" href="/pt/about.html" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
-          <button class="ask-item" id="copyMd">复制为 Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
     </div>
   </div>
 </nav>
 
 <main>
-  <section class="about-evolution" id="forgeax-evolution" data-stage="2"
-    style="--strength:.5;--stage-progress:.5"
-    data-loading="正在载入连续画面…"
-    data-ready="红色圆点是当前版本"
-    data-error="人物画面加载失败，请刷新重试">
-    <div class="about-evolution__masthead">
-      <div>
-        <p class="about-evolution__eyebrow">从想法到具现</p>
-        <h1>关于 ForgeaX</h1>
-        <p class="about-evolution__intro">为 AI 时代，做游戏开发的工具。</p>
-      </div>
-      <div class="about-evolution__meter" aria-live="polite">
-        <span>版本</span>
-        <output class="about-evolution__version" for="about-evolution-slider">3.5</output>
-      </div>
+  <div class="wrap page-head">
+    <h1>关于 ForgeaX</h1>
+    <p>为 AI 时代，做游戏开发的工具。</p>
+  </div>
+
+  <div class="read about-read">
+    <div class="read-tags" data-read-tags role="tablist" aria-label="阅读">
+      <a class="read-tag is-active" href="#intro" data-read-tag="intro" role="tab" aria-selected="true">介绍</a>
+      <a class="read-tag" href="#how-it-works" data-read-tag="how-it-works" role="tab" aria-selected="false">怎么工作</a>
+      <a class="read-tag" href="#inside" data-read-tag="inside" role="tab" aria-selected="false">里面有什么</a>
+      <a class="read-tag" href="#why-ai-native-engine" data-read-tag="why-ai-native-engine" role="tab" aria-selected="false">AI 原生引擎</a>
     </div>
 
-    <div class="about-evolution__portrait-zone" aria-labelledby="about-evolution-stage-label">
-      <p class="about-evolution__ghost" aria-hidden="true">3.0</p>
-      <div class="about-evolution__portrait">
-        <div class="about-evolution__halo" aria-hidden="true"></div>
-        <img class="about-evolution__poster" src="/assets/about/forgeax-evolution-3.5.jpg"
-          width="800" height="800" alt="" aria-hidden="true" fetchpriority="high">
-        <canvas class="about-evolution__canvas" width="800" height="800" aria-hidden="true"></canvas>
-        <video class="about-evolution__video" preload="auto" muted playsinline webkit-playsinline="true"
-          x5-playsinline="true" x5-video-player-type="h5-page" tabindex="-1" aria-hidden="true"
-          src="/assets/about/forgeax-evolution.mp4"></video>
-        <div class="about-evolution__loader" role="status" aria-label="正在载入连续画面…">
-          <span class="about-evolution__loader-orbit" aria-hidden="true"></span>
-          <span class="about-evolution__loader-ring" aria-hidden="true"></span>
-          <span class="about-evolution__loader-core" aria-hidden="true">×</span>
-        </div>
-        <div class="about-evolution__scan" aria-hidden="true"></div>
-        <span class="about-evolution__corner about-evolution__corner--tl" aria-hidden="true"></span>
-        <span class="about-evolution__corner about-evolution__corner--tr" aria-hidden="true"></span>
-        <span class="about-evolution__corner about-evolution__corner--bl" aria-hidden="true"></span>
-        <span class="about-evolution__corner about-evolution__corner--br" aria-hidden="true"></span>
-        <div class="about-evolution__load" role="status" hidden>正在载入连续画面…</div>
-      </div>
-      <div class="about-evolution__stage-readout">
-        <span id="about-evolution-stage-label">当前阶段</span>
-        <p class="about-evolution__stage">3.0</p>
-        <span class="about-evolution__stage-index">VER 3.0 / 6.0</span>
-      </div>
-    </div>
-
-    <div class="about-evolution__controls" aria-label="版本">
-      <p class="about-evolution__status" role="status">正在载入连续画面…</p>
-      <div class="about-evolution__range-wrap">
-        <div class="about-evolution__ticks" aria-hidden="true"></div>
-        <input id="about-evolution-slider" class="about-evolution__slider" type="range"
-          min="-15" max="15" step="0.01" value="0"
-          aria-label="版本" aria-valuetext="3.5">
-      </div>
-      <ol class="about-evolution__markers" aria-hidden="true">
-        <li class="is-passed">1.0</li><li class="is-passed">2.0</li><li class="is-current">3.0</li><li>4.0</li><li>5.0</li><li>6.0</li>
-      </ol>
-      <p class="about-evolution__hint"><span aria-hidden="true">←</span>拖动红色圆点，观看 ForgeaX 从 1.0 连续进化到 6.0。<span aria-hidden="true">→</span></p>
-      <a class="about-evolution__continue" href="#about-story">
-        <span class="about-evolution__continue-label">继续了解 ForgeaX</span>
-        <span class="about-evolution__continue-arrow" aria-hidden="true">↓</span>
-      </a>
-    </div>
-  </section>
-
-  <article class="read article about-story" id="about-story">
-    <div class="prose">
+    <article class="read-panel is-active prose" id="intro" data-read-panel="intro">
       <p>ForgeaX 是一个 <strong>AI 原生的个人游戏工作室</strong>。我们相信：做游戏的门槛，正在被 AI 重新定义。</p>
       <p>我们的愿景很直接 —— <strong>让更小的团队，借助 AI，做出过去需要更大团队才能完成的游戏。</strong>不是取代创作者，而是把"把想法变成可玩游戏"中间那一大段繁重的工程与制作，交给 AI 去扛。</p>
-
-      <h2>它怎么工作</h2>
-      <p>你在工作室里向一个叫 Forge 的 AI 主创描述你想要的游戏 —— 可以用对话，也可以在可视化编辑器里直接动手，未来还会支持图片、视频等更多输入。它会规划、必要时叫上各司其职的子 agent（玩法、设计、美术……），然后<strong>自己编写引擎代码</strong>，结果实时热重载到浏览器预览里。</p>
-      <p>这背后有两块自研的底座：一个<strong>为 AI 视角重新设计的游戏引擎</strong>（让 AI 读得懂、写得动、错得明白），和一套<strong>引导 AI 持续收敛到正确结果的开发流程</strong>（需求进、可玩产物出，中间每一步可观测、可回溯）。</p>
-
-      <h2>里面有什么</h2>
-      <p>四块东西协同工作：</p>
-      <ul>
-        <li><strong>一个 AI 原生引擎</strong> —— TypeScript 写的 ECS 引擎，双 RHI 渲染（WebGPU + 一套 wasm 后端）、PBR/IBL/SSAO 渲染、2D/3D 物理、glTF/FBX 资产与骨骼动画。它的 API、错误与状态都为 AI 读写而设计。</li>
-        <li><strong>自进化开发闭环（ForgeaX closed loop）</strong> —— 七步闭环（需求 → 研究 → 计划 → 实现 → 验证 → 验收 → 合入），由编排者驱动一组角色化子 agent，内置 AI 评审与"真跑 + 截图"的沙箱验证；它吃自己的反馈持续进化，越跑越稳。</li>
-        <li><strong>AI 原生玩法</strong> —— 不止用 AI 做游戏，还支持把 AI 做进玩法本身：智能 NPC、生成式内容、可交互的 AI 体验。</li>
-        <li><strong>工作室与编辑器</strong> —— 对话区紧挨实时预览，可视化场景编辑器的改动直接回流到运行中的游戏；网页或桌面应用皆可。</li>
-        <li><strong>Agent 团队与创作工具</strong> —— 制作、玩法、设计、叙事、美术、编码各有命名 agent；还有一整套工作台插件，生成角色、动画、3D 模型、特效、UI、音乐等。</li>
-      </ul>
 
       <h2>我们走在哪一步</h2>
       <p>当前阶段是 <strong>用 AI 把想法做成可玩游戏</strong>：已经能在工作室里做出 FPS、ARPG、生存、射击等多款可玩 demo，引擎覆盖了 PBR 渲染、物理、骨骼动画等能力。这一阶段会持续打磨，把"AI 写出能出货的游戏"推进到更高的完成度。</p>
@@ -170,12 +81,68 @@
       <p>ForgeaX 的工具层采用 <strong>Apache License 2.0</strong> —— 任何人都可以自由 fork、使用、商用与二次发布。我们希望它成为一个开放、可被社区共建的项目。详见 <a href="/zh/license.html">版权说明</a>。</p>
 
       <blockquote class="manifest-line">让更小的团队，做出更大的游戏。</blockquote>
-    </div>
+    </article>
+
+    <article class="read-panel prose" id="how-it-works" data-read-panel="how-it-works" data-read-alias="how-the-loop-works">
+      <p>你在工作室里向一个叫 Forge 的 AI 主创描述你想要的游戏 —— 可以用对话，也可以在可视化编辑器里直接动手，未来还会支持图片、视频等更多输入。它会规划、必要时叫上各司其职的子 agent（玩法、设计、美术……），然后<strong>自己编写引擎代码</strong>，结果实时热重载到浏览器预览里。</p>
+      <p>这背后有两块自研的底座：一个<strong>为 AI 视角重新设计的游戏引擎</strong>（让 AI 读得懂、写得动、错得明白），和一套<strong>引导 AI 持续收敛到正确结果的开发流程</strong>（需求进、可玩产物出，中间每一步可观测、可回溯）。</p>
+      <div id="how-the-loop-works"><h2>七步闭环</h2>
+<p>在引擎内部，每个功能都经过同一条流水线 —— 需求进、可用产物出，中间每一步都留下可读的记录：</p>
+<ol>
+<li><strong>需求</strong> —— 把要做什么写清楚，带验收标准。</li>
+<li><strong>研究</strong> —— 查历史、约束与可选方案。</li>
+<li><strong>计划</strong> —— 定策略，拆成可执行任务。</li>
+<li><strong>实现</strong> —— 写代码 + 测试。</li>
+<li><strong>验证</strong> —— 多方独立检查，任一不过就拦下。</li>
+<li><strong>验收</strong> —— 人来把最后一关。</li>
+<li><strong>合入</strong> —— 通过后并进主干。</li>
+</ol>
+<h2>编排者 + 子 agent</h2>
+<p>一个&quot;编排者&quot;推进这条状态机，决定每一步派哪个子 agent、并检查它的产物；子 agent 各有角色、各自独立上下文。人类只在两个出入点注入判断：<strong>提需求</strong>和<strong>做验收</strong>。</p>
+<h2>不让&quot;看起来过了&quot;溜过去</h2>
+<p>验证步里有两道 AI 关卡：一个以 AI 用户视角静态扫文档与 API，抓&quot;承诺了却没实现&quot;；另一个在隔离沙箱里真跑 demo、截图，再回头核对画面对不对 —— 防止&quot;测试假绿、画面却是黑的&quot;。</p>
+<h2>越跑越稳</h2>
+<p>每个功能跑完，过程里遇到的痛点会沉淀成反馈，反过来升级流水线本身。下一个功能自动用上更新后的版本 —— 流水线吃自己的产物，越跑越懂。</p>
+<blockquote>
+<p>结果是：AI 写出来的不是&quot;demo 级&quot;代码，而是经过验证、可重放、能被人接手的功能。</p>
+</blockquote>
+</div>
+    </article>
+
+    <article class="read-panel prose" id="inside" data-read-panel="inside">
+      <p>四块东西协同工作：</p>
+      <ul>
+        <li><strong>一个 AI 原生引擎</strong> —— TypeScript 写的 ECS 引擎，双 RHI 渲染（WebGPU + 一套 wasm 后端）、PBR/IBL/SSAO 渲染、2D/3D 物理、glTF/FBX 资产与骨骼动画。它的 API、错误与状态都为 AI 读写而设计。</li>
+        <li><strong>自进化开发闭环（ForgeaX closed loop）</strong> —— 七步闭环（需求 → 研究 → 计划 → 实现 → 验证 → 验收 → 合入），由编排者驱动一组角色化子 agent，内置 AI 评审与"真跑 + 截图"的沙箱验证；它吃自己的反馈持续进化，越跑越稳。</li>
+        <li><strong>AI 原生玩法</strong> —— 不止用 AI 做游戏，还支持把 AI 做进玩法本身：智能 NPC、生成式内容、可交互的 AI 体验。</li>
+        <li><strong>工作室与编辑器</strong> —— 对话区紧挨实时预览，可视化场景编辑器的改动直接回流到运行中的游戏；网页或桌面应用皆可。</li>
+        <li><strong>Agent 团队与创作工具</strong> —— 制作、玩法、设计、叙事、美术、编码各有命名 agent；还有一整套工作台插件，生成角色、动画、3D 模型、特效、UI、音乐等。</li>
+      </ul>
+    </article>
+
+    <article class="read-panel prose" id="why-ai-native-engine" data-read-panel="why-ai-native-engine">
+      <p class="standfirst">大多数游戏引擎的 API 是给人写的。当写代码的主力变成 AI，引擎就该换一种长法。</p>
+      <p>ForgeaX 的核心是：用户描述游戏，AI 来写引擎代码。这听起来只是&quot;换个人写代码&quot;，但真正做下去会发现，现成引擎对 AI 并不友好 —— 它们假设的读者是一个能看文档、能猜、能脑补上下文的人类。</p>
+<p>我们的取舍很简单：<strong>AI 是引擎的第一用户。当&quot;对 AI 友好&quot;和&quot;对人友好&quot;冲突时，优先 AI。</strong> 下面是几个具体的做法。</p>
+<h2>一、单一可信源，其余派生</h2>
+<p>同一个事实只有一处定义，其他地方都从它派生。比如组件的字段定义内联在 schema 里，inspector、调试器、工具链直接读 schema，而不是去 grep 源码瞎猜。AI 不需要&quot;记住&quot;散落各处的约定，因为约定只有一处。</p>
+<h2>二、错误要让 AI 看得懂、能恢复</h2>
+<p>错误不是 <code>throw</code> 一句人话就完事。我们用闭包的错误码，每个错误自带&quot;这是什么、为什么、怎么恢复&quot;的结构化信息。AI 拿到错误，能直接知道下一步该改哪里，而不是把异常文本当成玄学。</p>
+<h2>三、用结构化数据代替&quot;看显示器&quot;</h2>
+<p>渲染 bug 最难的地方在于&quot;它在屏幕上看起来不对&quot;。人可以盯着显示器调，AI 不行。所以引擎支持把一帧的渲染调用录下来 —— draw call、绑定、渲染目标、管线状态都能离线读取、重放、定位到第 N 次绘制时的完整状态。视觉问题被转成了 AI 能 <code>Read</code> 的数据。</p>
+<h2>四、双实现互相验证</h2>
+<p>渲染层有两套后端实现（WebGPU 与一套 wasm 实现），走同一套接口。它们同时出图：一旦 AI 把引擎 API 用错了，另一套后端会立刻表现出不一致，问题随即暴露。这比&quot;等人来 review&quot;快得多。</p>
+<hr>
+<p>这些设计有一个共同的衡量标准：<strong>读者（无论人还是 AI）要装进脑子里的概念越少越好。</strong> API 越自洽、越能就地索引，AI 写对的概率就越高，人来接手时也越省心。</p>
+<p>AI 原生不是一句口号，而是一连串&quot;为 AI 视角重做一遍&quot;的具体决定。我们会在文档和后续更新里，把这些逐步展开。</p>
+
+    </article>
+
     <p class="cta-row">
       <a class="btn primary" href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">在 GitHub 关注我们</a>
       <a class="btn ghost" href="/zh/showcase/">看看案例</a>
     </p>
-  </article>
+  </div>
 
   <section class="wrap section">
     <h2>项目仓库</h2>
@@ -210,25 +177,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
   </div>
-  <div class="col"><h4>站点</h4>
+  <nav class="foot-links" aria-label="站点">
     <a href="/zh/changelog/">更新日志</a>
-    <a href="/zh/blog/">观点</a>
-    <a href="/zh/docs/">开发文档</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
-    <a href="/zh/games/">游戏</a>
-    <a href="/zh/marketplace/">插件市场</a>
-  </div>
-  <div class="col"><h4>项目</h4>
+    <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
     <a href="/zh/about.html">关于 / 愿景</a>
     <a href="/zh/license.html">版权说明</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
-<script src="/assets/about-evolution.js?v=6249c7fb"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

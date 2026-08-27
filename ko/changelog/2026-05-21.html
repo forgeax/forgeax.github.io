@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-ko forgeax-site">
@@ -36,24 +36,10 @@
     <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>문서</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/ko/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>문서</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/ko/" data-nav="/">홈</a>
       <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
       <a href="/ko/examples/" data-nav="/examples/">예</a>
-      <a href="/ko/games/" data-nav="/games/">계략</a>
-      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
-      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">플러그인</a>
       <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
       <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
     </div>
@@ -64,15 +50,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-21.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-21.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-21.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-05-21.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-05-21.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-21.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-21.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-21.html" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
-          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">다운로드</a>
     </div>
   </div>
 </nav>
@@ -80,7 +59,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/ko/changelog/">← 변경 내역</a>
-    <div class="meta"><span class="tag brand">일일</span><span>2026-05-21</span></div>
+    <div class="meta"><span class="tag brand">업데이트</span><span>2026-05-21</span></div>
     <h1>새로워진 인터페이스 + 내장형 워크벤치</h1>
     <p class="standfirst">이날 인터페이스는 통합 디자인 시스템, 전체 아이콘 세트, 부드러운 모션, 새로운 미리보기 셸 등 시스템 수준에서 새로워졌습니다. 워크벤치는 처음으로 전체 임베디드 도구 창을 호스팅하는 &quot;분할 표면 플러그인&quot; 아키텍처를 확장했습니다. 대시보드는 세션 중심으로 재작성되었으며 채팅 스트림 교차가 중단되었습니다. 엔진에는 2D 스프라이트 레이어와 전체 조명 예제 세트가 추가되었으며 시작/중지가 하나의 명령으로 단순화되었습니다.</p>
     <div class="prose"><h2>프로토타입 느낌부터 제품 느낌까지</h2>
@@ -98,7 +77,7 @@
 <h2>오늘의 의미</h2>
 <p>제품의 &#39;외관&#39;과 &#39;골격&#39;이 한번에 업그레이드되는 날이었습니다. 시각적 새로 고침으로 완제품처럼 보이고, 분할 표면 작업대를 통해 타사 도구를 실제로 이동할 수 있으며, 깔끔한 대시보드와 교차하지 않는 채팅을 통해 일상적인 사용을 방해받지 않고 유지할 수 있으며, 엔진의 2D 레이어 및 조명 예제가 기능을 더욱 완벽하게 만들고, 단순화된 설치를 통해 더 많은 사람들이 문을 통과할 수 있습니다. 이러한 변화는 보기 좋고, 사용 가능하고, 확장 가능하고, 접근하기 쉽다는 네 가지 차원에 걸쳐 있지만, 한 가지 중요한 점은 플랫폼을 적절한 도구로 장기적으로 사용할 가치가 있게 만드는 것입니다. &quot;실행 가능한 프로토타입&quot;과 &quot;매일 열어보고 싶은 도구&quot; 사이에는 킬러 기능이 아니라 정확히 하루 종일 여러 차원에 걸쳐 거친 부분을 다듬어 세련미로 만드는 작업이 있는 경우가 많습니다.</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 일일 업데이트</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 업데이트</a></p>
   </article>
 </main>
 
@@ -107,24 +86,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
   </div>
-  <div class="col"><h4>대지</h4>
+  <nav class="foot-links" aria-label="대지">
     <a href="/ko/changelog/">변경 내역</a>
-    <a href="/ko/blog/">블로그</a>
-    <a href="/ko/docs/">문서</a>
     <a href="/ko/tutorials/">튜토리얼</a>
     <a href="/ko/examples/">예</a>
-    <a href="/ko/games/">계략</a>
-    <a href="/ko/marketplace/">시장</a>
-  </div>
-  <div class="col"><h4>프로젝트</h4>
+    <a href="/ko/marketplace/">플러그인</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
     <a href="/ko/about.html">에 대한</a>
     <a href="/ko/license.html">특허</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

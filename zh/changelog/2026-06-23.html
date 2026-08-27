@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -36,24 +36,10 @@
     <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>文档</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/zh/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>开发文档</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/zh/" data-nav="/">主页</a>
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
-      <a href="/zh/games/" data-nav="/games/">游戏</a>
-      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
-      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
       <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
       <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
@@ -64,15 +50,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-23.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-23.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-23.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-23.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-23.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-23.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-23.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-23.html" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
-          <button class="ask-item" id="copyMd">复制为 Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
     </div>
   </div>
 </nav>
@@ -80,7 +59,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/zh/changelog/">← 更新日志</a>
-    <div class="meta"><span class="tag brand">每日</span><span>2026-06-23</span></div>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-23</span></div>
     <h1>资产检视器 + 切换不再卡顿 + Windows 兼容</h1>
     <p class="standfirst">开源发布之后,这天是一轮扎实的打磨与硬化:编辑器新增了覆盖所有资产类型的检视器;在场景之间、编辑与试玩之间切换不再冷重启渲染器、不再黑屏卡顿;一批 Windows 兼容问题被扫清;引擎学会了从设备掉线中自愈、在受限环境下优雅降级;载入期还加了自动合约校验,终端版也补上了检查点回退。</p>
     <div class="prose"><h2>发布之后,转身打磨</h2>
@@ -100,7 +79,7 @@
 <h2>这一天意味着什么</h2>
 <p>如果说前一天的开源发布是&quot;把门打开、请人进来&quot;,那这一天就是&quot;把屋里收拾得让人住得舒服&quot;。它没有惊天动地的新功能,通篇都是打磨与硬化:让你看清每一份资产、让切换不再卡你一下、让 Windows 用户进得了门、让引擎在意外面前扛得住、让 AI 的代码错不出门、让多 agent 协作清楚可控。这些事的共同指向,是&quot;可用性&quot;和&quot;可靠性&quot;——而这恰恰是一个刚刚迎来大量新用户的项目,最需要立刻补强的两件事。新用户不会因为某个炫目功能而留下,却很可能因为一次卡顿、一次崩溃、一次在 Windows 上跑不起来而转身离开。把这些不起眼的体验和稳定性问题一个个解决掉,看似平淡,实则是在为开源之后接踵而来的真实使用,把地基夯得更实。发布是起点,而不是终点;这一天,正是认真对待&quot;被人真正用起来&quot;这件事的开始。</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 看全部每日更新</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/zh/changelog/">← 查看全部更新</a></p>
   </article>
 </main>
 
@@ -109,24 +88,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
   </div>
-  <div class="col"><h4>站点</h4>
+  <nav class="foot-links" aria-label="站点">
     <a href="/zh/changelog/">更新日志</a>
-    <a href="/zh/blog/">观点</a>
-    <a href="/zh/docs/">开发文档</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
-    <a href="/zh/games/">游戏</a>
-    <a href="/zh/marketplace/">插件市场</a>
-  </div>
-  <div class="col"><h4>项目</h4>
+    <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
     <a href="/zh/about.html">关于 / 愿景</a>
     <a href="/zh/license.html">版权说明</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

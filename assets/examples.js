@@ -11,7 +11,6 @@
   var frame = document.getElementById("exFrame");
   var frameWrap = document.querySelector(".ex-frame-wrap");
   var titleEl = document.getElementById("exTitle");
-  var openEl = document.getElementById("exOpen");
   var list = document.getElementById("exList");
   if (!frame || !list) return;
 
@@ -25,9 +24,6 @@
   }
   function bi(zh, en) {
     return '<span data-lang="zh">' + esc(zh) + '</span><span data-lang="en">' + esc(en) + '</span>';
-  }
-  function visibleItems() {
-    return items.filter(function (it) { return it.style.display !== "none" && !it.classList.contains("is-disabled"); });
   }
   function setLoading(on) {
     if (frameWrap) frameWrap.classList.toggle("is-loading", !!on);
@@ -45,7 +41,6 @@
       titleEl.innerHTML = bi(e.title.zh, e.title.en) + '<small>' + bi(e.blurb.zh, e.blurb.en) + '</small>';
       if (window.forgeaxApplyI18n) window.forgeaxApplyI18n(titleEl);
     }
-    if (openEl) openEl.href = e.href;
     items.forEach(function (it) { it.classList.toggle("is-active", it.getAttribute("data-id") === id); });
     var act = list.querySelector(".ex-item.is-active");
     if (act && act.scrollIntoView) act.scrollIntoView({ block: "nearest" });
@@ -63,30 +58,6 @@
       select(it.getAttribute("data-id"), true);
     });
   });
-
-  var filter = document.getElementById("exFilter");
-  if (filter) {
-    filter.addEventListener("input", function () {
-      var q = this.value.trim().toLowerCase();
-      items.forEach(function (it) {
-        var hay = (it.textContent + " " + it.getAttribute("data-id")).toLowerCase();
-        it.style.display = (!q || hay.indexOf(q) >= 0) ? "" : "none";
-      });
-    });
-    filter.addEventListener("keydown", function (ev) {
-      if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
-        ev.preventDefault();
-        var vis = visibleItems();
-        if (!vis.length) return;
-        var idx = vis.findIndex(function (it) { return it.getAttribute("data-id") === activeId; });
-        if (idx < 0) idx = 0;
-        else if (ev.key === "ArrowDown") idx = Math.min(idx + 1, vis.length - 1);
-        else idx = Math.max(idx - 1, 0);
-        select(vis[idx].getAttribute("data-id"), true);
-      }
-      if (ev.key === "Enter" && activeId) select(activeId, true);
-    });
-  }
 
   var firstOk = EX.filter(function (e) { return e.ok; })[0];
   var hashId = (location.hash || "").replace("#", "");

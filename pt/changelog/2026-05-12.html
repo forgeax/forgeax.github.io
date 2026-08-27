@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-pt forgeax-site">
@@ -36,24 +36,10 @@
     <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Documentos</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/pt/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Documentos</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/pt/" data-nav="/">Início</a>
       <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
       <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
-      <a href="/pt/games/" data-nav="/games/">Jogos</a>
-      <a href="/pt/marketplace/" data-nav="/marketplace/">Mercado</a>
-      <a href="/pt/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
       <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
     </div>
@@ -64,15 +50,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-12.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-12.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-12.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-12.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-05-12.html" data-l="pt" aria-current="true">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pergunte à IA</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir no ChatGPT</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Aberto em Claude</a>
-          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
     </div>
   </div>
 </nav>
@@ -80,7 +59,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/pt/changelog/">← Registro de alterações</a>
-    <div class="meta"><span class="tag brand">Diário</span><span>2026-05-12</span></div>
+    <div class="meta"><span class="tag brand">Atualização</span><span>2026-05-12</span></div>
     <h1>Sistema de ativos do mecanismo v1 + polimento de bate-papo profundo</h1>
     <p class="standfirst">Um impulso 24 horas por dia em quatro trilhas paralelas: o mecanismo recebeu um sistema de ativos adequado, a renderização aumentou um padrão de qualidade de &quot;paridade de pixel&quot; bloqueado no CI, a sandbox permitiu ao agente &quot;ver&quot; se a imagem está correta, o painel de bate-papo precisou de cem passes de polimento, o backend realizou testes pesados ​​em torno de segurança e contratos, e um grande refator finalmente tornou o hot-reload da interface independente.</p>
     <div class="prose"><h2>Quatro faixas num dia: o panorama do dia</h2>
@@ -102,7 +81,7 @@
 <h2>O que este dia significa</h2>
 <p>Se os dias anteriores provaram que “a conversa pode construir algo executável”, este dia lançou as bases para “isso pode ser feito de forma confiável e de longo prazo”. O sistema de ativos permite que o conteúdo seja gerenciado estruturalmente; o benchmark de paridade de pixels e a verificação visual do sandbox fornecem um juiz objetivo de &quot;a imagem está correta&quot;; a segurança e os testes do back-end tornam confiável “deixar a IA agir”; o polimento do chat faz com que as pessoas queiram usá-lo diariamente; e o refatorador de fechamento mantém tudo limpo em termos de engenharia. Juntos, eles revelam uma postura: avançar rapidamente, mas deixar a cada passo um rastro sólido que pode ser verificado, regredido e retrospectivo. Esse é exatamente o modelo que este log quer deixar para o desenvolvimento futuro – velocidade e rigor não são um ou outro, mas duas coisas que podem ser alcançadas no mesmo dia.</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações diárias</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações</a></p>
   </article>
 </main>
 
@@ -111,24 +90,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis. Código aberto, licença Apache 2.0.</p>
   </div>
-  <div class="col"><h4>Site</h4>
+  <nav class="foot-links" aria-label="Site">
     <a href="/pt/changelog/">Registro de alterações</a>
-    <a href="/pt/blog/">Blogue</a>
-    <a href="/pt/docs/">Documentos</a>
     <a href="/pt/tutorials/">Tutoriais</a>
     <a href="/pt/examples/">Exemplos</a>
-    <a href="/pt/games/">Jogos</a>
-    <a href="/pt/marketplace/">Mercado</a>
-  </div>
-  <div class="col"><h4>Projeto</h4>
+    <a href="/pt/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
     <a href="/pt/about.html">Sobre</a>
     <a href="/pt/license.html">Licença</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

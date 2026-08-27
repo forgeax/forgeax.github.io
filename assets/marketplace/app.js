@@ -1,33 +1,30 @@
 /* Marketplace interactions — single-language build.
  * Data (window.MK_DATA) and UI labels (window.MK_UI) are injected per-language at build
  * time, so there is no runtime i18n here: every string is already resolved for this page's
- * language. This file owns: kind/search filtering, the plugin detail modal (built from the
+ * language. This file owns: kind filtering, the plugin detail modal (built from the
  * flat MK_DATA), and the looping agent idle avatars. */
 (function () {
   var DATA = window.MK_DATA || {};
   var UI = window.MK_UI || {};
   var REPO_ROOT = "https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins";
 
-  // ── kind + search filter ──
+  // ── kind filter ──
   (function () {
     var tabs = [].slice.call(document.querySelectorAll(".mk-tab"));
     var items = [].slice.call(document.querySelectorAll(".mk-item"));
-    var search = document.getElementById("mkSearch");
     var count = document.getElementById("mkCount");
     var empty = document.getElementById("mkEmpty");
-    var kind = "all";
+    var kind = "workbench";
     var rowbreak = document.querySelector(".mk-rowbreak");
     function apply() {
-      var q = (search && search.value || "").trim().toLowerCase();
       var n = 0;
       items.forEach(function (it) {
-        var okKind = kind === "all" || it.getAttribute("data-kind") === kind;
-        var okQ = !q || (it.getAttribute("data-search") || "").indexOf(q) >= 0 || it.textContent.toLowerCase().indexOf(q) >= 0;
-        var show = okKind && okQ;
+        var okKind = it.getAttribute("data-kind") === kind;
+        var show = okKind;
         it.classList.toggle("hide", !show);
         if (show) n++;
       });
-      if (rowbreak) rowbreak.classList.toggle("hide", kind !== "all" && kind !== "agent");
+      if (rowbreak) rowbreak.classList.toggle("hide", kind !== "agent");
       if (count) count.textContent = n + " / " + items.length;
       if (empty) empty.style.display = n ? "none" : "block";
     }
@@ -39,7 +36,6 @@
         apply();
       });
     });
-    if (search) search.addEventListener("input", apply);
     apply();
   })();
 

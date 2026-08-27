@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Registro de cambios - ForgeaX</title>
-<meta name="description" content="Registro de desarrollo diario de ForgeaX: cada día es su propia página de características e implementación." />
+<meta name="description" content="Actualizaciones importantes de ForgeaX agrupadas por etapa para ver rápidamente qué ha mejorado." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="Registro de cambios - ForgeaX" />
-<meta property="og:description" content="Registro de desarrollo diario de ForgeaX: cada día es su propia página de características e implementación." />
+<meta property="og:description" content="Actualizaciones importantes de ForgeaX agrupadas por etapa para ver rápidamente qué ha mejorado." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/es/changelog/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -25,17 +25,26 @@
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
 <style>
   .cl-list{max-width:760px;margin:0 auto;padding-top:8px}
-  .cl-row{display:block;text-decoration:none;color:inherit;padding:16px 0;border-bottom:1px solid var(--border-subtle)}
+  .cl-group{border-bottom:1px solid var(--border-subtle)}
+  .cl-row{display:block;list-style:none;text-decoration:none;color:inherit;padding:18px 0;cursor:pointer}
+  .cl-row::-webkit-details-marker{display:none}
   .cl-row:hover .cl-row-title{color:var(--brand)}
   .cl-row-meta{display:flex;align-items:baseline;gap:12px}
   .cl-date{font-family:var(--font-mono);font-size:13px;color:var(--text-tertiary)}
+  .cl-count{font-size:12px;color:var(--text-tertiary)}
   .cl-ver{font-family:var(--font-mono);font-size:11px;color:var(--brand);border:1px solid rgba(212,255,72,.35);background:rgba(212,255,72,.10);border-radius:999px;padding:1px 8px}
-  .cl-row-title{font-size:17px;font-weight:700;margin:6px 0 0;transition:color .15s}
+  .cl-row-title{display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:17px;font-weight:700;margin:6px 0 0;transition:color .15s}
+  .cl-chevron{color:var(--text-tertiary);font-size:20px;line-height:1;transition:transform .15s}
+  .cl-group[open] .cl-chevron{transform:rotate(180deg)}
+  .cl-group-days{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 0 16px}
+  .cl-group-link{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--border-subtle);border-radius:var(--radius-md);color:var(--text-secondary);text-decoration:none;font-size:13px}
+  .cl-group-link:hover{color:var(--text-primary);border-color:var(--border-strong);background:var(--bg-elevated)}
+  @media(max-width:640px){.cl-group-days{grid-template-columns:1fr}}
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-es forgeax-site">
@@ -45,24 +54,10 @@
     <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Documentos</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/es/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Documentos</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/es/" data-nav="/">Inicio</a>
       <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
       <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
-      <a href="/es/games/" data-nav="/games/">Juegos</a>
-      <a href="/es/marketplace/" data-nav="/marketplace/">Mercado</a>
-      <a href="/es/blog/" data-nav="/blog/">Blog</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
       <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
     </div>
@@ -73,15 +68,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/" data-l="en">English</a><a class="lang-item" href="/zh/changelog/" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Pregúntale a la IA</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Abrir en ChatGPT</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Abierto en Claude</a>
-          <button class="ask-item" id="copyMd">Copiar página como Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
     </div>
   </div>
 </nav>
@@ -89,309 +77,145 @@
 <main class="wrap">
   <div class="page-head">
     <h1>Registro de cambios</h1>
-    <p>Este es el registro día a día de la construcción de ForgeaX. El motor y la plataforma están escritos casi en su totalidad por IA en un ciclo de desarrollo autónomo, y este es su objetivo.<b>memoria de desarrollo a largo plazo</b>: una página por día de las funciones que lanzó y cómo las creó.</p>
+    <p>Los cambios útiles de cada etapa de ForgeaX. Las actualizaciones pequeñas relacionadas se agrupan para mostrar rápidamente qué ha mejorado.</p>
   </div>
   <div class="cl-list">
-    <a class="cl-row" href="/es/changelog/2026-08-19.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-08-19</span><span class="cl-ver">1.2.1</span></div>
-      <div class="cl-row-title">Hellforge 1.2.1: cursor visible y una demo pública más clara</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-08-13.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-08-13</span><span class="cl-ver">0.3.27</span></div>
-      <div class="cl-row-title">ForgeaX Studio v0.3.27: configuración más estable, más previsualizaciones y paquetes Game Runtime independientes</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-08-06.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-08-06</span><span class="cl-ver">0.3.24</span></div>
-      <div class="cl-row-title">Control del editor con IA, flujos de vídeo y un Studio renovado</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-08-01.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-08-01</span><span class="cl-ver">0.3.23</span></div>
-      <div class="cl-row-title">Flujo de Asset Canvas, creación de escenas mejorada y estabilidad de escritorio</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-28.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-28</span></div>
-      <div class="cl-row-title">Editor de materiales, gizmo local, multi-selección y estabilidad del modo Play</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-24.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-24</span><span class="cl-ver">0.3.22</span></div>
-      <div class="cl-row-title">v0.3.22 — Correcciones de modo Play y pantalla en blanco, UX del editor, contribuciones de paneles, recursos de vídeo</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-22.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-22</span><span class="cl-ver">0.3.21</span></div>
-      <div class="cl-row-title">v0.3.21 — Corrección de congelamiento en modo Play, pantalla en blanco al crear juego, dependencia CLI zod</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-17.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-17</span></div>
-      <div class="cl-row-title">AnimationPlayer automático en modelos con skin, priors visuales generativos y subida de workspace</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-16.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-16</span></div>
-      <div class="cl-row-title">Cámara estilo UE5 en vuelo, proyección de acciones de juego y estabilidad del viewport</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-15.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-15</span><span class="cl-ver">0.3.18</span></div>
-      <div class="cl-row-title">Control de entrada en Play, UI de materiales MeshRenderer y selección de personaje en Hellforge</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-14.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-14</span></div>
-      <div class="cl-row-title">Overlay de depuración de colisionadores, assets más seguros e importación de assets IA al juego</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-13.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-13</span><span class="cl-ver">0.3.17</span></div>
-      <div class="cl-row-title">Inicio de proyectos más rápido, Play más sólido y onboarding mejorado</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-12.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-12</span><span class="cl-ver">0.3.16</span></div>
-      <div class="cl-row-title">Runtime Tier 2 del motor + editor single-realm + superficie Gateway + plugins residentes en activos</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-10.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-10</span><span class="cl-ver">0.3.15</span></div>
-      <div class="cl-row-title">Runtime Tier 2 + limpieza del editor + APIs de assets/componentes de Gateway + plugins de assets integrados</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-09.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-09</span><span class="cl-ver">0.3.14</span></div>
-      <div class="cl-row-title">Arquitectura de host de plugins + correcciones del modo Play + reenvío de atajos de teclado + línea de tiempo QTE de video de juego</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-08.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-08</span><span class="cl-ver">0.3.13</span></div>
-      <div class="cl-row-title">Renovación del Gizmo del viewport + pegado de imágenes en Composer + i18n de personas Agent + exportación iOS</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-07.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-07</span><span class="cl-ver">0.3.12</span></div>
-      <div class="cl-row-title">Selección múltiple en Hierarchy + capa de operación semántica IA + correcciones de estabilidad del editor</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-06.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-06</span><span class="cl-ver">0.3.11</span></div>
-      <div class="cl-row-title">Caché de consultas ECS + gizmos de viewport impulsados por GPU + fx-math independiente</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-04.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-04</span><span class="cl-ver">0.3.10</span></div>
-      <div class="cl-row-title">Correcciones de generación 3D + i18n de workbench + terminal TUI del agente</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-03.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-03</span></div>
-      <div class="cl-row-title">Modo Play de Windows estabilizado + proxy de depuración LLM para desarrolladores</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-02.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-02</span></div>
-      <div class="cl-row-title">Forge adquiere memoria a largo plazo: cuanto más hablas, más sabe</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-07-01.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-01</span></div>
-      <div class="cl-row-title">R4 frontend lands + rediseño de ventana gráfica 2×2</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-30.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-30</span></div>
-      <div class="cl-row-title">Arquitectura desagregada: cuatro módulos frontales se vuelven independientes + espejo OSS reforzado</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-29.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-29</span></div>
-      <div class="cl-row-title">Forge aprende a trabajar en equipo: muchos agentes a la vez</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-28.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-28</span></div>
-      <div class="cl-row-title">Un comando, ahora también en Windows</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-27.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-27</span></div>
-      <div class="cl-row-title">Un plan de nivel UE5 para el navegador de contenido y arrastrar a escena, además de una puerta de control de calidad del editor</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-26.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-26</span></div>
-      <div class="cl-row-title">Observabilidad de cadena completa: vea dónde es lento de un vistazo</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-25.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-25</span><span class="cl-ver">v0.2.0</span></div>
-      <div class="cl-row-title">Abra un proyecto y simplemente se renderizará y los agentes obtendrán memoria a largo plazo.</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-24.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-24</span></div>
-      <div class="cl-row-title">Un nuevo navegador de activos + incorporación de primera ejecución más fluida</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-23.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-23</span></div>
-      <div class="cl-row-title">Un inspector de activos + cambio sin bloqueo + soporte para Windows</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-22.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-22</span></div>
-      <div class="cl-row-title">El proyecto se vuelve de código abierto + la aplicación de escritorio deja de fallar</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-21.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-21</span></div>
-      <div class="cl-row-title">El 3D generado se manipula y anima + control de calidad del editor automatizado</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-20.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-20</span></div>
-      <div class="cl-row-title">UI bilingüe completa + paneles completos de herramientas de desarrollo</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-19.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-19</span></div>
-      <div class="cl-row-title">Endurecimiento del escritorio: los juegos ya no se atascan al cargar</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-18.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-18</span></div>
-      <div class="cl-row-title">Avatares de agentes animados + una fuente de verdad para los datos del proyecto</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-17.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-17</span></div>
-      <div class="cl-row-title">Movimiento de deslizamiento a lo largo de las paredes + un editor independiente maduro</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-16.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-16</span></div>
-      <div class="cl-row-title">Los personajes finalmente proyectan sombras + un editor totalmente independiente</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-15.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-15</span></div>
-      <div class="cl-row-title">Una muestra de ARPG de fantasía oscura + sube un modelo y úsalo</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-14.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-14</span></div>
-      <div class="cl-row-title">Los efectos dejan de blanquear + caminar y saltar en escenas importadas</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-13.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-13</span></div>
-      <div class="cl-row-title">Múltiples niveles por proyecto + una actualización del sistema en la sombra</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-12.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-12</span></div>
-      <div class="cl-row-title">Los personajes realmente se animan + un chat más estable</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-11.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-11</span></div>
-      <div class="cl-row-title">Texto a 3D llega a tu juego + los agentes verifican antes de continuar</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-10.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-10</span></div>
-      <div class="cl-row-title">Cielo real listo para usar + modelos de texto a 3D</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-09.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-09</span></div>
-      <div class="cl-row-title">Una puerta de construcción para que la IA no pueda fingir que está "hecho"</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-08.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-08</span></div>
-      <div class="cl-row-title">Una gran integración de editor + modelos texturizados renderizados en vivo</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-07.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-07</span></div>
-      <div class="cl-row-title">Llegan los paneles principales del editor + soporte para Windows</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-06.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-06</span></div>
-      <div class="cl-row-title">Arrastra un modelo y se convierte en una escena.</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-05.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-05</span></div>
-      <div class="cl-row-title">Modo editor, completo</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-04.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-04</span></div>
-      <div class="cl-row-title">El modo editor es realmente utilizable.</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-03.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-03</span></div>
-      <div class="cl-row-title">Un modo de editor obtiene su hoja de ruta + el motor se prepara para la edición visual</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-02.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-02</span></div>
-      <div class="cl-row-title">Un comando para iniciar la aplicación de escritorio + se une un editor de nodos</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-06-01.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-01</span></div>
-      <div class="cl-row-title">La aplicación de escritorio se ejecuta de principio a fin + texto nítido en el mundo</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-31.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-31</span></div>
-      <div class="cl-row-title">Exportar un juego como un sitio independiente + skybox y florecer</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-30.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-30</span></div>
-      <div class="cl-row-title">Llega una aplicación de escritorio + una biblioteca de juegos compartida</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-29.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-29</span></div>
-      <div class="cl-row-title">El motor gana en física y selección + una base de interfaz de usuario reconstruida</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-28.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-28</span></div>
-      <div class="cl-row-title">Un banco de trabajo de animación dedicado + transmisión de herramientas en vivo</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-27.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-27</span></div>
-      <div class="cl-row-title">El motor se sostiene por sí solo + materiales más ricos</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-26.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-26</span></div>
-      <div class="cl-row-title">Compactación de contexto con un solo toque + respaldo del software WebGPU</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-25.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-25</span></div>
-      <div class="cl-row-title">Animación esquelética + bancos de trabajo de escena y observatorio.</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-24.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-24</span></div>
-      <div class="cl-row-title">El tiempo de ejecución del juego pasa completamente al motor interno.</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-23.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-23</span></div>
-      <div class="cl-row-title">Confirmar antes de acciones riesgosas + luces y sombras ambientales del motor</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-22.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-22</span></div>
-      <div class="cl-row-title">El motor aprende sombras + un nuevo banco de trabajo narrativo</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-21.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-21</span></div>
-      <div class="cl-row-title">Una interfaz renovada + un banco de trabajo integrable</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-20.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-20</span></div>
-      <div class="cl-row-title">El chat se vuelve a conectar al nuevo backend + administra modelos y claves en la configuración</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-19.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-19</span></div>
-      <div class="cl-row-title">Un backend recuperable en caso de accidente + la primera iluminación real del motor</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-18.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-18</span></div>
-      <div class="cl-row-title">Abra cualquier carpeta como espacio de trabajo + versión en la aplicación y accesos directos</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-17.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-17</span></div>
-      <div class="cl-row-title">Vista previa de imágenes y 3D en línea + píldoras @mention</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-16.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-16</span></div>
-      <div class="cl-row-title">El bus del agente entra en los filtros del panel de interfaz de usuario +</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-15.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-15</span></div>
-      <div class="cl-row-title">La interfaz de usuario del chat crece: diseño redimensionable, llamadas de herramientas anidadas, tarjetas de subagente</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-14.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-14</span></div>
-      <div class="cl-row-title">Cierre el navegador: los agentes siguen trabajando</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-13.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-13</span></div>
-      <div class="cl-row-title">Vista previa de recarga en vivo en vivo + repetición de sesión</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-12.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-12</span></div>
-      <div class="cl-row-title">Sistema de activos del motor v1 + pulido profundo del chat</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-11.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-11</span></div>
-      <div class="cl-row-title">De cero a un cubo giratorio creado por chat</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-10.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-10</span></div>
-      <div class="cl-row-title">La arquitectura de compilación y ejecución toma forma</div>
-    </a>
-    <a class="cl-row" href="/es/changelog/2026-05-09.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-09</span></div>
-      <div class="cl-row-title">Inicio del proyecto</div>
-    </a>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-08-13 — 08-19</span><span class="cl-count">2 actualizaciones</span></div>
+        <div class="cl-row-title">Correcciones de instalación y cursor<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/es/changelog/2026-08-19.html">
+          <span class="cl-date">2026-08-19</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-08-13.html">
+          <span class="cl-date">2026-08-13</span>
+          <span>Ver detalles</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-08-01 — 08-06</span><span class="cl-count">2 actualizaciones</span></div>
+        <div class="cl-row-title">Lienzo de recursos y control por IA<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/es/changelog/2026-08-06.html">
+          <span class="cl-date">2026-08-06</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-08-01.html">
+          <span class="cl-date">2026-08-01</span>
+          <span>Ver detalles</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-07-22 — 07-28</span><span class="cl-count">3 actualizaciones</span></div>
+        <div class="cl-row-title">Arreglo de pantalla blanca y edición de materiales<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/es/changelog/2026-07-28.html">
+          <span class="cl-date">2026-07-28</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-24.html">
+          <span class="cl-date">2026-07-24</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-22.html">
+          <span class="cl-date">2026-07-22</span>
+          <span>Ver detalles</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-07-13 — 07-17</span><span class="cl-count">5 actualizaciones</span></div>
+        <div class="cl-row-title">Mejoras de inicio, cámara y animación<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/es/changelog/2026-07-17.html">
+          <span class="cl-date">2026-07-17</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-16.html">
+          <span class="cl-date">2026-07-16</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-15.html">
+          <span class="cl-date">2026-07-15</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-14.html">
+          <span class="cl-date">2026-07-14</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-13.html">
+          <span class="cl-date">2026-07-13</span>
+          <span>Ver detalles</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-07-07 — 07-12</span><span class="cl-count">5 actualizaciones</span></div>
+        <div class="cl-row-title">Selección múltiple, host de plugins y runtime<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/es/changelog/2026-07-12.html">
+          <span class="cl-date">2026-07-12</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-10.html">
+          <span class="cl-date">2026-07-10</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-09.html">
+          <span class="cl-date">2026-07-09</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-08.html">
+          <span class="cl-date">2026-07-08</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-07.html">
+          <span class="cl-date">2026-07-07</span>
+          <span>Ver detalles</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-07-01 — 07-06</span><span class="cl-count">5 actualizaciones</span></div>
+        <div class="cl-row-title">Arreglos de juego en Windows y generación 3D<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/es/changelog/2026-07-06.html">
+          <span class="cl-date">2026-07-06</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-04.html">
+          <span class="cl-date">2026-07-04</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-03.html">
+          <span class="cl-date">2026-07-03</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-02.html">
+          <span class="cl-date">2026-07-02</span>
+          <span>Ver detalles</span>
+        </a>
+        <a class="cl-group-link" href="/es/changelog/2026-07-01.html">
+          <span class="cl-date">2026-07-01</span>
+          <span>Ver detalles</span>
+        </a>
+      </div>
+    </details>
   </div>
 </main>
 
@@ -400,24 +224,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables. Código abierto, licencia Apache 2.0.</p>
   </div>
-  <div class="col"><h4>Sitio</h4>
+  <nav class="foot-links" aria-label="Sitio">
     <a href="/es/changelog/">Registro de cambios</a>
-    <a href="/es/blog/">Blog</a>
-    <a href="/es/docs/">Documentos</a>
     <a href="/es/tutorials/">Tutoriales</a>
     <a href="/es/examples/">Ejemplos</a>
-    <a href="/es/games/">Juegos</a>
-    <a href="/es/marketplace/">Mercado</a>
-  </div>
-  <div class="col"><h4>Proyecto</h4>
+    <a href="/es/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
     <a href="/es/about.html">Acerca de</a>
     <a href="/es/license.html">Licencia</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

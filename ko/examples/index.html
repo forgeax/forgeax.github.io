@@ -24,42 +24,32 @@
 <link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/examples/" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
 <style>
-  .ex-shell{display:flex;height:calc(100vh - var(--nav-h, 60px));overflow:hidden}
-  .ex-side{width:300px;flex:none;display:flex;flex-direction:column;background:var(--bg-elevated);border-right:1px solid var(--border-subtle)}
-  .ex-side-head{padding:16px 16px 12px;border-bottom:1px solid var(--border-subtle)}
-  .ex-side-head h1{font-size:18px;font-weight:800;margin:0 0 4px}
-  .ex-side-head p{font-size:12px;color:var(--text-tertiary);margin:0 0 10px}
-  #exFilter{width:100%;padding:8px 10px;background:var(--bg-base);border:1px solid var(--border-subtle);border-radius:var(--radius-md);color:var(--text-primary);font-size:13px;outline:none}
-  #exFilter:focus{border-color:var(--border-strong)}
-  .ex-list{flex:1;overflow:auto;padding:8px}
-  .ex-item{display:block;padding:9px 11px;border-radius:var(--radius-md);color:var(--text-secondary);text-decoration:none;border:1px solid transparent;margin-bottom:2px}
-  .ex-item:hover{background:var(--bg-floating);color:var(--text-primary)}
-  .ex-item.is-active{background:rgba(212,255,72,.10);border-color:rgba(212,255,72,.30);color:var(--text-primary)}
-  .ex-item.is-disabled{opacity:.4;pointer-events:none}
-  .ex-item-t{display:block;font-size:14px;font-weight:600;line-height:1.3}
-  .ex-item-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
-  .ex-item-tags .tag{font-size:10.5px}
-  .ex-stamp{padding:10px 16px;border-top:1px solid var(--border-subtle);font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary)}
-  .ex-view{flex:1;display:flex;flex-direction:column;min-width:0}
-  .ex-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border-subtle)}
-  .ex-bar-title{font-weight:700;font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .ex-bar-title small{color:var(--text-secondary);font-weight:400;margin-left:10px;font-size:13px}
-  .ex-bar-actions{display:flex;align-items:center;gap:14px;flex:none}
-  .ex-badge{font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary)}
-  .ex-bar-actions a{color:var(--brand);font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap}
-  .ex-frame-wrap{flex:1;position:relative;background:#0b0d10}
-  #exFrame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
-  @media (max-width:760px){
-    .ex-shell{flex-direction:column;height:auto}
-    .ex-side{width:auto;border-right:0;border-bottom:1px solid var(--border-subtle)}
-    .ex-list{max-height:210px}
-    .ex-view{height:72vh}
-  }
+  .ex-item.is-hidden,.ex-group.is-hidden,.ex-sec.is-hidden{display:none!important}
+  .ex-item--show{padding:11px 12px;margin-bottom:4px}
+  .ex-item--show .ex-item-t{font-size:14.5px}
+  .ex-item-b{display:-webkit-box;margin-top:4px;font-size:12px;line-height:1.4;color:var(--text-tertiary);font-weight:400;
+    -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ex-group{margin:8px 0 0;border-top:1px solid var(--border-subtle);padding-top:6px}
+  .ex-group-sum{list-style:none;display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 12px;
+    border-radius:var(--radius-md);color:var(--text-secondary);user-select:none}
+  .ex-group-sum::-webkit-details-marker,.ex-group-sum::marker{display:none}
+  .ex-group-sum::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+    transform:rotate(-45deg);flex:none;margin-top:-2px}
+  .ex-group[open]>.ex-group-sum::before{transform:rotate(45deg);margin-top:0}
+  .ex-group-sum:hover{background:var(--bg-floating);color:var(--text-primary)}
+  .ex-group-t{font-size:13px;font-weight:700;letter-spacing:.01em}
+  .ex-group-n{margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);
+    padding:1px 7px;border-radius:var(--radius-pill);border:1px solid var(--border-subtle)}
+  .ex-group-body{padding:2px 0 6px}
+  .ex-sec-h{padding:8px 12px 3px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)}
+  .ex-item--sub{padding:8px 12px 8px 16px}
+  .ex-item--sub .ex-item-t{font-size:13px;font-weight:600}
+  .ex-empty{padding:12px;font-size:13px;color:var(--text-tertiary);margin:0}
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-ko forgeax-site">
@@ -69,24 +59,10 @@
     <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>문서</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/ko/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>문서</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/ko/" data-nav="/">홈</a>
       <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
       <a href="/ko/examples/" data-nav="/examples/" class="active">예</a>
-      <a href="/ko/games/" data-nav="/games/">계략</a>
-      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
-      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">플러그인</a>
       <a href="/ko/changelog/" data-nav="/changelog/">변경 내역</a>
       <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
     </div>
@@ -97,15 +73,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/examples/" data-l="en">English</a><a class="lang-item" href="/zh/examples/" data-l="zh">中文</a><a class="lang-item" href="/ja/examples/" data-l="ja">日本語</a><a class="lang-item active" href="/ko/examples/" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/examples/" data-l="es">Español</a><a class="lang-item" href="/de/examples/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/examples/" data-l="fr">Français</a><a class="lang-item" href="/pt/examples/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
-          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">다운로드</a>
     </div>
   </div>
 </nav>
@@ -114,120 +83,177 @@
   <aside class="ex-side">
     <div class="ex-side-head">
       <h1>엔진 예시</h1>
-      <p>하나를 선택하세요. 오른쪽에서 실시간으로 실행됩니다.</p>
-      <input id="exFilter" type="text" autocomplete="off" placeholder="필터 예시…" aria-label="필터 예" />
+      <p>데모를 고르면 오른쪽에서 바로 실행됩니다. 기초는 Fundamentals에 모았습니다. 3D 장면은 드래그로 회전, 휠로 확대/축소.</p>
     </div>
     <nav class="ex-list" id="exList">
-        <a class="ex-item" data-id="triangle" href="/examples/triangle/">
+        <a class="ex-item ex-item--show" data-id="gltf-instancing" href="/examples/gltf-instancing/">
+          <span class="ex-item-t">glTF 인스턴싱</span>
+          <span class="ex-item-b">조명된 큐브 4개, 메시 하나, 드로우 한 번 — glTF GPU 인스턴싱.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="hdrp-lighting" href="/examples/hdrp-lighting/">
+          <span class="ex-item-t">클러스터링된 조명</span>
+          <span class="ex-item-b">256개의 정시 조명은 클러스터링된 순방향 파이프라인을 통해 효율적으로 켜집니다.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="physics" href="/examples/physics/">
+          <span class="ex-item-t">물리학</span>
+          <span class="ex-item-b">ECS 변환을 구동하는 Rapier(wasm)를 통한 강체 물리학.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="sprite" href="/examples/sprite/">
+          <span class="ex-item-t">스프라이트</span>
+          <span class="ex-item-b">2D 스프라이트 — 배치 쿼드, 레이어 Z와 JRPG Y 정렬.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="2d-flashlight" href="/examples/2d-flashlight/">
+          <span class="ex-item-t">2D 손전등</span>
+          <span class="ex-item-b">스프라이트 조명 2D — 훑는 스팟라이트와 부드러운 포인트 라이트.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="sprite-lit" href="/examples/sprite-lit/">
+          <span class="ex-item-t">스프라이트 조명</span>
+          <span class="ex-item-b">같은 방향광·포인트·스팟 아래 스프라이트 쿼드 4개와 PBR 큐브.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="room" href="/examples/room/">
+          <span class="ex-item-t">룸</span>
+          <span class="ex-item-b">작은 실내 — 박스, 구, 평면을 중첩 장면으로 구성.</span>
+        </a>
+        <details class="ex-group" data-group="fundamentals">
+          <summary class="ex-group-sum">
+            <span class="ex-group-t">기초</span>
+            <span class="ex-group-n" aria-hidden="true">20</span>
+          </summary>
+          <div class="ex-group-body">
+        <div class="ex-sec" data-sec="getting-started">
+          <div class="ex-sec-h">시작하기</div>
+        <a class="ex-item ex-item--sub" data-id="triangle" href="/examples/triangle/">
           <span class="ex-item-t">안녕하세요 트라이앵글</span>
           <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">wgsl</span></span>
         </a>
-        <a class="ex-item" data-id="topology" href="/examples/topology/">
+        <a class="ex-item ex-item--sub" data-id="cube" href="/examples/cube/">
+          <span class="ex-item-t">큐브</span>
+          <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">mesh</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="topology" href="/examples/topology/">
           <span class="ex-item-t">기본 토폴로지</span>
           <span class="ex-item-tags"><span class="tag">basics</span><span class="tag">geometry</span></span>
         </a>
-        <a class="ex-item" data-id="transform-hierarchy" href="/examples/transform-hierarchy/">
+        <a class="ex-item ex-item--sub" data-id="transform-hierarchy" href="/examples/transform-hierarchy/">
           <span class="ex-item-t">변환 계층</span>
           <span class="ex-item-tags"><span class="tag">transform</span><span class="tag">scene-graph</span></span>
         </a>
-        <a class="ex-item" data-id="gltf" href="/examples/gltf/">
+        </div>
+        <div class="ex-sec" data-sec="mesh-assets">
+          <div class="ex-sec-h">메시와 에셋</div>
+        <a class="ex-item ex-item--sub" data-id="gltf" href="/examples/gltf/">
           <span class="ex-item-t">glTF 모델</span>
           <span class="ex-item-tags"><span class="tag">gltf</span><span class="tag">mesh</span><span class="tag">pbr</span></span>
         </a>
-        <a class="ex-item" data-id="multi-material" href="/examples/multi-material/">
+        <a class="ex-item ex-item--sub" data-id="multi-material" href="/examples/multi-material/">
           <span class="ex-item-t">다중 재료 메시</span>
           <span class="ex-item-tags"><span class="tag">mesh</span><span class="tag">materials</span></span>
         </a>
-        <a class="ex-item" data-id="gltf-instancing" href="/examples/gltf-instancing/">
-          <span class="ex-item-t">glTF 인스턴싱</span>
-          <span class="ex-item-tags"><span class="tag">instancing</span><span class="tag">performance</span></span>
-        </a>
-        <a class="ex-item" data-id="custom-shader" href="/examples/custom-shader/">
+        <a class="ex-item ex-item--sub" data-id="custom-shader" href="/examples/custom-shader/">
           <span class="ex-item-t">커스텀 셰이더</span>
           <span class="ex-item-tags"><span class="tag">shader</span><span class="tag">wgsl</span><span class="tag">materials</span></span>
         </a>
-        <a class="ex-item" data-id="picking" href="/examples/picking/">
+        </div>
+        <div class="ex-sec" data-sec="two-d">
+          <div class="ex-sec-h">2D</div>
+        <a class="ex-item ex-item--sub" data-id="tilemap" href="/examples/tilemap/">
+          <span class="ex-item-t">타일맵</span>
+          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="tilemap-object-layer" href="/examples/tilemap-object-layer/">
+          <span class="ex-item-t">타일맵 오브젝트</span>
+          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
+        </a>
+        </div>
+        <div class="ex-sec" data-sec="scene">
+          <div class="ex-sec-h">장면</div>
+        <a class="ex-item ex-item--sub" data-id="multi-world" href="/examples/multi-world/">
+          <span class="ex-item-t">멀티 월드</span>
+          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">ecs</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="entity-visibility" href="/examples/entity-visibility/">
+          <span class="ex-item-t">엔티티 가시성</span>
+          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">visibility</span></span>
+        </a>
+        </div>
+        <div class="ex-sec" data-sec="interaction">
+          <div class="ex-sec-h">상호작용과 컬링</div>
+        <a class="ex-item ex-item--sub" data-id="picking" href="/examples/picking/">
           <span class="ex-item-t">GPU 따기</span>
           <span class="ex-item-tags"><span class="tag">picking</span><span class="tag">interaction</span></span>
         </a>
-        <a class="ex-item" data-id="debug-draw" href="/examples/debug-draw/">
+        <a class="ex-item ex-item--sub" data-id="debug-draw" href="/examples/debug-draw/">
           <span class="ex-item-t">디버그 그리기</span>
           <span class="ex-item-tags"><span class="tag">debug</span><span class="tag">tooling</span></span>
         </a>
-        <a class="ex-item" data-id="culling" href="/examples/culling/">
+        <a class="ex-item ex-item--sub" data-id="culling" href="/examples/culling/">
           <span class="ex-item-t">절두체 선별</span>
           <span class="ex-item-tags"><span class="tag">performance</span><span class="tag">culling</span></span>
         </a>
-        <a class="ex-item" data-id="hdrp-lighting" href="/examples/hdrp-lighting/">
-          <span class="ex-item-t">클러스터링된 조명</span>
-          <span class="ex-item-tags"><span class="tag">lighting</span><span class="tag">performance</span></span>
-        </a>
-        <a class="ex-item" data-id="shadow-opt-out" href="/examples/shadow-opt-out/">
-          <span class="ex-item-t">그림자</span>
-          <span class="ex-item-tags"><span class="tag">shadows</span><span class="tag">lighting</span></span>
-        </a>
-        <a class="ex-item" data-id="fxaa" href="/examples/fxaa/">
-          <span class="ex-item-t">FXAA</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">anti-aliasing</span></span>
-        </a>
-        <a class="ex-item" data-id="bloom" href="/examples/bloom/">
-          <span class="ex-item-t">꽃</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">bloom</span><span class="tag">hdr</span></span>
-        </a>
-        <a class="ex-item" data-id="level-switch" href="/examples/level-switch/">
+        <a class="ex-item ex-item--sub" data-id="level-switch" href="/examples/level-switch/">
           <span class="ex-item-t">레벨 전환</span>
           <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">gameplay</span></span>
         </a>
-        <a class="ex-item" data-id="tonemap" href="/examples/tonemap/">
+        <a class="ex-item ex-item--sub" data-id="character" href="/examples/character/">
+          <span class="ex-item-t">캐릭터 컨트롤러</span>
+          <span class="ex-item-tags"><span class="tag">physics</span><span class="tag">character</span><span class="tag">input</span></span>
+        </a>
+        </div>
+        <div class="ex-sec" data-sec="lighting-post">
+          <div class="ex-sec-h">조명과 후처리</div>
+        <a class="ex-item ex-item--sub" data-id="shadow-opt-out" href="/examples/shadow-opt-out/">
+          <span class="ex-item-t">그림자</span>
+          <span class="ex-item-tags"><span class="tag">shadows</span><span class="tag">lighting</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="fxaa" href="/examples/fxaa/">
+          <span class="ex-item-t">FXAA</span>
+          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">anti-aliasing</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="bloom" href="/examples/bloom/">
+          <span class="ex-item-t">꽃</span>
+          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">bloom</span><span class="tag">hdr</span></span>
+        </a>
+        <a class="ex-item ex-item--sub" data-id="tonemap" href="/examples/tonemap/">
           <span class="ex-item-t">톤맵</span>
           <span class="ex-item-tags"><span class="tag">hdr</span><span class="tag">tonemap</span></span>
         </a>
-        <a class="ex-item" data-id="physics" href="/examples/physics/">
-          <span class="ex-item-t">물리학</span>
-          <span class="ex-item-tags"><span class="tag">physics</span><span class="tag">rapier</span></span>
-        </a>
+        </div>
+          </div>
+        </details>
     </nav>
 
   </aside>
   <section class="ex-view">
     <div class="ex-bar">
       <div class="ex-bar-title" id="exTitle"></div>
-      <div class="ex-bar-actions">
-        <span class="ex-badge">라이브 데모</span>
-        <a id="exOpen" target="_blank" rel="noopener" href="#">오픈 ↗</a>
-      </div>
     </div>
     <div class="ex-frame-wrap">
-      <iframe id="exFrame" title="ForgeaX example" allow="fullscreen" src="about:blank"></iframe>
+      <iframe id="exFrame" title="ForgeaX example" allow="gpu; fullscreen" src="about:blank"></iframe>
     </div>
   </section>
 </main>
-<script>window.EX_DATA=[{"id":"triangle","ok":true,"href":"/examples/triangle/","title":"안녕하세요 트라이앵글","blurb":"최소 WebGPU/WebGL2 파이프라인 — 하나의 삼각형, 셰이더 컴파일된 WGSL."},{"id":"topology","ok":true,"href":"/examples/topology/","title":"기본 토폴로지","blurb":"점, 선, 선 스트립 및 삼각형 — GPU가 그리는 기본 유형입니다."},{"id":"transform-hierarchy","ok":true,"href":"/examples/transform-hierarchy/","title":"변환 계층","blurb":"상위/하위 변환 — 장면 그래프에 의해 구동되는 궤도 노드."},{"id":"gltf","ok":true,"href":"/examples/gltf/","title":"glTF 모델","blurb":"PBR 재질을 사용하여 glTF 2.0 자산을 로드하고 렌더링합니다."},{"id":"multi-material","ok":true,"href":"/examples/multi-material/","title":"다중 재료 메시","blurb":"하나의 메시, 여러 개의 하위 메시 - 각각 고유한 재질과 토폴로지를 갖습니다."},{"id":"gltf-instancing","ok":true,"href":"/examples/gltf-instancing/","title":"glTF 인스턴싱","blurb":"한 번의 그리기로 수천 개의 메시 인스턴스(행성 고리)를 생성합니다."},{"id":"custom-shader","ok":true,"href":"/examples/custom-shader/","title":"커스텀 셰이더","blurb":"사용자 정의 머티리얼 셰이더 - 자체 WGSL로 구동되는 펄스 표면입니다."},{"id":"picking","ok":true,"href":"/examples/picking/","title":"GPU 따기","blurb":"선택하려면 클릭하세요. GPU에서 픽셀당 개체 ID를 다시 읽습니다."},{"id":"debug-draw","ok":true,"href":"/examples/debug-draw/","title":"디버그 그리기","blurb":"장면을 시각화하기 위한 즉시 모드 선 및 모양."},{"id":"culling","ok":true,"href":"/examples/culling/","title":"절두체 선별","blurb":"카메라가 볼 수 있는 것만 그려집니다. 즉, 작업 중인 절두체 컬링입니다."},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"클러스터링된 조명","blurb":"256개의 정시 조명은 클러스터링된 순방향 파이프라인을 통해 효율적으로 켜집니다."},{"id":"shadow-opt-out","ok":true,"href":"/examples/shadow-opt-out/","title":"그림자","blurb":"개체별 옵트아웃 기능을 갖춘 실시간 그림자 투사."},{"id":"fxaa","ok":true,"href":"/examples/fxaa/","title":"FXAA","blurb":"사후 처리 과정으로 신속하게 앤티앨리어싱을 근사화합니다."},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"꽃","blurb":"HDR 블룸 — 밝은 통과 + 분리 가능한 흐림 + 합성."},{"id":"level-switch","ok":true,"href":"/examples/level-switch/","title":"레벨 전환","blurb":"전체를 다시 로드하지 않고 런타임에 레벨 간을 전환합니다."},{"id":"tonemap","ok":true,"href":"/examples/tonemap/","title":"톤맵","blurb":"표시할 HDR — ACES / Reinhard 톤 매핑 연산자."},{"id":"physics","ok":true,"href":"/examples/physics/","title":"물리학","blurb":"ECS 변환을 구동하는 Rapier(wasm)를 통한 강체 물리학."}];</script>
+<script>window.EX_DATA=[{"id":"gltf-instancing","ok":true,"href":"/examples/gltf-instancing/","title":"glTF 인스턴싱","blurb":"조명된 큐브 4개, 메시 하나, 드로우 한 번 — glTF GPU 인스턴싱."},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"클러스터링된 조명","blurb":"256개의 정시 조명은 클러스터링된 순방향 파이프라인을 통해 효율적으로 켜집니다."},{"id":"physics","ok":true,"href":"/examples/physics/","title":"물리학","blurb":"ECS 변환을 구동하는 Rapier(wasm)를 통한 강체 물리학."},{"id":"sprite","ok":true,"href":"/examples/sprite/","title":"스프라이트","blurb":"2D 스프라이트 — 배치 쿼드, 레이어 Z와 JRPG Y 정렬."},{"id":"2d-flashlight","ok":true,"href":"/examples/2d-flashlight/","title":"2D 손전등","blurb":"스프라이트 조명 2D — 훑는 스팟라이트와 부드러운 포인트 라이트."},{"id":"sprite-lit","ok":true,"href":"/examples/sprite-lit/","title":"스프라이트 조명","blurb":"같은 방향광·포인트·스팟 아래 스프라이트 쿼드 4개와 PBR 큐브."},{"id":"room","ok":true,"href":"/examples/room/","title":"룸","blurb":"작은 실내 — 박스, 구, 평면을 중첩 장면으로 구성."},{"id":"triangle","ok":true,"href":"/examples/triangle/","title":"안녕하세요 트라이앵글","blurb":"최소 WebGPU/WebGL2 파이프라인 — 하나의 삼각형, 셰이더 컴파일된 WGSL."},{"id":"cube","ok":true,"href":"/examples/cube/","title":"큐브","blurb":"조명 받는 회전 큐브 — ECS 렌더 경로의 첫 3D 메시."},{"id":"topology","ok":true,"href":"/examples/topology/","title":"기본 토폴로지","blurb":"점, 선, 선 스트립 및 삼각형 — GPU가 그리는 기본 유형입니다."},{"id":"transform-hierarchy","ok":true,"href":"/examples/transform-hierarchy/","title":"변환 계층","blurb":"상위/하위 변환 — 장면 그래프에 의해 구동되는 궤도 노드."},{"id":"gltf","ok":true,"href":"/examples/gltf/","title":"glTF 모델","blurb":"PBR 재질을 사용하여 glTF 2.0 자산을 로드하고 렌더링합니다."},{"id":"multi-material","ok":true,"href":"/examples/multi-material/","title":"다중 재료 메시","blurb":"하나의 메시, 여러 개의 하위 메시 - 각각 고유한 재질과 토폴로지를 갖습니다."},{"id":"custom-shader","ok":true,"href":"/examples/custom-shader/","title":"커스텀 셰이더","blurb":"사용자 정의 머티리얼 셰이더 - 자체 WGSL로 구동되는 펄스 표면입니다."},{"id":"tilemap","ok":true,"href":"/examples/tilemap/","title":"타일맵","blurb":"2D 타일맵 — 직교 카메라로 타일 레이어를 봅니다."},{"id":"tilemap-object-layer","ok":true,"href":"/examples/tilemap-object-layer/","title":"타일맵 오브젝트","blurb":"엔티티 단위 타일 오브젝트 — 여러 칸 나무, 플립/피벗, 타일 위 스프라이트 Y 정렬."},{"id":"multi-world","ok":true,"href":"/examples/multi-world/","title":"멀티 월드","blurb":"ECS 월드 두 개를 한 프레임에 합성 — 빛과 메시는 합치고, 카메라는 오너 월드에."},{"id":"entity-visibility","ok":true,"href":"/examples/entity-visibility/","title":"엔티티 가시성","blurb":"Visibility 숨김·상속·재정의 — 부모가 사라져도 자식은 그려집니다."},{"id":"picking","ok":true,"href":"/examples/picking/","title":"GPU 따기","blurb":"선택하려면 클릭하세요. GPU에서 픽셀당 개체 ID를 다시 읽습니다."},{"id":"debug-draw","ok":true,"href":"/examples/debug-draw/","title":"디버그 그리기","blurb":"장면을 시각화하기 위한 즉시 모드 선 및 모양."},{"id":"culling","ok":true,"href":"/examples/culling/","title":"절두체 선별","blurb":"카메라가 볼 수 있는 것만 그려집니다. 즉, 작업 중인 절두체 컬링입니다."},{"id":"level-switch","ok":true,"href":"/examples/level-switch/","title":"레벨 전환","blurb":"전체를 다시 로드하지 않고 런타임에 레벨 간을 전환합니다."},{"id":"character","ok":true,"href":"/examples/character/","title":"캐릭터 컨트롤러","blurb":"WASD + 점프 캡슐 — 물리 월드의 kinematic moveAndSlide."},{"id":"shadow-opt-out","ok":true,"href":"/examples/shadow-opt-out/","title":"그림자","blurb":"개체별 옵트아웃 기능을 갖춘 실시간 그림자 투사."},{"id":"fxaa","ok":true,"href":"/examples/fxaa/","title":"FXAA","blurb":"사후 처리 과정으로 신속하게 앤티앨리어싱을 근사화합니다."},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"꽃","blurb":"HDR 블룸 — 밝은 통과 + 분리 가능한 흐림 + 합성."},{"id":"tonemap","ok":true,"href":"/examples/tonemap/","title":"톤맵","blurb":"표시할 HDR — ACES / Reinhard 톤 매핑 연산자."}];window.EX_NAV={"landing":"gltf-instancing"};</script>
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
   </div>
-  <div class="col"><h4>대지</h4>
+  <nav class="foot-links" aria-label="대지">
     <a href="/ko/changelog/">변경 내역</a>
-    <a href="/ko/blog/">블로그</a>
-    <a href="/ko/docs/">문서</a>
     <a href="/ko/tutorials/">튜토리얼</a>
     <a href="/ko/examples/">예</a>
-    <a href="/ko/games/">계략</a>
-    <a href="/ko/marketplace/">시장</a>
-  </div>
-  <div class="col"><h4>프로젝트</h4>
+    <a href="/ko/marketplace/">플러그인</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
     <a href="/ko/about.html">에 대한</a>
     <a href="/ko/license.html">특허</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
-<script src="/assets/examples/app.js?v=177938ad"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
+<script src="/assets/examples/app.js?v=fccb28e6"></script>
 </body>
 </html>

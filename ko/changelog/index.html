@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>변경 내역 — ForgeaX</title>
-<meta name="description" content="ForgeaX 일일 개발 로그 — 매일은 기능 및 구현에 대한 자체 페이지입니다." />
+<meta name="description" content="ForgeaX의 주요 제품 업데이트를 단계별로 정리해 최근 개선 사항을 빠르게 보여 줍니다." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="변경 내역 — ForgeaX" />
-<meta property="og:description" content="ForgeaX 일일 개발 로그 — 매일은 기능 및 구현에 대한 자체 페이지입니다." />
+<meta property="og:description" content="ForgeaX의 주요 제품 업데이트를 단계별로 정리해 최근 개선 사항을 빠르게 보여 줍니다." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/ko/changelog/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -25,17 +25,26 @@
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
 <style>
   .cl-list{max-width:760px;margin:0 auto;padding-top:8px}
-  .cl-row{display:block;text-decoration:none;color:inherit;padding:16px 0;border-bottom:1px solid var(--border-subtle)}
+  .cl-group{border-bottom:1px solid var(--border-subtle)}
+  .cl-row{display:block;list-style:none;text-decoration:none;color:inherit;padding:18px 0;cursor:pointer}
+  .cl-row::-webkit-details-marker{display:none}
   .cl-row:hover .cl-row-title{color:var(--brand)}
   .cl-row-meta{display:flex;align-items:baseline;gap:12px}
   .cl-date{font-family:var(--font-mono);font-size:13px;color:var(--text-tertiary)}
+  .cl-count{font-size:12px;color:var(--text-tertiary)}
   .cl-ver{font-family:var(--font-mono);font-size:11px;color:var(--brand);border:1px solid rgba(212,255,72,.35);background:rgba(212,255,72,.10);border-radius:999px;padding:1px 8px}
-  .cl-row-title{font-size:17px;font-weight:700;margin:6px 0 0;transition:color .15s}
+  .cl-row-title{display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:17px;font-weight:700;margin:6px 0 0;transition:color .15s}
+  .cl-chevron{color:var(--text-tertiary);font-size:20px;line-height:1;transition:transform .15s}
+  .cl-group[open] .cl-chevron{transform:rotate(180deg)}
+  .cl-group-days{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 0 16px}
+  .cl-group-link{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--border-subtle);border-radius:var(--radius-md);color:var(--text-secondary);text-decoration:none;font-size:13px}
+  .cl-group-link:hover{color:var(--text-primary);border-color:var(--border-strong);background:var(--bg-elevated)}
+  @media(max-width:640px){.cl-group-days{grid-template-columns:1fr}}
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-ko forgeax-site">
@@ -45,24 +54,10 @@
     <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>문서</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/ko/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>문서</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/ko/" data-nav="/">홈</a>
       <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
       <a href="/ko/examples/" data-nav="/examples/">예</a>
-      <a href="/ko/games/" data-nav="/games/">계략</a>
-      <a href="/ko/marketplace/" data-nav="/marketplace/">시장</a>
-      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">플러그인</a>
       <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
       <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
     </div>
@@ -73,15 +68,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/" data-l="en">English</a><a class="lang-item" href="/zh/changelog/" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/" data-l="es">Español</a><a class="lang-item" href="/de/changelog/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
-          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">다운로드</a>
     </div>
   </div>
 </nav>
@@ -89,309 +77,145 @@
 <main class="wrap">
   <div class="page-head">
     <h1>변경 내역</h1>
-    <p>ForgeaX 구축 자체의 일일 기록입니다. 엔진과 플랫폼은 자체 실행 개발 루프에서 AI에 의해 거의 전적으로 작성되었습니다.<b>장기 발달 기억</b>: 자체적으로 제공되는 기능과 해당 기능을 구축한 방법을 하루에 한 페이지씩 설명합니다.</p>
+    <p>ForgeaX의 각 단계에서 실제로 유용한 변화를 정리했습니다. 관련된 작은 업데이트를 묶어 최근 개선 사항을 빠르게 확인할 수 있습니다.</p>
   </div>
   <div class="cl-list">
-    <a class="cl-row" href="/ko/changelog/2026-08-19.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-08-19</span><span class="cl-ver">1.2.1</span></div>
-      <div class="cl-row-title">Hellforge 1.2.1: 커서가 계속 보이고 공개 데모가 더 밝아짐</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-08-13.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-08-13</span><span class="cl-ver">0.3.27</span></div>
-      <div class="cl-row-title">ForgeaX Studio v0.3.27: 더 안정적인 설정, 풍부해진 프리뷰, 독립 Game Runtime 패키지</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-08-06.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-08-06</span><span class="cl-ver">0.3.24</span></div>
-      <div class="cl-row-title">AI 네이티브 에디터 제어, 비디오 워크플로, 새로워진 Studio</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-08-01.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-08-01</span><span class="cl-ver">0.3.23</span></div>
-      <div class="cl-row-title">Asset Canvas 워크플로, 씬 제작 강화 및 데스크톱 안정성</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-28.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-28</span></div>
-      <div class="cl-row-title">머티리얼 에디터, 로컬 공간 기즈모, 다중 선택, Play 모드 안정성</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-24.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-24</span><span class="cl-ver">0.3.22</span></div>
-      <div class="cl-row-title">v0.3.22 — Play 모드·빈 화면 수정, 에디터 UX, 패널 기여, 비디오 에셋</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-22.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-22</span><span class="cl-ver">0.3.21</span></div>
-      <div class="cl-row-title">v0.3.21 — Play 모드 정지 수정, 새 게임 빈 화면 수정, CLI zod 의존성 추가</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-17.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-17</span></div>
-      <div class="cl-row-title">스킨 모델 AnimationPlayer 자동 마운트, 생성형 비주얼 프라이어, 워크스페이스 업로드</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-16.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-16</span></div>
-      <div class="cl-row-title">UE5 스타일 카메라 비행 모드, 게임 액션 프로젝션, 뷰포트 안정성</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-15.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-15</span><span class="cl-ver">0.3.18</span></div>
-      <div class="cl-row-title">Play 입력 소유권, MeshRenderer 머티리얼 UI, Hellforge 캐릭터 선택</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-14.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-14</span></div>
-      <div class="cl-row-title">콜라이더 디버그 오버레이, 안전한 에셋 관리, AI 에셋 게임 임포트</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-13.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-13</span><span class="cl-ver">0.3.17</span></div>
-      <div class="cl-row-title">프로젝트 시작 속도 향상, Play 모드 강화 및 온보딩 개선</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-12.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-12</span><span class="cl-ver">0.3.16</span></div>
-      <div class="cl-row-title">엔진 Tier 2 런타임 + 싱글-렐름 에디터 + Gateway 에셋/컴포넌트 서피스 + 에셋 상주 플러그인</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-10.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-10</span><span class="cl-ver">0.3.15</span></div>
-      <div class="cl-row-title">Tier-2 런타임 + 에디터 정리 + Gateway 에셋/컴포넌트 API + 임베디드 에셋 플러그인</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-09.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-09</span><span class="cl-ver">0.3.14</span></div>
-      <div class="cl-row-title">플러그인 호스트 아키텍처 + Play 모드 수정 + 키보드 단축키 전달 + 게임 비디오 QTE 타임라인</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-08.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-08</span><span class="cl-ver">0.3.13</span></div>
-      <div class="cl-row-title">뷰포트 Gizmo 개선 + Composer 이미지 붙여넣기 + Agent 페르소나 i18n + iOS 내보내기</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-07.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-07</span><span class="cl-ver">0.3.12</span></div>
-      <div class="cl-row-title">Hierarchy 다중 선택 + AI 시맨틱 조작 레이어 + 편집기 안정성 수정</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-06.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-06</span><span class="cl-ver">0.3.11</span></div>
-      <div class="cl-row-title">ECS 쿼리 캐싱 + 뷰포트 기즈모 GPU 구동 + fx-math 독립 패키지</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-04.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-04</span><span class="cl-ver">0.3.10</span></div>
-      <div class="cl-row-title">3D 생성 수정 + 워크벤치 i18n + TUI 에이전트 터미널</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-03.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-03</span></div>
-      <div class="cl-row-title">Windows Play 모드 안정화 + 개발자 LLM 디버그 프록시</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-02.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-02</span></div>
-      <div class="cl-row-title">Forge는 장기 기억을 얻습니다. 더 많이 말할수록 더 많은 것을 알게 됩니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-07-01.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-07-01</span></div>
-      <div class="cl-row-title">R4 프런트엔드 랜드 + 뷰포트 2×2 재설계</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-30.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-30</span></div>
-      <div class="cl-row-title">번들되지 않은 아키텍처: 4개의 프런트엔드 모듈이 독립형으로 전환 + OSS 미러 강화</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-29.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-29</span></div>
-      <div class="cl-row-title">Forge는 팀워크를 배웁니다. 동시에 많은 에이전트</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-28.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-28</span></div>
-      <div class="cl-row-title">하나의 명령 - 이제 Windows에서도 가능</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-27.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-27</span></div>
-      <div class="cl-row-title">콘텐츠 브라우저, 드래그 투 씬, 에디터 QA 게이트를 위한 UE5급 계획</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-26.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-26</span></div>
-      <div class="cl-row-title">전체 체인 관찰성: 느린 부분을 한 눈에 확인</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-25.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-25</span><span class="cl-ver">v0.2.0</span></div>
-      <div class="cl-row-title">프로젝트를 열면 렌더링만 되고 에이전트는 장기 메모리를 얻습니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-24.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-24</span></div>
-      <div class="cl-row-title">새로운 자산 브라우저 + 더욱 원활한 첫 실행 온보딩</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-23.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-23</span></div>
-      <div class="cl-row-title">자산 검사기 + 지연 없는 스위치 + Windows 지원</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-22.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-22</span></div>
-      <div class="cl-row-title">프로젝트가 오픈 소스로 전환되고 데스크톱 앱이 충돌 반복을 중지합니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-21.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-21</span></div>
-      <div class="cl-row-title">생성된 3D가 조작되고 애니메이션화 + 자동화된 편집기 QA</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-20.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-20</span></div>
-      <div class="cl-row-title">전체 이중 언어 UI + 완전한 개발자 도구 패널</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-19.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-19</span></div>
-      <div class="cl-row-title">데스크탑 강화: 게임이 더 이상 로딩 중 멈추지 않습니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-18.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-18</span></div>
-      <div class="cl-row-title">애니메이션 에이전트 아바타 + 프로젝트 데이터에 대한 단일 정보 소스</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-17.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-17</span></div>
-      <div class="cl-row-title">벽을 따라 움직이는 움직임 + 성숙한 독립형 편집기</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-16.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-16</span></div>
-      <div class="cl-row-title">캐릭터가 마침내 그림자를 드리우고 완전히 독립된 편집기</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-15.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-15</span></div>
-      <div class="cl-row-title">다크 판타지 ARPG 샘플 + 모델 업로드 및 사용</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-14.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-14</span></div>
-      <div class="cl-row-title">가져온 장면에서 효과가 흰색 세척 중지 + 걷기 및 점프</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-13.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-13</span></div>
-      <div class="cl-row-title">프로젝트당 여러 레벨 + 섀도우 시스템 업그레이드</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-12.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-12</span></div>
-      <div class="cl-row-title">캐릭터가 실제로 움직이고 안정적인 채팅이 가능합니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-11.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-11</span></div>
-      <div class="cl-row-title">게임에 텍스트를 3D로 변환하고 계속하기 전에 상담원이 확인합니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-10.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-10</span></div>
-      <div class="cl-row-title">즉시 사용 가능한 실제 하늘 + 텍스트-3D 모델</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-09.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-09</span></div>
-      <div class="cl-row-title">AI가 "완료"를 속일 수 없도록 하는 빌드 게이트</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-08.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-08</span></div>
-      <div class="cl-row-title">대규모 편집기 통합 + 텍스처 모델이 실시간으로 렌더링됩니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-07.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-07</span></div>
-      <div class="cl-row-title">핵심 편집기 패널 도착 + Windows 지원</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-06.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-06</span></div>
-      <div class="cl-row-title">모델을 드래그하면 장면이 됩니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-05.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-05</span></div>
-      <div class="cl-row-title">편집기 모드, 완료</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-04.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-04</span></div>
-      <div class="cl-row-title">에디터 모드는 실제로 사용 가능합니다</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-03.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-03</span></div>
-      <div class="cl-row-title">편집기 모드는 로드맵을 얻고 시각적 편집을 위한 엔진 준비를 갖습니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-02.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-02</span></div>
-      <div class="cl-row-title">데스크톱 앱을 실행하는 명령 하나 + 노드 편집기 조인</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-06-01.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-06-01</span></div>
-      <div class="cl-row-title">데스크탑 앱은 엔드투엔드 + 선명한 텍스트로 실행됩니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-31.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-31</span></div>
-      <div class="cl-row-title">게임을 독립형 사이트로 내보내기 + 스카이박스 및 블룸</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-30.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-30</span></div>
-      <div class="cl-row-title">데스크톱 앱 출시 + 공유 게임 라이브러리</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-29.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-29</span></div>
-      <div class="cl-row-title">엔진에 물리 및 피킹 + 재구축된 UI 기반이 추가되었습니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-28.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-28</span></div>
-      <div class="cl-row-title">전용 애니메이션 작업대 + 라이브 도구 스트리밍</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-27.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-27</span></div>
-      <div class="cl-row-title">엔진은 자체적으로 완벽하게 작동하며 더 풍부한 재료를 사용합니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-26.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-26</span></div>
-      <div class="cl-row-title">원탭 컨텍스트 압축 + WebGPU 소프트웨어 폴백</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-25.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-25</span></div>
-      <div class="cl-row-title">골격 애니메이션 + 장면 및 전망대 작업대</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-24.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-24</span></div>
-      <div class="cl-row-title">게임 런타임이 사내 엔진으로 완전히 이동합니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-23.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-23</span></div>
-      <div class="cl-row-title">위험한 행동 전 확인 + 엔진 주변광 및 그림자</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-22.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-22</span></div>
-      <div class="cl-row-title">엔진은 그림자와 새로운 내러티브 워크벤치를 학습합니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-21.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-21</span></div>
-      <div class="cl-row-title">새로워진 인터페이스 + 내장형 워크벤치</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-20.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-20</span></div>
-      <div class="cl-row-title">채팅이 새 백엔드에 다시 연결 + 설정에서 모델 및 키 관리</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-19.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-19</span></div>
-      <div class="cl-row-title">충돌 복구 가능한 백엔드 + 엔진 최초의 실제 조명</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-18.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-18</span></div>
-      <div class="cl-row-title">모든 폴더를 작업 공간 + 인앱 버전 및 바로가기로 열기</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-17.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-17</span></div>
-      <div class="cl-row-title">인라인 3D 및 이미지 미리보기 + @멘션 알약</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-16.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-16</span></div>
-      <div class="cl-row-title">에이전트 버스가 UI + 대시보드 필터로 제공됩니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-15.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-15</span></div>
-      <div class="cl-row-title">채팅 UI 성장: 크기 조정 가능한 레이아웃, 중첩된 도구 호출, 하위 에이전트 카드</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-14.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-14</span></div>
-      <div class="cl-row-title">브라우저를 닫으세요. 상담원은 계속 작업합니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-13.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-13</span></div>
-      <div class="cl-row-title">실시간 핫 리로드 미리보기 + 세션 재생</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-12.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-12</span></div>
-      <div class="cl-row-title">엔진 자산 시스템 v1 + 딥 채팅 개선</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-11.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-11</span></div>
-      <div class="cl-row-title">제로에서 채팅으로 만든 회전 큐브까지</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-10.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-10</span></div>
-      <div class="cl-row-title">빌드 및 런타임 아키텍처가 구체화됩니다.</div>
-    </a>
-    <a class="cl-row" href="/ko/changelog/2026-05-09.html">
-      <div class="cl-row-meta"><span class="cl-date">2026-05-09</span></div>
-      <div class="cl-row-title">프로젝트 시작</div>
-    </a>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-08-13 — 08-19</span><span class="cl-count">2 개 업데이트</span></div>
+        <div class="cl-row-title">설치 및 커서 표시 수정<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/ko/changelog/2026-08-19.html">
+          <span class="cl-date">2026-08-19</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-08-13.html">
+          <span class="cl-date">2026-08-13</span>
+          <span>자세히 보기</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-08-01 — 08-06</span><span class="cl-count">2 개 업데이트</span></div>
+        <div class="cl-row-title">에셋 캔버스와 AI 편집 제어<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/ko/changelog/2026-08-06.html">
+          <span class="cl-date">2026-08-06</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-08-01.html">
+          <span class="cl-date">2026-08-01</span>
+          <span>자세히 보기</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-07-22 — 07-28</span><span class="cl-count">3 개 업데이트</span></div>
+        <div class="cl-row-title">플레이 흰 화면 수정과 머티리얼 편집<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/ko/changelog/2026-07-28.html">
+          <span class="cl-date">2026-07-28</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-24.html">
+          <span class="cl-date">2026-07-24</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-22.html">
+          <span class="cl-date">2026-07-22</span>
+          <span>자세히 보기</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-07-13 — 07-17</span><span class="cl-count">5 개 업데이트</span></div>
+        <div class="cl-row-title">프로젝트 시작, 카메라, 애니메이션 개선<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/ko/changelog/2026-07-17.html">
+          <span class="cl-date">2026-07-17</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-16.html">
+          <span class="cl-date">2026-07-16</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-15.html">
+          <span class="cl-date">2026-07-15</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-14.html">
+          <span class="cl-date">2026-07-14</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-13.html">
+          <span class="cl-date">2026-07-13</span>
+          <span>자세히 보기</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-07-07 — 07-12</span><span class="cl-count">5 개 업데이트</span></div>
+        <div class="cl-row-title">다중 선택, 플러그인 호스트, 런타임 개선<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/ko/changelog/2026-07-12.html">
+          <span class="cl-date">2026-07-12</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-10.html">
+          <span class="cl-date">2026-07-10</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-09.html">
+          <span class="cl-date">2026-07-09</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-08.html">
+          <span class="cl-date">2026-07-08</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-07.html">
+          <span class="cl-date">2026-07-07</span>
+          <span>자세히 보기</span>
+        </a>
+      </div>
+    </details>
+    <details class="cl-group">
+      <summary class="cl-row">
+        <div class="cl-row-meta"><span class="cl-date">2026-07-01 — 07-06</span><span class="cl-count">5 개 업데이트</span></div>
+        <div class="cl-row-title">Windows 플레이와 3D 생성 수정<span class="cl-chevron" aria-hidden="true">⌄</span></div>
+      </summary>
+      <div class="cl-group-days">
+        <a class="cl-group-link" href="/ko/changelog/2026-07-06.html">
+          <span class="cl-date">2026-07-06</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-04.html">
+          <span class="cl-date">2026-07-04</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-03.html">
+          <span class="cl-date">2026-07-03</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-02.html">
+          <span class="cl-date">2026-07-02</span>
+          <span>자세히 보기</span>
+        </a>
+        <a class="cl-group-link" href="/ko/changelog/2026-07-01.html">
+          <span class="cl-date">2026-07-01</span>
+          <span>자세히 보기</span>
+        </a>
+      </div>
+    </details>
   </div>
 </main>
 
@@ -400,24 +224,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
   </div>
-  <div class="col"><h4>대지</h4>
+  <nav class="foot-links" aria-label="대지">
     <a href="/ko/changelog/">변경 내역</a>
-    <a href="/ko/blog/">블로그</a>
-    <a href="/ko/docs/">문서</a>
     <a href="/ko/tutorials/">튜토리얼</a>
     <a href="/ko/examples/">예</a>
-    <a href="/ko/games/">계략</a>
-    <a href="/ko/marketplace/">시장</a>
-  </div>
-  <div class="col"><h4>프로젝트</h4>
+    <a href="/ko/marketplace/">플러그인</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
     <a href="/ko/about.html">에 대한</a>
     <a href="/ko/license.html">특허</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

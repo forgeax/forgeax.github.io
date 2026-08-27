@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>教程 · Tutorials — ForgeaX</title>
-<meta name="description" content="ForgeaX 教程 —— 从零做出你的第一款游戏。" />
+<title>教程 · 文档 — ForgeaX</title>
+<meta name="description" content="ForgeaX 教程与文档 —— 从安装、客户端到 CLI，做出你的第一款游戏。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="教程 · Tutorials — ForgeaX" />
-<meta property="og:description" content="ForgeaX 教程 —— 从零做出你的第一款游戏。" />
+<meta property="og:title" content="教程 · 文档 — ForgeaX" />
+<meta property="og:description" content="ForgeaX 教程与文档 —— 从安装、客户端到 CLI，做出你的第一款游戏。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/zh/tutorials/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -36,24 +36,10 @@
     <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>文档</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/zh/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>开发文档</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/zh/" data-nav="/">主页</a>
       <a href="/zh/tutorials/" data-nav="/tutorials/" class="active">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
-      <a href="/zh/games/" data-nav="/games/">游戏</a>
-      <a href="/zh/marketplace/" data-nav="/marketplace/">插件市场</a>
-      <a href="/zh/blog/" data-nav="/blog/">观点</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
       <a href="/zh/changelog/" data-nav="/changelog/">更新日志</a>
       <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
@@ -64,15 +50,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/" data-l="en">English</a><a class="lang-item active" href="/zh/tutorials/" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/tutorials/" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> 问 AI</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">在 ChatGPT 中打开</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">在 Claude 中打开</a>
-          <button class="ask-item" id="copyMd">复制为 Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
     </div>
   </div>
 </nav>
@@ -80,59 +59,59 @@
 <main class="wrap">
   <div class="page-head">
     <h1>教程</h1>
-    <p>手把手带你从一句话做出能玩的游戏。更多教程会陆续上线。</p>
+    <p>安装、客户端与 CLI 都在这里。教程带你上手，文档随时查阅。</p>
   </div>
 
   <div class="section tut-section">
     <div class="grid tut-grid">
       <a class="card card--link tut-card" href="/zh/tutorials/cli-setup.html">
-        <div class="tut-card__meta">
+        <div class="tut-card__head">
           <div class="ico"><i data-lucide="terminal"></i></div>
+          <h3 class="tut-card__title">让你的 AI CLI 克隆并启动它</h3>
           <span class="tag brand">入门</span>
         </div>
-        <h3 class="tut-card__title">让你的 AI CLI 克隆并启动它</h3>
         <p class="tut-card__desc">把仓库交给 Claude Code / Codex / Cursor / forgeax CLI，让它自己 clone、装依赖、启动。</p>
       </a>
       <a class="card card--link tut-card" href="/zh/tutorials/getting-started.html">
-        <div class="tut-card__meta">
+        <div class="tut-card__head">
           <div class="ico"><i data-lucide="rocket"></i></div>
+          <h3 class="tut-card__title">快速开始 · 你的第一款游戏</h3>
           <span class="tag brand">入门</span>
         </div>
-        <h3 class="tut-card__title">快速开始 · 你的第一款游戏</h3>
         <p class="tut-card__desc">认识工作室，对 Forge 说出第一个需求，看它规划、写代码、实时跑出来。</p>
       </a>
-      <div class="card tut-card tut-card--soon">
-        <div class="tut-card__meta">
-          <div class="ico"><i data-lucide="hourglass"></i></div>
-          <span class="tag">即将上线</span>
-        </div>
-        <h3 class="tut-card__title">给角色加上动作与技能</h3>
-        <p class="tut-card__desc">导入角色、配动画 clip、加一个会放火球的法术。</p>
-      </div>
       <a class="card card--link tut-card" href="/zh/tutorials/workbenches.html">
-        <div class="tut-card__meta">
+        <div class="tut-card__head">
           <div class="ico"><i data-lucide="palette"></i></div>
+          <h3 class="tut-card__title">用工作台生成美术资产</h3>
           <span class="tag brand">创作</span>
         </div>
-        <h3 class="tut-card__title">用工作台生成美术资产</h3>
         <p class="tut-card__desc">认识一整套创作工作台 —— 角色、动画、3D、特效、UI、音乐，从一句话到可进游戏的素材。</p>
       </a>
       <a class="card card--link tut-card" href="/zh/tutorials/interactive-film-game.html">
-        <div class="tut-card__meta">
+        <div class="tut-card__head">
           <div class="ico"><i data-lucide="clapperboard"></i></div>
+          <h3 class="tut-card__title">做一部可玩的互动影游</h3>
           <span class="tag brand">创作</span>
         </div>
-        <h3 class="tut-card__title">做一部可玩的互动影游</h3>
         <p class="tut-card__desc">一句灵感 / 一部剧本 → 锚点 → 分镜 → 视频 → 试玩，再一键打包成谁都能玩的网页。</p>
       </a>
-      <div class="card tut-card tut-card--soon">
-        <div class="tut-card__meta">
-          <div class="ico"><i data-lucide="hourglass"></i></div>
-          <span class="tag">即将上线</span>
+      <a class="card card--link tut-card" id="docs" href="/zh/docs/">
+        <div class="tut-card__head">
+          <div class="ico"><i data-lucide="book-open"></i></div>
+          <h3 class="tut-card__title">开发文档</h3>
+          <span class="tag brand">文档</span>
         </div>
-        <h3 class="tut-card__title">做一个多关卡的小游戏</h3>
-        <p class="tut-card__desc">关卡切换、场景复用、数值调平衡。</p>
-      </div>
+        <p class="tut-card__desc">核心概念、工作台、资产、发布 —— 从用户角度的完整指南。</p>
+      </a>
+      <a class="card card--link tut-card" href="/docs/cli/">
+        <div class="tut-card__head">
+          <div class="ico"><i data-lucide="terminal"></i></div>
+          <h3 class="tut-card__title">ForgeaX CLI</h3>
+          <span class="tag brand">文档</span>
+        </div>
+        <p class="tut-card__desc">终端里启动引擎内核：安装、工作流、MCP、权限与命令参考。</p>
+      </a>
     </div>
   </div>
 </main>
@@ -142,24 +121,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。开源，Apache License 2.0。</p>
   </div>
-  <div class="col"><h4>站点</h4>
+  <nav class="foot-links" aria-label="站点">
     <a href="/zh/changelog/">更新日志</a>
-    <a href="/zh/blog/">观点</a>
-    <a href="/zh/docs/">开发文档</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
-    <a href="/zh/games/">游戏</a>
-    <a href="/zh/marketplace/">插件市场</a>
-  </div>
-  <div class="col"><h4>项目</h4>
+    <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
     <a href="/zh/about.html">关于 / 愿景</a>
     <a href="/zh/license.html">版权说明</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

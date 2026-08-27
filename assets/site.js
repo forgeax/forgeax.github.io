@@ -144,6 +144,54 @@
     loadScript("/assets/blog-list-motion.js?v=2ba005cd");
   }
 
+  /* About page reading tags — swap long-form panels, honor #hash from old blog URLs. */
+  (function wireReadTags() {
+    var root = document.querySelector("[data-read-tags]");
+    if (!root) return;
+    var tabs = [].slice.call(document.querySelectorAll("[data-read-tag]"));
+    var panels = [].slice.call(document.querySelectorAll("[data-read-panel]"));
+    if (!tabs.length || !panels.length) return;
+    var wrap = document.querySelector(".about-read");
+
+    var alias = {};
+    panels.forEach(function (panel) {
+      alias[panel.id] = panel.id;
+      (panel.getAttribute("data-read-alias") || "").split(/\s+/).forEach(function (key) {
+        if (key) alias[key] = panel.id;
+      });
+    });
+
+    function activate(id) {
+      var key = alias[id] || panels[0].id;
+      tabs.forEach(function (tab) {
+        var on = tab.getAttribute("data-read-tag") === key;
+        tab.classList.toggle("is-active", on);
+        tab.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      panels.forEach(function (panel) {
+        var on = panel.id === key;
+        panel.classList.toggle("is-active", on);
+      });
+      if (wrap) wrap.classList.add("is-ready");
+    }
+
+    function fromHash() {
+      activate((location.hash || "").replace(/^#/, "") || panels[0].id);
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function (event) {
+        event.preventDefault();
+        var id = tab.getAttribute("data-read-tag");
+        if (history.replaceState) history.replaceState(null, "", "#" + id);
+        else location.hash = id;
+        activate(id);
+      });
+    });
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+  })();
+
   /* desktop nav: center links in the slot between brand and actions (no overlap) */
   function layoutNavLinks() {
     var links = document.getElementById("navlinks");
@@ -330,84 +378,80 @@
     }, { passive: true });
   })();
 
-  /* ── copy page as Markdown ──────────────────────────────────────────────
-     Walks <main> and emits Markdown. Pages are single-language, so no data-lang filtering. */
-  function inlineMd(el) {
-    var out = "";
-    el.childNodes.forEach(function (n) {
-      if (n.nodeType === 3) { out += n.textContent.replace(/\s+/g, " "); return; }
-      if (n.nodeType !== 1) return;
-      var tag = n.tagName.toLowerCase();
-      if (tag === "a") out += "[" + inlineMd(n).trim() + "](" + (n.getAttribute("href") || "") + ")";
-      else if (tag === "strong" || tag === "b") out += "**" + inlineMd(n).trim() + "**";
-      else if (tag === "em" || tag === "i") out += "*" + inlineMd(n).trim() + "*";
-      else if (tag === "code") out += "`" + n.textContent.trim() + "`";
-      else if (tag === "br") out += "\n";
-      else out += inlineMd(n);
-    });
-    return out;
-  }
-  function blockMd(root) {
-    var md = "";
-    root.childNodes.forEach(function (n) {
-      if (n.nodeType !== 1) return;
-      var tag = n.tagName.toLowerCase();
-      var cls = (typeof n.className === "string") ? n.className : "";
-      if (tag === "script" || tag === "style" || tag === "svg" || cls.indexOf("md-copy") >= 0) return;
-      switch (tag) {
-        case "h1": md += "# " + inlineMd(n).trim() + "\n\n"; break;
-        case "h2": md += "## " + inlineMd(n).trim() + "\n\n"; break;
-        case "h3": md += "### " + inlineMd(n).trim() + "\n\n"; break;
-        case "h4": md += "#### " + inlineMd(n).trim() + "\n\n"; break;
-        case "p": { var p = inlineMd(n).trim(); if (p) md += p + "\n\n"; } break;
-        case "ul": n.querySelectorAll(":scope > li").forEach(function (li) { md += "- " + inlineMd(li).trim() + "\n"; }); md += "\n"; break;
-        case "ol": var i = 1; n.querySelectorAll(":scope > li").forEach(function (li) { md += (i++) + ". " + inlineMd(li).trim() + "\n"; }); md += "\n"; break;
-        case "blockquote": md += "> " + inlineMd(n).trim().replace(/\n+/g, "\n> ") + "\n\n"; break;
-        case "pre": md += "```\n" + n.textContent.replace(/\s+$/, "") + "\n```\n\n"; break;
-        case "hr": md += "---\n\n"; break;
-        default: md += blockMd(n);
-      }
-    });
-    return md;
-  }
-  function pageMarkdown() {
-    var main = document.querySelector("main");
-    var body = main ? blockMd(main).replace(/\n{3,}/g, "\n\n").trim() : document.title;
-    return body + "\n\n— " + location.href + "\n";
-  }
-  var copyBtn = document.getElementById("copyMd");
-  if (copyBtn) copyBtn.addEventListener("click", function () {
-    var md = pageMarkdown();
-    function done() {
-      var b = document.getElementById("copyMd"); if (!b) return;
-      var old = b.innerHTML;
-      b.innerHTML = '<span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="check"></i></span><span class="lbl">' + (curLang() === "zh" ? "已复制" : "Copied") + "</span>";
-      if (typeof window.forgeaxRefreshIcons === "function") window.forgeaxRefreshIcons();
-      b.classList.add("ok");
-      setTimeout(function () { b.innerHTML = old; b.classList.remove("ok"); }, 1600);
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(md).then(done, fallback);
-    } else fallback();
-    function fallback() {
-      var ta = document.createElement("textarea"); ta.value = md;
-      ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta);
-      ta.select(); try { document.execCommand("copy"); } catch (e) {} ta.remove(); done();
-    }
-  });
+  /* ── OS-aware Studio download (WorkBuddy-style hover card) ───────────── */
+  (function studioDownload() {
+    var cfg = window.FX_EXPERIENCE || {};
+    var downloads = cfg.downloads || {};
+    var page = downloads.page || cfg.downloadUrl || "";
 
-  /* Ask-AI deep links → point at the canonical public page (not localhost) */
-  (function () {
-    var pageUrl = "https://forgeax.github.io" + location.pathname.replace(/index\.html$/, "");
-    var q = encodeURIComponent("Read this ForgeaX page and help me understand and use it: " + pageUrl);
-    var gpt = document.getElementById("ai-chatgpt");
-    var cla = document.getElementById("ai-claude");
-    if (gpt) gpt.href = "https://chatgpt.com/?q=" + q;
-    if (cla) cla.href = "https://claude.ai/new?q=" + q;
-    var ask = document.getElementById("askAi");
-    if (ask) {
-      ask.addEventListener("click", function (e) { if (e.target.closest("a")) ask.open = false; });
-      document.addEventListener("click", function (e) { if (ask.open && !ask.contains(e.target)) ask.open = false; });
+    function detectOs() {
+      var ua = navigator.userAgent || "";
+      if (/ipad|iphone|ipod/i.test(ua)) return "other";
+      var plat = "";
+      try { plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ""; } catch (e) { plat = navigator.platform || ""; }
+      var hay = (plat + " " + ua).toLowerCase();
+      if (hay.indexOf("win") !== -1) return "win";
+      if (hay.indexOf("mac") !== -1) return "mac";
+      if (hay.indexOf("linux") !== -1) return "linux";
+      return "other";
     }
+
+    function fileFor(os) {
+      return (os === "mac" || os === "win" || os === "linux") ? (downloads[os] || "") : "";
+    }
+
+    function bindFile(el, url, isFile) {
+      if (!el || !url) return;
+      el.setAttribute("href", url);
+      if (isFile) {
+        el.removeAttribute("target");
+        el.removeAttribute("rel");
+      }
+    }
+
+    function paint(os) {
+      var currentUrl = fileFor(os) || page;
+      var currentIsFile = !!fileFor(os);
+      Array.prototype.forEach.call(document.querySelectorAll("[data-download-primary]"), function (el) {
+        bindFile(el, currentUrl, currentIsFile);
+      });
+      Array.prototype.forEach.call(document.querySelectorAll("[data-download]"), function (host) {
+        Array.prototype.forEach.call(host.querySelectorAll("[data-download-opt]"), function (row) {
+          var key = row.getAttribute("data-download-opt");
+          var url = fileFor(key);
+          var now = row.querySelector("[data-download-now]");
+          if (url) {
+            bindFile(row, url, true);
+            row.hidden = false;
+          } else {
+            row.hidden = true;
+          }
+          var isCurrent = !!url && key === os;
+          if (now) now.hidden = !isCurrent;
+          row.classList.toggle("is-current", isCurrent);
+        });
+        var all = host.querySelector("[data-download-all]");
+        if (all && page) all.setAttribute("href", page);
+      });
+    }
+
+    paint(detectOs());
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-download]"), function (host) {
+      var hideTimer = 0;
+      function open() {
+        if (hideTimer) { clearTimeout(hideTimer); hideTimer = 0; }
+        host.classList.add("is-open");
+      }
+      function closeSoon() {
+        hideTimer = setTimeout(function () { host.classList.remove("is-open"); }, 140);
+      }
+      host.addEventListener("mouseenter", open);
+      host.addEventListener("mouseleave", closeSoon);
+      host.addEventListener("focusin", open);
+      host.addEventListener("focusout", function (e) {
+        if (!host.contains(e.relatedTarget)) closeSoon();
+      });
+    });
   })();
 })();

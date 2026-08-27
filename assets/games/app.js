@@ -233,8 +233,8 @@
           '<p>' + esc(g.blurb) + '</p>' +
           '<div class="c-row"><div class="cta">' +
             (canPlay(g)
-              ? '<a class="btn primary" href="' + esc(g.href || ('/games/' + g.slug + '/')) + '" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span>' + esc(t('play', 'Play')) + '</a>'
-              : '<span class="btn primary"><span class="btn-fx" aria-hidden="true"></span>' + esc(t('play', 'Play')) + '</span>') +
+              ? '<a class="btn primary" href="' + esc(g.href || ('/games/' + g.slug + '/')) + '" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span>' + esc(t('play', 'Play')) + '</span></a>'
+              : '<span class="btn primary"><span class="btn-fx" aria-hidden="true"></span><span>' + esc(t('play', 'Play')) + '</span></span>') +
             '<a class="btn ghost" href="' + esc(dp) + '">' + esc(t('view', 'View')) + '</a>' +
           '</div></div>' +
           '<div class="c-meta"><span>' + esc((g.tags || []).slice(0, 3).join(' · ')) + '</span></div>' +

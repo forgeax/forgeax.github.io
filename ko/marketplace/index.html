@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>마켓플레이스 — ForgeaX</title>
-<meta name="description" content="ForgeaX 마켓플레이스: 필터 및 검색 에이전트, 작업대, 기술, CLI 백엔드, 도구 및 모델 바인딩. Every capability is a plugin loaded at runtime." />
+<title>플러그인 — ForgeaX</title>
+<meta name="description" content="ForgeaX의 에이전트, 작업대 및 CLI 백엔드 플러그인을 둘러보세요. 모든 기능은 런타임에 로드되는 플러그인입니다." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="마켓플레이스 — ForgeaX" />
-<meta property="og:description" content="ForgeaX 마켓플레이스: 필터 및 검색 에이전트, 작업대, 기술, CLI 백엔드, 도구 및 모델 바인딩. Every capability is a plugin loaded at runtime." />
+<meta property="og:title" content="플러그인 — ForgeaX" />
+<meta property="og:description" content="ForgeaX의 에이전트, 작업대 및 CLI 백엔드 플러그인을 둘러보세요. 모든 기능은 런타임에 로드되는 플러그인입니다." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/ko/marketplace/" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -23,22 +23,13 @@
 <link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/marketplace/" />
 <link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/marketplace/" />
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
-<link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=73a50263" />
+<link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=eece033b" />
 <style>
   .mk-count{font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);margin:16px 0 12px}
   .mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
   .mk-item{padding:16px}
   .mk-item.hide{display:none !important}
-  .mk-item .kind{display:inline-block;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.6px;
-    padding:2px 8px;border-radius:var(--radius-pill);margin-bottom:9px}
-  .k-agent{background:rgba(196,163,255,.14);color:#c4a3ff;border:1px solid rgba(196,163,255,.28)}
-  .k-wb{background:rgba(178,198,98,.13);color:#c8dc88;border:1px solid rgba(178,198,98,.28)}
-  .k-skill{background:rgba(208,148,78,.13);color:#ddb06a;border:1px solid rgba(208,148,78,.28)}
-  .k-backend{background:rgba(102,148,225,.13);color:#8eb0e8;border:1px solid rgba(102,148,225,.28)}
-  .k-tool{background:rgba(88,205,182,.12);color:#7ad4c0;border:1px solid rgba(88,205,182,.26)}
-  .k-binding{background:rgba(236,122,158,.13);color:#f094b8;border:1px solid rgba(236,122,158,.28)}
-  .mk-item h3{font-size:15px;font-weight:700;line-height:1.3}
-  .mk-item .slug{font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);font-weight:400;display:block;margin-top:2px}
+  .mk-item h3{font-size:15px;font-weight:700;line-height:1.3;margin:0}
   .mk-item p{color:var(--text-secondary);font-size:13.5px;margin-top:7px}
   .mk-item a{color:var(--brand)}
   .mk-empty{display:none;color:var(--text-tertiary);text-align:center;padding:36px 0}
@@ -62,7 +53,7 @@
   /* ── Agent cards: avatar slot on the right ── */
   .mk-item.is-agent{display:flex;gap:14px;align-items:flex-start}
   .mk-item.is-agent .mk-agent-main{flex:1;min-width:0}
-  .mk-item.is-agent h3{margin-top:4px}
+  .mk-item.is-agent h3{margin-top:0}
   .mk-avatar{
     width:64px;height:64px;flex-shrink:0;border-radius:50%;overflow:hidden;
     background:rgba(196,163,255,.08);
@@ -111,16 +102,6 @@
   .mk-item[data-slug="agent-cc-coder"] .mk-companions{margin-top:4px;gap:4px}
   .mk-item[data-slug="agent-cc-coder"] .mk-companion{padding:1px 7px;font-size:11px}
 
-  /* Plugin cards (workbench / skill / backend / tool / binding): .ico slot on the right */
-  .mk-item.is-mk-card{display:flex;gap:10px;align-items:flex-start}
-  .mk-item.is-mk-card .mk-card-main{flex:1;min-width:0}
-  .mk-item.is-mk-card h3{margin-top:2px}
-  .mk-item.is-mk-card .mk-card-icon.ico{
-    width:var(--icon-container-size);
-    height:var(--icon-container-size);
-    margin-top:2px;
-    flex-shrink:0;
-  }
   .mk-modal-icon.ico{
     width:var(--icon-container-size);
     height:var(--icon-container-size);
@@ -131,7 +112,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-ko forgeax-site">
@@ -141,24 +122,10 @@
     <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>문서</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/ko/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>문서</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/ko/" data-nav="/">홈</a>
       <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
       <a href="/ko/examples/" data-nav="/examples/">예</a>
-      <a href="/ko/games/" data-nav="/games/">계략</a>
-      <a href="/ko/marketplace/" data-nav="/marketplace/" class="active">시장</a>
-      <a href="/ko/blog/" data-nav="/blog/">블로그</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/" class="active">플러그인</a>
       <a href="/ko/changelog/" data-nav="/changelog/">변경 내역</a>
       <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
     </div>
@@ -169,60 +136,33 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/marketplace/" data-l="en">English</a><a class="lang-item" href="/zh/marketplace/" data-l="zh">中文</a><a class="lang-item" href="/ja/marketplace/" data-l="ja">日本語</a><a class="lang-item active" href="/ko/marketplace/" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/marketplace/" data-l="es">Español</a><a class="lang-item" href="/de/marketplace/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/marketplace/" data-l="fr">Français</a><a class="lang-item" href="/pt/marketplace/" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> AI에게 물어보세요</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">ChatGPT에서 열기</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">클로드에서 열기</a>
-          <button class="ask-item" id="copyMd">페이지를 마크다운으로 복사</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">다운로드</a>
     </div>
   </div>
 </nav>
 
 <main class="wrap">
   <div class="page-head">
-    <h1>시장</h1>
-    <p>ForgeaX에서는 거의 모든 기능이<strong>로드 가능한 플러그인</strong>. 종류별로 필터링하고, 검색하고, 활성화하고, 재정렬하거나 직접 작성하세요.</p>
+    <h1>플러그인</h1>
+    <p>ForgeaX에서는 거의 모든 기능이<strong>로드 가능한 플러그인</strong>입니다. 종류별로 둘러보고 활성화하거나 재정렬하고, 직접 만들 수도 있습니다.</p>
   </div>
 
   <div class="mk-bar">
     <div class="mk-tabs">
-      <button class="mk-tab active" data-kind="all">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
-        모두
+      <button class="mk-tab active" data-kind="workbench">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="blocks"></i></span>
+        작업대
       </button>
       <button class="mk-tab" data-kind="agent">
         <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="bot"></i></span>
         대리인
       </button>
-      <button class="mk-tab" data-kind="workbench">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="blocks"></i></span>
-        작업대
-      </button>
-      <button class="mk-tab" data-kind="skill">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="wand-sparkles"></i></span>
-        기능
-      </button>
       <button class="mk-tab" data-kind="backend">
         <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
         CLI 백엔드
       </button>
-      <button class="mk-tab" data-kind="tool">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="wrench"></i></span>
-        도구
-      </button>
-      <button class="mk-tab" data-kind="binding">
-        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="link-2"></i></span>
-        제본
-      </button>
     </div>
-    <label class="mk-search">
-      <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
-      <input id="mkSearch" type="search" placeholder="찾다…" aria-label="플러그인 검색" />
-    </label>
   </div>
 
   <div class="mk-count" id="mkCount"></div>
@@ -230,56 +170,49 @@
   <div class="mk-grid" id="mkGrid">
     <div class="mk-item is-agent" data-slug="agent-arin" data-kind="agent" data-search="arin producer 制作人 统筹 production">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>아린 · 프로듀서<span class="slug">producer</span></h3>
+        <h3>아린 · 프로듀서</h3>
         <p>디자인/코드/아트/오디오까지 코디하는 만능 프로듀서.</p>
       </div>
       <div class="mk-avatar" data-agent="arin"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-reia" data-kind="agent" data-search="reia reel fmv 影游 互动影片 导演 director interactive film qte">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>레이아 · 릴 디렉터<span class="slug">reel</span></h3>
+        <h3>레이아 · 릴 디렉터</h3>
         <p>대화형 FMV 디렉터 — 프롬프트, QTE 속도, 분기 및 결말.</p>
       </div>
       <div class="mk-avatar" data-agent="reia"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-iori" data-kind="agent" data-search="iori gameplay 玩法 pillar mechanics">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>이오리 · 게임 플레이<span class="slug">pillar</span></h3>
+        <h3>이오리 · 게임 플레이</h3>
         <p>핵심 메커니즘 - 게임플레이 기둥과 숫자 뼈대.</p>
       </div>
       <div class="mk-avatar" data-agent="iori"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-suzu" data-kind="agent" data-search="suzu design experience 体验设计 hud onboarding">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>스즈 · 체험<span class="slug">design</span></h3>
+        <h3>스즈 · 체험</h3>
         <p>플레이어 속도, HUD 및 온보딩.</p>
       </div>
       <div class="mk-avatar" data-agent="suzu"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-kotone" data-kind="agent" data-search="kotone narrative 叙事 story world dialogue">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>코토네 · 내러티브<span class="slug">narrative</span></h3>
+        <h3>코토네 · 내러티브</h3>
         <p>세계, 캐릭터 소개 및 대화.</p>
       </div>
       <div class="mk-avatar" data-agent="kotone"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-iro" data-kind="agent" data-search="iro art 美术 sprite vfx ui">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>이로 · 예술<span class="slug">art</span></h3>
+        <h3>이로 · 예술</h3>
         <p>초상화, 스프라이트, VFX 및 UI 방향.</p>
       </div>
       <div class="mk-avatar" data-agent="iro"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-cc-coder" data-kind="agent" data-search="coder coding 编码 cc-coder code companion personas 陪伴人格 character mochi rin sakura kaede kumo 糯糯 凛 樱 小枫 蛛蛛">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>cc-코더 · 코더<span class="slug">coder</span></h3>
+        <h3>cc-코더 · 코더</h3>
         <p>일반 코딩 — 사양을 실행 코드로 변환합니다. 선택적 동반자 페르소나.</p>
         <div class="mk-companions" aria-label="companion personas">
         <span class="mk-companion is-shown" data-persona="mochi">떡</span>
@@ -293,228 +226,196 @@
     </div>
     <div class="mk-item is-agent" data-slug="agent-tsumugi" data-kind="agent" data-search="tsumugi build ci 工程 toolchain">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>츠무기 · 빌드<span class="slug">build</span></h3>
+        <h3>츠무기 · 빌드</h3>
         <p>빌드, CI, 툴체인 및 배포.</p>
       </div>
       <div class="mk-avatar" data-agent="tsumugi"></div>
     </div>
     <div class="mk-item is-agent" data-slug="agent-yevi" data-kind="agent" data-search="yevi review 审查 tech debt reviewer">
       <div class="mk-agent-main">
-        <span class="kind k-agent">Agent</span>
-        <h3>예비·리뷰어<span class="slug">review</span></h3>
+        <h3>예비·리뷰어</h3>
         <p>기술 검토 — 기술 부채를 식별하고 청산합니다.</p>
       </div>
       <div class="mk-avatar" data-agent="yevi"></div>
     </div>
     <div class="mk-rowbreak" aria-hidden="true"></div>
     <div class="mk-item" data-slug="wb-character" data-kind="workbench" data-search="wb-character 角色编辑器 portrait 立绘 turnaround character">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="character-designer-2d" title="2D Character Designer">
         <div class="mk-avatar mk-avatar-sm" data-agent="character-designer-2d"></div>
         <span class="mk-agent-role">2D Character Designer</span>
       </div>
-      <h3>캐릭터 에디터<span class="slug">wb-character</span></h3>
+      <h3>캐릭터 에디터</h3>
       <p>한줄 브리핑 → 세로 + 턴어라운드.</p>
     </div>
     <div class="mk-item" data-slug="wb-anim" data-kind="workbench" data-search="wb-anim 动画 animation walk attack sprite">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="animator-2d" title="2D Animator">
         <div class="mk-avatar mk-avatar-sm" data-agent="animator-2d"></div>
         <span class="mk-agent-role">2D Animator</span>
       </div>
-      <h3>생기<span class="slug">wb-anim</span></h3>
+      <h3>생기</h3>
       <p>정지된 캐릭터를 걷고, 공격하고, 골격 동작으로 전환합니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-skill" data-kind="workbench" data-search="wb-skill 技能 vfx 特效 effects fireball">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="vfx-artist-3d" title="3D VFX Artist">
         <div class="mk-avatar mk-avatar-sm" data-agent="vfx-artist-3d"></div>
         <span class="mk-agent-role">3D VFX Artist</span>
       </div>
-      <h3>스킬 / VFX<span class="slug">wb-skill</span></h3>
+      <h3>스킬 / VFX</h3>
       <p>화염, 베기, 오라 — 시전 순간에 자동으로 부착됩니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-lowpoly-obj" data-kind="workbench" data-search="wb-lowpoly-obj 方块人 blocky rigged 3d character">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="cc-coder" title="cc-coder">
         <div class="mk-avatar mk-avatar-sm" data-agent="cc-coder"></div>
         <span class="mk-agent-role">General Coder</span>
       </div>
-      <h3>블록 문자 편집기<span class="slug">wb-lowpoly-obj</span></h3>
+      <h3>블록 문자 편집기</h3>
       <p>블록과 같은 조작된 3D 캐릭터를 만들고 표준 3D를 내보냅니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-3d-lowpoly" data-kind="workbench" data-search="wb-3d-lowpoly 低多边形 node graph 3d props">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="lowpoly" title="Poly · Lowpoly Modeler">
         <div class="mk-avatar mk-avatar-sm" data-agent="lowpoly"></div>
         <span class="mk-agent-role">Lowpoly Modeler</span>
       </div>
-      <h3>로우 폴리 생성기<span class="slug">wb-3d-lowpoly</span></h3>
+      <h3>로우 폴리 생성기</h3>
       <p>노드 그래프 3D 소품; 매개변수를 변경하고 세트를 재생성합니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-gen3d" data-kind="workbench" data-search="wb-gen3d 3d 生成 text image to 3d model">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="gen3d" title="Gen3D · 3D Character Artist">
         <div class="mk-avatar mk-avatar-sm" data-agent="gen3d"></div>
         <span class="mk-agent-role">3D Character Artist</span>
       </div>
-      <h3>3D 생성<span class="slug">wb-gen3d</span></h3>
+      <h3>3D 생성</h3>
       <p>여러 생성기를 통해 텍스트나 이미지를 3D 모델로 바로 변환할 수 있습니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-2d-scene-asset-generator" data-kind="workbench" data-search="wb-2d-scene-asset-generator 2d 场景资产 props textures">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="mira" title="Mira · Asset Weaver">
         <div class="mk-avatar mk-avatar-sm" data-agent="iro"></div>
         <span class="mk-agent-role">2D Scene Asset Artist</span>
       </div>
-      <h3>2D 장면 자산<span class="slug">wb-2d-scene-asset-generator</span></h3>
+      <h3>2D 장면 자산</h3>
       <p>배치 소품, 텍스처, 장식 및 UI 비트가 자동으로 정리됩니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-scene-generator" data-kind="workbench" data-search="wb-scene-generator 场景生成器 scene build graph">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="sino" title="Sino · Scene Composer">
         <div class="mk-avatar mk-avatar-sm" data-agent="iro"></div>
         <span class="mk-agent-role">Scene Composer</span>
       </div>
-      <h3>장면 생성기<span class="slug">wb-scene-generator</span></h3>
+      <h3>장면 생성기</h3>
       <p>전체 장면을 다시 실행 가능한 그래프로 조합합니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-ui" data-kind="workbench" data-search="wb-ui ui 工坊 menu button health bar prototype">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="ui-designer" title="Game UI Designer">
         <div class="mk-avatar mk-avatar-sm" data-agent="ui-designer"></div>
         <span class="mk-agent-role">Game UI Designer</span>
       </div>
-      <h3>UI 워크벤치<span class="slug">wb-ui</span></h3>
+      <h3>UI 워크벤치</h3>
       <p>귀하의 게임 유형에 맞는 클릭 가능한 UI 프로토타입입니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-narrative" data-kind="workbench" data-search="wb-narrative 叙事工坊 story world template">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="kotone" title="Kotone · Narrative Writer">
         <div class="mk-avatar mk-avatar-sm" data-agent="kotone"></div>
         <span class="mk-agent-role">Narrative Writer</span>
       </div>
-      <h3>내러티브 워크벤치<span class="slug">wb-narrative</span></h3>
+      <h3>내러티브 워크벤치</h3>
       <p>스파크부터 전체 스토리와 세계까지.</p>
     </div>
     <div class="mk-item" data-slug="wb-reel" data-kind="workbench" data-search="wb-reel 影游 fmv interactive video">
-      <span class="kind k-wb">Workbench</span>
       <div class="mk-agent-badge" data-agent="reia" title="Reia · Reel Director">
         <div class="mk-avatar mk-avatar-sm" data-agent="reia"></div>
         <span class="mk-agent-role">Reel Director</span>
       </div>
-      <h3>인터랙티브 영화<span class="slug">wb-reel</span></h3>
+      <h3>인터랙티브 영화</h3>
       <p>스파크나 스크립트를 탭하고 선택하는 대화형 영화 게임으로 바꿔보세요.</p>
     </div>
     <div class="mk-item" data-slug="wb-items" data-kind="workbench" data-search="wb-items 道具 图标 icons weapon potion data">
-      <span class="kind k-wb">Workbench</span>
-      <h3>아이템 / 아이콘<span class="slug">wb-items</span></h3>
+      <h3>아이템 / 아이콘</h3>
       <p>무기, 물약, 동전 - 아트와 데이터가 하나의 테이블에 있습니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-look" data-kind="workbench" data-search="wb-look 色彩 调色 color grading filter">
-      <span class="kind k-wb">Workbench</span>
-      <h3>색상 / 모양<span class="slug">wb-look</span></h3>
+      <h3>색상 / 모양</h3>
       <p>한 번의 클릭으로 전체 게임의 색상 분위기를 통합합니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-bgm" data-kind="workbench" data-search="wb-bgm 音乐 bgm sound sfx timeline">
-      <span class="kind k-wb">Workbench</span>
-      <h3>음악 / BGM<span class="slug">wb-bgm</span></h3>
+      <h3>음악 / BGM</h3>
       <p>BGM 및 SFX를 관리하고 점수를 순서화합니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-balance" data-kind="workbench" data-search="wb-balance 平衡 数值 winrate simulation">
-      <span class="kind k-wb">Workbench</span>
-      <h3>균형<span class="slug">wb-balance</span></h3>
+      <h3>균형</h3>
       <p>AI는 신뢰 구간에 따라 승률을 위해 수천 번의 경기를 진행합니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-code" data-kind="workbench" data-search="wb-code 代码 browse files collaborate">
-      <span class="kind k-wb">Workbench</span>
-      <h3>암호<span class="slug">wb-code</span></h3>
+      <h3>암호</h3>
       <p>코드를 찾아보고, 파일을 이동하고, 코딩 AI와 함께 편집하세요.</p>
     </div>
     <div class="mk-item" data-slug="wb-observatory" data-kind="workbench" data-search="wb-observatory 轨迹 观察台 replay trace blackbox">
-      <span class="kind k-wb">Workbench</span>
-      <h3>전망대<span class="slug">wb-observatory</span></h3>
+      <h3>전망대</h3>
       <p>모든 AI 단계를 블랙박스처럼 재생하여 문제를 정확히 찾아냅니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-agent-persona" data-kind="workbench" data-search="wb-agent-persona 人格编辑器 persona character edit">
-      <span class="kind k-wb">Workbench</span>
-      <h3>페르소나 편집자<span class="slug">wb-agent-persona</span></h3>
+      <h3>페르소나 편집자</h3>
       <p>AI의 페르소나를 편집합니다. 저장하면 즉시 적용됩니다.</p>
     </div>
     <div class="mk-item" data-slug="wb-plugin-author" data-kind="workbench" data-search="wb-plugin-author 插件作者 make plugin wizard nocode">
-      <span class="kind k-wb">Workbench</span>
-      <h3>플러그인 작성자<span class="slug">wb-plugin-author</span></h3>
+      <h3>플러그인 작성자</h3>
       <p>코더가 아닌 사람도 자신만의 워크벤치 플러그인을 만들 수 있습니다.</p>
     </div>
     <div class="mk-item" data-slug="admin" data-kind="workbench" data-search="admin 面板管理 control panel toggle bind models">
-      <span class="kind k-wb">Workbench</span>
-      <h3>관리자 패널<span class="slug">admin</span></h3>
+      <h3>관리자 패널</h3>
       <p>제어판: 작업대 전환, 모델 바인딩, AI 상태 확인.</p>
     </div>
     <div class="mk-item" data-slug="cli-claude-code" data-kind="backend" data-search="claude code anthropic default backend cli">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>Claude Code<span class="slug">default</span></h3>
+      <h3>Claude Code</h3>
       <p>기본 백엔드.</p>
       <p><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener">github.com/anthropics/claude-code →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-codex" data-kind="backend" data-search="codex openai backend cli">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>Codex<span class="slug">openai</span></h3>
+      <h3>Codex</h3>
       <p>OpenAI Codex 백엔드.</p>
       <p><a href="https://github.com/openai/codex" target="_blank" rel="noopener">github.com/openai/codex →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-cursor-agent" data-kind="backend" data-search="cursor agent backend cli">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>Cursor<span class="slug">cursor</span></h3>
+      <h3>Cursor</h3>
       <p>커서 에이전트 백엔드.</p>
       <p><a href="https://cursor.com" target="_blank" rel="noopener">cursor.com →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-kimi-code" data-kind="backend" data-search="kimi code moonshot cli backend terminal coding agent">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>Kimi Code<span class="slug">moonshot</span></h3>
+      <h3>Kimi Code</h3>
       <p>Kimi 멤버십 또는 Moonshot AI API 키를 사용하는 터미널 AI 코딩 에이전트.</p>
       <p><a href="https://github.com/MoonshotAI/kimi-code" target="_blank" rel="noopener">github.com/MoonshotAI/kimi-code →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-deepseek-harness" data-kind="backend" data-search="deepseek harness dsh cli backend headless developer preview">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>DeepSeek Harness<span class="slug">deepseek</span></h3>
+      <h3>DeepSeek Harness</h3>
       <p>Developer Preview: 로컬 dsh 실행 파일과 DeepSeek API Base URL 및 API 키 설정이 필요합니다. 모델 선택은 dsh 프로필이 관리하며 각 headless 작업은 최종 결과만 한 번 반환합니다.</p>
       <p><a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">github.com/deepseek-ai/deepseek-harness →</a></p>
     </div>
     <div class="mk-item" data-slug="skill-author-plugin" data-kind="skill" data-search="author-plugin skill make plugin">
-      <span class="kind k-skill">Skill</span>
-      <h3>플러그인 작성자<span class="slug">author-plugin</span></h3>
+      <h3>플러그인 작성자</h3>
       <p>로드 가능한 플러그인을 처음부터 빌드하세요.</p>
     </div>
     <div class="mk-item" data-slug="cli-forgeax" data-kind="backend" data-search="forgeax-cli self-built own backend default persona">
-      <span class="kind k-backend">CLI backend</span>
-      <h3>forgeax-cli<span class="slug">self-built</span></h3>
+      <h3>forgeax-cli</h3>
       <p>forgeax-cli 백엔드 - 벤더 종속 없이 언제든지 엔진을 전환할 수 있습니다.</p>
     </div>
     <div class="mk-item" data-slug="skill-make-game-design" data-kind="skill" data-search="make-game-design skill game design gdd">
-      <span class="kind k-skill">Skill</span>
-      <h3>게임 디자인<span class="slug">make-game-design</span></h3>
+      <h3>게임 디자인</h3>
       <p>게임 디자인을 생성합니다.</p>
     </div>
     <div class="mk-item" data-slug="tool-balance-resim" data-kind="tool" data-search="balance-resim tool battle simulation winrate">
-      <span class="kind k-tool">Tool</span>
-      <h3>전투 재시뮬레이션<span class="slug">balance-resim</span></h3>
+      <h3>전투 재시뮬레이션</h3>
       <p>밸런싱을 알리기 위해 신뢰 구간을 사용하여 승률에 대한 경기를 다시 재생합니다.</p>
     </div>
     <div class="mk-item" data-slug="model-anthropic-text" data-kind="binding" data-search="anthropic-text model binding channel">
-      <span class="kind k-binding">Binding</span>
-      <h3>인류학 텍스트 채널<span class="slug">anthropic-text</span></h3>
+      <h3>인류학 텍스트 채널</h3>
       <p>추상 계층을 구체적인 공급업체 모델에 매핑합니다.</p>
     </div>
   </div>
   <div class="mk-empty" id="mkEmpty">일치하는 플러그인이 없습니다.</div>
 
   <section class="section">
-    <h2>로드 방법 · 확장 방법</h2>
+    <h2>ForgeaX를 나만의 제작 도구로</h2>
     <div class="grid c2">
-      <div class="card"><h3>런타임에 로드됨</h3><p>CLI는 요청 시 플러그인을 마운트합니다. 에이전트의 페르소나는 오케스트레이터와 작업자 모두에 공유 부분이 연결된 상태로 파견될 때만 로드됩니다.</p></div>
-      <div class="card"><h3>당신이 할 수 있는 일</h3><p>관리자 패널에서 워크벤치를 활성화 및 재정렬하고 백엔드를 전환합니다. 또는 플러그인 작성자 마법사를 사용하여 첫 번째 플러그인을 작성하세요.</p></div>
+      <div class="card"><h3>나만의 Agent 만들기</h3><p>제작 작업마다 역할, 능력, 협업 방식을 설정하세요. 필요할 때 호출해 나의 작업 방식대로 프로젝트에 참여시킬 수 있습니다.</p></div>
+      <div class="card"><h3>나만의 플러그인 만들기</h3><p>반복되는 흐름과 전문 능력을 재사용 가능한 플러그인으로 만들어 ForgeaX에서 계속 사용하거나 팀과 공유할 수 있습니다.</p></div>
     </div>
   </section>
 
@@ -760,26 +661,22 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
   </div>
-  <div class="col"><h4>대지</h4>
+  <nav class="foot-links" aria-label="대지">
     <a href="/ko/changelog/">변경 내역</a>
-    <a href="/ko/blog/">블로그</a>
-    <a href="/ko/docs/">문서</a>
     <a href="/ko/tutorials/">튜토리얼</a>
     <a href="/ko/examples/">예</a>
-    <a href="/ko/games/">계략</a>
-    <a href="/ko/marketplace/">시장</a>
-  </div>
-  <div class="col"><h4>프로젝트</h4>
+    <a href="/ko/marketplace/">플러그인</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
     <a href="/ko/about.html">에 대한</a>
     <a href="/ko/license.html">특허</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
-<script src="/assets/marketplace/marketplace-card-icons.js?v=16ddcbed"></script>
-<script src="/assets/marketplace/app.js?v=a6bc9750"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
+<script src="/assets/marketplace/marketplace-card-icons.js?v=a78276a8"></script>
+<script src="/assets/marketplace/app.js?v=e318a295"></script>
 </body>
 </html>

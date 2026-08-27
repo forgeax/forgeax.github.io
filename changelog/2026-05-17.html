@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -36,24 +36,10 @@
     <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Docs</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Docs</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/" data-nav="/">Home</a>
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
-      <a href="/games/" data-nav="/games/">Games</a>
-      <a href="/marketplace/" data-nav="/marketplace/">Marketplace</a>
-      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
       <a href="/about.html" data-nav="/about.html">About</a>
     </div>
@@ -64,15 +50,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-05-17.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-05-17.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-17.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-17.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-17.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-17.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-17.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-17.html" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Ask AI</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Open in ChatGPT</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Open in Claude</a>
-          <button class="ask-item" id="copyMd">Copy page as Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
     </div>
   </div>
 </nav>
@@ -80,7 +59,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/changelog/">← Changelog</a>
-    <div class="meta"><span class="tag brand">Daily</span><span>2026-05-17</span></div>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-05-17</span></div>
     <h1>Inline 3D & image preview + @-mention pills</h1>
     <p class="standfirst">This day moved &quot;multi-agent collaboration&quot; from the background into plain sight: you can @ an agent to talk to it directly, capability health is shown across the whole interface, and assets preview inline in chat and come in as reference pills. The engine made a big batch of consolidations alongside: a unified mesh renderer, unified capture, console dependency inversion, and a full set of rendering tutorial examples.</p>
     <div class="prose"><h2>Making collaboration visible and clickable</h2>
@@ -98,7 +77,7 @@
 <h2>What this day means</h2>
 <p>The day&#39;s two lines — fully &quot;revealing&quot; multi-agent collaboration in the interface, and heavily &quot;converging&quot; rendering and components in the engine — seem unrelated but inside share one pursuit: keeping a rapidly-complicating system clear to people. On the interface side, @-mentions, capability health lamps, asset preview and reference pills together turn &quot;directing a team of AIs&quot; from abstract into concretely operable; on the engine side, the unified renderer, unified capture, dependency inversion and tutorial examples together keep the low level from growing messier as features balloon. A system that can evolve long-term must both grow outward in capability and keep order inward — and this day did exactly both at once.</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/changelog/">← All daily updates</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/changelog/">← All updates</a></p>
   </article>
 </main>
 
@@ -107,24 +86,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
   </div>
-  <div class="col"><h4>Site</h4>
+  <nav class="foot-links" aria-label="Site">
     <a href="/changelog/">Changelog</a>
-    <a href="/blog/">Blog</a>
-    <a href="/docs/">Docs</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
-    <a href="/games/">Games</a>
-    <a href="/marketplace/">Marketplace</a>
-  </div>
-  <div class="col"><h4>Project</h4>
+    <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
     <a href="/about.html">About</a>
     <a href="/license.html">License</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>

@@ -54,31 +54,8 @@
   opacity: 0;
 }
 
-/* ── drag hint ─────────────────────────────────────────────────────────── */
-.immersive-hint {
-  position: fixed;
-  left: 20px;
-  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-  z-index: 85;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--text-tertiary) 80%, transparent);
-  pointer-events: none;
-  opacity: 0;
-  transform: translate3d(0, 6px, 0);
-  transition:
-    opacity var(--site-dur-silk) var(--site-ease-silk),
-    transform var(--site-dur-silk) var(--site-ease-silk);
-}
-.forgeax-site.has-immersive.is-hero-visible .immersive-hint {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-@media (max-width: 680px) {
-  .immersive-hint { display: none; }
-}
+/* The old bottom-left drag hint was replaced by the centred .scroll-cue
+   (home-ambient partial + home-v2.css). */
 
 /* ── section scroll targets & parallax ─────────────────────────────────── */
 .forgeax-site.has-immersive .immersive-section {
@@ -135,6 +112,5 @@
 @media (prefers-reduced-motion: reduce) {
   .forge-particles,
   .hero-particles { display: none; }
-  .immersive-hint { display: none; }
   .forgeax-site.has-immersive .hero h1 .grad { animation: none; }
 }

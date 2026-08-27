@@ -40,8 +40,6 @@
     binding: "link-2",
   };
 
-  var ICON_KINDS = ["workbench", "skill", "backend", "tool", "binding"];
-
   function lucideForCard(slug, kind) {
     return CARD_ICONS[slug] || KIND_FALLBACK[kind] || "box";
   }
@@ -57,7 +55,8 @@
   function mountIcon(el, slug, kind) {
     if (!el) return;
     var name = lucideForCard(slug, kind);
-    el.className = "mk-card-icon ico mk-card-icon--" + kind;
+    var modal = el.classList.contains("mk-modal-icon");
+    el.className = (modal ? "mk-modal-icon" : "mk-card-icon") + " ico mk-card-icon--" + kind;
     el.setAttribute("data-slug", slug);
     el.innerHTML = '<i data-lucide="' + name + '"></i>';
     if (!refreshLucide()) {
@@ -68,39 +67,6 @@
     }
   }
 
-  function initCard(item) {
-    var kind = item.getAttribute("data-kind") || "";
-    if (ICON_KINDS.indexOf(kind) < 0) return;
-    // 已有专属 agent 徽章的 workbench 卡片：不再挂载大 icon（避免右上角与徽章重叠、卡片过挤）
-    if (item.querySelector(".mk-agent-badge")) return;
-
-    item.classList.add("is-mk-card");
-    if (kind === "workbench") item.classList.add("is-workbench");
-
-    var main = item.querySelector(".mk-card-main");
-    if (!main) {
-      main = document.createElement("div");
-      main.className = "mk-card-main";
-      while (item.firstChild) main.appendChild(item.firstChild);
-      item.appendChild(main);
-    }
-
-    var slug = item.getAttribute("data-slug") || "";
-    var icon = item.querySelector(".mk-card-icon");
-    if (!icon) {
-      icon = document.createElement("div");
-      icon.setAttribute("aria-hidden", "true");
-      item.appendChild(icon);
-    }
-    mountIcon(icon, slug, kind);
-  }
-
-  function initCards() {
-    ICON_KINDS.forEach(function (kind) {
-      [].slice.call(document.querySelectorAll('.mk-item[data-kind="' + kind + '"]')).forEach(initCard);
-    });
-  }
-
   window.forgeaxMountMarketplaceIcon = mountIcon;
   window.forgeaxMountWorkbenchIcon = function (el, slug) {
     mountIcon(el, slug, "workbench");
@@ -109,7 +75,6 @@
   window.forgeaxMarketplaceCardIcons = CARD_ICONS;
 
   function boot() {
-    initCards();
     refreshLucide();
   }
 

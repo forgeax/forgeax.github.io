@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=ec2c8502" />
+<link rel="stylesheet" href="/assets/styles.css?v=1a8f3005" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -36,24 +36,10 @@
     <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
-      <details class="nav-docs-menu">
-        <summary>Documents</summary>
-        <div class="nav-docs-menu__panel">
-          <a class="nav-docs-menu__item" href="/fr/docs/" data-nav="/docs/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="book-open"></i></span>
-            <span><strong>Documents</strong></span>
-          </a>
-          <a class="nav-docs-menu__item" href="/docs/cli/">
-            <span class="nav-docs-menu__icon ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-            <span><strong>ForgeaX CLI</strong></span>
-          </a>
-        </div>
-      </details>
+      <a href="/fr/" data-nav="/">Accueil</a>
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
-      <a href="/fr/games/" data-nav="/games/">Jeux</a>
-      <a href="/fr/marketplace/" data-nav="/marketplace/">Marché</a>
-      <a href="/fr/blog/" data-nav="/blog/">Blogue</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
       <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
       <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
@@ -64,15 +50,8 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-03.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-03.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-03.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-03.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-03.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-03.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-03.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-03.html" data-l="pt">Português</a></div>
       </div>
-      <details class="ask-ai" id="askAi">
-        <summary><span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="sparkles"></i></span><span class="lbl"> Demandez à l'IA</span></summary>
-        <div class="ask-menu">
-          <a class="ask-item" id="ai-chatgpt" target="_blank" rel="noopener">Ouvrir dans ChatGPT</a>
-          <a class="ask-item" id="ai-claude" target="_blank" rel="noopener">Ouvert à Claude</a>
-          <button class="ask-item" id="copyMd">Copier la page en tant que Markdown</button>
-        </div>
-      </details>
-      <a class="nav-cta" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
     </div>
   </div>
 </nav>
@@ -80,7 +59,7 @@
 <main>
   <article class="read article">
     <a class="back" href="/fr/changelog/">← Journal des modifications</a>
-    <div class="meta"><span class="tag brand">Tous les jours</span><span>2026-06-03</span></div>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-06-03</span></div>
     <h1>Un mode éditeur obtient sa feuille de route + le moteur prépare l'édition visuelle</h1>
     <p class="standfirst">Cette journée a permis à Studio de passer du &quot;play-only&quot; au &quot;edit-and-play&quot; dans un plan de conception ; le moteur a poussé une pile de fonctionnalités sous-jacentes en une seule journée – réflexion sur le terrain, pipeline de rendu échangeable, manuel du moteur orienté vers l&#39;IA – spécifiquement pour jeter les bases d&#39;un éditeur visuel ; Pendant ce temps, deux noyaux d&#39;exécution parallèles ont convergé en un seul, et le contenu du jeu a continué à évoluer vers des actifs structurés.</p>
     <div class="prose"><h2>Définir une direction, poser les bases et soustraire, le tout en une seule journée</h2>
@@ -100,7 +79,7 @@
 <h2>Ce que signifie cette journée</h2>
 <p>Cette journée est l&#39;aspect classique d&#39;un projet « se préparer au pivotement » : avant d&#39;aborder un grand projet, régler d&#39;abord direction, fondation et bagage d&#39;un seul coup. Le plan de l&#39;éditeur indique &quot;où aller&quot;, la réflexion du champ du moteur, le pipeline échangeable et le manuel de l&#39;IA ouvrent &quot;une route que vous pouvez réellement parcourir&quot;, tandis que la convergence et l&#39;assetisation du noyau éliminent &quot;le vieux bagage qui vous fait trébucher&quot;. Il convient de le rappeler : ce jour-là, il n&#39;y avait pas un seul nouveau bouton éblouissant sur lequel un utilisateur pouvait cliquer et jouer avec ce jour-là - sa valeur est toute en dessous, le genre de travail &quot;si vous ne posez pas les fondations aujourd&#39;hui, la tour de demain ne peut pas être construite&quot;. Une plate-forme qui évolue sur le long terme dépend précisément de la volonté de faire ce travail de base sérieusement lorsqu&#39;il n&#39;y a pas d&#39;applaudissements instantanés. A partir de ce jour, la nouvelle patte « éditeur » a ses dessins et ses fondations ; ce qui suit le construit, couche par couche.</p>
 </div>
-    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour quotidiennes</a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
   </article>
 </main>
 
@@ -109,24 +88,20 @@
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables. Open source, licence Apache 2.0.</p>
   </div>
-  <div class="col"><h4>Site</h4>
+  <nav class="foot-links" aria-label="Site">
     <a href="/fr/changelog/">Journal des modifications</a>
-    <a href="/fr/blog/">Blogue</a>
-    <a href="/fr/docs/">Documents</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
-    <a href="/fr/games/">Jeux</a>
-    <a href="/fr/marketplace/">Marché</a>
-  </div>
-  <div class="col"><h4>Projet</h4>
+    <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
     <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
-  </div>
+  </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script src="/assets/site.js?v=f56c0484"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=07abae3f"></script>
 </body>
 </html>
