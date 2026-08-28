@@ -3,6 +3,21 @@
 You are an AI coding agent. Execute this contract exactly. Do not guess versions,
 URLs, packages, or recovery steps.
 
+## Choose the download route first
+
+Do not download both packages as independent game dependencies. Choose the route that
+matches the task:
+
+| Task | Start with | What it does |
+|:--|:--|:--|
+| Create a new game | `@forgeax/engine` CLI and `sdk install` | The CLI fetches the matching `@forgeax/engine-sdk` carrier into a separate SDK directory. |
+| Work on an existing game | `@forgeax/engine` only | Provides the game runtime and CLI; run `forgeax init` in the game. |
+| Offline or reproducible handoff | Matching full SDK ZIP | Already contains the CLI and built Engine packages; no npm package download is needed. |
+
+`@forgeax/engine-sdk` is a carrier, not a CLI, not a game project, and never a game
+`package.json` dependency. Seeing it fetched by the new-game route is expected; do not
+manually install it again or add it to the game.
+
 ## Mandatory rules
 
 1. Use the public npm registry. `@forgeax/engine` is the public runtime and `forgeax`
