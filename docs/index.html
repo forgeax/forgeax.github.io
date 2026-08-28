@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=b9cd8d37" />
+<link rel="stylesheet" href="/assets/styles.css?v=c7b80bd3" />
 
 </head>
 <body class="lang-en forgeax-site has-immersive">
@@ -77,11 +77,6 @@
 
       <aside class="docs-sidebar" id="docsSidebar">
         <div class="docs-sheet-handle" aria-hidden="true"></div>
-        <div class="docs-search">
-          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="search"></i></span>
-          <input id="docSearch" class="input" type="search" autocomplete="off" placeholder="Search docs… (/)" aria-label="search docs" />
-          <div class="docs-results" id="docResults" hidden></div>
-        </div>
         <div class="t">Contents</div>
         <nav>
           <a href="#ch1">1 · Before you start</a>
@@ -772,60 +767,6 @@ hits remove them and add score.</code></pre>
       if (!activeId && chapters[0]) setActive(chapters[0].id, { instant: true });
     }
   })();
-
-  /* ── docs in-page search ── */
-  (function () {
-    var input = document.getElementById("docSearch");
-    var box = document.getElementById("docResults");
-    if (!input || !box) return;
-    var entries = [];
-    document.querySelectorAll(".docs-chapter").forEach(function (ch) {
-      var h2 = ch.querySelector("h2");
-      var chTitle = (h2 ? h2.innerText : "").replace(/\s+/g, " ").trim();
-      entries.push({ el: ch, chapter: chTitle, title: chTitle, hay: ch.textContent.toLowerCase() });
-      ch.querySelectorAll("details.doc-item, details.doc-sub").forEach(function (d) {
-        var sum = d.querySelector(":scope > summary");
-        var title = sum ? sum.innerText.replace(/\s+/g, " ").trim() : "";
-        entries.push({ el: d, chapter: chTitle, title: title, hay: d.textContent.toLowerCase() });
-      });
-    });
-    function openTo(el) {
-      if (window.forgeaxDocsCloseSheet) window.forgeaxDocsCloseSheet();
-      var p = el;
-      while (p) { if (p.tagName === "DETAILS") p.open = true; p = p.parentElement; }
-      var navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 72;
-      var bar = document.getElementById("docsMobileBar");
-      if (bar && bar.offsetParent !== null) navH += bar.offsetHeight + 8;
-      var top = window.scrollY + el.getBoundingClientRect().top - navH - 24;
-      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
-      el.classList.add("doc-hit");
-      setTimeout(function () { el.classList.remove("doc-hit"); }, 1600);
-    }
-    function render(q) {
-      q = q.trim().toLowerCase();
-      if (!q) { box.hidden = true; box.innerHTML = ""; return; }
-      var hits = entries.filter(function (e) { return e.hay.indexOf(q) >= 0; }).slice(0, 16);
-      if (!hits.length) {
-        box.innerHTML = '<div class="empty">' + (window.forgeaxUi ? window.forgeaxUi("noMatches") : (document.body.classList.contains("lang-zh") ? "无匹配" : "No matches")) + "</div>";
-        box.hidden = false; return;
-      }
-      box.innerHTML = hits.map(function (e) {
-        var ctx = (e.title && e.title !== e.chapter) ? '<span class="rc">' + e.chapter + "</span>" : "";
-        return "<a>" + ctx + (e.title || e.chapter) + "</a>";
-      }).join("");
-      box.hidden = false;
-      [].slice.call(box.querySelectorAll("a")).forEach(function (a, i) {
-        a.addEventListener("click", function () { box.hidden = true; input.value = ""; openTo(hits[i].el); });
-      });
-    }
-    input.addEventListener("input", function () { render(input.value); });
-    input.addEventListener("keydown", function (e) { if (e.key === "Escape") { box.hidden = true; input.value = ""; input.blur(); } });
-    document.addEventListener("click", function (e) { if (!e.target.closest(".docs-search")) box.hidden = true; });
-    document.addEventListener("keydown", function (e) {
-      var a = document.activeElement;
-      if (e.key === "/" && a !== input && !/^(INPUT|TEXTAREA|SELECT)$/.test(a ? a.tagName : "")) { e.preventDefault(); input.focus(); }
-    });
-  })();
 </script>
 
 <footer class="foot"><div class="foot-inner">
@@ -847,6 +788,6 @@ hits remove them and add score.</code></pre>
 </footer>
 
 <script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=07abae3f"></script>
+<script src="/assets/site.js?v=cc748cc1"></script>
 </body>
 </html>

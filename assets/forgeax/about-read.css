@@ -69,6 +69,73 @@
 
 .forgeax-site .about-read .cta-row {
   margin-top: 32px;
+  justify-content: center;
+}
+
+.forgeax-site .about-contact-card {
+  margin-top: 24px;
+  padding: 28px 32px 24px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.forgeax-site .about-contact-topics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 40px;
+  width: 100%;
+}
+
+.forgeax-site .about-contact-topic {
+  position: relative;
+  min-width: 0;
+}
+
+.forgeax-site .about-contact-topic + .about-contact-topic::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 2px;
+  bottom: 2px;
+  width: 1px;
+  background: color-mix(in srgb, var(--border-subtle) 88%, transparent);
+}
+
+.forgeax-site .about-contact-topic h3 {
+  margin: 12px 0 6px;
+  font-size: 16px;
+}
+
+.forgeax-site .about-contact-topic p {
+  margin: 0;
+}
+
+.forgeax-site .about-contact-card > .more {
+  align-self: stretch;
+  width: 100%;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid color-mix(in srgb, var(--border-subtle) 88%, transparent);
+}
+
+@media (max-width: 720px) {
+  .forgeax-site .about-contact-card {
+    padding: 22px 20px 18px;
+  }
+
+  .forgeax-site .about-contact-topics {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .forgeax-site .about-contact-topic + .about-contact-topic::before {
+    left: 0;
+    right: 0;
+    top: -10px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
 }
 
 .forgeax-site .about-read:not(.is-ready) .read-panel + .read-panel {

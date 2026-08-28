@@ -198,12 +198,16 @@
     var nav = links && links.closest(".nav");
     if (!links || !nav) return;
 
-    if (window.matchMedia("(max-width: 820px)").matches) {
+    /* Must match the hamburger breakpoint in styles.css / nav-premium.css.
+       If JS still pins --nav-links-x here, the open panel stays a centered
+       desktop strip instead of a full-width dropdown. */
+    if (window.matchMedia("(max-width: 1159px)").matches) {
       links.removeAttribute("style");
       links.removeAttribute("data-nav-layout");
       links.style.removeProperty("--nav-links-x");
       return;
     }
+    links.classList.remove("open");
 
     var inner = nav.querySelector(".nav-inner") || nav;
     var innerBox = inner.getBoundingClientRect();
