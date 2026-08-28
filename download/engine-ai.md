@@ -22,7 +22,9 @@ URLs, packages, or recovery steps.
    explicitly authorizes it for the current task.
 6. The user's machine must provide pnpm `>=11.7.0 <12`. Check `pnpm --version`
    before any bootstrap or project command; if it is unavailable or unsupported,
-   stop and report the exact version instead of silently switching versions.
+   stop and report the exact version instead of silently switching versions. This
+   is the project package-manager contract; npm remains a supported public registry
+   client and is not required to have the same version as pnpm.
 7. The CLI is the only product tool entry. Prefer `--json`; discover operations with
    `forgeax list`, `describe`, and `run` instead of guessing inputs.
 
@@ -43,8 +45,8 @@ case "$PNPM_VERSION" in
     ;;
 esac
 
-ENGINE_VERSION="$(npm view @forgeax/engine version 2>/dev/null || true)"
-SDK_VERSION="$(npm view @forgeax/engine-sdk version 2>/dev/null || true)"
+ENGINE_VERSION="$(npm view @forgeax/engine dist-tags.latest 2>/dev/null || true)"
+SDK_VERSION="$(npm view @forgeax/engine-sdk dist-tags.latest 2>/dev/null || true)"
 
 if [ -z "$ENGINE_VERSION" ]; then
   echo "@forgeax/engine is not resolvable from public npm; stop and report." >&2
@@ -93,12 +95,50 @@ If the target already contains `forge.json`, `package.json`, and its entry modul
 not run `new` or install the SDK carrier into the game. Read its `AGENTS.md`, then use:
 
 ```sh
-ENGINE_VERSION="$(npm view @forgeax/engine version)"
+ENGINE_VERSION="$(npm view @forgeax/engine dist-tags.latest)"
 pnpm add "@forgeax/engine@$ENGINE_VERSION"
 pnpm exec forgeax init
 pnpm forgeax skill verify --json
 pnpm forgeax doctor --json
 ```
+
+## Browser capture, including game UI
+
+Use the browser-compositor capture when a screenshot must include the rendered
+Canvas and HTML/CSS/open Shadow DOM UI. `auto` is the default portable lane;
+`software` is the explicit no-physical-GPU and/or no-display lane.
+
+```sh
+pnpm forgeax capture --backend auto --require-ui --deterministic \
+  --output artifacts/capture/game-ui.png --json
+
+pnpm forgeax capture --backend software --require-ui --deterministic \
+  --output artifacts/capture/game-ui-software.png --json
+```
+
+`--require-ui` expects game UI under `#game-ui`. Capture waits for a real Engine
+frame-submitted signal and a non-flat Canvas witness; game code may additionally set
+`document.documentElement.dataset.forgeaxCaptureReady` to a named logical checkpoint.
+Do not replace readiness with a guessed sleep. For multiple screenshots in one
+continuous playthrough, use a persistent browser session from `forgeax exec`; read
+`$SDK_ROOT/skills/forgeax-engine-sdk/references/browser-capture-and-local-engine.md`
+for the script contract and color-parity limits.
+
+## Local Engine source iteration
+
+A game uses its exact registry dependency unless an explicit local Engine binding is
+present. The binding is development state and does not rewrite `forge.json` or the
+game's package manifest.
+
+```sh
+pnpm forgeax engine status --json
+pnpm forgeax engine use-local /absolute/path/to/forgeax-engine --json
+pnpm forgeax engine doctor --json
+pnpm forgeax engine unlink --json
+```
+
+`use-local` requires built Engine package entry points. `unlink` removes the sole
+override and returns the game to normal SDK/registry resolution.
 
 ## Report
 
