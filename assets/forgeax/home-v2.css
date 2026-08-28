@@ -214,7 +214,9 @@
   margin-top: clamp(16px, 2.2vh, 28px);
   overflow: visible;
 }
-.home-v2 .cta--pair {
+.home-v2 .cta--pair,
+.forgeax-site .home-v2 .hero--split .cta--pair {
+  flex-wrap: nowrap;
   align-items: flex-start;
 }
 .home-v2 .cta-path {
@@ -1480,13 +1482,44 @@
   .forgeax-site main.home-v2 { width: calc(100% - 32px); }
   .home-v2 .hero-panel { max-height: none; }
   .home-v2 .founding .more { margin-left: 0; }
-  .forgeax-site .home-v2 .hero--split .cta .btn { width: 100%; }
-  .home-v2 .cta-path { width: 100%; }
-  .home-v2 .cta-path .btn { width: 100%; }
-  .home-v2 .dl-card,
-  .home-v2 .hero-editor {
+  /* Keep Download + Connect Agent on one row in portrait phones. */
+  .forgeax-site .home-v2 .hero--split .cta--pair {
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 8px;
     width: 100%;
+  }
+  .home-v2 .cta--pair .cta-path {
+    flex: 1 1 0;
+    width: auto;
     min-width: 0;
+    align-items: stretch;
+  }
+  .home-v2 .cta--pair .cta-path__anchor {
+    width: 100%;
+  }
+  .forgeax-site .home-v2 .hero--split .cta--pair .btn,
+  .home-v2 .cta--pair .cta-path .btn {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    padding-inline: clamp(8px, 2.2vw, 14px);
+    font-size: clamp(12.5px, 3.4vw, 14.5px);
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+  }
+  .home-v2 .cta--pair .dl-card {
+    width: max-content;
+    min-width: min(17.5em, calc(100vw - 48px));
+    max-width: calc(100vw - 48px);
+  }
+  .home-v2 .cta--pair .hero-editor {
+    left: auto;
+    right: 0;
+    width: min(36em, calc(100vw - 48px));
+    min-width: 0;
+    max-width: calc(100vw - 48px);
   }
   .forgeax-site .home-v2 .hero--split .fxi__foot.cta .btn { width: auto; }
   /* Phone: the brief head is the first thing to go — the document itself carries
