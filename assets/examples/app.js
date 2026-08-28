@@ -31,13 +31,45 @@
     if (group) group.open = true;
   }
 
+  var orbitInjectPromise = fetch('/assets/examples/demo-orbit-inject.js?v=8b9ec447', { credentials: 'same-origin' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('orbit inject ' + r.status);
+      return r.text();
+    });
+
+  function loadExampleFrame(href) {
+    var abs = new URL(href, location.href);
+    var dir = new URL('.', abs).href;
+    function fallback() { frame.src = href; }
+    Promise.all([
+      fetch(abs.href, { credentials: 'same-origin' }).then(function (r) {
+        if (!r.ok) throw new Error('demo html ' + r.status);
+        return r.text();
+      }),
+      orbitInjectPromise,
+    ]).then(function (parts) {
+      var html = parts[0];
+      var inject = parts[1];
+      if (html.indexOf('coi-serviceworker') >= 0) { fallback(); return; }
+      if (html.indexOf('__fxDemoOrbit') >= 0 || html.indexOf('data-fx-orbit') >= 0) {
+        fallback();
+        return;
+      }
+      html = html.split("new URL('.',location.href)").join("new URL('" + dir + "')");
+      html = html.split('new URL(".",location.href)').join("new URL('" + dir + "')");
+      html = html.replace(/<head>/i, '<head>\n<script>' + inject + '</script>\n<base href="' + dir + '">\n');
+      frame.srcdoc = html;
+    }).catch(fallback);
+  }
+
   function select(id, push) {
     var e = byId[id];
     if (!e || !e.ok) return;
     activeId = id;
-    if (frame.src.indexOf(e.href) < 0) {
+    if (frame.getAttribute('data-ex-href') !== e.href) {
       setLoading(true);
-      frame.src = e.href;
+      frame.setAttribute('data-ex-href', e.href);
+      loadExampleFrame(e.href);
     }
     if (titleEl) titleEl.innerHTML = esc(e.title) + (e.blurb ? '<small>' + esc(e.blurb) + '</small>' : '');
     items.forEach(function (it) { it.classList.toggle('is-active', it.getAttribute('data-id') === id); });
@@ -47,7 +79,20 @@
     if (push) { try { history.replaceState(null, '', '#' + id); } catch (_) { location.hash = id; } }
   }
 
-  frame.addEventListener('load', function () { setLoading(false); });
+  frame.addEventListener('load', function () {
+    setLoading(false);
+    window.setTimeout(function () {
+      try {
+        var doc = frame.contentDocument;
+        if (!doc || !frame.hasAttribute('srcdoc')) return;
+        if (!doc.getElementById('__wgpu_notice')) return;
+        var href = frame.getAttribute('data-ex-href');
+        if (!href) return;
+        frame.removeAttribute('srcdoc');
+        frame.src = href;
+      } catch (e) {}
+    }, 1800);
+  });
 
   items.forEach(function (it) {
     it.addEventListener('click', function (ev) {
