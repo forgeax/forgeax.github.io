@@ -6,7 +6,7 @@ Marketplace 详情弹窗**右侧**（主预览区 + 底部缩略图条）的截�
 forgeax-website/assets/marketplace/previews/{slug}/
 ```
 
-`{slug}` **必须**与 Marketplace 卡片 `data-slug` 一致（例如 `wb-ui`、`agent-reia`）。  
+`{slug}` **必须**与 Marketplace 卡片 `data-slug` 一致（例如 `ui`、`agent-reia`）。
 构建脚本扫描该目录并生成 `manifest.json`，站点运行时按 slug 加载，**不要**把路径写进 HTML。
 
 完整规范见下文；提交前请跑 `npm run build:previews` 校验 manifest。
@@ -56,7 +56,7 @@ assets/marketplace/previews/
 
 | 值 | 右上角角标默认 | 适用场景 |
 |----|----------------|----------|
-| `studio` | 工作台 ID（如 `UI`、`REEL`） | Studio 窗口 / Dock 截图 |
+| `studio` | 扩展页面 ID（如 `UI`、`REEL`） | Studio 窗口 / Dock 截图 |
 | `output` / `ui` | `UI` | 模块产出物：游戏 HUD、生成结果、导出预览 |
 | `chat` | `CHAT` | Agent 侧边栏对话截图 |
 | `demo` | `DEMO` | 外链 demo、录屏、交互演示 |
@@ -64,9 +64,9 @@ assets/marketplace/previews/
 示例：
 
 ```
-wb-ui/
-  01-studio-main.png       # Studio 工作台全貌
-  02-output-hud.png        # UI 工坊生成的 HUD
+ui/
+  01-studio-main.png       # Studio 扩展页面全貌
+  02-output-hud.png        # UI 制作页生成的 HUD
   03-output-menu.webm      # 菜单交互动画
   03-output-menu.poster.png
 ```
@@ -127,7 +127,7 @@ wb-ui/
       "file": "01-studio-main.png",
       "type": "image",
       "category": "studio",
-      "label": { "zh": "Studio 工作台", "en": "Studio workbench" },
+      "label": { "zh": "Studio 扩展页面", "en": "Studio authoring" },
       "panelLabel": { "zh": "UI", "en": "UI" }
     },
     {
@@ -159,7 +159,7 @@ wb-ui/
 
 ## 5. 两种提交方式
 
-### A. 自动截图（Studio 工作台 / Agent）
+### A. 自动截图（Studio 扩展页面 / Agent）
 
 适用于能在本地 Studio 复现的标准画面。
 
@@ -169,7 +169,7 @@ wb-ui/
 
 ```bash
 cd forgeax-studio
-pnpm -F @forgeax/studio-qa qa:marketplace-previews -- --slug wb-ui
+pnpm -F @forgeax/studio-qa qa:marketplace-previews -- --slug ui
 ```
 
 4. 输出 → `forgeax-website/assets/marketplace/previews/{slug}/01.png`
@@ -197,7 +197,7 @@ npm run build:previews
 |------|------|
 | slug 来源 | 与 `forgeax-studio/packages/marketplace/plugins/{dir}` 目录名一致；Agent 为 `agent-{name}` |
 | 别名 | 在 `preview-aliases.json` 写 `"alias-slug": "canonical-slug"`，仅非 Agent 卡片生效 |
-| Agent | **必须**使用独立 `agent-{name}/` 素材，不会继承关联工作台截图 |
+| Agent | **必须**使用独立 `agent-{name}/` 素材，不会继承关联扩展页面截图 |
 
 ---
 
@@ -230,7 +230,7 @@ npm run build:previews
 
 ## 9. Cursor 提交操作码（复制即用）
 
-**每个模块独立目录**，路径里的 `{slug}` 换成目标模块（`wb-reel`、`wb-character`、`agent-reia` 等），**不是固定 UI 工坊**。
+**每个模块独立目录**，路径里的 `{slug}` 换成目标模块（`reel`、`character`、`agent-reia` 等），**不是固定 UI 制作页**。
 
 > 操作码全文（含 slug 对照表、单模块 / 单图 / 批量）：  
 > **`assets/marketplace/previews/SUBMIT-PROMPT.md`**
@@ -241,15 +241,15 @@ npm run build:previews
 我已附上 Marketplace 预览素材文件夹，请按规范提交到 forgeax-website。
 
 【模块】
-- slug = wb-reel          ← 改成你的模块
-- 目标目录：assets/marketplace/previews/wb-reel/
+- slug = reel          ← 改成你的模块
+- 目标目录：assets/marketplace/previews/reel/
 - 仓库：forgeax-website（不是 forgeax-studio）
 
 【你要做的】
 1. 读取我附带的文件夹（文件夹名应与 slug 一致）
 2. 检查每张图片宽度；若 <1600px 请警告我
 3. 命名：01-studio-main.png / 01-chat-main.png（Agent）/ 02-output-*.png / 视频+poster
-4. panelLabel 按模块填（wb-ui→UI，wb-reel→REEL，agent-*→CHAT，其他 wb-*→去前缀大写）
+4. panelLabel 按模块填（ui→UI，reel→REEL，agent-*→CHAT，其他 authoring-*→去前缀大写）
 5. ≥2 张或含视频时创建 preview-meta.json（双语 label）
 6. 运行 npm run build:previews，确认 manifest slides 已更新
 

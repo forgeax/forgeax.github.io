@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=df4e5c67" />
+<link rel="stylesheet" href="/assets/styles.css?v=b1def969" />
 
 </head>
 <body class="lang-ja forgeax-site has-immersive">
@@ -126,11 +126,11 @@ bun fx スタート # → http://localhost:18920</code></pre>
             <details class="doc-item">
               <summary>スタジオを開いてインターフェースを学ぶ</summary>
               <div class="doc-body">
-                <p>インターフェイスは 3 つの部分で構成されています。トップ バー、左側のチャット、右側のプレビュー/ワークベンチです。</p>
+                <p>インターフェイスは 3 つの部分で構成されています。トップ バー、左側のチャット、右側のプレビュー/拡張ページです。</p>
                 <ul>
                   <li><strong>トップバー</strong>—<code>⊕</code>新しいメニュー、<strong>プロジェクトスイッチャー</strong>(ゲーム間を移動 — 「プロジェクト」とは何かについては、<a href="#ch2">中心となる概念</a>)、そして<strong>セッションスイッチャー</strong>(過去の会話を確認/切り替える)。</li>
                   <li><strong>左・チャット（ChatPanel）</strong>— チーム レール (Forge とサブエージェント)、メッセージ ストリーム (サブエージェント カード、Forge の思考とツール呼び出し)、そして一番下のコンポーザー<strong>バックエンドスイッチ</strong>右下にあります（を参照）<a href="#ch8">高度な</a>）。</li>
-                  <li><strong>右・メインエリア(MainArea)</strong>— の間で切り替えます<strong>プレビュー</strong>(ゲームは iframe 内に存在します)<strong>作業台</strong>(ファイル編集/デザインドキュメント);見る<a href="#ch4">シーンとエディター</a>。</li>
+                  <li><strong>右・メインエリア(MainArea)</strong>— の間で切り替えます<strong>プレビュー</strong>(ゲームは iframe 内に存在します)<strong>拡張ページ</strong>(ファイル編集/デザインドキュメント);見る<a href="#ch4">シーンとエディター</a>。</li>
                 </ul>
                 <p>右上の歯車が開きます<strong>設定</strong>: API キー、モデルの選択、CLI バックエンド、プラグイン管理。デスクトップ アプリには、初めて開くときにキーの入力を求める初回実行オーバーレイも表示されます。</p>
               </div>
@@ -161,7 +161,7 @@ bun fx スタート # → http://localhost:18920</code></pre>
               <div class="doc-body">
                 <p><strong>Forge (メインエージェント)</strong>ゲーム コードを直接記述する唯一のコードです。<code>ゲーム/<slug>/src/main.ts</code>、プレビュー<strong>ホットリロード</strong>、実行結果を見て次のステップを決定します。その編集 → 参照 → 編集のループは、プレビューを表示できる人、つまり Forge に留まる必要があります (参照)<a href="#ch3">チャットで構築する</a>）。</p>
                 <p><strong>サブエージェント</strong>(例: 伊織のゲームプレイ、鈴のデザイン、琴音のナラティブ、彩のアート、つむぎのビルド) 計画/デザイン/アセットの作成/ドキュメントの作成のみ<strong>決して触れないでください<code>ソース/</code></strong>— 彼らにはライブプレビューのフィードバックがないため、彼らが書いたコードにはそれを制御するものは何もありません。全キャストについては、<a href="/ja/marketplace/">市場</a>そして<a href="#ch10">第 10 章 · エージェント チーム</a>。</p>
-                <p><strong>ディスパッチの仕組み:</strong>Forge は、1 回のツール呼び出し (次のような形) でサブエージェントをディスパッチします。<code>サブエージェント(type="iori", task="…")</code>);サーバーの<code>/api/サブエージェント</code>ストリームは、その出力をリアルタイムでメインの会話にブリッジします。これは、メッセージ ストリームに表示される埋め込みサブエージェント カードです。サブエージェントの設計ドキュメントは、ワークベンチ内の独自のセクションにファイルされます (「<a href="#ch4">シーンとエディター</a>）。</p>
+                <p><strong>ディスパッチの仕組み:</strong>Forge は、1 回のツール呼び出し (次のような形) でサブエージェントをディスパッチします。<code>サブエージェント(type="iori", task="…")</code>);サーバーの<code>/api/サブエージェント</code>ストリームは、その出力をリアルタイムでメインの会話にブリッジします。これは、メッセージ ストリームに表示される埋め込みサブエージェント カードです。サブエージェントの設計ドキュメントは、拡張ページ内の独自のセクションにファイルされます (「<a href="#ch4">シーンとエディター</a>）。</p>
               </div>
             </details>
             <details class="doc-item">
@@ -202,7 +202,7 @@ bun fx スタート # → http://localhost:18920</code></pre>
                   <li><strong>ホットリロード</strong>— 保存時に、エンジンの vite が変更を検出し、プレビューします。<strong>モジュールを活性交換します</strong>所定の位置に — 完全なリロードは不要で、画像はほぼ瞬時に更新されます。</li>
                   <li><strong>結果を見る</strong>— Forge はプレビューを通じて実行結果を確認します (これにより、ゲームの転送も行われます)<code>コンソール</code>戻る)、次のステップを決定します。</li>
                 </ul>
-                <p>プロセス全体は透過的です。メッセージ ストリームには、Forge の思考、各ツールの呼び出し、および派遣されたサブエージェントのカードが表示されます。プレビューとワークベンチの切り替え/制御については、を参照してください。<a href="#ch4">シーンとエディター</a>;ホットリロードの仕組みについては、を参照してください。<a href="#ch6">実行とプレビュー</a>。</p>
+                <p>プロセス全体は透過的です。メッセージ ストリームには、Forge の思考、各ツールの呼び出し、および派遣されたサブエージェントのカードが表示されます。プレビューと拡張ページの切り替え/制御については、を参照してください。<a href="#ch4">シーンとエディター</a>;ホットリロードの仕組みについては、を参照してください。<a href="#ch6">実行とプレビュー</a>。</p>
               </div>
             </details>
             <details class="doc-item">
@@ -221,14 +221,14 @@ bun fx スタート # → http://localhost:18920</code></pre>
           <h2><span class="n">4</span>シーンとエディター</h2>
           <div class="doc-items">
             <details class="doc-item">
-              <summary>プレビューウィンドウとワークベンチ</summary>
+              <summary>プレビューウィンドウと拡張ページ</summary>
               <div class="doc-body">
                 <p>右側のメイン領域では、2 つのビューが切り替わります。</p>
                 <ul>
                   <li><strong>プレビュー</strong>— ゲームは iframe でライブ実行され、FPS 読み出しと再生 / 一時停止 / リロード コントロールが使用されます。 Forge がコードを記述すると、ここで即座にホットリロードされます (「<a href="#ch3">チャットで構築する</a>）。</li>
-                  <li><strong>作業台</strong>— ファイル ブラウザ + エディタ: テキストとコードの表示/編集/保存、マークダウン設計ドキュメントのレンダリング、画像、オーディオ、ビデオ、および 3D モデルのプレビュー。また、ファイルのアクティビティや「誰が編集しているか」のロックも明らかになるため、ユーザーと AI は同じファイルを破壊することなく編集できます。</li>
+                  <li><strong>拡張ページ</strong>— ファイル ブラウザ + エディタ: テキストとコードの表示/編集/保存、マークダウン設計ドキュメントのレンダリング、画像、オーディオ、ビデオ、および 3D モデルのプレビュー。また、ファイルのアクティビティや「誰が編集しているか」のロックも明らかになるため、ユーザーと AI は同じファイルを破壊することなく編集できます。</li>
                 </ul>
-                <p>ファイルが開かれていない場合、ワークベンチにはすべての作成ワークベンチ (キャラクター / アニメーション / 3D / シーン / UI / 音楽など) のエントリが表示されます — を参照してください。<a href="#ch9">作成ツール</a>そして<a href="/ja/marketplace/">市場</a>。アセットの作成については、を参照してください。<a href="#ch5">資産</a>。</p>
+                <p>ファイルが開かれていない場合、拡張ページにはすべての作成拡張ページ (キャラクター / アニメーション / 3D / シーン / UI / 音楽など) のエントリが表示されます — を参照してください。<a href="#ch9">作成ツール</a>そして<a href="/ja/marketplace/">市場</a>。アセットの作成については、を参照してください。<a href="#ch5">資産</a>。</p>
               </div>
             </details>
             <details class="doc-item">
@@ -254,34 +254,34 @@ bun fx スタート # → http://localhost:18920</code></pre>
             <details class="doc-item">
               <summary>キャラクターのポートレートとターンアラウンド</summary>
               <div class="doc-body">
-                <p>を使用します。<strong>キャラクターエディター</strong>(<code>WB文字</code>) キャラクターコンセプトデザインの場合: 1 行の概要を書いて、<strong>ポートレート+ターンアラウンド</strong>。ゲームに対応したキャラクターを作成するのに描画スキルは必要ありません。</p>
-                <p>その出力 (キャラクター マニフェスト + ポートレート / ターンアラウンド) はゲーム内のキャラクターごとに保存され、<strong>ダウンストリーム入力としてアニメーション ワークベンチに直接フィードします。</strong>— したがって、「キャラクターをデザインする → 動かす」は 1 つの連続したパイプラインです (次の項目を参照)。</p>
-                <p>各ワークベンチはパネルとツールのセットです。あなたが手動で、AI が派遣して、同じ成果物を編集します。の完全なリスト<a href="/ja/marketplace/">市場</a>そして<a href="/ja/tutorials/workbenches.html">ワークベンチのチュートリアル</a>。</p>
+                <p>を使用します。<strong>キャラクターエディター</strong>(<code>Extension文字</code>) キャラクターコンセプトデザインの場合: 1 行の概要を書いて、<strong>ポートレート+ターンアラウンド</strong>。ゲームに対応したキャラクターを作成するのに描画スキルは必要ありません。</p>
+                <p>その出力 (キャラクター マニフェスト + ポートレート / ターンアラウンド) はゲーム内のキャラクターごとに保存され、<strong>ダウンストリーム入力としてアニメーション 拡張ページに直接フィードします。</strong>— したがって、「キャラクターをデザインする → 動かす」は 1 つの連続したパイプラインです (次の項目を参照)。</p>
+                <p>各拡張ページはパネルとツールのセットです。あなたが手動で、AI が派遣して、同じ成果物を編集します。の完全なリスト<a href="/ja/marketplace/">市場</a>そして<a href="/ja/tutorials/authoring extensions.html">拡張ページのチュートリアル</a>。</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>キャラクターを動かす（2D / 3D）</summary>
               <div class="doc-body">
-                <p><strong>2D:</strong>アニメーション ワークベンチ (<code>wb-anim</code>) キャラクターのポートレートをテンプレートとして使用し、それを歩行、攻撃、4 方向のモーション、さらには短いクリップに変換します。<strong>顔のドリフトなし</strong>, そのため、一度移動すると同じキャラクターのままになります。</p>
+                <p><strong>2D:</strong>アニメーション 拡張ページ (<code>anim</code>) キャラクターのポートレートをテンプレートとして使用し、それを歩行、攻撃、4 方向のモーション、さらには短いクリップに変換します。<strong>顔のドリフトなし</strong>, そのため、一度移動すると同じキャラクターのままになります。</p>
                 <p><strong>3D:</strong>エンジンがネイティブにサポートしている<strong>スケルトンアニメーション</strong>— FBX からリグ付きのスキン モデルとアニメーション クリップをインポートし、アイドル / ウォーク / ラン / キャスト / デス間のスムーズなクロスフェードを実現します。このパイプラインは本物であり、出荷されています。ショーケースの中のダークファンタジーの魔女がどのように動くかです: を参照してください。<a href="/ja/blog/skeletal-animation-milestone.html">スケルトンアニメーションのマイルストーン</a>そして<a href="/ja/showcase/">ショーケース（ヘルフォージ）</a>。</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>3Dモデル、VFX、UI、音楽</summary>
               <div class="doc-body">
-                <p>キャラクター以外にも、パイプライン全体にワークベンチがあります。</p>
+                <p>キャラクター以外にも、パイプライン全体に拡張ページがあります。</p>
                 <div class="doc-subs">
                   <details class="doc-sub"><summary><strong>3Dモデル</strong></summary>
-                    <div class="doc-subbody"><p>ブロック状の文字エディタ (<code>wb-ローポリ-オブジェクト</code>、エンジンに依存しないエクスポート<code>.glb</code>)、ノードグラフの低ポリゴン (<code>wb-3d-ローポリ</code>)、テキスト/画像/マルチビューから 3D (<code>wb-gen3d</code>、プロバイダーに依存しない）。詳細については、<a href="#ch9">第 9 章 · 3D モデリングと生成</a>。</p></div>
+                    <div class="doc-subbody"><p>ブロック状の文字エディタ (<code>authoring-ローポリ-オブジェクト</code>、エンジンに依存しないエクスポート<code>.glb</code>)、ノードグラフの低ポリゴン (<code>authoring-3d-ローポリ</code>)、テキスト/画像/マルチビューから 3D (<code>gen3d</code>、プロバイダーに依存しない）。詳細については、<a href="#ch9">第 9 章 · 3D モデリングと生成</a>。</p></div>
                   </details>
                   <details class="doc-sub"><summary><strong>VFX / シーン / UI / アイテム</strong></summary>
-                    <div class="doc-subbody"><p>スキルVFX（<code>WBスキル</code>)、シーン生成および 2D シーン アセット (<code>wb-シーンジェネレーター</code>/<code>wb-2d-scene-asset-generator</code>)、UIワークショップ(<code>wb-ui</code>、クリック可能なプロトタイプ)、アイテム アイコン (<code>WBアイテム</code>、アート + データを 1 つのテーブルにまとめます)。詳細については、<a href="#ch9">第9章・シーン/UI/アイテム</a>。</p></div>
+                    <div class="doc-subbody"><p>スキルVFX（<code>Extensionスキル</code>)、シーン生成および 2D シーン アセット (<code>authoring-シーンジェネレーター</code>/<code>2d-scene-asset-generator</code>)、UIワークショップ(<code>ui</code>、クリック可能なプロトタイプ)、アイテム アイコン (<code>Extensionアイテム</code>、アート + データを 1 つのテーブルにまとめます)。詳細については、<a href="#ch9">第9章・シーン/UI/アイテム</a>。</p></div>
                   </details>
                   <details class="doc-sub"><summary><strong>音楽 / 見た目 / 物語</strong></summary>
-                    <div class="doc-subbody"><p>音楽と特撮 (<code>BGM</code>、BGMタイムライン）、カラーグレーディング（<code>WBルック</code>、パレット + LUT + ポストプロセス)、およびナラティブ (<code>WB-ナラティブ</code>、117ジャンル×9テンプレート）。詳細については、<a href="#ch9">第9章・物語/音楽/見た目/バランス</a>。</p></div>
+                    <div class="doc-subbody"><p>音楽と特撮 (<code>BGM</code>、BGMタイムライン）、カラーグレーディング（<code>Extensionルック</code>、パレット + LUT + ポストプロセス)、およびナラティブ (<code>extension-ナラティブ</code>、117ジャンル×9テンプレート）。詳細については、<a href="#ch9">第9章・物語/音楽/見た目/バランス</a>。</p></div>
                   </details>
                 </div>
-                <p>アイテムごとの補償範囲は次のとおりです<a href="#ch9">第 9 章 · 作成ツール</a>、<a href="/ja/tutorials/workbenches.html">ワークベンチのチュートリアル</a>、そして<a href="/ja/marketplace/">市場</a>。</p>
+                <p>アイテムごとの補償範囲は次のとおりです<a href="#ch9">第 9 章 · 作成ツール</a>、<a href="/ja/tutorials/authoring extensions.html">拡張ページのチュートリアル</a>、そして<a href="/ja/marketplace/">市場</a>。</p>
               </div>
             </details>
           </div>
@@ -366,16 +366,16 @@ bun fx スタート # → http://localhost:18920</code></pre>
               </div>
             </details>
             <details class="doc-item">
-              <summary>独自のワークベンチ プラグインを作成する</summary>
+              <summary>独自の拡張ページ プラグインを作成する</summary>
               <div class="doc-body">
                 <p>ForgeaX のほぼすべての機能は、<strong>ランタイムロードされたプラグイン</strong>(概要は<a href="/ja/marketplace/">市場</a>）なので、独自のものを追加できます。</p>
-                <p>今日の最速パス:<strong>既存のワークベンチプラグインをコピーして適応させる</strong>、と<strong>プラグインの作者</strong>(<code>wb-プラグイン-作者</code>）助けます。より充実したアプリ内ビジュアル エディター (ファイル ツリー + コード エディター、保存→自動リロード) が準備中です。構築したら、有効にして並べ替えます。<strong>管理パネル</strong>— プラグインは実行時に CLI によってマウントされます。ワークベンチの種類については、こちらをご覧ください。<a href="#ch9">作成ツール</a>。</p>
+                <p>今日の最速パス:<strong>既存の拡張ページプラグインをコピーして適応させる</strong>、と<strong>プラグインの作者</strong>(<code>authoring-プラグイン-作者</code>）助けます。より充実したアプリ内ビジュアル エディター (ファイル ツリー + コード エディター、保存→自動リロード) が準備中です。構築したら、有効にして並べ替えます。<strong>管理パネル</strong>— プラグインは実行時に CLI によってマウントされます。拡張ページの種類については、こちらをご覧ください。<a href="#ch9">作成ツール</a>。</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>エージェントのペルソナをカスタマイズする</summary>
               <div class="doc-body">
-                <p>を使用します。<strong>ペルソナエディター</strong>(<code>wb-エージェント-ペルソナ</code>): リストからエージェントを選択し、テキスト領域でそのペルソナを編集し、<strong>保存→ホットリロード、再起動なし</strong>。コードに触れることなく、エージェントに別のキャラクターや音声を与えることができます。</p>
+                <p>を使用します。<strong>ペルソナエディター</strong>(<code>authoring-エージェント-ペルソナ</code>): リストからエージェントを選択し、テキスト領域でそのペルソナを編集し、<strong>保存→ホットリロード、再起動なし</strong>。コードに触れることなく、エージェントに別のキャラクターや音声を与えることができます。</p>
                 <p>メインエージェントとサブエージェントの違い、およびデフォルトのペルソナの由来については、を参照してください。<a href="#ch2">中心となる概念</a>そして<a href="#ch10">エージェントチーム</a>;フルキャストは<a href="/ja/marketplace/">市場</a>。</p>
               </div>
             </details>
@@ -383,19 +383,19 @@ bun fx スタート # → http://localhost:18920</code></pre>
         </section>
 
         <section class="docs-chapter" id="ch9">
-          <h2><span class="n">9</span>作成ツール（ワークベンチ）</h2>
+          <h2><span class="n">9</span>作成ツール（拡張ページ）</h2>
           <div class="doc-items">
             <details class="doc-item">
               <summary>キャラクター / アニメーション / VFX</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-character</code> · <strong>キャラクターエディター</strong></summary>
-                    <div class="doc-subbody"><p>キャラクターコンセプトデザイン：一行ブリーフ→ポートレート+ターンアラウンド。いくつかのパイプラインがあります —<strong>振り向く</strong>(3 つのビュー)、<strong>ビデオキャラクター</strong>(ターンアラウンド→AIビデオモーション→フレーム抽出→スプライトシートエクスポート)、および<strong>モンスターの世代</strong>(8方向×5アニメーションモンスタースプライト)。絵を描くスキルは必要ありません。出力はアニメーション ワークベンチに供給されます (「<a href="#ch5">資産</a>）。</p></div>
+                  <details class="doc-sub"><summary><code>character</code> · <strong>キャラクターエディター</strong></summary>
+                    <div class="doc-subbody"><p>キャラクターコンセプトデザイン：一行ブリーフ→ポートレート+ターンアラウンド。いくつかのパイプラインがあります —<strong>振り向く</strong>(3 つのビュー)、<strong>ビデオキャラクター</strong>(ターンアラウンド→AIビデオモーション→フレーム抽出→スプライトシートエクスポート)、および<strong>モンスターの世代</strong>(8方向×5アニメーションモンスタースプライト)。絵を描くスキルは必要ありません。出力はアニメーション 拡張ページに供給されます (「<a href="#ch5">資産</a>）。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-anim</code> · <strong>アニメーション</strong></summary>
+                  <details class="doc-sub"><summary><code>anim</code> · <strong>アニメーション</strong></summary>
                     <div class="doc-subbody"><p>キャラクターの肖像画をテンプレートとして使用し、それを動かします。<strong>4方向ピクセル、車両アニメーション、モンスタースプライト、スパインバインディング、ショートビデオ生成</strong>—<strong>顔のドリフトなし</strong>, したがって、同じ文字のままです。中央のビューポートを備えた埋め込みパネル。 3D キャラクターはエンジンのネイティブ スケルトン パイプラインを使用します。<a href="/ja/blog/skeletal-animation-milestone.html">スケルトンアニメーションのマイルストーン</a>そして<a href="#ch5">資産</a>。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-skill</code> · <strong>スキル / VFX</strong></summary>
+                  <details class="doc-sub"><summary><code>skill</code> · <strong>スキル / VFX</strong></summary>
                     <div class="doc-subbody"><p>スキルツリー編集 + VFX プレビュー。スキルとエフェクトの出力を 1 か所にリストします。重要なアイデア:<strong>プレイヤーのクリックと AI ディスパッチは 1 つのスキル仕様を共有します</strong>— エフェクトは「キャストの瞬間」に自動的に適用され、手動での調整は必要ありません。</p></div>
                   </details>
                 </div>
@@ -405,13 +405,13 @@ bun fx スタート # → http://localhost:18920</code></pre>
               <summary>3Dモデリングと生成</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-lowpoly-obj</code> · <strong>ブロック状の文字エディタ</strong></summary>
+                  <details class="doc-sub"><summary><code>lowpoly-obj</code> · <strong>ブロック状の文字エディタ</strong></summary>
                     <div class="doc-subbody"><p>建てる<strong>装備されたブロック状の 3D キャラクター</strong>: ライブ プレビュー用の内蔵プレイグラウンドを使用して、「雰囲気」を与える (セリフを言う、AI が生成する) か、手動で編集する (Blender スタイルのギズモ) かのいずれかです。輸出<strong>エンジンニュートラル<code>.glb</code></strong>どのエンジンでも使用可能。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-3d-lowpoly</code> · <strong>ローポリジェネレータ</strong></summary>
+                  <details class="doc-sub"><summary><code>3d-lowpoly</code> · <strong>ローポリジェネレータ</strong></summary>
                     <div class="doc-subbody"><p>3D プロップ/メカニカル アセットを構築する<strong>ノードプログラミング</strong>(「ブロックを接続する」): プロセスをノード グラフとしてモデル化し、1 つのパラメーターを変更し、セット全体を再生成します。バッチ、再利用可能なパラメトリックなハードサーフェス アセットに最適です。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-gen3d</code> · <strong>3D生成</strong></summary>
+                  <details class="doc-sub"><summary><code>gen3d</code> · <strong>3D生成</strong></summary>
                     <div class="doc-subbody"><p>3D アセット<strong>世代エントリポイント</strong>: 生成サービスを選択し、入力 (テキスト / 画像 / マルチビュー) を与えると、<strong>耐久性があり、ゲームの準備ができています</strong>3D アセット マニフェスト。複数のトップジェネレーターに接続されているため、単一ベンダーのロックインがなく、最適なものを選択できます。</p></div>
                   </details>
                 </div>
@@ -421,16 +421,16 @@ bun fx スタート # → http://localhost:18920</code></pre>
               <summary>シーン/UI/アイテム</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-scene-generator</code> · <strong>シーンジェネレーター</strong></summary>
+                  <details class="doc-sub"><summary><code>scene-generator</code> · <strong>シーンジェネレーター</strong></summary>
                     <div class="doc-subbody"><p>ゲームシーン全体を組み立てる<strong>ノードプログラミング</strong>: 構成、配置、テクスチャリングをグラフとしてレイアウトします。いつでも再実行してシーン全体を再生成できます。シーン/レベルの構成方法については、を参照してください。<a href="#ch4">シーンとエディター</a>。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-2d-scene-asset-generator</code> · <strong>2D シーン アセット</strong></summary>
+                  <details class="doc-sub"><summary><code>2d-scene-asset-generator</code> · <strong>2D シーン アセット</strong></summary>
                     <div class="doc-subbody"><p>ノードプログラミングにも対応<strong>バッチ生成</strong>シーン内の小さなもの (小道具、テクスチャ、装飾、UI ビット)<strong>自動的に名前が付けられてファイルされる</strong>資産が混乱しないように。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-ui</code> · <strong>UIワークショップ</strong></summary>
+                  <details class="doc-sub"><summary><code>ui</code> · <strong>UIワークショップ</strong></summary>
                     <div class="doc-subbody"><p>によって設定された完全なインターフェイスを生成します<strong>ジャンル、画面の流れ、ビジュアルスタイル</strong>— UI ブループリント、コンポーネント アセット、および<strong>クリック可能なインタラクティブなプロトタイプ</strong>（画像だけではありません）。メニュー、ボタン、ヘルスバーを一度に。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-items</code> · <strong>アイテム/アイコン</strong></summary>
+                  <details class="doc-sub"><summary><code>items</code> · <strong>アイテム/アイコン</strong></summary>
                     <div class="doc-subbody"><p>ゲームを作る<strong>アイテムとアイコン</strong>— 武器、ポーション、コインのピクセル アート — データが添付されています。<strong>アートとデータを 1 つのテーブルに</strong>(<code>アイテム.json</code>) あなたと AI が一緒に編集するため、両者が離れることはありません。</p></div>
                   </details>
                 </div>
@@ -440,16 +440,16 @@ bun fx スタート # → http://localhost:18920</code></pre>
               <summary>物語/音楽/見た目/バランス</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-narrative</code> · <strong>物語ワークショップ</strong></summary>
+                  <details class="doc-sub"><summary><code>narrative</code> · <strong>物語ワークショップ</strong></summary>
                     <div class="doc-subbody"><p>AI 主導のナラティブ パイプライン: 火花から完全なストーリーと世界まで。カバーします<strong>117ジャンル×9パイプラインテンプレート</strong>階層/モード ルーティングと動的プランナーを備え、AI がジャンルに適したアプローチとステップを選択します。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-bgm</code> · <strong>音楽・BGM</strong></summary>
+                  <details class="doc-sub"><summary><code>bgm</code> · <strong>音楽・BGM</strong></summary>
                     <div class="doc-subbody"><p>ゲームの管理<strong>音楽と効果音</strong>: セッション全体で何が再生されるかをレイアウトする BGM タイムラインと効果音の命名規則。スコア全体が 1 つのリストとして配列されます。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-look</code> · <strong>カラー / ルックデベロップメント</strong></summary>
+                  <details class="doc-sub"><summary><code>look</code> · <strong>カラー / ルックデベロップメント</strong></summary>
                     <div class="doc-subbody"><p>ゲーム全体を統一する<strong>色の雰囲気</strong>— パレット + LUT + ポストプロセス スタック。ゲーム全体のフィルターのようなものです。暖かい夕暮れと寒い夜をワンクリックで切り替えられるため、視覚的な感覚が 1 つに収まります。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-balance</code> · <strong>バランス</strong></summary>
+                  <details class="doc-sub"><summary><code>balance</code> · <strong>バランス</strong></summary>
                     <div class="doc-subbody"><p>数値が正しいかどうかを自動テストします。<strong>バランスの取れた</strong>: 戦闘の再シミュレーションを推進します (<code>バランスリシム</code>) N 回以上のトライアルとダッシュボード<strong>勝率 + 95% 信頼区間</strong>、次に手動調整でループします。データに調整を判断させます。その再シミュレーションもまた、<a href="/ja/marketplace/">道具</a>市場で。</p></div>
                   </details>
                 </div>
@@ -459,23 +459,23 @@ bun fx スタート # → http://localhost:18920</code></pre>
               <summary>システムおよび作成者ツール</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-code</code> · <strong>コード</strong></summary>
-                    <div class="doc-subbody"><p>閲覧して<strong>飛び越える<code>ソース/</code>ファイル</strong>作業台のすぐ上で、<strong>チャット スレッド全体でコーディング エージェントと共同作業する</strong>— 1 つのプロジェクトのどこを読んで、AI がバトンを落とすことなくどこを編集するか。</p></div>
+                  <details class="doc-sub"><summary><code>code</code> · <strong>コード</strong></summary>
+                    <div class="doc-subbody"><p>閲覧して<strong>飛び越える<code>ソース/</code>ファイル</strong>拡張ページのすぐ上で、<strong>チャット スレッド全体でコーディング エージェントと共同作業する</strong>— 1 つのプロジェクトのどこを読んで、AI がバトンを落とすことなくどこを編集するか。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-observatory</code> · <strong>天文台</strong></summary>
+                  <details class="doc-sub"><summary><code>observatory</code> · <strong>天文台</strong></summary>
                     <div class="doc-subbody"><p>のように<strong>ブラックボックス</strong>: すべてのエージェント/サブエージェントのターン、ツール呼び出し、およびシステム プロンプトのスライスのライブ + オフライン再生。何かが壊れたときにできること<strong>どのステップまたはどのプロンプトを特定する</strong>コンテキスト/スキル/ガードレール/キャッシュの管理に役立ちます。セッション＆リプレイのコンセプトは、<a href="#ch2">中心となる概念</a>。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-agent-persona</code> · <strong>ペルソナエディター</strong></summary>
+                  <details class="doc-sub"><summary><code>agent-persona</code> · <strong>ペルソナエディター</strong></summary>
                     <div class="doc-subbody"><p>リストからエージェントを選択し、テキスト領域でそのペルソナを編集し、<strong>保存→ホットリロード、再起動なし</strong>。コードに触れることなく、エージェントに新しいキャラクターや音声を与えます。キャストが入っています<a href="#ch10">エージェントチーム</a>;ハウツーはここにあります<a href="#ch8">高度な</a>。</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-plugin-author</code> · <strong>プラグインの作者</strong></summary>
-                    <div class="doc-subbody"><p>しましょう<strong>非コーディング者</strong>独自のワークベンチプラグインを構築します。今日のパスは、「既存のものをコピー + 適応 + アクションを記録する」です。より充実したアプリ内ビジュアル エディター (ファイル ツリー + コード エディター、保存→自動リロード) が準備中です。全体的なハウツーは次のとおりです<a href="#ch8">上級 · 独自のプラグインを作成する</a>。</p></div>
+                  <details class="doc-sub"><summary><code>plugin-author</code> · <strong>プラグインの作者</strong></summary>
+                    <div class="doc-subbody"><p>しましょう<strong>非コーディング者</strong>独自の拡張ページプラグインを構築します。今日のパスは、「既存のものをコピー + 適応 + アクションを記録する」です。より充実したアプリ内ビジュアル エディター (ファイル ツリー + コード エディター、保存→自動リロード) が準備中です。全体的なハウツーは次のとおりです<a href="#ch8">上級 · 独自のプラグインを作成する</a>。</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>admin</code> · <strong>コントロールパネル</strong></summary>
-                    <div class="doc-subbody"><p>スタジオの<strong>マスターコンソール</strong>、ワークベンチの有効化/並べ替え、モデルのバインド、各 AI バックエンドの認証と正常性の確認、プラグイン数の確認の 4 つのセクションで構成されています。設定パネルとの同期が維持され、すべてのプラグインとモデルのステータスが 1 つの画面に表示されます。</p></div>
+                    <div class="doc-subbody"><p>スタジオの<strong>マスターコンソール</strong>、拡張ページの有効化/並べ替え、モデルのバインド、各 AI バックエンドの認証と正常性の確認、プラグイン数の確認の 4 つのセクションで構成されています。設定パネルとの同期が維持され、すべてのプラグインとモデルのステータスが 1 つの画面に表示されます。</p></div>
                   </details>
                 </div>
-                <p>これらはすべて、<strong>ロード可能なプラグイン</strong>;フィルタリング可能な完全なカタログは、<a href="/ja/marketplace/">市場</a>、チュートリアルのチュートリアルは、<a href="/ja/tutorials/workbenches.html">ワークベンチのチュートリアル</a>。</p>
+                <p>これらはすべて、<strong>ロード可能なプラグイン</strong>;フィルタリング可能な完全なカタログは、<a href="/ja/marketplace/">市場</a>、チュートリアルのチュートリアルは、<a href="/ja/tutorials/authoring extensions.html">拡張ページのチュートリアル</a>。</p>
               </div>
             </details>
           </div>
@@ -488,7 +488,7 @@ bun fx スタート # → http://localhost:18920</code></pre>
               <summary>制作と建築</summary>
               <div class="doc-body">
                 <p><strong>アリン・プロデューサー</strong>— デザイン/コード/アート/オーディオをコーディネートし、ゲーム全体を所有する総合プロデューサー。</p>
-                <p><strong>レイア・リール監督</strong>— インタラクティブな FMV ディレクター。プロンプトを作成し、QTE のペースを調整し、分岐とエンディングを織り交ぜ、WB リールの Reel Studio を動かして、1 つのアイデアをクリックして再生できるサスペンス映画に変えます。</p>
+                <p><strong>レイア・リール監督</strong>— インタラクティブな FMV ディレクター。プロンプトを作成し、QTE のペースを調整し、分岐とエンディングを織り交ぜ、Extension リールの Reel Studio を動かして、1 つのアイデアをクリックして再生できるサスペンス映画に変えます。</p>
                 <p>これらは<strong>指名されたエージェント</strong>Forge によってオンデマンドで派遣されます (メインエージェントとサブエージェントの関係は次のとおりです)<a href="#ch2">中心となる概念</a>);フルキャストは<a href="/ja/marketplace/">市場</a>。</p>
               </div>
             </details>
@@ -509,7 +509,7 @@ bun fx スタート # → http://localhost:18920</code></pre>
                     <div class="doc-subbody"><p>「色」（目に知覚されるすべてのもの）にちなんで名付けられました。 Zu がモジュールのエクスペリエンスを組み立てると、Forge はビジュアル アセット (キャラクター / シーン / UI / VFX) が必要な場合にのみ Iro をディスパッチします。これらのアセットが実際にどのように作成されるか: を参照してください。<a href="#ch5">資産</a>そして<a href="#ch9">作成ツール</a>。</p></div>
                   </details>
                 </div>
-                <p>これらの専門家は、<strong>計画とデザインだけを行い、ゲームコードには一切触れません</strong>(Forge はコードを記述します。参照<a href="#ch2">中心となる概念</a>);出力はワークベンチに配置されます (「<a href="#ch4">シーンとエディター</a>)、アート アセットは次のように生成されます。<a href="#ch5">資産</a>。</p>
+                <p>これらの専門家は、<strong>計画とデザインだけを行い、ゲームコードには一切触れません</strong>(Forge はコードを記述します。参照<a href="#ch2">中心となる概念</a>);出力は拡張ページに配置されます (「<a href="#ch4">シーンとエディター</a>)、アート アセットは次のように生成されます。<a href="#ch5">資産</a>。</p>
               </div>
             </details>
             <details class="doc-item">
@@ -529,7 +529,7 @@ bun fx スタート # → http://localhost:18920</code></pre>
                     <div class="doc-subbody"><p>オプションの文字のセット<strong>コーディングスキルは同等だが個性は異なる</strong>— ある者は慎重で、ある者は遊び心があり、ある者は細心の注意を払っています。彼らは同じ能力を持っています。唯一の違いは、彼らと一緒に仕事をするときの気分です。パーソナリティはいつでも編集できます。<strong>ペルソナエディター</strong>（見る<a href="#ch8">高度な</a>);フルキャストは<a href="/ja/marketplace/">市場</a>。</p></div>
                   </details>
                 </div>
-                <p>のセットもあります<strong>アート/アセット専門エージェント</strong>(2D キャラクター / アニメーション、3D ローポリ / VFX、インタラクティブ映画ディレクターなど)、それぞれが対応する作成ワークベンチに接続されています (「<a href="#ch9">作成ツール</a>）。</p>
+                <p>のセットもあります<strong>アート/アセット専門エージェント</strong>(2D キャラクター / アニメーション、3D ローポリ / VFX、インタラクティブ映画ディレクターなど)、それぞれが対応する作成拡張ページに接続されています (「<a href="#ch9">作成ツール</a>）。</p>
               </div>
             </details>
             <details class="doc-item">

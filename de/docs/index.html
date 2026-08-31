@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=df4e5c67" />
+<link rel="stylesheet" href="/assets/styles.css?v=b1def969" />
 
 </head>
 <body class="lang-de forgeax-site has-immersive">
@@ -126,11 +126,11 @@ bun fx start # → http://localhost:18920</code></pre>
             <details class="doc-item">
               <summary>Öffnen Sie das Studio und lernen Sie die Benutzeroberfläche kennen</summary>
               <div class="doc-body">
-                <p>Die Benutzeroberfläche besteht aus drei Teilen: einer oberen Leiste, dem Chat auf der linken Seite und der Vorschau/Workbench auf der rechten Seite.</p>
+                <p>Die Benutzeroberfläche besteht aus drei Teilen: einer oberen Leiste, dem Chat auf der linken Seite und der Vorschau/Authoring extension auf der rechten Seite.</p>
                 <ul>
                   <li><strong>Obere Leiste</strong>- Die<code>⊕</code>neue Speisekarte, a<strong>Projektumschalter</strong>(Wechsel zwischen Spielen – was ein „Projekt“ ist, wird erläutert<a href="#ch2">Kernkonzepte</a>) und a<strong>Sitzungsumschalter</strong>(Vergangene Gespräche überprüfen/wechseln).</li>
                   <li><strong>Links · Chat (ChatPanel)</strong>– eine Teamschiene (Forge und die Unteragenten), ein Nachrichtenstrom (Unteragentenkarten, Forges Gedanken und Werkzeugaufrufe) und unten ein Komponist mit einem<strong>Backend-Schalter</strong>unten rechts (siehe<a href="#ch8">Fortschrittlich</a>).</li>
-                  <li><strong>Rechts · Hauptbereich (MainArea)</strong>– schaltet zwischen den um<strong>Vorschau</strong>(Ihr Spiel live in einem Iframe) und das<strong>Werkbank</strong>(Dateibearbeitung/Designdokumente); sehen<a href="#ch4">Szenen & Schnitt</a>.</li>
+                  <li><strong>Rechts · Hauptbereich (MainArea)</strong>– schaltet zwischen den um<strong>Vorschau</strong>(Ihr Spiel live in einem Iframe) und das<strong>Erweiterungsseite</strong>(Dateibearbeitung/Designdokumente); sehen<a href="#ch4">Szenen & Schnitt</a>.</li>
                 </ul>
                 <p>Das Zahnrad oben rechts öffnet sich<strong>Einstellungen</strong>: API-Schlüssel, Modellauswahl, CLI-Backend und Plugin-Verwaltung. Die Desktop-App zeigt außerdem ein First-Run-Overlay an, das beim ersten Öffnen zur Eingabe des Schlüssels auffordert.</p>
               </div>
@@ -161,7 +161,7 @@ bun fx start # → http://localhost:18920</code></pre>
               <div class="doc-body">
                 <p><strong>Forge (der Hauptagent)</strong>ist der einzige, der Spielcode direkt schreibt – er schreibt<code>games/<slug>/src/main.ts</code>, die Vorschau<strong>Hot-Reloads</strong>, und es sieht das laufende Ergebnis, um über den nächsten Schritt zu entscheiden. Diese Bearbeitung → siehe → Bearbeitungsschleife muss bei dem bleiben, der die Vorschau sehen kann, d. h. bei Forge (siehe<a href="#ch3">Bauen Sie durch Chatten</a>).</p>
                 <p><strong>Unteragenten</strong>(z. B. Iori-Gameplay, Suzu-Design, Kotone-Erzählung, Iro-Kunst, Tsumugi-Build) nur planen/entwerfen/Assets erstellen/Dokumente schreiben und<strong>niemals anfassen<code>src/</code></strong>– Sie haben kein Live-Vorschau-Feedback, sodass jeder von ihnen geschriebene Code nichts zur Steuerung hätte. Die vollständige Besetzung finden Sie im<a href="/de/marketplace/">Marktplatz</a>Und<a href="#ch10">Kapitel 10 · Das Agententeam</a>.</p>
-                <p><strong>So funktioniert der Versand:</strong>Forge sendet einen Subagenten mit einem Tool-Aufruf (in der Form:<code>Subagent(type="iori", task="…")</code>); des Servers<code>/api/subagent</code>stream überbrückt seine Ausgabe in Echtzeit zurück in die Hauptkonversation – das ist die eingebettete Subagentenkarte, die Sie im Nachrichtenstream sehen. Die Designdokumente eines Subagenten werden in einem eigenen Abschnitt in der Workbench abgelegt (siehe<a href="#ch4">Szenen & Schnitt</a>).</p>
+                <p><strong>So funktioniert der Versand:</strong>Forge sendet einen Subagenten mit einem Tool-Aufruf (in der Form:<code>Subagent(type="iori", task="…")</code>); des Servers<code>/api/subagent</code>stream überbrückt seine Ausgabe in Echtzeit zurück in die Hauptkonversation – das ist die eingebettete Subagentenkarte, die Sie im Nachrichtenstream sehen. Die Designdokumente eines Subagenten werden in einem eigenen Abschnitt in der Authoring extension abgelegt (siehe<a href="#ch4">Szenen & Schnitt</a>).</p>
               </div>
             </details>
             <details class="doc-item">
@@ -202,7 +202,7 @@ bun fx start # → http://localhost:18920</code></pre>
                   <li><strong>Hot-Reload</strong>— Beim Speichern erkennt das Vite der Engine die Änderung und zeigt eine Vorschau an<strong>Ersetzt das Modul im laufenden Betrieb</strong>vorhanden – kein vollständiges Neuladen, das Bild wird fast sofort aktualisiert.</li>
                   <li><strong>Sehen Sie sich das Ergebnis an</strong>— Forge sieht das laufende Ergebnis in der Vorschau (die auch die des Spiels weiterleitet).<code>Konsole</code>zurück) und entscheidet über den nächsten Schritt.</li>
                 </ul>
-                <p>Der gesamte Prozess ist transparent: Der Nachrichtenstrom zeigt die Gedanken von Forge, jeden Tool-Aufruf und die Karten der von ihm entsandten Subagenten. Informationen zum Umschalten/Steuern von Vorschau und Workbench finden Sie unter<a href="#ch4">Szenen & Schnitt</a>; Informationen zur Funktionsweise von Hot-Reload finden Sie unter<a href="#ch6">Ausführen und Vorschau</a>.</p>
+                <p>Der gesamte Prozess ist transparent: Der Nachrichtenstrom zeigt die Gedanken von Forge, jeden Tool-Aufruf und die Karten der von ihm entsandten Subagenten. Informationen zum Umschalten/Steuern von Vorschau und Authoring extension finden Sie unter<a href="#ch4">Szenen & Schnitt</a>; Informationen zur Funktionsweise von Hot-Reload finden Sie unter<a href="#ch6">Ausführen und Vorschau</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -221,14 +221,14 @@ bun fx start # → http://localhost:18920</code></pre>
           <h2><span class="n">4</span>Szenen & Schnitt</h2>
           <div class="doc-items">
             <details class="doc-item">
-              <summary>Vorschaufenster und Workbench</summary>
+              <summary>Vorschaufenster und Authoring extension</summary>
               <div class="doc-body">
                 <p>Der rechte Hauptbereich schaltet zwischen zwei Ansichten um:</p>
                 <ul>
                   <li><strong>Vorschau</strong>– Ihr Spiel läuft live in einem Iframe, mit FPS-Anzeige und Wiedergabe-/Pause-/Neuladesteuerung. Wenn Forge Code schreibt, wird er hier sofort im laufenden Betrieb neu geladen (siehe<a href="#ch3">Bauen Sie durch Chatten</a>).</li>
-                  <li><strong>Werkbank</strong>– ein Dateibrowser + Editor: Anzeigen/Bearbeiten/Speichern von Text und Code, Rendern von Markdown-Designdokumenten und Vorschau von Bildern, Audio-, Video- und 3D-Modellen. Es zeigt auch Dateiaktivitäten und „Wer bearbeitet“-Sperren an, sodass Sie und die KI dieselben Dateien bearbeiten können, ohne sie zu überlasten.</li>
+                  <li><strong>Erweiterungsseite</strong>– ein Dateibrowser + Editor: Anzeigen/Bearbeiten/Speichern von Text und Code, Rendern von Markdown-Designdokumenten und Vorschau von Bildern, Audio-, Video- und 3D-Modellen. Es zeigt auch Dateiaktivitäten und „Wer bearbeitet“-Sperren an, sodass Sie und die KI dieselben Dateien bearbeiten können, ohne sie zu überlasten.</li>
                 </ul>
-                <p>Wenn keine Datei geöffnet ist, zeigt die Workbench Einträge für jede Erstellungs-Workbench an (Charakter/Animation/3D/Szene/Benutzeroberfläche/Musik…) – siehe<a href="#ch9">Erstellungswerkzeuge</a>und die<a href="/de/marketplace/">Marktplatz</a>. Informationen zum Erstellen von Vermögenswerten finden Sie unter<a href="#ch5">Vermögenswerte</a>.</p>
+                <p>Wenn keine Datei geöffnet ist, zeigt die Authoring extension Einträge für jede Erstellungs-Authoring extension an (Charakter/Animation/3D/Szene/Benutzeroberfläche/Musik…) – siehe<a href="#ch9">Erstellungswerkzeuge</a>und die<a href="/de/marketplace/">Marktplatz</a>. Informationen zum Erstellen von Vermögenswerten finden Sie unter<a href="#ch5">Vermögenswerte</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -254,34 +254,34 @@ bun fx start # → http://localhost:18920</code></pre>
             <details class="doc-item">
               <summary>Charakterporträts und Turnarounds</summary>
               <div class="doc-body">
-                <p>Benutzen Sie die<strong>Charaktereditor</strong>(<code>wb-Charakter</code>) für die Gestaltung von Charakterkonzepten: Schreiben Sie ein einzeiliges Briefing, erhalten Sie ein<strong>Porträt + Wende</strong>. Es sind keine Zeichenkenntnisse erforderlich, um einen spielbereiten Charakter zu erhalten.</p>
-                <p>Seine Ausgaben (ein Charaktermanifest + Porträt/Umkehrung) werden pro Charakter in Ihrem Spiel gespeichert und<strong>werden direkt als nachgelagerte Eingabe in die Animations-Workbench eingespeist</strong>– „Den Charakter entwerfen → ihn bewegen“ ist also eine kontinuierliche Pipeline (siehe nächster Punkt).</p>
-                <p>Jede Werkbank besteht aus einer Platte und einem Werkzeugsatz. Sie bearbeiten per Hand und per KI dasselbe Artefakt. Vollständige Liste im<a href="/de/marketplace/">Marktplatz</a>und die<a href="/de/tutorials/workbenches.html">Werkbank-Tutorial</a>.</p>
+                <p>Benutzen Sie die<strong>Charaktereditor</strong>(<code>authoring-Charakter</code>) für die Gestaltung von Charakterkonzepten: Schreiben Sie ein einzeiliges Briefing, erhalten Sie ein<strong>Porträt + Wende</strong>. Es sind keine Zeichenkenntnisse erforderlich, um einen spielbereiten Charakter zu erhalten.</p>
+                <p>Seine Ausgaben (ein Charaktermanifest + Porträt/Umkehrung) werden pro Charakter in Ihrem Spiel gespeichert und<strong>werden direkt als nachgelagerte Eingabe in die Animations-Authoring extension eingespeist</strong>– „Den Charakter entwerfen → ihn bewegen“ ist also eine kontinuierliche Pipeline (siehe nächster Punkt).</p>
+                <p>Jede Erweiterungsseite besteht aus einer Platte und einem Werkzeugsatz. Sie bearbeiten per Hand und per KI dasselbe Artefakt. Vollständige Liste im<a href="/de/marketplace/">Marktplatz</a>und die<a href="/de/tutorials/authoring extensions.html">Erweiterungsseite-Tutorial</a>.</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>Charaktere bewegen lassen (2D / 3D)</summary>
               <div class="doc-body">
-                <p><strong>2D:</strong>die Animations-Workbench (<code>wb-anim</code>) nutzt das Charakterporträt als Vorlage und verwandelt es in laufende, angreifende, sich in vier Richtungen bewegende, sogar kurze Clips –<strong>ohne Gesichtsdrift</strong>, daher bleibt der Charakter derselbe, wenn er sich bewegt.</p>
+                <p><strong>2D:</strong>die Animations-Authoring extension (<code>anim</code>) nutzt das Charakterporträt als Vorlage und verwandelt es in laufende, angreifende, sich in vier Richtungen bewegende, sogar kurze Clips –<strong>ohne Gesichtsdrift</strong>, daher bleibt der Charakter derselbe, wenn er sich bewegt.</p>
                 <p><strong>3D:</strong>Die Engine unterstützt nativ<strong>Skelettanimation</strong>– Importieren Sie ein manipuliertes, gehäutetes Modell sowie Animationsclips aus FBX mit sanften Überblendungen zwischen Leerlauf/Gehen/Laufen/Besetzen/Tod. Diese Pipeline ist real und ausgeliefert – so bewegt sich die Dark-Fantasy-Hexe in der Vitrine: Sehen Sie<a href="/de/blog/skeletal-animation-milestone.html">Der Meilenstein der Skelettanimation</a>und die<a href="/de/showcase/">Vitrine (Hellforge)</a>.</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>3D-Modelle, VFX, UI, Musik</summary>
               <div class="doc-body">
-                <p>Über die Charaktere hinaus gibt es Werkbänke in der gesamten Pipeline:</p>
+                <p>Über die Charaktere hinaus gibt es Erweiterungen in der gesamten Pipeline:</p>
                 <div class="doc-subs">
                   <details class="doc-sub"><summary><strong>3D-Modelle</strong></summary>
-                    <div class="doc-subbody"><p>Editor für Blockzeichen (<code>wb-lowpoly-obj</code>, exportiert motorneutral<code>.glb</code>), Knotengraph Low-Poly (<code>wb-3d-lowpoly</code>) und Text/Bild/Multi-View-to-3D (<code>wb-gen3d</code>, anbieterunabhängig). Ausführlich in<a href="#ch9">Kapitel 9 · 3D-Modellierung und -Generierung</a>.</p></div>
+                    <div class="doc-subbody"><p>Editor für Blockzeichen (<code>lowpoly-obj</code>, exportiert motorneutral<code>.glb</code>), Knotengraph Low-Poly (<code>3d-lowpoly</code>) und Text/Bild/Multi-View-to-3D (<code>gen3d</code>, anbieterunabhängig). Ausführlich in<a href="#ch9">Kapitel 9 · 3D-Modellierung und -Generierung</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><strong>VFX / Szenen / UI / Elemente</strong></summary>
-                    <div class="doc-subbody"><p>Fertigkeits-VFX (<code>wb-skill</code>), Szenengenerierung und 2D-Szenen-Assets (<code>wb-szenengenerator</code>/<code>wb-2d-scene-asset-generator</code>), der UI-Workshop (<code>wb-ui</code>, anklickbare Prototypen) und Elementsymbole (<code>wb-Artikel</code>, Kunst + Daten in einer Tabelle). Ausführlich in<a href="#ch9">Kapitel 9 · Szenen / Benutzeroberfläche / Elemente</a>.</p></div>
+                    <div class="doc-subbody"><p>Fertigkeits-VFX (<code>skill</code>), Szenengenerierung und 2D-Szenen-Assets (<code>authoring-szenengenerator</code>/<code>2d-scene-asset-generator</code>), der UI-Workshop (<code>ui</code>, anklickbare Prototypen) und Elementsymbole (<code>authoring-Artikel</code>, Kunst + Daten in einer Tabelle). Ausführlich in<a href="#ch9">Kapitel 9 · Szenen / Benutzeroberfläche / Elemente</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><strong>Musik / Look / Erzählung</strong></summary>
-                    <div class="doc-subbody"><p>Musik und SFX (<code>wb-bgm</code>, eine Hintergrundmusik-Zeitleiste), Farbkorrektur (<code>wb-look</code>, Palette + LUT + Nachbearbeitung) und Erzählung (<code>wb-Erzählung</code>, 117 Genres × 9 Vorlagen). Ausführlich in<a href="#ch9">Kapitel 9 · Erzählung / Musik / Aussehen / Balance</a>.</p></div>
+                    <div class="doc-subbody"><p>Musik und SFX (<code>bgm</code>, eine Hintergrundmusik-Zeitleiste), Farbkorrektur (<code>look</code>, Palette + LUT + Nachbearbeitung) und Erzählung (<code>authoring-Erzählung</code>, 117 Genres × 9 Vorlagen). Ausführlich in<a href="#ch9">Kapitel 9 · Erzählung / Musik / Aussehen / Balance</a>.</p></div>
                   </details>
                 </div>
-                <p>Die Artikel-für-Artikel-Abdeckung ist verfügbar<a href="#ch9">Kapitel 9 · Erstellungstools</a>, Die<a href="/de/tutorials/workbenches.html">Werkbank-Tutorial</a>, und die<a href="/de/marketplace/">Marktplatz</a>.</p>
+                <p>Die Artikel-für-Artikel-Abdeckung ist verfügbar<a href="#ch9">Kapitel 9 · Erstellungstools</a>, Die<a href="/de/tutorials/authoring extensions.html">Erweiterungsseite-Tutorial</a>, und die<a href="/de/marketplace/">Marktplatz</a>.</p>
               </div>
             </details>
           </div>
@@ -366,16 +366,16 @@ bun fx start # → http://localhost:18920</code></pre>
               </div>
             </details>
             <details class="doc-item">
-              <summary>Schreiben Sie Ihr eigenes Workbench-Plugin</summary>
+              <summary>Schreiben Sie Ihr eigenes Authoring extension-Plugin</summary>
               <div class="doc-body">
                 <p>Fast jede Funktion in ForgeaX ist eine<strong>Zur Laufzeit geladenes Plugin</strong>(Übersicht im<a href="/de/marketplace/">Marktplatz</a>), sodass Sie Ihre eigenen hinzufügen können.</p>
-                <p>Der schnellste Weg heute:<strong>Kopieren Sie ein vorhandenes Workbench-Plugin und passen Sie es an</strong>, mit dem<strong>Plugin-Autor</strong>(<code>wb-plugin-autor</code>) helfen; Ein umfassenderer visueller In-App-Editor (Dateibaum + Code-Editor, Speichern → automatisches Neuladen) ist in Vorbereitung. Sobald es erstellt ist, aktivieren Sie es und ordnen Sie es neu an<strong>Admin-Panel</strong>— Plugins werden zur Laufzeit von der CLI gemountet. Sehen Sie sich die Arten von Werkbänken an<a href="#ch9">Erstellungswerkzeuge</a>.</p>
+                <p>Der schnellste Weg heute:<strong>Kopieren Sie ein vorhandenes Authoring extension-Plugin und passen Sie es an</strong>, mit dem<strong>Plugin-Autor</strong>(<code>authoring-plugin-autor</code>) helfen; Ein umfassenderer visueller In-App-Editor (Dateibaum + Code-Editor, Speichern → automatisches Neuladen) ist in Vorbereitung. Sobald es erstellt ist, aktivieren Sie es und ordnen Sie es neu an<strong>Admin-Panel</strong>— Plugins werden zur Laufzeit von der CLI gemountet. Sehen Sie sich die Arten von Erweiterungen an<a href="#ch9">Erstellungswerkzeuge</a>.</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>Passen Sie Agentenpersönlichkeiten an</summary>
               <div class="doc-body">
-                <p>Benutzen Sie die<strong>Persona-Editor</strong>(<code>wb-agent-persona</code>): Wählen Sie einen Agenten aus der Liste aus, bearbeiten Sie seine Persona in einem Textbereich und<strong>Speichern → Hot-Reload, kein Neustart</strong>. Sie können einem Agenten einen anderen Charakter oder eine andere Stimme geben, ohne einen Code zu berühren.</p>
+                <p>Benutzen Sie die<strong>Persona-Editor</strong>(<code>agent-persona</code>): Wählen Sie einen Agenten aus der Liste aus, bearbeiten Sie seine Persona in einem Textbereich und<strong>Speichern → Hot-Reload, kein Neustart</strong>. Sie können einem Agenten einen anderen Charakter oder eine andere Stimme geben, ohne einen Code zu berühren.</p>
                 <p>Informationen dazu, wer die Haupt- und Unteragenten sind und woher die Standard-Personas kommen, finden Sie unter<a href="#ch2">Kernkonzepte</a>Und<a href="#ch10">Das Agententeam</a>; Die komplette Besetzung ist im<a href="/de/marketplace/">Marktplatz</a>.</p>
               </div>
             </details>
@@ -383,19 +383,19 @@ bun fx start # → http://localhost:18920</code></pre>
         </section>
 
         <section class="docs-chapter" id="ch9">
-          <h2><span class="n">9</span>Erstellungswerkzeuge (Werkbänke)</h2>
+          <h2><span class="n">9</span>Erstellungswerkzeuge (Erweiterungen)</h2>
           <div class="doc-items">
             <details class="doc-item">
               <summary>Charakter / Animation / VFX</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-character</code> · <strong>Charaktereditor</strong></summary>
-                    <div class="doc-subbody"><p>Charakterkonzeptdesign: ein einzeiliges Briefing → Porträt + Turnaround. Es verfügt über mehrere Pipelines –<strong>umdrehen</strong>(drei Ansichten),<strong>Videofigur</strong>(Turnaround → AI-Videobewegung → Frame-Extraktion → Spritesheet-Export) und<strong>Monstergeneration</strong>(Monster-Sprites mit 8 Richtungen × 5 Animationen). Keine Zeichenkenntnisse erforderlich; Die Ausgabe wird dann in die Animations-Workbench eingespeist (siehe<a href="#ch5">Vermögenswerte</a>).</p></div>
+                  <details class="doc-sub"><summary><code>character</code> · <strong>Charaktereditor</strong></summary>
+                    <div class="doc-subbody"><p>Charakterkonzeptdesign: ein einzeiliges Briefing → Porträt + Turnaround. Es verfügt über mehrere Pipelines –<strong>umdrehen</strong>(drei Ansichten),<strong>Videofigur</strong>(Turnaround → AI-Videobewegung → Frame-Extraktion → Spritesheet-Export) und<strong>Monstergeneration</strong>(Monster-Sprites mit 8 Richtungen × 5 Animationen). Keine Zeichenkenntnisse erforderlich; Die Ausgabe wird dann in die Animations-Authoring extension eingespeist (siehe<a href="#ch5">Vermögenswerte</a>).</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-anim</code> · <strong>Animation</strong></summary>
+                  <details class="doc-sub"><summary><code>anim</code> · <strong>Animation</strong></summary>
                     <div class="doc-subbody"><p>Verwendet ein Charakterporträt als Vorlage und bringt es in Bewegung:<strong>Vier-Richtungs-Pixel, Fahrzeuganimation, Monster-Sprites, Spine-Bindung, Kurzvideo-Generierung</strong>—<strong>ohne Gesichtsdrift</strong>, also bleibt es derselbe Charakter. Eingebettetes Panel mit mittlerem Ansichtsfenster. 3D-Charaktere nutzen die native Skelett-Pipeline der Engine – siehe<a href="/de/blog/skeletal-animation-milestone.html">Meilenstein der Skelettanimation</a>Und<a href="#ch5">Vermögenswerte</a>.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-skill</code> · <strong>Fertigkeit / VFX</strong></summary>
+                  <details class="doc-sub"><summary><code>skill</code> · <strong>Fertigkeit / VFX</strong></summary>
                     <div class="doc-subbody"><p>Skill-Tree-Bearbeitung + VFX-Vorschau, Auflistung Ihrer Skill- und Effektausgaben an einem Ort. Die Schlüsselidee:<strong>Die Klicks und der KI-Versand des Spielers teilen sich eine Fertigkeitsspezifikation</strong>– Effekte werden automatisch an den „Moment des Wirkens“ angehängt, keine manuelle Ausrichtung.</p></div>
                   </details>
                 </div>
@@ -405,13 +405,13 @@ bun fx start # → http://localhost:18920</code></pre>
               <summary>3D-Modellierung und -Generierung</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-lowpoly-obj</code> · <strong>Editor für Blockzeichen</strong></summary>
+                  <details class="doc-sub"><summary><code>lowpoly-obj</code> · <strong>Editor für Blockzeichen</strong></summary>
                     <div class="doc-subbody"><p>Bauen<strong>manipulierte blockige 3D-Charaktere</strong>: entweder „vibrieren“ (z. B. eine Linie, die KI generiert) oder manuell bearbeiten (Gizmo im Blender-Stil), mit integriertem Spielplatz für die Live-Vorschau. Exporte<strong>Motorneutral<code>.glb</code></strong>verwendbar in jedem Motor.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-3d-lowpoly</code> · <strong>Low-Poly-Generator</strong></summary>
+                  <details class="doc-sub"><summary><code>3d-lowpoly</code> · <strong>Low-Poly-Generator</strong></summary>
                     <div class="doc-subbody"><p>Erstellen Sie 3D-Requisiten/mechanische Assets mit<strong>Knotenprogrammierung</strong>(„Blöcke verdrahten“): Modellieren Sie den Prozess als Knotendiagramm, ändern Sie einen Parameter und generieren Sie den gesamten Satz neu. Ideal für Batch-, wiederverwendbare, parametrische Assets mit harter Oberfläche.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-gen3d</code> · <strong>3D-Generierung</strong></summary>
+                  <details class="doc-sub"><summary><code>gen3d</code> · <strong>3D-Generierung</strong></summary>
                     <div class="doc-subbody"><p>Ein 3D-Asset<strong>Einstiegspunkt der Generation</strong>: Wählen Sie einen Generierungsdienst aus, geben Sie eine Eingabe ein (Text/Bild/Mehrfachansicht) und erhalten Sie eine<strong>langlebig, spielbereit</strong>3D-Asset-Manifest. An mehrere Top-Generatoren angeschlossen, sodass Sie den besten auswählen können – keine Bindung an einen einzelnen Anbieter.</p></div>
                   </details>
                 </div>
@@ -421,16 +421,16 @@ bun fx start # → http://localhost:18920</code></pre>
               <summary>Szenen / Benutzeroberfläche / Elemente</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-scene-generator</code> · <strong>Szenengenerator</strong></summary>
+                  <details class="doc-sub"><summary><code>scene-generator</code> · <strong>Szenengenerator</strong></summary>
                     <div class="doc-subbody"><p>Stellen Sie eine ganze Spielszene zusammen<strong>Knotenprogrammierung</strong>: Komposition, Platzierung und Texturierung als Diagramm anordnen; Führen Sie es jederzeit erneut aus, um die gesamte Szene neu zu generieren. Informationen zur Organisation von Szenen/Levels finden Sie unter<a href="#ch4">Szenen & Schnitt</a>.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-2d-scene-asset-generator</code> · <strong>2D-Szenen-Assets</strong></summary>
+                  <details class="doc-sub"><summary><code>2d-scene-asset-generator</code> · <strong>2D-Szenen-Assets</strong></summary>
                     <div class="doc-subbody"><p>Auch Knotenprogrammierung, z<strong>Batch-generierend</strong>dann die kleinen Dinge in einer Szene – Requisiten, Texturen, Dekorationen, UI-Teile<strong>automatisch benannt und abgelegt</strong>damit Vermögenswerte nicht in Unordnung geraten.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-ui</code> · <strong>UI-Workshop</strong></summary>
+                  <details class="doc-sub"><summary><code>ui</code> · <strong>UI-Workshop</strong></summary>
                     <div class="doc-subbody"><p>Generieren Sie einen vollständigen Schnittstellensatz von<strong>Genre, Bildschirmfluss und visueller Stil</strong>– UI-Blaupausen, Komponenten-Assets und<strong>anklickbare interaktive Prototypen</strong>(nicht nur Bilder). Menüs, Schaltflächen und Gesundheitsleisten in einem Rutsch.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-items</code> · <strong>Elemente / Symbole</strong></summary>
+                  <details class="doc-sub"><summary><code>items</code> · <strong>Elemente / Symbole</strong></summary>
                     <div class="doc-subbody"><p>Machen Sie das Spiel<strong>Gegenstände und Symbole</strong>– Pixelkunst für Waffen, Tränke, Münzen – mit angehängten Daten.<strong>Kunst und Daten in einer Tabelle</strong>(<code>items.json</code>), die Sie und die KI gemeinsam bearbeiten, damit sie nie auseinanderdriften.</p></div>
                   </details>
                 </div>
@@ -440,16 +440,16 @@ bun fx start # → http://localhost:18920</code></pre>
               <summary>Erzählung / Musik / Aussehen / Balance</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-narrative</code> · <strong>Erzählwerkstatt</strong></summary>
+                  <details class="doc-sub"><summary><code>narrative</code> · <strong>Erzählwerkstatt</strong></summary>
                     <div class="doc-subbody"><p>Eine KI-gesteuerte Erzählpipeline: vom Funken zur vollständigen Geschichte und Welt. Es deckt ab<strong>117 Genres × 9 Pipeline-Vorlagen</strong>Mit Tier-/Modus-Routing und einem dynamischen Planer wählt die KI den passenden Ansatz und die passenden Schritte für Ihr Genre aus.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-bgm</code> · <strong>Musik / Hintergrundmusik</strong></summary>
+                  <details class="doc-sub"><summary><code>bgm</code> · <strong>Musik / Hintergrundmusik</strong></summary>
                     <div class="doc-subbody"><p>Verwalte die Spiele<strong>Musik und Soundeffekte</strong>: eine Hintergrundmusik-Zeitleiste, die darlegt, was wann in einer Sitzung abgespielt wird, plus Benennungskonventionen für Soundeffekte – die gesamte Partitur als eine Liste sequenziert.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-look</code> · <strong>Farbe / Look-Entw</strong></summary>
+                  <details class="doc-sub"><summary><code>look</code> · <strong>Farbe / Look-Entw</strong></summary>
                     <div class="doc-subbody"><p>Vereinheitlichen Sie das gesamte Spiel<strong>Farbstimmung</strong>– Palette + LUT + ein Postprocessing-Stack, wie ein Filter über das gesamte Spiel: warme Dämmerung, kalte Nacht, mit einem Klick umgeschaltet, damit das visuelle Gefühl eins wird.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-balance</code> · <strong>Gleichgewicht</strong></summary>
+                  <details class="doc-sub"><summary><code>balance</code> · <strong>Gleichgewicht</strong></summary>
                     <div class="doc-subbody"><p>Automatischer Test, ob die Zahlen vorhanden sind<strong>ausgewogen</strong>: Es treibt die Neusimulation von Schlachten voran (<code>Balance-Resim</code>) über N Versuche und Dashboards<strong>Gewinnrate + ein 95 %-Konfidenzintervall</strong>, dann Schleifen mit manuellen Optimierungen – lassen Sie die Daten die Abstimmung beurteilen. Diese Neusimulation ist auch eine<a href="/de/marketplace/">Werkzeug</a>auf dem Markt.</p></div>
                   </details>
                 </div>
@@ -459,23 +459,23 @@ bun fx start # → http://localhost:18920</code></pre>
               <summary>System- und Autorentools</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-code</code> · <strong>Code</strong></summary>
-                    <div class="doc-subbody"><p>Durchsuchen und<strong>durchspringen<code>src/</code>Dateien</strong>direkt an der Werkbank,<strong>Zusammenarbeit mit dem Programmieragenten über Chat-Threads hinweg</strong>– Sie lesen wo, die KI bearbeitet wo, bei einem Projekt, ohne den Staffelstab fallen zu lassen.</p></div>
+                  <details class="doc-sub"><summary><code>code</code> · <strong>Code</strong></summary>
+                    <div class="doc-subbody"><p>Durchsuchen und<strong>durchspringen<code>src/</code>Dateien</strong>direkt an der Erweiterungsseite,<strong>Zusammenarbeit mit dem Programmieragenten über Chat-Threads hinweg</strong>– Sie lesen wo, die KI bearbeitet wo, bei einem Projekt, ohne den Staffelstab fallen zu lassen.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-observatory</code> · <strong>Observatorium</strong></summary>
+                  <details class="doc-sub"><summary><code>observatory</code> · <strong>Observatorium</strong></summary>
                     <div class="doc-subbody"><p>Wie ein<strong>Blackbox</strong>: Live- und Offline-Wiedergabe aller Agenten-/Subagentenrunden, Toolaufrufe und Abschnitte der Systemaufforderung. Wenn etwas kaputt geht, können Sie es tun<strong>genau bestimmen, welcher Schritt oder welche Aufforderung</strong>hat es verursacht und hilft bei der Verwaltung von Kontext/Fähigkeiten/Leitplanken/Cache. Das Session & Replay-Konzept ist da<a href="#ch2">Kernkonzepte</a>.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-agent-persona</code> · <strong>Persona-Editor</strong></summary>
+                  <details class="doc-sub"><summary><code>agent-persona</code> · <strong>Persona-Editor</strong></summary>
                     <div class="doc-subbody"><p>Wählen Sie einen Agenten aus einer Liste aus, bearbeiten Sie seine Persona in einem Textbereich und<strong>Speichern → Hot-Reload, kein Neustart</strong>. Geben Sie einem Agenten einen neuen Charakter oder eine neue Stimme, ohne den Code zu berühren. Die Besetzung ist da<a href="#ch10">Das Agententeam</a>; die Anleitung ist drin<a href="#ch8">Fortschrittlich</a>.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-plugin-author</code> · <strong>Plugin-Autor</strong></summary>
-                    <div class="doc-subbody"><p>Lasst uns<strong>Nicht-Programmierer</strong>Erstellen Sie Ihre eigenen Workbench-Plugins. Der heutige Weg lautet „einen Vorhandenen kopieren + anpassen + Aktionen aufzeichnen“; Ein umfassenderer visueller In-App-Editor (Dateibaum + Code-Editor, Speichern → automatisches Neuladen) ist in Vorbereitung. Die allgemeine Anleitung finden Sie hier<a href="#ch8">Fortgeschritten · Schreiben Sie Ihr eigenes Plugin</a>.</p></div>
+                  <details class="doc-sub"><summary><code>plugin-author</code> · <strong>Plugin-Autor</strong></summary>
+                    <div class="doc-subbody"><p>Lasst uns<strong>Nicht-Programmierer</strong>Erstellen Sie Ihre eigenen Authoring extension-Plugins. Der heutige Weg lautet „einen Vorhandenen kopieren + anpassen + Aktionen aufzeichnen“; Ein umfassenderer visueller In-App-Editor (Dateibaum + Code-Editor, Speichern → automatisches Neuladen) ist in Vorbereitung. Die allgemeine Anleitung finden Sie hier<a href="#ch8">Fortgeschritten · Schreiben Sie Ihr eigenes Plugin</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>admin</code> · <strong>Bedienfeld</strong></summary>
-                    <div class="doc-subbody"><p>Das Studio<strong>Hauptkonsole</strong>, in vier Abschnitten: Workbenches aktivieren/neu anordnen, Modelle binden, Authentifizierung und Zustand jedes KI-Backends überprüfen und Plugin-Anzahl anzeigen. Synchronisiert mit dem Einstellungsfeld – alle Plugins und Modellstatus auf einem Bildschirm.</p></div>
+                    <div class="doc-subbody"><p>Das Studio<strong>Hauptkonsole</strong>, in vier Abschnitten: Authoring extensions aktivieren/neu anordnen, Modelle binden, Authentifizierung und Zustand jedes KI-Backends überprüfen und Plugin-Anzahl anzeigen. Synchronisiert mit dem Einstellungsfeld – alle Plugins und Modellstatus auf einem Bildschirm.</p></div>
                   </details>
                 </div>
-                <p>All dies ist der Fall<strong>ladbare Plugins</strong>; Der vollständige, filterbare Katalog befindet sich im<a href="/de/marketplace/">Marktplatz</a>, und eine exemplarische Anleitung finden Sie im<a href="/de/tutorials/workbenches.html">Werkbank-Tutorial</a>.</p>
+                <p>All dies ist der Fall<strong>ladbare Plugins</strong>; Der vollständige, filterbare Katalog befindet sich im<a href="/de/marketplace/">Marktplatz</a>, und eine exemplarische Anleitung finden Sie im<a href="/de/tutorials/authoring extensions.html">Erweiterungsseite-Tutorial</a>.</p>
               </div>
             </details>
           </div>
@@ -488,7 +488,7 @@ bun fx start # → http://localhost:18920</code></pre>
               <summary>Produktion & Architektur</summary>
               <div class="doc-body">
                 <p><strong>Arin · Produzent</strong>– ein Allround-Produzent, der Design/Code/Kunst/Audio koordiniert und Eigentümer des gesamten Spiels ist.</p>
-                <p><strong>Reia · Rollendirektor</strong>– interaktiver FMV-Regisseur, der Aufforderungen fälscht, QTEs beschleunigt und Verzweigungen und Enden webt und das wb-reel Reel Studio antreibt, um eine Idee in einen anklickbaren, spielbaren Spannungsfilm zu verwandeln.</p>
+                <p><strong>Reia · Rollendirektor</strong>– interaktiver FMV-Regisseur, der Aufforderungen fälscht, QTEs beschleunigt und Verzweigungen und Enden webt und das reel Reel Studio antreibt, um eine Idee in einen anklickbaren, spielbaren Spannungsfilm zu verwandeln.</p>
                 <p>Diese sind<strong>benannte Agenten</strong>Wird auf Anfrage von Forge versandt (die Beziehung zwischen Haupt- und Unteragent ist in<a href="#ch2">Kernkonzepte</a>); Die komplette Besetzung ist im<a href="/de/marketplace/">Marktplatz</a>.</p>
               </div>
             </details>
@@ -509,7 +509,7 @@ bun fx start # → http://localhost:18920</code></pre>
                     <div class="doc-subbody"><p>Benannt nach „色“ (alles, was das Auge wahrnimmt). Sobald Suzu das Erlebnis eines Moduls festgelegt hat, entsendet Forge Iro nur, wenn es visuelle Elemente benötigt (Charaktere/Szenen/UI/VFX). Wie diese Vermögenswerte tatsächlich hergestellt werden: Sehen Sie<a href="#ch5">Vermögenswerte</a>Und<a href="#ch9">Erstellungswerkzeuge</a>.</p></div>
                   </details>
                 </div>
-                <p>Diese Spezialisten<strong>nur planen und entwerfen – sie berühren nie den Spielcode</strong>(Forge schreibt Code, siehe<a href="#ch2">Kernkonzepte</a>); Ihre Ausgabe landet in der Workbench (siehe<a href="#ch4">Szenen & Schnitt</a>) und Kunstgüter werden wie folgt produziert<a href="#ch5">Vermögenswerte</a>.</p>
+                <p>Diese Spezialisten<strong>nur planen und entwerfen – sie berühren nie den Spielcode</strong>(Forge schreibt Code, siehe<a href="#ch2">Kernkonzepte</a>); Ihre Ausgabe landet in der Authoring extension (siehe<a href="#ch4">Szenen & Schnitt</a>) und Kunstgüter werden wie folgt produziert<a href="#ch5">Vermögenswerte</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -529,7 +529,7 @@ bun fx start # → http://localhost:18920</code></pre>
                     <div class="doc-subbody"><p>Eine Reihe optionaler Zeichen mit<strong>vergleichbare Programmierfähigkeiten, aber unterschiedliche Persönlichkeiten</strong>– manche maßvoll, manche verspielt, manche akribisch. Sie haben die gleiche Fähigkeit; Der einzige Unterschied besteht darin, wie es sich anfühlt, mit ihnen zusammenzuarbeiten. Persönlichkeiten können jederzeit im bearbeitet werden<strong>Persona-Editor</strong>(sehen<a href="#ch8">Fortschrittlich</a>); Die komplette Besetzung ist im<a href="/de/marketplace/">Marktplatz</a>.</p></div>
                   </details>
                 </div>
-                <p>Es gibt auch eine Reihe von<strong>Kunst-/Asset-Spezialisten</strong>(2D-Charakter/Animation, 3D-Low-Poly/VFX, interaktiver Filmregisseur und mehr), jeweils mit der passenden Erstellungs-Workbench verbunden (siehe<a href="#ch9">Erstellungswerkzeuge</a>).</p>
+                <p>Es gibt auch eine Reihe von<strong>Kunst-/Asset-Spezialisten</strong>(2D-Charakter/Animation, 3D-Low-Poly/VFX, interaktiver Filmregisseur und mehr), jeweils mit der passenden Erstellungs-Authoring extension verbunden (siehe<a href="#ch9">Erstellungswerkzeuge</a>).</p>
               </div>
             </details>
             <details class="doc-item">

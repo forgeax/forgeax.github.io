@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Generate art with the authoring extensions — ForgeaX</title>
+<meta name="description" content="ForgeaX creation authoring extensions: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Generate art with the authoring extensions — ForgeaX" />
+<meta property="og:description" content="ForgeaX creation authoring extensions: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/tutorials/extensions.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/tutorials/extensions.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/extensions.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/extensions.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/extensions.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/extensions.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/extensions.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/extensions.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/extensions.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/extensions.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/extensions.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=b1def969" />
+
+</head>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/" data-nav="/">Home</a>
+      <a href="/tutorials/" data-nav="/tutorials/" class="active">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/tutorials/extensions.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/tutorials/extensions.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/extensions.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/extensions.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/extensions.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/extensions.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/extensions.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/extensions.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/tutorials/">← Back to tutorials</a>
+    <h1>Generate art with the authoring extensions</h1>
+    <p class="standfirst">Beyond chatting, ForgeaX has a set of "authoring extensions" — each a panel plus a group of tools that turn a sentence into game-ready assets. You by hand and AI by dispatch edit the same artifact.</p>
+
+    <div class="prose">
+      <div class="note">✅ Open source (Apache-2.0). Below is an overview of the authoring system; for clone &amp; install see the <a href="/docs/">docs</a>.</div>
+
+      <h2>Characters · animation · VFX</h2>
+      <ul>
+        <li><strong>Character editor</strong> — write a one-line brief, get a portrait plus a turnaround.</li>
+        <li><strong>Animation</strong> — turn a still character into walking, attacking, four-direction, skeletal motion (even short clips) — without face drift.</li>
+        <li><strong>Skill / VFX</strong> — add effects like fire, slashes and auras, auto-attached to the moment of cast.</li>
+      </ul>
+
+      <h2>3D modeling &amp; generation</h2>
+      <ul>
+        <li><strong>Blocky-character editor</strong> — build rigged 3D characters like snapping blocks, export standard 3D files.</li>
+        <li><strong>Low-poly generator</strong> — build 3D props with a node-graph; change one parameter, regenerate the set.</li>
+        <li><strong>3D generation</strong> — text or image straight to a 3D model, plugged into several top generators, pick whichever's best.</li>
+      </ul>
+
+      <h2>Scenes · UI · items</h2>
+      <ul>
+        <li><strong>Scene generator</strong> — assemble a whole game scene as a graph you can re-run anytime.</li>
+        <li><strong>2D scene-asset generator</strong> — batch props, textures, decorations and UI bits, auto-named and filed.</li>
+        <li><strong>UI authoring</strong> — a UI set for your game type — not just images, a clickable prototype.</li>
+        <li><strong>Items / icons</strong> — weapons, potions, coins as icons with their data, art and numbers in one table.</li>
+      </ul>
+
+      <h2>Narrative · music · look · numbers</h2>
+      <ul>
+        <li><strong>Narrative authoring</strong> — from a spark to a full story and world, with the AI picking a fitting approach.</li>
+        <li><strong>Music / BGM</strong> — manage background music and sound effects, sequencing a whole session's score.</li>
+        <li><strong>Color / Look</strong> — unify the whole game's color mood in one click, like a filter over everything.</li>
+        <li><strong>Balance</strong> — have AI play thousands of matches and report win rates with confidence intervals; let data judge the tuning.</li>
+      </ul>
+
+      <h2>System &amp; author tools</h2>
+      <ul>
+        <li><strong>Code</strong> — browse code, jump between files, and edit alongside the coding AI.</li>
+        <li><strong>Observatory</strong> — replay every step the AI took, like a black box, to pinpoint where things went wrong.</li>
+        <li><strong>Plugin author</strong> — let non-coders build their own authoring plugins.</li>
+        <li><strong>Admin</strong> — the studio control panel: toggle authoring extensions, bind models, see which AIs are online.</li>
+      </ul>
+
+      <blockquote>Can't draw, model or compose? That's fine — describe it, and the authoring extensions produce assets that drop straight into your game.</blockquote>
+    </div>
+    <figure class="media-figure">
+      <div class="media-embed">
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="/assets/tutorials/gen3d-demo-poster.jpg"
+          aria-label="3D character generation plugin demo"
+          src="/assets/tutorials/gen3d-demo.mp4"
+        ></video>
+      </div>
+      <figcaption>3D character generation plugin demo</figcaption>
+    </figure>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games. Open source, Apache License 2.0.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/changelog/">Changelog</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

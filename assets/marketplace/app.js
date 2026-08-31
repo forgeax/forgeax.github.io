@@ -14,7 +14,7 @@
     var items = [].slice.call(document.querySelectorAll(".mk-item"));
     var count = document.getElementById("mkCount");
     var empty = document.getElementById("mkEmpty");
-    var kind = "workbench";
+    var kind = "authoring";
     var rowbreak = document.querySelector(".mk-rowbreak");
     function apply() {
       var n = 0;
@@ -81,7 +81,7 @@
     }
 
     // Resolve the slug whose previews to use: the item's own if present, else a manifest alias.
-    // Agent cards never fall through to a linked workbench's shots.
+    // Agent cards never fall through to a linked authoring's shots.
     function resolvePreviewSlug(d) {
       if (!d || !d.slug) return "";
       var slug = d.slug;
@@ -132,10 +132,10 @@
       var slug = d.slug || "";
       var fromManifest = _previewManifest && _previewManifest.panelLabels && slug && _previewManifest.panelLabels[slug];
       if (fromManifest) return String(fromManifest).toUpperCase();
-      var wb = d.caps && d.caps.workbench;
-      return wb
-        ? String(wb).toUpperCase()
-        : String(slug).replace(/^wb-/, "").toUpperCase();
+      var authoring = d.caps && d.caps.authoring;
+      return authoring
+        ? String(authoring).toUpperCase()
+        : String(slug).replace(/^authoring-/, "").toUpperCase();
     }
 
     function mountStudioChromeFromSlide(d, slide) {
@@ -554,7 +554,7 @@
 
       if (d && window.forgeaxMountMarketplaceIcon) {
         var iconKind = d.kind === "cli-provider" ? "backend" : d.kind;
-        if (["workbench", "skill", "backend", "tool", "binding", "model-binding"].indexOf(iconKind) >= 0) {
+        if (["authoring", "skill", "backend", "tool", "binding", "model-binding"].indexOf(iconKind) >= 0) {
           var iconEl = document.createElement("div");
           iconEl.className = "mk-modal-icon ico";
           window.forgeaxMountMarketplaceIcon(iconEl, d.slug, iconKind === "model-binding" ? "binding" : iconKind);
@@ -565,7 +565,7 @@
 
       var ph = document.createElement("div");
       ph.className = "mk-modal-preview-placeholder";
-      var label = { agent: "PREVIEW", workbench: "WORKBENCH", skill: "SKILL", tool: "TOOL", backend: "CLI BACKEND", binding: "MODEL BINDING" };
+      var label = { agent: "PREVIEW", authoring: "AUTHORING", skill: "SKILL", tool: "TOOL", backend: "CLI BACKEND", binding: "MODEL BINDING" };
       var lk = kind === "cli-provider" ? "backend" : (kind === "model-binding" ? "binding" : kind);
       ph.innerHTML = '<span class="mk-ph-label">' + (label[lk] || "PLUGIN") + '</span><span class="mk-ph-title">' + esc(UI.previewLive || "") + '</span>';
       frame.appendChild(ph);
@@ -745,8 +745,8 @@
       }).join("");
     }
 
-    // Render the "Dedicated agent" section for workbench plugins with a preferredAgent binding.
-    // Data source: build-site.mjs > WB_PREFERRED_AGENT, injected into MK_DATA[slug].preferredAgent.
+    // Render the "Dedicated agent" section for authoring plugins with a preferredAgent binding.
+    // Data source: build-site.mjs > AUTHORING_PREFERRED_AGENT, injected into MK_DATA[slug].preferredAgent.
     function mountPreferredAgent(d) {
       var wrap = $("mkmAgentWrap");
       if (!wrap) return;
@@ -767,7 +767,7 @@
     }
 
     // Studio viewport panel label: prefer the manifest's per-slug label, else the item's
-    // workbench cap, else the slug (wb- prefix stripped).
+    // authoring cap, else the slug (authoring- prefix stripped).
     function mountStudioChrome(d) {
       var panel = $("mkmStudioPanel");
       if (!panel) return;
@@ -775,10 +775,10 @@
       var slug = d.slug || "";
       var fromManifest = _previewManifest && _previewManifest.panelLabels && slug && _previewManifest.panelLabels[slug];
       if (fromManifest) { panel.textContent = String(fromManifest).toUpperCase(); return; }
-      var wb = d.caps && d.caps.workbench;
-      panel.textContent = wb
-        ? String(wb).toUpperCase()
-        : String(slug).replace(/^wb-/, "").toUpperCase();
+      var authoring = d.caps && d.caps.authoring;
+      panel.textContent = authoring
+        ? String(authoring).toUpperCase()
+        : String(slug).replace(/^authoring-/, "").toUpperCase();
     }
 
     // Live demo iframe when a plugin declares demoUrl; otherwise the screenshot/video gallery.

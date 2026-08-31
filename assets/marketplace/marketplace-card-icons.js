@@ -2,25 +2,25 @@
 (function () {
   /** @type {Record<string, string>} */
   var CARD_ICONS = {
-    "wb-character": "message-square-text",
-    "wb-anim": "film",
-    "wb-skill": "sparkles",
-    "wb-lowpoly-obj": "user",
-    "wb-3d-lowpoly": "workflow",
-    "wb-gen3d": "boxes",
-    "wb-2d-scene-asset-generator": "images",
-    "wb-scene-generator": "map",
-    "wb-ui": "layout-dashboard",
-    "wb-items": "package",
-    "wb-look": "palette",
-    "wb-bgm": "music-2",
-    "wb-narrative": "book-open",
-    "wb-reel": "clapperboard",
-    "wb-balance": "bar-chart-3",
-    "wb-code": "code-2",
-    "wb-observatory": "telescope",
-    "wb-agent-persona": "user-cog",
-    "wb-plugin-author": "plug",
+    "character": "message-square-text",
+    "anim": "film",
+    "skill": "sparkles",
+    "lowpoly-obj": "user",
+    "3d-lowpoly": "workflow",
+    "gen3d": "boxes",
+    "2d-scene-asset-generator": "images",
+    "scene-generator": "map",
+    "ui": "layout-dashboard",
+    "items": "package",
+    "look": "palette",
+    "bgm": "music-2",
+    "narrative": "book-open",
+    "reel": "clapperboard",
+    "balance": "bar-chart-3",
+    "code": "code-2",
+    "observatory": "telescope",
+    "agent-persona": "user-cog",
+    "plugin-author": "plug",
     admin: "settings",
     "skill-author-plugin": "notebook-pen",
     "skill-make-game-design": "gamepad-2",
@@ -33,7 +33,7 @@
   };
 
   var KIND_FALLBACK = {
-    workbench: "blocks",
+    authoring: "blocks",
     skill: "wand-sparkles",
     backend: "terminal",
     tool: "wrench",
@@ -68,8 +68,8 @@
   }
 
   window.forgeaxMountMarketplaceIcon = mountIcon;
-  window.forgeaxMountWorkbenchIcon = function (el, slug) {
-    mountIcon(el, slug, "workbench");
+  window.forgeaxMountAuthoringIcon = function (el, slug) {
+    mountIcon(el, slug, "authoring");
   };
   window.forgeaxLucideForMarketplaceCard = lucideForCard;
   window.forgeaxMarketplaceCardIcons = CARD_ICONS;

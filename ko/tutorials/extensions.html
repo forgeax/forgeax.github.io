@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>확장 페이지를 사용하여 예술 작품 생성 — ForgeaX</title>
+<meta name="description" content="ForgeaX 생성 확장 페이지: 캐릭터, 애니메이션, 3D, VFX, 장면, UI, 음악, 내러티브 및 숫자 - 문장부터 게임에 바로 사용할 수 있는 자산까지." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="확장 페이지를 사용하여 예술 작품 생성 — ForgeaX" />
+<meta property="og:description" content="ForgeaX 생성 확장 페이지: 캐릭터, 애니메이션, 3D, VFX, 장면, UI, 음악, 내러티브 및 숫자 - 문장부터 게임에 바로 사용할 수 있는 자산까지." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/ko/tutorials/extensions.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/tutorials/extensions.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/extensions.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/extensions.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/extensions.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/extensions.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/extensions.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/extensions.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/extensions.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/extensions.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/extensions.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=b1def969" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/" data-nav="/">홈</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/" class="active">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">플러그인</a>
+      <a href="/ko/changelog/" data-nav="/changelog/">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/extensions.html" data-l="en">English</a><a class="lang-item" href="/zh/tutorials/extensions.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/extensions.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/tutorials/extensions.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/tutorials/extensions.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/extensions.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/extensions.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/extensions.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">다운로드</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/tutorials/">← 튜토리얼로 돌아가기</a>
+    <h1>확장 페이지를 사용하여 예술 작품 만들기</h1>
+    <p class="standfirst">채팅 외에도 ForgeaX에는 "확장 페이지" 세트가 있습니다. 각 확장 페이지에는 문장을 게임에 바로 사용할 수 있는 자산으로 바꾸는 도구 그룹과 패널이 포함되어 있습니다. 당신은 손으로, AI는 파견으로 동일한 아티팩트를 편집합니다.</p>
+
+    <div class="prose">
+      <div class="note">✅ 오픈 소스(Apache-2.0). 다음은 확장 페이지 시스템의 개요입니다. 복제 및 설치에 대해서는 다음을 참조하세요.<a href="/ko/docs/">문서</a>.</div>
+
+      <h2>캐릭터 · 애니메이션 · VFX</h2>
+      <ul>
+        <li><strong>캐릭터 에디터</strong>— 한 줄의 브리핑을 작성하고 초상화와 회신을 받으세요.</li>
+        <li><strong>생기</strong>— 얼굴 드리프트 없이 정지된 캐릭터를 걷기, 공격, 4방향, 골격 모션(짧은 클립이라도)으로 전환합니다.</li>
+        <li><strong>스킬 / VFX</strong>— 불, 베기, 오라와 같은 효과를 시전하는 순간에 자동으로 추가됩니다.</li>
+      </ul>
+
+      <h2>3D 모델링 및 생성</h2>
+      <ul>
+        <li><strong>블록 문자 편집기</strong>— 스냅 블록과 ​​같은 조작된 3D 캐릭터를 만들고 표준 3D 파일을 내보냅니다.</li>
+        <li><strong>로우 폴리 생성기</strong>— 노드 그래프를 사용하여 3D 소품을 구축합니다. 하나의 매개변수를 변경하고 세트를 재생성합니다.</li>
+        <li><strong>3D 생성</strong>— 텍스트 또는 이미지가 3D 모델로 바로 변환되고 여러 최고 생성기에 연결되어 가장 좋은 것을 선택합니다.</li>
+      </ul>
+
+      <h2>장면 · UI · 아이템</h2>
+      <ul>
+        <li><strong>장면 생성기</strong>— 언제든지 다시 실행할 수 있는 그래프로 전체 게임 장면을 구성합니다.</li>
+        <li><strong>2D 장면 자산 생성기</strong>— 일괄 소품, 텍스처, 장식 및 UI 비트가 자동으로 명명되고 제출됩니다.</li>
+        <li><strong>UI 확장 페이지</strong>— 게임 유형에 맞는 UI 세트 — 단순한 이미지가 아닌 클릭 가능한 프로토타입입니다.</li>
+        <li><strong>아이템 / 아이콘</strong>— 무기, 물약, 동전을 하나의 테이블에 데이터, 아트, 숫자와 함께 아이콘으로 표시합니다.</li>
+      </ul>
+
+      <h2>서사 · 음악 · 외모 · 숫자</h2>
+      <ul>
+        <li><strong>내러티브 확장 페이지</strong>— AI가 적절한 접근 방식을 선택하여 스파크부터 전체 스토리 및 세계까지.</li>
+        <li><strong>음악 / BGM</strong>— 배경 음악과 음향 효과를 관리하고 전체 세션의 악보를 순서대로 지정합니다.</li>
+        <li><strong>색상 / 모양</strong>— 모든 것에 대한 필터처럼 한 번의 클릭으로 전체 게임의 색상 분위기를 통합합니다.</li>
+        <li><strong>균형</strong>— AI가 수천 번의 경기를 치르고 신뢰 구간과 함께 승률을 보고하도록 합니다. 데이터가 튜닝을 판단하게 하세요.</li>
+      </ul>
+
+      <h2>시스템 및 저작 도구</h2>
+      <ul>
+        <li><strong>암호</strong>— 코드를 찾아보고, 파일 사이를 이동하고, 코딩 AI와 함께 편집하세요.</li>
+        <li><strong>전망대</strong>— AI가 수행한 모든 단계를 블랙박스처럼 재생하여 문제가 발생한 위치를 찾아냅니다.</li>
+        <li><strong>플러그인 작성자</strong>— 코더가 아닌 사람들도 자신만의 확장 페이지 플러그인을 만들 수 있습니다.</li>
+        <li><strong>관리자</strong>— 스튜디오 제어판: 확장 페이지 전환, 모델 바인딩, 온라인 상태인 AI 확인.</li>
+      </ul>
+
+      <blockquote>그림을 그리거나 모델을 만들거나 작곡을 할 수 없나요? 괜찮습니다. 설명하면 확장 페이지가 게임에 바로 적용되는 자산을 생성합니다.</blockquote>
+    </div>
+    <figure class="media-figure">
+      <div class="media-embed">
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="/assets/tutorials/gen3d-demo-poster.jpg"
+          aria-label="3D 캐릭터 생성 플러그인 데모"
+          src="/assets/tutorials/gen3d-demo.mp4"
+        ></video>
+      </div>
+      <figcaption>3D 캐릭터 생성 플러그인 데모</figcaption>
+    </figure>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요. 오픈 소스, Apache 라이센스 2.0.</p>
+  </div>
+  <nav class="foot-links" aria-label="대지">
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/marketplace/">플러그인</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

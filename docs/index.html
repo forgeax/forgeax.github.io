@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=df4e5c67" />
+<link rel="stylesheet" href="/assets/styles.css?v=b1def969" />
 
 </head>
 <body class="lang-en forgeax-site has-immersive">
@@ -126,11 +126,11 @@ bun fx start          # → http://localhost:18920</code></pre>
             <details class="doc-item">
               <summary>Open the studio, learn the interface</summary>
               <div class="doc-body">
-                <p>The interface is three parts: a top bar, the chat on the left, and the preview/workbench on the right.</p>
+                <p>The interface is three parts: a top bar, the chat on the left, and the preview/authoring on the right.</p>
                 <ul>
                   <li><strong>Top bar</strong> — the <code>⊕</code> new menu, a <strong>project switcher</strong> (move between games — what a "project" is is covered in <a href="#ch2">Core concepts</a>), and a <strong>session switcher</strong> (review / switch past conversations).</li>
                   <li><strong>Left · chat (ChatPanel)</strong> — a team rail (Forge and the sub-agents), a message stream (sub-agent cards, Forge's thinking and tool calls), and a composer at the bottom with a <strong>backend switch</strong> at its bottom-right (see <a href="#ch8">Advanced</a>).</li>
-                  <li><strong>Right · main area (MainArea)</strong> — toggles between the <strong>preview</strong> (your game live in an iframe) and the <strong>workbench</strong> (file editing / design docs); see <a href="#ch4">Scenes &amp; editor</a>.</li>
+                  <li><strong>Right · main area (MainArea)</strong> — toggles between the <strong>preview</strong> (your game live in an iframe) and the <strong>authoring</strong> (file editing / design docs); see <a href="#ch4">Scenes &amp; editor</a>.</li>
                 </ul>
                 <p>The top-right cog opens <strong>Settings</strong>: API keys, model choice, CLI backend, and plugin management. The desktop app also shows a first-run overlay that prompts for the key the first time you open it.</p>
               </div>
@@ -161,7 +161,7 @@ bun fx start          # → http://localhost:18920</code></pre>
               <div class="doc-body">
                 <p><strong>Forge (the main agent)</strong> is the only one that writes game code directly — it writes <code>games/&lt;slug&gt;/src/main.ts</code>, the preview <strong>hot-reloads</strong>, and it sees the running result to decide the next step. That edit → see → edit loop has to stay with whoever can see the preview, i.e. Forge (see <a href="#ch3">Build by chatting</a>).</p>
                 <p><strong>Sub-agents</strong> (e.g. Iori gameplay, Suzu design, Kotone narrative, Iro art, Tsumugi build) only plan / design / make assets / write docs and <strong>never touch <code>src/</code></strong> — they have no live-preview feedback, so any code they wrote would have nothing to steer it. See the full cast in the <a href="/marketplace/">marketplace</a> and <a href="#ch10">Chapter 10 · The agent team</a>.</p>
-                <p><strong>How dispatch works:</strong> Forge dispatches a sub-agent with one tool call (shaped like <code>subagent(type="iori", task="…")</code>); the server's <code>/api/subagent</code> stream bridges its output back into the main conversation in real time — that's the embedded sub-agent card you see in the message stream. A sub-agent's design docs are filed under its own section in the workbench (see <a href="#ch4">Scenes &amp; editor</a>).</p>
+                <p><strong>How dispatch works:</strong> Forge dispatches a sub-agent with one tool call (shaped like <code>subagent(type="iori", task="…")</code>); the server's <code>/api/subagent</code> stream bridges its output back into the main conversation in real time — that's the embedded sub-agent card you see in the message stream. A sub-agent's design docs are filed under its own section in the authoring (see <a href="#ch4">Scenes &amp; editor</a>).</p>
               </div>
             </details>
             <details class="doc-item">
@@ -204,7 +204,7 @@ hits remove them and add score.</code></pre>
                   <li><strong>Hot-reload</strong> — on save, the engine's vite detects the change and the preview <strong>hot-replaces the module</strong> in place — no full reload, the picture updates almost instantly.</li>
                   <li><strong>See the result</strong> — Forge sees the running result through the preview (which also forwards the game's <code>console</code> back), and decides the next step.</li>
                 </ul>
-                <p>The whole process is transparent: the message stream shows Forge's thinking, each tool call, and the cards of the sub-agents it dispatched. For switching/controlling preview vs workbench, see <a href="#ch4">Scenes &amp; editor</a>; for how hot-reload works, see <a href="#ch6">Run &amp; preview</a>.</p>
+                <p>The whole process is transparent: the message stream shows Forge's thinking, each tool call, and the cards of the sub-agents it dispatched. For switching/controlling preview vs authoring, see <a href="#ch4">Scenes &amp; editor</a>; for how hot-reload works, see <a href="#ch6">Run &amp; preview</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -223,14 +223,14 @@ hits remove them and add score.</code></pre>
           <h2><span class="n">4</span>Scenes &amp; editor</h2>
           <div class="doc-items">
             <details class="doc-item">
-              <summary>Preview window &amp; workbench</summary>
+              <summary>Preview window &amp; authoring</summary>
               <div class="doc-body">
                 <p>The right-hand main area toggles between two views:</p>
                 <ul>
                   <li><strong>Preview</strong> — your game runs live in an iframe, with an FPS readout and play / pause / reload controls. When Forge writes code, it hot-reloads here instantly (see <a href="#ch3">Build by chatting</a>).</li>
-                  <li><strong>Workbench</strong> — a file browser + editor: view / edit / save text &amp; code, render markdown design docs, and preview images, audio, video and 3D models. It also surfaces file activity and "who's editing" locks, so you and the AI edit the same files without clobbering.</li>
+                  <li><strong>Authoring extension</strong> — a file browser + editor: view / edit / save text &amp; code, render markdown design docs, and preview images, audio, video and 3D models. It also surfaces file activity and "who's editing" locks, so you and the AI edit the same files without clobbering.</li>
                 </ul>
-                <p>With no file open, the workbench shows entries for every creation workbench (character / animation / 3D / scene / UI / music…) — see <a href="#ch9">Creation tools</a> and the <a href="/marketplace/">marketplace</a>. For making assets, see <a href="#ch5">Assets</a>.</p>
+                <p>With no file open, the authoring shows entries for every creation authoring (character / animation / 3D / scene / UI / music…) — see <a href="#ch9">Creation tools</a> and the <a href="/marketplace/">marketplace</a>. For making assets, see <a href="#ch5">Assets</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -256,34 +256,34 @@ hits remove them and add score.</code></pre>
             <details class="doc-item">
               <summary>Character portraits &amp; turnarounds</summary>
               <div class="doc-body">
-                <p>Use the <strong>character editor</strong> (<code>wb-character</code>) for character concept design: write a one-line brief, get a <strong>portrait + turnaround</strong>. No drawing skills needed to get a game-ready character.</p>
-                <p>Its outputs (a character manifest + portrait / turnaround) are stored per character inside your game and <strong>feed straight into the animation workbench as downstream input</strong> — so "design the character → make it move" is one continuous pipeline (see the next item).</p>
-                <p>Each workbench is a panel plus a set of tools; you-by-hand and AI-by-dispatch edit the same artifact. Full list in the <a href="/marketplace/">marketplace</a> and the <a href="/tutorials/workbenches.html">workbenches tutorial</a>.</p>
+                <p>Use the <strong>character editor</strong> (<code>character</code>) for character concept design: write a one-line brief, get a <strong>portrait + turnaround</strong>. No drawing skills needed to get a game-ready character.</p>
+                <p>Its outputs (a character manifest + portrait / turnaround) are stored per character inside your game and <strong>feed straight into the animation authoring as downstream input</strong> — so "design the character → make it move" is one continuous pipeline (see the next item).</p>
+                <p>Each authoring is a panel plus a set of tools; you-by-hand and AI-by-dispatch edit the same artifact. Full list in the <a href="/marketplace/">marketplace</a> and the <a href="/tutorials/authoring extensions.html">authoring extensions tutorial</a>.</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>Make characters move (2D / 3D)</summary>
               <div class="doc-body">
-                <p><strong>2D:</strong> the animation workbench (<code>wb-anim</code>) uses the character portrait as a template and turns it into walking, attacking, four-direction motion, even short clips — <strong>without face drift</strong>, so it stays the same character once it moves.</p>
+                <p><strong>2D:</strong> the animation authoring (<code>anim</code>) uses the character portrait as a template and turns it into walking, attacking, four-direction motion, even short clips — <strong>without face drift</strong>, so it stays the same character once it moves.</p>
                 <p><strong>3D:</strong> the engine natively supports <strong>skeletal animation</strong> — import a rigged, skinned model plus animation clips from FBX, with smooth crossfades between idle / walk / run / cast / death. This pipeline is real and shipped — it's how the dark-fantasy witch in the showcase moves: see <a href="/blog/skeletal-animation-milestone.html">the skeletal-animation milestone</a> and the <a href="/showcase/">showcase (Hellforge)</a>.</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>3D models, VFX, UI, music</summary>
               <div class="doc-body">
-                <p>Beyond characters, there are workbenches across the whole pipeline:</p>
+                <p>Beyond characters, there are authoring extensions across the whole pipeline:</p>
                 <div class="doc-subs">
                   <details class="doc-sub"><summary><strong>3D models</strong></summary>
-                    <div class="doc-subbody"><p>Blocky-character editor (<code>wb-lowpoly-obj</code>, exports engine-neutral <code>.glb</code>), node-graph low-poly (<code>wb-3d-lowpoly</code>), and text / image / multi-view-to-3D (<code>wb-gen3d</code>, provider-agnostic). Detailed in <a href="#ch9">Chapter 9 · 3D modeling &amp; generation</a>.</p></div>
+                    <div class="doc-subbody"><p>Blocky-character editor (<code>lowpoly-obj</code>, exports engine-neutral <code>.glb</code>), node-graph low-poly (<code>3d-lowpoly</code>), and text / image / multi-view-to-3D (<code>gen3d</code>, provider-agnostic). Detailed in <a href="#ch9">Chapter 9 · 3D modeling &amp; generation</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><strong>VFX / scenes / UI / items</strong></summary>
-                    <div class="doc-subbody"><p>Skill VFX (<code>wb-skill</code>), scene generation and 2D scene assets (<code>wb-scene-generator</code> / <code>wb-2d-scene-asset-generator</code>), the UI workshop (<code>wb-ui</code>, clickable prototypes), and item icons (<code>wb-items</code>, art + data in one table). Detailed in <a href="#ch9">Chapter 9 · Scenes / UI / items</a>.</p></div>
+                    <div class="doc-subbody"><p>Skill VFX (<code>skill</code>), scene generation and 2D scene assets (<code>scene-generator</code> / <code>2d-scene-asset-generator</code>), the UI workshop (<code>ui</code>, clickable prototypes), and item icons (<code>items</code>, art + data in one table). Detailed in <a href="#ch9">Chapter 9 · Scenes / UI / items</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><strong>Music / look / narrative</strong></summary>
-                    <div class="doc-subbody"><p>Music and SFX (<code>wb-bgm</code>, a BGM timeline), color grading (<code>wb-look</code>, palette + LUT + postprocess), and narrative (<code>wb-narrative</code>, 117 genres × 9 templates). Detailed in <a href="#ch9">Chapter 9 · Narrative / music / look / balance</a>.</p></div>
+                    <div class="doc-subbody"><p>Music and SFX (<code>bgm</code>, a BGM timeline), color grading (<code>look</code>, palette + LUT + postprocess), and narrative (<code>narrative</code>, 117 genres × 9 templates). Detailed in <a href="#ch9">Chapter 9 · Narrative / music / look / balance</a>.</p></div>
                   </details>
                 </div>
-                <p>Item-by-item coverage is in <a href="#ch9">Chapter 9 · Creation tools</a>, the <a href="/tutorials/workbenches.html">workbenches tutorial</a>, and the <a href="/marketplace/">marketplace</a>.</p>
+                <p>Item-by-item coverage is in <a href="#ch9">Chapter 9 · Creation tools</a>, the <a href="/tutorials/authoring extensions.html">authoring extensions tutorial</a>, and the <a href="/marketplace/">marketplace</a>.</p>
               </div>
             </details>
           </div>
@@ -368,16 +368,16 @@ hits remove them and add score.</code></pre>
               </div>
             </details>
             <details class="doc-item">
-              <summary>Write your own workbench plugin</summary>
+              <summary>Write your own authoring plugin</summary>
               <div class="doc-body">
                 <p>Almost every capability in ForgeaX is a <strong>runtime-loaded plugin</strong> (overview in the <a href="/marketplace/">marketplace</a>), so you can add your own.</p>
-                <p>The quickest path today: <strong>copy an existing workbench plugin and adapt it</strong>, with the <strong>plugin author</strong> (<code>wb-plugin-author</code>) helping; a fuller in-app visual editor (file tree + code editor, save → auto-reload) is on the way. Once built, enable and reorder it in the <strong>admin panel</strong> — plugins are mounted by the CLI at runtime. See the kinds of workbench in <a href="#ch9">Creation tools</a>.</p>
+                <p>The quickest path today: <strong>copy an existing authoring plugin and adapt it</strong>, with the <strong>plugin author</strong> (<code>plugin-author</code>) helping; a fuller in-app visual editor (file tree + code editor, save → auto-reload) is on the way. Once built, enable and reorder it in the <strong>admin panel</strong> — plugins are mounted by the CLI at runtime. See the kinds of authoring in <a href="#ch9">Creation tools</a>.</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>Customize agent personas</summary>
               <div class="doc-body">
-                <p>Use the <strong>persona editor</strong> (<code>wb-agent-persona</code>): pick an agent from the list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. You can give an agent a different character or voice without touching any code.</p>
+                <p>Use the <strong>persona editor</strong> (<code>agent-persona</code>): pick an agent from the list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. You can give an agent a different character or voice without touching any code.</p>
                 <p>For who's the main vs sub-agents and where default personas come from, see <a href="#ch2">Core concepts</a> and <a href="#ch10">The agent team</a>; the full cast is in the <a href="/marketplace/">marketplace</a>.</p>
               </div>
             </details>
@@ -385,19 +385,19 @@ hits remove them and add score.</code></pre>
         </section>
 
         <section class="docs-chapter" id="ch9">
-          <h2><span class="n">9</span>Creation tools (workbenches)</h2>
+          <h2><span class="n">9</span>Creation tools (authoring extensions)</h2>
           <div class="doc-items">
             <details class="doc-item">
               <summary>Character / animation / VFX</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-character</code> · <strong>character editor</strong></summary>
-                    <div class="doc-subbody"><p>Character concept design: a one-line brief → portrait + turnaround. It has several pipelines — <strong>turnaround</strong> (three views), <strong>video character</strong> (turnaround → AI video motion → frame extraction → spritesheet export), and <strong>monster generation</strong> (8-direction × 5-animation monster sprites). No drawing skills needed; the output then feeds the animation workbench (see <a href="#ch5">Assets</a>).</p></div>
+                  <details class="doc-sub"><summary><code>character</code> · <strong>character editor</strong></summary>
+                    <div class="doc-subbody"><p>Character concept design: a one-line brief → portrait + turnaround. It has several pipelines — <strong>turnaround</strong> (three views), <strong>video character</strong> (turnaround → AI video motion → frame extraction → spritesheet export), and <strong>monster generation</strong> (8-direction × 5-animation monster sprites). No drawing skills needed; the output then feeds the animation authoring (see <a href="#ch5">Assets</a>).</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-anim</code> · <strong>animation</strong></summary>
+                  <details class="doc-sub"><summary><code>anim</code> · <strong>animation</strong></summary>
                     <div class="doc-subbody"><p>Uses a character portrait as a template and makes it move: <strong>four-direction pixel, vehicle animation, monster sprites, Spine binding, short-video generation</strong> — <strong>without face drift</strong>, so it stays the same character. Embedded panel with a center viewport. 3D characters use the engine's native skeletal pipeline — see the <a href="/blog/skeletal-animation-milestone.html">skeletal-animation milestone</a> and <a href="#ch5">Assets</a>.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-skill</code> · <strong>skill / VFX</strong></summary>
+                  <details class="doc-sub"><summary><code>skill</code> · <strong>skill / VFX</strong></summary>
                     <div class="doc-subbody"><p>Skill-tree editing + VFX preview, listing your skill and effect outputs in one place. The key idea: <strong>the player's clicks and AI dispatch share one skill spec</strong> — effects auto-attach to "the moment of cast", no manual alignment.</p></div>
                   </details>
                 </div>
@@ -407,13 +407,13 @@ hits remove them and add score.</code></pre>
               <summary>3D modeling &amp; generation</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-lowpoly-obj</code> · <strong>blocky-character editor</strong></summary>
+                  <details class="doc-sub"><summary><code>lowpoly-obj</code> · <strong>blocky-character editor</strong></summary>
                     <div class="doc-subbody"><p>Build <strong>rigged blocky 3D characters</strong>: either "vibe" it (say a line, AI generates) or edit by hand (Blender-style gizmo), with a built-in playground for live preview. Exports <strong>engine-neutral <code>.glb</code></strong> usable in any engine.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-3d-lowpoly</code> · <strong>low-poly generator</strong></summary>
+                  <details class="doc-sub"><summary><code>3d-lowpoly</code> · <strong>low-poly generator</strong></summary>
                     <div class="doc-subbody"><p>Build 3D props / mechanical assets with <strong>node-programming</strong> ("wire up blocks"): model the process as a node graph, change one parameter, regenerate the whole set. Great for batch, reusable, parametric hard-surface assets.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-gen3d</code> · <strong>3D generation</strong></summary>
+                  <details class="doc-sub"><summary><code>gen3d</code> · <strong>3D generation</strong></summary>
                     <div class="doc-subbody"><p>A 3D asset <strong>generation entrypoint</strong>: pick a generation service and give an input (text / image / multi-view), and get a <strong>durable, game-ready</strong> 3D asset manifest. Plugged into several top generators so you pick whichever's best — no single-vendor lock-in.</p></div>
                   </details>
                 </div>
@@ -423,16 +423,16 @@ hits remove them and add score.</code></pre>
               <summary>Scenes / UI / items</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-scene-generator</code> · <strong>scene generator</strong></summary>
+                  <details class="doc-sub"><summary><code>scene-generator</code> · <strong>scene generator</strong></summary>
                     <div class="doc-subbody"><p>Assemble a whole game scene with <strong>node-programming</strong>: lay out composition, placement and texturing as a graph; re-run anytime to regenerate the full scene. For how scenes / levels are organized, see <a href="#ch4">Scenes &amp; editor</a>.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-2d-scene-asset-generator</code> · <strong>2D scene assets</strong></summary>
+                  <details class="doc-sub"><summary><code>2d-scene-asset-generator</code> · <strong>2D scene assets</strong></summary>
                     <div class="doc-subbody"><p>Also node-programming, for <strong>batch-generating</strong> the small things in a scene — props, textures, decorations, UI bits — then <strong>auto-named and filed</strong> so assets don't turn into a mess.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-ui</code> · <strong>UI workshop</strong></summary>
+                  <details class="doc-sub"><summary><code>ui</code> · <strong>UI workshop</strong></summary>
                     <div class="doc-subbody"><p>Generate a full interface set by <strong>genre, screen flow and visual style</strong> — UI blueprints, component assets, and <strong>clickable interactive prototypes</strong> (not just images). Menus, buttons and health bars in one go.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-items</code> · <strong>items / icons</strong></summary>
+                  <details class="doc-sub"><summary><code>items</code> · <strong>items / icons</strong></summary>
                     <div class="doc-subbody"><p>Make the game's <strong>items and icons</strong> — pixel art for weapons, potions, coins — with their data attached. <strong>Art and data in one table</strong> (<code>items.json</code>) that you and the AI edit together, so they never drift apart.</p></div>
                   </details>
                 </div>
@@ -442,16 +442,16 @@ hits remove them and add score.</code></pre>
               <summary>Narrative / music / look / balance</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-narrative</code> · <strong>narrative workshop</strong></summary>
+                  <details class="doc-sub"><summary><code>narrative</code> · <strong>narrative workshop</strong></summary>
                     <div class="doc-subbody"><p>An AI-driven narrative pipeline: from a spark to a full story and world. It covers <strong>117 genres × 9 pipeline templates</strong> with tier/mode routing and a dynamic planner — the AI picks the fitting approach and steps for your genre.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-bgm</code> · <strong>music / BGM</strong></summary>
+                  <details class="doc-sub"><summary><code>bgm</code> · <strong>music / BGM</strong></summary>
                     <div class="doc-subbody"><p>Manage the game's <strong>music and sound effects</strong>: a BGM timeline laying out what plays when across a session, plus sound-effect naming conventions — the whole score sequenced as one list.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-look</code> · <strong>color / look-dev</strong></summary>
+                  <details class="doc-sub"><summary><code>look</code> · <strong>color / look-dev</strong></summary>
                     <div class="doc-subbody"><p>Unify the whole game's <strong>color mood</strong> — palette + LUT + a postprocess stack, like a filter over the entire game: warm dusk, cold night, switched in one click so the visual feel snaps into one.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-balance</code> · <strong>balance</strong></summary>
+                  <details class="doc-sub"><summary><code>balance</code> · <strong>balance</strong></summary>
                     <div class="doc-subbody"><p>Auto-test whether the numbers are <strong>balanced</strong>: it drives battle re-simulation (<code>balance-resim</code>) over N trials and dashboards <strong>win rate + a 95% confidence interval</strong>, then loops with manual tweaks — let data judge the tuning. That re-simulation is also a <a href="/marketplace/">Tool</a> in the marketplace.</p></div>
                   </details>
                 </div>
@@ -461,23 +461,23 @@ hits remove them and add score.</code></pre>
               <summary>System &amp; author tools</summary>
               <div class="doc-body">
                 <div class="doc-subs">
-                  <details class="doc-sub"><summary><code>wb-code</code> · <strong>code</strong></summary>
-                    <div class="doc-subbody"><p>Browse and <strong>jump through <code>src/</code> files</strong> right in the workbench, <strong>collaborating with the coding agent across chat threads</strong> — you read where, the AI edits where, on one project without dropping the baton.</p></div>
+                  <details class="doc-sub"><summary><code>code</code> · <strong>code</strong></summary>
+                    <div class="doc-subbody"><p>Browse and <strong>jump through <code>src/</code> files</strong> right in the authoring, <strong>collaborating with the coding agent across chat threads</strong> — you read where, the AI edits where, on one project without dropping the baton.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-observatory</code> · <strong>observatory</strong></summary>
+                  <details class="doc-sub"><summary><code>observatory</code> · <strong>observatory</strong></summary>
                     <div class="doc-subbody"><p>Like a <strong>black box</strong>: live + offline replay of every agent / sub-agent turn, tool call, and slices of the system prompt. When something breaks you can <strong>pinpoint which step or which prompt</strong> caused it, and it helps manage context / skills / guardrails / cache. The session &amp; replay concept is in <a href="#ch2">Core concepts</a>.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-agent-persona</code> · <strong>persona editor</strong></summary>
+                  <details class="doc-sub"><summary><code>agent-persona</code> · <strong>persona editor</strong></summary>
                     <div class="doc-subbody"><p>Pick an agent from a list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. Give an agent a new character or voice without touching code. The cast is in <a href="#ch10">The agent team</a>; the how-to is in <a href="#ch8">Advanced</a>.</p></div>
                   </details>
-                  <details class="doc-sub"><summary><code>wb-plugin-author</code> · <strong>plugin author</strong></summary>
-                    <div class="doc-subbody"><p>Lets <strong>non-coders</strong> build their own workbench plugins. The path today is "copy an existing one + adapt + record actions"; a fuller in-app visual editor (file tree + code editor, save → auto-reload) is on the way. The overall how-to is in <a href="#ch8">Advanced · Write your own plugin</a>.</p></div>
+                  <details class="doc-sub"><summary><code>plugin-author</code> · <strong>plugin author</strong></summary>
+                    <div class="doc-subbody"><p>Lets <strong>non-coders</strong> build their own authoring plugins. The path today is "copy an existing one + adapt + record actions"; a fuller in-app visual editor (file tree + code editor, save → auto-reload) is on the way. The overall how-to is in <a href="#ch8">Advanced · Write your own plugin</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>admin</code> · <strong>control panel</strong></summary>
-                    <div class="doc-subbody"><p>The studio's <strong>master console</strong>, in four sections: enable / reorder workbenches, bind models, check each AI backend's auth and health, and see plugin counts. Kept in sync with the Settings panel — every plugin and model status on one screen.</p></div>
+                    <div class="doc-subbody"><p>The studio's <strong>master console</strong>, in four sections: enable / reorder authoring extensions, bind models, check each AI backend's auth and health, and see plugin counts. Kept in sync with the Settings panel — every plugin and model status on one screen.</p></div>
                   </details>
                 </div>
-                <p>All of these are <strong>loadable plugins</strong>; the full, filterable catalog is in the <a href="/marketplace/">marketplace</a>, and a tutorial walkthrough is in the <a href="/tutorials/workbenches.html">workbenches tutorial</a>.</p>
+                <p>All of these are <strong>loadable plugins</strong>; the full, filterable catalog is in the <a href="/marketplace/">marketplace</a>, and a tutorial walkthrough is in the <a href="/tutorials/authoring extensions.html">authoring extensions tutorial</a>.</p>
               </div>
             </details>
           </div>
@@ -490,7 +490,7 @@ hits remove them and add score.</code></pre>
               <summary>Production &amp; architecture</summary>
               <div class="doc-body">
                 <p><strong>Arin · producer</strong> — an all-round producer who coordinates design / code / art / audio and owns the whole game.</p>
-                <p><strong>Reia · reel director</strong> — interactive FMV director who forges prompts, paces QTEs and weaves branches and endings, driving the wb-reel Reel Studio to turn one idea into a clickable, playable suspense film.</p>
+                <p><strong>Reia · reel director</strong> — interactive FMV director who forges prompts, paces QTEs and weaves branches and endings, driving the reel Reel Studio to turn one idea into a clickable, playable suspense film.</p>
                 <p>These are <strong>named agents</strong> dispatched on demand by Forge (the main vs sub-agent relationship is in <a href="#ch2">Core concepts</a>); the full cast is in the <a href="/marketplace/">marketplace</a>.</p>
               </div>
             </details>
@@ -511,7 +511,7 @@ hits remove them and add score.</code></pre>
                     <div class="doc-subbody"><p>Named after "色" (everything the eye perceives). Once Suzu has framed a module's experience, Forge dispatches Iro only if it needs visual assets (characters / scenes / UI / VFX). How those assets are actually made: see <a href="#ch5">Assets</a> and <a href="#ch9">Creation tools</a>.</p></div>
                   </details>
                 </div>
-                <p>These specialists <strong>only plan and design — they never touch game code</strong> (Forge writes code, see <a href="#ch2">Core concepts</a>); their output lands in the workbench (see <a href="#ch4">Scenes &amp; editor</a>), and art assets are produced as in <a href="#ch5">Assets</a>.</p>
+                <p>These specialists <strong>only plan and design — they never touch game code</strong> (Forge writes code, see <a href="#ch2">Core concepts</a>); their output lands in the authoring (see <a href="#ch4">Scenes &amp; editor</a>), and art assets are produced as in <a href="#ch5">Assets</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -531,7 +531,7 @@ hits remove them and add score.</code></pre>
                     <div class="doc-subbody"><p>A set of optional characters with <strong>comparable coding skill but distinct personalities</strong> — some measured, some playful, some meticulous. They have the same ability; the only difference is how it feels to work alongside them. Personalities are editable any time in the <strong>persona editor</strong> (see <a href="#ch8">Advanced</a>); the full cast is in the <a href="/marketplace/">marketplace</a>.</p></div>
                   </details>
                 </div>
-                <p>There's also a set of <strong>art / asset specialist agents</strong> (2D character / animation, 3D low-poly / VFX, interactive-film director, and more), each wired to its matching creation workbench (see <a href="#ch9">Creation tools</a>).</p>
+                <p>There's also a set of <strong>art / asset specialist agents</strong> (2D character / animation, 3D low-poly / VFX, interactive-film director, and more), each wired to its matching creation authoring (see <a href="#ch9">Creation tools</a>).</p>
               </div>
             </details>
             <details class="doc-item">
