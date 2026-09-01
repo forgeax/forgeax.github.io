@@ -25,8 +25,13 @@
 <link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
 <link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=1c9f18b0" />
 <style>
-  .mk-count{font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);margin:16px 0 12px}
-  .mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+  /* Cards are title+link only; without an explicit rail width, main.wrap shrink-wraps
+     and auto-fill collapses to a single column. Keep the two-column marketplace grid. */
+  .forgeax-site main.wrap{
+    width:min(var(--maxw),calc(100% - 40px));
+    max-width:min(var(--maxw),calc(100% - 40px));
+  }
+  .mk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
   .mk-item{padding:16px}
   .mk-item.hide{display:none !important}
   .mk-item h3{font-size:15px;font-weight:700;line-height:1.3;margin:0}
@@ -112,7 +117,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=b1def969" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
 
 </head>
 <body class="lang-de forgeax-site">
@@ -145,7 +150,7 @@
 <main class="wrap">
   <div class="page-head">
     <h1>Plugins</h1>
-    <p>In ForgeaX ist fast jede Fähigkeit ein <strong>ladbares Plugin</strong>. Nach Art durchsuchen, aktivieren, neu anordnen oder selbst erstellen.</p>
+    <p>In ForgeaX ist fast jede Fähigkeit ein <strong>ladbares Plugin</strong>.</p>
   </div>
 
   <div class="mk-bar">
@@ -164,8 +169,6 @@
       </button>
     </div>
   </div>
-
-  <div class="mk-count" id="mkCount"></div>
 
   <div class="mk-grid" id="mkGrid">
     <div class="mk-item is-agent" data-slug="agent-arin" data-kind="agent" data-search="arin producer 制作人 统筹 production">
@@ -297,27 +300,22 @@
     </div>
     <div class="mk-item" data-slug="cli-claude-code" data-kind="backend" data-search="claude code anthropic default backend cli">
       <h3>Claude Code</h3>
-      <p>Das Standard-Backend.</p>
       <p><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener">github.com/anthropics/claude-code →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-codex" data-kind="backend" data-search="codex openai backend cli">
       <h3>Codex</h3>
-      <p>Das OpenAI Codex-Backend.</p>
       <p><a href="https://github.com/openai/codex" target="_blank" rel="noopener">github.com/openai/codex →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-cursor-agent" data-kind="backend" data-search="cursor agent backend cli">
       <h3>Cursor</h3>
-      <p>Das Cursor-Agent-Backend.</p>
       <p><a href="https://cursor.com" target="_blank" rel="noopener">cursor.com →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-kimi-code" data-kind="backend" data-search="kimi code moonshot cli backend terminal coding agent">
       <h3>Kimi Code</h3>
-      <p>Ein KI-Coding-Agent für das Terminal mit Kimi-Mitgliedschaft oder Moonshot-AI-API-Key.</p>
       <p><a href="https://github.com/MoonshotAI/kimi-code" target="_blank" rel="noopener">github.com/MoonshotAI/kimi-code →</a></p>
     </div>
     <div class="mk-item" data-slug="cli-deepseek-harness" data-kind="backend" data-search="deepseek harness dsh cli backend headless developer preview">
       <h3>DeepSeek Harness</h3>
-      <p>Developer Preview: Erfordert eine lokale dsh-Datei sowie DeepSeek API Base URL und API-Key-Einstellungen; das dsh-Profil verwaltet die Modellauswahl und jede Headless-Aufgabe liefert nur ein finales Ergebnis.</p>
       <p><a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">github.com/deepseek-ai/deepseek-harness →</a></p>
     </div>
     <div class="mk-item" data-slug="skill-author-plugin" data-kind="skill" data-search="author-plugin skill make plugin">
@@ -326,7 +324,7 @@
     </div>
     <div class="mk-item" data-slug="cli-forgeax" data-kind="backend" data-search="forgeax-cli self-built own backend default persona">
       <h3>forgeax-cli</h3>
-      <p>Das forgeax-cli-Backend – keine Anbieterbindung, jederzeit die Engine wechseln.</p>
+      <p><a href="https://github.com/ForgeaX-Games/forgeax-cli" target="_blank" rel="noopener">github.com/ForgeaX-Games/forgeax-cli →</a></p>
     </div>
     <div class="mk-item" data-slug="skill-make-game-design" data-kind="skill" data-search="make-game-design skill game design gdd">
       <h3>Spieldesign</h3>
@@ -583,7 +581,7 @@
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
     <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
-    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele. Open Source, Apache-Lizenz 2.0.</p>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
   </div>
   <nav class="foot-links" aria-label="Website">
     <a href="/de/changelog/">Änderungsprotokoll</a>
@@ -601,6 +599,6 @@
 <script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
 <script src="/assets/site.js?v=cc748cc1"></script>
 <script src="/assets/marketplace/marketplace-card-icons.js?v=26cd8420"></script>
-<script src="/assets/marketplace/app.js?v=d37bc41a"></script>
+<script src="/assets/marketplace/app.js?v=03de9f81"></script>
 </body>
 </html>

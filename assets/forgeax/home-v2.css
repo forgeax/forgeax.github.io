@@ -965,6 +965,16 @@
 
 /* ── §3 games band — ports .gm-hero + .gm-card from the retired /games/ page */
 .home-v2 #sec-showcase .gm-hero:not([hidden]) { margin: 8px 0 28px; }
+/* Featured posters are 16:9. The shared hero frame is 21:9 + cover, which
+   crops the top/bottom on a wide rail. Match the art and stop the Ken Burns
+   zoom so the full poster stays in view. */
+.home-v2 #sec-showcase .gm-hero { aspect-ratio: 16 / 9; }
+.home-v2 #sec-showcase .gm-cslide img {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  background: #0b0d10;
+}
 .home-v2 #sec-showcase .gm-featured-mobile { margin: 8px 0 24px; }
 .home-v2 #sec-showcase .gm-grid {
   margin-top: 4px;

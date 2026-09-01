@@ -12,7 +12,6 @@
   (function () {
     var tabs = [].slice.call(document.querySelectorAll(".mk-tab"));
     var items = [].slice.call(document.querySelectorAll(".mk-item"));
-    var count = document.getElementById("mkCount");
     var empty = document.getElementById("mkEmpty");
     var kind = "authoring";
     var rowbreak = document.querySelector(".mk-rowbreak");
@@ -25,7 +24,6 @@
         if (show) n++;
       });
       if (rowbreak) rowbreak.classList.toggle("hide", kind !== "agent");
-      if (count) count.textContent = n + " / " + items.length;
       if (empty) empty.style.display = n ? "none" : "block";
     }
     tabs.forEach(function (t) {
