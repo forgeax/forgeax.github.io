@@ -1,0 +1,72 @@
+name: Build and deploy Go-Karts
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/go-karts-pages.yml"
+      - "games/**"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ForgeaXGame/forgeax-engine
+          path: engine
+      - uses: actions/checkout@v4
+        with:
+          repository: ForgeaXGame/forgeax-studio
+          path: studio
+      - uses: actions/checkout@v4
+        with:
+          repository: ForgeaX-Games/forgeax-games
+          path: games-source
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: engine/pnpm-lock.yaml
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.7.0
+      - name: Install engine dependencies
+        working-directory: engine
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Fetch engine WASM artifacts
+        working-directory: engine
+        run: |
+          pnpm --filter @forgeax/engine-wgpu-wasm fetch-wasm
+          pnpm --filter @forgeax/engine-codec fetch-wasm
+      - name: Build Go-Karts
+        env:
+          ENGINE_DIR: ${{ github.workspace }}/engine
+          GAMES_DIR: ${{ github.workspace }}/games-source
+          OUT_DIR: ${{ github.workspace }}
+          GAMES_LIVE: "1"
+          ONLY: go-karts
+        run: |
+          printf '{"allow":["go-karts"]}\n' > studio/scripts/website/games.curation.json
+          node studio/scripts/website/build-games.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
