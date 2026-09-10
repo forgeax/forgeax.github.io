@@ -70,7 +70,7 @@ fn jitterCorrectedCurrent(uv: vec2<f32>) -> vec4<f32> {
 
 fn closestCurrentTemporal(pixel: vec2<i32>, dimensions: vec2<i32>) -> vec4<f32> {
     var closest: vec4<f32> = vec4<f32>(0f, 0f, -1f, 1f);
-    var closestDepth: f32 = 100000000000000000000f;
+    var closestDepth: f32 = 1e20f;
     var y_2: i32 = -1i;
     var x_2: i32;
     var local_4: bool;
@@ -134,8 +134,8 @@ fn fs_taa_resolve(in: FullscreenOutputX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5
     var local_1: bool;
     var local_2: bool;
     var local_3: bool;
-    var neighborhoodMin: vec3<f32> = vec3(100000000000000000000f);
-    var neighborhoodMax: vec3<f32> = vec3(-100000000000000000000f);
+    var neighborhoodMin: vec3<f32> = vec3(1e20f);
+    var neighborhoodMax: vec3<f32> = vec3(-1e20f);
     var neighborhoodMean: vec3<f32> = vec3(0f);
     var neighborhoodSquareMean: vec3<f32> = vec3(0f);
     var y: i32 = -1i;
