@@ -69,7 +69,7 @@ test ! -e "$GAME_ROOT" || { echo "Game target exists; do not overwrite." >&2; ex
 pnpm dlx "@forgeax/engine@$ENGINE_VERSION" sdk install "$SDK_ROOT" --version "$SDK_VERSION"
 cat "$SDK_ROOT/AGENTS.md"
 (cd "$SDK_ROOT" && "$SDK_ROOT/bin/forgeax" init)
-"$SDK_ROOT/bin/forgeax" new "$GAME_ROOT"
+"$SDK_ROOT/bin/forgeax" new "$GAME_ROOT" --template empty
 cat "$GAME_ROOT/AGENTS.md"
 
 cd "$GAME_ROOT"
@@ -83,8 +83,15 @@ pnpm dev
 The npm carrier intentionally omits the offline `store/pnpm`; its lockfile installs
 the matching Engine dependencies from npm. The SDK-root `forgeax init` is mandatory
 after download: it checks the user's Node/pnpm/platform tuple and prepares native
-dependencies before `new`. The default template is `empty` with `src/main.ts`; use
-`--template game-default` only when a complete sample is explicitly requested.
+dependencies before `new`.
+
+> [!IMPORTANT]
+> `forgeax new` requires an explicit template selection. The bootstrap above uses
+> `--template empty`, which creates the minimal project with `src/main.ts`. For a
+> 3D game or a complete sample, use `--template game-3d` instead; it creates a
+> runnable, contentful third-person reference rather than an empty 3D scene.
+> Omitting `--template` fails closed with `sdk-template-required`.
+
 `forgeax new` is transactional and installs the SDK `skills/` as ordinary files plus
 rebuildable Agent discovery links. If `skill verify --json` is not OK, run
 `skill install --json`, verify again, and stop on any remaining error.
