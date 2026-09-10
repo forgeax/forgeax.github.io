@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-22 · El proyecto se vuelve de código abierto + la aplicación de escritorio deja de fallar — ForgeaX</title>
+<meta name="description" content="El proyecto se vuelve de código abierto con documentos bilingües enriquecidos en cada módulo, licencias por módulo y trae tu propio agente; el bucle de bloqueo de inicio de la aplicación de escritorio se soluciona mediante un paquete autónomo; la galería de ejemplos del sitio web se convierte en una vista dividida en vivo; y el motor logra un arranque en primer lugar, un cambio de sombra más simple y una corrección de animación." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-22 · El proyecto se vuelve de código abierto + la aplicación de escritorio deja de fallar — ForgeaX" />
+<meta property="og:description" content="El proyecto se vuelve de código abierto con documentos bilingües enriquecidos en cada módulo, licencias por módulo y trae tu propio agente; el bucle de bloqueo de inicio de la aplicación de escritorio se soluciona mediante un paquete autónomo; la galería de ejemplos del sitio web se convierte en una vista dividida en vivo; y el motor logra un arranque en primer lugar, un cambio de sombra más simple y una corrección de animación." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-22.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-22.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-22.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-22.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-22.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-22.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-22.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-22.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-22.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-22.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-22.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-22</span></div>
+    <h1>El proyecto se vuelve de código abierto + la aplicación de escritorio deja de fallar</h1>
+    <p class="standfirst">Este es un día importante: todo el proyecto se vuelve formalmente de código abierto: cada módulo se enriquece con documentos bilingües ilustrados y una licencia de código abierto, y admite &quot;traiga su propia suscripción de agente&quot;; el mismo día solucionó el obstinado bucle de inicio de la aplicación de escritorio empaquetada, convirtió la galería de ejemplos del sitio web en una vista dividida en vivo y consiguió un inicio con activos primero, un cambio de sombra más simple y una corrección de animación en el motor.</p>
+    <div class="prose"><h2>Del &quot;para nosotros&quot; al &quot;para todos&quot;</h2>
+<p>Este día es un momento especial en la vida de un proyecto: por primera vez se entregó al público de forma completa y presentable. El código abierto no es sólo el acto de &quot;hacer público el código&quot;, sino que significa todo un conjunto de preparación dirigida a extraños: ¿por qué otros deberían entender lo que estás haciendo? ¿Por qué confiar en que funciona? ¿Por qué estar dispuesto a instalarlo y modificarlo ellos mismos? Todo lo que se hizo hoy responde a estas preguntas: escribir documentos bilingües para cada módulo que dejen en claro &quot;qué es, cómo colabora, cómo comenzar&quot;, implementar licencias de código abierto para que otros puedan usarlos y modificarlos legalmente, garantizar que lo que se descarga realmente funcione de inmediato en lugar de faltar piezas, eliminar el obstáculo de que la aplicación de escritorio falle al iniciarse y hacer que los ejemplos del sitio web muestren de un vistazo &quot;lo que esta cosa puede construir&quot;. Para un proyecto interno de código abierto, la parte más difícil es no publicar nunca el código en sí, sino volver a pulir lo que &quot;sólo los de adentro entienden&quot; para convertirlo en algo que &quot;cualquiera pueda entender&quot;. Eso es exactamente lo que hizo este día.</p>
+<h2>Código abierto: documentos bilingües completos + traiga su propia suscripción de agente</h2>
+<p>Este día terminó, de una sola vez, el pulido público para pasar al código abierto. El elemento principal: documentos bilingües (chino/inglés) ricos e ilustrados en cada módulo principal y el superproyecto general, todo en una estructura consistente de tres partes: la primera parte sobre &quot;por qué es diferente&quot; (lo que hace que esta plataforma sea especial), la segunda parte sobre &quot;un ciclo de colaboración de siete pasos entre humanos y IA&quot; (cómo los humanos y la IA convierten una idea en un juego paso a paso), la tercera parte, un &quot;mapa de los módulos&quot; (qué partes comprende el proyecto y qué maneja cada uno). Esta estructura consistente permite que cualquier extraño, cualquiera que sea el módulo que abra primero, lo comprenda rápidamente con el mismo modelo mental. El lado de la línea de comandos agregó una sección dedicada a &quot;traiga su propia suscripción de agente&quot;: no necesita estar limitado a un solo proveedor, pero puede manejar toda la plataforma con su propia suscripción de agente de codificación o API existente, eligiendo cualquiera de las cuatro opciones principales. Cada submódulo también obtuvo su licencia de código abierto, para que otros puedan usarlo, modificarlo y redistribuirlo con confianza bajo términos claros. Para un proyecto que desea ser comprendido por una comunidad y ampliado por los desarrolladores, este conjunto de documentos y licencias es la primera tarjeta de presentación que le entrega al mundo.</p>
+<h2>La aplicación de escritorio deja de fallar al inicio</h2>
+<p>Una versión de código abierto debe permitir que las personas &quot;descarguen y ejecuten&quot;, y la aplicación de escritorio empaquetada en ese momento tropezó exactamente allí: se bloqueó al iniciarse, y el backend informó repetidamente que faltaba un módulo de tiempo de ejecución central. La causa principal fue que el módulo y sus dependencias quedaron fuera del paquete, por lo que el tiempo de ejecución sin conexión, naturalmente, no pudo encontrarlos. La solución de este día incluyó todo el cierre de dependencia de tiempo de ejecución necesario en el paquete de escritorio, lo que garantiza que todo esté presente incluso sin conexión y se inicie correctamente. Al mismo tiempo se resolvieron dos problemas relacionados: el paquete de escritorio pasó a agrupar un solo juego, evitando la antigua colisión de identificador de recursos cuando coexisten varios juegos; y ahora tolera el problema ocasional de &quot;el archivo simplemente desapareció&quot; al copiar muchos archivos durante la compilación: un parpadeo transitorio que anteriormente abortaba toda la compilación bajo una estricta verificación de errores. Después de la solución, la aplicación de escritorio se inicia y ingresa de manera confiable en lugar de morir al inicio. El significado llega justo al meollo del lanzamiento de código abierto: por muy bueno que sea un proyecto, si la gente ni siquiera puede abrirlo después de descargarlo, nada más importa.</p>
+<h2>La galería de ejemplos: explore la lista y ejecute una demostración en paralelo</h2>
+<p>Junto con el código abierto, la galería de ejemplos del sitio web se reconstruyó en un diseño dividido de &quot;navegar y ejecutar&quot;. El lado izquierdo enumera todos los ejemplos con filtrado de categorías; el lado derecho es un marco de vista previa en vivo que ejecuta cualquier ejemplo en el que haga clic: sin descargar, sin salir de la página, haga clic y vea. También admite enlaces profundos: comparta la URL de un ejemplo y la otra persona accederá directamente a esa, lo que resulta útil para compartir y hacer referencia. También se creó un generador de información de complementos, que captura automáticamente los metadatos de cada complemento en datos estructurados, de modo que las tarjetas de galería ya no son imágenes estáticas y sin vida, sino que abren un cuadro de diálogo detallado al hacer clic. Para un proyecto de código abierto que desea que las personas se formen rápidamente una impresión de &quot;lo que esto realmente puede hacer&quot;, una galería de ejemplos de hacer clic y reproducir supera a mil palabras de descripción: ver una demostración con sus propios ojos es mucho más convincente que leer un párrafo.</p>
+<h2>Motor: inicio de primer activo + cambio de sombra + corrección de animación modificada</h2>
+<p>El motor también tuvo un gran día, avanzando varias cosas. Uno: aterrizó una startup &quot;primero el activo&quot;, con los seis juegos de muestra migrados: un juego ya no depende de abrir el código para construir la escena pieza por pieza, sino que se crea una instancia directamente desde un activo estructurado (descripción de la escena), más limpio y más amigable para que un editor visual lo lea y escriba. Dos: el control de sombras se simplificó: donde antes una luz direccional necesitaba un componente de &quot;sombra&quot; separado para proyectar sombras, ahora está plegado en un interruptor que lleva la luz direccional, que se enciende cuando es necesario proyectar sombras; Un concepto menos, más intuitivo de utilizar. Tres: se solucionó un error de orientación real en la animación con máscara: los datos de rotación se habían tratado erróneamente como otra representación, por lo que los modelos animados importados de herramientas profesionales estaban orientados incorrectamente; arreglado, la orientación finalmente es correcta. Los Tilemaps también obtuvieron renderizado de &quot;capa de objeto&quot; (encima de la cuadrícula de celdas, cada celda puede colocar un objeto independiente con orientación, giro y pivote), lo que hace que los niveles 2D sean más flexibles; y se endureció el registro de activos y la recuperación de la salud del prestatario después de accidentes. Algunas mejoras apuntan a una arquitectura más limpia, algunas corrigen errores, otras amplían la capacidad, pero todas hacen que la base del motor sea más sólida, justo en el momento del código abierto, cuando está a punto de ser examinado y utilizado por más personas.</p>
+<h2>que significa este dia</h2>
+<p>El peso de este día reside en la palabra &quot;hacia afuera&quot;. Ante él, todo el progreso de la plataforma miraba hacia adentro, hacia sí misma; a partir de ese día, se presentó completamente ante el público por primera vez: cualquiera puede descargarlo, leerlo, ejecutarlo, modificarlo y contribuir. El código abierto es el punto de inflexión en el que un proyecto pasa de ser &quot;el trabajo de unas pocas personas&quot; a &quot;una cosa pública&quot;, colocándolo en un contexto más amplio examinado conjuntamente y al que se unen desarrolladores de todo el mundo. Vale la pena señalar: casi todo el esfuerzo de código abierto del día fue &quot;considerado con los demás&quot;: escribir documentos claros para que los extraños los entiendan; implementar licencias para que otros lo utilicen con confianza; solucionar el fallo del escritorio y garantizar la ejecución con un solo clic para que los visitantes nuevos no sean rechazados; construir la galería de ejemplo para que la gente vea sus posibilidades de un vistazo. Un proyecto dispuesto a dedicar un día entero sólo para hacerse &quot;más amigable con los demás&quot; demuestra, solo con eso, que está listo para dar un paso hacia un mundo más amplio. A partir de hoy, esta plataforma de creación de juegos de IA ya no pertenece sólo a quienes la construyen.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

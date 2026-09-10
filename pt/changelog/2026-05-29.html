@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-29 · O motor ganha física e seleção + uma base de UI reconstruída — ForgeaX</title>
+<meta name="description" content="O mecanismo adiciona física 2D / 3D, clique para escolher e anti-aliasing, seleção de frustum para cenas grandes, uma base de interface de usuário moderna reconstruída com uma rede de segurança contra erros de renderização, herança de material, alternância de jogo ativo e uma bancada de trabalho de carretel." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-29 · O motor ganha física e seleção + uma base de UI reconstruída — ForgeaX" />
+<meta property="og:description" content="O mecanismo adiciona física 2D / 3D, clique para escolher e anti-aliasing, seleção de frustum para cenas grandes, uma base de interface de usuário moderna reconstruída com uma rede de segurança contra erros de renderização, herança de material, alternância de jogo ativo e uma bancada de trabalho de carretel." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-05-29.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-29.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-29.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/" data-nav="/">Início</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-29.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-29.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-29.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-29.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-29.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-29.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-29.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-05-29.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Atualização</span><span>2026-05-29</span></div>
+    <h1>O motor ganha física e seleção + uma base de UI reconstruída</h1>
+    <p class="standfirst">Hoje, o motor eliminou várias partes difíceis de fazer um jogo de uma só vez: física 2D/3D, seleção de tela, anti-aliasing, além de seleção de tronco para cenas grandes e mais suaves. A interface mudou para uma base de componentes moderna com uma rede de segurança contra erros de renderização; os materiais ganharam leitura de herança, escolher um jogo o ativa e uma bancada de carretel se juntou à família de ferramentas.</p>
+    <div class="prose"><h2>De “pode renderizar” a “pode reproduzir”</h2>
+<p>As capacidades acumuladas do motor permaneceram principalmente na &quot;renderização correta e bonita&quot;; mas um jogo precisa de mais do que aparência – tem que ser jogável: os objetos devem cair e colidir, o jogador deve ser capaz de clicar e operar. O desempenho do motor neste dia estava eliminando de uma vez as partes difíceis que &quot;jogáveis&quot; exigem: física, seleção, anti-aliasing, seleção de desempenho. Enquanto isso, o lado da interface fez uma atualização básica, movendo todo o seu conjunto de componentes de interação para uma implementação mais moderna e estável. Tornar “o que você constrói jogável” de um lado e “a ferramenta com a qual você constrói mais estável” do outro – este é um dia em que o mecanismo e a interface cruzaram um limite de qualidade juntos.</p>
+<h2>Um grande impulso no motor: física + clique para escolher + anti-aliasing</h2>
+<p>O motor eliminou três partes inevitáveis ​​da criação de um jogo de uma só vez neste dia. A manchete é física: uma capacidade de suporte a 2D e 3D foi integrada, de modo que os objetos agora respondem à gravidade, colidem e empilham – jogos de plataforma, quebra de tijolos, empilhamento de caixas e rolamento de bolas finalmente têm suporte subjacente real em vez de pretensão falsificada à mão. A seguir vem a seleção de tela: clique em um objeto na tela e selecione-o com precisão - a base compartilhada para &quot;clique para selecionar um objeto&quot; no editor e &quot;jogabilidade baseada em cliques&quot; no jogo. O terceiro é o anti-aliasing: as bordas dos objetos não mostram mais aquela irregularidade da escada, então a imagem parece limpa e profissional. Física para “pode se mover”, escolha para “pode interagir”, anti-aliasing para “parece apresentável” – com todos os três, o mecanismo realmente passa de “pode renderizar” para “pode fazer um jogo jogável”.</p>
+<h2>Desempenho: seleção de tronco para cenas grandes mais suaves</h2>
+<p>O mecanismo também adicionou uma otimização de desempenho importante neste dia: seleção de tronco. A idéia é simples: não se preocupe em desenhar objetos que a câmera não consegue ver no momento (aqueles que estão fora da visualização). Antes disso, todos os objetos em uma cena podiam ser processados, estivessem ou não na tela, desperdiçando muito processamento à medida que as cenas cresciam; agora o mecanismo primeiro avalia se cada objeto está dentro do alcance visível da câmera e ignora completamente os invisíveis. Quanto maior a cena e quanto mais objetos, mais isso economiza, de modo que as taxas de quadros se mantêm muito melhor em cenas complexas. Ele complementa o desenho instanciado anteriormente (desenhar um grande lote de objetos idênticos de uma só vez): um corta &quot;desenhando duplicatas&quot;, o outro corta &quot;desenhando o invisível&quot;. Juntos, o motor está claramente melhor equipado para transportar cenas grandes e densas.</p>
+<h2>Uma base de UI reconstruída: uma biblioteca de componentes moderna + rede de segurança contra erros de renderização</h2>
+<p>A interface fez uma atualização de nível “substituir a base” neste dia: movendo todo um conjunto de componentes de interação – caixas de diálogo, menus suspensos, menus, controles de formulário – para uma base de componentes moderna, madura e confiável. Os benefícios são muitos – sensação de interação mais suave, visuais mais unificados, melhor acessibilidade; lugares que costumavam se contentar com os pop-ups nativos do navegador (aquelas caixas de prompt do sistema feias e não personalizáveis) foram atualizados para caixas de diálogo com estilo consistente. Mais importante ainda, uma “rede de segurança contra erros de renderização” foi adicionada abaixo: se um componente de UI for lançado durante a renderização, o sistema o isola em vez de permitir que um erro local congele toda a tela de inicialização em um espaço em branco. Isso parece &quot;apenas trocar uma biblioteca de UI&quot;, mas na verdade eleva a interface de &quot;utilizável, mas frágil&quot; para &quot;robusta e durável&quot; - para uma ferramenta que você olha por horas todos os dias, se a interface é estável decide diretamente se usá-la parece seguro.</p>
+<h2>Leitura de herança material + escolha de um jogo ativa-o</h2>
+<p>Mais duas melhorias de suavização diária chegaram neste dia. Um: a herança do material tornou-se &quot;lida&quot; - uma propriedade que um material filho não define explicitamente passa automaticamente para o valor do pai - portanto, colocar configurações compartilhadas no pai e substituir apenas as diferenças nos filhos torna um lote de materiais unificados, mas ligeiramente variáveis, gerenciáveis ​​​​e menos propensos a erros. Dois, e um ponto crítico: escolher ou criar um jogo agora o &quot;ativa&quot; genuinamente como o jogo atual, com o diretório de trabalho do agente em segundo plano mudando para corresponder. Antes disso, com vários jogos coexistindo, era fácil ter “você está olhando para este enquanto o agente edita aquele” – uma vez que o que você escolher é o alvo, essa incompatibilidade é eliminada. Um torna os materiais fáceis de manter, o outro mantém as operações sem confusão - ambos detalhes importantes para resolver a complexa questão da &quot;coexistência de múltiplos conteúdos&quot;.</p>
+<h2>Uma nova bancada de carretel + depuração do mecanismo e uma atualização do modelo padrão</h2>
+<p>A família de ferramentas ganhou mais um membro neste dia: uma bancada de carretel para organização de cutscenes e conteúdo cinematográfico, mais uma ferramenta útil para fazer jogos com narrativa e encenação. O lado do mecanismo adicionou um guia técnico de depuração dedicado, destilando as rotinas para diagnosticar problemas de renderização para que as pessoas e a IA possam localizar os problemas seguindo-os. O back-end atualizou o modelo padrão para um nível mais forte, para que a mesma conversa obtenha respostas mais inteligentes. Individualmente pequenos, eles apontam para uma direção: além dos grandes blocos &quot;jogáveis&quot; e &quot;mais estáveis&quot;, avançando um pouco a cobertura das ferramentas, a capacidade de depuração do motor e a capacidade subjacente da IA. A maturidade de uma plataforma depende tanto de alguns grandes avanços quanto desse tipo de pequeno reforço contínuo.</p>
+<h2>O que este dia significa</h2>
+<p>Este é o dia em que o mecanismo e a interface &quot;amadureceram&quot;. O motor adiciona física, seleção, anti-aliasing e seleção - estes não são efeitos decorativos, mas a linha de passagem para &quot;se uma coisa pode ser chamada de jogo&quot;: move-se, é interativo, parece apresentável, executa uma grande cena. A interface passando para uma base moderna com uma rede de segurança contra erros eleva o shell que você usa por horas diariamente de &quot;utilizável&quot; para &quot;robusto&quot;. Juntos, eles marcam o início da plataforma para criar &quot;jogos genuinamente jogáveis&quot; - tanto a força do motor que faz um jogo durar quanto a estabilidade da interface que faz as pessoas quererem usá-lo diariamente. A partir de hoje, “fazer um jogo jogável” não é mais uma visão, mas um conjunto de ferramentas realmente disponível.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

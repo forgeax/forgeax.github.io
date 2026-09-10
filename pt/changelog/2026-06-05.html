@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-05 · Modo editor, completo — ForgeaX</title>
+<meta name="description" content="O modo editor chega ao fim: um painel encaixável que arrasta, agrupa, aparece e reinicia; um conjunto completo de dispositivos para mover/girar/escalar com atalhos; um inspetor que acompanha o arrasto ao vivo; painéis de seleção de quadros e histórico; além de desenho de depuração de topologia de malha do mecanismo e polimento de ferramenta de conteúdo." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-05 · Modo editor, completo — ForgeaX" />
+<meta property="og:description" content="O modo editor chega ao fim: um painel encaixável que arrasta, agrupa, aparece e reinicia; um conjunto completo de dispositivos para mover/girar/escalar com atalhos; um inspetor que acompanha o arrasto ao vivo; painéis de seleção de quadros e histórico; além de desenho de depuração de topologia de malha do mecanismo e polimento de ferramenta de conteúdo." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-05.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-05.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-05.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/" data-nav="/">Início</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-05.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-05.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-05.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-05.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-05.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-05.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-05.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-05.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Atualização</span><span>2026-06-05</span></div>
+    <h1>Modo editor, completo</h1>
+    <p class="standfirst">O editor que havia acabado de ser executado no dia anterior foi concluído neste dia, com todos os recursos implementáveis ​​​​preenchidos: painéis arrastam, agrupam, aparecem em janelas separadas e reiniciam com um clique; os dispositivos de mover/girar/escalar estão todos no lugar com atalhos; o inspetor de propriedades é atualizado enquanto você arrasta; fly-to-seleção com uma tecla e painéis de histórico e recursos estão prontos. O mecanismo também tornou o tipo de topologia da malha diretamente visível na janela de visualização, e as ferramentas de conteúdo obtiveram um lote de unificação da interface.</p>
+    <div class="prose"><h2>De &quot;utilizável&quot; a &quot;parece um editor de verdade&quot;</h2>
+<p>No dia anterior, o editor poderia selecionar objetos, arrastar gizmos e salvar pela primeira vez, dando o primeiro passo “prático”; mas naquele ponto era mais um protótipo utilizável do que uma ferramenta madura na qual você ficaria feliz em passar o dia todo trabalhando. O trabalho deste dia transforma &quot;utilizável&quot; em &quot;agradável&quot;: o que faz um editor profissional parecer natural são inúmeras coisas aparentemente triviais, mas indispensáveis ​​- se os painéis estão organizados de acordo com seus hábitos, se as ferramentas de transformação estão completas, se uma mudança de valor mostra feedback de uma vez, com que rapidez você pode encontrar um objeto, se um erro pode ser desfeito. Preencher tudo isso de uma vez equipa o editor com “todos os fundamentos que uma ferramenta profissional deve ter”. Isso não é acumular recursos, mas polir uma ferramenta a ponto de “sem constrangimento no primeiro uso” – e é exatamente essa falta de constrangimento que decide se um criador a usará por um longo período.</p>
+<h2>Painéis encaixáveis: organize a interface do seu jeito, redefina com um clique</h2>
+<p>Este dia conectou um sistema de painel encaixável ao editor, com um gerenciador de painel unificado para administrá-lo. O que ele pode fazer: cada painel - árvore de cena, inspetor de propriedades, material, linha do tempo, gráfico de material e assim por diante - pode ser arrastado com o mouse para qualquer região para reorganizar, pode empilhar vários painéis em um grupo de guias (arraste juntos para agrupar, clique em uma guia para alternar), pode exibir um painel em sua própria janela flutuante para visualizá-lo sozinho e, se você bagunçar o layout, poderá redefinir o padrão com um clique. Por que isso importa? Porque pessoas diferentes e tarefas diferentes precisam de layouts totalmente diferentes: ajustando materiais, você deseja que o painel de materiais seja ampliado, animando, você deseja que a linha do tempo preencha a parte inferior. Um layout fixo codificado só pode servir a um tipo de pessoa; painéis encaixáveis ​​devolvem ao usuário a decisão de &quot;como será a interface&quot;. No mesmo dia foram lançados três novos painéis – material, linha do tempo e gráfico de material – unidos ao inspetor existente e à árvore de cena neste sistema, e o “esqueleto” do editor tomou forma a partir daqui.</p>
+<h2>O conjunto completo de ferramentas de transformação: mover, girar, dimensionar</h2>
+<p>No dia anterior, o único dispositivo que você podia arrastar era “mover”; neste dia, &quot;girar&quot; e &quot;escalar&quot; foram preenchidos, com um conjunto de atalhos que correspondem às convenções padrão da indústria para alternar rapidamente entre os três modos - para que qualquer pessoa que tenha usado qualquer ferramenta 3D profissional saiba como usá-la quase sem aprender. As três transformações são as ações mais básicas para colocar qualquer coisa: mover uma caixa até a parede (mover), colocá-la em um ângulo (girar), dobrar seu tamanho como obstáculo (escala) – nada dispensável. O mecanismo também foi feito para renderizar corretamente a rotação de um objeto, garantindo que a pose que você vê na janela de visualização corresponda exatamente aos dados. Além disso, foi adicionado &quot;voar para seleção com uma tecla&quot; - pressione uma tecla ou clique duas vezes e a câmera voa suavemente para enquadrar a coisa selecionada no centro, para que em uma cena grande você não tenha mais dificuldade para encontrar o ponto de vista manualmente. Completar este conjunto de ferramentas mais básico e torná-lo intuitivo é a linha divisória onde um editor passa de uma “demonstração” a uma “ferramenta de produção”.</p>
+<h2>Veja imediatamente: o inspetor é atualizado ao vivo enquanto você arrasta</h2>
+<p>Este dia também conectou o ciclo de feedback mais importante na edição: o inspetor de propriedades é atualizado ao vivo com o arrastamento na janela de visualização. Ou seja, à medida que você arrasta um objeto com um gizmo, os números de posição, rotação e escala no inspetor direito saltam em sincronia, para que você possa arrastar enquanto vê os valores atuais exatos; inversamente, esse loop também garante que quando você digita um valor preciso no painel, o objeto da janela de visualização muda com ele imediatamente. Essa consistência &quot;bidirecional e instantânea&quot; é a alma de todo editor profissional - ela elimina a incerteza de &quot;quanto o arrasto mudou&quot;, permitindo que o ajuste grosseiro (arrastando dispositivos) e o ajuste fino (digitando valores) se conectem perfeitamente. O mesmo dia trouxe um painel de histórico e um painel de recursos: o painel de histórico permite ver e desfazer cada operação executada, e o painel de recursos apresenta as operações atualmente disponíveis em um só lugar. Com feedback ao vivo e um histórico reversível, a edição finalmente se torna “confiante e ousada” – erros podem ser desfeitos, mudanças podem ser vistas.</p>
+<h2>Mecanismo: veja rapidamente o tipo de topologia de uma malha</h2>
+<p>Uma adição de mecanismo muito prática neste dia: o &quot;tipo de topologia&quot; de uma malha foi transformado em uma visualização de depuração que pode ser desenhada diretamente na janela de visualização, com todas as cinco topologias de geometria básica (pontos, segmentos de linha, polilinhas contínuas, faces triangulares, tiras triangulares contínuas) visivelmente anotadas. O que isto significa? Um modelo 3D é, no fundo, uma pilha de pontos e as conexões entre eles, e a “topologia” descreve “como esses pontos estão conectados” – pontos isolados, segmentos de linha individuais ou faces triangulares montadas. Quando um modelo é exibido incorretamente, o problema geralmente é um tipo de topologia errado, mas você costumava apenas adivinhar o código ou os dados. Agora você pode desenhá-lo diretamente na viewport e visualizá-lo, tornando muito mais intuitivo localizar geometria quebrada. Esse recurso serve principalmente para depuração e inspeção de ativos, e está na mesma linha do editor - o editor permite posicionar e ajustar, enquanto essa visualização de depuração permite ver o que realmente está acontecendo quando algo dá errado. Tornar visível o &quot;estado interno invisível&quot; é uma marca registrada do amadurecimento de uma ferramenta.</p>
+<h2>Ferramentas de jogos e conteúdo: alinhando-se à linha do editor</h2>
+<p>Quando o editor chegou à conclusão, o ambiente convergiu na mesma direção. No lado dos jogos, a &quot;experiência jogável&quot; do atirador de amostra foi escrita em um documento adequado, e outra amostra do atirador obteve &quot;propagação de arquivo de cena&quot; - pré-salvando sua cena como aquele arquivo de cena orientado por documento para que ele execute o mesmo mecanismo de cena em disco que o editor; os artefatos deixados pelos testes anteriores do editor também foram limpos para manter a cena inicial limpa. No lado das ferramentas de conteúdo, o fluxo de trabalho da barra lateral do ambiente de trabalho de habilidades foi simplificado e os estilos de cabeçalho da barra lateral entre os plug-ins foram unificados de uma só vez para que se parecessem com módulos diferentes de um produto; a ferramenta narrativa também continuou avançando, adicionando validação de nós principais e uma linha do tempo dos personagens. Individualmente pequenos, juntos garantem uma coisa: quando a linha principal do editor foi concluída, os exemplos de jogo e as ferramentas de criação em torno dele não estavam cada um seguindo seu próprio caminho, mas foram reunidos no mesmo mecanismo e na mesma linguagem visual.</p>
+<h2>O que este dia significa</h2>
+<p>Do projeto à conclusão, o editor levou apenas três dias: definir a direção, executá-lo, preenchê-lo. O período desenhado neste dia significa que o Studio tem formalmente um editor visual completo e livre de constrangimentos - não mais uma demonstração auxiliar ao lado da IA, mas uma segunda linha principal criativa em pé de igualdade com a conversação. O que vale a pena saborear é o ritmo desses três dias: não deixar uma pilha de peças incompletas para apressar o cronograma, mas preencher honestamente o básico de uma ferramenta profissional, um por um, até que “todos os recursos implementáveis ​​cheguem”. Se uma ferramenta é, em última análise, agradável de usar, nunca é decidido pela quantidade de grandes recursos deslumbrantes que ela possui, mas sim pelo fato de esses princípios nada glamorosos terem sido concluídos com seriedade. Com a linha do editor finalizada, o humano e a IA finalmente ficam diante da mesma tela: a IA pinta com código e conversa, você revisa com o mouse e o dispositivo, dois pincéis em uma imagem.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

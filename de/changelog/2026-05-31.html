@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-31 · Exportieren Sie ein Spiel als eigenständige Site + Skybox und Bloom — ForgeaX</title>
+<meta name="description" content="Exportieren Sie ein Spiel als eigenständige Website, die Sie überall hosten können, Szenen erhalten Skybox + Bloom + hierarchische Transformationen, die Vorschau funktioniert unter jedem Unterpfad und die interaktive Erzählpipeline läuft in einer vollständigen Schleife." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-31 · Exportieren Sie ein Spiel als eigenständige Site + Skybox und Bloom — ForgeaX" />
+<meta property="og:description" content="Exportieren Sie ein Spiel als eigenständige Website, die Sie überall hosten können, Szenen erhalten Skybox + Bloom + hierarchische Transformationen, die Vorschau funktioniert unter jedem Unterpfad und die interaktive Erzählpipeline läuft in einer vollständigen Schleife." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-31.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-31.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-31.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-31.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-31.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-31.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-31.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-31.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-31.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-31.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-31.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-05-31</span></div>
+    <h1>Exportieren Sie ein Spiel als eigenständige Site + Skybox und Bloom</h1>
+    <p class="standfirst">Dieser Tag machte einen großen Schritt „von der Erstellung zur Auslieferung“: Ein ganzes Spiel kann als eigenständige statische Website exportiert, auf einem beliebigen Host abgelegt und ausgeführt werden. Szenen haben eine echte Skybox erhalten und Bloom- und Composite-Objekte sitzen korrekt; Die Vorschau wird unter vorangestellten URLs korrekt geladen. und die interaktive Erzählpipeline durchläuft eine vollständige Schleife.</p>
+    <div class="prose"><h2>Von „gebaut“ bis „ausgeliefert“</h2>
+<p>Für eine Spieleplattform reicht es nicht aus, sie „bauen“ zu können – Sie müssen in der Lage sein, sie „zu versenden“, also zuzulassen, dass das, was Sie erstellt haben, das Tool verlässt und von anderen gespielt werden kann. Das Wichtigste an diesem Tag war das Ausfüllen des „Export“-Schritts: das Packen eines ganzen Spiels in eine Website, die jeder hosten und öffnen kann. In der Zwischenzeit fügte die Engine Skybox und Bloom für die Atmosphäre hinzu, korrigierte das Laden unter vorangestellten URLs für Flexibilität bei der Bereitstellung und ließ die Erzählpipeline in einer Schleife laufen. Auf der einen Seite „es besser aussehen lassen“, auf der anderen Seite „es wegnehmen, wenn es fertig ist“ – der Tag hat beide Enden der Schöpfung vorangetrieben: Ihnen Freude am Bauen zu bereiten und Ihre Ergebnisse irgendwohin zu bringen.</p>
+<h2>Packen Sie ein Spiel auf eine Website, die Sie mitnehmen können</h2>
+<p>Ein großer Schritt in Richtung Versand: Sie können jetzt ein ganzes Spiel als eigenständige statische Website exportieren – Sie müssen nicht das komplette Studio mitbringen; Legen Sie den exportierten Ordner auf einem beliebigen statischen Host ab und er wird selbstständig ausgeführt. Mit anderen Worten: Das Spiel, das Sie hier ins Leben rufen und erstellen, kann verpackt, an Freunde zum Spielen gesendet oder für alle online gestellt werden, anstatt in diesem Tool eingeschlossen zu sein. Ein erstes exportiertes Beispiel war im Lieferumfang enthalten – ein FPS-Spiel namens Sector Strike (mit eigener Szene und Readme) – um die gesamte Exportkette auszuführen und zu validieren. Ein wichtiger Fehler wurde ebenfalls behoben: Die Routenadressen des Backends wurden früher fälschlicherweise von den Routing-Regeln des Frontends „erfasst“, wodurch einige eingebettete Seiten nicht geöffnet werden konnten; Sobald das Problem behoben ist, leitet das exportierte Produkt Front-End- und Backend-Anfragen zuverlässig an die richtige Stelle weiter. Von „spielbar im Inneren des Werkzeugs“ bis „spielbar außerhalb des Werkzeugs“ ist der Weg zur Schifffahrt zum ersten Mal wirklich offen.</p>
+<h2>Skybox + Bloom: mehr Atmosphäre</h2>
+<p>Der Motor brachte heute zwei sofort sichtbare Merkmale mit sich. Eine davon ist eine sichtbare Skybox: Der Hintergrund einer Szene ist nicht länger eine flache Volltonfarbe, sondern eine echte Himmelsumgebung, die die gesamte Szene umhüllt, mit Himmel und Atmosphäre in der Ferne – das Raumgefühl ändert sich sofort. Die andere ist Blüte: ein sanftes Leuchten, das auf helle Bereiche überstrahlt – Leuchtreklamen, starke Lichtquellen und leuchtende Objekte erzeugen einen Heiligenschein – die häufigste Bewegung für Science-Fiction-, Traum- oder Nachtszenenatmosphäre. Bei beiden handelt es sich um „Atmosphäreneffekte“, die sich direkt auf das Erscheinungsbild und die Haptik auswirken. Darunter war etwas Wichtiges verkabelt: hierarchische Welttransformationen. Die Position, Drehung und Skalierung eines übergeordneten und untergeordneten Elements werden jetzt Schicht für Schicht korrekt an den Renderer weitergegeben, was bedeutet, dass die Teile eines zusammengesetzten Objekts – eine Figur mit einer Waffe, ein Fahrzeug mit angehängten Teilen – endlich korrekt im Ganzen platziert und bewegt werden, anstatt falsch ausgerichtet zu sein. Atmosphäre und richtige Hierarchie sorgen zusammen dafür, dass eine Szene sowohl gut aussieht als auch „richtig arrangiert“ ist.</p>
+<h2>Die Vorschau wird unter einem URL-Präfix korrekt geladen</h2>
+<p>An diesem Tag ging es auch um einen unrühmlichen, aber für die Bereitstellungsflexibilität entscheidenden Weg: Alle Ressourcen in der Vorschau korrekt unter einem „URL-Pfad-Präfix“ laden zu lassen. In vielen realen Bereitstellungen befindet sich eine App nicht im Stammverzeichnis der Website, sondern in einem Unterpfad (einem Unterverzeichnis einer Website) – und wenn Ressourcenadressen dieses Präfix nicht berücksichtigen, werden beim Laden keine Dateien gefunden und es treten Fehler auf. An diesem Tag wurde die gesamte Kette, von der Engine über die Verpackung bis zum Ressourcenindex, auf „Respektierung des Pfadpräfixes“ ausgerichtet und ein Regressionstest gesperrt, um zu verhindern, dass es erneut schief geht. Außerdem wurde der Startablauf korrigiert, um sicherzustellen, dass der gesamte Satz benötigter Laufzeitteile vor dem Start korrekt erstellt wird. Es befasst sich mit der Art von Umgebungsproblemen, die am meisten Kopfzerbrechen bereiten: „Stellen Sie es an einem anderen Ort bereit und laden Sie es ab.“ Damit dieser Pfad funktioniert, bedeutet, dass exportierte Spiele und eingebettete Vorschauen zuverlässig ihre Ressourcen finden und ausgeführt werden, unabhängig davon, unter welchem ​​URL-Pfad sie platziert sind – genau die zugrunde liegende Garantie, die das „In eine Website packen und mitnehmen“ wirklich nutzbar macht.</p>
+<h2>Die interaktive Erzählpipeline durchläuft eine vollständige Schleife</h2>
+<p>Die Story-Pipeline für narrative Spiele wurde an diesem Tag in eine End-to-End-Schleife integriert. Eine Handlung ist im Wesentlichen ein verzweigter „Story-Baum“, und das korrekte Zeichnen und Ausführen dieses Baums bedeutet, eine Reihe heikler Probleme zu lösen: wiederholte Nummerierungen eindeutig zu machen, Hinterkanten zu reparieren, lange Verbindungen herumzuleiten und beim Start automatisch einzuhängen, damit sie von Anfang an sichtbar sind – alles wurde an diesem Tag behoben, sodass die gesamte Story-Struktur korrekt dargestellt wird. Der für die Erzählung zuständige Agent ist mit dem gesamten Pipeline-Toolset verbunden und meldet den Fortschritt live, während die Pipeline ausgeführt wird. Das Wichtigste: Wenn die gesamte Pipeline beendet ist, weckt das System diesen Agenten automatisch wieder auf, um eine abschließende Zusammenfassung zu erstellen, anstatt auf halbem Weg anzuhalten und ein offenes Ende übrig zu lassen. Dadurch wird der Aufbau einer verzweigten, temporeichen Handlung zu einem reibungslosen, sichtbaren, sich selbst schließenden Fluss von Anfang bis Ende – die Erzähllinie bewegt sich von „hat Werkzeuge“ zu wirklich „kann den ganzen Weg einmal durchgehen“.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Die wichtigste Veränderung an diesem Tag ist, dass die Plattform zum ersten Mal komplett „exit“ ist. Früher war ein Spiel, so gut es auch gemacht war, immer noch im Werkzeug gefangen; und „Als Website exportieren“ plus „Korrektes Laden unter jedem Pfad“ zusammen sorgen dafür, dass Ihre Arbeit hier wirklich ankommt und andere zum ersten Mal erreicht. Mit Skybox und Bloom, die es schöner aussehen lassen, und der Erzählschleife, die es vollständiger macht, füllte dieser Tag das letzte Glied der „Erschaffen – Gestalt annehmen – Versenden“-Kette aus. Der Wert eines Schöpfungswerkzeugs hängt letztendlich davon ab, ob „das, was Sie herstellen, von der Welt gesehen werden kann“. Ab heute ist das Spiel, das Sie hier erstellen, nicht mehr nur eine lokale Demo, sondern ein echtes Werk, das Sie verpacken, hosten und teilen können, damit jeder es spielen kann.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

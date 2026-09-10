@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-28 · Un comando, ahora también en Windows — ForgeaX</title>
+<meta name="description" content="Los scripts de instalación y lanzamiento se trasladan al por mayor de bash a Bun TypeScript multiplataforma, por lo que los mismos comandos se ejecutan en macOS, Linux y Windows sin Git-Bash; además de correcciones específicas de Windows, sesiones centradas en el juego, importación glTF/GLB más estable y un núcleo CLI más rápido y auditable." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-28 · Un comando, ahora también en Windows — ForgeaX" />
+<meta property="og:description" content="Los scripts de instalación y lanzamiento se trasladan al por mayor de bash a Bun TypeScript multiplataforma, por lo que los mismos comandos se ejecutan en macOS, Linux y Windows sin Git-Bash; además de correcciones específicas de Windows, sesiones centradas en el juego, importación glTF/GLB más estable y un núcleo CLI más rápido y auditable." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-28.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-28.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-28.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-28.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-28.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-28.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-28.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-28.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-28.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-28</span></div>
+    <h1>Un comando, ahora también en Windows</h1>
+    <p class="standfirst">Este día se trasladaron los scripts de instalación y lanzamiento al por mayor de bash a Bun TypeScript multiplataforma: los mismos comandos se ejecutan de manera idéntica en macOS, Linux y Windows, y Windows ya no necesita Git-Bash. Además, arregló una serie de bloqueadores específicos de Windows, cambió las &quot;sesiones&quot; de vinculadas globalmente a con alcance por juego, hizo la importación de activos más estable y hizo que la CLI subyacente fuera más rápida, más controlable y más auditable.</p>
+    <div class="prose"><h2>La mayor barrera: no se instalaría si cambiaras de plataforma</h2>
+<p>Durante mucho tiempo, instalarlo y ejecutarlo dependió de un montón de scripts bash. Está bien para macOS y Linux, pero es un muro duro para los usuarios de Windows: bash no es nativo de Windows, por lo que tenías que instalar una capa de compatibilidad como Git-Bash o sufrir una variedad de errores crípticos. Para una herramienta que quiere que &quot;cualquiera convierta ideas en juegos&quot;, &quot;no se instala&quot; es el primer desvío más fatal. Este día solucionó exactamente eso: reescribir todos los scripts de instalación y lanzamiento al por mayor, desde bash hasta TypeScript multiplataforma ejecutado por Bun. Bun se comporta de manera idéntica en los tres sistemas principales, por lo que los mismos comandos y la misma lógica se ejecutan en Windows exactamente como en Mac, sin necesidad de capa de compatibilidad.</p>
+<h2>Los comandos se agrupan en un conjunto memorable.</h2>
+<p>Junto con la mudanza, se limpiaron los puntos de entrada. Los scripts dispersos por plataforma del pasado (<code>.sh</code>, <code>.bat</code>, <code>.ps1</code>, etc.) se eliminaron juntos y se unificaron en un conjunto simple y memorable: <code>bun run setup</code> para instalar el entorno una vez, <code>bun run start</code> para iniciar toda la pila, <code>bun run stop</code> para detenerlo, <code>bun run app</code> para la aplicación de escritorio. Cualquiera que sea el sistema en el que esté, estos pocos son todo lo que necesita recordar. Para los nuevos usuarios significa &quot;copiar cuatro líneas del README y se ejecuta&quot;, sin más &quot;Estoy en Windows, ¿por cuál cambio esto?&quot;; para los usuarios existentes significa no más carga de mantenimiento de &quot;dos copias de cada script (una sh, una ps1) para editar al mismo tiempo y es fácil pasar por alto&quot;. Reunir varios scripts equivalentes en una fuente de verdad multiplataforma es el corazón del trabajo diario: una cosa menos que mantener sincronizada es un lugar menos donde fallar.</p>
+<h2>Limpiar una serie de bloqueadores específicos de Windows</h2>
+<p>Para que Windows sea realmente fluido, los scripts multiplataforma por sí solos no son suficientes: también hay que corregir, una por una, las rarezas que sólo aparecen en Windows. Un caso típico manejado hoy: el Python &quot;falso&quot; del sistema: Windows incluye un marcador de posición python3 que en realidad no está instalado y solo aparece en la tienda de aplicaciones cuando se invoca, y un script que ingenuamente asume que funciona se detendrá misteriosamente durante la instalación. Este día enseñó el flujo de instalación a reconocer y omitir ese marcador de posición y encontrar un Python que realmente funcione. Detalles como este (inexistentes en otros sistemas y que solo lo hacen tropezar en Windows) son la parte más exigente pero más necesaria del soporte multiplataforma: no agregan funciones, pero cada una de ellas arreglada significa que un grupo de usuarios de Windows se detiene una vez menos y puede continuar.</p>
+<h2>Las sesiones cambian de un ámbito global a un ámbito por juego</h2>
+<p>Este día también tocó una estructura más interna: a quién pertenece una sesión (una sesión es un tramo de su conversación con Forge). Las sesiones solían ser globales y separadas de cualquier juego específico; este día los anidó debajo de cada juego, con un alcance por juego. Significado: su conversación con Forge para el proyecto &quot;disparador espacial&quot; y la del proyecto &quot;simulación de granja&quot; ahora son propias y nunca se mezclan entre sí. Es más intuitivo (una conversación pertenece a un juego específico en primer lugar) y sienta las bases para una gestión de proyectos más limpia en el futuro: cambia de juego y aparece su historial y contexto de chat, en lugar de enfrentarse a una olla global de sesiones mixtas. Este tipo de orden de &quot;archivar los datos donde realmente pertenecen&quot; no es atractivo en el día a día, pero mantiene limpio el modelo mental de todo el sistema.</p>
+<h2>Importación de activos más estable + una CLI más rápida y controlable</h2>
+<p>El día también se implementaron varias correcciones que hacen que el uso diario sea más estable. En cuanto a los activos, solucionó un problema de indexación al importar modelos más grandes (las mallas grandes necesitan números enteros más anchos para indexar sus vértices, lo que solía fallar aquí) e hizo que los metadatos escritos en la importación de modelos siguieran un formato canónico, por lo que importar un modelo más grande y complejo ya no falla fácilmente. El núcleo CLI que impulsa la IA también recibió varias mejoras: recortar la redundancia para que el primer turno comience a funcionar más rápido en algunos casos; solucionar un problema al introducir el &quot;código de conducta&quot; de un agente; y agregar un enmascaramiento opcional de las propias herramientas externas de un usuario más un seguimiento de auditoría de las llamadas de un agente a las herramientas del host; este último significa &quot;qué herramientas usó realmente la IA esta vez&quot; y se puede rastrear en el registro. En conjunto, esto empuja la base hacia otra capa hacia &quot;más rápido, más controlable, más confiable&quot;.</p>
+<h2>que significa este dia</h2>
+<p>La protagonista de este día es &quot;la barrera&quot;. Por poderosa que sea una herramienta, si un grupo grande queda excluido porque su sistema es incorrecto y no se instala, la mitad de su valor desaparece antes de que alguien la use. Hacer que la instalación y el lanzamiento sean totalmente multiplataforma, para que los usuarios de Windows también puedan ejecutarlo con un solo comando, abre esa puerta a todos: una de las condiciones previas para que &quot;cualquiera pueda crear juegos&quot; sea cierta. Y el mismo día, archivar sesiones bajo su juego, arreglar la importación de activos para que fuera estable y pulir el núcleo CLI para que fuera más rápido y auditable, arregló la sala mientras se abría la puerta. Bajar la barrera de entrada y luego aumentar la calidad del interior: este día hizo ambas cosas.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

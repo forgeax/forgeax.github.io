@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-15 · Die Chat-Benutzeroberfläche wird erwachsen: anpassbares Layout, verschachtelte Tool-Aufrufe, Subagentenkarten — ForgeaX</title>
+<meta name="description" content="Die Chat-Benutzeroberfläche wird ausgereift (veränderbares Layout, verschachtelte Tool-Aufrufe, Subagentenkarten, einheitliche Live-/Wiedergabe), während das Backend eine Plugin-Laufzeit-Grundlage legt – Event-Bus, Berechtigungen, Sandbox-Datei-API – und die Engine ihr Komponentenvokabular erweitert." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-15 · Die Chat-Benutzeroberfläche wird erwachsen: anpassbares Layout, verschachtelte Tool-Aufrufe, Subagentenkarten — ForgeaX" />
+<meta property="og:description" content="Die Chat-Benutzeroberfläche wird ausgereift (veränderbares Layout, verschachtelte Tool-Aufrufe, Subagentenkarten, einheitliche Live-/Wiedergabe), während das Backend eine Plugin-Laufzeit-Grundlage legt – Event-Bus, Berechtigungen, Sandbox-Datei-API – und die Engine ihr Komponentenvokabular erweitert." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-15.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-15.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-15.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-15.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-15.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-15.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-15.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-15.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-15.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-15.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-05-15</span></div>
+    <h1>Die Chat-Benutzeroberfläche wird erwachsen: anpassbares Layout, verschachtelte Tool-Aufrufe, Subagentenkarten</h1>
+    <p class="standfirst">An diesem Tag gab es zwei Durchgänge: Die Benutzeroberfläche ist gewachsen – anpassbares Layout, Tool-Aufrufe, die unter ihren Aufgaben verschachtelt sind, Unteragenten mit ihren eigenen Karten, Live und Wiedergabe in einer Pipeline vereint; und das Backend hat in aller Stille ein großes Fundament geschaffen – eine Plugin-Laufzeit (Ereignisbus, Berechtigungs-Engine, Sandbox-Datei-API, Plugin-Manifeste), um den Weg für „jede Fähigkeit, die angeschlossen werden kann“ zu ebnen. Die Engine erweiterte außerdem ihr Komponentenvokabular und führte Szenen-Assets ein.</p>
+    <div class="prose"><h2>Eines sichtbar, eines ruhig: Die Benutzeroberfläche wächst, während das Backend ein Fundament gießt</h2>
+<p>Die Arbeit des Tages teilte sich in eine sichtbare und eine unsichtbare Hälfte. Die sichtbare Hälfte: Die Chat-Oberfläche ist einen Schritt weiter gereift – das ist es, was Benutzer jeden Tag erleben, wo jeder Fortschritt sofort sichtbar ist. Die unsichtbare Hälfte: Das Backend hat in aller Stille ein weitreichendes Fundament gegossen, eine Laufzeitumgebung, die es ermöglicht, „Fähigkeiten von Drittanbietern sicher als Plugin zu installieren“. Letzteres lieferte fast nichts, was ein Benutzer an diesem Tag wahrnehmen konnte, und entscheidet dennoch darüber, ob die Plattform von „einer App mit fest programmierten Funktionen“ zu „einer Plattform werden kann, die endlos erweitert werden kann und sogar von Benutzern aufgebaut werden kann“. Am selben Tag betrachtet, verkörpern die beiden ein Gleichgewicht: das jeweilige Erlebnis weiter zu verfeinern und gleichzeitig auf langfristige Erweiterbarkeit zu setzen.</p>
+<h2>Chat reift: veränderbares Layout + Tool-Aufrufe, die unter ihrer To-Do-Liste verschachtelt sind</h2>
+<p>Der Fortschritt der Benutzeroberfläche konzentrierte sich an diesem Tag auf die „klarere Organisation von Informationen“. Erstens: Die Größe der Seitenleiste, des Chat-Bereichs und des unteren Bereichs kann geändert werden, sodass Sie den Platz auf dem Bildschirm Ihren Aktivitäten zuweisen können – schränken Sie den Chat ein, wenn Sie Code lesen, und heben Sie den unteren Bereich an, wenn Sie die Ausgabe ansehen. Zweitens und noch wichtiger: Werkzeugaufrufe werden jetzt unter dem Aufgabenelement verschachtelt, zu dem sie gehören, anstatt sich in einer langen, flachen Liste zu verteilen. Wenn ein Agent eine mehrstufige Aufgabe ausführt, können Sie deutlich erkennen, „welche Tools er aufgerufen hat, um diesen Schritt abzuschließen“, wobei die Hierarchie auf einen Blick erkennbar ist. Was lange Gespräche und mehrstufige Aufgaben am meisten fürchten, ist, dass Informationen zu einer Masse verschwimmen, die den Fortschritt verbirgt; Diese beiden Änderungen machen es real, „klar zu sehen, wer was tut und wie weit fortgeschritten ist“.</p>
+<h2>Unteragenten erhalten ihre eigenen Karten</h2>
+<p>Mit zunehmender Verbreitung der Zusammenarbeit mehrerer Agenten wurde die „Delegation eines Hauptagenten an mehrere Unteragenten“ zu einem alltäglichen Szenario. An diesem Tag gab es für die Aktivitäten der Unteragenten eine eigene Kartenpräsentation: Unteraufgaben mischen sich nicht mehr in den Textstrom des Hauptgesprächs, sondern erhalten jeweils eine faltbare Karte mit ihrem eigenen Kontext. Dadurch ist sofort erkennbar, wer für wen arbeitet und wie jeder vorankommt. Für eine Plattform, die „eine Person, die ein Team von KIs leitet“, als Kernszenario behandelt, ist diese Art und Weise, „der Arbeit jedes Mitglieds seinen eigenen Platz zu geben“, von entscheidender Bedeutung – andernfalls wird der Bildschirm mit zunehmendem Teamwachstum zu einem unleserlichen Eintopf. Die Subagentenkarte ist der erste Schritt, um aus dem abstrakten „Multiagenten“ ein direkt lesbares Bild zu machen.</p>
+<h2>Live und Wiedergabe vereint in einer Pipeline</h2>
+<p>Davor waren „Dem Agenten live zuschauen“ und „Anschließendes Wiederholen des Verlaufs“ wahrscheinlich zwei getrennte Rendering-Pfade – daher stimmten bei ein und demselben Inhalt das, was man live sah, und das, was wiedergegeben wurde, oft im Detail nicht überein. An diesem Tag wurden sie in einer Pipeline zusammengeführt, die dieselben Verarbeitungsrückrufe nutzt: Unabhängig davon, ob Inhalte live gestreamt oder aus dem Verlaufsbuch wiedergegeben werden, durchlaufen sie genau denselben Parse-and-Present-Pfad. Die Bedeutung liegt in der Konsistenz: Öffnen Sie einen Abschnitt der Geschichte noch einmal und Sie sehen genau, was wirklich passiert ist, ohne dass Details verfälscht werden. Dieses „Single-Source-of-Truth-Pfad“-Design beseitigt sowohl die Last, zwei Logiken aufrechtzuerhalten, als auch die verwirrendste Klasse von Fehlern – „Live und Wiedergabe stimmen nicht überein“ – an der Wurzel.</p>
+<h2>Eine Backend-Plugin-Laufzeit-Grundlage: Bus, Berechtigungen, Sandbox</h2>
+<p>Die schwerste Arbeit des Backends an diesem Tag bestand darin, mit der Erstellung einer Plugin-Laufzeitgrundlage zu beginnen, die darauf abzielt, „Fähigkeiten von Drittanbietern sicher zu installieren und als Plugin auszuführen“. Es besteht aus ineinandergreifenden Teilen: einem In-Process-Event-Bus, sodass Komponenten lose über Publish/Subscribe kommunizieren; Parsen und Validieren von Plugin-Manifesten mit Fälschungsschutz für den „Bereich“, den ein Manifest deklariert (damit ein Plugin nicht über seine Berechtigungen lügen kann); eine Berechtigungs-Engine, die durch Regeln einschränkt, was jedes Plugin anfassen darf und was nicht; eine Sandbox-Datei-API mit kooperativen Dateisperren, damit sich das Lesen und Schreiben mehrerer Plugins nicht gegenseitig beschädigt; plus ein Dateibuch, das nur Anhänge enthält und aufzeichnet, was passiert ist. Dieses gesamte Set lieferte an diesem Tag fast nichts für den Benutzer, aber es ist der wahre Ausgangspunkt der langfristigen „Alles ist ein Plugin“-Richtung – damit können neue Tools, neue Workbenches oder neue Agenten später auf einheitliche, kontrollierte Sandbox-Weise eingebunden werden, ohne den Kern für jede Ergänzung neu zu schreiben.</p>
+<h2>Engine: ein erweitertes Komponentenvokabular + Szenen-Assets</h2>
+<p>Die Engine erweiterte ständig das „Vokabular“, mit dem sie eine Spielwelt beschreibt. Das Komponentensystem erhielt Unterstützung für Datenformen wie Zeichenfolgen und Arrays fester/variabler Länge sowie eine integrierte „Namens“-Komponente – sodass jedes Objekt in einer Szene einen lesbaren Namen anstelle nur einer internen Nummer haben kann, was für das Debuggen und die spätere Anzeige in einem Editor weitaus praktischer ist. Noch wichtiger ist die Einführung von „Szenen-Assets“: Verwaltung einer gesamten Szene als referenzierbares, instanziierbares Asset-Objekt mit einem Mechanismus zum Instanziieren einer Szene in der Welt. Das bedeutet, dass Szenen jetzt genau wie Modelle und Texturen gespeichert, referenziert und strukturell wiederverwendet werden können – die Grundvoraussetzung für alle späteren Fähigkeiten wie „Szenen in einem Editor erstellen, Szenen zu Levels zusammenfügen“.</p>
+<h2>Ein Engine Quality Gate: Zweikanalige Prüfung</h2>
+<p>Die Engine hat an diesem Tag auch ein Zwei-Kanal-Qualitäts-Gate aktiviert, das die Codequalität automatisch aus zwei komplementären Blickwinkeln prüft: Ein Kanal führt konventionelle Stil- und Konventionsprüfungen durch, der andere überwacht speziell die Nutzungsgrenzen „interner Schnittstellen“ – um sicherzustellen, dass Dinge, die nur für den internen Gebrauch gedacht sind, nicht unbeabsichtigt als öffentlich preisgegeben werden. Beide Kanäle laufen in kontinuierlicher Integration, automatisch bei jedem Commit. Sein Wert entspricht dem früheren Rendering-Benchmark: Die Frage „Ist die Codequalität in Ordnung?“ wird von menschlicher Überprüfung und Selbstdisziplin zu einem automatischen, objektiven, unvermeidlichen Tor. Eine Engine, die sich langfristig weiterentwickeln und immer mehr Kollaborateuren gegenüberstehen soll, ist darauf angewiesen, dass ein automatisches Gate nach dem anderen schnell iteriert, ohne langsam zu verrotten.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Die beiden Linien des Tages repräsentieren genau die beiden Ziele, die ein ausgereiftes Produkt gleichzeitig erfüllen muss: Das eine ist das gegenwärtige Gefühl des Benutzers, das andere das langfristige Grundgerüst der Plattform. Die ausgereifte Chat-Oberfläche macht die Nutzung jetzt komfortabler, während die nahezu unsichtbare Plugin-Laufzeit des Backends den Grundstein dafür legt, „ob diese Plattform später unbegrenzt erweitert werden kann“. Sich um die Gegenwart zu kümmern und am selben Tag langfristig zu investieren, erfordert eine klare Arbeitsteilung und ein Urteil über Prioritäten – Erfahrungen, die sich sofort auszahlen müssen und auf denen es sich lohnt, solide zu legen, auch wenn es langsamer geht. Das ist eine Erfahrung, die es wert ist, für die zukünftige Entwicklung aufzubewahren: Bauen Sie nicht nur auf sichtbaren Merkmalen auf und vergraben Sie sich nicht nur in unsichtbaren Fundamenten; Das wirklich Schwierige ist, keines von beiden zu kurz zu bringen.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

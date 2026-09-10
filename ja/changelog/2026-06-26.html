@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-26 · フルチェーンの可観測性: どこが遅いのか一目でわかります — ForgeaX</title>
+<meta name="description" content="エンドツーエンドのトレース + ログ テレメトリは、ブラウザ トレーサとストール ウォッチドッグを使用して、UI からバックエンドを経由してエージェントに戻ってくる 1 つのアクションに従います。レンダー デバッガーは、初期の GPU 状態をキャプチャして、ブラック スクリーンのバグを忠実に再現できるようになりました。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-26 · フルチェーンの可観測性: どこが遅いのか一目でわかります — ForgeaX" />
+<meta property="og:description" content="エンドツーエンドのトレース + ログ テレメトリは、ブラウザ トレーサとストール ウォッチドッグを使用して、UI からバックエンドを経由してエージェントに戻ってくる 1 つのアクションに従います。レンダー デバッガーは、初期の GPU 状態をキャプチャして、ブラック スクリーンのバグを忠実に再現できるようになりました。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-26.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-26.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-26.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-26.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-26.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-26.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-26.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-26.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-26.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-26</span></div>
+    <h1>フルチェーンの可観測性: どこが遅いのか一目でわかります</h1>
+    <p class="standfirst">この日は、「トレース + ログ」をフロントエンド、バックエンド、エージェントにまたがる 1 つの完全なチェーンに接続しました。UI からバックエンドを介してエージェントの実行に送信され、画面に戻るアクションは、ストール ウォッチドッグを使用してエンドツーエンドで追跡できるため、どこで遅いかスタックしているかが一目でわかります。レンダリング デバッグ ツールは初期状態を記録することも学習し、「黒い画面」などの最も厄介な問題を再生時に安定して再現できるようにしました。</p>
+    <div class="prose"><h2>目に見えず、制御できないシステム</h2>
+<p>システムがより複雑になり、自律的に実行するために AI にますます多くのステップを渡すようになると、内部で実際に何が起こっているのかという根本的な疑問が表面化します。アクションが送信されましたが、しばらくの間何も応答しません。フロントエンドかバックエンドでスタックしているのでしょうか、それとも一部のエージェントが頭を下げて作業しているのでしょうか?表面的な症状だけでは、推測することしかできません。この日に行われたのは、システム全体を「ブラック ボックス」から「透明なボックス」に変えることでした。つまり、UI でのクリックからバックエンド処理を経て、順番に実行されるエージェントを経て、画面上の結果に戻るまで、アクションの全行程を追跡可能かつ可視化しました。新しいゲームプレイは追加されませんが、複雑なシステムを長期的に操作するための前提条件です。目に見えるものだけを制御でき、制御できるものだけを自信を持って追加できます。可観測性はすべての最適化とデバッグの出発点です。明確に見えないものを改善することはできません。</p>
+<h2>フロントエンド、バックエンド、エージェントをスレッド化する 1 つのトレース</h2>
+<p>この日の中心的な作業は、「トレース」を完全なスタックを真にスレッド化するチェーンに接続することでした。トレースとは、アクションに単一の識別子をスタンプすることを意味します。これにより、アクションがシステムのどの層を通過しても、アクションはその識別子を保持し、タイムスタンプを残します。そのため、あちこちに散在するフラグメントは、後でその識別子によって 1 つの完全なタイムラインにつなぎ合わせることができます。今日達成されたのは、その識別子をフロントエンドからバックエンド、そしてエージェントの実行まで渡すことです。あらゆるアクションを、「最初にフロントエンドで費やした時間、次にバックエンドで費やした時間、次にどのエージェントが引き継いだか、そしてそれにどれくらいの時間がかかったのか」という完全な軌跡に再構築できます。技術的な鍵は、このトレース コンテキストを境界でドロップするのではなく (これにより、全体に組み立てることができない孤立した断片だけが残ることになります)、このトレース コンテキストをすべてのレイヤー境界を越えて正しく伝播することです。この完全なチェーン トレースが存在すると、最も曖昧で調査が困難な苦情 (「システムが遅い」または「システムが停止している」) を正確に指摘する物差しが得られます。</p>
+<h2>ブラウザ トレーサ + ストール ウォッチドッグ</h2>
+<p>このフルチェーン トレース内で、フロントエンド セグメントは、「UI でのアクションから最終的なレンダリングまで」の区間を追跡する専用のブラウザー側トレーサーを取得しました。これは非常に具体的な混乱に対処しています。クリックしたりタイプしたりしてもインターフェイスの応答が遅いことがあります。リクエストはまだ送信されていないのでしょうか、バックエンドで待機しているのでしょうか、それともフロントエンド自体がどこかでレンダリングを停止しているのでしょうか?ブラウザーのトレーサーは、この脚を表示可能なステップに分割するため、どのステップでスタックしているかを正確に確認できます。 「ストール ウォッチドッグ」が付属しています。これは、キー フローのリズムを監視し、ステップが予想時間を超えてストールした瞬間に、即座にストールにフラグを立てます。フリーズしたインターフェイスが死んでいるのかビジーなのかわからない状態で見つめ続ける必要はありません。インターフェイスの対話を中心としたツールの場合、「フロントエンドは何で忙しいのか、動かなくなっているのか」はユーザーからの最も直接的で頻繁な質問です。この区間を観測可能にすることで、ユーザーに最も近いスポットまでトレースの範囲が広がります。</p>
+<h2>バックエンドの収集とレポート + 各エージェントによるトレースの提出</h2>
+<p>チェーンの他の 2 つのセグメントも並行して埋められました。バックエンドはテレメトリ シンクを立ち上げました。あらゆる場所で生成されたトレースとログがここに収集されて報告され、フロント エンドから取得されたトレース コンテキストがさらに渡されて、アクションのバックエンド部分が同じトレース ラインに隙間なくハングすることが保証されます。エージェント セグメントは、実行の各ターンを同じトレースに織り込みました。エージェントがタスクを引き受けてターンを実行すると、そのターンにかかった時間とそのターンが何をしたかがこのトレース上の 1 つのノードとして記録されます。これらを組み合わせることで、「フルチェーン」はその名の通り、フロントエンドのクリックからバックエンドの処理、エージェントのターンバイターンの作業に至るまで、すべて 1 行にまとめられます。 「AI エージェントのチームに作業を指示する」ことがコア エクスペリエンスであるプラットフォームの場合、「各エージェントがこのターンで何が忙しく、どこが遅いか」がまさに可視化されるべきものです。エージェントの実行をトレースに含めることは、AI の作業プロセスがピアリングできないブラック ボックスではなくなることを意味します。</p>
+<h2>グラフィックス デバッグ: 黒画面バグを再現するための初期状態の記録</h2>
+<p>可観測性と同じ精神で、この日、レンダリング デバッグ ツールが強化されました。すでに「フレームをキャプチャして比較のために再生」することはできましたが、重要な部分、つまり初期状態が欠けていました。ピクチャはある開始点から段階的に描画されます。キャプチャが開始時のリソースの初期コンテンツではなく描画アクションのみを記録した場合、リプレイは「間違った開始点からリプレイする」ことになり、一部の問題は単純に再現されません。この日はそれを補いました。フレーム キャプチャは関連リソースの初期状態も記録し、同じ開始からフレーム全体を正確に再構築するためにリプレイにシードされます。これは、「画面が真っ黒になり、オブジェクトが消えた」などの最も厄介な問題に特に役立ちます。多くの場合、初期状態が間違って設定されていることが原因で、以前はリプレイで再現できなかったため、見つけるのが非常に困難でした。今では、黒い画面が再生時に忠実に再現され、「時折捕まえられない」ゴーストバグが、「安定して再現され、繰り返し研究して修正できる」具体的なオブジェクトに変わります。これは、その日のフルチェーン トレースと表裏の関係にあります。1 つは「システムが遅い箇所」を確認すること、もう 1 つは「画像が間違っている箇所」を確認することです。</p>
+<h2>この日が意味するもの</h2>
+<p>この日追加されたのは、システムの成熟に欠かせない感覚器官だ。これまでの何日間にもわたって、プラットフォームは新しい機能を拡張し続けました。キャラクターの移動、編集可能なシーン、生成可能なアセット、すべての人にオープンソース化されました。しかし、それがより有能で自律的になればなるほど、「内部で何が起こっているかを明確に見る」ことがより重要になります。内部が見えないシステムは、何か問題が発生したときは推測することしかできず、遅さがどこから来るのかがわからず、最終的には診断不能なために制御を失います。この日は、トレースをフロントエンド、バックエンド、エージェントにまたがる 1 つの線に接続し、画像の問題を安定して再現するためにレンダリング デバッグに初期状態を記録させました。これにより、プラットフォームに一度に 2 つの視点が与えられました。1 つはパフォーマンスとフロー、もう 1 つは画像とレンダリングです。 「システムが何をしているのか」と「なぜ画像がこのように見えるのか」の両方を可視化するということは、速度の最適化、障害の診断、自信を持って AI の自律性の向上など、次に行うことはすべて信頼できる証拠に基づいていることを意味します。機能は「プラットフォームが何ができるか」を決定し、可観測性は「プラットフォームがどこまで信頼できるか」を決定します。そしてこの日は後者を満たしました。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-28 · コマンド 1 つ — Windows でも利用できるようになりました — ForgeaX</title>
+<meta name="description" content="インストールおよび起動スクリプトは、bash からクロスプラットフォームの Bun TypeScript に大規模に移行するため、Git-Bash を使用しない macOS、Linux、および Windows 上でも同じコマンドが実行されます。さらに、Windows 固有の修正、ゲームを対象としたセッション、より安定した glTF/GLB インポート、およびより高速で監査可能な CLI コアが追加されています。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-28 · コマンド 1 つ — Windows でも利用できるようになりました — ForgeaX" />
+<meta property="og:description" content="インストールおよび起動スクリプトは、bash からクロスプラットフォームの Bun TypeScript に大規模に移行するため、Git-Bash を使用しない macOS、Linux、および Windows 上でも同じコマンドが実行されます。さらに、Windows 固有の修正、ゲームを対象としたセッション、より安定した glTF/GLB インポート、およびより高速で監査可能な CLI コアが追加されています。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-28.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-28.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-28.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-28.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-28.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-28.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-28.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-28.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-28.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-28</span></div>
+    <h1>コマンド 1 つ — Windows でも利用できるようになりました</h1>
+    <p class="standfirst">この日、インストールおよび起動スクリプトが bash からクロスプラットフォームの Bun TypeScript に大幅に移行されました。同じコマンドが macOS、Linux、Windows で同様に実行され、Windows は Git-Bash を必要としなくなりました。一連の Windows 固有のブロッカーを修正するとともに、「セッション」をグローバルにバインドされたものからゲームごとにスコープされたものに変更し、アセットのインポートをより安定させ、基盤となる CLI をより高速にし、より制御しやすく、監査しやすくしました。</p>
+    <div class="prose"><h2>最大の障壁: プラットフォームを切り替えるとインストールできない</h2>
+<p>長い間、これをインストールして実行するには、大量の bash スクリプトが必要でした。 macOS と Linux には問題ありませんが、Windows ユーザーにとっては厳しい壁です。bash は Windows にネイティブではないため、Git-Bash などの互換性レイヤーをインストールするか、さまざまな不可解なエラーが発生する必要がありました。 「誰でもアイデアをゲームにできるようにしたい」というツールにとって、「インストールされない」ということは、最初の失敗として最も致命的です。この日はまさにそれを修正しました。すべてのインストールおよび起動スクリプトを、bash から Bun によって実行されるクロスプラットフォーム TypeScript に大規模に書き換えました。 Bun は 3 つの主要なシステム間で同一に動作するため、Windows 上でも Mac 上とまったく同じコマンドとロジックが実行され、互換性レイヤーは必要ありません。</p>
+<h2>コマンドは 1 つの記憶に残るセットにまとめられます</h2>
+<p>移動に伴い、エントリポイントも整理されました。過去に散在していたプラットフォームごとのスクリプト (<code>.sh</code>、<code>.bat</code>、<code>.ps1</code> など) は一緒に削除され、1 つのプレーンで覚えやすいセットに統合されました。環境を 1 回インストールするための <code>bun run setup</code>、スタック全体を起動するための <code>bun run start</code>、それを停止するための <code>bun run stop</code>、デスクトップ アプリ用の <code>bun run app</code> です。どのようなシステムを使用しているとしても、覚えておく必要があるのはこれらのいくつかだけです。新規ユーザーにとって、これは「README から 4 行をコピーすると実行される」ことを意味し、「Windows を使っているが、これをどれと交換すればよいか」という必要はもうありません。既存のユーザーにとって、これは「各スクリプトの 2 つのコピー (sh 1 つ、ps1 1 つ) を同時に編集する必要があり、見逃しやすい」というメンテナンスの負担がなくなることを意味します。複数の同等のスクリプトを 1 つのクロスプラットフォームの信頼できるソースに統合することが、その日の作業の中心です。同期を維持する必要があることが 1 つ減り、間違いが 1 つ減ります。</p>
+<h2>Windows 固有の一連のブロッカーをクリアする</h2>
+<p>Windows を本当にスムーズにするには、クロスプラットフォーム スクリプトだけでは十分ではありません。Windows でのみ表面化する奇妙な点も 1 つずつ修正する必要があります。この日扱われた典型的なケースは、システムの「偽」 Python です。Windows には、実際にはインストールされておらず、呼び出されたときにのみアプリ ストアを表示する python3 プレースホルダーが同梱されています。また、単純に動作すると想定しているスクリプトは、セットアップ中に不思議なことに停止します。この日は、プレースホルダーを認識してスキップし、実際に動作する Python を見つけるインストール フローについて説明しました。このような詳細 — 他のシステムには存在せず、Windows でのみつまずく — は、クロスプラットフォーム サポートの最も骨の折れる、しかし最も必要な部分です。追加機能はありませんが、各機能が修正されるということは、一連の Windows ユーザーが停止する時間が 1 回減り、作業を続けることができることを意味します。</p>
+<h2>セッションがグローバル バインドからゲームごとのスコープに変更される</h2>
+<p>この日は、セッションが誰に属するかという、より内部構造にも触れました (セッションは Forge との会話の 1 つの延長です)。セッションは以前はグローバルであり、特定のゲームとは別のものでした。この日は、ゲームごとにスコープを設定して、各ゲームの下にそれらをネストしました。意味: 「スペース シューター」プロジェクトに関するフォージとの会話と「ファーム シム」プロジェクトに関する会話は、それぞれ独自のものとなり、互いに混ざることはありません。これはより直観的であり、そもそも会話は特定のゲームに属しており、後でよりクリーンなプロジェクト管理のための基礎を築きます。ゲームを切り替えると、混合セッションの 1 つのグローバル ポットに直面するのではなく、そのチャット履歴とコンテキストが付属します。この種の「データを本来の場所にファイリングする」という整理整頓は、日常的には地味な作業ですが、システム全体のメンタル モデルをクリーンに保ちます。</p>
+<h2>より安定したアセットインポート + より高速で制御しやすい CLI</h2>
+<p>この日は、毎日の使用をより安定させるためのいくつかの修正も行われました。アセットに関しては、より大きなモデルをインポートする際のインデックス作成の問題 (大きなメッシュでは頂点のインデックスを作成するためにより広い整数が必要ですが、以前は失敗していました) が修正され、モデルのインポートで書き込まれるメタデータが 1 つの標準形式に従うようになりました。そのため、より大きく、より複雑なモデルのインポートが簡単に失敗することはなくなりました。 AI を駆動する CLI コアにもいくつかの改良が加えられました。冗長性をトリミングして、場合によっては最初のターンがより速く動作し始めるようにしました。エージェントの「行動規範」を導入する際の問題を修正します。ユーザー自身の外部ツールのオプションのマスキングと、ホスト ツールに対するエージェントの呼び出しの監査証跡を追加します。後者は、「AI が今回実際にどのツールを使用したか」を意味し、記録上追跡可能になります。これにより、「より高速で、より制御可能で、より信頼できる」という基盤がさらに強化されます。</p>
+<h2>この日が意味するもの</h2>
+<p>この日の主役は「結界」。どんなに強力なツールであっても、システムが間違っていてインストールされないという理由で大規模なグループが締め出されてしまうと、誰かが使用する前にその価値の半分が失われてしまいます。インストールと起動を完全にクロスプラットフォームにすることで、Windows ユーザーも 1 つのコマンドで実行できるようになり、その扉が誰にでも開かれます。これは、「誰でもゲームを作成できる」という前提条件の 1 つが当てはまります。そして同じ日に、ゲームの下でセッションをファイルし、アセットのインポートが安定するように修正し、CLI コアをより高速かつ監査可能に磨き上げることで、ドアが開いている間に部屋が片付きました。参入障壁を下げ、次に内部の品質を高めます。この日はその両方が行われました。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

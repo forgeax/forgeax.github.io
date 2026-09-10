@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-24 · Ein neuer Asset-Browser + reibungsloseres Onboarding beim ersten Start — ForgeaX</title>
+<meta name="description" content="Ein Inhaltsbrowser mit zwei Fenstern, Miniaturansichten und Batch-Übergabe an die KI, ein zweistufiges, nicht blockierendes Erstkonfigurationssetup, eine Bearbeitungs- und Speicher-Authoring-Schleife, Front-End-Beobachtbarkeit mit einem Telemetrie-Panel und einheitliche Engine-Handles sowie eine Instanziierungs-Draw-Optimierung." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-24 · Ein neuer Asset-Browser + reibungsloseres Onboarding beim ersten Start — ForgeaX" />
+<meta property="og:description" content="Ein Inhaltsbrowser mit zwei Fenstern, Miniaturansichten und Batch-Übergabe an die KI, ein zweistufiges, nicht blockierendes Erstkonfigurationssetup, eine Bearbeitungs- und Speicher-Authoring-Schleife, Front-End-Beobachtbarkeit mit einem Telemetrie-Panel und einheitliche Engine-Handles sowie eine Instanziierungs-Draw-Optimierung." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-06-24.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-24.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-24.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-24.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-24.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-24.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-24.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-06-24.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-24.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-24.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-06-24</span></div>
+    <h1>Ein neuer Asset-Browser + reibungsloseres Onboarding beim ersten Start</h1>
+    <p class="standfirst">Dieser Tag forderte beide Seiten gleichzeitig – der Neuling kam gerade erst und der Ersteller war bereits am Werk: ein neuer Inhaltsbrowser mit zwei Fenstern und Miniaturansichten, der der KI eine Menge Assets auf einmal übergeben kann; ein Erstlauf-Setup mit zwei Schritten, drei Pfaden und niemals Blockierung; ein Editor, der die kreative Schleife „Projekt öffnen → Bearbeiten → Zurück auf Festplatte speichern“ abschließt; plus ein Telemetrie-/Protokollfenster, das das gesamte System transparenter macht, und eine Engine, die Handles vereinheitlicht und die Zeichnung vieler identischer Objekte instanziert.</p>
+    <div class="prose"><h2>An beiden Enden Druck ausüben: Neueinsteiger einfangen, Veteranen unterstützen</h2>
+<p>Die Arbeit dieses Tages gliedert sich in zwei Richtungen, jeweils für einen Benutzertyp. Ein Ziel besteht darin, „Neulinge zu fangen“: Die Erstausführungsanleitung wurde überarbeitet, um flüssiger zu sein und einen noch nie zuvor gesehenen Besucher am schnellsten vom „Öffnen“ zum „Chatten mit der KI, um ein Spiel zu machen“ zu bringen. Das andere Ende ist „Veteranen unterstützen“: ein neuer Asset-Browser, ein Bearbeitungsablauf, der Änderungen zuverlässig auf der Festplatte speichert, ein Telemetrie-Panel, das den gesamten Laufzeitstatus beobachtbar macht – alles für diejenigen, die bereits ernsthaft an Projekten arbeiten und nicht „kann ich loslegen“, sondern „ist das Tool praktisch und zuverlässig genug“. Eine Open-Source-Plattform, die alle Arten von Benutzern willkommen heißt, muss an beiden Enden überzeugen: die Einstiegsstufen flach rasieren und die Werkbank im Inneren ausstatten. Dieser Tag war einfach ein Zwei-Wege-Schub.</p>
+<h2>Ein neuer Asset-Browser: Doppelfenster + Miniaturansichten + Übergabe eines Stapels an die KI</h2>
+<p>Der Asset-Browser wurde heute auf die zweite Generation aktualisiert und zum Standard gemacht. Es handelt sich um ein umfassendes, professionelles Materialverwaltungspanel: Favoriten und eine Ordnerstruktur auf der linken Seite zum Organisieren nach Verzeichnis und zum Anheften häufig verwendeter Elemente; ein Inhaltsbereich mit Miniaturansichten und umfangreichen Hover-Tooltips auf der rechten Seite, damit Sie jedes Material auf einen Blick erkennen; Hinzufügen, Importieren, Löschen und Speichern – alles an Ort und Stelle, plus Tastaturkürzel, damit Sie nach dem Üben effizient organisieren können, ohne die Tastatur zu verlassen. Der einfallsreichste Teil ist, dass es mit der KI verbunden ist: Sie können eine Reihe von Assets im Browser auswählen und sie alle mit einem Klick als Referenzen an die Chat-KI übergeben. Bisher mussten Sie einzeln beschreiben, welche Modelle und welche Textur die KI „in der Szene verwenden“ wollte. Jetzt wählen Sie sie im Browser aus und übergeben sie, und die KI weiß genau, welche Assets Sie meinen. Dadurch werden „Materialverwaltung“ und „Steuerung der KI“, zwei zuvor getrennte Dinge, zusammengefügt, sodass „Ich habe diese Dinge in der Hand → hilf mir, sie zu nutzen“ zu einer reibungslosen, fortlaufenden Aktion wird.</p>
+<h2>Ein reibungsloserer erster Lauf: zwei Schritte, drei Möglichkeiten zur Verbindung</h2>
+<p>Der Aufbauleitfaden für den ersten Lauf wurde an diesem Tag überarbeitet, mit dem Hauptziel, den Schritt, an dem Neulinge am leichtesten hängen bleiben, so mühelos wie möglich zu gestalten. Der neue Leitfaden besteht nur aus zwei Schritten und bietet drei Verbindungspfade zur Auswahl: Standardmäßig wird ein aggregierter Modelleintrag verwendet, der für Neulinge am benutzerfreundlichsten ist und mit der geringsten Konfiguration ausgeführt werden kann, während andere Pfade für diejenigen beibehalten werden, die sie benötigen. Das Schlüsseldesign lautet „Niemals blockieren“ – Sie müssen nicht gezwungen werden, vor dem Betreten alles auf dem ersten Bildschirm auszufüllen; Sie können zuerst überspringen, sich im Inneren umsehen und dann zurückkommen, um es auszufüllen, wenn Sie möchten. Der Leitfaden selbst ist zweisprachig. Warum lohnt es sich, einen „Setup-Guide“ bewusst aufzupolieren? Denn für einen noch nie gesehenen Besucher sind die ersten Minuten nach der Öffnung der Wendepunkt zwischen Bleiben oder Gehen: Sobald der Fluss umständlich wird, wenn er irgendwo ins Stocken gerät, wenn man nicht mehr weiß, was der nächste Schritt ist, gehen die Leute. Die Senkung dieser Schwelle auf „zwei Schritte, überspringbar, mit einer Standardempfehlung“ ist die größte Anstrengung, damit jeder, der bereit ist, sich einzuklicken, reibungslos zum Schritt „Mit der Verwendung beginnen“ gelangt.</p>
+<h2>Der Editor schließt die Schleife „Projekt öffnen → Bearbeiten → Auf Datenträger speichern“ ab</h2>
+<p>Der Editor hat an diesem Tag eine Schlüsselschleife abgeschlossen, die es von „kann anzeigen und optimieren“ in wirklich „zur Erstellung verwendbar“ verwandelt: Öffnen Sie ein Projekt, bearbeiten Sie es und speichern Sie Änderungen zuverlässig wieder auf der Festplatte. Mehrere Dinge sind gelandet: Unterstützung für einen Autorenablauf zum Öffnen eines Projekts, der die Eintrags- und Szenenressourcen des Spiels korrekt lädt; ein Wechsel zum „manuellen Speichern“ – Wegfall des vorherigen automatischen zeitgesteuerten Speicherns für eine klare „nicht gespeicherte“ Markierung, damit Sie wissen, ob aktuelle Änderungen gespeichert werden und entscheiden, wann sie beibehalten werden; eine Rückschreibkette von Änderungen im Editor an Festplattendateien mit Hot-Reload, sodass Änderungen sofort angezeigt und dennoch sicher gespeichert werden. Der Editor erhielt außerdem ein „Systemfenster“ (zum Umschalten jedes Logiksystems im Spiel) und ein Menü „Komponente hinzufügen“ im Inspektor. Zusammengenommen bedeutet dies, dass der Editor nicht mehr nur eine Hilfsansicht zur Feinabstimmung ist, sondern ein echtes Werkzeug, das unabhängig die gesamte kreative Schleife „Öffnen → Bearbeiten → Speichern“ durchführt. Das grundlegendste Sicherheitsgefühl für einen Kreativen ist „Was ich ändere, ist gespeichert und wiederherstellbar“ – und dieser Tag hat diese Sicherheit Wirklichkeit werden lassen.</p>
+<h2>Beobachtbarkeit: ein Telemetrie-/Log-Panel + ein Chat-Frostschutzmittel</h2>
+<p>Dieser Tag hat dem gesamten System „Beobachtbarkeit“ hinzugefügt – sodass Sie sehen können, was tatsächlich darin passiert. Es wurde ein Telemetrie-Panel hinzugefügt, das „Spuren + Protokolle“ in einem beobachtbaren Feed zusammenfasst: Darin ist sichtbar, was ein Agent gerade tut, wie lange jeder Schritt gedauert hat und was schief gelaufen ist. Das Backend erhielt eine passende Telemetriesenke und Berichtsroute, und das Frontend erhielt ein Überwachungsgerüst. Warum das bewusst bauen? Denn je mehr Arbeit autonom von der KI vorangetrieben wird, desto mehr wird die Frage „Was macht sie eigentlich, wo ist sie langsam, wo hat sie einen Fehler gemacht“ zu einer Frage, die sichtbar sein muss – unsichtbar, man kann ihr weder vertrauen noch sie optimieren. Mittlerweile hat der Chat ein echtes Einfrierrisiko behoben: Wenn die KI sehr langes, formatiertes Markdown ausgibt, analysiert und rendert das Frontend ständig neu, und zwar häufig genug, um den Speicher zu sprengen und die gesamte Schnittstelle einzufrieren; An diesem Tag wurde es gedrosselt, sodass die Antworten beim Streamen stabil bleiben. Ein transparentes System, das einer langen, intensiven Nutzung standhält, ermöglicht es Menschen, große Aufgaben souverän zu bewältigen.</p>
+<h2>Engine: einheitliche Handles + instanzierte Zeichnung + ein einheitliches Plugin-Protokoll</h2>
+<p>Der Motor hat an diesem Tag mehrere weitreichende Dinge auf niedrigem Niveau getan. Erstens: „Handles“ vereinheitlichen. Ein Handle ist die Referenz eines Programms auf eine Entität oder ein Asset (ein Griff, der auf etwas zeigt). Heutzutage werden Entitäts- und Asset-Handles in einer Kodierung zusammengefasst, die „Generationen“-Informationen enthält – eine Generation ist ein Versionsstempel auf jedem Handle. Wenn also das Ding, auf das es verweist, zerstört und sein Steckplatz durch etwas Neues wiederverwendet wurde, erkennt das System sofort „das ist eine veraltete alte Referenz“, anstatt es als gültig zu verwechseln. Dadurch wird die äußerst subtile und schwer zu diagnostizierende Klasse von Fehlern, bei denen man „auf etwas verweist, das bereits verschwunden ist“, an der Quelle beseitigt. Zweitens: Optimierung des instanzierten Zeichnens – wenn eine Szene viele identische Objekte hat (einen Wald, eine Menge Soldaten), wurden Zeichenbefehle früher einzeln ausgegeben, und heute werden die identischen Befehle in einem Bucket zusammengeführt, der in einem Aufruf gezeichnet wird, wodurch Zeichenaufrufe stark reduziert werden – eine qualitative Änderung für die Leistung großer Szenen, die durch einen Stresstest von Zehntausenden unabhängiger Objekte verifiziert wurde. Drittens: Vereinheitlichung des Plugin-Protokolls in einer Form für eine konsistentere Erweiterung sowie ein Headless-Clean-Backend zum Testen. Dabei handelt es sich um verdeckte Arbeiten, die Benutzer noch nicht sehen und die darüber entscheiden, wie groß die Plattform laufen kann, wie weit sie reicht und wie wenige Fehler sie macht.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Was an diesem Tag am meisten in Erinnerung bleibt, ist, dass er beide Enden einer Benutzerreise gleichzeitig abdeckte. Für den Neuling, der aufgrund des Open-Sourcing zum ersten Mal reinklickt, wurde die „Eintrittsschwelle“ auf den niedrigsten Stand gesenkt – ein zweistufiger Leitfaden, überspringbar, mit einer Standardempfehlung, der sein Bestes tut, um jedem, der bereit ist, es auszuprobieren, einen reibungslosen Start zu ermöglichen. Für Entwickler, die bereits ernsthaft an Projekten arbeiten, wurden die „Arbeits“-Tools umfassender ausgestattet – ein professioneller Asset-Browser, eine Bearbeitungsschleife, die zuverlässig speichert, ein Telemetrie-Panel, das hineinschaut. Und die Handle-Vereinheitlichung auf Engine-Ebene, das instanzierte Zeichnen und das einheitliche Plugin-Protokoll bieten tiefer unten die Unterstützung dafür, dass all dies „großräumig, erweiterbar und zuverlässig“ ist. Damit ein Produkt wirklich hält, reicht es nicht aus, Neulinge zu fangen – diejenigen, die bleiben, müssen feststellen, dass es umso geschmeidiger ist, je mehr sie es verwenden; Es reicht nicht aus, Veteranen zufrieden zu stellen – Neuankömmlinge müssen hineinkommen können. An diesem Tag kam es selten vor, dass beides zusammen stattfand – die Tür öffnen und das Haus gleichermaßen einrichten.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-18 · Abra cualquier carpeta como espacio de trabajo + versión en la aplicación y accesos directos — ForgeaX</title>
+<meta name="description" content="Abra cualquier carpeta en el disco como espacio de trabajo, una versión en la aplicación/registro de cambios/sistema de accesos directos y creación de instancias del modelo del motor + cocción de texturas en tiempo de compilación + un shell en tiempo de ejecución con un bucle de juego." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-18 · Abra cualquier carpeta como espacio de trabajo + versión en la aplicación y accesos directos — ForgeaX" />
+<meta property="og:description" content="Abra cualquier carpeta en el disco como espacio de trabajo, una versión en la aplicación/registro de cambios/sistema de accesos directos y creación de instancias del modelo del motor + cocción de texturas en tiempo de compilación + un shell en tiempo de ejecución con un bucle de juego." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-05-18.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-18.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-18.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-18.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-18.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-18.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-05-18.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-05-18.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-18.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-18.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-05-18</span></div>
+    <h1>Abra cualquier carpeta como espacio de trabajo + versión en la aplicación y accesos directos</h1>
+    <p class="standfirst">Este día la plataforma dejó de atarte a un directorio fijo: elige cualquier carpeta del disco y comienza. La aplicación también adquirió un &quot;sentido de versión&quot;: la barra de estado muestra la versión actual, la configuración le permite leer el registro de cambios, con atajos de teclado globales. El motor agregó creación de instancias de modelos, cocción de texturas en tiempo de construcción y un shell de tiempo de ejecución completo con un bucle de juego.</p>
+    <div class="prose"><h2>De &quot;bloqueado en un directorio&quot; a &quot;abrir cualquier proyecto&quot;</h2>
+<p>Antes de esto, el código de tu juego tenía que residir en uno de los directorios fijos integrados de la plataforma para ser administrado, una verdadera limitación: significaba que tu proyecto tenía que acomodar la herramienta en lugar de que la herramienta acomodara tu proyecto. La línea de este día fue eliminar esa restricción, permitiendo que la plataforma abra cualquier directorio en el disco como espacio de trabajo. Parece una pequeña característica de &quot;elegir una carpeta&quot;, pero detrás hay una relajación del posicionamiento del producto: desde &quot;una aplicación donde debes organizar el código según sus reglas&quot; hacia &quot;una plataforma de desarrollo que puede hacerse cargo de tu proyecto existente&quot;. Junto con el conocimiento de la versión y varios ajustes agregados este día, la plataforma dio otro paso sólido hacia &quot;ser utilizada diariamente como una herramienta adecuada&quot;.</p>
+<h2>Abra cualquier carpeta como espacio de trabajo</h2>
+<p>La barra superior obtuvo un selector de proyectos que se abre en un explorador de archivos, por lo que puede elegir cualquier directorio en el disco como su espacio de trabajo actual, sin estar obligado a colocar código en una carpeta integrada. Los proyectos abiertos recientemente se recuerdan para regresar con un solo clic. Aún mejor: si eliges un directorio vacío, el sistema cae en un andamio de juego predeterminado que se puede ejecutar directamente, por lo que &quot;crear una nueva carpeta → hacer que un agente comience a trabajar en ella&quot; se convierte en un camino perfectamente sencillo. Para alguien que acaba de clonar un repositorio, esto significa abrir el directorio de su propio proyecto y comenzar de inmediato, sin aprender primero las convenciones del directorio de la plataforma. Realmente baja el listón para empezar.</p>
+<h2>Versión en la aplicación + registro de cambios + accesos directos</h2>
+<p>Este día le dio a la aplicación una &quot;sensación de versión&quot;. La barra de estado ahora muestra la versión en ejecución y se actualiza por sí sola: observa la versión del código en vivo en segundo plano y se actualiza en el momento en que los archivos cambian, por lo que volver a la ventana confirma si está en la última versión en lugar de mirar un número obsoleto desde hace mucho tiempo. La configuración obtuvo una sección &quot;Registro de cambios&quot; para que pueda leer los cambios recientes dentro del producto, sin tener que ir a otra parte. Y una sección de &quot;Atajos&quot; con un conjunto de atajos de teclado globales hace que las acciones comunes sean reconocibles, memorables y con solo presionar una tecla. Individualmente claro, juntos señalan algo: esto ya no es un experimento desechable sino un producto que se actualiza constantemente, vale la pena usarlo a largo plazo y se toma en serio &quot;cómo sabe el usuario en qué versión está&quot;.</p>
+<h2>Motor: creación de instancias de modelo + cocción de texturas en tiempo de construcción</h2>
+<p>El motor avanzó tanto en rendimiento como en activos este día. En cuanto al rendimiento, los modelos 3D estándar obtuvieron dibujo instanciado: cuando el mismo modelo aparece en masa en una escena (una hilera de árboles, una multitud de enemigos), el motor puede dibujarlos todos en una sola presentación, lo que reduce drásticamente los costos; La importación de un modelo también lleva el propio nombre de cada nodo al motor, lo que facilita la identificación y manipulación posteriores. En los recursos, las texturas de las imágenes ahora se preparan con anticipación en el &quot;tiempo de compilación&quot; y se recuperan mediante el identificador en el tiempo de ejecución, lo que resulta más rápido de cargar y más estable, sin reprocesamiento en cada ejecución. Uno apunta a &quot;muchos objetos en pantalla&quot;, el otro a &quot;carga rápida y estable&quot;, y juntos allanan el camino para las escenas genuinamente complejas y ricas en contenido que están por venir.</p>
+<h2>Toma forma un shell de tiempo de ejecución del motor con un bucle de juego</h2>
+<p>El motor también completó una base estructural este día: un &quot;shell de ejecución&quot; completo más un bucle de juego. El shell de tiempo de ejecución es responsable de iniciar un juego correctamente y de impulsar la actualización y el renderizado de cada cuadro a una cadencia constante: el motor que hace que cualquier juego &quot;gire&quot; en el nivel más bajo. Antes de esto, los ejemplos individuales a menudo ensamblaban ellos mismos esta lógica de inicio y bucle; convergerlo en un shell estándar que proporciona el motor significa que escribir un juego puede comenzar desde un punto limpio y uniforme en lugar de reconstruir el esqueleto cada vez. Esto es especialmente importante para &quot;hacer que la IA escriba juegos&quot;: cuanto más estándar y predecible sea el punto de partida, más fácilmente el código de la IA se ejecutará correctamente y podrá reutilizarse.</p>
+<h2>Pequeña ergonomía: texto seleccionable + menú contextual del compositor</h2>
+<p>Este día también suavizó algunas fricciones cotidianas. El texto en el chat ahora se puede seleccionar y copiar como se esperaba, lo cual suena obvio, pero antes se había desactivado involuntariamente, lo que hacía incómodo extraer un pasaje de la respuesta del agente. El compositor obtuvo un menú contextual que pone a su alcance acciones comunes. Cada uno de estos es trivial por sí solo, pero son exactamente la capa que decide si una herramienta &quot;se siente fácil de usar&quot;. Una interfaz en la que incluso copiar texto resulta complicado erosionará la buena voluntad, sin importar cuán fuerte sea la capacidad; Suavizar estos bordes uno a uno es un respeto básico hacia las personas que lo usan todos los días.</p>
+<h2>que significa este dia</h2>
+<p>Los fragmentos del día responden a una pregunta sencilla: ¿esta plataforma merece ser utilizada a largo plazo como una &quot;herramienta adecuada&quot;? Ser capaz de abrir cualquier proyecto propio indica que está dispuesto a adaptarse a su forma de trabajar actual; tener un número de versión, un registro de cambios y accesos directos indica que se trata a sí mismo como un producto que sigue evolucionando y es responsable ante los usuarios; el motor que agrega instancias, preparación en tiempo de compilación y un shell en tiempo de ejecución estándar indica que el nivel bajo se está preparando seriamente para escenas más grandes y más contenido; y preocuparse por detalles como si el texto se puede copiar dice que se preocupa por su sensación diaria. Entre &quot;can demo&quot; y &quot;can use daily&quot; se encuentra exactamente este tipo de trabajo poco glamoroso pero indispensable.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

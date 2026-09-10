@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-02 · Un comando para iniciar la aplicación de escritorio + se une un editor de nodos — ForgeaX</title>
+<meta name="description" content="Un iniciador de escritorio de un solo comando, un editor de nodos visuales que se une a través del descubrimiento de complementos basado en manifiestos con complementos aislados, un chat más fluido con un mecanismo de vigilancia de vista previa y una gran reducción de ECS." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-02 · Un comando para iniciar la aplicación de escritorio + se une un editor de nodos — ForgeaX" />
+<meta property="og:description" content="Un iniciador de escritorio de un solo comando, un editor de nodos visuales que se une a través del descubrimiento de complementos basado en manifiestos con complementos aislados, un chat más fluido con un mecanismo de vigilancia de vista previa y una gran reducción de ECS." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-02.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-02.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-02.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-02.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-02.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-02.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-02.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-02.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-02.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-02.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-02</span></div>
+    <h1>Un comando para iniciar la aplicación de escritorio + se une un editor de nodos</h1>
+    <p class="standfirst">Este día, un comando inicia todo el escritorio de Studio; el inicio del complemento pasó del descubrimiento codificado al descubrimiento basado en manifiestos, un editor de nodos visuales completo se une como un complemento con complementos aislados entre sí; el chat obtuvo interacciones útiles y la vista previa un perro guardián de carga; y el motor hizo una ronda de adelgazamiento ECS.</p>
+    <div class="prose"><h2>Simplificar tanto &quot;ejecutarlo&quot; como &quot;conectarlo&quot;</h2>
+<p>El hilo conductor del día son dos temas &quot;simplificados&quot;. Una es simplificar el &quot;inicio&quot;: ejecutar todo Studio en el escritorio solía significar memorizar una serie de comandos para iniciar cada servicio; ahora un comando lo hace. La otra es simplificar la &quot;conexión&quot;: agregar una nueva herramienta a la plataforma que solía requerir una lógica de inicio codificada; ahora es &quot;descubrimiento automático por manifiesto&quot;: inserte cualquier complemento que siga la convención y será reconocido y ejecutado. Con una ronda de pulido de la experiencia de chat y una reducción del motor interno, el trabajo general del día está allanando el camino tanto para &quot;usarlo&quot; como para &quot;ampliarlo&quot;: más fácil de lanzar para la gente común y más fácil de integrar para los desarrolladores.</p>
+<h2>Un comando para abrir la aplicación de escritorio</h2>
+<p>El lado del escritorio obtuvo un iniciador de un solo comando este día: un solo comando inicia el modo de desarrollo, crea un paquete, abre la aplicación directamente o cierra todo, con documentos que explican las tres formas de ejecutar: desarrollo del navegador, desarrollo del escritorio y la aplicación de escritorio empaquetada, y lo que cada uno se adapta. Ejecutar todo Studio en el escritorio solía significar memorizar y escribir una serie de comandos para iniciar cada servicio, de los cuales era difícil recuperarse cuando algo salía mal; ahora una línea muestra todo el lado del escritorio. Debajo, iniciar/detener se movió a &quot;grupos de procesos&quot;: un grupo de servicios se inicia juntos y se limpian limpiamente juntos al salir, resolviendo directamente una molestia de larga data en la que cerrar la ventana dejaba una pila de &quot;procesos zombis&quot; en segundo plano, silenciosamente reteniendo puertos y memoria y atascando la máquina. Aplanar la barra de inicio es una condición previa para que más personas la instalen en sus propias computadoras y la utilicen a diario.</p>
+<h2>Un editor de nodos se une a la tienda, con complementos aislados.</h2>
+<p>Este día cambió el inicio del complemento de &quot;un montón de lógica codificada&quot; a &quot;descubrimiento automático por manifiesto&quot;: cualquier complemento independiente con una declaración de manifiesto, insertado, es reconocido e iniciado automáticamente por el sistema, sin necesidad de editar el código de inicio del programa principal para cada complemento. Utilizando este mecanismo genérico, se unió un completo editor de nodos visuales (que incluye un banco de trabajo &quot;3D low-poly&quot; y un &quot;generador de escenas&quot;) como un complemento completo. Al mismo tiempo se resolvió un problema de aislamiento: cada complemento ahora tiene su propia raíz de proyecto aislada, por lo que varios bancos de trabajo ya no comparten un proyecto y editan el lugar equivocado mediante diafonía; En desarrollo, los complementos se recargan en caliente de forma predeterminada, por lo que un cambio de una línea entra en vigor de inmediato. La importancia: convierte &quot;la forma en que se integran las herramientas de terceros&quot; desde una codificación única a un estándar reutilizable, autodescubrible y mutuamente aislado, un paso clave hacia un &quot;ecosistema de complementos&quot;, que hará que cualquier herramienta futura sea limpia y lista para usar.</p>
+<h2>Un chat más fluido + un control de carga de vista previa</h2>
+<p>El panel de conversación obtuvo un conjunto de interacciones cotidianas este día: cambiar el modelo actual sobre la marcha, reproducir el historial en segmentos (en lugar de desplazarse laboriosamente por una tira larga), nuevas entradas para acciones comunes en la barra superior y un anillo de uso de contexto que muestra de un vistazo cuánto presupuesto queda. La vista previa obtuvo un &quot;controlador de carga inicial&quot;: si el primer fotograma tarda en aparecer después de la carga, se recarga automáticamente y lo vuelve a intentar hasta que la imagen realmente se reproduce, en lugar de dejarlo esperando en una pantalla blanca; este tipo de problema de &quot;ocasionalmente no se carga, necesita una actualización manual&quot; es lo que más agota su paciencia, y automatizarlo hace que la experiencia sea mucho más fluida. El backend también solucionó algunos bloqueos del chat y garantizó que las conversaciones realmente se desarrollaran en el modelo que usted elija. Individualmente pequeños, juntos pulen la superficie de más alta frecuencia del día desde &quot;utilizable&quot; hasta &quot;receptiva&quot;.</p>
+<h2>Una gran reducción de ECS: menos conceptos, más rápido, más fácil de entender</h2>
+<p>El motor hizo una gran ronda de &quot;adelgazamiento&quot; este día en su núcleo: el &quot;sistema de componentes de entidad&quot; (ECS) que describe un mundo de juego. Eliminó o fusionó varios conceptos engorrosos: ya no necesita un paso separado de &quot;componente de registro&quot;, unificando &quot;transformación local&quot; y &quot;transformación mundial&quot; en un conjunto que ya no está dividido, integrando la numeración de componentes de cada mundo en un identificador globalmente unificado, eliminando algunos cachés locales redundantes y eliminando una responsabilidad que no debería haberse mezclado con el registro de activos para ser administrado por separado. Detrás de esto hay un axioma de diseño que recorre todo el proyecto: la medida de la calidad del código no es el número de líneas, sino &quot;cuántos conceptos debes tener para comprender un solo punto&quot;: menos conceptos, menos errores tanto para los humanos como para la IA al leerlo. Este adelgazamiento es totalmente invisible para el usuario, pero decide directamente si el motor, a medida que crece cada vez más, puede seguir siendo &quot;descomponible, rápido y cambiante&quot;. Cortar continuamente el ruido conceptual del núcleo es el trabajo interno que permite que este motor evolucione sanamente a largo plazo.</p>
+<h2>que significa este dia</h2>
+<p>Los asuntos del día parecen ocupar cada uno su propio rincón, pero en su interior comparten un objetivo: reducir la fricción. El iniciador de un solo comando redujo la fricción del &quot;lanzamiento&quot;, el descubrimiento automático manifiesto redujo la fricción de &quot;conectarse&quot;, el pulido del chat y el perro guardián de vista previa eliminaron la fricción del &quot;uso diario&quot; y el adelgazamiento de ECS redujo la fricción de &quot;leer y cambiar código&quot;. Para que una plataforma sea utilizada por más personas, ampliada con más herramientas y mantenida a largo plazo, lo que normalmente importa no es una gran característica deslumbrante sino suavizar estas fricciones anodinas una por una. Cuanta menos fricción, más bajo será el listón y más personas estarán dispuestas a entrar, quedarse y contribuir. Este día impulsó varios pasos a la vez en la sencilla pero fundamental cuestión de &quot;hacer que todo sea un poco más fluido&quot;.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

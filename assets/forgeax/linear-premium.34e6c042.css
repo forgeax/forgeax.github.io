@@ -1,0 +1,220 @@
+/* Linear-inspired premium visual layer — ambient depth, glass surfaces, refined type */
+
+.forgeax-site {
+  --linear-ease: var(--site-ease-out);
+  --linear-ease-silk: var(--site-ease-silk);
+  --surface-glass: var(--glass-bg);
+  --surface-glass-border: var(--glass-border-subtle);
+  --glow-brand: color-mix(in srgb, var(--primary) 18%, transparent);
+  --glow-teal: color-mix(in srgb, var(--teal) 14%, transparent);
+}
+
+.forgeax-site .ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.forgeax-site .ambient__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.48;
+  will-change: transform;
+}
+.forgeax-site .ambient__orb--lime {
+  width: min(62vw, 780px);
+  height: min(62vw, 780px);
+  top: -20%;
+  right: -10%;
+  background: radial-gradient(circle, var(--glow-brand) 0%, transparent 62%);
+  animation: ambient-drift-a calc(var(--motion-duration-ambient) * 1.1) var(--site-ease-silk) infinite alternate;
+}
+.forgeax-site .ambient__orb--teal {
+  width: min(52vw, 600px);
+  height: min(52vw, 600px);
+  bottom: 5%;
+  left: -14%;
+  background: radial-gradient(circle, var(--glow-teal) 0%, transparent 65%);
+  animation: ambient-drift-b calc(var(--motion-duration-ambient) * 1.25) var(--site-ease-silk) infinite alternate;
+}
+.forgeax-site .ambient__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-divider-subtle) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-divider-subtle) 45%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 85% 60% at 50% 8%, #000 15%, transparent 78%);
+}
+.forgeax-site .ambient__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 130% 90% at 50% 0%,
+    transparent 48%,
+    color-mix(in srgb, #000 55%, transparent) 100%
+  );
+}
+
+@keyframes ambient-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-4%, 5%, 0) scale(1.08); }
+}
+@keyframes ambient-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(6%, -4%, 0) scale(1.06); }
+}
+
+.forgeax-site:has(.ambient) > .glow { display: none; }
+
+.forgeax-site .nav {
+  background: color-mix(in srgb, var(--color-background-canvas) 16%, transparent) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border-bottom-color: var(--glass-border-subtle);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  transition:
+    background calc(var(--site-dur-silk) * 1.1) var(--site-ease-silk),
+    box-shadow calc(var(--site-dur-silk) * 1.1) var(--site-ease-silk),
+    border-color var(--site-dur-silk) var(--site-ease-silk),
+    backdrop-filter var(--site-dur-silk) var(--site-ease-silk);
+}
+.forgeax-site .nav.is-scrolled {
+  background: color-mix(in srgb, var(--color-background-canvas) 26%, transparent) !important;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 color-mix(in srgb, #fff 11%, transparent);
+}
+
+.forgeax-site .hero {
+  text-align: center;
+  padding: 72px 0 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.forgeax-site .hero-logo {
+  width: 132px;
+  height: 132px;
+  cursor: pointer;
+  user-select: none;
+  filter: drop-shadow(0 0 48px color-mix(in srgb, var(--primary) 28%, transparent));
+  transition:
+    transform var(--site-dur-silk) var(--site-ease-silk),
+    filter var(--site-dur-silk) var(--site-ease-silk);
+}
+.forgeax-site.has-immersive .hero-logo {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 40px rgba(var(--theme-cool-a), 0.22));
+}
+.forgeax-site.has-immersive .hero-logo:hover {
+  transform: translate3d(0, -1px, 0) scale(1.01);
+  filter: drop-shadow(0 0 52px rgba(var(--theme-cool-a), 0.32));
+}
+.forgeax-site:not(.has-immersive) .hero-logo:hover {
+  transform: translate3d(0, -2px, 0) scale(1.015);
+  filter: drop-shadow(0 0 60px color-mix(in srgb, var(--primary) 38%, transparent));
+}
+.forgeax-site .hero .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 22px;
+  padding: 7px 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: var(--glass-shadow);
+}
+.forgeax-site .hero .badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 45%, transparent);
+  animation: badge-pulse var(--motion-duration-pulse) ease-in-out infinite;
+}
+.forgeax-site .hero h1 {
+  font-size: clamp(40px, 7.2vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+}
+.forgeax-site .hero h1 .grad {
+  background: linear-gradient(100deg, var(--color-brand-primary-light) 0%, var(--primary) 42%, var(--teal) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.forgeax-site .hero .sub {
+  margin: 22px auto 0;
+  max-width: 580px;
+  color: var(--color-text-secondary);
+  font-size: clamp(16px, 2.2vw, 19px);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+.forgeax-site .hero .cta { margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 40%, transparent); }
+  50% { box-shadow: 0 0 0 6px transparent; }
+}
+
+.forgeax-site .card {
+  isolation: isolate;
+  overflow: hidden;
+}
+.forgeax-site .stat,
+.forgeax-site .post-row {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.forgeax-site .section h2 {
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+
+.forgeax-site .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 22px;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  border-radius: var(--radius-pill);
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.forgeax-site .card .ico {
+  /* sizing + glass — see icon-system.css */
+  transition:
+    transform var(--site-dur-silk) var(--site-ease-silk),
+    background var(--site-dur-silk) var(--site-ease-silk);
+}
+.forgeax-site .card a.ico-logo { transition: filter var(--site-dur-silk) var(--site-ease-silk); }
+
+.forgeax-site .preview-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forgeax-site .ambient__orb { animation: none !important; }
+  .forgeax-site .hero .badge .dot { animation: none !important; }
+}

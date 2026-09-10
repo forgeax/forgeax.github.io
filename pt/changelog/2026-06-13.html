@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-13 · Vários níveis por projeto + uma atualização do sistema shadow — ForgeaX</title>
+<meta name="description" content="Um projeto pode conter vários níveis com um iniciador; as sombras do mecanismo passam para sombras em cascata e pontuais com HDR e brilho; uma amostra torna-se uma campanha de dois níveis apresentando partículas e efeitos polidos; vazamentos são caçados nos recursos da GPU do mecanismo e no bate-papo; e a confiabilidade do agente é reforçada." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-13 · Vários níveis por projeto + uma atualização do sistema shadow — ForgeaX" />
+<meta property="og:description" content="Um projeto pode conter vários níveis com um iniciador; as sombras do mecanismo passam para sombras em cascata e pontuais com HDR e brilho; uma amostra torna-se uma campanha de dois níveis apresentando partículas e efeitos polidos; vazamentos são caçados nos recursos da GPU do mecanismo e no bate-papo; e a confiabilidade do agente é reforçada." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-13.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-13.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/" data-nav="/">Início</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-13.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-13.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-13.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-13.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-13.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-13.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-13.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-13.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Atualização</span><span>2026-06-13</span></div>
+    <h1>Vários níveis por projeto + uma atualização do sistema shadow</h1>
+    <p class="standfirst">Hoje em dia, um projeto pode conter vários níveis, com um lançador de níveis; o sistema de sombras do mecanismo foi aprimorado imediatamente – sombras em cascata para cenas grandes, sombras pontuais e HDR e brilho completos; a amostra de sobrevivência à bala tornou-se uma campanha de dois níveis “pasto diurno + cemitério noturno”, enquanto toda a sua cadeia de efeitos de partículas foi endireitada; vazamentos foram detectados tanto no motor quanto no chat; e a confiabilidade do agente foi aprovada.</p>
+    <div class="prose"><h2>Crescendo enquanto se aperta</h2>
+<p>O trabalho diário se divide em duas forças: “crescer” e “apertar”. Do lado crescente: um projeto pode conter vários níveis, elevando a unidade de criação de “uma cena” para “um conjunto completo de jogo”; as sombras, o HDR e o brilho do mecanismo aumentaram ao mesmo tempo, o que significa que os visuais podem dar outro grande passo em direção ao realismo e à textura; e o exemplo de sobrevivência à bala tornou-se uma campanha completa de dois níveis, demonstrando essas novas capacidades no local. Do lado mais rígido: tanto o mecanismo quanto o chat caçaram o inimigo invisível dos “vazamentos de recursos”, obstruindo ponto por ponto a memória de vídeo e a memória que não foram devolvidas após o uso; a confiabilidade do agente também recebeu um fortalecimento focado para que ele possa tentar novamente em caso de erro e suportar contextos muito longos. Uma plataforma que cresce rapidamente deve apertar sua base no degrau, ou quanto maior a escala, mais buracos. Este dia aconteceu para fazer as duas coisas ao mesmo tempo.</p>
+<h2>Vários níveis em um projeto + um lançador de níveis</h2>
+<p>Neste dia o editor ganhou “jogos multicenas”, uma mudança fundamental que amplia a unidade de criação. Anteriormente, um projeto era basicamente mapeado para uma cena, tornando estranho um jogo completo com vários níveis de ramificação; agora, arquivos de vários níveis podem coexistir em um projeto, e o painel de ativos organiza &quot;subativos&quot; por nome, em vez de empilhar a mesma cena em linhas duplicadas vertiginosas. Um painel inicializador de níveis foi adicionado para que você possa escolher qual nível entrar para edição ou jogar diretamente no Studio; editar e reproduzir permanecem sincronizados, para que tudo o que você alterar no editor seja exibido fielmente ao alternar para reprodução. Para tornar essa capacidade concreta, o exemplo de sobrevivência à bala tornou-se uma verdadeira campanha multinível - um nível, um pasto diurno, outro, um cemitério noturno, dois ambientes totalmente diferentes - uma demonstração prática de &quot;construir todo um conjunto de níveis em um projeto&quot;. A partir de hoje, construir um jogo completo com início-meio-fim e múltiplos níveis é finalmente estruturalmente natural, não necessitando mais de um projeto separado por nível costurado manualmente.</p>
+<h2>Uma atualização de sombra: nítido perto, suave longe, luzes pontuais lançadas também</h2>
+<p>As sombras do motor subiram de nível neste dia, e as sombras são exatamente o que decidem se uma imagem 3D é “crível” – sem elas, os objetos parecem flutuar no ar ou grudar no fundo, sem nenhuma sensação de solidez. Uma adição importante foram as “sombras em cascata”, definidas como abordagem unificada. Ele resolve o problema perene das sombras em cenas grandes: cobrir um mapa grande com um mapa de sombras de resolução fixa desfoca o próximo ou o distante; as sombras em cascata dividem a visão em segmentos por distância, alta resolução de perto e mais baixa de longe, de modo que as sombras aos seus pés são nítidas e nítidas, enquanto as distantes transitam suavemente e todo o grande mapa se mantém. A outra adição é que as luzes pontuais agora podem projetar sombras - anteriormente apenas a luz direcional semelhante ao sol produzia sombras, enquanto uma lâmpada ou tocha irradiando em todas as direções não produzia sombras; agora eles também lançam sombras corretas espalhando-se por toda parte. Com HDR completo (alta faixa dinâmica, para gradação de claro e escuro mais realista) e exemplos de brilho, o realismo geral aumentou. Estas são as bases gráficas indispensáveis ​​para a construção de cenas reais críveis a partir daqui.</p>
+<h2>A amostra de sobrevivência à bala: de “corre” a “parece um jogo real”</h2>
+<p>Em torno daquela amostra de sobrevivência à bala, este dia endireitou completamente toda a cadeia de partículas e efeitos, polindo-a de “funciona” para “parece um jogo real”. Uma série de trabalhos concretos: o sistema de partículas foi alterado para uma abordagem instanciada, de modo que faíscas, explosões e efeitos de luz que preenchem a tela ao mesmo tempo não gaguejam mais; a mistura aditiva e a renderização transparente foram corrigidas, eliminando os quadrados escurecidos que costumavam aparecer nas bordas do efeito; as ondas de choque passaram de uma bolha bagunçada para anéis finos e limpos; cada habilidade tem seu próprio shader personalizado, dando à explosão, ao fogo e ao gelo uma sensação própria; coberto com uma camada de pós-processamento cinematográfico e um conjunto completo de recursos de aparência para os monstros e personagens do jogador. O valor é duplo: por um lado, o próprio sample se tornou um produto final de boa aparência que você pode tocar diretamente ou aprender; por outro, ele testou de ponta a ponta todo o conjunto de recursos gráficos que o mecanismo havia acabado de atualizar naquele dia – sombras, brilho, partículas, efeitos – com um jogo real. Somente sustentando-o é que se prova que essas capacidades subjacentes são genuinamente utilizáveis.</p>
+<h2>Caçando vazamentos de recursos em ambas as extremidades</h2>
+<p>Este dia teve um fio oculto percorrendo a frente e o verso: caçar “vazamentos de recursos”. Um vazamento são recursos usados, mas não devolvidos a tempo, acumulando-se até arrastar todo o sistema para baixo – imperceptível no uso normal, irrompendo apenas sob uso prolongado e em grande escala e, portanto, especialmente insidioso. No lado do motor, foi adicionado gerenciamento completo do ciclo de vida dos recursos da GPU: cada buffer de memória de vídeo e textura podem ser explicitamente destruídos e recuperados após o uso, e o renderizador como um todo pode ser liberado de forma limpa - anteriormente, essa memória de vídeo poderia vazar silenciosamente, enchendo-se a longo prazo. No lado do chat, vários vazamentos de memória de estado de front-end foram eliminados de uma só vez: quando uma sessão é fechada, os vários caches, ouvintes e registros temporários vinculados a ela são despejados corretamente, em vez de permanecerem na memória e se acumularem. Os dois parecem não relacionados – um na renderização de baixo nível, outro na interface front-end – mas a essência é o mesmo princípio: quem solicita um recurso é responsável por devolvê-lo após o uso. Aplicar este princípio em todos os cantos do sistema é a garantia fundamental de que o software pode funcionar de forma estável durante um longo período de tempo em grande escala.</p>
+<h2>Reforço da confiabilidade do agente: pode tentar novamente em caso de erro e suportar contexto longo</h2>
+<p>Este dia também deu à confiabilidade do agente um reforço direcionado, com foco nas classes de problemas que mais afetam “se a IA é confiável no trabalho”. Primeiro, novas tentativas de chamadas de modelos grandes foram adicionadas dentro do loop de trabalho do agente: uma chamada de modelo ocasionalmente falha devido a instabilidade da rede e similares, e onde uma falha costumava interromper toda a tarefa, ela agora tenta novamente dentro do loop, absorvendo tais falhas esporádicas. Em segundo lugar, quando o contexto da conversa fica muito longo e se aproxima da capacidade do modelo, o sistema comprime o histórico de forma proativa e reativa, evitando atingir o limite e travar. Terceiro, o tratamento de retorno de chamada ao delegar uma tarefa a um subagente foi reforçado, juntamente com o relatório do backlog de eventos. Essas mudanças vieram com meios de verificação dedicados - um &quot;servidor de modelo falso&quot; programável simulando várias situações anormais, validando cada proteção em uma pilha real em execução. Uma plataforma que faz a IA funcionar de forma autônoma para você por longos períodos teme que ela pare silenciosamente ou trave no meio do caminho devido a algum problema esporádico; reforçar esses elos fracos, um por um, é exatamente a confiança que permite que as pessoas ousem “deixar as coisas funcionarem”.</p>
+<h2>O que este dia significa</h2>
+<p>Este dia colocou “ambição” e “segurança” lado a lado. Os projetos multinível e a atualização sombra representam ambição – deixar a plataforma transportar trabalhos mais completos, grandiosos e mais bonitos, elevando mais uma vez o teto criativo; enquanto a busca por vazamentos e o fortalecimento da confiabilidade do agente representam garantia – deixar essas ambições maiores repousarem firmemente sobre uma base que não vaza, não trava e se auto-cura em caso de erro. Um produto que persegue a ambição sem garantia entra em colapso tanto mais quanto maior ele cresce; quem guarda a segurança sem ambição ousada permanece no lugar para sempre. Um ritmo de engenharia verdadeiramente maduro faz com que os dois acompanhem um ao outro como fizeram hoje: cada grande avanço em capacidade é acompanhado pela destruição de outra camada de base. A amostra transformada em uma campanha completa de dois níveis com visuais refinados é a melhor nota de rodapé para esse ritmo – mostra o quão bom pode ficar e, ao ser executado em si, prova se tudo é realmente estável.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

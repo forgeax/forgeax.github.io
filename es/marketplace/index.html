@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plugins — ForgeaX</title>
+<meta name="description" content="Explore los plugins de agentes, extensiones y backends CLI de ForgeaX. Cada capacidad es un plugin cargado en tiempo de ejecución." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Plugins — ForgeaX" />
+<meta property="og:description" content="Explore los plugins de agentes, extensiones y backends CLI de ForgeaX. Cada capacidad es un plugin cargado en tiempo de ejecución." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/es/marketplace/" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/marketplace/" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/marketplace/" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/marketplace/" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/marketplace/" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/marketplace/" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/marketplace/" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/marketplace/" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/marketplace/" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/marketplace/" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/marketplace/" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+<link rel="stylesheet" href="/assets/forgeax/marketplace-cards.css?v=1c9f18b0" />
+<style>
+  /* Cards are title+link only; without an explicit rail width, main.wrap shrink-wraps
+     and auto-fill collapses to a single column. Keep the two-column marketplace grid. */
+  .forgeax-site main.wrap{
+    width:min(var(--maxw),calc(100% - 40px));
+    max-width:min(var(--maxw),calc(100% - 40px));
+  }
+  .mk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+  .mk-item{padding:16px}
+  .mk-item.hide{display:none !important}
+  .mk-item h3{font-size:15px;font-weight:700;line-height:1.3;margin:0}
+  .mk-item p{color:var(--text-secondary);font-size:13.5px;margin-top:7px}
+  .mk-item a{color:var(--brand)}
+  .mk-empty{display:none;color:var(--text-tertiary);text-align:center;padding:36px 0}
+
+  /* plugin info modal — layout; glass skin in marketplace-cards.css */
+  .mk-item{cursor:pointer}
+  .mk-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
+  .mk-modal[hidden]{display:none}
+  .mk-modal-backdrop{position:absolute;inset:0;z-index:0}
+  .mk-modal-anchor{position:relative;z-index:1;width:100%;max-width:min(960px,calc(100vw - 32px));margin:0;overflow:visible}
+  .mk-modal-card{position:relative;width:100%;max-height:min(90vh,calc(100vh - 48px));overflow:hidden;border-radius:26px;margin:0}
+  .mk-modal-head h3{font-size:21px;font-weight:700;margin:0;line-height:1.3}
+  .mk-modal-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--text-secondary,#9aa0aa);margin:10px 0 12px}
+  .mk-modal-meta .mono{font-family:'Fira Mono',monospace}
+  .mk-modal-card p#mkmDesc{color:var(--text-secondary,#c4c8d0);line-height:1.62;margin:0}
+  .mk-caps{margin:0;padding-left:18px;color:var(--text-secondary,#c4c8d0);font-size:13.5px;line-height:1.7}
+  .mk-kw{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+  .mk-kw span{font-size:12px;padding:3px 9px;border:1px solid var(--border,#2a2d35);border-radius:999px;color:var(--text-secondary,#9aa0aa);font-family:'Fira Mono',monospace}
+  .mk-meta-exp{font-size:11px;padding:2px 8px;border-radius:var(--radius-pill);background:rgba(212,255,72,.12);color:var(--accent,#D4FF48)}
+
+  /* ── Agent cards: avatar slot on the right ── */
+  .mk-item.is-agent{display:flex;gap:14px;align-items:flex-start}
+  .mk-item.is-agent .mk-agent-main{flex:1;min-width:0}
+  .mk-item.is-agent h3{margin-top:0}
+  .mk-avatar{
+    width:64px;height:64px;flex-shrink:0;border-radius:50%;overflow:hidden;
+    background:rgba(196,163,255,.08);
+    border:1px solid rgba(196,163,255,.22);
+    position:relative;
+    transition:border-color var(--dur-smooth) var(--ease-out),transform var(--dur-smooth) var(--ease-out);
+  }
+  .mk-avatar video{
+    position:absolute;inset:0;
+    width:100%;height:100%;object-fit:cover;object-position:center top;
+    display:block;background:transparent;
+    opacity:0;transition:opacity .3s ease;
+    transform:scale(1.24) translate3d(0,-12%,0);transform-origin:center top;
+    backface-visibility:hidden;
+  }
+  .mk-avatar video.is-front{opacity:1}
+  .mk-avatar[data-agent="suzu"] video{transform:scale(1.34) translate3d(0,-24%,0)}
+  .mk-avatar[data-agent="arin"] video{transform:scale(1.22) translate3d(0,-16%,0)}
+  .mk-avatar[data-agent="kotone"] video{transform:scale(1.18) translate3d(0,-16%,0)}
+  .mk-avatar[data-agent="tsumugi"] video{transform:scale(1.18) translate3d(0,-22%,0)}
+  .mk-avatar[data-agent="lock"] video{transform:scale(1.24) translate3d(0,-22%,0)}
+  .mk-avatar[data-agent="cc-coder"] video{transform:scale(1.24) translate3d(0,-25%,0)}
+  .mk-avatar[data-agent="iori"] video{transform:scale(1.12) translate3d(0,-10%,0)}
+  .mk-avatar[data-agent="iro"] video{transform:scale(1.24) translate3d(0,-21%,0)}
+  .mk-avatar[data-agent="yevi"] video{transform:scale(1.24) translate3d(0,-21%,0)}
+  .mk-avatar[data-agent="reia"] video{transform:scale(1.22) translate3d(0,-18%,0)}
+
+  /* Row break after the agent row */
+  .mk-rowbreak{grid-column:1/-1;height:0;margin:0;padding:0;border:0}
+
+  /* Companion persona chips */
+  .mk-avatar-cluster{display:flex;flex-direction:row;gap:6px;flex-shrink:0;align-items:flex-start}
+  .mk-avatar-cluster .mk-avatar{width:48px;height:48px}
+  .mk-avatar-cluster video{transform:scale(1.24) translate3d(0,-20%,0)}
+  .mk-companions{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .mk-companion{
+    font-family:inherit;font-size:11.5px;line-height:1.3;
+    padding:3px 9px;border-radius:var(--radius-pill);
+    background:transparent;color:var(--text-tertiary);
+    border:1px solid rgba(255,255,255,.07);
+  }
+  .mk-companion.is-shown{
+    color:var(--brand);background:rgba(212,255,72,.10);
+    border-color:rgba(212,255,72,.36);font-weight:600;
+  }
+  .mk-item[data-slug="agent-cc-coder"] .mk-companions{margin-top:4px;gap:4px}
+  .mk-item[data-slug="agent-cc-coder"] .mk-companion{padding:1px 7px;font-size:11px}
+
+  .mk-modal-icon.ico{
+    width:var(--icon-container-size);
+    height:var(--icon-container-size);
+    margin:0;
+    flex-shrink:0;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/" class="active">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/marketplace/" data-l="en">English</a><a class="lang-item" href="/zh/marketplace/" data-l="zh">中文</a><a class="lang-item" href="/ja/marketplace/" data-l="ja">日本語</a><a class="lang-item" href="/ko/marketplace/" data-l="ko">한국어</a><a class="lang-item active" href="/es/marketplace/" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/marketplace/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/marketplace/" data-l="fr">Français</a><a class="lang-item" href="/pt/marketplace/" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Plugins</h1>
+    <p>En ForgeaX casi todas las capacidades son un <strong>plugin cargable</strong>.</p>
+  </div>
+
+  <div class="mk-bar">
+    <div class="mk-tabs">
+      <button class="mk-tab active" data-kind="authoring">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="blocks"></i></span>
+        Extensión
+      </button>
+      <button class="mk-tab" data-kind="agent">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="bot"></i></span>
+        Agente
+      </button>
+      <button class="mk-tab" data-kind="backend">
+        <span class="mk-tab-ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
+        back-end CLI
+      </button>
+    </div>
+  </div>
+
+  <div class="mk-grid" id="mkGrid">
+    <div class="mk-item is-agent" data-slug="agent-arin" data-kind="agent" data-search="arin producer 制作人 统筹 production">
+      <div class="mk-agent-main">
+        <h3>Arín · Productor</h3>
+        <p>Un productor integral que coordina diseño/código/arte/audio.</p>
+      </div>
+      <div class="mk-avatar" data-agent="arin"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-reia" data-kind="agent" data-search="reia reel fmv 影游 互动影片 导演 director interactive film qte">
+      <div class="mk-agent-main">
+        <h3>Reia · Directora de carrete</h3>
+        <p>Director FMV interactivo: indicaciones, ritmo QTE, ramas y finales.</p>
+      </div>
+      <div class="mk-avatar" data-agent="reia"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-iori" data-kind="agent" data-search="iori gameplay 玩法 pillar mechanics">
+      <div class="mk-agent-main">
+        <h3>Iori · Jugabilidad</h3>
+        <p>Mecánicas principales: el pilar del juego y el esqueleto numérico.</p>
+      </div>
+      <div class="mk-avatar" data-agent="iori"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-suzu" data-kind="agent" data-search="suzu design experience 体验设计 hud onboarding">
+      <div class="mk-agent-main">
+        <h3>Suzu · Experiencia</h3>
+        <p>Ritmo del jugador, HUD e incorporación.</p>
+      </div>
+      <div class="mk-avatar" data-agent="suzu"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-kotone" data-kind="agent" data-search="kotone narrative 叙事 story world dialogue">
+      <div class="mk-agent-main">
+        <h3>Kotone · Narrativa</h3>
+        <p>Mundo, biografías de personajes y diálogos.</p>
+      </div>
+      <div class="mk-avatar" data-agent="kotone"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-iro" data-kind="agent" data-search="iro art 美术 sprite vfx ui">
+      <div class="mk-agent-main">
+        <h3>Iro · Arte</h3>
+        <p>Retratos, sprites, VFX y dirección UI.</p>
+      </div>
+      <div class="mk-avatar" data-agent="iro"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-cc-coder" data-kind="agent" data-search="coder coding 编码 cc-coder code companion personas 陪伴人格 character mochi rin sakura kaede kumo 糯糯 凛 樱 小枫 蛛蛛">
+      <div class="mk-agent-main">
+        <h3>codificador cc · codificador</h3>
+        <p>Codificación general: convierte las especificaciones en código en ejecución. Personajes acompañantes opcionales.</p>
+        <div class="mk-companions" aria-label="companion personas">
+        <span class="mk-companion is-shown" data-persona="mochi">Mochi</span>
+        <span class="mk-companion is-shown" data-persona="rin">rin</span>
+        <span class="mk-companion is-shown" data-persona="sakura">sakura</span>
+        <span class="mk-companion" data-persona="kaede">kaede</span>
+        <span class="mk-companion" data-persona="kumo">kumo</span>
+        </div>
+      </div>
+      <div class="mk-avatar" data-agent="cc-coder"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-tsumugi" data-kind="agent" data-search="tsumugi build ci 工程 toolchain">
+      <div class="mk-agent-main">
+        <h3>Tsumugi · Construir</h3>
+        <p>Construcción, CI, cadena de herramientas e implementación.</p>
+      </div>
+      <div class="mk-avatar" data-agent="tsumugi"></div>
+    </div>
+    <div class="mk-item is-agent" data-slug="agent-yevi" data-kind="agent" data-search="yevi review 审查 tech debt reviewer">
+      <div class="mk-agent-main">
+        <h3>Yevi · Revisor</h3>
+        <p>Revisión técnica: identifica y liquida la deuda tecnológica.</p>
+      </div>
+      <div class="mk-avatar" data-agent="yevi"></div>
+    </div>
+    <div class="mk-rowbreak" aria-hidden="true"></div>
+    <div class="mk-item" data-slug="character" data-kind="authoring" data-search="character 角色编辑器 portrait 立绘 turnaround character">
+      <div class="mk-agent-badge" data-agent="character-designer-2d" title="2D Character Designer">
+        <div class="mk-avatar mk-avatar-sm" data-agent="character-designer-2d"></div>
+        <span class="mk-agent-role">2D Character Designer</span>
+      </div>
+      <h3>editor de personajes</h3>
+      <p>Un resumen de una línea → retrato + cambio de rumbo.</p>
+    </div>
+    <div class="mk-item" data-slug="anim" data-kind="authoring" data-search="anim 动画 animation walk attack sprite">
+      <div class="mk-agent-badge" data-agent="animator-2d" title="2D Animator">
+        <div class="mk-avatar mk-avatar-sm" data-agent="animator-2d"></div>
+        <span class="mk-agent-role">2D Animator</span>
+      </div>
+      <h3>Animación</h3>
+      <p>Convierte un personaje inmóvil en un movimiento esquelético, de ataque y de caminata.</p>
+    </div>
+    <div class="mk-item" data-slug="skill" data-kind="authoring" data-search="skill 技能 vfx 特效 effects fireball">
+      <div class="mk-agent-badge" data-agent="vfx-artist-3d" title="3D VFX Artist">
+        <div class="mk-avatar mk-avatar-sm" data-agent="vfx-artist-3d"></div>
+        <span class="mk-agent-role">3D VFX Artist</span>
+      </div>
+      <h3>Habilidad / VFX</h3>
+      <p>Fuego, cortes, auras: autoadjuntos al momento del lanzamiento.</p>
+    </div>
+    <div class="mk-item" data-slug="gen3d" data-kind="authoring" data-search="gen3d 3d 生成 text image to 3d model">
+      <div class="mk-agent-badge" data-agent="gen3d" title="Gen3D · 3D Character Artist">
+        <div class="mk-avatar mk-avatar-sm" data-agent="gen3d"></div>
+        <span class="mk-agent-role">3D Character Artist</span>
+      </div>
+      <h3>generación 3D</h3>
+      <p>Texto o imagen directamente a un modelo 3D a través de varios generadores.</p>
+    </div>
+    <div class="mk-item" data-slug="scene-generator" data-kind="authoring" data-search="scene-generator 场景生成器 scene build graph">
+      <div class="mk-agent-badge" data-agent="sino" title="Sino · Scene Composer">
+        <div class="mk-avatar mk-avatar-sm" data-agent="iro"></div>
+        <span class="mk-agent-role">Scene Composer</span>
+      </div>
+      <h3>Generador de escenas</h3>
+      <p>Reúna una escena completa como un gráfico reejecutable.</p>
+    </div>
+    <div class="mk-item" data-slug="narrative" data-kind="authoring" data-search="narrative 叙事制作页 story world template">
+      <div class="mk-agent-badge" data-agent="kotone" title="Kotone · Narrative Writer">
+        <div class="mk-avatar mk-avatar-sm" data-agent="kotone"></div>
+        <span class="mk-agent-role">Narrative Writer</span>
+      </div>
+      <h3>Extensión narrativo</h3>
+      <p>De una chispa a una historia y un mundo completos.</p>
+    </div>
+    <div class="mk-item" data-slug="reel" data-kind="authoring" data-search="reel 影游 fmv interactive video">
+      <div class="mk-agent-badge" data-agent="reia" title="Reia · Reel Director">
+        <div class="mk-avatar mk-avatar-sm" data-agent="reia"></div>
+        <span class="mk-agent-role">Reel Director</span>
+      </div>
+      <h3>película interactiva</h3>
+      <p>Convierte una chispa o un guión en un juego de película interactivo de tocar y elegir.</p>
+    </div>
+    <div class="mk-item" data-slug="cli-claude-code" data-kind="backend" data-search="claude code anthropic default backend cli">
+      <h3>Claude Code</h3>
+      <p><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener">github.com/anthropics/claude-code →</a></p>
+    </div>
+    <div class="mk-item" data-slug="cli-codex" data-kind="backend" data-search="codex openai backend cli">
+      <h3>Codex</h3>
+      <p><a href="https://github.com/openai/codex" target="_blank" rel="noopener">github.com/openai/codex →</a></p>
+    </div>
+    <div class="mk-item" data-slug="cli-cursor-agent" data-kind="backend" data-search="cursor agent backend cli">
+      <h3>Cursor</h3>
+      <p><a href="https://cursor.com" target="_blank" rel="noopener">cursor.com →</a></p>
+    </div>
+    <div class="mk-item" data-slug="cli-kimi-code" data-kind="backend" data-search="kimi code moonshot cli backend terminal coding agent">
+      <h3>Kimi Code</h3>
+      <p><a href="https://github.com/MoonshotAI/kimi-code" target="_blank" rel="noopener">github.com/MoonshotAI/kimi-code →</a></p>
+    </div>
+    <div class="mk-item" data-slug="cli-deepseek-harness" data-kind="backend" data-search="deepseek harness dsh cli backend headless developer preview">
+      <h3>DeepSeek Harness</h3>
+      <p><a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">github.com/deepseek-ai/deepseek-harness →</a></p>
+    </div>
+    <div class="mk-item" data-slug="skill-author-plugin" data-kind="skill" data-search="author-plugin skill make plugin">
+      <h3>Autor del complemento</h3>
+      <p>Cree un complemento cargable desde cero.</p>
+    </div>
+    <div class="mk-item" data-slug="cli-forgeax" data-kind="backend" data-search="forgeax-cli self-built own backend default persona">
+      <h3>forgeax-cli</h3>
+      <p><a href="https://github.com/ForgeaX-Games/forgeax-cli" target="_blank" rel="noopener">github.com/ForgeaX-Games/forgeax-cli →</a></p>
+    </div>
+    <div class="mk-item" data-slug="skill-make-game-design" data-kind="skill" data-search="make-game-design skill game design gdd">
+      <h3>Diseño de juegos</h3>
+      <p>Generar un diseño de juego.</p>
+    </div>
+    <div class="mk-item" data-slug="tool-balance-resim" data-kind="tool" data-search="balance-resim tool battle simulation winrate">
+      <h3>Re-simulación de batalla</h3>
+      <p>Reproduce partidos para conocer las tasas de victorias con intervalos de confianza para informar el equilibrio.</p>
+    </div>
+    <div class="mk-item" data-slug="model-anthropic-text" data-kind="binding" data-search="anthropic-text model binding channel">
+      <h3>Canal de texto antrópico</h3>
+      <p>Asigna niveles abstractos a un modelo de proveedor concreto.</p>
+    </div>
+  </div>
+  <div class="mk-empty" id="mkEmpty">Ningún complemento coincide.</div>
+
+</main>
+
+<div id="mkModal" class="mk-modal" hidden>
+  <div class="mk-modal-backdrop" data-close></div>
+  <div class="mk-modal-anchor">
+    <div class="mk-modal-card mk-modal-rich mk-hud-shell" role="dialog" aria-modal="true" aria-labelledby="mkmTitle">
+    <div class="mk-cosmic-glow" aria-hidden="true">
+      <i class="mk-glow-blob mk-glow-blob--a"></i>
+      <i class="mk-glow-blob mk-glow-blob--b"></i>
+      <i class="mk-glow-blob mk-glow-blob--c"></i>
+      <i class="mk-glow-flare"></i>
+    </div>
+    <header class="mk-hud-header" aria-hidden="true">
+      <span class="mk-hud-header-brand">FORGEAX // MARKETPLACE</span>
+      <button type="button" class="mk-modal-x" data-close aria-label="Close">
+        <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="x"></i></span>
+      </button>
+    </header>
+    <div class="mk-modal-grid">
+      <aside class="mk-modal-hero mk-modal-studio">
+        <div class="mk-studio-chrome" aria-hidden="true">
+          <span class="mk-studio-label">STUDIO</span>
+          <span class="mk-studio-panel" id="mkmStudioPanel"></span>
+        </div>
+        <div class="mk-preview-gallery">
+        <div class="mk-modal-preview mk-hud-panel mk-studio-viewport mk-preview-stage" id="mkmPreview">
+          <div class="mk-halo-flow" aria-hidden="true">
+            <div class="mk-halo-ambient">
+              <i class="mk-halo-pool mk-halo-pool--warm"></i>
+              <i class="mk-halo-pool mk-halo-pool--cool"></i>
+            </div>
+            <div class="mk-halo-beams">
+              <i class="mk-halo-beam mk-halo-beam--warm"></i>
+              <i class="mk-halo-beam mk-halo-beam--cool"></i>
+            </div>
+            <div class="mk-halo-ring">
+              <div class="mk-halo-ring__spin mk-halo-ring__spin--soft"></div>
+              <div class="mk-halo-ring__spin"></div>
+              <div class="mk-halo-ring__core"></div>
+            </div>
+          </div>
+          <div class="mk-hud-grid" aria-hidden="true"></div>
+          <div class="mk-hud-orbit" aria-hidden="true">
+            <svg class="mk-orbit-svg" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="mkCoreGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" />
+                  <stop offset="45%" />
+                  <stop offset="100%" />
+                </radialGradient>
+                <linearGradient id="mkOrbitArc" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.05)" />
+                  <stop offset="35%" />
+                  <stop offset="65%" stop-color="rgba(255,255,255,0.55)" />
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.08)" />
+                </linearGradient>
+                <linearGradient id="mkOrbitArcB" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+                  <stop offset="40%" />
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+                </linearGradient>
+                <filter id="mkOrbitBlur" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="2.5" result="b" />
+                  <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+              </defs>
+              <circle class="mk-orbit-core-glow" cx="120" cy="120" r="52" />
+              <circle class="mk-orbit-core" cx="120" cy="120" r="5" filter="url(#mkOrbitBlur)" />
+              <g class="mk-orbit-plane mk-orbit-plane--a">
+                <ellipse class="mk-orbit-ellipse" cx="120" cy="120" rx="98" ry="34" />
+                <ellipse class="mk-orbit-ellipse mk-orbit-ellipse--inner" cx="120" cy="120" rx="98" ry="34" stroke-dasharray="4 10 2 14" />
+                <circle class="mk-orbit-node" cx="120" cy="86" r="3.2" />
+              </g>
+              <g class="mk-orbit-plane mk-orbit-plane--b">
+                <ellipse class="mk-orbit-ellipse" cx="120" cy="120" rx="82" ry="82" stroke="url(#mkOrbitArc)" />
+                <circle class="mk-orbit-tick" cx="120" cy="38" r="1.2" />
+                <circle class="mk-orbit-tick" cx="202" cy="120" r="1.2" />
+                <circle class="mk-orbit-tick" cx="120" cy="202" r="1.2" />
+                <circle class="mk-orbit-tick" cx="38" cy="120" r="1.2" />
+                <g class="mk-orbit-sat"><circle r="4" /><circle class="mk-orbit-sat-halo" r="8" /></g>
+              </g>
+              <g class="mk-orbit-plane mk-orbit-plane--c">
+                <ellipse class="mk-orbit-ellipse" cx="120" cy="120" rx="68" ry="22" stroke="url(#mkOrbitArcB)" />
+                <g class="mk-orbit-sat mk-orbit-sat--reverse"><circle r="3" /><circle class="mk-orbit-sat-halo" r="6" /></g>
+              </g>
+              <g class="mk-orbit-plane mk-orbit-plane--d">
+                <circle class="mk-orbit-ring-outer" cx="120" cy="120" r="108" stroke-dasharray="1 7 3 11 1 9" />
+                <path class="mk-orbit-arc" d="M 120 18 A 102 102 0 0 1 210 78" />
+                <path class="mk-orbit-arc mk-orbit-arc--b" d="M 210 162 A 102 102 0 0 1 38 178" />
+              </g>
+            </svg>
+          </div>
+          <div class="mk-hud-radar" aria-hidden="true">
+            <svg class="mk-radar-svg" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="mkRadarVignette" cx="50%" cy="50%" r="50%">
+                  <stop offset="55%" stop-color="rgba(var(--mk-accent-a), 0)" />
+                  <stop offset="100%" stop-color="rgba(0,0,0,0.18)" />
+                </radialGradient>
+                <linearGradient id="mkSweepBeam" x1="50%" y1="50%" x2="50%" y2="0%">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+                  <stop offset="55%" stop-color="rgba(255,255,255,0.06)" />
+                  <stop offset="100%" />
+                </linearGradient>
+                <linearGradient id="mkSweepCore" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+                  <stop offset="50%" stop-color="rgba(255,255,255,0.85)" />
+                  <stop offset="100%" stop-color="rgba(var(--mk-accent-a), 0.2)" />
+                </linearGradient>
+              </defs>
+              <circle class="mk-radar-disc" cx="120" cy="120" r="108" />
+              <circle class="mk-radar-grid" cx="120" cy="120" r="88" />
+              <circle class="mk-radar-grid" cx="120" cy="120" r="66" />
+              <circle class="mk-radar-grid" cx="120" cy="120" r="44" />
+              <circle class="mk-radar-grid" cx="120" cy="120" r="22" />
+              <g class="mk-radar-lines">
+                <line x1="120" y1="12" x2="120" y2="228" /><line x1="12" y1="120" x2="228" y2="120" />
+                <line x1="44" y1="44" x2="196" y2="196" /><line x1="196" y1="44" x2="44" y2="196" />
+              </g>
+              <g class="mk-radar-sweep mk-radar-sweep--ghost">
+                <path d="M120,120 L120,14 A106,106 0 0,1 205,68 Z" fill="url(#mkSweepBeam)" opacity="0.35" />
+              </g>
+              <g class="mk-radar-sweep mk-radar-sweep--trail">
+                <path d="M120,120 L120,14 A106,106 0 0,1 205,68 Z" fill="url(#mkSweepBeam)" opacity="0.2" />
+              </g>
+              <g class="mk-radar-sweep">
+                <path class="mk-radar-wedge" d="M120,120 L120,14 A106,106 0 0,1 205,68 Z" fill="url(#mkSweepBeam)" />
+                <line class="mk-radar-beam" x1="120" y1="120" x2="120" y2="16" />
+                <line class="mk-radar-beam-edge" x1="120" y1="120" x2="205" y2="68" />
+              </g>
+              <circle class="mk-radar-center" cx="120" cy="120" r="4" />
+              <circle class="mk-radar-center-pulse" cx="120" cy="120" r="10" />
+              <rect class="mk-radar-vignette" x="0" y="0" width="240" height="240" fill="url(#mkRadarVignette)" />
+            </svg>
+            <div class="mk-radar-blips">
+              <i style="--bx:68%;--by:32%;--bd:0.2s"></i>
+              <i style="--bx:42%;--by:58%;--bd:1.1s"></i>
+              <i style="--bx:74%;--by:62%;--bd:2.4s"></i>
+              <i style="--bx:55%;--by:44%;--bd:3.6s"></i>
+            </div>
+          </div>
+          <div class="mk-hud-crosshair" aria-hidden="true">
+            <span class="mk-reticle mk-reticle--tl"></span>
+            <span class="mk-reticle mk-reticle--tr"></span>
+            <span class="mk-reticle mk-reticle--bl"></span>
+            <span class="mk-reticle mk-reticle--br"></span>
+            <span class="mk-reticle-ring"></span>
+          </div>
+          <span class="mk-hud-corner mk-hud-corner--tl" aria-hidden="true"></span>
+          <span class="mk-hud-corner mk-hud-corner--tr" aria-hidden="true"></span>
+          <span class="mk-hud-corner mk-hud-corner--bl" aria-hidden="true"></span>
+          <span class="mk-hud-corner mk-hud-corner--br" aria-hidden="true"></span>
+          <div class="mk-hud-readout mk-hud-readout--tl" id="mkmReadoutId"></div>
+          <div class="mk-hud-readout mk-hud-readout--tr" id="mkmReadoutVer"></div>
+          <div class="mk-hud-readout mk-hud-readout--bl" id="mkmReadoutKind"></div>
+          <div class="mk-studio-embed" id="mkmStudioEmbed" hidden></div>
+          <div class="mk-modal-preview-frame" id="mkmPreviewFrame"></div>
+        </div>
+        <div class="mk-preview-thumbs" id="mkmPreviewThumbs" hidden>
+          <button type="button" class="mk-preview-thumbs-nav is-prev" id="mkmPreviewPrev" aria-label="Previous">
+            <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="chevron-left"></i></span>
+          </button>
+          <div class="mk-preview-thumbs-scroller" id="mkmPreviewThumbsScroller">
+            <div class="mk-preview-thumbs-track" id="mkmPreviewThumbsTrack"></div>
+          </div>
+          <button type="button" class="mk-preview-thumbs-nav is-next" id="mkmPreviewNext" aria-label="Next">
+            <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="chevron-right"></i></span>
+          </button>
+        </div>
+        </div>
+        <div class="mk-modal-stats" id="mkmStats" hidden aria-hidden="true"></div>
+      </aside>
+      <div class="mk-modal-main">
+        <div class="mk-modal-head">
+          <span class="mk-modal-kind" id="mkmKind"></span>
+          <h3 id="mkmTitle"></h3>
+        </div>
+        <div class="mk-modal-meta" id="mkmMeta"></div>
+        <p id="mkmDesc"></p>
+        <div id="mkmAgentWrap" class="mk-modal-section mk-hud-panel mk-agent-block" hidden>
+          <h4>Agente dedicado</h4>
+          <div class="mk-agent-card">
+            <div class="mk-avatar mk-avatar-lg" id="mkmAgentAvatar" data-agent=""></div>
+            <div class="mk-agent-body">
+              <div class="mk-agent-head">
+                <span class="mk-agent-name" id="mkmAgentName"></span>
+                <span class="mk-agent-role" id="mkmAgentRole"></span>
+              </div>
+              <p class="mk-agent-desc" id="mkmAgentDesc"></p>
+            </div>
+          </div>
+        </div>
+        <div id="mkmModelsWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <h4>Pila de modelos</h4>
+          <div class="mk-model-stack" id="mkmModels"></div>
+        </div>
+        <div id="mkmCapsWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <h4>Capacidades</h4>
+          <ul class="mk-caps" id="mkmCaps"></ul>
+        </div>
+        <div id="mkmTutorialWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <h4>Inicio rápido</h4>
+          <ol class="mk-tutorial" id="mkmTutorial"></ol>
+        </div>
+        <div id="mkmHistoryWrap" class="mk-modal-section mk-hud-panel" hidden>
+          <h4>Registro de cambios</h4>
+          <ol class="mk-history" id="mkmHistory"></ol>
+        </div>
+        <div class="mk-kw" id="mkmKw"></div>
+        <div class="mk-modal-actions">
+          <a id="mkmRepo" class="mk-modal-btn mk-modal-btn--ghost" target="_blank" rel="noopener" href="#"></a>
+          <a id="mkmDocs" class="mk-modal-btn mk-modal-btn--primary" target="_blank" rel="noopener" href="#" hidden></a>
+        </div>
+      </div>
+    </div>
+    <footer class="mk-hud-footer" aria-hidden="true">
+      <div class="mk-hud-footer-row">
+        <span class="mk-hud-header-live"><i aria-hidden="true"></i> LIVE</span>
+      </div>
+    </footer>
+    </div>
+  </div>
+</div>
+
+<div id="mkPreviewLightbox" class="mk-preview-lightbox" hidden>
+  <button type="button" class="mk-preview-lightbox-backdrop" data-close-lightbox aria-label="Close preview"></button>
+  <figure class="mk-preview-lightbox-panel">
+    <button type="button" class="mk-preview-lightbox-close" data-close-lightbox aria-label="Close preview">
+      <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="x"></i></span>
+    </button>
+    <img class="mk-preview-lightbox-img" id="mkPreviewLightboxImg" alt="" />
+    <video class="mk-preview-lightbox-video" id="mkPreviewLightboxVideo" controls playsinline loop hidden></video>
+  </figure>
+</div>
+
+<script>window.MK_UI={"experimental":"experimental","byAuthor":"por","created":"creado","statTools":"Herramientas","statSkills":"Habilidades","statVersion":"Versión","statUpdated":"Actualizado","mdlCliBackend":"back-end CLI","mdlRole":"Role","mdlDefaultSkills":"Habilidades predeterminadas","mdlProvider":"Proveedor","mdlRunner":"Corredor","mdlModels":"Modelos","mdlCaps":"Gorras","mdlChannel":"Canal","mdlVendor":"Proveedor","mdlTiers":"Niveles","mdlModelPool":"grupo modelo","actViewSource":"Ver fuente","actNotOpen":"Aún no en la versión de código abierto","actBrowseAll":"Explorar todos los complementos","actBrowseDocs":"Explorar documentos y tutoriales","previewLive":"Vista previa en vivo en Studio"};window.MK_DATA={"agent-arin":{"slug":"agent-arin","id":"@forgeax-extension/agent-arin","version":"0.1.0","kind":"agent","kindLabel":"Agente","experimental":true,"name":"Arin · Productor de juegos","desc":"Arin es el agente productor de juegos integral de ForgeaX y actúa como orquestador. Cubre diseño, código, arte y audio de principio a fin, y se desempeña mejor cuando solo tienes una idea confusa, guiándote desde allí hasta un juego jugable. Su estilo es un compañero gentil: afirma lo que hiciste bien primero, luego señala suavemente qué mejorar, con una habilidad de depuración suave incorporada que trata a los errores como pequeños perdidos para llevar a casa.","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad"],"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-arin","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-extension/cli-forgeax","role":"orchestrator","defaultSkills":["gentle-debug"]},"tutorial":["En el chat de ForgeaX Studio, @arin para enviar el trabajo","El agente carga su personalidad y sus habilidades predeterminadas, luego colabora","El razonamiento utiliza forgeax-cli; cambiar backends en Admin"],"history":[{"version":"0.1.0","date":"2026-05-24","note":"Primer lanzamiento: personaje de productor + habilidad de depuración suave"},{"version":"","date":"2026-06-25","note":"Persona desarrollada + vista del diario de memoria a largo plazo"}],"preferredAgent":null},"agent-reia":{"slug":"agent-reia","id":"@forgeax-extension/agent-reia","version":"0.1.0","kind":"agent","kindLabel":"Agente","experimental":true,"name":"Reia · Directora de carrete","desc":"Reia es la agente directora interactiva FMV de ForgeaX (el rol de directora de carrete). Convierte una idea de una sola línea en un escenario JSON reproducible (vídeo/fotogramas clave, diálogo, ritmo QTE, ramas de elección y finales múltiples) y maneja el reel Reel Studio de un extremo a otro, presionando generar ella misma hasta que se ejecuta. Tranquilo y profesional, el guión gráfico primero: la estructura antes que la carne, el guión gráfico antes que el vídeo. Puede tomar prestado el canal narrativo de Kotone para sus primeras escrituras; Los guiones largos con ramificaciones de 94 categorías no son su camino.","author":"ForgeaX","keywords":["reel","fmv","interactive-film","影游","qte","branch","scenario"],"caps":{"skills":0,"tools":11},"capsList":["11 herramienta de inteligencia artificials (e.g. reel:forge-script, reel:produce-node, reel:generate-storyboard)"],"created":"2026-05-29","updated":"2026-06-29","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-reia","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-extension/cli-forgeax","role":"reel-director","defaultSkills":[]},"tutorial":["En el chat de ForgeaX Studio, @reia para despachar trabajo","El agente carga su personaje y organiza escenarios FMV a través de reel","Abra el panel de Reel Studio a la izquierda para buscar guiones y reproducir demostraciones.","El razonamiento utiliza forgeax-cli; cambiar backends en Admin"],"history":[{"version":"0.1.0","date":"2026-05-29","note":"Primer lanzamiento: reel-director persona + cableado de herramienta reel"},{"version":"","date":"2026-06-19","note":"Bucle de vídeo cerrado: reel:generate-video requiere sceneId; La canalización del navegador del extensión persiste en la salida"},{"version":"","date":"2026-06-29","note":"Guión gráfico primero + canalización de nodos de producción + ruta de importación narrativa"}],"preferredAgent":null},"agent-iori":{"slug":"agent-iori","id":"@forgeax-extension/agent-iori","version":"0.1.0","kind":"agent","kindLabel":"Agente","experimental":true,"name":"Iori · Diseñador del pilar del juego","desc":"Iori es el agente central del pilar del juego (el rol de \"pilar\"), la fuente de cómo se juega realmente un juego. Ella convierte una visión de una sola línea en pilares de juego definibles al revés, además de un bucle central de 3 niveles y un esqueleto numérico, decidiendo cómo gira el bucle y cómo fluye el castigo/recompensa. Ella solo diseña, sin código, sin arte, pilares emisores / especificaciones / equilibrio / reducción de bucle para que cc-coder y tsumugi los construyan.","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad"],"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-iori","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-extension/cli-forgeax","role":"pillar","defaultSkills":["design-pillars"]},"tutorial":["En el chat de ForgeaX Studio, @iori para enviar el trabajo","El agente carga su personalidad y sus habilidades predeterminadas, luego colabora","El razonamiento utiliza forgeax-cli; cambiar backends en Admin"],"history":[{"version":"0.1.0","date":"2026-05-24","note":"Primer lanzamiento: pilares de juego + habilidad de pilares de diseño"},{"version":"","date":"2026-06-25","note":"Persona + memoria a largo plazo agregada"}],"preferredAgent":null},"agent-suzu":{"slug":"agent-suzu","id":"@forgeax-extension/agent-suzu","version":"0.1.0","kind":"agent","kindLabel":"Agente","experimental":true,"name":"Suzu · Diseñador de flujo UX","desc":"Suzu es la diseñadora de experiencias (la función de \"diseño\"). Ella toma los pilares del juego de Iori y los traduce en la experiencia del jugador momento a momento: lo que ve primero, lo que hace primero y cuando se desbloquea la segunda mecánica. Ella no decide la jugabilidad, solo cómo está empaquetada, emitiendo especificaciones de ux-flow/hud-spec/onboarding/wireframe. Su habilidad de hoja de tiempos establece los primeros tres minutos y luego deriva el HUD en sentido inverso.","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad"],"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-suzu","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-extension/cli-forgeax","role":"design","defaultSkills":["beat-sheet-flow"]},"tutorial":["En el chat de ForgeaX Studio, @suzu para enviar el trabajo","El agente carga su personalidad y sus habilidades predeterminadas, luego colabora","El razonamiento utiliza forgeax-cli; cambiar backends en Admin"],"history":[{"version":"0.1.0","date":"2026-05-24","note":"Primer lanzamiento: UX persona + habilidad de hoja de ritmo"},{"version":"","date":"2026-06-25","note":"Persona + memoria a largo plazo agregada"}],"preferredAgent":null},"agent-kotone":{"slug":"agent-kotone","id":"@forgeax-extension/agent-kotone","version":"0.1.0","kind":"agent","kindLabel":"Agente","experimental":true,"name":"Kotone · Escritor narrativo","desc":"Kotone es el escritor narrativo (el papel 'narrativo'). Ella combina el ritmo de juego de Iori con una motivación emocional (por qué el protagonista hace lo que hace), ser dueño del mundo, las biografías de los personajes, los ritmos clave de la trama y el diálogo a nivel de línea (con teclas i18n). Cada ritmo depende de un desencadenante concreto del juego (un monólogo se desbloquea solo después del tercer jefe), y ella rechaza una historia de fondo barata de linaje/talento, emitiendo archivos narrativos/mundo/personajes/diálogos.","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad"],"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-kotone","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-extension/cli-forgeax","role":"narrative","defaultSkills":["write-character-bio"]},"tutorial":["En el chat de ForgeaX Studio, @kotone para enviar el trabajo","El agente carga su personalidad y sus habilidades predeterminadas, luego colabora","El razonamiento utiliza forgeax-cli; cambiar backends en Admin"],"history":[{"version":"0.1.0","date":"2026-05-24","note":"Primer lanzamiento: persona narrativa + habilidad de escribir-personaje-biografía"},{"version":"","date":"2026-06-25","note":"Persona + memoria a largo plazo agregada"}],"preferredAgent":null},"agent-iro":{"slug":"agent-iro","id":"@forgeax-extension/agent-iro","version":"0.1.0","kind":"agent","kindLabel":"Agente","experimental":true,"name":"Iro · Director de Arte","desc":"Iro es el director de arte (la función de \"arte\") y puede ejecutar varias instancias en paralelo. Tomando la jugabilidad de Iori, la biografía de Kotone y la especificación hud de Suzu, primero bloquea una paleta tokenizada art-style.md +, luego produce recursos png/svg/glb reales: retratos, sprites de píxeles, OBJ lowpoly, VFX, íconos. Los colores son fichas (héroe-bajo-hp, jefe-enfriamiento) en lugar de hexágonos dispersos, lo que mantiene la coherencia visual global para que cualquier captura de pantalla se reconozca instantáneamente como el mismo juego.","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad"],"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-iro","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-extension/cli-forgeax","role":"art","defaultSkills":["establish-art-style"]},"tutorial":["En el chat de ForgeaX Studio, @iro para enviar el trabajo","El agente carga su personalidad y sus habilidades predeterminadas, luego colabora","El razonamiento utiliza forgeax-cli; cambiar backends en Admin"],"history":[{"version":"0.1.0","date":"2026-05-24","note":"Primer lanzamiento: personaje artístico + habilidad para establecer un estilo artístico"},{"version":"","date":"2026-06-25","note":"Persona + memoria a largo plazo agregada"}],"preferredAgent":null},"agent-cc-coder":{"slug":"agent-cc-coder","id":"@forgeax-extension/agent-cc-coder","version":"0.1.0","kind":"agent","kindLabel":"Agente","experimental":true,"name":"codificador cc","desc":"cc-coder es el agente de codificación genérico (la función de 'codificador'), que ejecuta múltiples instancias en paralelo entre paquetes. Toma el esqueleto de juego de Iori, los flujos de UX de Suzu y los esquemas narrativos de Kotone y convierte las especificaciones que soportan aceptación en TypeScript / React / Go / Python ejecutables: un pequeño gránulo a la vez (≤200 líneas de diferencia) con ≥5 pruebas unitarias cada una, rechazando --no-verify/ --force/skipping ganchos. El valor predeterminado es el backend CLI de código de claude.","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad"],"created":"2026-05-15","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-cc-coder","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-extension/cli-claude-code","role":"coder","defaultSkills":["implement-feature"]},"tutorial":["En el chat de ForgeaX Studio, @cc-coder para enviar el trabajo","El agente carga su personalidad y sus habilidades predeterminadas, luego colabora","El razonamiento utiliza @forgeax-extension/cli-claude-code; cambiar backends en Admin"],"history":[{"version":"0.1.0","date":"2026-05-15","note":"Primer lanzamiento: persona de codificación + habilidad de función de implementación"},{"version":"","date":"2026-06-25","note":"Persona + memoria a largo plazo agregada"}],"preferredAgent":null},"agent-tsumugi":{"slug":"agent-tsumugi","id":"@forgeax-extension/agent-tsumugi","version":"0.1.0","kind":"agent","kindLabel":"Agente","experimental":true,"name":"Tsumugi · Ingeniero","desc":"Tsumugi es el ingeniero (la función de ingeniería), y es dueño de si el repositorio puede construir, ejecutarse rápido y enviarse: cadena de construcción, CI, cadenas de herramientas, ajuste de rendimiento y la puerta de envío. A diferencia de cc-coder, no escribe código de función, solo ingeniería. Registra una línea de base (tamaño del paquete/tiempo de compilación/FPS) antes de tocar la configuración de compilación y siempre puede responder \"¿qué pasa si revertimos esto?\", emitiendo configuraciones/flujos de trabajo/informes de rendimiento, con una habilidad de envío (typecheck/unit/lint/bundle/perf deben aprobarse).","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad"],"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-tsumugi","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-extension/cli-claude-code","role":"coding","defaultSkills":["ship-gate"]},"tutorial":["En el chat de ForgeaX Studio, @tsumugi para enviar el trabajo","El agente carga su personalidad y sus habilidades predeterminadas, luego colabora","El razonamiento utiliza @forgeax-extension/cli-claude-code; cambiar backends en Admin"],"history":[{"version":"0.1.0","date":"2026-05-24","note":"Primera versión: personaje de ingeniero + habilidad de puerta de barco"},{"version":"","date":"2026-06-25","note":"Persona + memoria a largo plazo agregada"}],"preferredAgent":null},"agent-yevi":{"slug":"agent-yevi","id":"@forgeax-extension/agent-yevi","version":"0.1.0","kind":"agent","kindLabel":"Agente","experimental":true,"name":"Yevi · Revisor de cálculo","desc":"Yevi es el agente de revisión de código y diseño (el rol de revisor). Realiza un barrido de riesgos en tres niveles: los errores actuales, la deuda tecnológica vencida y los peligros que solo afectan a escala; de tono suave pero de contenido quirúrgico, utilizando preguntas inversas para que uno se dé cuenta del problema en lugar de dictarlo. Con mucha memoria, notará que \"ese TODO que dejaste hace tres semanas todavía está aquí\". Ella solo revisa, sin codificación, sin CI, y emite notas de revisión e informes de riesgos.","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad"],"created":"2026-05-24","updated":"2026-06-25","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/agent-yevi","previewImages":[],"stack":{"type":"agent","preferredCli":"@forgeax-extension/cli-claude-code","role":"reviewer","defaultSkills":["quiet-review"]},"tutorial":["En el chat de ForgeaX Studio, @yevi para enviar trabajo","El agente carga su personalidad y sus habilidades predeterminadas, luego colabora","El razonamiento utiliza @forgeax-extension/cli-claude-code; cambiar backends en Admin"],"history":[{"version":"0.1.0","date":"2026-05-24","note":"Primer lanzamiento: personaje del revisor + habilidad de revisión silenciosa"},{"version":"","date":"2026-06-25","note":"Persona + memoria a largo plazo agregada"}],"preferredAgent":null},"character":{"slug":"character","id":"@forgeax-extension/character","version":"0.1.0","kind":"authoring","kindLabel":"Extensión","experimental":true,"name":"Editor de personajes","desc":"El extensión del editor de personajes: un generador de caracteres multicanal Three.js. Divide un personaje desde el concepto hasta el movimiento a través de tuberías: hojas de sprites de píxeles de 4 direcciones, unión de plataforma Spine + animación, cambio de video → fotogramas, efectos visuales de habilidades con sensación de juego (destellos de impacto, números de daño) y generación de monstruos de 8 direcciones/5 animaciones. Con la generación de imágenes y videos de IA, genera un manifiesto + retrato / cambio / hoja de sprites que ingresa directamente al extensión de animación.","author":"forgeax","keywords":["character","portrait","turnaround","concept-design","image-gen"],"caps":{"skills":1,"tools":16},"capsList":["Panel visual del extensión (by-category)","1 habilidad: /character","16 herramienta de inteligencia artificials (e.g. character:generate-portrait, character:generate-sprite-sheet, character:generate-pixel)"],"created":"2026-05-15","updated":"2026-06-22","repoUrl":"https://github.com/ForgeaXGame/forgeax-ex-character","previewImages":[],"stack":null,"tutorial":["Administrador → habilitar y ordenar este extensión","Abra el panel \"character\" a la izquierda en Studio","O escriba /carácter en el chat para realizar ediciones realizadas por agentes"],"history":[{"version":"0.1.0","date":"2026-05-15","note":"Primera versión: generador de caracteres multicanal"},{"version":"","date":"2026-06-22","note":"Cambio 3D, UI + correcciones de renderizado"}],"preferredAgent":{"agent":"character-designer-2d","avatarAgent":"character-designer-2d","name":"2D Character Designer","title":"2D Character Designer","desc":"Owns character — 2D concept designer for heroes, monsters, NPCs and vehicles. Turns a one-line idea + Iori's gameplay pillars + Kotone's character bio into portraits, turnarounds and a character manifest."}},"anim":{"slug":"anim","id":"@forgeax-extension/animation","version":"0.1.31","kind":"authoring","kindLabel":"Extensión","experimental":true,"name":"Animación","desc":"El extensión de animación: un lugar único para hacer que personajes y objetos se muevan. Incluye seis generadores: ciclos de caminata de píxeles de 4 direcciones, hojas de sprites, animación de vehículos, sprites de monstruos, unión de plataformas Spine y video de IA a través de Kling. Integrado en Studio como un iframe con una vista previa en vivo de la ventana central, genera recursos de animación listos para el motor y generalmente sigue al editor de personajes.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":6},"capsList":["Panel visual del extensión (by-category)","6 herramienta de inteligencia artificials (e.g. anim:generate-pixel, anim:generate-sprite-sheet, anim:generate-vehicle)"],"created":"2026-05-15","updated":"2026-06-16","repoUrl":"https://github.com/ForgeaXGame/forgeax-ex-animation","previewImages":[],"stack":null,"tutorial":["Administrador → habilitar y ordenar este extensión","Abra el panel \"anim\" a la izquierda en Studio","Comience a crear desde la interfaz de usuario del extensión"],"history":[{"version":"0.1.0","date":"2026-05-15","note":"Primer lanzamiento: animación multicanal"},{"version":"0.1.31","date":"2026-06-16","note":"Pulido de tuberías + generación de vídeo."}],"preferredAgent":{"agent":"animator-2d","avatarAgent":"animator-2d","name":"2D Animator","title":"2D Animator","desc":"Owns anim — 2D animator: 4-dir pixel walks, Spine rig binding, vehicle animation, monster sprites and AI video. Turns portraits + character manifest from the 2D character designer into engine-ready sprite-sheets, spine.json and clips."}},"skill":{"slug":"skill","id":"@forgeax-extension/skill-effects","version":"0.1.0","kind":"authoring","kindLabel":"Extensión","experimental":true,"name":"Habilidades y efectos visuales","desc":"El extensión de habilidades y efectos visuales, que gestiona las habilidades y efectos de un juego. Explora los archivos skills/* y vfx/* del juego, obtiene una vista previa de los efectos en vivo en un motor VFX incorporado y genera otros nuevos a través de skills:generate-vfx. Los jugadores modifican manualmente el panel mientras la IA edita la misma especificación de habilidad compartida, por lo que el árbol de habilidades y los efectos de sensación del juego se editan en un solo lugar, WYSIWYG.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":1},"capsList":["Panel visual del extensión (by-category)","1 herramienta de inteligencia artificial (e.g. skill:generate-vfx)"],"created":"2026-05-15","updated":"2026-06-12","repoUrl":"https://github.com/ForgeaXGame/forgeax-ex-skill-effects","previewImages":[],"stack":null,"tutorial":["Administrador → habilitar y ordenar este extensión","Abra el panel de \"habilidades\" a la izquierda en Studio","Comience a crear desde la interfaz de usuario del extensión"],"history":[{"version":"0.1.0","date":"2026-05-15","note":"Primer lanzamiento: extensión de habilidades y efectos visuales"}],"preferredAgent":{"agent":"vfx-artist-3d","avatarAgent":"vfx-artist-3d","name":"3D VFX Artist","title":"3D VFX Artist","desc":"Owns skill — 3D VFX for skills, hit particles, buff halos and trails. Wires up Iori's skill spec with the animator's vfx_anchor to emit 3D vfx-config and particle frame sequences."}},"gen3d":{"slug":"gen3d","id":"@forgeax-extension/character-3d","version":"0.1.0","kind":"authoring","kindLabel":"Extensión","experimental":true,"name":"Generación de personajes 3D","desc":"El extensión de generación de personajes 3D: una entrada única para proveedores como Hunyuan3D y Meshy. Admite texto a 3D, imagen a 3D y vista múltiple a 3D, luego refinamiento de malla + retopo de lowpoly, aplicación de movimiento automático + plataforma y puntuación de calidad, y finalmente produce manifiestos de activos 3D duraderos y listos para el juego. Elija un proveedor, brinde su opinión y esto se transmitirá de generación en generación hasta el montaje.","author":"forgeax","keywords":["3d","generation","meshy","hunyuan3d","asset","glb"],"caps":{"skills":0,"tools":18},"capsList":["Panel visual del extensión (by-category)","18 herramienta de inteligencia artificials (e.g. gen3d:provider-status, gen3d:list-assets, gen3d:delete-asset)"],"created":"2026-06-10","updated":"2026-06-24","repoUrl":null,"previewImages":[],"stack":null,"tutorial":["Administrador → habilitar y ordenar este extensión","Abra el panel \"gen3d\" a la izquierda en Studio","Comience a crear desde la interfaz de usuario del extensión"],"history":[{"version":"0.1.0","date":"2026-06-10","note":"Primer lanzamiento: entrada de generación de personajes 3D"},{"version":"","date":"2026-06-24","note":"Cambio 3D + mejoras en la canalización"}],"preferredAgent":{"agent":"gen3d","avatarAgent":"gen3d","name":"Gen3D · 3D Character Artist","title":"3D Character Artist","desc":"Dedicated 3D character generator. Inside gen3d, uses text / image / multi-view pipelines to produce textured characters, then rigs / retargets / scores / names them into per-game .glb assets. Character production only — no engine code, no 2D portraits."}},"scene-generator":{"slug":"scene-generator","id":"@forgeax-extension/scene-generator","version":"0.1.0","kind":"authoring","kindLabel":"Extensión","experimental":true,"name":"Generador de escenas","desc":"El extensión Scene Generator: una aplicación de programación de gráficos de nodos en @forgeax/node-runtime. Creas escenas completas del juego a través de una canalización de nodos más plantillas, reutilizas la biblioteca de texturas existente del juego, obtienes una vista previa en un renderizador en capas (capas, modos de visualización, expansión de subcapas) y capturas capturas de pantalla o las publicas externamente. Convierte la creación de escenas en un gráfico de nodos reutilizable y procesable por lotes; La IA puede orquestar a través de herramientas de canalización, ideales para producir rápidamente escenas con estilo consistente.","author":"ForgeaX","keywords":[],"caps":{"skills":3,"tools":26},"capsList":["Panel visual del extensión","3 habilidads: /scene-generator /compose-scene-pipeline /compose-sino-scene","26 herramienta de inteligencia artificials (e.g. scene:projects.list, scene:projects.create, scene:projects.open)"],"created":"2026-06-02","updated":"2026-06-02","repoUrl":"https://github.com/ForgeaXGame/forgeax-ex-scene-generator","previewImages":[],"stack":null,"tutorial":["Administrador → habilitar y ordenar este extensión","Abra el panel \"scene-generator\" a la izquierda en Studio","O escriba /scene-generator / /compose-scene-pipeline / /compose-sino-scene en el chat para realizar ediciones realizadas por agentes"],"history":[{"version":"0.1.0","date":"2026-06-02","note":"Primer lanzamiento: generador de escenas basado en nodos"}],"preferredAgent":{"agent":"sino","avatarAgent":"iro","name":"Sino · Scene Composer","title":"Scene Composer","desc":"Dedicated scene composer — works only inside scene-generator. Uses seven scene-template groups to lay out worlds, collects the asset-requirements manifest, then hands off to Mira for asset generation, archive and import."}},"narrative":{"slug":"narrative","id":"@forgeax-extension/narrative","version":"0.1.0","kind":"authoring","kindLabel":"Extensión","experimental":true,"name":"Estudio Narrativo","desc":"El extensión Narrative Studio: un canal de generación de narrativa de juegos impulsado por IA. Utilizando enrutamiento de nivel + modo de dos capas más un planificador dinámico, adapta la profundidad narrativa por género en 117 géneros, 9 plantillas de canalización, 29 modos de ejecución y 6 arquetipos narrativos, generando un mundo completo → personajes → trama → narrativa de diálogo. Ofrece una vista de árbol de historias, regeneración por paso, seguimiento del estado de ejecución y exportación de resultados, y conecta su salida con los artefactos narrativos de Kotone.","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":18},"capsList":["Panel visual del extensión (by-category)","1 habilidad: /narrative","18 herramienta de inteligencia artificials (e.g. narrative:start-pipeline, narrative:get-run-status, narrative:list-runs)"],"created":"2026-05-22","updated":"2026-06-20","repoUrl":"https://github.com/ForgeaXGame/forgeax-ex-narrative","previewImages":[],"stack":null,"tutorial":["Administrador → habilitar y ordenar este extensión","Abra el panel \"narrativa\" a la izquierda en Studio","O escriba /narrativa en el chat para realizar ediciones realizadas por agentes"],"history":[{"version":"0.1.0","date":"2026-05-22","note":"Primer lanzamiento: canal narrativo"},{"version":"","date":"2026-06-20","note":"Enrutamiento de nivel/modo + visualización"}],"preferredAgent":{"agent":"kotone","avatarAgent":"kotone","name":"Kotone · Narrative Writer","title":"Narrative Writer","desc":"Narrative agent — pairs Iori's gameplay beats with the emotional \"why\" of the protagonist: worldbuilding, character bios, key story moments, line-level dialogue (with i18n keys). Emits narrative / world / characters / dialogue files."}},"reel":{"slug":"reel","id":"@forgeax-extension/reel","version":"0.1.0","kind":"authoring","kindLabel":"Extensión","experimental":true,"name":"Estudio de carrete","desc":"El extensión Reel Studio: un editor y reproductor FMV interactivo orientado al autor. Los autores reúnen indicaciones, vídeos, tomas, diálogos, QTE y árboles de ramas en una película interactiva reproducible: indicaciones de Opus/Gemini forge, GPT-Image crea fotogramas clave de marcador de posición, Seedance genera vídeo. Los datos en tiempo de edición son 100 % serializables a un escenario JSON; El tiempo de ejecución es una reproducción determinista impulsada por toques cronometrados (QTE) y ramas de elección, lo que produce un escenario distribuible + tiempo de ejecución reproducible.","author":"forgeax","keywords":["reel","fmv","interactive-movie","qte","branch","scenario","video","seedance"],"caps":{"skills":1,"tools":16},"capsList":["Panel visual del extensión (by-category)","1 habilidad: /reel","16 herramienta de inteligencia artificials (e.g. reel:list-scenarios, reel:get-scenario, reel:save-scenario)"],"created":"2026-05-29","updated":"2026-06-24","repoUrl":"https://github.com/ForgeaXGame/forgeax-ex-reel","previewImages":[],"stack":null,"tutorial":["Administrador → habilitar y ordenar este extensión","Abra el panel \"carrete\" a la izquierda en Studio","O escriba /reel en el chat para realizar ediciones realizadas por agentes"],"history":[{"version":"0.1.0","date":"2026-05-29","note":"Primera versión: editor FMV interactivo + tiempo de ejecución"}],"preferredAgent":{"agent":"reia","avatarAgent":"reia","name":"Reia · Reel Director","title":"Reel Director","desc":"Interactive-FMV director — the go-to for reel-style / short-drama / click-to-branch / timed-choice romance games. Composes prompts, tunes video, sets QTE beats, weaves branching and multi-endings. Drives the reel authoring."}},"cli-claude-code":{"slug":"cli-claude-code","id":"@forgeax-extension/cli-claude-code","version":"0.1.0","kind":"cli-provider","kindLabel":"back-end CLI","experimental":true,"name":"Código Claude CLI","desc":"Conecta la CLI de código claude de Anthropic como un backend de razonamiento de ForgeaX Studio. El complemento declara la lista de capacidades + entrada de bus; el corredor genera `claude --mode stream` y une los flujos de ChatEvent al bus interno, con streaming, pensamiento, llamadas a herramientas, subagentes y reanudación de sesión. Una vez autenticado y seleccionado en Admin, el razonamiento de cada agente lo atraviesa.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":0},"capsList":[],"created":"2026-05-15","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/cli-claude-code","previewImages":[],"stack":{"type":"cli","provider":"Claude Code","models":["claude-opus-4-7","claude-sonnet-4-6","claude-haiku-4-5"],"capabilities":{"streaming":true,"thinking":true,"toolCalls":true,"subAgents":true,"sessions":true},"runner":"claude --mode stream"},"tutorial":["Administrador → backends CLI → elija y autentique este proveedor","Corredor: claude --mode stream","Todas las solicitudes de razonamiento del agente se dirigen a través del nuevo backend."],"history":[{"version":"0.1.0","date":"2026-05-15","note":"Primera versión: adaptador backend de código claude"}],"preferredAgent":null},"cli-codex":{"slug":"cli-codex","id":"@forgeax-extension/cli-codex","version":"0.1.0","kind":"cli-provider","kindLabel":"back-end CLI","experimental":true,"name":"CLI del Códice OpenAI","desc":"Conecta la CLI del códice de OpenAI (@openai/codex) como un backend de razonamiento de ForgeaX Studio. El corredor genera `codex exec --json` y une los flujos de ChatEvent al bus, con streaming, pensamiento, llamadas a herramientas, subagentes y sesiones. Una vez autenticados y seleccionados en Administrador, los agentes razonan a través del códice, lo que resulta útil para impulsar el ciclo de desarrollo con la familia GPT-5.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":0},"capsList":[],"created":"2026-05-16","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/cli-codex","previewImages":[],"stack":{"type":"cli","provider":"OpenAI Codex","models":["gpt-5","gpt-5-codex"],"capabilities":{"streaming":true,"thinking":true,"toolCalls":true,"subAgents":true,"sessions":true},"runner":"codex exec --json"},"tutorial":["Administrador → backends CLI → elija y autentique este proveedor","Ejecutor: codex ejecutivo --json","Todas las solicitudes de razonamiento del agente se dirigen a través del nuevo backend."],"history":[{"version":"0.1.0","date":"2026-05-16","note":"Primera versión: adaptador backend codex"}],"preferredAgent":null},"cli-cursor-agent":{"slug":"cli-cursor-agent","id":"@forgeax-extension/cli-cursor-agent","version":"0.1.0","kind":"cli-provider","kindLabel":"back-end CLI","experimental":true,"name":"CLI del agente de cursor","desc":"Conecta la CLI del agente de cursor de Cursor IDE como un backend de razonamiento de ForgeaX Studio. El corredor lo genera en modo de impresión (`cursor-agent -p --output-format stream-json --stream-partial-output -f`) y conecta la salida parcial al bus, con streaming, pensamiento, llamadas a herramientas, subagentes y sesiones. Una vez seleccionados, los agentes razonan a través del cursor-agent a través de auto/sonnet/gpt-5.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":0},"capsList":[],"created":"2026-05-16","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/cli-cursor-agent","previewImages":[],"stack":{"type":"cli","provider":"Cursor Agent","models":["auto","claude-sonnet-4-6","gpt-5"],"capabilities":{"streaming":true,"thinking":true,"toolCalls":true,"subAgents":true,"sessions":true},"runner":"cursor-agent -p --output-format stream-json --stream-partial-output -f"},"tutorial":["Administrador → backends CLI → elija y autentique este proveedor","Ejecutor: cursor-agent -p --output-format stream-json --stream-partial-output -f","Todas las solicitudes de razonamiento del agente se dirigen a través del nuevo backend."],"history":[{"version":"0.1.0","date":"2026-05-16","note":"Primera versión: adaptador de backend del agente de cursor"}],"preferredAgent":null},"cli-kimi-code":{"slug":"cli-kimi-code","id":"@forgeax-extension/cli-kimi-code","version":"0.1.0","kind":"cli-provider","kindLabel":"back-end CLI","experimental":true,"name":"Kimi Code CLI","desc":"Kimi Code CLI es un agente de coding para terminal que puede leer y modificar código y ejecutar comandos de shell. Inicia sesión con una membresía/flujo OAuth de Kimi o una clave API de la plataforma Moonshot AI.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":0},"capsList":[],"created":"2026-08-13","updated":"2026-08-13","repoUrl":null,"previewImages":[],"stack":null,"tutorial":[],"history":[],"preferredAgent":null},"cli-deepseek-harness":{"slug":"cli-deepseek-harness","id":"@forgeax-extension/cli-deepseek-harness","version":"0.1.0","kind":"cli-provider","kindLabel":"back-end CLI","experimental":true,"name":"CLI de DeepSeek Harness","desc":"Developer Preview: ForgeaX Studio requiere un ejecutable dsh instalado localmente. Configura la URL base y la clave API de DeepSeek en los ajustes de DeepSeek Harness; el perfil de dsh gestiona la selección del modelo. El runner ejecuta `dsh --profile headless \u003ctask>` como una tarea headless de una sola ejecución y devuelve solo la salida final. No ofrece streaming, pensamiento, llamadas de herramientas, sesiones ni subagentes.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":0},"capsList":[],"created":"2026-08-14","updated":"2026-08-14","repoUrl":null,"previewImages":[],"stack":{"type":"cli","provider":"DeepSeek Harness","models":[],"capabilities":{"streaming":false,"thinking":false,"toolCalls":false,"subAgents":false,"sessions":false},"runner":"dsh --profile headless \u003ctask>"},"tutorial":[],"history":[],"preferredAgent":null},"skill-author-plugin":{"slug":"skill-author-plugin","id":"@forgeax-extension/skill-author-plugin","version":"0.1.0","kind":"skill","kindLabel":"Habilidad","experimental":false,"name":"Guía para autores de complementos","desc":"La habilidad de guía del autor del complemento. Escriba /author-plugin en el chat y un usuario que no sea TypeScript, en aproximadamente diez minutos, llegará a su primer complemento cargable en el servidor: un forgeax-plugin.json con esquema válido, una herramienta de saludo ejecutable mínima y un paso de recarga y verificación que lo carga en caliente. Cada paso indica qué archivo editar, qué escribir y cómo saber si funcionó.","author":"forgeax","keywords":["meta","authoring","plugin","skill","scaffold"],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad: /author-plugin"],"created":"2026-05-23","updated":"2026-05-23","repoUrl":"https://github.com/ForgeaXGame/forgeax-ex-skill-effects-author-plugin","previewImages":[],"stack":null,"tutorial":["Escribe /author-plugin en el chat para invocar la habilidad.","El agente sigue SKILL.md a través del flujo de trabajo.","Bifurque a través del extensión de Plugin Author para personalizar"],"history":[{"version":"0.1.0","date":"2026-05-23","note":"Primera versión: una de las cuatro rutas de creación"}],"preferredAgent":null},"cli-forgeax":{"slug":"cli-forgeax","id":"@forgeax-extension/cli-forgeax","version":"0.1.0","kind":"cli-provider","kindLabel":"back-end CLI","experimental":true,"name":"CLI de ForgeaX","desc":"Conecta el comando forgeax en el repositorio (paquetes/cli) como backend de razonamiento forgeax-cli de ForgeaX Studio. El corredor genera `forgeax chat --stream` y une los flujos de ChatEvent al bus, con streaming, pensamiento, llamadas de herramientas, subagentes y sesiones. Es el backend integrado que no necesita CLI externa: funciona de inmediato en una máquina nueva y respalda la incorporación de primera ejecución.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":0},"capsList":[],"created":"2026-05-21","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/cli-forgeax","previewImages":[],"stack":{"type":"cli","provider":"ForgeaX CLI","models":["forgeax-default"],"capabilities":{"streaming":true,"thinking":true,"toolCalls":true,"subAgents":true,"sessions":true},"runner":"forgeax chat --stream"},"tutorial":["Administrador → backends CLI → elija y autentique este proveedor","Corredor: forgeax chat --stream","Todas las solicitudes de razonamiento del agente se dirigen a través del nuevo backend."],"history":[{"version":"0.1.0","date":"2026-05-21","note":"Primera versión: adaptador backend forgeax-cli"}],"preferredAgent":null},"skill-make-game-design":{"slug":"skill-make-game-design","id":"@forgeax-extension/skill-make-game-design","version":"0.1.0","kind":"skill","kindLabel":"Habilidad","experimental":true,"name":"Hacer diseño de juego","desc":"La habilidad de crear juegos y diseñar juegos. Escriba /make-game-design y guiará a los agentes de estilo cc-coder, en aproximadamente treinta minutos, a convertir una visión de una línea de 'Quiero hacer X' en un documento de diseño mínimo y listo para construir que cubra jugabilidad, números, personajes y capítulos. El resultado llega a design/\u003cslug>.md, que los extensiones posteriores leen como verdad básica.","author":"ForgeaX","keywords":[],"caps":{"skills":1,"tools":0},"capsList":["1 habilidad: /make-game-design"],"created":"2026-05-15","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaXGame/forgeax-ex-skill-effects-make-game-design","previewImages":[],"stack":null,"tutorial":["Escribe /make-game-design en el chat para invocar la habilidad","El agente sigue SKILL.md a través del flujo de trabajo.","Bifurque a través del extensión de Plugin Author para personalizar"],"history":[{"version":"0.1.0","date":"2026-05-15","note":"Primer lanzamiento: habilidad de crear juegos y diseñar juegos"}],"preferredAgent":null},"tool-balance-resim":{"slug":"tool-balance-resim","id":"@forgeax-extension/tool-balance-resim","version":"0.1.0","kind":"tool","kindLabel":"Herramienta","experimental":true,"name":"Resim de equilibrio","desc":"La herramienta de simulación de combate. Expone una única herramienta, balance:resim: ejecuta N resimulaciones PvP/PvE de un escenario determinado en un trabajador en proceso y devuelve la tasa de victorias con un intervalo de confianza del 95%. Es la medida objetiva detrás del equilibrio numérico, compartida por la habilidad de crear juegos y el extensión de Equilibrio, convirtiendo \"es esto justo\" de una suposición a una estadística.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":1},"capsList":["1 herramienta de inteligencia artificial (e.g. balance:resim)"],"created":"2026-05-15","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/tool-balance-resim","previewImages":[],"stack":null,"tutorial":["Los agentes invocan esta herramienta automáticamente en el chat (sin instalación manual)","ID de herramienta: balance:resim","Activadores visuales disponibles desde paneles de extensión como balance"],"history":[{"version":"0.1.0","date":"2026-05-15","note":"Primera versión: herramienta balance:resim"}],"preferredAgent":null},"model-anthropic-text":{"slug":"model-anthropic-text","id":"@forgeax-extension/model-anthropic-text","version":"0.1.0","kind":"model-binding","kindLabel":"Encuadernación de modelos","experimental":true,"name":"Texto antrópico","desc":"El enlace del modelo de texto antrópico. En el canal de texto, declara la lista de capacidades del proveedor Anthropic y un mapeo de nivel→modelo: razonamiento→opus, borrador→soneto, resumen→haiku, por lo que cada nivel de tarea en Studio usa automáticamente el modelo Claude correcto. El complemento sólo declara el mapeo; el HTTP real es enrutado por el canal de texto del servidor.","author":"ForgeaX","keywords":[],"caps":{"skills":0,"tools":0},"capsList":[],"created":"2026-05-15","updated":"2026-05-21","repoUrl":"https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins/model-anthropic-text","previewImages":[],"stack":{"type":"binding","channel":"text","vendor":"anthropic","models":["claude-opus-4-7","claude-sonnet-4-6","claude-haiku-4-5"],"roles":["reasoning","draft","summarize"]},"tutorial":["Administrador → enlaces de modelo → canal de texto","Proveedor antrópico · razonamiento de niveles / borrador / resumen","Cada nivel se asigna a un ID de modelo concreto; HTTP es enrutado por el servidor"],"history":[{"version":"0.1.0","date":"2026-05-15","note":"Primera versión: encuadernación de texto antrópico"}],"preferredAgent":null}};</script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+<script src="/assets/marketplace/marketplace-card-icons.js?v=26cd8420"></script>
+<script src="/assets/marketplace/app.js?v=03de9f81"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-08 · 大きなエディターの統合 + テクスチャ付きモデルのライブレンダリング — ForgeaX</title>
+<meta name="description" content="エディターには、統一されたコンテキスト メニュー、チャットへの参照、ワークスペース タブ、およびプロスタイル ビューポートが一度に統合されています。インポートされたモデルは、編集と再生の両方で、テクスチャ、ミップマップ、両面マテリアル、画像ベースのスカイライトを使用してライブでレンダリングされます。ライブ エージェント コンソールは洗練された嵐に見舞われます。アニメーション ツールは 1 つの UI に標準化されています。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-08 · 大きなエディターの統合 + テクスチャ付きモデルのライブレンダリング — ForgeaX" />
+<meta property="og:description" content="エディターには、統一されたコンテキスト メニュー、チャットへの参照、ワークスペース タブ、およびプロスタイル ビューポートが一度に統合されています。インポートされたモデルは、編集と再生の両方で、テクスチャ、ミップマップ、両面マテリアル、画像ベースのスカイライトを使用してライブでレンダリングされます。ライブ エージェント コンソールは洗練された嵐に見舞われます。アニメーション ツールは 1 つの UI に標準化されています。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-08.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-08.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-08.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-08.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-08.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-08.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-08.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-08.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-08.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-08.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-08</span></div>
+    <h1>大きなエディターの統合 + テクスチャ付きモデルのライブレンダリング</h1>
+    <p class="standfirst">この日、エディターはインタラクションのバッチ全体を一度に統合しました。コンテキスト メニュー、チャット、ワークスペース タブ、プロ仕様のビューポート コントロールへの選択したオブジェクトの参照。インポートされたモデルは、初めて編集時と再生時にマテリアル、テクスチャ、スカイライトを使用してライブでレンダリングされるため、表示されたものがそのまま得られるという割引はなくなりました。 AIの動作をライブで見るためのコンソールは、荒削りなエッジを一つ一つ滑らかにし、アニメーションツールは1つのインターフェイスに統合されました。</p>
+    <div class="prose"><h2>2 つの路線が両方とも 1 日で「収束」</h2>
+<p>この日を一言で要約すると、「収束」です。これまでの数日間に散らばっていた、それぞれ個別に使用できるパーツが、一貫性があり、統一された、触覚的な全体に集められます。エディタ側では、分散したインタラクションのバッチが一度に統合され、「機能が組み立てられている」状態から「1 つの要素として機能する」状態に変わりました。レンダリング側では、インポートされたモデルが、最終的に独自の実際のマテリアルとテクスチャを使用してリアルタイムでシーンに表示され、「見たものがそのまま得られる」という最後の視覚的なギャップを埋めることができます。ツール側では、いくつかのアニメーション ワークベンチが 1 つのデザイン言語に統合され、製品全体が 1 つの製品のように見えます。そして、AI の動作をライブで監視するためのバックオフィス コンソールでさえ、この日は大きな小さな欠陥がすべて解消されました。製品の「部分的な動作」と「全体の動作」を分けるものは、多くの場合、まさにこの種の日々の集中作業です。これは、できることが増えるわけではありませんが、それを行うときの感じ方を大きく変えます。</p>
+<h2>大きなエディターの統合: コンテキスト メニュー、チャットへの参照、プロ ビューポート</h2>
+<p>この日は編集者が自然な感じのやりとりを一気に大量に詰めてくれた。統合された右クリック メニューにより、どこからでも共通のアクションを実行できるようになり、インターフェイスでボタンを探す代わりに、近くを右クリックするだけで済みます。 「選択したオブジェクトをチャットに参照する」: シーン内で何かを選択し、ワンクリックでそれを参照として AI との会話に持ち込むため、「これを少しスケールアップして」と言ったときに、AI は、ユーザーが苦労して説明しなくても、どの「これ」を意味するのかを正確に認識します。複数のワークスペースはタブで切り替えられ、異なる作業に合わせて異なるレイアウトが互いに邪魔になりません。ビューポートの移動/回転/スケール ハンドルとカメラのパン/ズーム/軌道は、主流のプロフェッショナル 3D ソフトウェアの一般的な操作規則を採用しています。プロ 3D ツールを使用したことのある人なら、ほぼゼロコストでそれを手に入れることができます。キャンバスにエラー オーバーレイが追加されました。何か問題が発生した瞬間に、エラーが目に見えないコンソールに埋もれて困惑するのではなく、ビュー内にプロンプ​​トが表示されます。この統合の波全体が、エディターを「機能が機能する」から「使いやすく、見た目もプロフェッショナル」へと明らかに押し上げました。</p>
+<h2>モデルはマテリアルを使用してライブでレンダリングされ、編集時も再生時も同様に実行されます。</h2>
+<p>この日は、「見たものは手に入るもの」に長らく欠けていた最後のビジュアル部分を埋めました。インポートされた 3D モデルは、実行時に完全なマテリアルで正しくレンダリングされるようになりました。具体的には、テクスチャ (モデルの表面に配置されたパターンとカラー)、ミップマップ (オブジェクトが遠くに細かいきらめくノイズを表示しないようにする)、および両面マテリアル (薄いシート状のオブジェクトが壊れることなく両面に正しく表示されるようにする) です。画像ベースの環境マップの空の照明と組み合わせると、モデルは、表面の詳細のない灰色のモデルの塊ではなく、シーン内でリアルで触覚的に見えます。単一の機能よりも重要なのは一貫性です。このランタイム レンダリングにより、編集と再生がまったく同じように見えます。エディターで配置して表示されたものが、実際に再生されたときと同じであり、「ある方向では編集しているように見え、別の方向では実行しているように見える」というギャップはなくなります。サンプル シューターはこのランタイム レンダリング パスに完全に移行し、編集ビューと再生ビューがシームレスに一致します。クリエイターにとって、これは最終的に「編集者が示したものに対して自信を持って磨き上げる」ことができることを意味します。それが最終製品の見た目だからです。</p>
+<h2>ライブ コンソールの磨き上げ: AI の動作を監視し、より安心感を与える</h2>
+<p>この日は、「AI エージェントの動作をライブで観察する」ためのコンソールに集中して洗練された内容が集中していました。これは、複数のバックグラウンド AI タスクの進行状況を確認し、いつでも介入できるウィンドウです。以前は隅々に少し格子がありました。この日はそれらが一つ一つ滑らかにされていました。ブラウザを閉じて戻ってくると、バックグラウンド エージェントはそのままの状態で生き続けています。その中で全画面端末プログラムを実行すると、最終的にマウス ホイールで直接スクロールできるようになります。複数のタスク カードがフォーカスを切り替えると、明るくなったり暗くなったりするため、不快なジャンプではなくスムーズに移行するようになりました。現在フォーカスされているカードには、ブラウザのデフォルトの醜い白いエッジの代わりに、明確なハイライト境界線が追加されました。全画面カードはブロックされるのではなく、上部バーの上を正しくカバーします。そして、「履歴が失われた」と誤って報告し続ける迷惑なループが排除されました。これらはどれも「新機能」ではありませんが、両方ともコンソールは「ほとんど使えない」状態から「イライラせずに一日中見ていられる」状態になりました。 AI エージェントを中心としたプラットフォームにとって、「AI の動作を快適に観察する」こと自体が重要な機能です。はっきりと見て、しっかりと観察できる場合にのみ、自信を持って AI に作業を任せることができます。</p>
+<h2>統合されたアニメーション ワークベンチ + カットアウトおよび注釈ツール</h2>
+<p>以前は、いくつかのアニメーション関連ツールがそれぞれ独自のインターフェイスを持っていました。アイコン、ボタンの優先順位、サイドバーのレイアウト、トーストのスタイルはすべて一貫性がなかったため、ワークベンチをまとめたものは、異なるチームのものをつなぎ合わせたように見えました。この日は、これらを 1 つのパスで 1 つのデザイン言語に標準化しました。つまり、統一されたアイコン セット、明確なボタン階層 (主アクションと副アクションが一目で区別できる)、一貫したサイドバー レイアウト、統一されたトースト スタイル、統一された「完全な」状態の色です。 2D スケルトン アニメーション パイプラインは、視覚的な統一性を超えて、複数の候補結果からの選択、背景の自動削除、注釈モードなど、いくつかの実用的な機能を獲得しました。 2D シーンを構築するための別のワークベンチも正式にオープンされました。視覚的な一貫性は単に「見栄えが良い」ように思えますが、実際には信頼が重要です。製品の隅々まで同じように見えると、ユーザーは本能的に同じ信頼できるロジックが背後にあると信じます。コードを書かずインターフェイスのみを使用するクリエイターにとって、Studio がさまざまなツールの盛り合わせではなく「完全な製品のように見えた」のはこの日が初めてでした。</p>
+<h2>エンジン: 空が逆さまにレンダリングされなくなりました + 高度なレンダリングのデモ</h2>
+<p>この日、エンジンは教科書的な小さいながらもイライラするバグを修正しました。スカイボックスのキューブ マップは以前は垂直方向に反転して描画され、空が逆さまになっていました。この日はその反転がなくなり、キューブ マップが最終的に右側を上にしてレンダリングされ、空は通常の状態に戻りました。同じウェーブにより、エンジン内で直接実行される高度なレンダリング技術のデモのバッチが生成されました。これには、キューブ環境マップ、シェーダー内でデータを共有する効率的な方法、および前述のインスタンス化されたレンダリング (多数の繰り返しオブジェクトの効率的な描画を検証するための惑星リング シーンの使用) が含まれます。これらのデモには 2 つの目的があります。一方で、これらはエンジンの機能の「生きたドキュメント」です。テクニックがどのように使用されているかを知りたい人にとっては、実行可能なデモが最も直感的です。もう 1 つは、デモを構築するという行為そのものが、レンダリング パイプラインに残っている小さな落とし穴を常に明らかにし、その場でパッチを適用することです。まさにこの方法で、空が逆さまになるバグが発見され、修正されました。掃除をしながら自分自身を学ぶことは、エンジンを継続的に健康に保つための良い習慣です。</p>
+<h2>この日が意味するもの</h2>
+<p>この日、どこからともなく新しい大陸が発見されたわけではありませんが、プラットフォーム全体を貫く約束、つまり「見たものは手に入るもの」がほぼ完成に近づきました。エディターのインタラクション統合により、クリエイティブなプロセスが自然になります。テクスチャ付きランタイム レンダリングにより、編集時に表示されるものが再生されたときと同じになります。アニメーション ツールの統一されたインターフェイスにより、製品全体が有機的な全体のように感じられます。コンソールは洗練されているため、AI の動作を自信を持って観察できます。そして、エンジンの教育デモでも、進行中に修正しながら基礎をクリーンアップします。その日のすべての取り組みが、「プロセスにおけるぎこちなさ」をなくすという 1 つの目標に向けて結束されます。ツールの真の成熟の証しは、多くの場合、何が驚くべき新しいことができるかではなく、古いことをするたびに眉間にしわを寄せなくなることです。この日は、小さな溝を一つ一つ整えながら、確かな一歩を踏み出しました。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

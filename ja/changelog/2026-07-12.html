@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-12 · エンジンTier 2ランタイム + シングルレルムエディタ + Gatewayアセット/コンポーネントサーフェス + アセット常駐プラグイン — ForgeaX</title>
+<meta name="description" content="シングルレルムエディタのレガシーiframe/VAGブリッジ廃止、Gatewayアセットインポート+削除+コンポーネント読み取りサーフェス、アセット常駐ゲームプラグイン、アクティブワールドクエリルーティング、addSceneAssetToSceneオペレーション、共有ドックレイアウト、Play中のDEV診断ブリッジ持続。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-12 · エンジンTier 2ランタイム + シングルレルムエディタ + Gatewayアセット/コンポーネントサーフェス + アセット常駐プラグイン — ForgeaX" />
+<meta property="og:description" content="シングルレルムエディタのレガシーiframe/VAGブリッジ廃止、Gatewayアセットインポート+削除+コンポーネント読み取りサーフェス、アセット常駐ゲームプラグイン、アクティブワールドクエリルーティング、addSceneAssetToSceneオペレーション、共有ドックレイアウト、Play中のDEV診断ブリッジ持続。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-07-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-12.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-12.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-07-12.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-12.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-12.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-07-12</span></div>
+    <h1>エンジンTier 2ランタイム + シングルレルムエディタ + Gatewayアセット/コンポーネントサーフェス + アセット常駐プラグイン</h1>
+    <p class="standfirst">エディタがシングルレルム移行を完了しました。すべてのレガシーiframeプロトコル投影、VAGテレメトリブリッジ、廃止されたEditSurfaceホストが廃止され、型付きPanelBridgeと共有ドックレイアウトに置き換えられました。Gateway APIはアセット・コンポーネントの読み取りサーフェス、統合されたインポート/削除、アセット常駐ゲームプラグイン（コンポーネントはEdit、システムはPlayでロード）を獲得しました。</p>
+    <div class="prose"><h3>シングルレルムエディタ：レガシープロトコルの廃止</h3>
+<p>エディタがシングルレルム移行を完了しました。以前レガシーiframeプロジェクション経由で行われていた通信はすべてインプロセスで処理されます：</p>
+<ul>
+<li><strong>型付きPanelBridge</strong>が<code>VAG_ASSETS_CHANGED</code>および匿名ブロードキャストメッセージを置き換え</li>
+<li><strong>編集ランタイムVAGテレメトリブリッジ</strong>を削除 — アセット変更通知は型付きチャンネルで流れる</li>
+<li><strong>EditSurface iframeホスト</strong>廃止 — <code>VAG_SPAWN_ENTITY</code>と関連する廃止された編集プレビューコントロールレシーバーを削除</li>
+<li><strong>レガシーサーフェス用語</strong>をエディタ全体でクリーンアップ</li>
+<li><strong>共有ドックレイアウト</strong>をすべてのエディタパネルに注入</li>
+</ul>
+<h3>Gateway：アセットとコンポーネントの読み取りサーフェス</h3>
+<ul>
+<li><strong>アセット読み取りサーフェス</strong>：タイプ・パス・GUIDでカタログ済みアセットを一覧・検査</li>
+<li><strong>アセットインポート + 削除</strong>：<code>importAsset</code> / <code>deleteAsset</code>の1つの標準ドアに統合</li>
+<li><strong>コンポーネント読み取りサーフェス</strong>：<code>describeComponent</code>と<code>listComponents</code> — AIエージェントが任意のエンティティのECSコンポーネントを列挙・検査可能</li>
+<li><strong><code>addSceneAssetToScene</code>操作</strong>：カタログ済みシーンGUIDをアクティブシーンに直接配置</li>
+<li><strong>アクティブワールドクエリルーティング</strong>：クエリが<code>activeWorld</code>に従い、Playモード中のゲームワールド読み取りが正常動作</li>
+<li><strong>クエリシリアライズ修正</strong>：<code>variable array&lt;T&gt;</code>フィールドが列挙可能リストとしてシリアライズされる</li>
+</ul>
+<h3>アセット常駐ゲームプラグイン</h3>
+<p>プラグインがゲームアセットディレクトリ内にロジックを配置できるようになりました。コンポーネントはEditモードで、システムはPlayモードでロードされます。</p>
+<h3>DEV診断ブリッジ：Playモード中も持続</h3>
+<p>インプロセスエディタ診断ブリッジがPlayモード中も常にアクティブになりました。</p>
+<h3>エンジン：Tier 2ランタイム分解</h3>
+<ul>
+<li><strong>assets-runtime</strong>：アセット読み込み・レジストリ・ライフサイクル管理をコアレンダーループから分離</li>
+<li><strong>picking</strong>：GPU支援エンティティピッキングを独立サブシステム化</li>
+<li><strong>graphics-extras</strong>：ポストプロセス・HDRリゾルブ・グラフィクスユーティリティをモノリシックレンダラーから抽出</li>
+</ul>
+<h3>エンジン：コンポーネントバッチvec-collapse + フィールドレベルtransient</h3>
+<p>Light・Camera・Glyph・Tilemap・Colliderコンポーネントのベクトルフィールドがコンパクト配列で保存・転送されるようになり、シリアライズオーバーヘッドを削減。フィールドレベルtransientアノテーションによりエフェメラルなランタイム状態がディスクに保存されなくなりました。</p>
+<h3>エンジン：<code>instantiateSceneFlat</code></h3>
+<p>合成ルートエンティティを挿入せずにシーンを開く<code>instantiateSceneFlat</code> APIが追加されました。エディタでの配置のとおりシーングラフ最上位にエンティティが表示されます。</p>
+<h3>エンジン：ポストプロセスリサイズ修正</h3>
+<p>ポストプロセスバインドグループが<code>TextureView</code>アイデンティティでキー化されるようになり、ビューポートリサイズ時の古いバインドグループが残らなくなりました。</p>
+<h3>エンジン：CSMクロスワールド修正</h3>
+<p>クロスワールドカメラ+ライト構成検出時に方向光カスケードシャドウマップをマージレイヤーで再計算するよう修正。</p>
+<h3>エンジン：RHIデバッグアイドル高速パス・スプライト視錐台カリング修正・FBXローダー修正</h3>
+<p><code>FORGEAX_ENGINE_RHI_DEBUG=1</code>のアイドル時コストがほぼゼロに。スプライト視錐台カリングの誤動作を修正。<code>fbx-wasm</code>パッケージが<code>.mjs</code>グルーファイルを含む<code>.tar.gz</code>として配布されるよう修正。</p>
+<h3>修正</h3>
+<ul>
+<li><strong>ビューポート</strong>：ゲーム作成時の<code>render-system-no-camera</code>偽陽性を防止</li>
+<li><strong>クエリルーティング</strong>：Playワールド読み取りがアクティブワールドgateway経由で正しくルーティング</li>
+</ul>
+<hr>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

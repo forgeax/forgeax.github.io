@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-09 · Projektstart — ForgeaX</title>
+<meta name="description" content="Tag eins: eine funktionierende WebGPU-Shader-Pipeline, die durchgängig übernommene Rendering-Geräteschicht, ein umgebungsübergreifender GPU-Speicher-Hotfix, sichere gleichzeitige Agenten und ein stabileres Terminal." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-09 · Projektstart — ForgeaX" />
+<meta property="og:description" content="Tag eins: eine funktionierende WebGPU-Shader-Pipeline, die durchgängig übernommene Rendering-Geräteschicht, ein umgebungsübergreifender GPU-Speicher-Hotfix, sichere gleichzeitige Agenten und ein stabileres Terminal." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-09.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-09.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-09.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-09.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-09.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-09.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-09.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-09.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-09.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-05-09</span></div>
+    <h1>Projektstart</h1>
+    <p class="standfirst">Am ersten Tag wird der schwierigste Teil des Fundaments vorgestellt: eine funktionierende WebGPU-Shader-Pipeline, die durchgängig übernommene Rendering-Geräteschicht, ein umgebungsübergreifender GPU-Speicher-Lebenszyklus-Hotfix und ein Chat-Agent, der nebenläufigkeitssicher ist und eine stabilere Eingabe ermöglicht. Alles Große beginnt mit der korrekten Beleuchtung des ersten Pixels in einem Browser.</p>
+    <div class="prose"><h2>Warum der erste Tag mit der Rendering-Grundlage beginnt</h2>
+<p>Dies ist der erste Tag der öffentlichen Aufzeichnungen der Plattform. Für eine Plattform, auf der „man chattet und ein Spiel erscheint“, muss grundsätzlich eines gelten: Der Browser muss 3D rendern – echt und stabil. Am ersten Tag ging es also nicht darum, eine auffällige Benutzeroberfläche zu entwickeln; Es hat den ganzen Aufwand in den schwierigsten Teil gesteckt, die Rendering-Grundlage: den internen Aufbau einer Rendering-Pipeline direkt auf der Next-Generation-Grafikfunktion (WebGPU) des Browsers, anstatt eine Standardbibliothek zu packen. Dieser Weg ist zunächst schwieriger und langsamer – viele Details, die andere weggepackt haben, müssen von uns selbst bewältigt und die Fallstricke nacheinander bewältigt werden. Aber es entscheidet darüber, ob Bildqualität, Leistung und Funktionen später in unserer eigenen Hand bleiben, anstatt durch die Kompromisse einer vorgelagerten Bibliothek gedrosselt zu werden. Die heutigen Ergebnisse sind wirklich unterschiedliche Gesichter einer großen Sache – „das erste Pixel in einem Browser korrekt beleuchten“. Dieses am meisten unterschätzte und am wenigsten kompromisslose Ding zuerst zu verfestigen, ist der Grund, warum jeder spätere Traum, „Spiele durch Konversation zu generieren“, seinen Platz findet.</p>
+<h2>Eine funktionierende Shader-Pipeline: WGSL + ein Shader-Kompilierungs-Shim + vereinfachter PBR</h2>
+<p>Der Kern des Renderings ist der Shader – das kleine Programm, das der GPU mitteilt, „welche Farbe jedes Pixel haben soll“. An diesem Tag wurde eine ganze Shader-Pipeline zusammengestellt: geschrieben in der Shader-Sprache (WGSL) des Browser-Grafikstandards, gepaart mit einem Kompilierungs-Shim, der die Shader-Quelle direkt in ein GPU-ausführbares Format umwandelt, sowie einer vereinfachten PBR-Implementierung (Physical-Based Shading). „Physikalisch basiert“ bedeutet, dass Materialien nach realen Regeln auf Licht reagieren – Metall sieht aus wie Metall, Kunststoff wie Kunststoff, kein farbiger Papierausschnitt. Dieser vereinfachte PBR verwendet bewusst eine schlanke Ressourcenbindungsstruktur (nur drei Bindungsgruppen), um leicht zu bleiben und gleichzeitig das Bild glaubwürdig zu halten – leicht zu verstehen und leicht zu erweitern. Der Kompilierungs-Shim ist besonders wichtig: WebGPU verbraucht keine High-Level-Shader-Quelle direkt, daher ist zwischendurch ein Übersetzungsschritt in ein Low-Level-Format erforderlich, und die Lösung im Browser macht „einen Shader schreiben und sofort das Ergebnis sehen“ möglich. Von diesem Tag an tönt der Motor nicht mehr nur Dreiecke; Es rendert Objekte, die beleuchtet sind und über Material verfügen – der entscheidende erste Schritt von „kann zeichnen“ zu „richtig zeichnen“ und der richtige Ausgangspunkt für alle folgenden reichhaltigeren Materialien und Beleuchtungen.</p>
+<h2>Die Rendering-Geräteebene wird durchgehend übernommen</h2>
+<p>Damit Shader ausgeführt werden können, muss darunter eine „Rendering-Geräteschicht“ vorhanden sein, die alles erledigt: GPU-Ressourcen anfordern, die Canvas-Oberfläche verwalten, die Zeichenbefehle jedes Frames organisieren und sie an die GPU übermitteln. An diesem Tag wurde diese Schicht komplett von Anfang bis Ende übernommen und die gesamte Kette Schritt für Schritt überprüft – von der ersten Einrichtung bis zur stabilen Produktion von Bild für Bild, wobei eine Reihe von Meilensteinen abgehakt wurden. Spieler sehen diese Ebene nie, aber sie ist der Verwalter aller Renderings: Wenn sie solide ist, sind die Spiele darüber solide; Wenn es Löcher hat, werden selbst die schönsten Effekte zufällig ausgeblendet oder stürzen ab. Viele Rendering-Probleme sehen wie ein gebrochener Effekt auf der Oberfläche aus, aber die Ursache liegt tatsächlich darin, dass diese Ebene nicht sortiert wird. Es inszeniert und überprüfbar zu machen, zahlt sich auch langfristig aus: Wenn ein zukünftiger Frame schief geht, können Sie anhand dieser Meilensteine ​​zurückverfolgen, um festzustellen, welcher Link unterbrochen wurde, anstatt hilflos auf einen schwarzen Bildschirm zu starren. Wenn Sie es zuerst stabil machen, legen Sie einen zuverlässigen Weg für alle kommenden Rendering-Funktionen.</p>
+<h2>Die erste umgebungsübergreifende Hürde: ein GPU-Speicherlebenszyklus-Hotfix</h2>
+<p>Beim Betrieb von WebGPU in verschiedenen Umgebungen folgen GPU-Speicherpuffer strengen Lebenszyklusregeln: „Wenn nutzbar, wann zurückzugeben“; Sobald das Timing falsch ausgerichtet ist, kommt es zu halb gelesenen fehlerhaften Daten oder zu einem völligen Absturz. An diesem Tag wurde der Pufferlebenszyklus während der Phase „zugeordnetes Lesen/Schreiben“ per Hotfix behoben, sodass er den Regeln in zwei völlig unterschiedlichen Umgebungen folgt: einer, in der das Rendern ohne separate GPU ausschließlich in Software simuliert wird, und einer, in der der Browser die nativen Grafiken der Maschine direkt aufruft. Damit derselbe Code auf beiden Pfaden korrekt ist, muss jede Zuweisung und Rückgabe von GPU-Speicher genau zum richtigen Zeitpunkt erfolgen. Solche Korrekturen bringen keine „sichtbare neue Funktion“ mit sich, entscheiden aber genau darüber, ob die Engine „ein Spielzeug ist, das manchmal auf meiner Maschine läuft“ oder „eine Basis, die auf einer anderen Maschine und auch in einer anderen Umgebung läuft“. Ein großer Teil der Kosten eines internen Renderers fließt in die Aufgabe, umgebungsübergreifende Unsicherheiten Stück für Stück zu schließen. Jeder einzelne Stecker erweitert die Palette der Geräte, die die Plattform zuverlässig abdecken kann.</p>
+<h2>Sichere Parallelität: eine Lebenszyklussperre pro Agent</h2>
+<p>Die andere Seite der Plattform sind die Agenten, die mit Ihnen chatten und die Arbeit erledigen. Von Anfang an sieht diese Plattform „ein Team von Agenten vor, die gleichzeitig arbeiten“ – ein Lead verteilt Aufgaben, Subagenten übernehmen jeweils einen Teil, anstatt jeweils mit einem Assistenten zu sprechen. Sobald jedoch mehrere Agenten gleichzeitig ausgeführt werden, tritt die klassische „Race Condition“ auf: Zwei Aktionen berühren den Status desselben Agenten fast gleichzeitig und ohne garantierte Reihenfolge, was zu zeitweiliger Beschädigung oder Abstürzen führt. An diesem Tag wurde die Lebenszyklusverwaltung jedes Agenten in eine dedizierte „asynchrone Sperre“-Komponente extrahiert: Vorgänge auf demselben Agenten – Starten, Stoppen, Wechseln – werden durch diese Sperre in einer Warteschlange serialisiert, wodurch garantiert wird, dass zu jedem Zeitpunkt nur eine Aktion seinen Status berührt. Damit bedeutet das Betreiben vieler Agenten nicht mehr, dass man sich gegenseitig auf die Füße tritt, und das Verhalten wird vorhersehbar. Für eine Plattform, die „Multi-Agenten-Zusammenarbeit“ als Kernversprechen betrachtet, ist dieses Schloss ein Schlüsselelement, das die Blaupause tatsächlich landen lässt, anstatt nur in einer Demo zu leben.</p>
+<h2>Ein stabileres Terminal: Das Einfügen stürzt nicht ab + Anleitung zur Zusammenarbeit</h2>
+<p>Über die Parallelitätssicherheit hinaus erhielt der Chat-Agent zwei Korrekturen, die sich „alltagstauglich“ anfühlen. Erstens, Terminal-Eingabe: Ein alter Fehler „Beim zweiten Einfügen friert ein“ wurde behoben, wodurch das Einfügen von langem Anforderungstext in der Befehlszeile stabiler wird – wenn Sie einen ganzen Setup-Block oder eine lange Spezifikation einfügen, bleibt es nicht hängen. Zweitens die Zusammenarbeitskommunikation: Die Tools, die Agenten verwenden, um sich gegenseitig Nachrichten zu senden, verfügen über konkretisierte Nutzungsszenarien und Antwortanweisungen, sodass „Wer sollte wem, wann und wie Nachrichten senden“ eine Struktur hat und die Kommunikation während der Zusammenarbeit mit mehreren Agenten nicht mehr ad hoc erfolgt. Dies sind die wichtigsten Details, bei denen die Verwendung nicht umständlich ist: Einem Assistenten, der beim Einfügen Ihrer Anforderungen abstürzt oder bei der Zusammenarbeit in ein Geplapper verfällt, kann man nicht vertrauen, egal wie intelligent er ist. Erst wenn man diese rauen Kanten nach und nach glättet, wird es zu etwas, dem man echte Arbeit anvertrauen würde.</p>
+<h2>Kein verschwendeter Cache: Dynamische Erinnerungen hängen eine neue Nachricht an</h2>
+<p>Wenn Sie mit einem großen Modell sprechen, kann der stabile Kontext im Voraus „zwischengespeichert“ werden, um Zeit und Geld zu sparen. Aber jedes Mal, wenn wir ganz vorne neu schreiben, wird dieser Cache ungültig und eine vollständige Neuberechnung erzwungen. An diesem Tag wurden die „dynamischen Erinnerungen“ (die dem Modell übergebenen temporären, konversationsverändernden Informationen) von „Vorderseite neu schreiben“ in „Neue Nachricht am Ende anhängen“ geändert, wodurch der Präfix-Cache erhalten blieb. Das direkte Gefühl für Sie: schnellere Antworten und geringere Kosten bei langen Gesprächen. Eine solche Optimierung sieht für sich genommen klein aus, aber auf einer Plattform, die auf einer langen hin- und hergehenden Zusammenarbeit mit KI basiert, führt sie zu echten Unterschieden in Bezug auf Reibungslosigkeit und Ausgaben – und je länger das Gespräch dauert, desto mehr zahlt sich dieser frühe richtige Anruf aus. Es offenbart auch eine Haltung, die sich durch das gesamte Projekt zieht: „Wie wir mit dem Modell sprechen“ als Technik zu behandeln, die wirklich aufpoliert werden muss, und nicht als eine aus einer Laune heraus zusammengewürfelte Aufforderung.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Wenn man sich die Teile des ersten Tages zusammen ansieht, fällt auf, dass keines davon absichtlich ein „Feature zum Angeben“ ist: keine hübsche Homepage, keine auffällige Demo. Sie sind der erste Eckpfeiler jeder der vier Durchgangslinien – Rendering, Engine, Parallelität, Konversation. Dahinter steckt ein klares Urteil: Ob „ein Spiel durch Chatten generieren“ letztendlich funktioniert, hängt nicht davon ab, ob man einen Trick am ersten Tag vorführen kann, sondern davon, ob die Grundlage hart genug ist – im Browser zeichbar, in allen Umgebungen stabil, Agenten, die nicht kämpfen, lange Gespräche, die kein Geld verbrennen. Das gleichzeitige Gießen dieser vier Fundamente sorgt dafür, dass sich jeder spätere Tag stabil darauf stapeln kann. Es ist auch das erste Modell, das dieses Änderungsprotokoll für die zukünftige Entwicklung bereithalten möchte: Zuerst müssen die schwierigsten, am wenigsten glamourösen und am wenigsten kompromittierten Dinge richtig gemacht werden.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

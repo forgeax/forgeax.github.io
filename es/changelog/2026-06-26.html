@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-26 · Observabilidad de cadena completa: vea dónde es lento de un vistazo — ForgeaX</title>
+<meta name="description" content="La telemetría de seguimiento y registro de extremo a extremo sigue una acción desde la interfaz de usuario a través del backend hasta el agente y viceversa, con un rastreador de navegador y un dispositivo de vigilancia de bloqueo; El depurador de renderizado ahora puede capturar el estado inicial de la GPU para reproducir fielmente los errores de la pantalla negra." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-26 · Observabilidad de cadena completa: vea dónde es lento de un vistazo — ForgeaX" />
+<meta property="og:description" content="La telemetría de seguimiento y registro de extremo a extremo sigue una acción desde la interfaz de usuario a través del backend hasta el agente y viceversa, con un rastreador de navegador y un dispositivo de vigilancia de bloqueo; El depurador de renderizado ahora puede capturar el estado inicial de la GPU para reproducir fielmente los errores de la pantalla negra." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-26.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-26.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-26.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-26.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-26.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-26.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-26.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-26.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-26.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-26</span></div>
+    <h1>Observabilidad de cadena completa: vea dónde es lento de un vistazo</h1>
+    <p class="standfirst">Este día conectó &quot;rastros + registros&quot; en una cadena completa que abarca el front-end, el backend y los agentes: una acción enviada desde la interfaz de usuario, a través del backend, a la ejecución de un agente y de regreso a la imagen se puede rastrear de extremo a extremo, con un perro guardián de bloqueo, por lo que es visible de un vistazo dónde está lento o atascado. La herramienta de depuración de renderizado también aprendió a registrar el estado inicial, permitiendo que los problemas más desagradables, como la &quot;pantalla negra&quot;, se reproduzcan de manera estable en la reproducción.</p>
+    <div class="prose"><h2>Un sistema que no puedes ver, no puedes controlar</h2>
+<p>A medida que un sistema se vuelve más complejo y entrega cada vez más pasos a la IA para que se ejecute de forma autónoma, surge una pregunta fundamental: ¿qué está sucediendo realmente dentro de él? Se envió una acción, pero nada responde durante un tiempo: ¿está atascado en el front-end, en el backend o hay algún agente trabajando cabeza abajo? Sólo a partir de los síntomas superficiales, sólo se puede adivinar. Lo que hizo este día fue convertir todo el sistema de una &quot;caja negra&quot; a una &quot;caja transparente&quot;: hacer que el recorrido completo de una acción (desde el clic en la interfaz de usuario, pasando por el procesamiento backend, pasando por un agente que ejecuta paso a paso, hasta el resultado en la pantalla) sea rastreable y visible en todo momento. No añade ninguna jugabilidad nueva, pero es la condición previa para dirigir un sistema complejo a largo plazo: sólo lo que puedes ver puedes controlar, y sólo lo que puedes controlar puedes entregarle más con confianza. La observabilidad es el punto de partida de toda optimización y depuración: no se puede mejorar lo que no se puede ver claramente.</p>
+<h2>Front-end, backend y agentes de subprocesamiento de un solo rastro</h2>
+<p>El trabajo principal del día fue conectar el &quot;rastreo&quot; en una cadena que realmente enhebra toda la pila. Rastrear significa marcar una acción con un único identificador de modo que, sea cual sea la capa del sistema a través de la cual fluya, lleve ese identificador y deje marcas de tiempo, de modo que los fragmentos dispersos por todas partes puedan luego ser unidos en una línea de tiempo completa por ese identificador. Lo que se logró este día es pasar ese identificador desde el front-end hasta el backend y hasta la ejecución de un agente; cualquier acción se puede reconstruir en la trayectoria completa de &quot;cuánto tiempo pasó primero en el front-end, luego en el backend, luego qué agente tomó el control y cuánto tiempo tomó&quot;. La clave técnica es propagar correctamente este contexto de seguimiento a lo largo de cada límite de capa en lugar de soltarlo en el límite (lo que dejaría solo fragmentos aislados que no se pueden ensamblar en un todo). Una vez que existe este rastro de cadena completa, las quejas más vagas y difíciles de investigar (&quot;el sistema es lento&quot; o &quot;el sistema está atascado&quot;) obtienen una regla que señala con precisión.</p>
+<h2>Un rastreador de navegador + un perro guardián de bloqueos</h2>
+<p>Dentro de este rastro de cadena completa, el segmento frontal obtuvo un rastreador dedicado del lado del navegador que sigue el tramo &quot;desde su acción en la interfaz de usuario hasta su renderizado final&quot;. Aborda una confusión muy concreta: a veces haces clic o escribes y la interfaz tarda en responder: ¿la solicitud aún no se ha enviado, está esperando en el backend o el front-end está bloqueado en algún lugar? El rastreador del navegador divide esta pata en pasos visibles para que puedas ver exactamente en qué paso está atascado. Viene con un &quot;perro guardián de la pérdida&quot;: observa el ritmo de los flujos de claves y, en el momento en que un paso se detiene más allá del tiempo esperado, señala la pérdida inmediatamente, en lugar de dejarte mirando una interfaz congelada sin saber si está muerta u ocupada. Para una herramienta centrada en la interacción de la interfaz, &quot;¿con qué está ocupado el front-end? ¿Está atascado?&quot; es la pregunta más directa y frecuente de los usuarios; hacer que esta pierna sea observable extiende el alcance del rastreo al punto más cercano al usuario.</p>
+<h2>Recopilación e informes de backend + cada agente entrega el seguimiento</h2>
+<p>Al lado se completaron los otros dos segmentos de la cadena. El backend creó un sumidero de telemetría: los rastros y registros producidos en todas partes se recopilan aquí y se informan, y el contexto de rastreo traído desde el front-end se pasa más adelante, lo que garantiza que la parte del backend de una acción aún cuelgue en la misma línea de rastreo sin espacios. El segmento de agente entrelazó cada turno de ejecución en el mismo seguimiento: cuando un agente toma una tarea y ejecuta un turno, cuánto tiempo tomó ese turno y qué hizo se registra como un nodo en este seguimiento. En conjunto, esto hace que la &quot;cadena completa&quot; esté a la altura de su nombre: desde un clic en el front-end, pasando por el procesamiento backend, hasta el trabajo paso a paso de un agente, todo en una sola línea. Para una plataforma cuya experiencia principal es &quot;dirigir un equipo de agentes de IA para que trabajen&quot;, &quot;qué está ocupado cada agente en este turno, dónde es lento&quot; es exactamente lo que debería ser visible; Llevar la ejecución del agente al rastreo significa que el proceso de trabajo de la IA ya no es una caja negra incomparable.</p>
+<h2>Depuración de gráficos: grabación del estado inicial para reproducir errores de pantalla negra</h2>
+<p>Con el mismo espíritu que la observabilidad, las herramientas de depuración de renderizado se fortalecieron este día. Ya podía &quot;capturar un fotograma y reproducirlo para compararlo&quot;, pero faltaba una pieza clave: el estado inicial. Una imagen se dibuja paso a paso desde algún punto de partida, y si la captura solo registró las acciones de dibujo pero no el contenido inicial de los recursos al principio, la reproducción equivale a &quot;reproducir desde un punto de partida incorrecto&quot; y algunos problemas simplemente no se reproducirán. Este día completó eso: la captura de cuadros ahora también registra el estado inicial de los recursos relevantes, sembrados en la repetición para reconstruir con precisión todo el cuadro desde un comienzo idéntico. Es especialmente útil para los problemas más desagradables como &quot;la pantalla está en negro, los objetos desaparecieron&quot;, a menudo causados ​​por algún estado inicial mal configurado, que antes era muy difícil de localizar porque la repetición no podía reproducirlo; ahora la pantalla negra se reproduce fielmente en la repetición, convirtiendo un insecto fantasma &quot;ocasional e inatrapable&quot; en un objeto concreto que &quot;se reproduce de manera estable y puede estudiarse y repararse repetidamente&quot;. Son las dos caras de la misma moneda que el rastreo de cadena completa del día: una le permite ver &quot;dónde el sistema es lento&quot; y la otra &quot;dónde la imagen es incorrecta&quot;.</p>
+<h2>que significa este dia</h2>
+<p>Lo que este día añadió es un órgano sensorial indispensable para un sistema en maduración. Durante muchos días anteriores, la plataforma siguió desarrollando nuevas capacidades: personajes en movimiento, escenas editables, recursos generables, de código abierto para todos; pero cuanto más capaz y autónomo se vuelve, más importante es &quot;ver claramente lo que sucede en su interior&quot;. Un sistema que no puede ver su propio interior sólo puede adivinar cuando algo va mal, no sabe de dónde viene la lentitud y, finalmente, pierde el control por no ser diagnosticable. Este día conectó el rastreo en una línea que abarca el front-end, el backend y los agentes, y permitió que la depuración de renderizado registrara el estado inicial para reproducir los problemas de imagen de manera estable, dándole a la plataforma dos pares de ojos a la vez: uno para el rendimiento y el flujo, otro para la imagen y el renderizado. Hacer visibles tanto &quot;lo que está haciendo el sistema&quot; como &quot;por qué la imagen se ve así&quot; significa que lo que venga después (optimizar la velocidad, diagnosticar fallas o otorgar con confianza más autonomía a la IA) se basa en evidencia confiable. La capacidad decide &quot;qué puede hacer una plataforma&quot; y la observabilidad decide &quot;hasta qué punto se puede confiar en ella&quot;, y este día completó esto último.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

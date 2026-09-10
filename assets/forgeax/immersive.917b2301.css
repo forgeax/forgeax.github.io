@@ -1,0 +1,140 @@
+/* Immersive home — intro gate, scroll-linked light focal (fixed cool palette) */
+
+.forgeax-site.has-immersive,
+.forgeax-site[data-forge-page] {
+  --particle-a: 212, 255, 72;
+  --particle-b: 72, 255, 207;
+  --particle-veil: 106, 127, 36;
+}
+
+.forgeax-site[data-forge-page]::after,
+.forgeax-site.has-immersive::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forgeax-site[data-forge-page] .ambient__orb,
+.forgeax-site.has-immersive .ambient__orb {
+  transition: background 2.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 2s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.forgeax-site[data-forge-page] .ambient__grid,
+.forgeax-site.has-immersive .ambient__grid {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── particle canvas (homepage immersive only) ───────────────────────────── */
+.forge-particles,
+.hero-particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.26;
+  mix-blend-mode: soft-light;
+  filter: saturate(0.85) blur(0.4px);
+  transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.forgeax-site .ambient--lite .ambient__base {
+  background:
+    radial-gradient(ellipse 100% 55% at 50% -8%, color-mix(in srgb, var(--primary) 4%, #080808), #050505 58%),
+    linear-gradient(180deg, #070707 0%, #030303 100%);
+}
+
+.forgeax-site[data-forge-page="studio"]::after,
+.forgeax-site[data-forge-page="docs"]::after,
+.forgeax-site[data-forge-page="examples"]::after {
+  opacity: 0;
+}
+
+/* ── drag hint ─────────────────────────────────────────────────────────── */
+.immersive-hint {
+  position: fixed;
+  left: 20px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 85;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--text-tertiary) 80%, transparent);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+  transition:
+    opacity var(--site-dur-silk) var(--site-ease-silk),
+    transform var(--site-dur-silk) var(--site-ease-silk);
+}
+.forgeax-site.has-immersive.is-hero-visible .immersive-hint {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+@media (max-width: 680px) {
+  .immersive-hint { display: none; }
+}
+
+/* ── section scroll targets & parallax ─────────────────────────────────── */
+.forgeax-site.has-immersive .immersive-section {
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+.forgeax-site.has-immersive .hero {
+  position: relative;
+  min-height: min(88vh, 820px);
+  justify-content: center;
+  isolation: isolate;
+}
+
+.forgeax-site.has-immersive .hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.forgeax-site.has-immersive .hero-logo {
+  image-rendering: pixelated;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.35));
+}
+
+.forgeax-site.has-immersive .hero .badge {
+  border: 1px solid color-mix(in srgb, var(--glass-border) 85%, rgba(var(--theme-cool-a), 0.22));
+  box-shadow: var(--glass-shadow);
+}
+
+.forgeax-site.has-immersive .hero h1 .grad {
+  background-size: 200% 100%;
+  animation: hero-grad-drift 16s ease-in-out infinite;
+}
+
+@keyframes hero-grad-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.forgeax-site.has-immersive main.wrap {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.forgeax-site main,
+.forgeax-site #site-header,
+.forgeax-site #site-footer,
+.forgeax-site .ex-shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* scroll-driven section fade (subtle) */
+.forgeax-site.has-immersive .immersive-section.is-near {
+  transition: filter var(--site-dur-silk) var(--site-ease-silk);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-particles,
+  .hero-particles { display: none; }
+  .immersive-hint { display: none; }
+  .forgeax-site.has-immersive .hero h1 .grad { animation: none; }
+}

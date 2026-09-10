@@ -1,0 +1,339 @@
+/* Linear / Reflect / Wope light system — beams, morph, border-beam, hover halos */
+
+@property --halo-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Registered so the light focal is a typed, independent inherited property.
+   light-field.js writes these onto the .ambient container (NOT the document
+   root) — since they inherit, writing them on <html> forced a whole-document
+   style recalc every frame; scoping to .ambient confines that to the light
+   layers. They must inherit (consumers are separate .ambient__* children).
+   --light-fx/fy are unitless focal fractions (0..1) so the beams/morph can be
+   positioned with transform (compositor) instead of left/top (layout). */
+@property --light-fx {
+  syntax: "<number>";
+  initial-value: 0.5;
+  inherits: true;
+}
+@property --light-fy {
+  syntax: "<number>";
+  initial-value: 0.42;
+  inherits: true;
+}
+@property --light-morph {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: true;
+}
+
+.forgeax-site {
+  --light-fx: 0.5;
+  --light-fy: 0.42;
+  --light-morph: 0;
+  --light-beam-opacity: 0.22;
+  --light-shadow-depth: 0.3;
+  --motion-duration-beam: 24s;
+  --halo-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --halo-fade-dur: 0.38s;
+  --halo-flow-dur: 4s;
+  --link-halo-flow-dur: 4s;
+}
+
+/* page tint follows light focal */
+.forgeax-site[data-forge-page]::after,
+.forgeax-site.has-immersive::after {
+  background: radial-gradient(
+    ellipse 95% 70% at calc(var(--light-fx) * 100%) calc(var(--light-fy) * 100%),
+    color-mix(in srgb, rgb(var(--particle-veil, var(--theme-cool-a))) 5%, transparent),
+    transparent 72%
+  );
+}
+
+/* ── P2: central light morph — soft elliptical bloom (no cone clip) ─────── */
+.forgeax-site .ambient__morph {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: min(48vw, 520px);
+  height: min(36vw, 400px);
+  /* focal position via transform (compositor) instead of left/top (layout).
+     -50% centers on the focal point; --morph-sx/sy carry the breathe scale from
+     light-field.js so its inline write no longer clobbers the position. */
+  transform: translate(calc(var(--light-fx) * 100vw - 50%), calc(var(--light-fy) * 100vh - 50%))
+    scale(var(--morph-sx, 1), var(--morph-sy, 1));
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(88px);
+  opacity: calc(0.06 + var(--light-morph) * 0.04);
+  will-change: transform, opacity;
+  background: radial-gradient(
+    ellipse 100% 85% at 50% 45%,
+    rgba(var(--theme-cool-a), 0.28) 0%,
+    rgba(var(--theme-cool-b), 0.12) 42%,
+    transparent 72%
+  );
+  transition: opacity 2.4s var(--halo-ease);
+}
+
+/* ── P0: volumetric beams follow section focal ─────────────────────────── */
+.forgeax-site .ambient__beam {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  filter: blur(76px);
+  opacity: var(--light-beam-opacity);
+  will-change: transform, opacity;
+}
+.forgeax-site .ambient__beam--top {
+  width: min(72vw, 960px);
+  height: min(58vh, 540px);
+  transform: translate(calc(var(--light-fx) * 100vw - 36vw), calc(var(--light-fy) * 100vh - 48vh));
+  background: radial-gradient(
+    ellipse 100% 85% at 50% 100%,
+    rgba(var(--theme-cool-a), 0.5) 0%,
+    rgba(var(--theme-cool-a), 0.1) 44%,
+    transparent 72%
+  );
+  animation: beam-breathe var(--motion-duration-beam) ease-in-out infinite alternate;
+}
+.forgeax-site .ambient__beam--bottom {
+  width: min(58vw, 760px);
+  height: min(46vh, 440px);
+  transform: translate(calc(var(--light-fx) * 100vw - 22vw), calc(var(--light-fy) * 100vh + 8vh));
+  background: radial-gradient(
+    ellipse 100% 78% at 50% 0%,
+    rgba(var(--theme-cool-b), 0.42) 0%,
+    rgba(var(--theme-cool-c), 0.08) 46%,
+    transparent 70%
+  );
+  animation: beam-breathe-b calc(var(--motion-duration-beam) * 1.12) ease-in-out infinite alternate;
+}
+
+@keyframes beam-breathe {
+  from { opacity: calc(var(--light-beam-opacity) * 0.82); }
+  to { opacity: var(--light-beam-opacity); }
+}
+@keyframes beam-breathe-b {
+  from { opacity: calc(var(--light-beam-opacity) * 0.75); }
+  to { opacity: calc(var(--light-beam-opacity) * 0.95); }
+}
+
+/* ── P1: noise parallax (transform set by light-field.js) ──────────────── */
+.forgeax-site .ambient__noise {
+  opacity: 0.048;
+  will-change: transform;
+}
+
+/* ── hover — flowing edge halo (interactive targets only) ─────────────── */
+.forgeax-site a.card,
+.forgeax-site a.post-row,
+.forgeax-site .btn.ghost {
+  --halo-angle: 0deg;
+}
+
+.forgeax-site a.card,
+.forgeax-site a.post-row {
+  box-shadow:
+    var(--glass-shadow),
+    0 28px 56px -32px rgba(var(--theme-cool-a), calc(var(--light-shadow-depth) * 0.36)),
+    0 36px 72px -40px rgba(var(--theme-cool-b), calc(var(--light-shadow-depth) * 0.28));
+  transition:
+    transform var(--site-dur-hover) var(--halo-ease),
+    box-shadow var(--site-dur-hover) var(--halo-ease),
+    border-color var(--site-dur-hover) var(--halo-ease);
+}
+
+.forgeax-site a.card::before,
+.forgeax-site a.post-row::before,
+.forgeax-site .btn.ghost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--halo-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(var(--theme-cool-a), 0.06) 18deg,
+    rgba(var(--theme-cool-a), 0.38) 62deg,
+    rgba(255, 255, 255, 0.28) 82deg,
+    rgba(var(--theme-cool-b), 0.34) 102deg,
+    rgba(var(--theme-cool-b), 0.06) 152deg,
+    transparent 196deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  filter: blur(0.45px);
+  transition: opacity var(--halo-fade-dur) var(--halo-ease);
+  will-change: opacity, --halo-angle;
+}
+
+.forgeax-site a.card:hover,
+.forgeax-site a.post-row:hover {
+  box-shadow:
+    var(--glass-shadow-hover, var(--glass-shadow)),
+    0 0 0 1px rgba(var(--theme-cool-a), 0.14),
+    0 0 44px -10px rgba(var(--theme-cool-a), 0.32),
+    0 0 76px -18px rgba(var(--theme-cool-b), 0.22);
+}
+
+.forgeax-site a.card:hover::before,
+.forgeax-site a.post-row:hover::before,
+.forgeax-site .btn.ghost:hover::before {
+  opacity: 1;
+  animation: halo-edge-flow var(--halo-flow-dur) linear infinite;
+}
+
+@keyframes halo-edge-flow {
+  to { --halo-angle: 360deg; }
+}
+
+/* ── T3 link cards / post rows — prominent flowing border halo ─────────── */
+.forgeax-site a.card.card--link,
+.forgeax-site a.post-row {
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.forgeax-site a.card.card--link > *,
+.forgeax-site a.post-row > * {
+  position: relative;
+  z-index: 1;
+}
+
+.forgeax-site a.card.card--link::before,
+.forgeax-site a.post-row::before {
+  background: conic-gradient(
+    from var(--halo-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(var(--theme-cool-a), 0.1) 18deg,
+    rgba(var(--theme-cool-a), 0.52) 56deg,
+    rgba(255, 255, 255, 0.36) 76deg,
+    rgba(var(--theme-cool-b), 0.48) 96deg,
+    rgba(var(--theme-cool-b), 0.1) 140deg,
+    transparent 184deg,
+    transparent 360deg
+  );
+  filter: none;
+  z-index: 4;
+  transition: opacity var(--halo-fade-dur) var(--halo-ease);
+}
+
+.forgeax-site a.card.card--link:hover,
+.forgeax-site a.post-row:hover {
+  transform: translate3d(0, -1px, 0);
+  box-shadow:
+    var(--glass-shadow-hover, var(--glass-shadow)),
+    0 0 0 1px rgba(var(--theme-cool-a), 0.16),
+    0 0 48px -8px rgba(var(--theme-cool-a), 0.36),
+    0 0 84px -16px rgba(var(--theme-cool-b), 0.24);
+}
+
+.forgeax-site a.card.card--link:hover::before,
+.forgeax-site a.post-row:hover::before {
+  opacity: 1;
+  animation: halo-edge-flow var(--link-halo-flow-dur) linear infinite;
+}
+
+.forgeax-site a.card::after,
+.forgeax-site a.post-row::after {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--theme-cool-a), 0.2) 18%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(var(--theme-cool-b), 0.18) 82%,
+    transparent
+  );
+}
+
+/* ── P1: nav / footer border-beam ────────────────────────────────────── */
+.forgeax-site .nav {
+  position: relative;
+}
+.forgeax-site .nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--theme-cool-a), 0.38) 28%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(var(--theme-cool-b), 0.34) 72%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  pointer-events: none;
+  opacity: 0.82;
+  animation: nav-beam-drift 12s ease-in-out infinite alternate;
+}
+
+@keyframes nav-beam-drift {
+  from { background-position: 0% 50%; opacity: 0.72; }
+  to { background-position: 100% 50%; opacity: 0.92; }
+}
+
+.forgeax-site .foot {
+  position: relative;
+}
+.forgeax-site .foot::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--theme-cool-b), 0.18) 32%,
+    rgba(var(--theme-cool-a), 0.14) 68%,
+    transparent 100%
+  );
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+/* primary CTA — neon glass: see neon-cta.css */
+
+.forgeax-site .btn.ghost {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--glass-border-subtle, var(--border-default)) !important;
+}
+.forgeax-site .btn.ghost:hover {
+  box-shadow:
+    0 0 36px -10px rgba(var(--theme-cool-a), 0.28),
+    0 0 64px -18px rgba(var(--theme-cool-b), 0.18);
+}
+
+.forgeax-site .forge-particles {
+  opacity: 0.44;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forgeax-site .ambient__beam,
+  .forgeax-site .nav::after { animation: none !important; }
+  .forgeax-site a.card:hover::before,
+  .forgeax-site a.post-row:hover::before,
+  .forgeax-site .btn.ghost:hover::before {
+    animation: none !important;
+    opacity: 0.75;
+  }
+}

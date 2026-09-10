@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-27 · Un plan de niveau UE5 pour le navigateur de contenu et le glisser-déplacer vers la scène, ainsi qu'une porte d'assurance qualité pour l'éditeur — ForgeaX</title>
+<meta name="description" content="Une première journée de conception : un plan de niveau UE5 sur la façon dont les ressources sont parcourues et glissées dans une scène, et l'éditeur autonome placé sous sa propre porte de construction et de test automatisée afin qu'il puisse se développer sans se briser silencieusement." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-27 · Un plan de niveau UE5 pour le navigateur de contenu et le glisser-déplacer vers la scène, ainsi qu'une porte d'assurance qualité pour l'éditeur — ForgeaX" />
+<meta property="og:description" content="Une première journée de conception : un plan de niveau UE5 sur la façon dont les ressources sont parcourues et glissées dans une scène, et l'éditeur autonome placé sous sa propre porte de construction et de test automatisée afin qu'il puisse se développer sans se briser silencieusement." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-27.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-27.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-27.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-27.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-27.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-27.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-27.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-27.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-27.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-27.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-06-27</span></div>
+    <h1>Un plan de niveau UE5 pour le navigateur de contenu et le glisser-déplacer vers la scène, ainsi qu'une porte d'assurance qualité pour l'éditeur</h1>
+    <p class="standfirst">Une journée de fondation – pas de nouveau gameplay tape-à-l’œil, mais deux choses qui rendent tout ce qui suit plus stable : premièrement, écrire une conception de niveau UE5 sur la façon dont les ressources sont parcourues et glissées dans une scène ; Deuxièmement, placer l&#39;éditeur autonome sous son propre contrôle de qualité automatisé, afin qu&#39;il puisse développer de nouvelles fonctionnalités sans détruire discrètement les anciennes.</p>
+    <div class="prose"><h2>Pourquoi « concevoir d’abord, puis construire »</h2>
+<p>Plus quelque chose doit être raffiné – et plus il vise à correspondre aux fonctionnalités d’un outil mature – plus cela vaut la peine d’y réfléchir et de l’écrire avant de le construire. Un navigateur de contenu et &quot;faire glisser un modèle dans la scène&quot; semblent simples, mais ce qui décide vraiment s&#39;ils se sentent bien, ce sont mille détails : comment les ressources sont catégorisées, comment les vignettes sont générées, où atterrit un élément déposé, comment son orientation et son échelle sont décidées, comment il s&#39;aligne sur les objets existants. Improvisés à la volée, ceux-ci ont tendance à se révéler incohérents et liés au changement. Cette journée a d&#39;abord organisé l&#39;interaction dans un document de conception comparé à l&#39;UE5 : en utilisant les modèles éprouvés et confortables de l&#39;industrie comme référence, en définissant &quot;ce que cela devrait être&quot; avant de laisser l&#39;IA l&#39;implémenter. Pour un projet largement piloté par l’IA, un document de conception clair est d’autant plus important : il s’agit à la fois du dessin de construction de l’IA et de l’étalon permettant de juger par la suite si cela a été bien fait.</p>
+<h2>Un navigateur de contenu et un glisser-déplacer vers la scène, comparé à l&#39;UE5</h2>
+<p>Le design cible les deux actes les plus fréquents dans la création : trouver un actif et le placer dans le monde. Le « navigateur de contenu » est comparé à la bibliothèque d&#39;actifs catégorisés, miniatures et consultables d&#39;un moteur mature : vous devriez pouvoir parcourir chaque modèle, texture, scène et personnage de votre projet comme en feuilletant une armoire de matériaux, au lieu de chercher aveuglément dans les dossiers. Le &quot;glisser vers la scène&quot; exige alors que le chemin soit fluide et naturel : saisissez un modèle dans le navigateur, déposez-le dans la vue 3D et il atterrit dans la scène à une position, une orientation et une taille raisonnables avec ses matériaux et ses références correctement câblés - et non une goutte égarée ou sans texture. En comparant les deux à un paradigme éprouvé par des millions de développeurs, comme celui de l&#39;UE5, cela signifie que l&#39;objectif n&#39;est pas &quot;assez bon pour fonctionner&quot; mais &quot;aussi confortable qu&#39;un moteur professionnel&quot;. Ce que cette journée a apporté, c&#39;est la liste de contrôle complète de la conception et de la parité pour cette voie, établissant le plan de la mise en œuvre réelle qui suit.</p>
+<h2>L&#39;éditeur dispose de sa propre porte d&#39;assurance qualité</h2>
+<p>L&#39;autre chose concerne la fiabilité. L&#39;éditeur visuel est déjà devenu un élément qui se construit et s&#39;exécute de manière autonome ; cette journée est allée plus loin et lui a donné son propre portail de qualité automatisé : chaque modification doit d&#39;abord passer par une suite d&#39;étapes automatisées de construction et de vérification avant d&#39;être prise en compte. Cela semble banal, mais c’est la clé pour maintenir en bonne santé tout composant en croissance continue. L&#39;éditeur continuera à gagner des panneaux, des interactions et des capacités ; sans cette porte, certains changements pourraient discrètement briser un autre coin inaperçu jusqu&#39;à ce qu&#39;un utilisateur le frappe. Grâce à lui, les problèmes sont détectés au stade le plus précoce et le moins coûteux – au moment où le changement est effectué – au lieu de vous parvenir. En d&#39;autres termes, ce que cette journée a ajouté à l&#39;éditeur n&#39;est pas une nouveauté mais une garantie de &quot;ne pas régresser à mesure qu&#39;il grandit&quot;.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>Tous les jours ne devraient pas être un feu d’artifice de nouvelles fonctionnalités. Un outil qui veut durer et être professionnel a besoin de « journées de fondation » entrecoupées de sprints : définir clairement la direction, établir la norme, construire les garde-fous de qualité. Les deux choses que cette journée a faites sont exactement cela : une conception de niveau UE5 fixant un objectif professionnel pour le chemin le plus fréquent de « comment les actifs sont utilisés », et une porte d&#39;assurance qualité automatisée assurant l&#39;éditeur en croissance rapide. Aucun des deux n&#39;évoque immédiatement quoi que ce soit à l&#39;écran, mais ensemble, ils décident si le véritable bâtiment qui suit peut être rapide, stable et sans piège. Visez haut, serrez-le fermement et chaque pas ultérieur atterrit sur un sol solide.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-30 · Arquitectura desagregada: cuatro módulos frontales se vuelven independientes + espejo OSS reforzado — ForgeaX</title>
+<meta name="description" content="Los cuatro paquetes frontend más grandes del estudio (chat, banco de trabajo, configuración y panel) se extraen en submódulos independientes (R4); el cierre de la dependencia CLI está aislado en sus propios repositorios; el espejo público de OSS obtiene CI de construcción real, impulsos basados ​​en relaciones públicas y protección de omisión administrativa; aterriza una especificación de rediseño de ventana gráfica 2×2; y la versión nocturna v0.3.3 se envía automáticamente." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-30 · Arquitectura desagregada: cuatro módulos frontales se vuelven independientes + espejo OSS reforzado — ForgeaX" />
+<meta property="og:description" content="Los cuatro paquetes frontend más grandes del estudio (chat, banco de trabajo, configuración y panel) se extraen en submódulos independientes (R4); el cierre de la dependencia CLI está aislado en sus propios repositorios; el espejo público de OSS obtiene CI de construcción real, impulsos basados ​​en relaciones públicas y protección de omisión administrativa; aterriza una especificación de rediseño de ventana gráfica 2×2; y la versión nocturna v0.3.3 se envía automáticamente." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-30.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-30.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-30.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-30.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-30.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-30.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-30.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-30.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-30.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-30.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-30.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-30</span></div>
+    <h1>Arquitectura desagregada: cuatro módulos frontales se vuelven independientes + espejo OSS reforzado</h1>
+    <p class="standfirst">Este día fue una desagregación de arquitectura a gran escala. Los cuatro paquetes frontend más grandes del estudio (chat, banco de trabajo, configuración, panel) se extrajeron en submódulos independientes (el plan R4); el cierre de la dependencia CLI se aisló en sus propios repositorios; el espejo OSS público obtuvo CI de construcción real, impulsos basados ​​en relaciones públicas y protección de omisión administrativa; aterrizó una especificación de rediseño de ventana gráfica 2×2; y la versión nocturna v0.3.3 se envió automáticamente.</p>
+    <div class="prose"><h2>R4: dividir el frontend en módulos verdaderamente independientes</h2>
+<p>La interfaz del estudio había crecido lo suficiente como para que sus cuatro paquetes más pesados ​​(chat, banco de trabajo, configuración, panel) estuvieran integrados en el repositorio principal, compilados y lanzados juntos. Para los desarrolladores, cambiar una línea en el chat significaba esperar a que se reconstruyera toda la interfaz; Arquitectónicamente, las enredadas dependencias entre los cuatro bloques se hicieron cada vez más difíciles de desenredar. El plan R4 de este día registró cada uno de estos cuatro paquetes como submódulos independientes, cada uno con su propio repositorio, su propia versión y su propio CI. El beneficio fue inmediato: cada módulo puede iterarse y probarse de forma independiente, y tocar el chat no obliga a reconstruir el banco de trabajo. La desventaja también es clara: más submódulos que administrar. Pero para que un proyecto pase de ser un &quot;prototipo rápido&quot; a ser &quot;mantenible a largo plazo&quot;, este paso tenía que llegar tarde o temprano, y cuanto antes, mejor.</p>
+<h2>El cierre de dependencia CLI también es independiente</h2>
+<p>No sólo la interfaz. Este día también extrajo el cierre de dependencia de la CLI (contratos, agente-host, plataforma-io, núcleo) del repositorio principal a repositorios de submódulos independientes. Anteriormente vivían como subdirectorios del repositorio principal, compartiendo un <code>node_modules</code> y una canalización de compilación; pero la CLI es fundamentalmente un producto independiente que debe seguir siendo compatible con diferentes versiones de Studio, y estar integrada en monorepo limitó su flexibilidad. Una vez extraído, la CLI puede versionar y probar de forma independiente, y el espejo OSS solo necesita sincronizar estos repositorios para compilarse por completo; antes de esto, las dependencias faltantes causaban que la &quot;instalación bun&quot; del espejo público siguiera fallando.</p>
+<h2>El espejo OSS: de &quot;navegable&quot; a &quot;construible&quot;</h2>
+<p>Este día le dio al espejo OSS público (ForgeaX-Games/forgeax-studio) un endurecimiento completo. El mayor cambio: enviar código al repositorio público ya no va directamente al principal: debe pasar por un flujo de fusión automática PR +, lo que significa que cada sincronización recibe una verificación de CI, un seguimiento de revisión y un punto de reversión. Al mismo tiempo, el repositorio público obtuvo CI de compilación real por primera vez: verificación de tipos, &quot;configuración de bun fx&quot;, pruebas de humo, ejecución de un extremo a otro para garantizar que el código de código abierto que los usuarios reciben realmente se compila. También se tapó un agujero de seguridad: anteriormente los administradores podían eludir la protección de sucursales y presionar directamente; ahora <code>enforce_admins=true</code> cierra ese camino. También se solucionó la fuga de MIRROR_TOKEN y se agregó una puerta de funcionamiento en seco del espejo en tiempo PR. En una frase: el espejo pasó de &quot;código que se puede explorar pero que quizás no se pueda compilar&quot; a &quot;CI garantiza que se compila, el proceso garantiza que es rastreable&quot;.</p>
+<h2>Rediseño de ventana gráfica 2×2: ejecutar × mostrar modos ortogonales</h2>
+<p>Este día también llegó una importante especificación de diseño: el rediseño de la ventana gráfica 2×2. La idea central es desacoplar el &quot;modo de ejecución&quot; (Edición/Reproducir) del &quot;modo de visualización&quot; (Escena/Juego) en dos dimensiones ortogonales, formando una matriz de 2×2. Anteriormente, Editar y Reproducir del editor eran dos estados mutuamente excluyentes, con toda la ventana gráfica reconstruida en Switch; El nuevo diseño te permite ver la vista de escena y la vista del juego simultáneamente, impulsadas por diferentes estados de ejecución. Este es un paso para igualar la experiencia del editor de UE5: editar y obtener una vista previa en una pantalla sin alternar hacia adelante y hacia atrás.</p>
+<h2>v0.3.3 lanzamiento nocturno automático + un montón de correcciones de compilación</h2>
+<p>El proceso de lanzamiento nocturno produjo con éxito la versión 0.3.3 de forma automática este día. Pero el proceso también expuso y solucionó un buen número de problemas a lo largo del camino: a la compilación del escritorio le faltaba el binario del sidecar Bun, la verificación del submódulo recursivo fallaba de manera intermitente y necesitaba un mecanismo de reintento, las rutas de alias de Vite no habían seguido el ritmo de la reestructuración de nombres de paquetes y la compilación de Tauri no podía encontrar definiciones de tipos que se habían movido de los contratos. También se corrigió un error de reasignación del GUID del banco de trabajo del lado del servidor y una raíz de activos de plataforma io separada por uno. Cada solución es pequeña por sí sola, pero juntas son el paso clave desde que &quot;el proceso de lanzamiento automático puede ejecutarse&quot; hasta &quot;el proceso de lanzamiento automático se ejecuta de manera confiable&quot;.</p>
+<h2>que significa este dia</h2>
+<p>La palabra clave de este día es &quot;límites&quot;. Cuando un proyecto pasa de la creación rápida de prototipos a la madurez, una de las cosas más importantes que se deben hacer es trazar límites claros en el código: qué piezas son módulos independientes, quién depende de quién y cuáles pueden publicarse por sí solos. La división de R4 y la extracción de dependencias de CLI trazan límites dentro del repositorio principal; reforzar el espejo OSS traza un límite entre los repositorios internos y públicos; la protección de sucursales y el flujo de relaciones públicas trazan un límite entre &quot;personas&quot; y &quot;cambios de código&quot;. Una vez que los límites estén claros, cada parte puede evolucionar, probarse y lanzarse de forma independiente, y el proyecto puede pasar de &quot;una persona empujando una gran bola de barro&quot; a &quot;un conjunto de módulos claros, cada uno de los cuales avanza por su cuenta&quot;.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

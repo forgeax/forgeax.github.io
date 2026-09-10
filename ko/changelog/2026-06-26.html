@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-26 · 전체 체인 관찰성: 느린 부분을 한 눈에 확인 — ForgeaX</title>
+<meta name="description" content="엔드투엔드 추적+로그 원격 분석은 브라우저 추적 프로그램 및 정지 감시 기능을 사용하여 UI에서 백엔드를 거쳐 에이전트까지 그리고 그 반대로 하나의 작업을 따릅니다. 이제 렌더 디버거가 초기 GPU 상태를 캡처하여 블랙 스크린 버그를 충실히 재현할 수 있습니다." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-26 · 전체 체인 관찰성: 느린 부분을 한 눈에 확인 — ForgeaX" />
+<meta property="og:description" content="엔드투엔드 추적+로그 원격 분석은 브라우저 추적 프로그램 및 정지 감시 기능을 사용하여 UI에서 백엔드를 거쳐 에이전트까지 그리고 그 반대로 하나의 작업을 따릅니다. 이제 렌더 디버거가 초기 GPU 상태를 캡처하여 블랙 스크린 버그를 충실히 재현할 수 있습니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-06-26.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-26.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-26.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/" data-nav="/">홈</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">플러그인</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-26.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-26.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-26.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-06-26.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-06-26.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-26.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-26.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-26.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">다운로드</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">업데이트</span><span>2026-06-26</span></div>
+    <h1>전체 체인 관찰성: 느린 부분을 한 눈에 확인</h1>
+    <p class="standfirst">오늘은 &quot;추적 + 로그&quot;를 프런트 엔드, 백엔드 및 에이전트를 포괄하는 하나의 완전한 체인으로 연결했습니다. UI에서 백엔드를 통해 에이전트 실행으로 전송된 작업과 다시 그림으로 전송된 작업은 정지 감시 기능을 사용하여 끝에서 끝까지 추적 가능하므로 느리거나 멈춰 있는 위치를 한 눈에 볼 수 있습니다. 또한 렌더링 디버깅 도구는 초기 상태를 기록하는 방법을 학습하여 &quot;검은색 화면&quot;과 같은 가장 심각한 문제가 재생 시 안정적으로 재현되도록 했습니다.</p>
+    <div class="prose"><h2>볼 수 없고 통제할 수 없는 시스템</h2>
+<p>시스템이 더욱 복잡해지고 자율적으로 실행하기 위해 AI에 점점 더 많은 단계를 넘겨줌에 따라 근본적인 질문이 표면화됩니다. 시스템 내부에서 실제로 무슨 일이 일어나고 있나요? 작업이 전송되었지만 한동안 아무 응답도 없습니다. 프런트엔드, 백엔드에서 멈춰 있습니까? 아니면 일부 에이전트가 작업 중입니까? 표면적인 증상만으로는 추측만 할 수 있습니다. 오늘은 전체 시스템을 &quot;블랙 박스&quot;에서 &quot;투명 상자&quot;로 전환한 것입니다. 즉, UI 클릭부터 백엔드 처리, 차례대로 실행되는 에이전트를 거쳐 화면의 결과까지 모든 작업의 ​​전체 여정을 추적 가능하고 볼 수 있게 만드는 것입니다. 새로운 게임플레이를 추가하지는 않지만 복잡한 시스템을 장기적으로 조종하기 위한 전제 조건입니다. 볼 수 있는 것만 제어할 수 있고, 제어할 수 있는 것만 자신있게 더 많은 것을 전달할 수 있습니다. 관찰 가능성은 모든 최적화와 디버깅의 출발점입니다. 명확하게 볼 수 없는 것은 개선할 수 없습니다.</p>
+<h2>단일 트레이스 스레딩 프런트 엔드, 백엔드 및 에이전트</h2>
+<p>그날의 핵심 작업은 &quot;추적&quot;을 실제로 전체 스택을 스레드하는 체인에 연결하는 것이었습니다. 추적이란 작업이 흐르는 시스템의 어떤 계층에 관계없이 해당 식별자를 전달하고 타임스탬프를 남기도록 단일 식별자로 작업에 스탬프를 찍는 것을 의미합니다. 따라서 나중에 흩어져 있는 조각이 해당 식별자에 의해 하나의 완전한 타임라인으로 묶일 수 있습니다. 오늘 달성한 것은 해당 식별자를 프런트 엔드에서 백엔드와 에이전트 실행까지 전달하는 것입니다. 모든 작업은 &quot;먼저 프런트 엔드에서 소요된 시간, 그 다음 백엔드, 다음으로 어떤 에이전트가 인계받았는지, 소요된 시간&quot;에 대한 전체 궤적으로 재구성될 수 있습니다. 기술적인 핵심은 이 추적 컨텍스트를 경계에 삭제하는 대신 모든 레이어 경계에 걸쳐 올바르게 전파하는 것입니다(이렇게 하면 전체로 조립할 수 없는 격리된 조각만 남게 됩니다). 이 전체 체인 추적이 존재하면 가장 모호하고 조사하기 어려운 불만 사항(&quot;시스템이 느리다&quot; 또는 &quot;시스템이 멈췄습니다&quot;)을 정확하게 찾아내는 눈금자를 얻게 됩니다.</p>
+<h2>브라우저 추적기 + 정지 감시 장치</h2>
+<p>이 전체 체인 추적 내에서 프런트엔드 세그먼트에는 &quot;UI의 작업에서 최종 렌더링까지&quot; 구간을 따라가는 전용 브라우저 측 추적기가 있습니다. 이는 매우 구체적인 혼란을 해결합니다. 때때로 클릭하거나 입력하면 인터페이스의 응답이 느려집니다. 요청이 아직 전송되지 않았습니까, 백엔드에서 기다리고 있습니까, 아니면 프런트 엔드 자체가 어딘가에서 렌더링을 멈췄습니까? 브라우저 추적 프로그램은 이 구간을 눈에 보이는 단계로 나누어서 정체된 단계를 정확하게 확인할 수 있습니다. &quot;스톨 워치독&quot;이 함께 제공됩니다. 키 흐름의 리듬을 관찰하고 단계가 예상 시간 이상으로 멈춘 순간 정지 상태에 플래그를 지정하여 인터페이스가 죽었거나 사용 중인지 확신할 수 없게 합니다. 인터페이스 상호 작용에 중점을 둔 도구의 경우 &quot;프론트 엔드는 무엇으로 바쁘고 정체되어 있습니까?&quot;는 사용자가 가장 직접적이고 자주 묻는 질문입니다. 이 구간을 관찰 가능하게 만들면 추적 범위가 사용자에게 가장 가까운 지점까지 확장됩니다.</p>
+<h2>백엔드 수집 및 보고 + 각 에이전트가 추적을 수행합니다.</h2>
+<p>체인의 다른 두 세그먼트는 나란히 채워졌습니다. 백엔드는 원격 측정 싱크를 세웠습니다. 모든 곳에서 생성된 추적 및 로그가 여기에 수집되어 보고되고, 프런트 엔드에서 가져온 추적 컨텍스트가 더 전달되어 작업의 백엔드 부분이 공백 없이 동일한 추적 선에 계속 유지되도록 합니다. 에이전트 세그먼트는 각 실행 차례를 동일한 추적으로 엮었습니다. 즉, 에이전트가 작업을 수행하고 차례를 실행할 때 해당 차례에 걸린 시간과 수행한 작업이 이 추적에 하나의 노드로 기록됩니다. 이 두 가지를 함께 사용하면 프론트엔드 클릭부터 백엔드 처리, 에이전트의 단계별 작업까지 모두 한 줄에 묶인 &quot;풀체인&quot;이 이름에 걸맞게 구현됩니다. 핵심 경험이 &quot;AI 에이전트 팀의 작업 지시&quot;인 플랫폼의 경우 &quot;각 에이전트가 이번 차례에 바쁜 것은 무엇이며, 어디가 느린가&quot;가 바로 눈에 보여야 하는 것입니다. 에이전트 실행을 추적으로 가져오는 것은 AI의 작업 프로세스가 더 이상 피어링할 수 없는 블랙박스가 아니라는 것을 의미합니다.</p>
+<h2>그래픽 디버깅: 검은 화면 버그를 재현하기 위해 초기 상태 기록</h2>
+<p>관찰 가능성과 마찬가지로 렌더링 디버깅 도구도 오늘날 더욱 강력해졌습니다. 이미 &quot;프레임을 캡처하고 비교를 위해 재생&quot;할 수 있었지만 핵심 부분인 초기 상태가 누락되었습니다. 그림은 어떤 시작점부터 단계별로 그려지며, 캡처가 그리기 동작만 기록하고 시작 시 리소스의 초기 내용은 기록하지 않는 경우 재생은 &quot;잘못된 시작점에서 재생&quot;에 해당하며 일부 문제는 단순히 재현되지 않습니다. 오늘은 이를 채워주었습니다. 이제 프레임 캡처는 관련 리소스의 초기 상태도 기록하고, 동일한 시작에서 전체 프레임을 정확하게 재구축하기 위해 리플레이에 시드됩니다. 이는 &quot;화면이 검게 변하고 개체가 사라졌습니다&quot;와 같은 가장 심각한 문제에 특히 유용합니다. 일부 초기 상태가 잘못 설정되어 발생하는 경우가 많았으며 이전에는 리플레이에서 재현할 수 없어 찾기가 매우 어려웠습니다. 이제 검은색 화면은 재생 시 충실하게 재현되어 &quot;가끔씩 발견할 수 없는&quot; 고스트 버그를 &quot;안정적으로 재생산하고 반복적으로 연구하고 수정할 수 있는&quot; 구체적인 개체로 바꿉니다. 이는 오늘의 전체 체인 추적과 동일한 동전의 양면입니다. 하나는 &quot;시스템이 느린 곳&quot;을 볼 수 있고 다른 하나는 &quot;그림이 잘못된 곳&quot;을 볼 수 있습니다.</p>
+<h2>오늘의 의미</h2>
+<p>이날 추가된 것은 성숙 시스템에 없어서는 안될 감각 기관입니다. 이전 며칠 동안 플랫폼은 움직이는 캐릭터, 편집 가능한 장면, 생성 가능한 자산, 모두에게 오픈 소스 제공 등 새로운 기능을 계속해서 성장시켰습니다. 그러나 더 유능하고 자율적이 될수록 &quot;내부에서 무슨 일이 일어나고 있는지 명확하게 보는&quot; 것이 더 중요해집니다. 자체 내부를 볼 수 없는 시스템은 언제 문제가 발생하는지 추측만 할 수 있고, 속도 저하가 어디서 오는지 알지 못하며, 결국 진단할 수 없다는 통제력을 잃게 됩니다. 오늘은 추적을 프런트 엔드, 백엔드 및 에이전트에 걸쳐 하나의 라인으로 연결하고 렌더링 디버깅이 초기 상태를 기록하여 그림 문제를 안정적으로 재현할 수 있도록 했습니다. 즉, 플랫폼에 성능과 흐름을 위한 눈, 그림과 렌더링을 위한 눈을 동시에 두 쌍씩 제공하는 것입니다. &quot;시스템이 수행하는 작업&quot;과 &quot;그림이 왜 이렇게 보이는지&quot;를 모두 가시화한다는 것은 속도 최적화, 결함 진단 또는 AI에 더 많은 자율성을 자신 있게 부여하는 등 다음에 올 모든 것이 신뢰할 수 있는 증거에 달려 있음을 의미합니다. 능력은 &quot;플랫폼이 무엇을 할 수 있는지&quot;를 결정하고 관찰 가능성은 &quot;얼마나 신뢰할 수 있는지&quot;를 결정합니다. 오늘은 후자를 차지했습니다.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요.</p>
+  </div>
+  <nav class="foot-links" aria-label="대지">
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/marketplace/">플러그인</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

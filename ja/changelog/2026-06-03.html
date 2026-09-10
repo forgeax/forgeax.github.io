@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-03 · エディター モードのロードマップとエンジンによるビジュアル編集の準備 — ForgeaX</title>
+<meta name="description" content="Studio の再生専用から編集および再生へのパスは、設計図に固定されています。このエンジンには、フィールド リフレクション、交換可能なレンダー パイプライン、ビジュアル エディターを有効にする AI 対応マニュアルが追加されています。そして 2 つの並列ランタイム カーネルが 1 つに収束します。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-03 · エディター モードのロードマップとエンジンによるビジュアル編集の準備 — ForgeaX" />
+<meta property="og:description" content="Studio の再生専用から編集および再生へのパスは、設計図に固定されています。このエンジンには、フィールド リフレクション、交換可能なレンダー パイプライン、ビジュアル エディターを有効にする AI 対応マニュアルが追加されています。そして 2 つの並列ランタイム カーネルが 1 つに収束します。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-03.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-03.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-03.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-03.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-03.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-03.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-03.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-03.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-03.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-03.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-03.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-03</span></div>
+    <h1>エディター モードのロードマップとエンジンによるビジュアル編集の準備</h1>
+    <p class="standfirst">この日、Studio の「再生専用」から「編集と再生」への道が設計図に固定されました。このエンジンは、特にビジュアル エディターの基礎を築くために、フィールド リフレクション、交換可能なレンダー パイプライン、AI 対応エンジン マニュアルといった基礎的な機能のスタックを 1 日でプッシュしました。その間、2 つの並列ランタイム カーネルが 1 つに収束し、ゲーム コンテンツは構造化されたアセットに向かって進み続けました。</p>
+    <div class="prose"><h2>方向性を決め、基礎を築き、引き算をすべて 1 日で行う</h2>
+<p>この日のアイテムは散在しているように見えますが、Studio の新しい「エディター」レッグを成長させるという 1 つの目標を目指しています。それを成長させるには、一度に3つのことが必要です。まず、「方向性を設定する」ことです。「編集モードの追加」を口頭での議論から正式な設計図に変え、今後の作業が従うべきものになるようにします。 2 つ目は、「基礎を築く」ことです。エディターが本当に必要とする機能を最下層で埋めるエンジンです。これらがなければ、上部インターフェースは空中の城となります。 3 番目は、「減算」です。これは、歴史的に並列してきた 2 つのランタイム カーネルを 1 つに統合することで、新機能が登場する前にメンテナンスの負担に押しつぶされることがなくなります。プロジェクトが主要な機能を追加するしきい値に達したとき、最も試されるのは新しいコードを書くスピードではなく、方向性を徹底的に検討し、基礎を固め、荷物を取り除くことが同時にできるかどうかです。この日はその 3 つがすべて実行されました。</p>
+<h2>エディター モードのロードマップ: 再生のみから編集と再生へ</h2>
+<p>これまで、Studio は主にゲームの実行とプレイテストを行う場所でした。AI とチャットし、AI がコードを書き、右側がゲームを実行します。この日は「編集モードの追加」を正式に開始し、設計とステータスの完全なセットとしてキャプチャされたドキュメントを作成しました。エンジンの既存の機能を比較し、編集モードの機能仕様を書き留め、実装がどこまで進んでいるかを評価し、具体的な設計提案を提供しました。目標は明確です。単にゲームの実行を監視するだけでなく、ビジュアル インターフェイスでオブジェクトを直接配置し、プロパティを調整し、シーンを構築することができます。これは真の編集とプレイであり、変更の効果がすぐにすぐに表示されます。コードに直接取り組むのではなく、最初にドキュメントとして作成するのは、いくつかの場所でエンジン、フロントエンド、ランタイムに触れており、アクションの前に明確な青写真を作成する価値があるためです。今後数日間の編集作業はすべてこの青写真に従って行われます。これは、Studio がプレイヤーの視点からクリエイターの視点へ、つまり「AI があなたのためにゲームを構築し、あなたがプレイする」から「AI とあなたが一緒に編集し、いつでも介入できる」への移行への道しるべです。</p>
+<h2>フィールド反射ランド: プロパティ パネルは自動的に構築可能</h2>
+<p>この日のエンジンの重要なステップは、コンポーネント フィールドに「リフレクション メタデータ」を追加することでした。リフレクションは、平たく言えば、プログラムに「自分自身を記述する」ことを可能にします。システムはもはや指示する必要がなくなり、各コンポーネントの各プロパティの名前と型を読み取ることができます。これは数値、あれは色、もう 1 つはトグルです。なぜこれが重要なのでしょうか?ビジュアル エディターで最も重い作業は、数百のプロパティの種類 (数値のスライダー、色のピッカー、切り替えのチェックボックス) ごとに入力コントロールを描画することだからです。一つ一つ手書きしていては終わりませんし、エンジンの変化にも追いつきません。フィールド リフレクションを使用すると、エディターのプロパティ パネルを「メタデータから構築」できます。エンジンに新しいプロパティを追加すると、追加の手作業を必要とせず、一致するコントロールが自動的にパネルに表示されます。これはまさに、エディターのブループリントを真に着陸させるための基礎となる前提条件です。まずデータを自己記述型にし、それから初めてインターフェイスを自動化できます。</p>
+<h2>レンダー パイプラインが交換可能になるため、ビジュアル スタイルはロックされません。</h2>
+<p>この日、このエンジンにより「レンダー パイプライン」も交換可能になりました。レンダー パイプラインは、エンジンが 3D シーンを画面上の各フレームに変換するアセンブリ ライン全体であり、光の当たり方、影の計算方法、ポスト エフェクトのスタック方法を決定します。このパイプラインは以前はエンジンにハードコーディングされていました。使用できるのは、パイプラインが提供する 1 つの視覚スタイルのみでした。この日はパイプラインの「継ぎ目」が公開されたため、特別な視覚的ニーズを持つプロジェクトが独自のレンダリング フローにドロップされ、エンジンのデフォルトを超えた独特の外観を実現できるようになりました。さらに重要なのは、この機能が「最初に自分たちで使用する」ことによって検証されたことです。エンジン自体のレンダリングがこの交換可能なパイプラインを通じて実行され始め、装飾的ではなく本当に使用できることが保証されます。コア機能の継ぎ目を積極的に開くということは、エンジンが「与えられたものをそのまま受け入れる」ブラック ボックスから、「上級ユーザーが深くカスタマイズできる」プラットフォームに移行することを意味します。これは、独特のビジュアル アイデンティティを追求するクリエイターにとって特に重要です。</p>
+<h2>AI向けに書かれたエンジンの使い方マニュアル</h2>
+<p>この日はまた、AI 専用のエンジン使用マニュアルを作成するという、特徴的なことも行いました。このプラットフォームでは、実際にゲーム コードを作成する主力は人間ではなく AI エージェントです。そのため、「エンジンを使用できるようにする」ということは、まず「エンジンを読みやすく、AI が正しく使用できるようにする」ことを意味する必要があります。このマニュアルは人間向けの散文ではなく、エージェント向けの構造化された使用仕様に加え、エンティティの作成方法、コンポーネントの接続方法、アセット システムの使用方法、一般的なタスクの正しい姿勢など、直接フォローできる操作スキルのセットが記載されており、すべてエージェントが確実に従うことができる形式で書かれています。その重要性: ツールの「ドキュメント」はもはや人間にとって補足的なものではなく、AI の出力品質を直接決定する生産手段です。AI がエンジンをよりよく理解するほど、AI が作成するゲームはより正確になり、やり直しの可能性が低くなります。真剣に書かれた「AI のマニュアル」を第一級市民として扱うことは、この AI ネイティブ プラットフォームと従来のエンジンとの考え方の根本的な違いです。</p>
+<h2>2 つのランタイム カーネルが 1 つに統合される</h2>
+<p>この日はまた、重要な「引き算」も実行しました。つまり、歴史的に残されていたスタンドアロンのランタイム カーネルを正式に廃止してアーカイブし、かつて担っていたすべてのランタイムの役割はすでに統合されたバックエンド プロセスに移されました。この 1 つのカットにより、15 万行近くのコードが削除され、歴史的な目印として空っぽのシェルだけが残されました。なぜこれが良いのでしょうか？というのは、長い間、システムにはエージェントを同時に実行できる 2 つのカーネルがあったため、変更は両方で同期する必要があり、ちょっとした不注意によって動作に一貫性がなくなり、目に見えない継続的なメンテナンスの負担が生じていました。単一のカーネルに統合されると、すべてのエージェント フロー、機能、ツールが 1 か所で登録および実行され、「双方向の調整」が必要なくなります。 15 万行を削除しながらシステムをより堅牢にするということは、プロジェクト全体を貫く信条を裏付けるものです。進歩は書かれた行によって測られるのではなく、システムを理解して維持するためにどれだけ多くのことを心に留めておかなければならないかによって測られるのです。削減できる複雑さ自体が最も価値のある成果物なのです。</p>
+<h2>ゲームコンテンツがアセットに移動 + リプレイ順序の修正</h2>
+<p>この日はコンテンツ側も本筋から一歩前進しており、サンプル シューターの敵が「コード内で 1 つずつ生成される」から「シーン アセット インスタンス」に変更されました。これらのアプローチの違いは、コードにハードコーディングされた敵はプログラマーのみが変更できるのに対し、構造化アセットに作成された敵は再利用と構成が容易で、次の編集者が認識して配置するのが簡単です。つまり、これもビジュアル編集の基礎となり、「編集されるもの」を事前にアセットの形式で存在させておくことができます。さらに、コンテンツ作成ツール (ノード スタイル編集、シーン構築など) には、ブラシ ツール、キャンバスのフィット トゥ ビュー、シーン ツールバー、インポートのラウンドトリップ修正などの日常的な機能が追加され、ワー​​クベンチがよりスムーズに使用できるようになりました。チャットのリプレイ順序の問題も修正されました。エージェント間およびシステム メッセージが末尾に正しく追加されるようになりました。そのため、一連の履歴をリプレイすると、ライブで見た順序と正確に一致します。リプレイが信頼できるものであるためには、順序が文字どおり正確である必要があります。</p>
+<h2>この日が意味するもの</h2>
+<p>この日は、プロジェクトの教科書的な「ピボットの準備」です。大きなことに取り組む前に、まず方向性、基礎、荷物を一度に決めます。エディターのブループリントは「どこに行くべきか」を示し、エンジンのフィールド リフレクション、交換可能なパイプライン、AI の手動は「実際に歩ける道」を切り開き、カーネルのコンバージェンスと資産化は「つまずく古い荷物」を取り除きます。覚えておく価値があるのは、この日は、ユーザーがその日のうちにクリックして操作できるような、まばゆいばかりの新しいボタンが 1 つもなかったということです。その価値はすべてその根底にあり、「今日基礎を築かなければ、明日の塔は建てられない」ような仕事です。長期的に進化するプラットフォームは、すぐに拍手が起こらないときでも、この基礎工事を真剣に行う意欲にまさにかかっています。この日から、新しい「編集者」の足には図面とその基礎が整いました。次に、層ごとに構築していきます。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

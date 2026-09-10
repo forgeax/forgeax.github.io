@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-17 · Mouvement coulissant le long des murs + un éditeur autonome mature — ForgeaX</title>
+<meta name="description" content="Le moteur est livré avec un contrôleur de caractères cinématiques de déplacement et de glissement ainsi qu'une machine à états typée ; l'éditeur autonome s'adapte à une utilisation quotidienne ; les trois bogues enchaînés d'un niveau d'échantillon sont corrigés et les leçons sont intégrées au modèle ; Forge devient accessible depuis les applications de chat ; et le moteur acquiert un protocole de perception afin que l'IA puisse voir le jeu en cours." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-17 · Mouvement coulissant le long des murs + un éditeur autonome mature — ForgeaX" />
+<meta property="og:description" content="Le moteur est livré avec un contrôleur de caractères cinématiques de déplacement et de glissement ainsi qu'une machine à états typée ; l'éditeur autonome s'adapte à une utilisation quotidienne ; les trois bogues enchaînés d'un niveau d'échantillon sont corrigés et les leçons sont intégrées au modèle ; Forge devient accessible depuis les applications de chat ; et le moteur acquiert un protocole de perception afin que l'IA puisse voir le jeu en cours." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-17.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-17.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-17.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-17.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-17.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-17.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-17.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-17.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-17.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-17.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-06-17</span></div>
+    <h1>Mouvement coulissant le long des murs + un éditeur autonome mature</h1>
+    <p class="standfirst">Aujourd&#39;hui, le moteur est livré avec un mouvement standard « glissez le long des murs, ne restez pas coincé » et une machine à états de type sécurisé - utile pour tout jeu de course et de saut ; la fenêtre de l&#39;éditeur autonome a été poussée vers une utilisation quotidienne ; les trois pièges enchaînés d&#39;un niveau échantillon ont été éliminés d&#39;un coup et les leçons réinjectées dans le modèle par défaut ; Forge est devenu accessible à partir des applications de chat courantes ; et le moteur a acquis la capacité de laisser l&#39;IA « voir » le jeu en cours.</p>
+    <div class="prose"><h2>Enfoncer &quot;les roues que tout le monde réinvente&quot; dans le moteur</h2>
+<p>Cette journée avait un objectif clair : distiller les &quot;roues que tout le monde réinvente pour chaque jeu&quot; en fonctionnalités prêtes à l&#39;emploi dans le moteur et les modèles. Le mouvement standard de glissement le long des murs et une machine à états inactive-course-saut sont des bases incontournables pour tout jeu d&#39;action ; les pièges d&#39;un échantillon de niveau ont été écrits dans une rétrospective et réinjectés dans le modèle par défaut afin que d&#39;autres n&#39;aient pas besoin de les répéter ; et la fenêtre de l&#39;éditeur autonome a été peaufinée pour être utilisable quotidiennement, devenant ainsi une base d&#39;outils stable. Au-delà de cela, la journée a atteint deux mains : permettre à Forge de communiquer avec les applications de chat que vous utilisez déjà et laisser l&#39;IA &quot;voir&quot; l&#39;image et l&#39;état du jeu en cours. Le premier abaisse la barre et distille les capacités générales ; ce dernier repousse les limites, rapprochant l’IA de la « véritable compréhension d’un jeu ». Transformer le répété en général et rendre le général solide, c&#39;est exactement ainsi qu&#39;une plate-forme se compose.</p>
+<h2>Mouvement standard &quot;glisser, ne pas coller&quot; + une machine à états</h2>
+<p>Le moteur a posé un élément de base dont aucun jeu de type &quot;courir et sauter&quot; ne peut se passer aujourd&#39;hui : un contrôleur de personnage cinématique - &quot;déplacer et glisser&quot; - pour la 2D et la 3D. Il résout un problème apparemment simple mais extrêmement sensible : que se passe-t-il lorsqu&#39;un personnage heurte un mur en biais ? La pire manipulation le coince mort (le personnage épinglé au mur) ou le laisse passer (écrêtage) ; la manipulation correcte et attendue par le joueur fait glisser le personnage en douceur le long de la surface. Ce mouvement de « glisser le long du mur » semble mineur, mais il constitue la base de la sensation pour presque tous les jeux à la première et à la troisième personne, et assez fastidieux à mettre en œuvre à partir de zéro. En faire une primitive standard intégrée donne à chaque nouveau jeu une sensation de mouvement passable gratuitement. À côté est venue une machine à états de type sécurisé : exprimant proprement les états d&#39;un personnage comme inactif/exécution/saut/attaque, et liant les cycles de vie des entités aux états – génération automatique d&#39;éléments liés à l&#39;entrée dans un état, nettoyage automatique à la sortie. Ensemble, le contrôle des personnages et la logique de comportement du prochain jeu n&#39;ont pas besoin d&#39;être lancés manuellement à partir d&#39;une page blanche à chaque fois, mais reposent sur une base validée.</p>
+<h2>La fenêtre de l&#39;éditeur autonome est prête à être utilisée quotidiennement</h2>
+<p>La fenêtre de l&#39;éditeur autonome réécrite la veille a été poussée aujourd&#39;hui à maturité pour un usage quotidien. Plusieurs choses ont été peaufinées : les panneaux ancrés sont passés à une disposition flexible qui remplit toute la fenêtre d&#39;affichage sans espaces vides ; une &quot;toile vide fantôme&quot; qui y était restée a été supprimée (l&#39;interface avait autrefois une zone de rendu vierge inexplicable) ; la dépendance circulaire entre les modules a été rompue, rendant l&#39;architecture plus propre et moins sujette aux problèmes en cascade ; et la fenêtre autonome injecte désormais son propre rendu d&#39;édition et d&#39;aperçu, ne dépendant plus de l&#39;interface principale. L’état de la console a été réduit aux notifications normales de ressources manquantes, plus d’écrans rouges vous laissant mal à l’aise. Des documents bilingues ont été réalisés, la méthode de démarrage étant clairement écrite avec un diagramme de structure, garantissant qu&#39;un nouveau venu peut la mettre en place sur sa propre machine en suivant. Après cette journée, l&#39;éditeur tient vraiment sa place en tant qu&#39;outil que vous pouvez ouvrir et utiliser indépendamment de l&#39;interface principale, établissant ainsi une base fiable pour l&#39;intégrer ultérieurement ailleurs ou le distribuer séparément.</p>
+<h2>Niveaux d&#39;échantillonnage corrigés, leçons réinjectées dans le modèle</h2>
+<p>Un niveau d&#39;échantillon avait rencontré trois pièges d&#39;affilée, tous résolus aujourd&#39;hui – et la façon dont ils ont été traités est plus remarquable que le correctif lui-même. Les trois étaient les suivants : les identifiants internes des objets de la scène n&#39;étaient pas contigus, brisant les commandes de mouvement et de caméra - corrigés en les renumérotant dans une séquence consécutive ; les ombres utilisaient toujours un ancien schéma de configuration – migré vers la nouvelle approche des ombres avec une configuration de rendu stable verrouillée ; et certaines conventions d&#39;utilisation obsolètes ainsi exposées. La clé est la troisième étape : l&#39;équipe ne s&#39;est pas arrêtée à &quot;réparer ce niveau&quot;, mais a écrit l&#39;ensemble du déraillement et du diagnostic dans une rétrospective, a révisé les conventions d&#39;utilisation pertinentes en conséquence et est allée plus loin en réinjectant ces leçons dans la liste des &quot;pièges courants&quot; dans le modèle de nouveau jeu par défaut. Cela signifie que chaque partie ultérieure ne tombera pas à nouveau dans le même piège. C&#39;est exactement l&#39;attitude d&#39;une équipe d&#39;ingénierie mature envers les bugs : corriger un bug est le minimum ; institutionnaliser la leçon qui se cache derrière afin qu’elle ne se reproduise jamais sous la même forme est la véritable clôture. Le même jour, l&#39;animation skinnée du héros échantillon a été câblée, le transformant d&#39;un modèle statique en un personnage véritablement émouvant.</p>
+<h2>Parlez à Forge directement à partir des applications de chat courantes</h2>
+<p>Cette journée a également ouvert un nouveau point d&#39;entrée : vous permettre de parler à Forge directement depuis les applications de messagerie instantanée que vous utilisez couramment. Une page de paramètres « Connexions » a été ajoutée pour connecter ces canaux de discussion externes : scannez un code ou autorisez, et vous pouvez envoyer un message à Forge directement dans votre application de discussion familière et la faire avancer dans le développement de votre jeu. L&#39;importance est que cela libère la « collaboration avec l&#39;IA » de « devoir s&#39;asseoir devant l&#39;ordinateur et ouvrir l&#39;interface Studio » — vous pouvez lui lancer une idée ou une commande pendant le trajet, sur votre téléphone. Pour une plate-forme dont l&#39;interaction principale est la conversation, « être joignable n&#39;importe où, via n&#39;importe quel canal pratique » est en soi une accessibilité importante. Abaisser la barre jusqu&#39;à « démarrer une conversation » signifie que davantage d&#39;inspiration peut être capturée et avancée au moment où elle surgit, plutôt que oubliée au moment où vous êtes de retour devant l&#39;ordinateur.</p>
+<h2>Laisser l&#39;IA &quot;voir&quot; le jeu en cours</h2>
+<p>Le moteur a également posé aujourd’hui une base de grande envergure : un protocole permettant à l’IA de « percevoir » le jeu en cours. Concrètement, cela a donné à l&#39;IA deux nouveaux types d&#39;outils : un pour interroger l&#39;état actuel du monde du jeu (quels objets se trouvent dans la scène, où se trouve chacun, dans quel état il se trouve) et un pour capturer une capture d&#39;écran de l&#39;image actuelle. Cela signifie que l&#39;IA ne se limite plus à « écrire du code à l&#39;aveugle » : après l&#39;écriture, elle peut véritablement « jeter un œil » au fonctionnement actuel du jeu, si les objets sont placés correctement, si l&#39;image présente des problèmes, et juger et ajuster en conséquence. Il s’agit d’une étape clé pour que l’IA passe de « peut uniquement écrire » à « écrit, voit et s’auto-corrige ». Un moyen sans tête de piloter ce flux a également été fourni, pour se connecter à l&#39;automatisation. Pour une plate-forme visant à « permettre à l&#39;IA de développer des jeux de manière autonome », « donner des yeux à l&#39;IA » est presque une voie inévitable : ce n&#39;est que lorsqu&#39;elle peut percevoir l&#39;effet réel de ses propres changements que son autocorrection autonome peut véritablement boucler la boucle, plutôt que de deviner à l&#39;aveugle. Ce qui a atterri aujourd’hui est une tranche de fondation, mais la direction qu’elle indique est très claire.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>Les sujets de la journée incarnent ensemble deux manières dont une plate-forme se compose : la distillation et l&#39;extension. La distillation enfonce les éléments récurrents dans la fondation, dans des fonctionnalités prêtes à l&#39;emploi que tout le monde peut utiliser directement : mouvement de personnage standard, machine à états réutilisable, leçons évitant les pièges introduites dans le modèle, un éditeur autonome utilisable quotidiennement font tout cela. Chaque chose distillée signifie une roue de moins réinventée pour chaque jeu ultérieur, et la « création de jeux » de la plate-forme devient d&#39;un cran plus rapide et plus stable. L&#39;extension atteint de nouvelles directions – rendant Forge accessible sur un coup de tête à partir des applications de chat, permettant à l&#39;IA de voir l&#39;effet réel de ses propres changements. Une plate-forme qui rend sérieusement solide même une primitive de base comme « glisser le long des murs » tout en posant les bases de « l&#39;IA ayant des yeux » est à la fois fondée et prévoyante. Rendre le général répété, le général fiable et explorer de nouvelles possibilités au sommet du fiable – cette journée a été une étape solide sur ce chemin composé.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

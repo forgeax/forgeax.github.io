@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-11 · Text-to-3D がゲーム内に表示され、続行する前にエージェントが確認します — ForgeaX</title>
+<meta name="description" content="生成された 3D モデルは、ゲームごとのストレージを使用してゲームに直接配置されるようになりました。エージェントは自身の書き込み-検証-続行ループを閉じ、入力の停止を停止します。大規模なシーンのコールド負荷は 2GB から 45MB に減少します。スケルトンアニメーションの下地ランドスケルトンアニメーション。そして新しい弾丸生存サンプルがライブラリに加わりました。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-11 · Text-to-3D がゲーム内に表示され、続行する前にエージェントが確認します — ForgeaX" />
+<meta property="og:description" content="生成された 3D モデルは、ゲームごとのストレージを使用してゲームに直接配置されるようになりました。エージェントは自身の書き込み-検証-続行ループを閉じ、入力の停止を停止します。大規模なシーンのコールド負荷は 2GB から 45MB に減少します。スケルトンアニメーションの下地ランドスケルトンアニメーション。そして新しい弾丸生存サンプルがライブラリに加わりました。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-11.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-11.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-11.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-11.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-11.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-11.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-11.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-11.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-11.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-11.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-11.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-11</span></div>
+    <h1>Text-to-3D がゲーム内に表示され、続行する前にエージェントが確認します</h1>
+    <p class="standfirst">この日、テキスト/画像から 3D への変換が本格的に実現しました。結果はゲームごとに保存され、ゲームに直接反映され、見た目だけのショーケースに置かれることはなくなりました。エージェントはコードを書いた後に独自の検証を実行し、ユーザーに質問するために停止するのではなく、失敗した場合に修正し続けます。エンジンは 1 つの大きなシーンのコールドロードを約 2GB から約 45MB に圧縮しました。スケルトンキャラクターアニメーションの連鎖が進歩しました。そして、弾丸サバイバルのサンプルがゲーム ライブラリに追加されました。</p>
+    <div class="prose"><h2>2 つのラインが融合: 配信と自律的な信頼性</h2>
+<p>この日最も注目すべき 2 つの事柄は、「AI がゲームを構築する」という道における 2 つの重要な質問、つまり、作られたものが実際にどのように使用されるのか、そして AI がどのようにして人々のトラブルを軽減するのか、という点に正確に対応しています。前日の「テキストから 3D モデルへ」ワークベンチはまだ「テストベッド」段階にあり、生成はできましたが、結果が必ずしもスムーズにゲームに反映されるわけではありませんでした。この日は最後の 1 マイルを歩き、生成されたモデルはゲームごとに保存され、レベルに直接着陸しました。一方、数日前に AI にインストールされた「ビルドゲート」には、依然として背後から監視するプラットフォームが必要でした。この日はさらに進化し、エージェントが「コードの作成 → 検証 → 続行」ループ自体を閉じるようになり、ことあるごとにユーザーに質問することはなくなりました。大規模なシーンに対するエンジンの高速化、スケルトン アニメーションの進歩、および新しいサンプル ゲームを備えたこの日のテーマは、機能を本当に使いやすく、自動化を本当に安心できるものにすることです。</p>
+<h2>テキスト/画像から 3D への変換は実際に機能します - 結果がゲームに反映されます</h2>
+<p>この日、3D生成ワークベンチは正式に「テストベッド」から「実際に使用できる」状態に移行した。すでにテキストや画像から 3D モデルを生成できますが、生成はステップ 1 にすぎません。スムーズに保存して作成中のゲームに接続できないモデルは、単なる孤立した展示品にすぎません。この日完了したのはまさに「配信」の後半です。各ゲームには独自の 3D アセット ストレージがあり、生成されたモデルはゲームごとにアーカイブされます。生成は公開されたアップロード パス上で実行され、外部の画像から 3D サービスに接続した後、テキストまたは画像からのモデルの生成が実際の環境でエンドツーエンドで機能するようになりました。バックエンドは、ゲームごとに 3D アセットを提供するための専用チャネルも開き、各ゲームで生成された出力を個別に配信します。付属のツール エディター UI も再構築され、統一されたビジュアル スタイルに合わせてサイドバーが世代段階ごとに整理されました。これらを組み合わせることで、「岩 / 木箱 / 小さなモンスターのモデルが欲しい」から「そのモデルはすでに私のレベルにある」までの距離が突然縮まりました。生成はもはや手動で結果を持ち運ぶ別個の段階ではなく、クリエイティブ フローのスムーズなステップです。アートのスキルを持たないクリエイターにとって、これはアセットの取得という最も高いハードルを真に平らにすることになります。</p>
+<h2>エージェントはあなたに尋ねるために立ち止まるのではなく、自分たちの作業を検証します</h2>
+<p>前日の「ビルドゲート」のアイデアを継続し、この日はエージェントの「書き込み→検証→続行」ループをさらに一歩本格的に強化しました。以前の苦痛は微妙であり、一般的なものでした。エージェントはコードの塊を完成させ、積極的にテストを実行したり、ビルドにエラーが発生したかどうかを確認したりせず、立ち止まってユーザーに「これは正しいですか?」と尋ねていました。しかし、ユーザーはまったく判断できず、漠然と「大丈夫でしょう」としか答えられず、エラーを見逃してしまうことがよくあります。これにより、本来は機械が行うべき検証責任が事実上人間に押し付けられることになった。この日の変更により、エージェントはコードを書いた後に検証を自動実行するようになりました。検証は成功した場合のみ続行され、失敗した場合は本当に正しい結果になるまで特定のエラーを修正し続けます。会話の 1 つを不必要に費やして、それ自体で確認できる質問がオンになることはもうありません。これは、以前の「ビルドが合格するまで「完了」しない」と同じロジックを拡張したものです。後者は最終的な配信が正しいことを保証し、これはすべての中間ステップを可能な限り自己終了させ、人々の邪魔を減らします。チャットに新しい「最新にジャンプ」マーカーが追加され、古い記録を確認するときに自動スクロールで一番下まで引っ張られることがなくなり、長い会話を振り返るのがはるかに快適になりました。本当に優れた AI 協力者は、「AI 自身が何を処理できるかを問うべきではない」が、この日はまさにその通りに進んだ。</p>
+<h2>大規模なシーンのコールド負荷は約 2GB から約 45MB に低下します</h2>
+<p>この日、エンジンは大規模で複雑なシーンに驚くほどアグレッシブなコールドスタートスリム化をもたらしました。以前の問題: ディテールが豊富な屋内シーンは、最初の読み込み時に約 2GB のメッシュ ジオメトリを読み込む必要がありました。起動が耐えられないほど遅いだけでなく、開発中に繰り返し再起動するときに苦痛を感じました。この日のアプローチでは、メッシュ データを事前にバイナリ化し、コンパクトなキャッシュ アーティファクトにパックします。同じシーンの場合、最初のロード時に読み取られるデータは約 2GB から約 45MB に縮小し、起動が 1 桁速くなりました。重要なのは、「このエンジンが本格的なシーンを実行できるかどうか」を直接決定することです。ロードに数十秒かかるかフリーズすると、大規模なシーンは実質的に使用できなくなります。数秒に圧縮することで、本当に大きくて詳細なシーンが初めて「苦労せずに開発できる」ようになります。このエンジンは、効率を維持しながら 1 つのシーンで一度に何百ものライトを点灯し、鮮明でシャープなテキストを画像に焼き付けることもできます。これらの機能を組み合わせると、エンジンのデモ ラインが最終的に実際のゲーム スケールに近い深刻なシーンを実行できるようになります。</p>
+<h2>スケルトンアニメーションの基礎づくり：「本当に動くキャラクター」への道を拓く</h2>
+<p>この日、このエンジンはキャラクター アニメーション ラインでも確実な一歩を踏み出しました。つまり、スケルタル スキニング アニメーションに必要な頂点データ チェーンを介した配線です。低レベルに聞こえますが、これはゲームにおける最も重要な種類の表現の 1 つに相当します。つまり、「ボーン」が「スキン」を駆動するため、キャラクターが自然に走ったり、ジャンプしたり、手を振ったりします。モデルの内部には目に見えないスケルトンがあり、各ボーンが揺れると、それに接続されているメッシュ サーフェス (「スキン」) も変形し、キャラクターが動きます。このメカニズムが正しく機能するには、エンジンが「どのボーンが各頂点にどの程度影響を与えるか」というデータ文字列を最後まで正しく渡して計算する必要があります。この日に到着したのは、まさにこのチェーンの重要なリンクであり、同じスキンのキャラクターの複数のインスタンスを一度に表示するデモに加え、いくつかの形式を認識するモデル インポーターとボーン階層を処理するリゾルバーが組み合わされています。まだ「キャラクターがすでに動いている」状態ではありませんが、そのステップを可能にする前提エンジニアリングがあり、このチェーンが舗装されていれば、後から実際のキャラクターアニメーションを着実に接続することができます。ゲーム制作を目的としたエンジンにとって、キャラクター アニメーションは避けられない難題ですが、この日はその重要な部分を解明しました。</p>
+<h2>新しい弾丸サバイバルのサンプルがゲーム ライブラリに加わりました</h2>
+<p>この日、「弾丸サバイバル」スタイルの 3D サンプル ゲームがライブラリに追加されました。キャラクターが自動発砲している間、小さなモンスターの群れが四方八方から押し寄せ、継続的にモンスターを退治し、ますます密集した包囲の中で少しでも長く生き残ろうとします。このジャンルは近年人気があり、シンプルなルール、満足のいくペース、とっつきやすく、しかも何度でもプレイできるのが特徴です。これを既成のサンプルにすることには、2 つの層の価値があります。1 つは、誰でも開いて再生したり、独自のバージョンに変更したりできる、再生可能な完成品であることです。 2 つ目は、完全なゲームプレイ ループを備えた実際のゲームとして、プラットフォームとエンジンの機能が本当に耐えられるかどうかをテストすることです。画面上の多くの敵はレンダリング能力を重視し、自動戦闘はロジックを重視し、生存ペースは全体的な感触を重視します。実際のゲームを使用してプラットフォームのストレス テストを行うと、抽象的なテストよりも問題が明らかになります。異なるスタイルの追加サンプルはそれぞれ、後のクリエイターに直接立つことができるもう 1 つの出発点を提供します。</p>
+<h2>この日が意味するもの</h2>
+<p>この日は、「能力」と「信頼性」の両方をそれぞれ一段と前進させました。これらはまさに AI 作成プラットフォームの 2 つの脚であり、安定した歩みのためにはどちらも欠かすことはできません。 「機能」の面では、テキストから 3D への変換が本格的に実現し、大規模なシーンが実行可能になり、骨格アニメーションが舗装され、新しいサンプルがライブラリに追加されました。プラットフォームは、より多く、より大規模で、より現実的なことを行うことができます。 「信頼性」に関しては、エージェントは続行する前に検証することを学びました。プラットフォームはより安心して物事を実行し、事故が起こりにくく、常時監視する必要がなくなりました。長期的に信頼するに値するツールは、片方の脚だけに負担をかけることはなく、両方の脚を協調して交互に前進させます。機能が強力であればあるほど、それを裏付ける信頼性がより必要になります。パワーの代わりにクラッシュのリスクが大きくなることを避けるためです。そして信頼性が強ければ強いほど、より困難で大きな目標に向かって、より大胆に能力を推し進めることができます。この日は両足を揃えて踏み出す一歩だった。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

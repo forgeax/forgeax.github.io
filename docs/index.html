@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Docs — ForgeaX</title>
+<meta name="description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Docs — ForgeaX" />
+<meta property="og:description" content="ForgeaX documentation — a user's-eye guide to building a game with ForgeaX: install, core concepts, chat-driven dev, scene editing, assets, running, publishing and advanced topics." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/docs/" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/docs/" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/docs/" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/docs/" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/docs/" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/docs/" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/docs/" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/docs/" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/docs/" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/docs/" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/docs/" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-en forgeax-site has-immersive">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/" data-nav="/">Home</a>
+      <a href="/tutorials/" data-nav="/tutorials/" class="active">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/docs/" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item" href="/es/docs/" data-l="es">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/docs/" data-l="fr">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <a class="back" href="/tutorials/">← Back to tutorials</a>
+    <h1>Documentation</h1>
+    <p>A user's-eye guide to building a game with ForgeaX. Click any item to expand the details.</p>
+  </div>
+
+  <div class="section" style="padding-top:14px">
+    <button type="button" class="docs-mobilebar" id="docsMobileBar" aria-expanded="false" aria-controls="docsSidebar">
+      <span class="dmb-label">
+        <span class="dmb-kicker">Contents</span>
+        <span class="dmb-current" id="docsCurrent"></span>
+      </span>
+      <span class="dmb-icon" aria-hidden="true"><i data-lucide="list"></i></span>
+    </button>
+    <div class="docs-sheet-backdrop" id="docsBackdrop"></div>
+
+    <div class="docs-layout">
+
+      <aside class="docs-sidebar" id="docsSidebar">
+        <div class="docs-sheet-handle" aria-hidden="true"></div>
+        <div class="t">Contents</div>
+        <nav>
+          <a href="#ch1">1 · Before you start</a>
+          <a href="#ch2">2 · Core concepts</a>
+          <a href="#ch3">3 · Build by chatting</a>
+          <a href="#ch4">4 · Scenes &amp; editor</a>
+          <a href="#ch5">5 · Assets</a>
+          <a href="#ch6">6 · Run &amp; preview</a>
+          <a href="#ch7">7 · Publish &amp; share</a>
+          <a href="#ch8">8 · Advanced</a>
+          <a href="#ch9">9 · Creation tools</a>
+          <a href="#ch10">10 · The agent team</a>
+        </nav>
+      </aside>
+
+      <div class="docs-main">
+
+        <section class="docs-chapter" id="ch1">
+          <h2><span class="n">1</span>Before you start</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>What ForgeaX is and what games it makes</summary>
+              <div class="doc-body">
+                <p>ForgeaX is an AI-native game development studio. You describe the game in plain language; an AI lead called <strong>Forge</strong> <strong>plans it, designs it, and writes it into running game code itself</strong>, hot-reloading the result into your browser — what you say is what you play.</p>
+                <p>Two in-house foundations sit underneath: an <strong>engine redesigned for the AI's point of view</strong> (see <a href="/blog/why-ai-native-engine.html">Why an AI-native engine</a>) and a <strong>development loop that converges features on a correct result</strong> (see <a href="/blog/how-the-loop-works.html">How AI gets a feature right</a>).</p>
+                <p>It suits <strong>2D / 2.5D / 3D</strong> web games. Playable FPS, Diablo-style ARPG, two-level survival and shooter demos already exist (see the <a href="/showcase/">showcase</a>); the engine covers PBR / IBL / SSAO rendering, 2D/3D physics, skeletal animation and dual RHI (see "Engine capabilities" at the bottom of the <a href="/showcase/">showcase</a>).</p>
+                <p>Everything runs in the browser (WebGPU), web and desktop on one stack; open source under Apache License 2.0 (see the <a href="/license.html">license</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Install &amp; launch</summary>
+              <div class="doc-body">
+                <p><strong>Prerequisites:</strong> <code>git</code>, <code>bun</code> ≥ 1.3, <code>node</code> ≥ 22, <code>curl</code>. (On a clean host, <code>bun fx setup</code> can also bootstrap bun / node 22+ / pnpm / the Rust+wasm toolchain — zero-prompt by default; <code>--interactive</code> asks per tool, <code>--skip-bootstrap</code> skips it.)</p>
+                <pre><code>git clone --recurse-submodules \
+  https://github.com/ForgeaX-Games/forgeax-studio.git
+cd forgeax-studio
+bun fx setup          # one-time setup
+bun fx start          # → http://localhost:18920</code></pre>
+                <p><strong>What <code>bun fx setup</code> does:</strong> verifies prereqs → inits submodules → builds the engine packages → runs <code>bun install</code> in each sub-repo → builds the marketplace plugins → scaffolds <code>$ROOT/.env</code> from <code>.env.example</code>. With <code>--interactive</code> it also prompts for <code>ANTHROPIC_API_KEY</code>; otherwise it warns and you edit <code>.env</code> later.</p>
+                <p><strong><code>bun fx start</code> boots three services:</strong> <code>server</code> (:18900, the runtime core — chat / backends / sessions), <code>interface</code> (:18920, the Studio UI with vite HMR), and <code>engine</code> (:15173, the renderer). Override ports in <code>.env</code> via <code>FORGEAX_{SERVER,INTERFACE,ENGINE}_PORT</code>. Then open <code>http://localhost:18920</code>.</p>
+                <p><strong>Everyday commands (one entry, <code>bun fx</code>):</strong> run <code>bun fx setup</code> once to prepare the environment; later pull updates with <code>bun fx update</code> (updates the root repo + syncs submodules, no reinstall / rebuild); <code>bun fx start</code> / <code>bun fx start app</code> launch web / desktop; <code>bun fx stop</code> and <code>bun fx restart</code> stop / restart; <code>bun fx status</code> and <code>bun fx doctor</code> diagnose your setup; <code>bun fx build app</code> packages the desktop app. Run <code>bun fx</code> with no arguments to list every command.</p>
+                <p><strong>Desktop app:</strong> <code>bun fx start app</code> opens a native window on the live source (first run auto-installs and starts the stack; closing it stops the stack); <code>bun fx build app</code> packages a self-contained <code>.app</code> / <code>.dmg</code>. See <a href="#ch6">Run &amp; preview</a> for all modes.</p>
+                <p><strong>Platform support (macOS / Linux / Windows, first-class):</strong> install and launch are one set of <strong>cross-platform Bun scripts</strong>, so all three systems run the <strong>same <code>bun fx</code> commands</strong> with identical behavior — and <strong>Windows no longer needs Git-Bash</strong> (the old dual <code>.sh</code> / <code>.bat</code> / <code>.ps1</code> scripts were deleted). Specifically: <strong>web dev</strong> (<code>bun fx start</code>) and <strong>desktop dev</strong> (<code>bun fx start app</code>, a native Tauri window on live source) work on macOS / Linux / Windows; <strong>packaging a game into a double-clickable <code>.app</code> / <code>.dmg</code></strong> (<code>bun fx build app</code>) is currently done on macOS. Common Windows-specific issues (black preview, a console window per turn, processes not closing cleanly, the system's stub Python) are all fixed — see <a href="/changelog/2026-06-28.html">Changelog · 2026-06-28</a>.</p>
+                <p>Prefer not to do it by hand? Let your AI coding CLI clone &amp; launch it — see <a href="/tutorials/cli-setup.html">Have your AI CLI clone &amp; launch it</a>; then build your first game with <a href="/tutorials/getting-started.html">Quick start</a>. For API keys, see <a href="#ch8">Advanced · Switch / configure the AI backend</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Open the studio, learn the interface</summary>
+              <div class="doc-body">
+                <p>The interface is three parts: a top bar, the chat on the left, and the preview/authoring on the right.</p>
+                <ul>
+                  <li><strong>Top bar</strong> — the <code>⊕</code> new menu, a <strong>project switcher</strong> (move between games — what a "project" is is covered in <a href="#ch2">Core concepts</a>), and a <strong>session switcher</strong> (review / switch past conversations).</li>
+                  <li><strong>Left · chat (ChatPanel)</strong> — a team rail (Forge and the sub-agents), a message stream (sub-agent cards, Forge's thinking and tool calls), and a composer at the bottom with a <strong>backend switch</strong> at its bottom-right (see <a href="#ch8">Advanced</a>).</li>
+                  <li><strong>Right · main area (MainArea)</strong> — toggles between the <strong>preview</strong> (your game live in an iframe) and the <strong>authoring</strong> (file editing / design docs); see <a href="#ch4">Scenes &amp; editor</a>.</li>
+                </ul>
+                <p>The top-right cog opens <strong>Settings</strong>: API keys, model choice, CLI backend, and plugin management. The desktop app also shows a first-run overlay that prompts for the key the first time you open it.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch2">
+          <h2><span class="n">2</span>Core concepts</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>A "project" is a game</summary>
+              <div class="doc-body">
+                <p>In ForgeaX, <strong>"project" and "game" are the same thing</strong> — a game is one <code>games/&lt;slug&gt;/</code> folder. A real game folder usually looks like this:</p>
+                <ul>
+                  <li><code>forge.json</code> — the game manifest. Minimally three fields: <code>id</code>, <code>name</code>, and <code>entry</code> (pointing at the entry code, e.g. <code>src/main.ts</code>).</li>
+                  <li><code>FORGE.md</code> — the game's own readme / gameplay overview (controls, mechanics, story beats).</li>
+                  <li><code>src/</code> — the game code. Besides the <code>main.ts</code> entry, it's usually split into modules by concern (e.g. <code>player.ts</code>, <code>enemies/</code>, <code>effects.ts</code>, <code>setup.ts</code>).</li>
+                  <li><code>design/</code> · <code>assets/</code> — design documents and art / audio assets.</li>
+                  <li><code>package.json</code> · <code>tsconfig.json</code> — standard TS project files.</li>
+                </ul>
+                <p>The <code>main.ts</code> entry imports engine capabilities from <code>@forgeax/engine-runtime</code> / <code>engine-ecs</code> / <code>engine-app</code> and exports a <code>GameEntry</code> — the contract by which the engine loads a game. For the full capability set, see "Engine capabilities" on the <a href="/showcase/">showcase</a>.</p>
+                <p>Multiple games = multiple projects, switched in the top-bar project switcher. For how scenes / levels are organized, see <a href="#ch4">Scenes &amp; editor</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Forge and its team of sub-agents</summary>
+              <div class="doc-body">
+                <p><strong>Forge (the main agent)</strong> is the only one that writes game code directly — it writes <code>games/&lt;slug&gt;/src/main.ts</code>, the preview <strong>hot-reloads</strong>, and it sees the running result to decide the next step. That edit → see → edit loop has to stay with whoever can see the preview, i.e. Forge (see <a href="#ch3">Build by chatting</a>).</p>
+                <p><strong>Sub-agents</strong> (e.g. Iori gameplay, Suzu design, Kotone narrative, Iro art, Tsumugi build) only plan / design / make assets / write docs and <strong>never touch <code>src/</code></strong> — they have no live-preview feedback, so any code they wrote would have nothing to steer it. See the full cast in the <a href="/marketplace/">marketplace</a> and <a href="#ch10">Chapter 10 · The agent team</a>.</p>
+                <p><strong>How dispatch works:</strong> Forge dispatches a sub-agent with one tool call (shaped like <code>subagent(type="iori", task="…")</code>); the server's <code>/api/subagent</code> stream bridges its output back into the main conversation in real time — that's the embedded sub-agent card you see in the message stream. A sub-agent's design docs are filed under its own section in the authoring (see <a href="#ch4">Scenes &amp; editor</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>What a session is</summary>
+              <div class="doc-body">
+                <p>A <strong>session</strong> is an agent's memory — an <strong>append-only</strong> stream of events (each one is a user message / assistant message / thinking / tool call / tool result). Forge (main) and each sub-agent each keep their own.</p>
+                <p>The UI splits events by who emitted them into the main thread vs sub-agents, rendering each sub-agent's slice as an embedded card. So on one screen you see both Forge's main thread and what the sub-agents it dispatched actually did.</p>
+                <p>Use the top-bar session switcher to review and switch past sessions. <strong>Switching a session restarts nothing</strong> — the UI just reads a different agent's event stream.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch3">
+          <h2><span class="n">3</span>Build by chatting</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>How to describe your idea clearly</summary>
+              <div class="doc-body">
+                <p>The more specific you are, the better Forge nails it first try with fewer redos. A good prompt usually covers:</p>
+                <ul>
+                  <li><strong>Genre &amp; view</strong> — top-down / first-person / 2.5D side-scroller…</li>
+                  <li><strong>Core loop</strong> — the one thing the player keeps doing</li>
+                  <li><strong>Controls</strong>, <strong>win/lose</strong>, <strong>enemies / obstacles</strong>, and the <strong>feel</strong></li>
+                </ul>
+                <p>Start small, get it running, then layer mechanics on. For example:</p>
+                <pre><code>A top-down game: a character runs around an arena,
+space fires bullets, enemies keep spawning,
+hits remove them and add score.</code></pre>
+                <p>For a step-by-step first game, see <a href="/tutorials/getting-started.html">Quick start</a>; for what's achievable, browse the <a href="/showcase/">showcase</a>. For heavier design, Forge pulls in design sub-agents (see <a href="#ch2">Core concepts</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Watch Forge plan, code, and run it</summary>
+              <div class="doc-body">
+                <p>Once you send a request, the chain is:</p>
+                <ul>
+                  <li><strong>Understand + plan</strong> — Forge clarifies the requirement, dispatching design / gameplay sub-agents for heavier work (see <a href="#ch2">Core concepts</a>).</li>
+                  <li><strong>Write code</strong> — Forge writes <strong>itself</strong> into <code>games/&lt;slug&gt;/src/main.ts</code> (and its split-out modules).</li>
+                  <li><strong>Hot-reload</strong> — on save, the engine's vite detects the change and the preview <strong>hot-replaces the module</strong> in place — no full reload, the picture updates almost instantly.</li>
+                  <li><strong>See the result</strong> — Forge sees the running result through the preview (which also forwards the game's <code>console</code> back), and decides the next step.</li>
+                </ul>
+                <p>The whole process is transparent: the message stream shows Forge's thinking, each tool call, and the cards of the sub-agents it dispatched. For switching/controlling preview vs authoring, see <a href="#ch4">Scenes &amp; editor</a>; for how hot-reload works, see <a href="#ch6">Run &amp; preview</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Iterate: add mechanics, tune the feel</summary>
+              <div class="doc-body">
+                <p>Not happy? Keep talking — each bit of feedback becomes another change, visible instantly via hot-reload:</p>
+                <pre><code>Faster bullets, double enemy health, night background.</code></pre>
+                <p>The preview has <strong>play / pause / reload</strong> controls for testing as you go; to pin the preview to a specific game, switch in the project switcher (see <a href="#ch1">Open the studio, learn the interface</a>).</p>
+                <p>The basic loop is <strong>describe → generate → play → describe again</strong>. Run it smoothly and you go from a sentence to a playable game — the full onboarding is in <a href="/tutorials/getting-started.html">Quick start</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch4">
+          <h2><span class="n">4</span>Scenes &amp; editor</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Preview window &amp; authoring</summary>
+              <div class="doc-body">
+                <p>The right-hand main area toggles between two views:</p>
+                <ul>
+                  <li><strong>Preview</strong> — your game runs live in an iframe, with an FPS readout and play / pause / reload controls. When Forge writes code, it hot-reloads here instantly (see <a href="#ch3">Build by chatting</a>).</li>
+                  <li><strong>Authoring extension</strong> — a file browser + editor: view / edit / save text &amp; code, render markdown design docs, and preview images, audio, video and 3D models. It also surfaces file activity and "who's editing" locks, so you and the AI edit the same files without clobbering.</li>
+                </ul>
+                <p>With no file open, the authoring shows entries for every creation authoring (character / animation / 3D / scene / UI / music…) — see <a href="#ch9">Creation tools</a> and the <a href="/marketplace/">marketplace</a>. For making assets, see <a href="#ch5">Assets</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Edit the scene, changes flow back live</summary>
+              <div class="doc-body">
+                <p>The scene editor saves a level's contents to a <strong>scene data file</strong> in the game folder (<code>scene.pack.json</code>) — the <strong>single source of truth</strong> for that level: what's on disk is what runs in the game.</p>
+                <p>When you place objects and leave edit mode, the changes are <strong>flushed to disk and the running game re-reads them</strong>, so the preview reflects your edits immediately — the edit→play round-trip. Conversely, when Forge changes code by chat it rides the same hot-reload path (see <a href="#ch3">Build by chatting</a> and <a href="#ch6">Run &amp; preview</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Organize your levels and objects</summary>
+              <div class="doc-body">
+                <p>A game can have <strong>multiple scenes / levels</strong>, each its own scene data, switched and reused as needed — the "Cow Survivor" demo switches between a day pasture and a night graveyard (see the <a href="/showcase/">showcase</a>).</p>
+                <p>How to organize: <strong>objects</strong> live in the scene data, while <strong>art / audio assets</strong> live in the game folder (project layout in <a href="#ch2">Core concepts</a>, asset generation in <a href="#ch5">Assets</a>). Splitting by scene keeps a growing game maintainable.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch5">
+          <h2><span class="n">5</span>Assets: art / animation / audio</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Character portraits &amp; turnarounds</summary>
+              <div class="doc-body">
+                <p>Use the <strong>character editor</strong> (<code>character</code>) for character concept design: write a one-line brief, get a <strong>portrait + turnaround</strong>. No drawing skills needed to get a game-ready character.</p>
+                <p>Its outputs (a character manifest + portrait / turnaround) are stored per character inside your game and <strong>feed straight into the animation authoring as downstream input</strong> — so "design the character → make it move" is one continuous pipeline (see the next item).</p>
+                <p>Each authoring is a panel plus a set of tools; you-by-hand and AI-by-dispatch edit the same artifact. Full list in the <a href="/marketplace/">marketplace</a> and the <a href="/tutorials/authoring extensions.html">authoring extensions tutorial</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Make characters move (2D / 3D)</summary>
+              <div class="doc-body">
+                <p><strong>2D:</strong> the animation authoring (<code>anim</code>) uses the character portrait as a template and turns it into walking, attacking, four-direction motion, even short clips — <strong>without face drift</strong>, so it stays the same character once it moves.</p>
+                <p><strong>3D:</strong> the engine natively supports <strong>skeletal animation</strong> — import a rigged, skinned model plus animation clips from FBX, with smooth crossfades between idle / walk / run / cast / death. This pipeline is real and shipped — it's how the dark-fantasy witch in the showcase moves: see <a href="/blog/skeletal-animation-milestone.html">the skeletal-animation milestone</a> and the <a href="/showcase/">showcase (Hellforge)</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>3D models, VFX, UI, music</summary>
+              <div class="doc-body">
+                <p>Beyond characters, there are authoring extensions across the whole pipeline:</p>
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><strong>3D models</strong></summary>
+                    <div class="doc-subbody"><p>Blocky-character editor (<code>lowpoly-obj</code>, exports engine-neutral <code>.glb</code>), node-graph low-poly (<code>3d-lowpoly</code>), and text / image / multi-view-to-3D (<code>gen3d</code>, provider-agnostic). Detailed in <a href="#ch9">Chapter 9 · 3D modeling &amp; generation</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>VFX / scenes / UI / items</strong></summary>
+                    <div class="doc-subbody"><p>Skill VFX (<code>skill</code>), scene generation and 2D scene assets (<code>scene-generator</code> / <code>2d-scene-asset-generator</code>), the UI workshop (<code>ui</code>, clickable prototypes), and item icons (<code>items</code>, art + data in one table). Detailed in <a href="#ch9">Chapter 9 · Scenes / UI / items</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Music / look / narrative</strong></summary>
+                    <div class="doc-subbody"><p>Music and SFX (<code>bgm</code>, a BGM timeline), color grading (<code>look</code>, palette + LUT + postprocess), and narrative (<code>narrative</code>, 117 genres × 9 templates). Detailed in <a href="#ch9">Chapter 9 · Narrative / music / look / balance</a>.</p></div>
+                  </details>
+                </div>
+                <p>Item-by-item coverage is in <a href="#ch9">Chapter 9 · Creation tools</a>, the <a href="/tutorials/authoring extensions.html">authoring extensions tutorial</a>, and the <a href="/marketplace/">marketplace</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch6">
+          <h2><span class="n">6</span>Run &amp; preview</h2>
+          <div class="doc-items">
+            <details class="doc-item" open>
+              <summary>Run it right here (live example)</summary>
+              <div class="doc-body">
+                <p>An actual ForgeaX engine example running live on this page (WebGPU — Chrome / Edge recommended). More runnable demos in <a href="/examples/">Examples</a> and <a href="/games/">Games</a>.</p>
+                <iframe src="/examples/gltf/" title="live engine example — spinning cube" loading="lazy" style="width:100%;aspect-ratio:16/10;border:1px solid var(--border-subtle);border-radius:12px;background:#000;display:block"></iframe>
+                <p style="margin-top:8px"><a href="/examples/gltf/" target="_blank" rel="noopener">Open full screen ↗</a></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Web and desktop app modes</summary>
+              <div class="doc-body">
+                <p>The same codebase runs in three forms:</p>
+                <ul>
+                  <li><strong>Web dev</strong> — <code>bun fx start</code> boots three services (server / UI / engine); open <code>http://localhost:18920</code> in a browser, edits hot-reload live. Works on macOS / Linux / Windows. Install in <a href="#ch1">Before you start</a>.</li>
+                  <li><strong>Desktop dev</strong> — <code>bun fx start app</code> opens a native window loading the same dev server, with identical live source and HMR; first run auto-installs and starts the stack, closing the window stops it. Available on macOS / Linux / Windows.</li>
+                  <li><strong>Desktop .app (packaged)</strong> — <code>bun fx build app</code> produces a self-contained <code>.app</code> / <code>.dmg</code> that runs on double-click with its own sidecar (ports 18810 / 15273, deliberately offset from dev's 18900 / 15173 so both can coexist); its key lives in <code>~/ForgeaxProjects/.env</code>, with a first-run overlay. Packaging is in <a href="#ch7">Publish &amp; share</a>.</li>
+                </ul>
+                <p>All three ports are overridable in <code>.env</code> via <code>FORGEAX_{SERVER,INTERFACE,ENGINE}_PORT</code>. ⚠️ The desktop window uses the system WebView, so 3D runs on WebKit's WebGPU — a bit weaker than Chrome's. <strong>For the best visuals, use the browser.</strong></p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Hot-reload: see it as you change it</summary>
+              <div class="doc-body">
+                <p>Save and it takes effect — no manual refresh:</p>
+                <ul>
+                  <li>Edit <strong>game code</strong> (<code>games/&lt;slug&gt;/src/…</code>) → the engine hot-swaps the module in place and the preview updates instantly (Forge's edits ride this too — see <a href="#ch3">Build by chatting</a>).</li>
+                  <li>Changes in the <strong>scene editor</strong> flush to disk and flow back into the running game (see <a href="#ch4">Scenes &amp; editor</a>).</li>
+                </ul>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Common troubleshooting</summary>
+              <div class="doc-body">
+                <ul>
+                  <li><strong>Blank preview / engine error</strong> — the engine isn't built; re-run <code>bun fx setup</code>.</li>
+                  <li><strong>SSL error on <code>:18920</code></strong> — access via <code>http://localhost</code> (WebGPU still works on localhost).</li>
+                  <li><strong>Port in use</strong> — a busy port errors out (it won't auto-pick another); run <code>bun fx stop</code> then <code>bun fx start</code>, or change ports in <code>.env</code>.</li>
+                  <li><strong>Chat says no API key</strong> — set <code>ANTHROPIC_API_KEY</code> in <code>.env</code> (the desktop app prompts on first run); key setup is in <a href="#ch8">Advanced</a>.</li>
+                  <li><strong>3D looks weaker on desktop</strong> — a limitation of the system WebView's WebGPU; use the Chrome browser build for best rendering.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch7">
+          <h2><span class="n">7</span>Publish &amp; share</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Package as a desktop app</summary>
+              <div class="doc-body">
+                <p><code>bun fx build app</code> packages the whole studio together with your game into a <strong>self-contained desktop bundle</strong> (macOS <code>.app</code> / <code>.dmg</code>): a trimmed runtime, the server, the Studio UI, the marketplace and your game content are all inside, so it <strong>runs on double-click with zero setup</strong> for the user.</p>
+                <p>It runs on a built-in sidecar at its own ports (18810 / 15273), so it never collides with your dev stack (see <a href="#ch6">Run &amp; preview</a>). Packaging must run on macOS; the packaged <code>.app</code> opens on double-click.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Share your game project</summary>
+              <div class="doc-body">
+                <p>A game is one <strong>self-contained <code>games/&lt;slug&gt;/</code> folder</strong> (<code>forge.json</code> + <code>src/</code> + design docs + assets, see <a href="#ch2">Core concepts</a>). Share or commit that folder and someone else opens it in their studio to keep playing or building — the demo library stores several games side by side (fps, hellforge, cow-survivor, shoot-opt), see the <a href="/showcase/">showcase</a>.</p>
+                <p>For now the most reliable way to hand a game to players is the <strong>desktop package</strong> above; a smoother "one-click web publish / play online" is still in the works.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch8">
+          <h2><span class="n">8</span>Advanced</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Switch / configure the AI backend</summary>
+              <div class="doc-body">
+                <p><strong>Switch backends (swap the chip):</strong> pick the kernel from the backend switch at the composer's bottom-right, or under the <strong>CLI</strong> section of Settings — <strong>Claude Code / Codex / Cursor / Kimi Code / CodeBuddy / DeepSeek Harness / forgeax-cli</strong>. The CLI section shows each backend's <strong>health</strong> and a <strong>Test</strong> button. Switching a backend also swaps its default persona (see <a href="#ch10">The agent team</a>); details per backend in the <a href="/marketplace/">marketplace</a>.</p>
+                <p><strong>Keys / models:</strong> set your model API key (e.g. <code>ANTHROPIC_API_KEY</code>) under Settings → Keys — it <strong>applies live, no restart</strong> (you can also edit <code>.env</code> directly); choose the model under Settings → Models. Missing-key troubleshooting is in <a href="#ch6">Run &amp; preview</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Write your own authoring plugin</summary>
+              <div class="doc-body">
+                <p>Almost every capability in ForgeaX is a <strong>runtime-loaded plugin</strong> (overview in the <a href="/marketplace/">marketplace</a>), so you can add your own.</p>
+                <p>The quickest path today: <strong>copy an existing authoring plugin and adapt it</strong>, with the <strong>plugin author</strong> (<code>plugin-author</code>) helping; a fuller in-app visual editor (file tree + code editor, save → auto-reload) is on the way. Once built, enable and reorder it in the <strong>admin panel</strong> — plugins are mounted by the CLI at runtime. See the kinds of authoring in <a href="#ch9">Creation tools</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Customize agent personas</summary>
+              <div class="doc-body">
+                <p>Use the <strong>persona editor</strong> (<code>agent-persona</code>): pick an agent from the list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. You can give an agent a different character or voice without touching any code.</p>
+                <p>For who's the main vs sub-agents and where default personas come from, see <a href="#ch2">Core concepts</a> and <a href="#ch10">The agent team</a>; the full cast is in the <a href="/marketplace/">marketplace</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch9">
+          <h2><span class="n">9</span>Creation tools (authoring extensions)</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Character / animation / VFX</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>character</code> · <strong>character editor</strong></summary>
+                    <div class="doc-subbody"><p>Character concept design: a one-line brief → portrait + turnaround. It has several pipelines — <strong>turnaround</strong> (three views), <strong>video character</strong> (turnaround → AI video motion → frame extraction → spritesheet export), and <strong>monster generation</strong> (8-direction × 5-animation monster sprites). No drawing skills needed; the output then feeds the animation authoring (see <a href="#ch5">Assets</a>).</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>anim</code> · <strong>animation</strong></summary>
+                    <div class="doc-subbody"><p>Uses a character portrait as a template and makes it move: <strong>four-direction pixel, vehicle animation, monster sprites, Spine binding, short-video generation</strong> — <strong>without face drift</strong>, so it stays the same character. Embedded panel with a center viewport. 3D characters use the engine's native skeletal pipeline — see the <a href="/blog/skeletal-animation-milestone.html">skeletal-animation milestone</a> and <a href="#ch5">Assets</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>skill</code> · <strong>skill / VFX</strong></summary>
+                    <div class="doc-subbody"><p>Skill-tree editing + VFX preview, listing your skill and effect outputs in one place. The key idea: <strong>the player's clicks and AI dispatch share one skill spec</strong> — effects auto-attach to "the moment of cast", no manual alignment.</p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>3D modeling &amp; generation</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>lowpoly-obj</code> · <strong>blocky-character editor</strong></summary>
+                    <div class="doc-subbody"><p>Build <strong>rigged blocky 3D characters</strong>: either "vibe" it (say a line, AI generates) or edit by hand (Blender-style gizmo), with a built-in playground for live preview. Exports <strong>engine-neutral <code>.glb</code></strong> usable in any engine.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>3d-lowpoly</code> · <strong>low-poly generator</strong></summary>
+                    <div class="doc-subbody"><p>Build 3D props / mechanical assets with <strong>node-programming</strong> ("wire up blocks"): model the process as a node graph, change one parameter, regenerate the whole set. Great for batch, reusable, parametric hard-surface assets.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>gen3d</code> · <strong>3D generation</strong></summary>
+                    <div class="doc-subbody"><p>A 3D asset <strong>generation entrypoint</strong>: pick a generation service and give an input (text / image / multi-view), and get a <strong>durable, game-ready</strong> 3D asset manifest. Plugged into several top generators so you pick whichever's best — no single-vendor lock-in.</p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Scenes / UI / items</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>scene-generator</code> · <strong>scene generator</strong></summary>
+                    <div class="doc-subbody"><p>Assemble a whole game scene with <strong>node-programming</strong>: lay out composition, placement and texturing as a graph; re-run anytime to regenerate the full scene. For how scenes / levels are organized, see <a href="#ch4">Scenes &amp; editor</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>2d-scene-asset-generator</code> · <strong>2D scene assets</strong></summary>
+                    <div class="doc-subbody"><p>Also node-programming, for <strong>batch-generating</strong> the small things in a scene — props, textures, decorations, UI bits — then <strong>auto-named and filed</strong> so assets don't turn into a mess.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>ui</code> · <strong>UI workshop</strong></summary>
+                    <div class="doc-subbody"><p>Generate a full interface set by <strong>genre, screen flow and visual style</strong> — UI blueprints, component assets, and <strong>clickable interactive prototypes</strong> (not just images). Menus, buttons and health bars in one go.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>items</code> · <strong>items / icons</strong></summary>
+                    <div class="doc-subbody"><p>Make the game's <strong>items and icons</strong> — pixel art for weapons, potions, coins — with their data attached. <strong>Art and data in one table</strong> (<code>items.json</code>) that you and the AI edit together, so they never drift apart.</p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Narrative / music / look / balance</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>narrative</code> · <strong>narrative workshop</strong></summary>
+                    <div class="doc-subbody"><p>An AI-driven narrative pipeline: from a spark to a full story and world. It covers <strong>117 genres × 9 pipeline templates</strong> with tier/mode routing and a dynamic planner — the AI picks the fitting approach and steps for your genre.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>bgm</code> · <strong>music / BGM</strong></summary>
+                    <div class="doc-subbody"><p>Manage the game's <strong>music and sound effects</strong>: a BGM timeline laying out what plays when across a session, plus sound-effect naming conventions — the whole score sequenced as one list.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>look</code> · <strong>color / look-dev</strong></summary>
+                    <div class="doc-subbody"><p>Unify the whole game's <strong>color mood</strong> — palette + LUT + a postprocess stack, like a filter over the entire game: warm dusk, cold night, switched in one click so the visual feel snaps into one.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>balance</code> · <strong>balance</strong></summary>
+                    <div class="doc-subbody"><p>Auto-test whether the numbers are <strong>balanced</strong>: it drives battle re-simulation (<code>balance-resim</code>) over N trials and dashboards <strong>win rate + a 95% confidence interval</strong>, then loops with manual tweaks — let data judge the tuning. That re-simulation is also a <a href="/marketplace/">Tool</a> in the marketplace.</p></div>
+                  </details>
+                </div>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>System &amp; author tools</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><code>code</code> · <strong>code</strong></summary>
+                    <div class="doc-subbody"><p>Browse and <strong>jump through <code>src/</code> files</strong> right in the authoring, <strong>collaborating with the coding agent across chat threads</strong> — you read where, the AI edits where, on one project without dropping the baton.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>observatory</code> · <strong>observatory</strong></summary>
+                    <div class="doc-subbody"><p>Like a <strong>black box</strong>: live + offline replay of every agent / sub-agent turn, tool call, and slices of the system prompt. When something breaks you can <strong>pinpoint which step or which prompt</strong> caused it, and it helps manage context / skills / guardrails / cache. The session &amp; replay concept is in <a href="#ch2">Core concepts</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>agent-persona</code> · <strong>persona editor</strong></summary>
+                    <div class="doc-subbody"><p>Pick an agent from a list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. Give an agent a new character or voice without touching code. The cast is in <a href="#ch10">The agent team</a>; the how-to is in <a href="#ch8">Advanced</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>plugin-author</code> · <strong>plugin author</strong></summary>
+                    <div class="doc-subbody"><p>Lets <strong>non-coders</strong> build their own authoring plugins. The path today is "copy an existing one + adapt + record actions"; a fuller in-app visual editor (file tree + code editor, save → auto-reload) is on the way. The overall how-to is in <a href="#ch8">Advanced · Write your own plugin</a>.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><code>admin</code> · <strong>control panel</strong></summary>
+                    <div class="doc-subbody"><p>The studio's <strong>master console</strong>, in four sections: enable / reorder authoring extensions, bind models, check each AI backend's auth and health, and see plugin counts. Kept in sync with the Settings panel — every plugin and model status on one screen.</p></div>
+                  </details>
+                </div>
+                <p>All of these are <strong>loadable plugins</strong>; the full, filterable catalog is in the <a href="/marketplace/">marketplace</a>, and a tutorial walkthrough is in the <a href="/tutorials/authoring extensions.html">authoring extensions tutorial</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="docs-chapter" id="ch10">
+          <h2><span class="n">10</span>The agent team</h2>
+          <div class="doc-items">
+            <details class="doc-item">
+              <summary>Production &amp; architecture</summary>
+              <div class="doc-body">
+                <p><strong>Arin · producer</strong> — an all-round producer who coordinates design / code / art / audio and owns the whole game.</p>
+                <p><strong>Reia · reel director</strong> — interactive FMV director who forges prompts, paces QTEs and weaves branches and endings, driving the reel Reel Studio to turn one idea into a clickable, playable suspense film.</p>
+                <p>These are <strong>named agents</strong> dispatched on demand by Forge (the main vs sub-agent relationship is in <a href="#ch2">Core concepts</a>); the full cast is in the <a href="/marketplace/">marketplace</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Four design pillars</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><strong>Iori · 核心玩法师</strong> — gameplay pillar</summary>
+                    <div class="doc-subbody"><p>Named after "庵" (a mountain rock). When Forge dispatches him, he guards the game's "roots" — setting a few <strong>load-bearing gameplay pillars</strong> (mechanics + numeric skeleton) that shouldn't be casually shaken, captured in one concise pillar doc. He doesn't write architecture, tune parameters, or ask questions back (Forge handled those up front). Once pillared, Suzu takes over.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Suzu · 体验设计师</strong> — pacing &amp; experience</summary>
+                    <div class="doc-subbody"><p>Named after "鈴" (a wind-chime — rhythm). After Iori sets the pillars, Suzu expands each pillar's modules into concrete experience — <strong>player pacing, HUD, onboarding</strong>. She defines how it feels to play, then hands the parts needing assets / story to Iro / Kotone.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Kotone · 剧情师</strong> — narrative (on demand)</summary>
+                    <div class="doc-subbody"><p>Named after "琴音" (a story carried on strings). <strong>Not every game needs a narrative designer</strong> — a tower-defense might never call her; only when the game needs characters / dialogue / branches / narration does Forge bring her in to produce world, character bios and lines.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Iro · 美术师</strong> — visual assets (on demand)</summary>
+                    <div class="doc-subbody"><p>Named after "色" (everything the eye perceives). Once Suzu has framed a module's experience, Forge dispatches Iro only if it needs visual assets (characters / scenes / UI / VFX). How those assets are actually made: see <a href="#ch5">Assets</a> and <a href="#ch9">Creation tools</a>.</p></div>
+                  </details>
+                </div>
+                <p>These specialists <strong>only plan and design — they never touch game code</strong> (Forge writes code, see <a href="#ch2">Core concepts</a>); their output lands in the authoring (see <a href="#ch4">Scenes &amp; editor</a>), and art assets are produced as in <a href="#ch5">Assets</a>.</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Coding &amp; review crew</summary>
+              <div class="doc-body">
+                <div class="doc-subs">
+                  <details class="doc-sub"><summary><strong>cc-coder · 通用编码</strong> — spec → code</summary>
+                    <div class="doc-subbody"><p>Takes Iori's gameplay pillars, Suzu's UX flows and Kotone's narrative outlines and turns them into runnable TS / React etc.; can run multiple instances on different packages in parallel. Note: the game's main code is still written by Forge itself, closed-loop with the preview (see <a href="#ch2">Core concepts</a>); cc-coder is more for general / surrounding code.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Tsumugi · 工程师</strong> — build / toolchain</summary>
+                    <div class="doc-subbody"><p>Named after "紡" (weaving threads into a system). Once Iori / Suzu / Iro have the design and assets ready, Tsumugi weaves them into a working build — build, toolchain, deployment.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Yevi · 审查</strong> — tech-debt hunter</summary>
+                    <div class="doc-subbody"><p>A gracefully composed observer, calm as deep water, always one step ahead — she knows where the code is weakest and which three-week-old issue is about to surface. A measured, gentle tone, with precise and incisive wording.</p></div>
+                  </details>
+                  <details class="doc-sub"><summary><strong>Companion personas</strong> — same skill, different character</summary>
+                    <div class="doc-subbody"><p>A set of optional characters with <strong>comparable coding skill but distinct personalities</strong> — some measured, some playful, some meticulous. They have the same ability; the only difference is how it feels to work alongside them. Personalities are editable any time in the <strong>persona editor</strong> (see <a href="#ch8">Advanced</a>); the full cast is in the <a href="/marketplace/">marketplace</a>.</p></div>
+                  </details>
+                </div>
+                <p>There's also a set of <strong>art / asset specialist agents</strong> (2D character / animation, 3D low-poly / VFX, interactive-film director, and more), each wired to its matching creation authoring (see <a href="#ch9">Creation tools</a>).</p>
+              </div>
+            </details>
+            <details class="doc-item">
+              <summary>Swappable default personas</summary>
+              <div class="doc-body">
+                <p>Each CLI backend ships with an out-of-the-box persona: <strong>Claude</strong> (Claude Code), <strong>Codex</strong>, <strong>Cursor</strong>, and <strong>ForgeaX</strong> (the self-built forgeax-cli). <strong>Switching the backend swaps the default persona — no setup needed</strong>; whichever kernel you pick comes with its default persona.</p>
+                <p>How to switch backends and edit personas is in <a href="#ch8">Advanced</a>; the full agent cast and loadable personas are in the <a href="/marketplace/">marketplace</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  /* ── docs sidebar: scroll main pane to chapter + active highlight ── */
+  (function () {
+    var main = document.querySelector(".docs-main");
+    var chapters = [].slice.call(document.querySelectorAll(".docs-chapter"));
+    var links = [].slice.call(document.querySelectorAll(".docs-sidebar nav a[href^='#']"));
+    if (!main || !chapters.length || !links.length) return;
+
+    var splitPane = window.matchMedia("(min-width: 821px)").matches;
+
+    var map = {};
+    links.forEach(function (a) {
+      var id = (a.getAttribute("href") || "").slice(1);
+      if (id) map[id] = a;
+    });
+
+    var nav = document.querySelector(".docs-sidebar nav");
+    var sidebar = document.querySelector(".docs-sidebar");
+
+    /* ── mobile bottom-sheet TOC ── */
+    var mbar = document.getElementById("docsMobileBar");
+    var mcurrent = document.getElementById("docsCurrent");
+    var backdrop = document.getElementById("docsBackdrop");
+    function openSheet() {
+      document.body.classList.add("docs-sheet-open");
+      if (mbar) mbar.setAttribute("aria-expanded", "true");
+    }
+    function closeSheet() {
+      document.body.classList.remove("docs-sheet-open");
+      if (mbar) mbar.setAttribute("aria-expanded", "false");
+    }
+    window.forgeaxDocsCloseSheet = closeSheet;
+    if (mbar) mbar.addEventListener("click", function () {
+      document.body.classList.contains("docs-sheet-open") ? closeSheet() : openSheet();
+    });
+    if (backdrop) backdrop.addEventListener("click", closeSheet);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
+
+    /* main.wrap carries a transform (page-in animation, fill-mode:both), which
+       makes it the containing block for position:fixed descendants. Portal the
+       sheet + backdrop to <body> on mobile so the sheet pins to the viewport;
+       restore into the layout on desktop. */
+    var sheetLayout = sidebar ? sidebar.closest(".docs-layout") : null;
+    var sheetMq = window.matchMedia("(max-width: 820px)");
+    function syncSheetPortal() {
+      if (!sidebar) return;
+      if (sheetMq.matches) {
+        if (sidebar.parentNode !== document.body) document.body.appendChild(sidebar);
+        if (backdrop && backdrop.parentNode !== document.body) document.body.appendChild(backdrop);
+      } else {
+        closeSheet();
+        if (sheetLayout && sidebar.parentNode !== sheetLayout) sheetLayout.insertBefore(sidebar, sheetLayout.firstChild);
+      }
+    }
+    syncSheetPortal();
+    if (sheetMq.addEventListener) sheetMq.addEventListener("change", syncSheetPortal);
+    else if (sheetMq.addListener) sheetMq.addListener(syncSheetPortal);
+
+    var indicator = document.createElement("span");
+    indicator.className = "docs-nav-indicator";
+    indicator.setAttribute("aria-hidden", "true");
+    if (nav) nav.insertBefore(indicator, nav.firstChild);
+
+    var activeId = "";
+    var activeIdx = 0;
+    var linkMetrics = [];
+
+    function cacheLinkMetrics() {
+      linkMetrics = links.map(function (link) {
+        return {
+          top: Math.round(link.offsetTop),
+          h: Math.round(link.offsetHeight)
+        };
+      });
+    }
+
+    function paintIndicator(link, instant) {
+      if (!nav || !indicator || !link) return;
+      var i = links.indexOf(link);
+      if (i < 0 || !linkMetrics[i]) return;
+      var m = linkMetrics[i];
+      if (instant) indicator.classList.add("is-snapping");
+      nav.style.setProperty("--nav-ind-y", m.top + "px");
+      nav.style.setProperty("--nav-ind-h", m.h + "px");
+      nav.classList.add("is-ready");
+      if (instant) {
+        requestAnimationFrame(function () {
+          indicator.classList.remove("is-snapping");
+        });
+      }
+    }
+
+    function setActive(id, opts) {
+      opts = opts || {};
+      if (!id || id === activeId) return;
+      var link = map[id];
+      if (!link) return;
+
+      activeId = id;
+      activeIdx = links.indexOf(link);
+      if (activeIdx < 0) activeIdx = 0;
+      links.forEach(function (l) { l.classList.remove("active"); });
+      link.classList.add("active");
+      if (mcurrent) mcurrent.textContent = link.textContent;
+      paintIndicator(link, !!opts.instant);
+
+      if (opts.scrollSidebar && splitPane && sidebar) {
+        var linkTop = link.offsetTop;
+        var linkBottom = linkTop + link.offsetHeight;
+        var viewTop = sidebar.scrollTop;
+        var viewBottom = viewTop + sidebar.clientHeight;
+        if (linkTop < viewTop + 8 || linkBottom > viewBottom - 8) {
+          sidebar.scrollTop = Math.max(0, linkTop - sidebar.clientHeight * 0.35);
+        }
+      }
+    }
+
+    function navOffset() {
+      var raw = getComputedStyle(document.documentElement).getPropertyValue("--nav-h");
+      var base = (parseFloat(raw) || 72) + 16;
+      if (mbar && mbar.offsetParent !== null) base += mbar.offsetHeight + 8;
+      return base;
+    }
+
+    var scrollLockUntil = 0;
+
+    function scrollToChapter(id, smooth) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      scrollLockUntil = Date.now() + (smooth === false ? 80 : 900);
+      setActive(id, { scrollSidebar: true, instant: smooth === false });
+
+      var y = window.scrollY + el.getBoundingClientRect().top - navOffset();
+      window.scrollTo({ top: Math.max(0, y), behavior: smooth === false ? "auto" : "smooth" });
+
+      try { history.replaceState(null, "", "#" + id); } catch (_) { location.hash = id; }
+    }
+
+    function chapterInView() {
+      if (Date.now() < scrollLockUntil) return;
+
+      var idx = 0;
+      var mark = navOffset() + 12;
+      for (var j = 0; j < chapters.length; j++) {
+        if (chapters[j].getBoundingClientRect().top <= mark) idx = j;
+      }
+
+      if (idx === activeIdx) return;
+      if (chapters[idx] && chapters[idx].id) setActive(chapters[idx].id);
+    }
+
+    var hoverTimer = 0;
+    var hoverTarget = null;
+
+    links.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var id = (a.getAttribute("href") || "").slice(1);
+        if (!id || !document.getElementById(id)) return;
+        e.preventDefault();
+        closeSheet();
+        scrollToChapter(id);
+      });
+      if (splitPane) {
+        a.addEventListener("mouseenter", function () {
+          if (!nav) return;
+          hoverTarget = a;
+          clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function () {
+            if (hoverTarget !== a || !nav) return;
+            nav.classList.add("is-tracking-hover");
+            links.forEach(function (l) { l.classList.remove("is-nav-hover"); });
+            a.classList.add("is-nav-hover");
+          }, 160);
+        });
+        a.addEventListener("mouseleave", function () {
+          if (!nav) return;
+          clearTimeout(hoverTimer);
+          if (hoverTarget === a) hoverTarget = null;
+          nav.classList.remove("is-tracking-hover");
+          a.classList.remove("is-nav-hover");
+        });
+      }
+    });
+
+    var scrollTimer;
+    function onScroll() {
+      if (scrollTimer) cancelAnimationFrame(scrollTimer);
+      scrollTimer = requestAnimationFrame(chapterInView);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    window.addEventListener("hashchange", function () {
+      var id = (location.hash || "").replace("#", "");
+      if (id && document.getElementById(id)) scrollToChapter(id, false);
+    });
+
+    window.addEventListener("resize", function () {
+      cacheLinkMetrics();
+      if (activeId && map[activeId]) paintIndicator(map[activeId], true);
+    });
+
+    if (nav && window.ResizeObserver) {
+      new ResizeObserver(function () {
+        cacheLinkMetrics();
+        if (activeId && map[activeId]) paintIndicator(map[activeId], true);
+      }).observe(nav);
+    }
+
+    cacheLinkMetrics();
+
+    var initial = (location.hash || "").replace("#", "");
+    if (initial && document.getElementById(initial)) {
+      requestAnimationFrame(function () { scrollToChapter(initial, false); });
+    } else {
+      chapterInView();
+      if (!activeId && chapters[0]) setActive(chapters[0].id, { instant: true });
+    }
+  })();
+</script>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/changelog/">Changelog</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

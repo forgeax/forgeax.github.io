@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-17 · Bewegung entlang der Wände + ein ausgereifter eigenständiger Editor — ForgeaX</title>
+<meta name="description" content="Die Engine verfügt über einen kinematischen Bewegungs- und Schieberegler sowie eine typisierte Zustandsmaschine. der eigenständige Editor eignet sich für den täglichen Gebrauch; Die drei verketteten Fehler eines Beispiellevels werden behoben und die Lektionen werden in die Vorlage eingespeist. Forge ist über Chat-Apps erreichbar; und die Engine erhält ein Wahrnehmungsprotokoll, damit die KI das laufende Spiel sehen kann." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-17 · Bewegung entlang der Wände + ein ausgereifter eigenständiger Editor — ForgeaX" />
+<meta property="og:description" content="Die Engine verfügt über einen kinematischen Bewegungs- und Schieberegler sowie eine typisierte Zustandsmaschine. der eigenständige Editor eignet sich für den täglichen Gebrauch; Die drei verketteten Fehler eines Beispiellevels werden behoben und die Lektionen werden in die Vorlage eingespeist. Forge ist über Chat-Apps erreichbar; und die Engine erhält ein Wahrnehmungsprotokoll, damit die KI das laufende Spiel sehen kann." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-06-17.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-17.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-17.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-17.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-17.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-17.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-17.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-17.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-06-17.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-17.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-17.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-06-17</span></div>
+    <h1>Bewegung entlang der Wände + ein ausgereifter eigenständiger Editor</h1>
+    <p class="standfirst">Heute verfügt die Engine über die Standardbewegung „An Wänden entlang gleiten, nicht stecken bleiben“ und eine typsichere Zustandsmaschine – nützlich für jedes Run-and-Jump-Spiel; das eigenständige Editorfenster wurde auf „täglich verwendbar“ umgestellt; Die drei verketteten Fallstricke eines Beispiellevels wurden auf einmal beseitigt und die Lektionen wurden in die Standardvorlage zurückgeführt. Forge wurde über gängige Chat-Apps erreichbar; und die Engine erhielt die Fähigkeit, der KI das laufende Spiel „sehen“ zu lassen.</p>
+    <div class="prose"><h2>„Die Räder, die jeder neu erfindet“ in den Motor versenken</h2>
+<p>Dieser Tag hatte eine klare Leitlinie: die „Räder, die jeder für jedes Spiel neu erfindet“ in vorgefertigte Funktionen in der Engine und in den Vorlagen zu destillieren. Standardmäßige Gleitbewegungen an Wänden entlang und eine Leerlauf-Run-Sprung-Zustandsmaschine sind unvermeidliche Grundlagen für jedes Actionspiel. Die Fallstricke eines Beispiellevels wurden in eine Retrospektive geschrieben und in die Standardvorlage zurückgeführt, sodass andere sie nicht wiederholen müssen; und das eigenständige Editorfenster wurde auf den täglichen Gebrauch optimiert und wurde zu einer stabilen Werkzeugbasis. Darüber hinaus hatte der Tag zwei Möglichkeiten: Er ermöglichte die Kommunikation mit Forge über die Chat-Apps, die Sie bereits nutzen, und ließ die KI das Bild und den Status des laufenden Spiels „sehen“. Ersteres senkt die Messlatte und destilliert allgemeine Fähigkeiten; Letzteres erweitert die Grenzen und bringt die KI dem „wirklichen Verstehen eines Spiels“ einen Schritt näher. Das Wiederholte ins Allgemeine umzuwandeln und das Allgemeine zu verfestigen, ist genau die Art und Weise, wie eine Plattform zusammengesetzt wird.</p>
+<h2>Standardmäßige „Gleiten, nicht kleben“-Bewegung + eine Zustandsmaschine</h2>
+<p>Mit der Engine ist ein Baustein entstanden, auf den heutzutage kein „Run and Jump“-Spiel verzichten kann: ein kinematischer Charakter-Controller – „Move and Slide“ – für 2D und 3D. Es löst ein scheinbar einfaches, aber äußerst gefühlsbeeinflussendes Problem: Was passiert, wenn eine Figur schräg gegen eine Wand prallt? Die schlimmste Handhabung klemmt es fest (der Charakter wird an die Wand gepinnt) oder lässt es durch (Clipping); Die richtige, vom Spieler erwartete Handhabung lässt den Charakter sanft über die Oberfläche gleiten. Diese „An der Wand entlanggleiten“-Bewegung scheint unbedeutend zu sein, stellt aber den Grundgedanken fast aller Ego- und Third-Person-Spiele dar und ist recht mühsam von Grund auf umzusetzen. Wenn man es zu einem integrierten Standardgrundelement macht, erhält jedes neue Spiel ein passables Bewegungsgefühl und das kostenlos. Daneben gab es eine typsichere Zustandsmaschine: Sie drückt die Zustände eines Charakters wie Leerlauf / Laufen / Springen / Angriff sauber aus und bindet den Lebenszyklus von Entitäten an Zustände – automatisches Spawnen von Dingen beim Eintritt in einen Zustand, automatische Reinigung beim Verlassen. Insgesamt müssen die Charaktersteuerung und die Verhaltenslogik des nächsten Spiels nicht jedes Mal von Hand aus einer leeren Seite gerollt werden, sondern stehen auf einer validierten Grundlage.</p>
+<h2>Das eigenständige Editorfenster ist für den täglichen Gebrauch bereit</h2>
+<p>Das am Vortag neu geschriebene eigenständige Editorfenster wurde heute auf die Alltagstauglichkeit gebracht. Mehrere Dinge wurden verbessert: angedockte Panels wurden auf ein flexibles Layout umgestellt, das das gesamte Ansichtsfenster ohne leere Lücken ausfüllt; ein „Geist leerer Canvas“, der dort verblieben war, wurde entfernt (die Benutzeroberfläche hatte früher aus unerklärlichen Gründen einen leeren Renderbereich); die zirkuläre Abhängigkeit zwischen Modulen wurde aufgehoben, wodurch die Architektur sauberer und weniger anfällig für Kaskadenprobleme wurde; und das eigenständige Fenster fügt jetzt sein eigenes Bearbeitungs- und Vorschau-Rendering ein, unabhängig von der Hauptschnittstelle. Der Zustand der Konsole wurde auf die normalen Hinweise auf fehlende Ressourcen reduziert, keine roten Bildschirme mehr, die Sie beunruhigen. Es wurden zweisprachige Dokumente erstellt und die Startmethode mit einem Strukturdiagramm klar beschrieben, um sicherzustellen, dass ein Neuling es auf seinem eigenen Computer durchhalten kann, indem er mitmacht. Nach diesem Tag behauptet sich der Editor wirklich als Werkzeug, das Sie unabhängig von der Hauptoberfläche öffnen und verwenden können – und bildet so eine zuverlässige Grundlage, um ihn später an anderer Stelle einzubetten oder separat zu verteilen.</p>
+<h2>Sample-Level korrigiert, Lektionen in die Vorlage eingespeist</h2>
+<p>Bei einem Beispiellevel waren drei Fallstricke nacheinander aufgetreten, die alle an diesem Tag behoben wurden – und die Art und Weise, wie damit umgegangen wurde, ist bemerkenswerter als die Behebung selbst. Die drei waren: Die internen IDs der Szenenobjekte waren nicht zusammenhängend, wodurch die Bewegungs- und Kamerasteuerung unterbrochen wurde – das wurde durch Umnummerierung in eine fortlaufende Sequenz behoben; Shadows nutzten immer noch ein altes Konfigurationsschema – migriert auf den neuen Shadow-Ansatz mit fester stabiler Renderkonfiguration; und einige veraltete Nutzungskonventionen werden dadurch offengelegt. Der Schlüssel liegt im dritten Schritt: Das Team begnügte sich nicht damit, „dieses Level zu beheben“, sondern schrieb die gesamte Entgleisung und Diagnose in eine Retrospektive, überarbeitete die relevanten Nutzungskonventionen entsprechend und ging noch einen Schritt weiter – indem es diese Lektionen wieder in die Liste „häufiger Fallstricke“ in der Standardvorlage für neue Spiele einfügte. Dies bedeutet, dass nicht jedes spätere Spiel erneut in dieselbe Falle tappt. Dies ist genau die Einstellung eines ausgereiften Ingenieurteams gegenüber Fehlern: Das Beheben eines Fehlers ist das Minimum; Der eigentliche Abschluss besteht darin, die Lektion dahinter zu institutionalisieren, sodass sie nie wieder in der gleichen Form auftritt. Am selben Tag wurde die gehäutete Animation des Beispielhelden verkabelt und aus einem statischen Modell eine wirklich bewegliche Figur gemacht.</p>
+<h2>Sprechen Sie mit Forge direkt über gängige Chat-Apps</h2>
+<p>An diesem Tag wurde auch ein neuer Einstiegspunkt eröffnet: Sie können direkt über die Instant-Messaging-Apps, die Sie häufig verwenden, mit Forge kommunizieren. In diesen externen Chat-Kanälen wurde eine Einstellungsseite für „Verbindungen“ hinzugefügt – scannen Sie einen Code oder autorisieren Sie, und Sie können Forge direkt in Ihrer vertrauten Chat-App eine Nachricht senden und Ihre Spielentwicklung vorantreiben lassen. Die Bedeutung besteht darin, dass es die „Zusammenarbeit mit der KI“ von der Notwendigkeit befreit, „am Computer zu sitzen und die Studio-Schnittstelle zu öffnen“ – Sie können ihm unterwegs eine Idee oder einen Befehl auf Ihrem Telefon senden. Für eine Plattform, deren Kerninteraktion die Konversation ist, ist die „Erreichbarkeit überall und über jeden geeigneten Kanal“ selbst eine wichtige Zugänglichkeit. Wenn Sie die Messlatte auf „ein Gespräch beginnen“ senken, bedeutet dies, dass mehr Inspiration erfasst und in dem Moment, in dem sie aufkommt, weitergegeben werden kann, anstatt dass Sie sie vergessen, wenn Sie wieder am Computer sitzen.</p>
+<h2>Lassen Sie die KI das laufende Spiel „sehen“.</h2>
+<p>Die Engine hat an diesem Tag auch eine weitreichende Grundlage geschaffen: ein Protokoll, das es der KI ermöglicht, das laufende Spiel „wahrzunehmen“. Konkret gab es der KI zwei neue Arten von Werkzeugen – eines zum Abfragen des aktuellen Zustands der Spielwelt (welche Objekte sich in der Szene befinden, wo sie sich befinden, in welchem ​​Zustand sie sich befinden) und eines zum Aufnehmen eines Screenshots des aktuellen Bildes. Dies bedeutet, dass die KI nicht mehr darauf beschränkt ist, „Code blind zu schreiben“ – nach dem Schreiben kann sie wirklich „schauen“, wie das Spiel jetzt läuft, ob Objekte richtig platziert sind, ob das Bild Probleme hat, und entsprechend beurteilen und anpassen. Dies ist ein wichtiger Schritt für die KI, von „kann nur schreiben“ zu „schreibt, sieht und korrigiert sich selbst“. Es wurde auch eine kopflose Möglichkeit bereitgestellt, diesen Fluss anzutreiben und sich in die Automatisierung einzubinden. Für eine Plattform, die darauf abzielt, „die KI Spiele autonom entwickeln zu lassen“, ist es fast unvermeidlich, „der KI Augen zu geben“ – nur wenn sie die tatsächlichen Auswirkungen ihrer eigenen Änderungen wahrnehmen kann, kann ihre autonome Selbstkorrektur den Kreis wirklich schließen, anstatt blind zu raten. Was an diesem Tag landete, ist ein Grundstein, aber die Richtung, in die er zeigt, ist sehr klar.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Die Tagesthemen verkörpern zusammengenommen zwei Arten, wie eine Plattform sich verbindet: Destillation und Erweiterung. Durch die Destillation wird das Wiederkehrende in das Fundament versenkt, in vorgefertigte Funktionen, die jeder direkt nutzen kann – Standard-Zeichenbewegungen, eine wiederverwendbare Zustandsmaschine, Lektionen zur Vermeidung von Fallstricken, die in die Vorlage eingespeist werden, ein täglich verwendbarer eigenständiger Editor – all dies tun dies. Jede destillierte Sache bedeutet, dass für jedes spätere Spiel ein Rad weniger neu erfunden wird, und die „Spieleherstellung“ der Plattform wird eine Stufe schneller und stabiler. Die Erweiterung greift in neue Richtungen – sie macht Forge nach Lust und Laune über Chat-Apps erreichbar und lässt die KI die tatsächlichen Auswirkungen ihrer eigenen Änderungen sehen. Eine Plattform, die selbst ein grundlegendes Primitiv wie „An Wänden entlang gleiten“ ernsthaft solide macht und gleichzeitig den Grundstein dafür legt, dass „die KI Augen hat“, ist sowohl geerdet als auch weitsichtig. Das wiederholte Allgemeine und das Allgemeine zuverlässig machen und auf der Grundlage des Verlässlichen neue Möglichkeiten erkunden – dieser Tag war ein solider Schritt auf diesem Weg, der sich immer weiter verschärfte.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

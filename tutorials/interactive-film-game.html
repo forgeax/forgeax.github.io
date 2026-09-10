@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Make an interactive film-game — ForgeaX</title>
+<meta name="description" content="Build a timed-tap, choice-driven interactive film-game from a spark or a script: AI breaks down the story, locks characters/locations/props, generates storyboards and video; you edit on a three-track timeline, play-test, and ship a self-contained webpage anyone can play. Includes the five-step flow, track design and FAQ." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Make an interactive film-game — ForgeaX" />
+<meta property="og:description" content="Build a timed-tap, choice-driven interactive film-game from a spark or a script: AI breaks down the story, locks characters/locations/props, generates storyboards and video; you edit on a three-track timeline, play-test, and ship a self-contained webpage anyone can play. Includes the five-step flow, track design and FAQ." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/interactive-film-game.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/interactive-film-game.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/" data-nav="/">Home</a>
+      <a href="/tutorials/" data-nav="/tutorials/" class="active">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/tutorials/interactive-film-game.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/tutorials/interactive-film-game.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/interactive-film-game.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/interactive-film-game.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/interactive-film-game.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/interactive-film-game.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/interactive-film-game.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/interactive-film-game.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/tutorials/">← Back to tutorials</a>
+    <h1>Make an interactive film-game</h1>
+    <p class="standfirst">From a single spark or a whole script, build an interactive film-game driven by timed taps and branching choices — AI breaks down the story, locks in characters and locations, generates storyboards and video; you edit, play-test, and ship it as a webpage anyone opens and plays in a browser.</p>
+
+    <figure class="media-embed">
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        poster="/assets/tutorials/interactive-film-game-demo-poster.jpg"
+        aria-label="Interactive film-game demo"
+        src="/assets/tutorials/interactive-film-game-demo.mp4"
+      ></video>
+    </figure>
+
+    <div class="prose">
+      <div class="note">✅ Open source (Apache-2.0). Below is a full overview of the flow; for clone &amp; install see the <a href="/docs/">docs</a>.</div>
+
+      <h2>What it is</h2>
+      <p>An interactive film-game is a short film you can play. Scenes flow as video and images, like watching a short drama — but at key moments a <strong>timed tap</strong> pops up, asking you to react within seconds; and at the end of a scene a <strong>choice</strong> branches the story toward a different next beat, all the way to different endings.</p>
+      <p>You assemble the <strong>story, visuals, beats and branches</strong> in the editor; what players get is a deterministic, replayable experience — the same choices follow the same path, a different choice unlocks new story.</p>
+
+      <div class="note">💡 In one line: you shape the story, the pacing and the choices; AI handles the "shooting", the "editing", and turning it into something that plays in a browser.</div>
+
+      <h2>What it's good for</h2>
+      <ul>
+        <li><strong>Interactive shorts / multi-ending stories</strong> — let the audience decide the protagonist's next move; one story, several paths.</li>
+        <li><strong>Story-driven mini games</strong> — turn dialogue, suspense and timed reactions into light gameplay, no engine code required.</li>
+        <li><strong>Teaching / demos / training</strong> — drill processes and decisions with "what if I pick this" branches — more engaging than plain video.</li>
+        <li><strong>Prototyping</strong> — build a playable rough cut in hours to validate story and feel before committing.</li>
+      </ul>
+
+      <h2>From script to film, in five steps</h2>
+
+      <h3>① Script: from a spark to a structured story</h3>
+      <p>Drop in a one-line spark, a synopsis, or a whole script. AI expands and <strong>structures</strong> it into acts, characters, relationships and scene-by-scene beats. Long story? Continue it episode by episode while keeping earlier setups consistent.</p>
+
+      <h3>② Anchors: lock the look first</h3>
+      <p>The system auto-extracts <strong>characters, locations and key props</strong> (and their states and variants) so you can lock their look up front. Every later shot aligns to these anchors, so characters don't swap faces and locations don't drift — the key step for keeping the whole film consistent.</p>
+
+      <h3>③ Story tree · storyboards: split the story into a playable tree</h3>
+      <p>AI splits the story into a <strong>storyboard tree</strong>: each node is a shot with an auto-generated image. You arrange it freely — reorder and reshape, <strong>add branching choices</strong> (fork two or more paths after a node), and <strong>set timed taps</strong> on tense moments. The tree is every route a player can take.</p>
+
+      <h3>④ Generate video: bring shots to life</h3>
+      <p>Once the boards look right, turn shots from stills into <strong>video</strong> in one click. Reference images keep characters and locations consistent across shots; lines can be carried by a chosen <strong>voice</strong>. Everything lands on the timeline, aligned to dialogue and beats.</p>
+
+      <h3>⑤ Edit · play-test: fine-tune on the timeline, tweak as you play</h3>
+      <p>Fine-tune on a <strong>three-track timeline</strong>: align dialogue, place when taps appear, wire where branches lead. Flip to a <strong>full-screen play-test</strong> anytime and experience it like a real player — wherever the pacing drags, a tap is too hard, or a branch feels off, jump back, fix it, and play again.</p>
+
+      <h2>Three tracks: dialogue / taps / branches</h2>
+      <p>A film-game's playability comes from three timeline tracks, each owning one job:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Track</th>
+            <th>What it controls</th>
+            <th>Design tip</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dialogue</td>
+            <td>When each line shows and for how long, with a voice</td>
+            <td>Keep subtitles in sync with picture and voice</td>
+          </tr>
+          <tr>
+            <td>Taps</td>
+            <td>Timed reactions: tap within a window to succeed</td>
+            <td>Place at tension peaks; don't make the window brutal</td>
+          </tr>
+          <tr>
+            <td>Branches</td>
+            <td>Choices at scene end that decide the next beat</td>
+            <td>Two or three options; make every choice matter</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>A few tips for better play</h2>
+      <ul>
+        <li><strong>Put choices where they count</strong> — ask players to decide at moments that truly change the story, not trivial forks.</li>
+        <li><strong>Taps serve emotion</strong> — drop timed taps on action, confrontation and suspense to amplify "I'm in it".</li>
+        <li><strong>Mix diverging and converging</strong> — branches needn't stay fully separate; let some rejoin the main line to add variety while keeping scope sane.</li>
+        <li><strong>Short first, then long</strong> — get one shortest complete path working end-to-end, then layer on branches and endings.</li>
+        <li><strong>Play-test often</strong> — walking it as a player usually surfaces issues faster than staring at the timeline.</li>
+      </ul>
+
+      <h2>Package &amp; share</h2>
+      <p>A finished film-game <strong>packages into one self-contained webpage</strong>: story, images, video, taps and branch logic all bundled in. Send it to anyone and it <strong>plays in any modern browser</strong> — no install, no GPU needed.</p>
+      <p>Inside a project it's also saved and addressed as a <strong>standard game asset</strong>, so it can be reused, referenced, redistributed, or wired into a larger project.</p>
+
+      <h2>FAQ</h2>
+      <ul>
+        <li><strong>Do players need to install anything?</strong> No. The package is a webpage — open it in a browser, locally or hosted.</li>
+        <li><strong>I can't shoot or edit — can I still use it?</strong> Yes. Just shape the story and the choices; generation and alignment are handled by AI and the timeline.</li>
+        <li><strong>What about long stories?</strong> Fine — continue episode by episode, each aligned to the characters and locations you've already locked.</li>
+        <li><strong>Can I edit later?</strong> Yes. It's an addressable asset in your project — return to the editor, adjust, and repackage anytime.</li>
+      </ul>
+
+      <blockquote>Can't shoot or edit film? That's fine — tell the story, and AI turns it into a short film you can play.</blockquote>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/showcase/">See finished demos →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/changelog/">Changelog</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-07 · Les panneaux de l'éditeur principal arrivent + Prise en charge de Windows — ForgeaX</title>
+<meta name="description" content="Les panneaux Hiérarchie, Inspecteur et Actifs – le cœur quotidien de tout éditeur de jeu – sont réunis ; le moteur bénéficie du rendu de carte de tuiles 2D et de la prise en charge de Windows ; une scène de modèle importée est connectée à un échantillon réel ; et le backend se dégrade progressivement lorsqu'un sous-service est en panne." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-07 · Les panneaux de l'éditeur principal arrivent + Prise en charge de Windows — ForgeaX" />
+<meta property="og:description" content="Les panneaux Hiérarchie, Inspecteur et Actifs – le cœur quotidien de tout éditeur de jeu – sont réunis ; le moteur bénéficie du rendu de carte de tuiles 2D et de la prise en charge de Windows ; une scène de modèle importée est connectée à un échantillon réel ; et le backend se dégrade progressivement lorsqu'un sous-service est en panne." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-07.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-07.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-07.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-07.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-07.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-07.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-07.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-07.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-07.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-06-07</span></div>
+    <h1>Les panneaux de l'éditeur principal arrivent + Prise en charge de Windows</h1>
+    <p class="standfirst">Cette journée a rempli l&#39;éditeur avec les trois panneaux d&#39;édition de jeu les plus essentiels et les plus quotidiens - Hiérarchie, Inspecteur et Actifs - formant pour la première fois un flux d&#39;édition complet ; pendant ce temps, le moteur a ajouté un rendu de carte de tuiles 2D, a corrigé un lot de problèmes de compatibilité Windows, a intégré une scène de modèle importée complète dans un exemple de jeu et a fait en sorte que le backend se dégrade gracieusement lorsqu&#39;un sous-service est en panne plutôt que de se tromper purement et simplement.</p>
+    <div class="prose"><h2>Du « squelette » à la « chair » : l&#39;éditeur commence à remplir</h2>
+<p>Les deux jours précédents ont mis en place le « squelette » de l&#39;éditeur : le système de panneaux ancrables, les outils de transformation, l&#39;annulation/la restauration. Mais un squelette seul ne peut pas faire le travail ; ce qui permet réellement à quelqu&#39;un de s&#39;asseoir et de créer un jeu, ce sont les panneaux de fonctionnalités accrochés à ce squelette. Le travail d&#39;aujourd&#39;hui consiste exactement à donner corps à ce squelette : remplir, d&#39;un seul coup, les trois panneaux centraux indispensables à tout éditeur de jeu, de sorte que le flux d&#39;édition le plus élémentaire - &quot;voir les objets, sélectionner, modifier les propriétés, extraire les ressources&quot; - s&#39;exécute de bout en bout pour la première fois. Pendant ce temps, le moteur s&#39;est élargi dans deux directions : en ajoutant la base de rendu pour toute la catégorie des cartes de tuiles du gameplay 2D et en corrigeant un lot de problèmes de compatibilité Windows afin que davantage de personnes puissent l&#39;exécuter. Avec un modèle importé réellement connecté à un exemple de jeu et le backend se dégradant gracieusement en cas d&#39;échec, le thème de la journée est clair : remplir le cadre construit au cours des jours précédents, point par point, en quelque chose de véritablement utilisable.</p>
+<h2>Le trio d&#39;éditeurs de base : Hiérarchie / Inspecteur / Actifs</h2>
+<p>Ce jour-là, l&#39;éditeur a rempli les trois panneaux les plus essentiels de l&#39;édition de jeux, chacun s&#39;occupant de son propre domaine et aucun n&#39;est superflu. Le panneau Hiérarchie : organiser chaque objet de la scène dans une arborescence par relation parent-enfant, indiquant clairement d&#39;un coup d&#39;œil qui est l&#39;enfant de qui, cliquez pour sélectionner - c&#39;est ici que vous &quot;trouver des choses et saisir la structure&quot; dans une scène. Le panneau Inspecteur : sélectionnez un objet et toutes ses propriétés s&#39;étalent sur la droite : position, rotation, matériau, toutes sortes de paramètres modifiables directement - c&#39;est ici que vous &quot;réglez une chose&quot;. Le panneau Actifs : parcourez et extrayez tous les matériaux du projet - modèles, textures, packs de scènes, etc., en faisant glisser ce dont vous avez besoin - c&#39;est ici que vous &quot;récupérez les matériaux&quot;. Ensemble, les trois forment le flux principal que chaque développeur de jeux répète des centaines ou des milliers de fois par jour - &quot;voir tous les objets → en sélectionner un → modifier ses paramètres → faire glisser quelque chose depuis les ressources&quot; - enfin terminé dans Studio. Ils forment un « trio » précisément parce que l’essence du montage est une navette sans fin entre « la vue globale, le détail d’un objet unique et la source des matériaux » – ce n’est qu’avec les trois présents que l’éditeur devient vraiment capable de travailler.</p>
+<h2>Le moteur gagne en rendu de carte de tuiles 2D</h2>
+<p>Le moteur a jeté aujourd’hui les bases de toute une catégorie de gameplay : le rendu de cartes en tuiles 2D. Les cartes de tuiles sont l&#39;approche classique du jeu 2D : découpez le monde en une grille de cellules carrées, placez une petite image (« une tuile ») dans chaque cellule, et assemblées, elles forment une carte entière : l&#39;herbe, les murs, les rivières et les routes sont tous pavés à partir de ces petits carrés ; Les jeux classiques à défilement latéral, descendant et pixel-art sont presque tous construits dessus. Aujourd&#39;hui, le moteur a intégré les composants de base pour les cartes de tuiles et les couches de tuiles, et peut lire un format de fichier de carte de tuiles commun, ce qui signifie qu&#39;un niveau que vous dessinez dans un outil cartographique dédié peut être lu directement dans le moteur et rendu, sans remplacer chaque cellule à la main. L&#39;importance : cela étend formellement la portée de la plate-forme des scènes auparavant orientées 3D vers le vaste territoire de la 2D - le premier jeu que de nombreux créateurs veulent créer est précisément un jeu en 2D, et ouvrir cette voie ouvre la porte à un grand nombre de créateurs 2D.</p>
+<h2>Compatibilité Windows : il fonctionne correctement sur plus de machines</h2>
+<p>Cette journée s&#39;est concentrée sur un lot de problèmes de compatibilité Windows. Le piège le plus courant et le plus insidieux des logiciels multiplateformes ne réside souvent pas dans les fonctionnalités elles-mêmes, mais dans les subtiles différences de convention entre les systèmes : différents systèmes d&#39;exploitation utilisent des fins de ligne de texte différentes, des séparateurs de chemin de fichier différents, un comportement différent pour la correspondance des fichiers génériques - et si l&#39;un d&#39;entre eux n&#39;est pas aligné, le code qui fonctionnait correctement sur un système échoue inexplicablement sur un autre. Cette journée a corrigé, un par un, un ensemble d&#39;échecs causés par ces différences et unifié la convention de fin de ligne de texte afin que tous les fichiers se comportent de manière cohérente sur toutes les plates-formes. Pour les utilisateurs Windows, cela signifie que l&#39;environnement de développement et les tests s&#39;exécutent correctement sur leurs propres machines au lieu de s&#39;accrocher partout aux différences du système d&#39;exploitation. Pour qu&#39;un outil puisse être utilisé par le plus grand nombre de personnes possible, le support multiplateforme est un travail de base incontournable : il n&#39;ajoute aucune nouvelle fonctionnalité, mais décide directement combien de personnes « ne peuvent même pas franchir la porte ». Le renforcement de cette compatibilité élimine le tout premier obstacle pour une base d’utilisateurs plus large.</p>
+<h2>Câblage &quot;d&#39;un modèle importé&quot; dans un jeu réel + un backend plus robuste</h2>
+<p>La veille, la fonctionnalité « faites glisser un modèle et il devient une scène » a été ouverte ; cette journée l&#39;a parcouru avec un exemple réel : un modèle de scène complet a été intégré à l&#39;échantillon du jeu de tir comme exemple concret du chemin &quot;importer un modèle → assembler une scène jouable&quot;. Une nouvelle fonctionnalité simplement exécutée ne suffit pas : elle nécessite un cas d&#39;utilisation réel pour vérifier qu&#39;elle résiste dans un flux réel de bout en bout, et c&#39;est exactement ce que fait cet exemple. Le backend résiste également mieux aux surprises : lorsqu&#39;un sous-service dépendant n&#39;est pas encore opérationnel, les requêtes associées se dégradent désormais progressivement vers un statut clair &quot;temporairement indisponible&quot; au lieu de générer une pile d&#39;erreurs de serveur génériques qui entraînent toute l&#39;interface vers le bas. Cette « dégradation progressive » est la marque d&#39;un système robuste : la panne d&#39;un composant ne devrait pas paralyser l&#39;ensemble du système ; il devrait clairement indiquer &quot;cette partie n&#39;est pas disponible pour le moment&quot; et laisser le reste continuer. En combinaison avec le précédent canal de téléchargement d&#39;actifs binaires, la chaîne complète d&#39;introduction de matériaux externes et de leur utilisation dans un jeu réel est devenue plus complète aujourd&#39;hui.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>Cette journée n’a connu aucune avancée révolutionnaire, mais elle illustre bien le processus d’un produit consistant à « passer du cadre à l’aspect pratique ». L&#39;arrivée du trio d&#39;éditeurs signifie que l&#39;édition visuelle de Studio passe, pour la première fois, du « démontrable » à « vous pouvez réellement vous asseoir et travailler » ; l&#39;ajout de cartes de tuiles 2D a étendu le territoire de la plate-forme de la 3D à la 2D, attirant ainsi un grand nombre de créateurs souhaitant créer des jeux 2D classiques ; et le correctif de compatibilité Windows supprime à l&#39;avance la barrière d&#39;entrée pour davantage d&#39;utilisateurs potentiels. Considérés ensemble, ces trois éléments vont dans la même direction : permettre à plus de personnes, de plus de manières, sur plus d’appareils, d’utiliser véritablement cette plateforme. La maturité d&#39;un outil n&#39;est jamais la naissance d&#39;une fonctionnalité éblouissante, mais ce type de « couverture » et de « convivialité » s&#39;élargissant solidement de jour en jour.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

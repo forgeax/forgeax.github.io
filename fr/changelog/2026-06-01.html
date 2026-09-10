@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-01 · L'application de bureau s'exécute de bout en bout + texte net dans le monde — ForgeaX</title>
+<meta name="description" content="L'application de bureau s'exécute de bout en bout avec l'intégration de la clé de premier lancement ; le moteur restitue un texte net dans l'espace mondial, synchronise les relations ECS, met en cache l'état par image, corrige l'anticrénelage ; et un assistant de modélisation low-poly arrive." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-01 · L'application de bureau s'exécute de bout en bout + texte net dans le monde — ForgeaX" />
+<meta property="og:description" content="L'application de bureau s'exécute de bout en bout avec l'intégration de la clé de premier lancement ; le moteur restitue un texte net dans l'espace mondial, synchronise les relations ECS, met en cache l'état par image, corrige l'anticrénelage ; et un assistant de modélisation low-poly arrive." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-01.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-01.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-01.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-01.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-01.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-01.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-01.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-01.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-01.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-01.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-06-01</span></div>
+    <h1>L'application de bureau s'exécute de bout en bout + texte net dans le monde</h1>
+    <p class="standfirst">Premier jour de juin : l&#39;application de bureau a fonctionné de bout en bout, de l&#39;installation au jeu, pour la première fois, avec l&#39;intégration de la clé de premier lancement. Le moteur a décroché une séquence : texte net dans le monde 3D, relations d&#39;objets bidirectionnelles, cache par image pour les performances, correctifs d&#39;anticrénelage et d&#39;orientation de texture ; plus un nouvel assistant de modélisation low-poly.</p>
+    <div class="prose"><h2>De « une coque de bureau qui tient debout » à « utilisable de bout en bout »</h2>
+<p>Le shell du bureau venait juste de se lever les jours précédents, mais entre « résiste » et « utilisable » se trouve toute une chaîne : le backend doit être intégré, l&#39;aperçu intégré, les exemples de jeux prédéfinis et le premier lancement doit permettre aux utilisateurs de saisir une clé en douceur. Cette journée a connecté toute la chaîne de bout en bout, et l&#39;application de bureau a pu passer de « l&#39;installation » à « lecture » ​​pour la première fois. Pendant ce temps, le moteur a avancé une longue séquence en une seule journée (texte, relations, performances, correctifs de qualité d&#39;image), et le côté collaboration a ajouté un nouvel assistant. En bouclant la boucle sur une expérience de bureau « installable et exécutable » tout en continuant à alimenter le moteur et les outils, cette journée a posé fermement l&#39;ouverture de juin sur la double voie « utilisable et toujours en croissance ».</p>
+<h2>L&#39;application de bureau s&#39;exécute de bout en bout + intégration de la clé de premier lancement</h2>
+<p>L&#39;application de bureau a été exécutée du début à la fin pour la première fois de la journée. Il regroupe le service backend directement dans le programme d&#39;installation, intègre l&#39;aperçu du moteur dans la fenêtre, lance automatiquement des exemples de jeux au premier lancement et connecte même la capture du pointeur de la souris (verrouillant le curseur dans la fenêtre pour faire pivoter la vue) dont les jeux à la première personne ont besoin. La plus intéressante est l&#39;expérience du premier lancement : une superposition d&#39;intégration vous invite à saisir votre clé API, qui prend effet immédiatement sans redémarrage de l&#39;application : le backend applique en direct la clé nouvellement saisie à l&#39;environnement en cours d&#39;exécution. Les ports peuvent être remplacés via des variables d&#39;environnement pour s&#39;adapter à différentes machines, et un problème courant de placement de dépendances s&#39;auto-répare avant l&#39;assemblage pour éviter les échecs de construction. À partir de ce jour, l&#39;utiliser comme une application de bureau que vous pouvez installer, ouvrir et jouer directement fonctionne véritablement de bout en bout - l&#39;étape clé depuis les &quot;développeurs exécutant les sources&quot; jusqu&#39;aux &quot;personnes ordinaires installant une application et l&#39;utilisant&quot;.</p>
+<h2>Moteur : texte net dans le monde 3D</h2>
+<p>Le moteur a lancé aujourd&#39;hui le &quot;rendu de texte dans l&#39;espace mondial&quot; : vous pouvez désormais placer un texte net, net même lorsqu&#39;il est agrandi, directement n&#39;importe où dans une scène 3D. Cela compte plus qu&#39;il n&#39;y paraît : les jeux ont besoin de texte partout dans le monde : panneaux, panneaux routiers, noms au-dessus des personnages, numéros de la barre de santé, fenêtres contextuelles de dégâts flottantes, invites d&#39;interaction. Il utilise une représentation de glyphes spéciale qui maintient les bords nets, que le texte soit rapproché ou éloigné, agrandi ou réduit, au lieu de se transformer en une bouillie de pixels floue. Avant cela, le moteur ne pouvait dessiner que la géométrie et les textures, et le texte constituait une lacune flagrante ; le remplir signifie que pour la première fois, créer des jeux avec une interface utilisateur, des invites et des commentaires numériques a une capacité de texte appropriée. Pour presque tous les genres, il s&#39;agit d&#39;une étape essentielle entre « pouvoir restituer un monde » et « pouvoir transmettre des informations dans le monde ».</p>
+<h2>Moteur : relations bidirectionnelles + cycle de vie des entités unifié + un cache de performances</h2>
+<p>Le moteur a renforcé plusieurs choses dans &quot;l&#39;organisation des objets&quot; de bas niveau ce jour-là. Premièrement : les relations entre les objets sont devenues automatiquement synchronisées de manière bidirectionnelle : lorsque vous créez ou rompez un lien parent-enfant ou de propriété, les deux extrémités restent automatiquement cohérentes, sans état sale où &quot;le parent revendique cet enfant mais l&#39;enfant ne reconnaît pas le parent&quot;, ce qui facilite la composition et le démontage. Deuxièmement : le cycle de vie de l&#39;instance de scène a été unifié : le détachement, la destruction et l&#39;effacement complet suivent une sémantique ordonnée, évitant ainsi les suppressions manquées et les restes dans les cas extrêmes. Troisièmement, les performances : un cache d&#39;état de rendu par image a été ajouté, mettant en cache et réutilisant ce qui serait autrement recalculé à chaque image, réduisant ainsi les frais inutiles. Il s’agit d’un travail intérieur invisible, mais ils déterminent si une scène complexe devient plus compliquée et plus lente à mesure que des objets sont fréquemment ajoutés, supprimés et combinés. L&#39;établissement des règles sur « la manière dont les objets se connectent, naissent et meurent » constitue la base permettant au moteur de résister à la complexité réelle du jeu.</p>
+<h2>Corrections de qualité d&#39;image du moteur : anti-aliasing + orientation de la texture</h2>
+<p>Cette journée a également résolu plusieurs problèmes de qualité d’image qui affectent directement l’apparence. L&#39;anticrénelage a obtenu deux correctifs : l&#39;un était erroné dans le décalage d&#39;échantillonnage, ce qui rendait le lissage des bords imprécis ; l&#39;autre, plus subtile : les couleurs ont été mal converties deux fois dans un espace, rendant les zones plates de l&#39;image globalement plus lumineuses et délavées. Avec les deux fixes, les bords sont plus nets et les couleurs plus précises. Un problème d&#39;inversion de texture sur la géométrie générée de manière procédurale a également été résolu : la cause première était que la direction des coordonnées de texture et la convention d&#39;origine de l&#39;échantillonneur graphique ne s&#39;alignaient pas (l&#39;une compte à partir du haut, l&#39;autre à partir du bas), le piège classique &quot;d&#39;un seul retournement&quot; : les textures comme l&#39;herbe ont été appliquées à l&#39;envers et sont maintenant à l&#39;endroit. Aucune de ces fonctionnalités n&#39;est nouvelle, mais il s&#39;agit de sculpter les détails des capacités existantes pour que « cela semble parfait ». La qualité de l’image l’emporte souvent précisément sur ces détails évidents mais facilement négligés.</p>
+<h2>Un nouvel assistant de modélisation low-poly + plugins externes à démarrage automatique</h2>
+<p>La liste de collaboration a gagné un autre membre ce jour : un assistant spécialisé dans la modélisation 3D low-poly, avec rendu sans tête, pour vous aider à générer ces modèles 3D à faible nombre de visages, aux arêtes vives et au style épuré – un style artistique préféré par de nombreux jeux indépendants, rapide à réaliser et distinctif. La plate-forme permet également aux plugins de workbench externes de démarrer automatiquement avec le système : les outils tiers installés fonctionnent dès le démarrage sans lancement manuel à chaque fois, facilitant ainsi l&#39;expérience d&#39;intégration. Un problème de synchronisation qui faisait que certains outils signalaient à tort « outil inconnu » a également été résolu : la cause première était que la synchronisation de l&#39;enregistrement des outils n&#39;était pas suffisamment opportune ou idempotente, et une fois résolue, les appels d&#39;outils sont plus stables. Un nouvel assistant de modélisation, une amélioration de l&#39;intégration qui réduit la maintenance des plugins et un correctif rendant les appels d&#39;outils plus fiables - ensemble, ils continuent de perfectionner &quot;la collaboration avec une équipe d&#39;IA spécialisées pour créer des jeux&quot; en quelque chose de plus fluide.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>L&#39;ouverture du mois de juin avec une journée comme celle-ci envoie un signal clair : obliger « les gens ordinaires à installer une application et à l&#39;utiliser » véritablement de bout en bout, tout en faisant avancer le moteur à la fois sur l&#39;expressivité visuelle (texte), l&#39;ordre de bas niveau (relations objet et cycle de vie) et les performances et les détails de la qualité de l&#39;image. Le passage du côté bureau de « peut être ouvert » à « utilisable » signifie que l&#39;outil commence à avoir la forme nécessaire pour atteindre les utilisateurs réels ; le moteur ajoutant du texte mondial et redressant les relations d&#39;objet signifie que les jeux qu&#39;il peut transporter se rapprochent des « œuvres complètes ». Une plate-forme de création grand public doit à la fois permettre aux utilisateurs d&#39;accéder facilement (une application de bureau plus une intégration au premier lancement) et de créer des objets présentables (renforcement continu du moteur) - et cette journée a franchi une étape solide sur chacune de ces deux lignes les plus fondamentales.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

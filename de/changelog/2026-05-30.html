@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-30 · Es kommt eine Desktop-App + eine gemeinsame Spielebibliothek — ForgeaX</title>
+<meta name="description" content="Studio läuft als native Desktop-App, mehrere Spiele teilen sich eine Bibliothek, Agenten rufen Host-Tools per Whitelist auf, die Engine erhält eine Multi-Pass-Pipeline + Audio + umschaltbare AA und das Repo ist auf Binärdateien reduziert." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-30 · Es kommt eine Desktop-App + eine gemeinsame Spielebibliothek — ForgeaX" />
+<meta property="og:description" content="Studio läuft als native Desktop-App, mehrere Spiele teilen sich eine Bibliothek, Agenten rufen Host-Tools per Whitelist auf, die Engine erhält eine Multi-Pass-Pipeline + Audio + umschaltbare AA und das Repo ist auf Binärdateien reduziert." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-30.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-30.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-30.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-30.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-30.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-30.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-30.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-30.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-30.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-30.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-30.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-05-30</span></div>
+    <h1>Es kommt eine Desktop-App + eine gemeinsame Spielebibliothek</h1>
+    <p class="standfirst">Heute könnte Studio zum ersten Mal als native Desktop-App geöffnet werden – schließen Sie das Frontfenster und die Agenten arbeiten im Hintergrund weiter. Mehrere Spiele können eine Bibliothek gemeinsam nutzen; Agenten können Host-Tools per Whitelist direkt im Chat aufrufen; Die Engine fügte eine Multi-Pass-Pipeline, Audio und umschaltbares Anti-Aliasing hinzu. und das Repo wurde abgespeckt.</p>
+    <div class="prose"><h2>Von „einem Browser-Tab“ zu „einer echten Anwendung“</h2>
+<p>Zuvor befand sich Studio in einem Browser-Tab – das heißt, seine Existenz hing von diesem Tab ab: Schließen Sie ihn, aktualisieren Sie ihn oder lassen Sie den Browser abstürzen, und alles, was gerade läuft, ging damit einher. Die Schlagzeile des Tages lautete, es zu einer eigenständigen nativen Desktop-App zu machen und ihr zum ersten Mal „ein eigenes Fenster, einen eigenen Prozess“ zu geben. Um dies herum machten die anderen Linien die Plattform eher zu einem ausgereiften Produkt: mehrere Spiele teilen Inhalte, Agenten können direkter anrufen, die Engine fügt Audio und Multi-Pass-Rendering hinzu, das Repo wird verschlankt. Die Umstellung von „kann im Browser ausgeführt werden“ auf „kann langfristig als Anwendung geöffnet bleiben“ ist die Veränderung, die an diesem Tag am meisten in Erinnerung bleiben sollte.</p>
+<h2>Eine Desktop-App: Schließen Sie das Frontfenster, Agenten sterben nicht</h2>
+<p>An diesem Tag wurde die vollständige Hülle für eine Desktop-App bereitgestellt: Studio kann zum ersten Mal als natives Desktop-Fenster geöffnet werden, nicht nur als Browser-Registerkarte. Es verfügte über Prozess-Keep-Alive (Hintergrunddienste über das Fenster hinaus am Leben halten), Fensterverwaltung und korrekte Asset-Root-Auflösung beim Packen des Desktop-Builds. Es gibt der früheren Funktion „Agenten überleben einen geschlossenen Browser“ endlich einen echten Desktop-Eintrag – dieser Keep-Alive befand sich früher im Browser, und jetzt, mit einem nativen Fenster, können Sie ihn langfristig als echte Anwendung offen halten: Arbeiten Sie manuell an Agenten, schließen Sie die Frontoberfläche, und sie laufen im Hintergrund weiter; Öffnen Sie das Fenster, wenn Sie den Fortschritt überprüfen möchten. Ein Formular, das als „Anwendung“ allein stehen kann, ist der entscheidende Schritt vom „Demoprojekt“ zum „Alltagstool“.</p>
+<h2>Mehrere Spiele teilen sich eine Bibliothek</h2>
+<p>Mehrere Spiele können jetzt eine Spielbibliothek gemeinsam nutzen: Legen Sie gemeinsame Assets und Komponenten in einer gemeinsam genutzten Bibliothek ab, und jedes Spiel verfügt über einen eigenen „Index“, um darauf zu verweisen – es ist nicht erforderlich, Materialien in jedes Spiel zu kopieren. Für einen Schöpfer, der mehrere Werke langfristig kultiviert, bedeutet dies, dass eine Serie oder mehrere Prototypen dieselben Ressourcen sauber wiederverwenden können, anstatt überall doppelte Kopien zu verstreuen. Damit einher ging eine durchdachte Optimierung: Während der Entwicklung scannt eine Asset-Änderung in einem Spiel nur die Ressourcen „des Spiels, an dem Sie gerade arbeiten“, nicht den gesamten Arbeitsbereich von Grund auf neu – bei vielen Spielen ist das der Unterschied zwischen „wird sofort wirksam“ und „jedes Mal eine Weile warten“. Durch gemeinsames Teilen und lokales erneutes Scannen ist die „Verwaltung vieler Spiele durch eine Person“ sowohl platzsparend als auch schnell erledigt.</p>
+<h2>Agenten rufen Host-Tools per Whitelist direkt im Chat auf</h2>
+<p>An diesem Tag wurde ein „Whitelist“-Kanal durchgeschaltet, von der Typdefinition bis zur Laufzeit. Ein Agent kann in seinem Manifest angeben, „welche Host-Tools ich aufrufen darf“, und eine „Host-Tool-Brücke“ fügt diese deklarierten Tools in seine Konversations-Tool-Liste ein; Ein alter, fest codierter Werkzeugsatz wurde unterwegs ausgemustert. Konkret: Der für die Geschichte verantwortliche Agent hat in seiner Whitelist eine Reihe erzählerbezogener Tools deklariert, sodass er direkt im Chat eine ganze Reihe feinkörniger Erzähltools aufrufen kann, um die Handlung zu arrangieren, ohne durch ein separates Kit geleitet zu werden. Der Wert ist „explizite Autorisierung, direkter Aufruf“: Was jeder Agent verwenden kann, ist in seinem Manifest festgelegt – sicher und kontrollierbar, und „einen Agenten mit den Fähigkeiten ausstatten, die er haben sollte“ zu einer deklarativen, wartbaren Sache zu machen. Dies ist die Grundlage für ein Agentensystem mit dem Trend „Jeder kann konfigurieren, jeder mit seinem Fachgebiet“.</p>
+<h2>Engine: eine Multi-Pass-Render-Pipeline + Audio + umschaltbare AA</h2>
+<p>Der Motor füllte sich heute in mehreren Teilen. Die Rendering-Abstraktion entwickelte sich zu einer „Multi-Pass“-Pipeline – viele erweiterte visuelle Effekte (insbesondere die Nachbearbeitung) werden im Wesentlichen „in mehreren Schritten, Schicht für Schicht“ berechnet, und mit einer geeigneten Multi-Pass-Struktur können solche Effekte sauber erstellt und nicht überfüllt werden. Anti-Aliasing wurde zur Laufzeit umschaltbar, was den Vergleich zwischen Ein- und Ausschalten erleichtert und beim Optimieren deutlich sichtbar macht. Die Engine erstellte auch eine Audio-Demo, die durchgängig bestätigte, dass „Spiele Sound erzeugen können“ (das Soundsystem war bereits früher integriert worden; heute gab es ein Hörbeispiel). Die Physik hat einen „Leerlauf“-Fehler behoben – einige Objekte waren früher ohne Einwirkung von Kräften an Ort und Stelle eingefroren, und jetzt fallen sie, kollidieren und bewegen sich ordnungsgemäß. Zusammen festigen diese alle drei Erfahrungsbereiche der Engine – Grafik, Sound, Physik – eine weitere Stufe in Richtung „kann wirklich ein komplettes Spiel machen“.</p>
+<h2>Repo-Verschlankung: Binärdateien aus der Codebasis entfernen</h2>
+<p>Die Engine hat an diesem Tag auch eine Runde „Repo-Verschlankung“ durchgeführt: Sie hat umfangreiche Binärdateien (Beispielmaterialien, Basisbilder, Build-Artefakte usw.) aus dem Code-Repository gelöscht, sie in ein dediziertes Ressourcen-Repository verschoben oder bei Bedarf neu erstellt und eine kontinuierliche Integrationsprüfung eingerichtet, damit niemand versehentlich Binärdateien wieder in die Codebasis stopft. Für Benutzer unsichtbar, verbessert dies das Entwicklungserlebnis an vorderster Front erheblich: Ein kleineres Repo klont schneller, hat eine sauberere Historie und fühlt sich von Tag zu Tag leichter an. Für ein Projekt, das langfristig weiterentwickelt werden soll, Open-Source ist und von mehr Leuten geklont wird, um loszulegen, ist „nur Code in der Codebasis“ eine Disziplin, die es wert ist, beibehalten zu werden – sie wirkt sich direkt darauf aus, wie lange ein Neuling (oder eine CI-Maschine) wartet und wie viel Platz es braucht, wenn das Projekt zum ersten Mal heruntergefahren wird. Die frühzeitige Beseitigung dieser langfristigen Belastung ist eine Wohltat für alle zukünftigen Mitarbeiter.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Das Thema des Tages besteht darin, die Plattform von „einem Ding, das in einem Browser läuft“ zu „einer Anwendung, die man besitzen und langfristig nutzen kann“ zu entwickeln. Die Desktop-Shell gab ihr ein eigenes Fenster und einen eigenen Prozess; Mit der gemeinsam genutzten Spielebibliothek können Sie mehr als ein darin enthaltenes Werk pflegen. Der Whitelist-Tool-Kanal macht das Agentensystem konfigurierbarer und kontrollierbarer. Das Audio der Engine plus Multi-Pass-Rendering und die Repo-Verschlankung verstärken die Enden „Kann bauen“ bzw. „Läuft auf lange Sicht“. Diese anders ausgerichteten Änderungen weisen auf ein Zeichen der Reife hin: Es handelt sich nicht mehr nur um ein Projekt, das zeigt, dass „aus Konversation Spiele entstehen können“, sondern um ein Tool, das Sie auf Ihrem Computer installieren, täglich öffnen und langfristig anvertrauen würden. In dem Moment, in dem es als „Anwendung“ allein stehen kann, ändert sich die Identität des Produkts.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

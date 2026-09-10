@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-07 · コアエディタパネルの登場 + Windows サポート — ForgeaX</title>
+<meta name="description" content="階層、インスペクター、およびアセットの各パネル (ゲーム エディターの日常の中核となるもの) が一緒に表示されます。エンジンには 2D タイルマップ レンダリングと Windows サポートが追加されました。インポートされたモデルシーンは実際のサンプルに接続されます。また、サブサービスが停止すると、バックエンドは正常に機能低下します。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-07 · コアエディタパネルの登場 + Windows サポート — ForgeaX" />
+<meta property="og:description" content="階層、インスペクター、およびアセットの各パネル (ゲーム エディターの日常の中核となるもの) が一緒に表示されます。エンジンには 2D タイルマップ レンダリングと Windows サポートが追加されました。インポートされたモデルシーンは実際のサンプルに接続されます。また、サブサービスが停止すると、バックエンドは正常に機能低下します。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-07.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-07.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-07.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-07.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-07.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-07.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-07.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-07.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-07.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-07.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-07.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-07</span></div>
+    <h1>コアエディタパネルの登場 + Windows サポート</h1>
+    <p class="standfirst">この日、エディターには、ゲーム編集の最も重要で最も日常的な 3 つのパネル (階層、インスペクター、アセット) が初めて入力され、完全な編集フローが形成されました。その間、エンジンは 2D タイルマップ レンダリングを追加し、Windows 互換性の問題のバッチを修正し、完全なインポートされたモデル シーンをサンプル ゲームに接続し、サブサービスがダウンしたときに完全にエラーを発生させるのではなくバックエンドを正常に機能低下させました。</p>
+    <div class="prose"><h2>「骨格」から「肉体」へ: 編集者が記入を開始します</h2>
+<p>前の 2 日間で、ドッキング可能なパネル システム、変換ツール、元に戻す/やり直しといったエディターの「スケルトン」が確立されました。しかし、骸骨だけでは仕事をすることはできません。実際に座ってゲームを構築できるのは、そのスケルトンに掛けられたフィーチャー パネルです。この日の作業は、まさにその骨格に肉付けすることです。ゲーム エディターに不可欠な 3 つのコア パネルを一度に埋めていくことで、最も基本的な編集フロー (「オブジェクトの表示、選択、プロパティの変更、アセットの取り込み」) が初めてエンドツーエンドで実行されます。一方、このエンジンは 2 つの方向に拡張しました。2D ゲームプレイのタイル マップ カテゴリ全体のレンダリング基盤を追加し、Windows の互換性問題のバッチを修正して、より多くの人が実行できるようにしました。インポートされたモデルが実際にサンプル ゲームに接続され、バックエンドが障害時に適切にデグレードされることから、この日のテーマは明確です。それは、数日間にわたって構築されたフレームワークを、スポットごとに真に使用可能なものに埋め込むことです。</p>
+<h2>主要なエディターのトリオ: 階層 / インスペクター / アセット</h2>
+<p>この日、編集者はゲーム編集の最も重要な 3 つのパネルに記入しましたが、それぞれが独自の領域を考慮しており、必須のものはありませんでした。階層パネル: シーン内のすべてのオブジェクトを親子関係によってツリーに配置し、誰が誰の子であるかを一目で明らかにします。クリックして選択します。これは、シーン内の「オブジェクトを見つけて構造を把握する」場所です。インスペクターパネル: オブジェクトを選択すると、そのすべてのプロパティが右側に表示されます。位置、回転、マテリアル、あらゆる種類のパラメーターが直接編集可能です。ここで「1 つのことを調整」します。 [アセット]パネル: プロジェクトのすべてのマテリアル (モデル、テクスチャ、シーン パックなど) を参照して取り込み、必要なものをドラッグします。ここで「マテリアルをフェッチ」します。これら 3 つは、すべてのゲーム開発者が 1 日に何百、何千回も繰り返す中心的なフローを形成します。「すべてのオブジェクトを表示 → 1 つ選択 → パラメーターを変更 → アセットから何かをドラッグ」 — 最終的に Studio で完成します。これらが「トリオ」であるのは、編集の本質が「全体的な視点、単一オブジェクトの詳細、素材のソース」の間を際限なく行き来しているためです。この 3 つがすべて揃って初めて、編集者は真に仕事ができるようになります。</p>
+<h2>エンジンは 2D タイルマップ レンダリングを獲得します</h2>
+<p>このエンジンは、今日のゲームプレイのカテゴリ全体、つまり 2D タイルマップ レンダリングの基礎を築きました。タイル マップは古典的な 2D ゲームのアプローチです。世界を正方形のセルのグリッドに切り取り、各セルに小さな絵 (「タイル」) を配置し、それらを組み立てて全体のマップを作成します。草、壁、川、道路はすべてこれらの小さな正方形から舗装されています。古典的な横スクロール、トップダウン、ピクセルアート ゲームのほぼすべてがこの上に構築されています。この日、エンジンはタイル マップとタイル レイヤーの基本コンポーネントを導入し、一般的なタイル マップ ファイル形式を読み取ることができました。つまり、専用のマップ ツールで描画したレベルを、手動ですべてのセルを再配置することなく、エンジンに直接読み込んでレンダリングできることを意味します。重要性: これはプラットフォームの範囲を、これまで 3D 寄りだったシーンから 2D の広大な領域に正式に拡張します。多くのクリエイターが作りたい最初のゲームはまさに 2D ゲームであり、この道が開かれることで、大勢の 2D クリエイターに扉が開かれます。</p>
+<h2>Windows との互換性: より多くのマシンで適切に動作します</h2>
+<p>この日は、Windows の互換性に関する一連の問題に焦点を当てました。クロスプラットフォーム ソフトウェアの最も一般的かつ最も潜行的な落とし穴は、多くの場合、機能自体にあるのではなく、システム間の微妙な規約の違いにあります。オペレーティング システムが異なれば、使用するテキストの行末が異なり、ファイル パスの区切り文字が異なり、ワイルドカード ファイルの一致の動作が異なります。そして、どれかが一致していないと、あるシステムで正常に動作したコードが別のシステムでは不可解なエラーが発生します。この日は、これらの違いによって引き起こされる一連の障害を 1 つずつ修正し、テキストの行末規則を統一して、すべてのファイルがプラットフォーム間で一貫して動作するようにしました。 Windows ユーザーにとって、これは、OS の違いに悩まされることなく、開発環境とテストが自分のマシン上で適切に実行されることを意味します。ツールをできるだけ多くの人に使ってもらうためには、クロスプラットフォームのサポートは避けられない基礎工事です。クロスプラットフォームのサポートは新しい機能を追加するものではありませんが、「玄関にさえ入れない」人の数を直接決定します。この互換性を強化することで、より広範なユーザー ベースに対する最初の障害がクリアされます。</p>
+<h2>「インポートされたモデル」を実際のゲーム + より堅牢なバックエンドに接続する</h2>
+<p>前日は「モデルをドラッグするとシーンになる」機能をオープンしました。この日は、実際の例を使用してそれを実行しました。「モデルのインポート → プレイアブル シーンの組み立て」パスの実世界の例として、完全なシーン モデルがシューティング サンプルに組み込まれました。新しい機能は単に実行するだけでは十分ではありません。実際のエンドツーエンド フローで機能することを検証するには、実際の使用例が必要です。このサンプルはまさにそれを行います。また、バックエンドは予期せぬ事態に対しても優れた耐性を備えています。依存しているサブサービスがまだ起動していない場合、関連するリクエストは、インターフェイス全体をダウンさせる一般的なサーバー エラーの山をスローするのではなく、明確な「一時的に利用不可」ステータスに正常に低下するようになりました。この「正常な機能低下」は堅牢なシステムの特徴です。1 つのコンポーネントがダウンしてもシステム全体が麻痺することはありません。 「この部分は現在利用できません」と明確に表示し、残りを実行する必要があります。以前のバイナリ アセット アップロード チャネルと組み合わせることで、外部マテリアルの取り込みと実際のゲームでの使用の完全なチェーンがこの日より完全なものになりました。</p>
+<h2>この日が意味するもの</h2>
+<p>この日は、天地を揺るがすような画期的な出来事はひとつもありませんでしたが、製品が「フレームワークから実用性へ移行する」プロセスをうまく表しています。編集者トリオの登場は、Studio のビジュアル編集が初めて「実証可能な」レベルから「実際に座って作業できる」レベルに到達したことを意味します。 2D タイル マップの追加により、プラットフォームの領域が 3D から 2D に拡張され、古典的な 2D ゲームを作りたい大勢のクリエイターが集まりました。また、Windows 互換性修正プログラムは、より多くの潜在的なユーザーの参入障壁を事前にクリアします。総合すると、これら 3 つは同じ方向を向いています。つまり、より多くの人が、より多くの方法で、より多くのデバイスでこのプラットフォームを真に利用できるようになります。ツールの成熟とは、決して目まぐるしい機能が誕生することではなく、このような「カバー範囲」や「使いやすさ」が日々確実に広がっていくことです。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

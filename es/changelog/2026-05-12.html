@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-12 · Sistema de activos del motor v1 + pulido profundo del chat — ForgeaX</title>
+<meta name="description" content="Un impulso de 30 horas: un sistema de activos de motor con referencias de control, un punto de referencia de paridad de píxeles controlado en CI, verificación visual de zona de pruebas, ~100 pases de pulido de chat, fuerte endurecimiento del backend y una refactorización de independencia de HMR." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-12 · Sistema de activos del motor v1 + pulido profundo del chat — ForgeaX" />
+<meta property="og:description" content="Un impulso de 30 horas: un sistema de activos de motor con referencias de control, un punto de referencia de paridad de píxeles controlado en CI, verificación visual de zona de pruebas, ~100 pases de pulido de chat, fuerte endurecimiento del backend y una refactorización de independencia de HMR." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-05-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-12.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-12.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-12.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-05-12.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-05-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-12.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-05-12</span></div>
+    <h1>Sistema de activos del motor v1 + pulido profundo del chat</h1>
+    <p class="standfirst">Un impulso las 24 horas del día a través de cuatro pistas paralelas: el motor obtuvo un sistema de activos adecuado, el renderizado elevó un criterio de calidad de &quot;paridad de píxeles&quot; cerrado en CI, el sandbox permitió al agente &quot;ver&quot; si la imagen es correcta, el panel de chat tomó cien pases pulidos, el backend realizó pruebas rigurosas en torno a la seguridad y los contratos, y una gran refactorización finalmente hizo que la recarga en caliente de la interfaz fuera independiente.</p>
+    <div class="prose"><h2>Cuatro pistas en un día: el panorama del día</h2>
+<p>Este fue el día más denso hasta el momento, avanzando desde la medianoche hasta la mañana siguiente con cuatro pistas ejecutándose a la vez: el motor aterriza característica tras característica y se corrige bajo un estricto circuito cerrado de siete pasos, el panel de chat entra en un pulido de estado estable &quot;nunca terminado&quot;, el backend clava la seguridad y los contratos de interfaz con pruebas una por una, además de una refactorización de cierre que sacó la recarga en caliente de la interfaz por sí sola. Reunir tanto en un día sin caos se redujo a dos cosas: cada pista tenía límites claros y criterios de aceptación, y cuanto más cerca estaba un cambio de la base, más tenía que ser verificable. A continuación está dividido por temas, pero recuerde que avanzaron juntos en un solo día.</p>
+<h2>Sistema de activos del motor v1: hacer referencia al contenido del juego mediante identificador</h2>
+<p>La entrega más importante del motor este día fue la primera versión de un sistema activo. Antes, el &quot;contenido del juego&quot;, como modelos, texturas y escenas, no tenía una forma unificada de gestionarse; el sistema de activos les dio una identidad formal: cada activo es un objeto estructurado al que se hace referencia a través de un &quot;identificador&quot; liviano en lugar de pasar enormes datos sin procesar. Un asa es como el número de llamada de una biblioteca: manténgalo presionado y podrá ir a buscar el libro, sin tener que cargar con todo el libro. Se construyó una escena de sala de muestra para validar la cadena. La importancia: ahora se puede hacer referencia al contenido del juego, compartirlo y reutilizarlo de forma estructurada, con un punto de entrada para cargar modelos, texturas y escenas. Es el verdadero punto de partida para todas las funciones posteriores de &quot;importar un modelo, colocar recursos en una escena&quot;.</p>
+<h2>Un punto de referencia de paridad de píxeles: la calidad de renderizado no puede retroceder silenciosamente</h2>
+<p>Lo que más teme un renderizador interno no es un solo cuadro incorrecto, sino &quot;empeorar silenciosamente sin que nadie se dé cuenta&quot;: cambie una cosa y algunos cuadros difieren de la referencia en unos pocos píxeles, invisibles a la vista pero que se desvanecen con el tiempo. Este día se planteó un criterio de &quot;paridad de píxeles&quot;: se comparan los cuadros renderizados del motor con una referencia píxel por píxel, y en el momento en que la diferencia excede un umbral, la integración continua se vuelve roja y bloquea el cambio para que no se fusione con el tronco. &quot;La representación es correcta&quot; de algo que se observa manualmente y se siente a una puerta automática y objetiva que se ejecuta en cada confirmación. Para un motor que evoluciona su calidad de imagen a largo plazo, esta puerta es la condición previa para que la calidad se mantenga estable; con ella, puede cambiar la representación con audacia y sin temor.</p>
+<h2>Verificación visual de Sandbox: permita que el agente &quot;vea&quot; si la imagen es correcta</h2>
+<p>Hacer que una IA edite juegos automáticamente se encuentra con un problema inevitable: después de cambiar las cosas, ¿cómo sabe que la imagen es realmente correcta? Verificar solo si el código tuvo un error conduce fácilmente a &quot;el código no falló pero la pantalla está en negro&quot; mientras se cree que tuvo éxito. Este día se construyó un mecanismo de verificación visual en el sandbox, separando deliberadamente dos roles: &quot;producir la imagen&quot; y &quot;comprobar la imagen&quot;: un lado ejecuta el juego y captura los fotogramas, el otro juzga los fotogramas capturados. Separar los roles hace que la verificación sea más confiable: no hay trampa de autocertificación de &quot;edito, hago capturas de pantalla, lo declaro bien&quot;. Este paso es clave para que el agente pase de &quot;puede escribir código&quot; a &quot;es responsable de su salida&quot;: ya no simplemente arroja código por encima de la pared, sino que puede cerrar el ciclo y observar &quot;cómo se ve realmente lo que hice&quot;.</p>
+<h2>Representación instanciada + muchos objetos: un juego de bloques como piedra de toque</h2>
+<p>Este día también explotó la capacidad del motor para muchos objetos con una demostración de minijuego de &quot;eliminación de bloques que caen&quot;. Estos juegos presentan muchos bloques idénticos en la pantalla a la vez, y emitir un comando de extracción por separado para cada pila se acumula rápidamente. Para ello, el motor añadió &quot;dibujo instanciado&quot;: un único envío dibuja un lote grande del mismo objeto, amortizando el costo repetido. La ruta de renderizado de muchos objetos se ordenó al mismo tiempo, por lo que &quot;muchas entidades que aparecen juntas&quot; se ejecutan de manera rápida y estable. Validar con un minijuego genuinamente jugable en lugar de una prueba abstracta es en sí misma una disciplina: hacer que un juego real funcione sin problemas es mucho más convincente que pasar un fragmento aislado.</p>
+<h2>~100 pases de chat polaco: costo, duración, múltiples proveedores</h2>
+<p>El panel de chat entró en un estado estable &quot;nunca terminado&quot; este día, con más de cien pequeñas iteraciones centradas en algunas cosas prácticas. Uno: muestra el costo y la duración reales de cada turno, con un formato de cantidad adaptable (céntimos, diez y dólares, cada uno con la precisión adecuada) para que puedas ver de un vistazo cuánto costó. Dos: un selector conmutable para &quot;qué backend de codificación usar&quot;: puede anclar una conversación a una, la elección se recuerda, se sincroniza entre pestañas, admite la selección de teclado arriba/abajo y advierte cuando la que eligió no está disponible. Tres: manejo reflexivo del estado &quot;el modelo está pensando en silencio durante mucho tiempo&quot;, que induce ansiedad: muestra los segundos transcurridos, sugiere un cambio más allá de un umbral y una nota de marcador de posición para &quot;terminado pero sin salida visible&quot;. Cada pase tocó una cosa, se autoprobó y registró una nota. Esta pista gana cien pases porque es la superficie que el usuario mira más tiempo cada día: por muy fuerte que sea la capacidad, si lee laboriosamente y se siente inseguro, no hay confianza.</p>
+<h2>Seguridad backend y endurecimiento de contratos: listas blancas, defensa transversal, muchas pruebas</h2>
+<p>Dado que el agente realmente lee y escribe archivos en su máquina, el backend debe hacer que &quot;sólo pueda tocar lo que debería&quot; sea hermético. Este día se establecieron una gran cantidad de defensas y pruebas en torno a la seguridad de archivos y rutas: restringir las rutas accesibles con una lista blanca, agregar defensa contra el exceso de &quot;recorrido de directorio&quot;, negarse a sobrescribir un directorio existente al escribir un archivo y redactar la ruta de inicio del usuario en las respuestas externas (para que las rutas reales de su máquina no se filtren). Mientras tanto, los contratos de interfaz del backend fueron determinados prueba por prueba: qué entrada debería devolver qué, cómo se manejan los casos extremos, todo protegido por pruebas, y el recuento de pruebas unitarias superó un hito ese día. Nada de esto es una &quot;nueva característica visible&quot;, pero decide si te atreves a permitir que una IA de edición de archivos entre en tu propio proyecto: sólo con límites claros, comportamiento predecible y regresiones detectadas por pruebas se puede tener una verdadera tranquilidad.</p>
+<h2>Una refactorización final: hacer que la recarga en caliente de la interfaz sea independiente</h2>
+<p>Al llegar la madrugada, el día cerró con una refactorización estructural: hacer que el mecanismo de recarga en caliente de la interfaz sea independiente y colocar cada parte en su lugar a lo largo del camino: los datos del juego del usuario se movieron al propio directorio de la instancia, la fuente del motor se extrajo a una ubicación de compilación unificada, la configuración del entorno se elevó a la raíz del repositorio y se enderezó el diseño del directorio anidado propenso a errores. Una refactorización de este tipo casi no muestra cambios por parte del usuario, pero hace que la experiencia de &quot;editar el código, la interfaz se recarga instantáneamente&quot; sea más limpia y menos propensa a interferencias cruzadas. Cuanto más claros sean los cimientos, más rápido se construirá más adelante; hacer esto al final del día es precisamente porque, después de que aterrizaron tantas cosas nuevas, todo el árbol necesitó una consolidación para realinearse.</p>
+<h2>que significa este dia</h2>
+<p>Si los días anteriores demostraron que &quot;la conversación puede construir algo ejecutable&quot;, este día sentó las bases para &quot;se puede hacer de manera confiable y a largo plazo&quot;. El sistema de activos permite gestionar el contenido de forma estructural; el punto de referencia de paridad de píxeles y la verificación visual del espacio aislado dan un criterio objetivo sobre si la imagen es correcta; la seguridad y las pruebas del backend hacen que &quot;dejar que la IA actúe&quot; sea confiable; el pulido del chat hace que la gente quiera usarlo a diario; y la refactorización de cierre lo mantiene todo limpio en términos de ingeniería. Juntos revelan una postura: avanzar rápidamente, pero dejar a cada paso un rastro sólido que puede verificarse, retroceder y retrospectarse. Ese es exactamente el modelo que este registro quiere dejar para el desarrollo futuro: la velocidad y el rigor no son una cosa o la otra, sino dos cosas que se pueden lograr en el mismo día.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

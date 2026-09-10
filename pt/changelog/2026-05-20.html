@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-20 · O bate-papo se reconecta ao novo back-end e gerencia modelos e chaves nas configurações — ForgeaX</title>
+<meta name="description" content="O bate-papo se reconecta ao back-end reconstruído com gerenciamento de sessão REST limpo, modelos e chaves tornam-se gerenciáveis ​​nas configurações e o mecanismo ganha iluminação texturizada/multi-luz e roaming de câmera." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-20 · O bate-papo se reconecta ao novo back-end e gerencia modelos e chaves nas configurações — ForgeaX" />
+<meta property="og:description" content="O bate-papo se reconecta ao back-end reconstruído com gerenciamento de sessão REST limpo, modelos e chaves tornam-se gerenciáveis ​​nas configurações e o mecanismo ganha iluminação texturizada/multi-luz e roaming de câmera." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-05-20.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-20.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/" data-nav="/">Início</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-20.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-20.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-20.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-20.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-20.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-20.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-20.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-05-20.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Atualização</span><span>2026-05-20</span></div>
+    <h1>O bate-papo se reconecta ao novo back-end e gerencia modelos e chaves nas configurações</h1>
+    <p class="standfirst">O back-end foi recarregado no dia anterior e se reconectou à interface de bate-papo neste dia: criação, alternância e exclusão de sessões, todo o fluxo, o histórico é reproduzido na íntegra e o processo distingue as linhas do sistema - entrada/saída/aviso/erro. Modelos e chaves foram movidos para o painel de configurações para gerenciamento visual; o motor continha iluminação texturizada e multiluz e roaming fixo de câmera em primeira pessoa.</p>
+    <div class="prose"><h2>De &quot;reescrito&quot; para &quot;reconectado&quot;</h2>
+<p>No dia anterior, o back-end foi desmontado e revertido em uma nova arquitetura em camadas e recuperável por falhas – mas terminar a reescrita é apenas metade do trabalho; a nova base precisa realmente se reconectar à interface e executar uma cadeia completa de ponta a ponta para contar como aterrissada. O objetivo deste dia foi &quot;reconectar&quot;: conectar a interface de bate-papo ao novo tempo de execução de back-end, fazer com que as ações diárias da sessão - criar, alternar, excluir, reproduzir - funcionem na nova arquitetura e mover o modelo e o gerenciamento de chaves para a interface ao longo do caminho. Em outras palavras, o dia anterior provou que “o novo alicerce permanece”; este dia provou que “a nova base é utilizável”. O momento mais perigoso de uma grande reescrita muitas vezes não é a reescrita em si, mas se as camadas superiores podem ser reconectadas suavemente sem deixar vidros quebrados por toda parte – e este dia superou exatamente esse obstáculo.</p>
+<h2>O chat se reconecta ao novo back-end, com sessões mais tranquilas</h2>
+<p>A interface de bate-papo conectou-se ao novo tempo de execução de back-end neste dia, e as operações diárias das sessões tornaram-se ordenadas e suaves. A criação de uma sessão agora tem um ponto de entrada consistente, em vez de vários fazendo suas próprias coisas; alternar uma sessão abre automaticamente sua guia para que sua atenção siga o conteúdo; excluir é uma etapa. A reabertura de uma sessão reproduz integralmente as idas e vindas anteriores a partir de um registro durável, com o contexto intacto. O processo também categoriza as mensagens do sistema como de entrada/saída/aviso/erro — assim, quando uma execução dá errado, você pode ver rapidamente em qual etapa ela está travada e de que tipo é, em vez de ficar olhando para uma massa emaranhada de saída. Estes são os princípios básicos que uma “sessão” merece como unidade diária, e este dia os apresentou solidamente sobre a nova arquitetura.</p>
+<h2>Sessões e histórico passam por interfaces limpas</h2>
+<p>Ao &quot;reconectar&quot;, o back-end convergiu os recursos de sessão e histórico em um conjunto limpo de interfaces. A criação e a exclusão de uma sessão passam por endpoints padrão de criação/exclusão, com um agente padrão preparado automaticamente; criar um agente no nível superior ou excluí-lo junto com seus dependentes em uma varredura, cada um possui um comando claro correspondente; o histórico é lido sob demanda por meio de interfaces de busca dedicadas, em vez de colocar tudo na transmissão ao vivo. A lista de agentes subjacente agora é mantida por &quot;verificação do disco sem monitoramento de estado + observação de alterações no arquivo&quot;, com todos os eventos de alteração do agente chegando em um log global. Convergir esses recursos em interfaces claras e de responsabilidade única significa que as camadas superiores (interface, linha de comando e até mesmo outros clientes futuros) podem operar de acordo com as mesmas regras, em vez de cada uma escrever as suas próprias - exatamente onde a arquitetura em camadas do dia anterior começa a render dividendos.</p>
+<h2>Gerencie modelos e chaves diretamente nas configurações</h2>
+<p>Este dia transferiu duas coisas de alta frequência, mas anteriormente complicadas - &quot;qual modelo, qual chave&quot; - ​​para a interface. O seletor de modelo agora lê a lista real de modelos disponíveis, então o que você escolhe é o que realmente entra em vigor, não uma lista codificada possivelmente obsoleta; e você pode atribuir qual modelo cada agente usa individualmente, possibilitando que diferentes funções usem níveis diferentes. A entrada da chave foi movida para um painel de configurações persistente com um botão de alternância para alternar entre mostrar e ocultar o valor - conveniente para verificar, mas não deixado à vista para sempre. Para os usuários, isso significa que preencher uma chave ou trocar de modelo não requer mais ir para a linha de comando ou vasculhar os arquivos de configuração – coisas que sempre pertenceram à interface agora realmente acontecem lá. Reduzir o nível de tais operações é uma parte fundamental para permitir que desenvolvedores não profissionais comecem.</p>
+<h2>Motor: iluminação texturizada + múltiplas luzes em uma cena</h2>
+<p>A iluminação do motor continuou preenchendo a prática neste dia. Uma delas é a &quot;iluminação orientada por textura&quot;: usar uma textura para controlar a intensidade com que diferentes partes de uma superfície respondem à luz - tornando, digamos, uma incrustação de metal mais brilhante que a madeira circundante, ou um ponto desgastado mais escuro - enriquecendo enormemente os detalhes do material em vez de tratar uma superfície inteira como um material uniforme. A outra são &quot;várias luzes em uma cena&quot;: várias luzes podem ser acesas ao mesmo tempo, combinando rodízios pontuais e pontuais. Juntos, eles movem a iluminação de &quot;apenas uma lâmpada&quot; para &quot;organizar várias luzes para criar profundidade, como uma cena real&quot;. Para quem deseja imagens atmosféricas e táteis, este é o trecho mais crucial entre &quot;iluminado&quot; e &quot;bonito&quot;.</p>
+<h2>Motor: roaming de câmera em primeira pessoa fixo + uma cena texturizada</h2>
+<p>Este dia também corrigiu o roaming da câmera em primeira pessoa – o movimento WASD estava morto, enraizado em uma pequena armadilha clássica: se os eventos do teclado liam a “posição física da tecla” ou o “personagem” não estava alinhado, então os pressionamentos não fizeram nada. Uma vez corrigido, você pode usar WASD para percorrer uma cena e virar a visualização para olhar - a interação mais básica de qualquer &quot;cena pela qual você pode passear&quot;. Paralelamente, uma cena texturizada foi criada para ser executada de ponta a ponta e o tratamento de endereços de ativos externos foi corrigido para que as texturas sejam encontradas corretamente nos caminhos de implantação. Ser capaz de entrar livremente em uma cena iluminada por várias luzes e texturizadas e olhar ao redor - este dia impulsionou “construir um mundo onde você possa passear” um verdadeiro passo à frente.</p>
+<h2>O que este dia significa</h2>
+<p>Este dia transformou a “reescrita” do dia anterior em algo genuinamente “utilizável”. A nova base do backend reconectada à interface, com operações diárias — sessões, modelos, chaves — funcionando perfeitamente na nova arquitetura e convergindo para interfaces limpas; o mecanismo avançou na iluminação e na câmera em paralelo, dando às imagens mais profundidade e às cenas mais transitabilidade. Por um lado, reconectando suavemente as principais cirurgias de baixo nível às camadas superiores, sem problemas persistentes; por outro lado, adicionando constantemente experiências que os usuários sentem diretamente - os dois em paralelo mostram uma equipe que ousa fazer refatorações profundas, mas que não se esqueceu de tornar o produto um pouco melhor para os usuários a cada dia. Ser capaz, logo após uma grande reescrita, de reconectar a interface no mesmo dia e preencher experiências imediatas, como gerenciamento de modelo e chave, é em si a melhor prova de que &quot;a reescrita foi feita corretamente&quot;.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

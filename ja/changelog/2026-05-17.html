@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-17 · インライン 3D と画像プレビュー + @ メンション錠剤 — ForgeaX</title>
+<meta name="description" content="エージェントに @-mention を付けて直接会話し、UI のどこにでもバスを表示し、メンション ピルを使用してモデルと画像をインラインでプレビューし、統合された MeshRenderer + マテリアル ハンドル、readPixels、コンソールの依存関係反転などのエンジン統合の波を実現します。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-17 · インライン 3D と画像プレビュー + @ メンション錠剤 — ForgeaX" />
+<meta property="og:description" content="エージェントに @-mention を付けて直接会話し、UI のどこにでもバスを表示し、メンション ピルを使用してモデルと画像をインラインでプレビューし、統合された MeshRenderer + マテリアル ハンドル、readPixels、コンソールの依存関係反転などのエンジン統合の波を実現します。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-17.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-17.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-17.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-17.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-17.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-17.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-17.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-17.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-17.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-17.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-17</span></div>
+    <h1>インライン 3D と画像プレビュー + @ メンション錠剤</h1>
+    <p class="standfirst">この日は、「マルチエージェント コラボレーション」を背景から目に見える形にしました。エージェントに @ @ して直接話しかけることができ、機能の健全性がインターフェイス全体に表示され、チャットでインラインでアセット プレビューが表示され、参照薬として表示されます。このエンジンは、統合メッシュ レンダラー、統合キャプチャ、コンソールの依存関係の反転、およびレンダリング チュートリアルのサンプルの完全なセットを統合した大きなバッチを作成しました。</p>
+    <div class="prose"><h2>コラボレーションを可視化してクリック可能にする</h2>
+<p>以前は、プラットフォームは「バックグラウンドで長時間実行される複数のエージェント + イベント バス」の機能を構築していましたが、そのすべては依然としてシステム内に隠されていました。この日のスルーラインでは、その機能がインターフェイスの最前面に完全にプッシュされていました。バス上のエージェント間のトラフィックを確認できるだけでなく、特定のエージェントを名前で確認したり、適切な場所にあるアセットをプレビューしたり、参照薬としてオブジェクトを会話に持ち込んだりすることができます。言い換えれば、この日追加されたのは孤立した機能ではなく、「エージェントのチームが協力する」ということを一般の人が実際に操作できるものにするインタラクションレイヤーだ。バックエンドの複雑さが、読んでクリックできるインターフェイス要素に変換されると、マルチエージェントは「技術的に実行される」状態から「快適に使用できる」状態になります。</p>
+<h2>@ エージェントと直接会話する</h2>
+<p>この日、マルチエージェントのコラボレーションは重要な一歩を踏み出しました。会話内で特定のエージェントを名前で @ できるため、リードと会話するだけで他のエージェントにメッセージを中継するのではなく、エージェントがそのメッセージを拾って返信することができます。コンパニオン エージェント ハブ パネルが稼働し、現在の「チーム」にどのメンバーがいるのか、そして各メンバーが何に忙しいのかが一目でわかるようになりました。これによって変わるのは、コラボレーションの「指揮スタイル」です。以前はプロジェクト マネージャーとしか話せなかったのが、マネージャーを通り越して、アートを担当するメンバーやレベルを担当するメンバーに直接話しかけることができるようになりました。 「AI のチームを率いる 1 人の人物」という中心的なシナリオでは、名前付きコミュニケーションが「ブロードキャスト」から「正確な指示」への分水嶺となり、最終的には適切なメンバーに正しいことを言うことができるようになります。</p>
+<h2>バスのステータスが UI 全体に分散: 機能の健全性がどこにでもあります</h2>
+<p>前日のインターフェイスへのバスの配線を基に、この日は「システムにどの機能が存在し、それぞれがどの程度健全であるか」を UI の隅々まで広げました。上部のバーには、ツール、スキル、エージェントなどのカテゴリのステータス ランプの行が追加され、それぞれの数と状態が表示されます。チャット パネル、サイドバー、バス管理パネルにも同様に、この「小さなランプ + カウント + クリック可能なディープリンク」プレゼンテーションが点在しており、ワンクリックで一致する詳細にジャンプします。その価値は、「システムに現在何があるか、どのように動作しているか」を周囲の情報に変えることです。調べに行く必要はありません。インターフェイスを見ればそれがわかります。プラグインによって拡張可能な、より多くの機能を備えたシステムにとって、この遍在する健全性の視覚化は、「どのような状態にあるのか」を常に把握するための鍵となります。</p>
+<h2>インラインアセットプレビュー + チャットでのリファレンスピル</h2>
+<p>この日はまた、「資産」が可視化され、会話の中で参照できるようになりました。チャットでは添付ファイルをその場でプレビューできます。画像を貼り付けてサムネイルを取得します。モデル ファイルをドロップすると、実行中のゲームに最初に接続してどのように見えるかを確認することなく、小さな表示可能なプレビューとしてレンダリングされます。キャラクターやテクスチャについて議論するとき、双方は自分自身のことを想像するのではなく、同じ具体的なものを見ます。コンパニオンの「リファレンス ピル」を使用すると、コンポーザに @ と入力してエージェントまたはリソースをクリック可能なタグに変換できます。最近使用したものを記憶し、ホバーするとツールチップが表示され、挿入後にクリックして戻ることができます。これらを組み合わせると、「会話にアセットを持ち込む」こと (長いパスをコピーして言葉で説明することを意味していました) が、直接のドラッグ アンド クリック アクションに変わります。</p>
+<h2>エンジン: 統合メッシュ レンダラー + マテリアル ハンドル + デフォルト値フォールバック</h2>
+<p>この日、エンジンはレンダリング層とコンポーネント層で重要な統合を行いました。レンダリングでは、「マテリアル ハンドル」によってマテリアルを参照する単一のメッシュ レンダラーに統合されました。つまり、オブジェクトの描画方法は「メッシュとマテリアルを指すハンドル」によって統一的に記述され、明確かつオブジェクト間で 1 つのマテリアルを簡単に再利用できます。コンポーネントでは、「エンティティの作成」と「コンポーネントの追加」により、デフォルト値のフォールバック チェーンが得られます。フィールドを明示的に設定しない場合、システムは、エラーや空白のままにするのではなく、階層化されたルールをたどって適切なデフォルトを見つけます。これは、ゲーム コンテンツの作成が「気になる部分だけを書き、残りは賢明なデフォルトのままにする」ことができ、定型文やエラーの表面を大幅に削減できることを意味します。このような収束は新しい機能ではありませんが、より多くの人 (および AI) がエンジンを使用しても、エンジンが「驚きが少なく、予測可能」であり続けるための鍵となります。</p>
+<h2>エンジン: 統合キャプチャ + コンソール依存関係の反転 + チュートリアルの例</h2>
+<p>この日、エンジンはまた、「重複」と「結合」のいくつかの箇所をクリーンアップしました。 1 つ目は、かつて複数の例に分散していた「スクリーンショット」ロジック (それぞれが独自のコピー) が、標準のレンダラー機能に統合されました。1 つの実装がどこでも使用できるため、重複が削減され、視覚的な検証がより一貫したものになります。 2 つ目: 「コンソール」デバッグ チャネルは依存関係が逆転しました。具体的な内部モジュールに直接依存するのではなく、抽象インターフェイスを通じて動作し、それらを切り離します。コンソールがより独立して進化し、プラグインが統一された方法でプラグインできるようになります。 3 つ目は、プログレッシブ レンダリング チュートリアルのサンプルの完全なセット (最も基本的な三角形とテクスチャから入力処理まで) が提供され、画像、テクスチャ、入力などの一般的な機能がエンジン自体に組み込まれました。これらの例は、エンジンの機能の生きたドキュメントであると同時に、初心者 (および AI) がエンジンの使い方を学ぶための最良の入り口でもあります。</p>
+<h2>この日が意味するもの</h2>
+<p>この日の 2 つのライン — インターフェイスでのマルチエージェントのコラボレーションを完全に「明らかに」することと、エンジンでのレンダリングとコンポーネントを大幅に「収束」すること — は無関係に見えますが、内部では 1 つの追求を共有しています。それは、急速に複雑化するシステムを人々にわかりやすく保つことです。インターフェイス側では、@-メンション、機能健全性ランプ、アセット プレビュー、リファレンス ピルが連携して、「AI チームの指揮」を抽象的なものから具体的に操作可能なものに変えます。エンジン側では、統合レンダラー、統合キャプチャ、依存関係の反転、およびチュートリアルのサンプルが連携して、機能が膨れ上がるにつれて低レベルが複雑になるのを防ぎます。長期的に進化できるシステムは、機能の外側への成長と内側への秩序の維持の両方が必要ですが、この日はまさにその両方が同時に行われました。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

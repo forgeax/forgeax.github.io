@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-19 · Ein nach einem Absturz wiederherstellbares Backend + die erste echte Beleuchtung der Engine — ForgeaX</title>
+<meta name="description" content="Das Backend wird in eine mehrschichtige Architektur umgebaut, in der jeder Agent ein wiederherstellbares Protokoll führt und es nach einem Absturz wiedergibt. Die Engine beleuchtet ihre erste physikalisch basierte Szene mit Lichtern, Rollen, Tonmapping und einem strukturierten Würfel." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-19 · Ein nach einem Absturz wiederherstellbares Backend + die erste echte Beleuchtung der Engine — ForgeaX" />
+<meta property="og:description" content="Das Backend wird in eine mehrschichtige Architektur umgebaut, in der jeder Agent ein wiederherstellbares Protokoll führt und es nach einem Absturz wiedergibt. Die Engine beleuchtet ihre erste physikalisch basierte Szene mit Lichtern, Rollen, Tonmapping und einem strukturierten Würfel." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-19.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-19.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-19.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-19.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-19.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-19.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-19.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-19.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-19.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-19.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-19.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-19.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-19.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-19.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-19.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-19.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-19.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-19.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-19.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-05-19</span></div>
+    <h1>Ein nach einem Absturz wiederherstellbares Backend + die erste echte Beleuchtung der Engine</h1>
+    <p class="standfirst">An diesem Tag wurden alle drei Zeilen „bis auf den Grund gegraben und neu gegossen“: Die Backend-Laufzeit wurde in eine mehrschichtige, nach einem Absturz wiederherstellbare Multi-Agenten-Architektur umgeschrieben; Die Engine zündete ihre erste physikalisch basierte Beleuchtung – Richtungs-, Punkt- und Spotlichter, Tonmapping und ein strukturierter Würfel, alles an Ort und Stelle; und der KI-Entwicklungsprozess wurde verschlankt, sodass die gleiche Änderung weitaus weniger Umwege erfordert.</p>
+    <div class="prose"><h2>Drei Wege, ein Vorsatz: Bis zum Grundgestein graben und neu gießen</h2>
+<p>Die drei großen Arbeiten des Tages haben eines gemeinsam: Bei keinem handelt es sich um kleine Ausbesserungen auf vorhandenem Boden – alle „graben bis zum Grundgestein und gießen neu“. Das Backend hat seine gesamte Laufzeit abgebaut und entlang klarer Ebenen neu geschrieben. Die Engine hat das Rendering vom bloßen Löschen des Bildschirms zu einer echten Beleuchtung mit physikalischem Licht vorangetrieben. und sogar der KI-Entwicklungsprozess, der all dies aufbaut, wurde erheblich rationalisiert. Der Mut, das Fundament zu erneuern, nachdem das Produkt bereits vorgeführt werden kann, spiegelt ein Urteil wider: Einige strukturelle Schulden, die aus Geschwindigkeitsgründen frühzeitig aufgenommen werden, werden umso kostspieliger, je länger sie aufgeschoben werden. Daher ist es besser, sie auf einmal abzubezahlen, solange noch Zeit ist. Dieser Tag verkörpert die technische Reife, „im richtigen Moment das richtige Umschreiben durchzuführen“.</p>
+<h2>Ein neu aufgebautes Backend: eine nach einem Absturz wiederherstellbare Multi-Agenten-Grundlage</h2>
+<p>Die Backend-Laufzeit wurde heute in eine stabilere, klarere Multi-Agent-Architektur umgestaltet. Die wichtigste Änderung ist die „Absturzwiederherstellung“: Jeder Agent schreibt sein eigenes Nur-Anhang-Ereignisprotokoll (Ledger), in dem alles aufgezeichnet wird, was er erlebt. Wenn der Prozess abstürzt oder die Maschine sogar die Stromversorgung verliert, kann das System durch erneutes Öffnen Ereignisse aus diesem Ledger wiedergeben und den Agenten in den exakten Zustand vor dem Absturz zurückversetzen. Diese Lebensader wurde wiederholt durch einen End-to-End-Rauchtest verifiziert – ein Ereignis wurde erzeugt, in das Hauptbuch geschrieben, erneut geöffnet und vollständig wiedergegeben – der gesamte Weg war bewiesen. Für eine Plattform, die möchte, dass Agenten lange im Hintergrund arbeiten, ist dies die grundlegende Verbesserung von „Ein Unfall löscht jeden Fortschritt aus“ zu „Ein Unfall lässt ihn immer noch an Ort und Stelle wieder aufleben“.</p>
+<h2>Eine geschichtete Architektur: Warum das Backend in klare Schichten aufteilen?</h2>
+<p>Bei dieser Neufassung handelte es sich nicht nur um einen neuen Codierungsstil, sondern um eine Aufteilung des Backends in mehrere Bottom-Up-Ebenen mit Einzelverantwortung: an der Basis ein Grundgerüst aus Typen und Standardwerten; Darüber befinden sich ein Ereignisbus und eine Warteschlange, eine gemeinsame Tafel (Übergangszustand), ein wiederherstellbares Ereignisbuch, eine von der Festplatte überwachte Agentenliste, ein Kontextfenster, der Agent selbst und die Schleife, die eine Denkweise steuert, ein sitzungsspezifischer Planer und ganz oben Sitzungen und Sitzungsverwaltung. Jede Schicht hängt nur von der darunter liegenden ab und weist nur klare Schnittstellen auf, sodass jede Schicht für sich genommen verstanden, getestet und ersetzt werden kann. Darüber hinaus wurde die Agentenliste geändert, um Hinzufügungen und Entfernungen zu erkennen, indem sie Dateiänderungen auf der Festplatte direkt beobachtet und keinen Index mehr verwaltet, der driften könnte. Der wahre Wert der Schichtung besteht darin, dass ein immer komplexeres System immer „zerlegbar, verständlich und veränderbar“ bleibt – genau der Grund, warum es sich lohnt, sich die Mühe zu machen, es neu zu gießen.</p>
+<h2>Die erste echte Beleuchtung der Engine: physikalisch basiertes Licht</h2>
+<p>Das Engine-Rendering hat an diesem Tag eine symbolische Schwelle überschritten: Es erhellte zum ersten Mal ein physikalisches Licht. „Physikalisch basiert“ bedeutet, dass die Reaktion eines Materials auf Licht den Energieregeln der realen Welt folgt – und nicht einfach eine Farbe mit einer Helligkeit multipliziert. Das Einschalten dieses ersten gerichteten Lichts scheint nur etwas Licht und Schatten auf dem Bildschirm hinzuzufügen, aber es ist in Wirklichkeit der Motor, der von „kann Formen einfärben“ in die Welt „kann die reale Interaktion zwischen Licht und Objekten simulieren“ übergeht. Dies ist der Ausgangspunkt aller realistischen Bilder: Erst mit einem korrekten Beleuchtungsmodell werden später das Glitzern von Metall, die Weichheit von Stoff und die Unebenheiten einer Oberfläche glaubwürdig. Wenn Sie diesen grundlegenden und entscheidenden ersten Schritt richtig machen, legen Sie den richtigen Ton für alle späteren Verbesserungen der Bildqualität fest.</p>
+<h2>Lichtrollen, Falloff und Tone Mapping</h2>
+<p>Nach dem Anzünden des ersten gerichteten Lichts fügte die Engine schnell reichhaltigere Lichttypen hinzu: Punktlichter (die von einem Punkt in alle Richtungen ausstrahlen, wie eine Glühbirne) und Scheinwerfer (die einen Kegel ausstrahlen, wie eine Taschenlampe), beide mit physikalisch korrektem „Abstandsabfall“ – je weiter vom Licht entfernt, desto dunkler, wie die Intuition erwartet. Bei mehr Lichtern besteht ein neues Problem darin, dass Glanzlichter in totes Weiß „ausgeblasen“ werden. Deshalb kam als nächstes die Tone Mapping: Licht, das über den auf dem Bildschirm darstellbaren Bereich hinaus zurück in den sichtbaren Bereich komprimiert wird, sodass Hell-Dunkel-Übergänge natürlich sind und helle Bereiche Details erhalten, anstatt zu verschmieren. Zusammengenommen bedeutet dies, dass Sie jetzt verschiedene Lichtarten verwenden können, um die Stimmung einer Szene zu bestimmen – ein warmes Punktlicht, ein Spotlight auf eine Figur –, ohne dass das Bild die Kontrolle über die Helligkeit verliert.</p>
+<h2>Ein strukturierter Würfel, durchgehend gerendert</h2>
+<p>Dieser Tag hat auch „einen texturierten Würfel“ von Anfang bis Ende korrekt gerendert – was sich einfach anhört, aber die gleichzeitige Ausrichtung mehrerer Low-Level-Details erfordert: Der Farbraum muss die richtige Verarbeitungskette durchlaufen (sonst ist die Textur farblich verzerrt), die Rückseiten müssen richtig ausgewählt sein (oder man sieht Innenwände, die ausgeblendet werden sollten) und die Wicklungsrichtung des Dreiecks muss richtig sein (sonst drehen sich einige Flächen nach innen und das ganze Objekt sieht voller Löcher aus). Dies ist der klassische „Teufel im Detail“ des 3D-Renderings – bei jeder Fehlausrichtung bricht das Bild auf unheimliche Weise zusammen. Durch das vollständige und korrekte Zeichnen eines texturierten Würfels wird die gesamte Pipeline von den Modelldaten bis zu den Bildschirmpixeln validiert und eine Reihe der häufigsten Fallstricke beseitigt, bevor später wirklich komplexe Modelle gerendert werden.</p>
+<h2>Weniger Umwege im KI-Entwicklungsprozess</h2>
+<p>An diesem Tag wurde auch der Entwicklungsprozess hinter „wie die KI das alles aufbaut“ erheblich rationalisiert. Bisher war der interne Prozess für eine Änderung umfangreich: zwei separate Überprüfungsschritte, wobei kleine Änderungen zwischen verschiedenen Vorlagen verzweigt waren. An diesem Tag wurden die doppelten Rezensionen zu einem einzigen einheitlichen Artefakt zusammengeführt, kleine Änderungen auf einen einfacheren Schnellpfad zusammengefasst und eine überflüssige Übergabe entfernt. Das Ergebnis: Die gleiche Änderung erfordert weitaus weniger Umwege durch den gesamten Prozess, kleine Dinge, die schnell gehen sollten, werden wirklich beschleunigt, während striktes Gatekeeping nicht verloren geht. Für Benutzer unsichtbar, entscheidet diese Linie direkt darüber, wie schnell das Team (und die zunehmend KI-gesteuerte Entwicklung) kontinuierlich produzieren kann – die Glättung des „Fließbandes, das Dinge herstellt“ ist genauso wichtig wie das Polieren des Produkts.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>An diesem Tag gab es keine oberflächliche Funktion zum Hinzufügen einer Schaltfläche; Alle drei Produktlinien haben die am wenigsten schmeichelhafte, aber dennoch wesentlichste Arbeit geleistet: das Backend so umzuschreiben, dass es Unfällen standhält, das Rendering voranzutreiben, um echtes Licht zu simulieren, und den Entwicklungsprozess selbst so umzugestalten, dass er schärfer ist. Gemeinsam beantworten sie eine Frage: Kann dieses Ding einer langfristigen, ernsthaften Nutzung tatsächlich standhalten? Mit der Wiederherstellung nach einem Absturz ist die Übergabe der Arbeit an das Backend nicht mehr nervenaufreibend; Wenn die physikalische Beleuchtung eingeschaltet ist, ist die Engine wirklich auf dem Weg, „gut aussehende Spiele zu machen“; Mit einem schlankeren Prozess kann diese rasante Entwicklung weitergehen. Das frühzeitige Neugießen des Fundaments dient dazu, später höher und sicherer darauf aufbauen zu können – und das ist die Linie, die dieser Tag für zukünftige Entwicklungen vorgibt.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

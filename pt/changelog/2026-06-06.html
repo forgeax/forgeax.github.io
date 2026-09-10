@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-06 · Arraste um modelo e ele se tornará uma cena — ForgeaX</title>
+<meta name="description" content="Importe um modelo 3D e ele se expandirá para uma cena editável com hierarquia, luzes e câmeras intactas; o encaixe de múltiplas janelas do editor foi reformulado para uma arquitetura plana e estável; o céu HDR retorna; e um canal de shader para terrenos de transformação por instância." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-06 · Arraste um modelo e ele se tornará uma cena — ForgeaX" />
+<meta property="og:description" content="Importe um modelo 3D e ele se expandirá para uma cena editável com hierarquia, luzes e câmeras intactas; o encaixe de múltiplas janelas do editor foi reformulado para uma arquitetura plana e estável; o céu HDR retorna; e um canal de shader para terrenos de transformação por instância." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-06.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-06.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/" data-nav="/">Início</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-06.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-06.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-06.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-06.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-06.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-06.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-06.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-06.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Atualização</span><span>2026-06-06</span></div>
+    <h1>Arraste um modelo e ele se tornará uma cena</h1>
+    <p class="standfirst">Hoje o editor aprendeu algo muito prático: arraste um modelo 3D para o painel de ativos e ele se expande automaticamente para uma cena editável — a hierarquia de nós do modelo, luzes e câmeras restauradas intactas. Paralelamente, o sistema de encaixe multi-janela do editor passou por uma revisão completa para que os painéis separados não se comportem mais mal, o céu HDR antes preto foi corrigido e as bases foram estabelecidas para colocar muitas cópias do mesmo modelo de forma eficiente.</p>
+    <div class="prose"><h2>Conectando “ativos de fora” à “edição interna”</h2>
+<p>Depois que o editor encerrou os dias anteriores, o que esse dia acrescentou foi o que mais merecia e que ainda faltava: trazer recursos feitos de fora. Por mais poderosa que seja uma ferramenta de criação, se ela só puder usar o que ela mesma gera, a biblioteca de ativos do criador ficará trancada em um pequeno círculo; a verdadeira abertura é ser capaz de extrair modelos e texturas feitas em qualquer lugar e continuar usando-as. O dia tinha apenas uma linha principal, mas de peso – deixar o editor “ingerir” um arquivo de modelo 3D padrão e transformá-lo em uma cena que você pode continuar organizando. Em torno dele, o back-end abriu alguns novos pontos de entrada e o front-end adicionou um menu de importação, enquanto o mesmo dia também eliminou uma pilha de instabilidade acumulada nas operações de múltiplas janelas do editor de uma só vez e corrigiu uma exibição do céu antes quebrada. Em uma palavra: este dia abriu “ativos podem entrar” e tornou o próprio editor “estável para uso”.</p>
+<h2>Arraste um modelo e ele se tornará uma cena</h2>
+<p>A principal capacidade do dia: arraste um arquivo de modelo 3D para o painel de ativos e ele será automaticamente dividido em uma cena editável. A dor anterior era concreta – um arquivo de modelo padrão não é uma bolha isolada de geometria; dentro dele geralmente carrega uma estrutura completa: uma hierarquia pai-filho de nó, submalhas individuais, luzes anexadas e até câmeras predefinidas; mas na importação essas estruturas muitas vezes eram todas perdidas, deixando-o como um único pedaço opaco e imóvel. A abordagem agora: o backend executa a análise do modelo sob demanda e traduz fielmente a árvore de nós internos do modelo naquela cena &quot;orientada por documento&quot; - qualquer que seja a hierarquia, luzes e câmeras que o modelo mantenha, a cena restaura os objetos correspondentes, um para um, selecionáveis ​​e editáveis ​​individualmente. Um menu suspenso de importação foi adicionado à superfície de edição para formatos comuns de modelo, textura e pacote de cena; o back-end abriu três etapas – upload de ativos binários, análise do modelo sob demanda e divisão da árvore de nós em um documento de cena – para conectar o caminho, e o painel de ativos é atualizado automaticamente após a importação, sem recarga manual. Para os criadores, isso significa que uma cena inteira ou um personagem manipulado que você esculpiu externamente pode ser arrastado, organizado e ajustado imediatamente, em vez de ser reconstruído do zero.</p>
+<h2>A remoção de painéis não funciona mais mal: uma revisão do encaixe</h2>
+<p>Este dia deu ao painel do editor uma revisão completa, limpando de uma só vez uma pilha acumulada de comportamento &quot;defeituoso&quot;. A dor anterior: as operações em múltiplas janelas estavam cheias de armadilhas – arrastar um painel como o inspetor para sua própria janela do sistema operacional e, em seguida, fechar essa janela ou desfazer/refazer em um painel desconectado, tudo poderia falhar, desalinhar ou até mesmo congelar. A causa raiz foi a estrutura interna profundamente aninhada do encaixe, com estado difícil de rastrear. Este dia mudou para uma “estrutura plana”: a visualização e a edição foram promovidas para painéis independentes de nível superior, e o nivelamento da hierarquia tornou o comportamento previsível. Nessa nova estrutura, uma série de bugs específicos foram corrigidos um por um: arrastar um painel para um espaço vazio o coloca em sua própria janela, em vez de flutuar vagamente dentro do aplicativo; quando uma janela independente é fechada, o painel interno retorna obedientemente à interface principal; e desfazer/refazer finalmente funciona em painéis separados. Visualmente, o destaque da guia azul um tanto áspero foi trocado por um tom escuro neutro e os nomes dos painéis foram organizados e unificados. O fluxo de trabalho de múltiplas janelas passou de “utilizável, mas estressante” para “genuinamente estável”.</p>
+<h2>O skybox retorna: importação de mapa de ambiente HDR corrigida</h2>
+<p>Há algum tempo, a cadeia responsável por carregar mapas de ambiente HDR quebrou por um tempo, com a consequência direta de que o céu nas cenas ficou preto por um tempo – a luz do céu e a atmosfera ambiente desapareceram. Este dia restaurou todo o caminho de importação e carregamento do mapa ambiental, para que o céu HDR seja renderizado corretamente novamente na edição e na reprodução. Vale a pena explicar por que isso é importante: um mapa de ambiente HDR não é apenas “desenhar um lindo cenário de céu”; é simultaneamente a fonte de iluminação para toda a cena - qual é a cor do céu, onde está claro e onde está escuro, incide naturalmente sobre cada objeto na cena e decide a luz e a sombra de toda a imagem, quente e fria. Assim, quando o céu escurece, o que se perde não é apenas o pano de fundo, mas a “atmosfera de luz” da cena. Restaurar esta cadeia reacende a “iluminação da alma” da cena. É também um lembrete: quanto mais uma cadeia fundamental afeta tudo a jusante, mais ela precisa de proteção contra regressão, para que não se quebre novamente sem que ninguém perceba imediatamente.</p>
+<h2>Estabelecendo bases para &quot;colocar muitas cópias de um modelo&quot;</h2>
+<p>O mecanismo também melhorou o desempenho naquele dia: conectando vários shaders a um canal dedicado de “transformação por instância”. O que isto significa? Muitas cenas do jogo apresentam forte repetição do mesmo modelo – centenas de árvores em uma floresta, fileiras de tijolos em uma parede, uma multidão de inimigos com formatos idênticos. A abordagem mais ingênua redesenha o modelo um por um, mas isso custa balões linearmente com a contagem e uma grande cena falha. A abordagem mais eficiente é a “instanciação”: o mesmo modelo é entregue à GPU apenas uma vez, anexado com uma lista da “posição, orientação e escala de cada cópia”, permitindo que a GPU desenhe centenas ou milhares de cópias em seus lugares em uma passagem. Este dia conectou vários shaders na cena a esse canal de dados por instância, alinhou o desenho de sombra com ele e adicionou proteção de regressão. Este é o tipo de trabalho oculto que os usuários não veem, mas que decide diretamente &quot;quão grande uma cena pode ser empilhada e quão suavemente ela funciona&quot; - não um recurso em si, mas a pré-condição que torna possíveis muitos recursos posteriores de &quot;cena grande&quot;.</p>
+<h2>O que este dia significa</h2>
+<p>Se os dias anteriores foram sobre “edificar o editor”, este dia foi sobre “fazer funcionar a sua água e energia e firmar os seus alicerces”. A capacidade de importação faz com que o editor não seja mais uma ilha que só pode usar seus próprios materiais, mas uma bancada aberta que pode receber recursos externos e continuar criando sobre eles – uma etapa que amplia enormemente a gama de materiais que os criadores podem usar. A revisão do encaixe tem outro tipo de valor: não adicionou nenhum recurso novo, simplesmente polindo o que existia de &quot;utilizável, mas muitas vezes problemático&quot; para &quot;sólido em uso&quot;, e essa solidez é exatamente a base sobre a qual uma ferramenta profissional ganha confiança a longo prazo. Com o retorno da iluminação do céu e a base para a renderização instanciada, este dia empurrou as quatro facetas de “entrada, estabilidade, visual, desempenho” do editor um degrau ao mesmo tempo. Isso nos lembra: uma ferramenta amadurece tanto pelo crescimento contínuo de novos recursos quanto pelo retorno contínuo aos antigos e à verdadeira confiabilidade – nada dispensável.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

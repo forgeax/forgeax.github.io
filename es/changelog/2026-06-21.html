@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-21 · El 3D generado se manipula y anima + control de calidad del editor automatizado — ForgeaX</title>
+<meta name="description" content="La generación 3D se vuelve autoservicio de extremo a extremo: configure claves, genere vistas múltiples, auto-rig y seleccione animaciones desde un navegador, todo en el complemento; el editor obtiene control de calidad automatizado de extremo a extremo, trabajo preliminar de mantenimiento de actividad y recuperación automática en caso de pérdida de dispositivos; el motor completa la propiedad simétrica de recursos de audio y GPU; y los juegos pasan a la carga alimentada por el host." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-21 · El 3D generado se manipula y anima + control de calidad del editor automatizado — ForgeaX" />
+<meta property="og:description" content="La generación 3D se vuelve autoservicio de extremo a extremo: configure claves, genere vistas múltiples, auto-rig y seleccione animaciones desde un navegador, todo en el complemento; el editor obtiene control de calidad automatizado de extremo a extremo, trabajo preliminar de mantenimiento de actividad y recuperación automática en caso de pérdida de dispositivos; el motor completa la propiedad simétrica de recursos de audio y GPU; y los juegos pasan a la carga alimentada por el host." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-21.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-21.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-21.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-21.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-21.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-21.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-21.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-21.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-21.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-21.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-21.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-21</span></div>
+    <h1>El 3D generado se manipula y anima + control de calidad del editor automatizado</h1>
+    <p class="standfirst">Este día, el banco de trabajo de generación 3D impulsó otro gran paso hacia el &quot;autoservicio de extremo a extremo&quot;: configurar claves, generar, manipular y seleccionar animaciones, todo en un solo flujo; el editor obtuvo control de calidad automatizado de extremo a extremo y trabajo preliminar de &quot;mantenimiento&quot; para que no se elimine cuando se cambia; el motor completó la recuperación simétrica de GPU y recursos de audio para que la reproducción prolongada ya no se estanque; y los juegos pasaron a un modelo de carga unificado más limpio.</p>
+    <div class="prose"><h2>Hacer que la capacidad sea más autónoma y que el funcionamiento sea más confiable</h2>
+<p>Este día tuvo dos líneas que se hicieron eco entre sí. Uno tiene que ver con la &quot;autonomía&quot;: convertir la generación 3D de una herramienta que debes observar y operar paso a paso en una tubería que ejecuta &quot;generar → rig → animar&quot; de una sola vez, con teclas y modos configurables por el usuario en el complemento. La otra tiene que ver con la &quot;confiabilidad&quot;: configurar un control de calidad automatizado para el editor, sentar las bases para mantener activo el funcionamiento integrado y establecer una regla simétrica de &quot;pedir prestado y devolver&quot; para la gestión de recursos del motor. El primero amplía &quot;lo que se puede hacer&quot;; este último garantiza &quot;si lo que se fabrica es estable y utilizable a largo plazo&quot;. Cuanto más quiere una herramienta que los usuarios le entreguen el trabajo para que se ejecute por sí sola, más debe invertir en confiabilidad: cuanto más autónoma sea la capacidad, mayor será la demanda de solidez subyacente. Este día empujó a ambos hacia adelante juntos.</p>
+<h2>La generación 3D se encarga de todo el trabajo: claves, generar, montar, animar.</h2>
+<p>El banco de trabajo de generación 3D impulsó otro gran paso hacia la utilización de un extremo a otro en la actualidad, con varias cosas juntas formando una tubería completa. En primer lugar, la generación cambió a un enfoque de vistas múltiples: guiando la generación desde varios ángulos para lograr una forma de modelo más estable y más precisa. En segundo lugar, puede configurar las claves para servicios de varias generaciones directamente en el complemento, con un interruptor maestro de &quot;modo real&quot; que decide si llamar a un servicio y producir un modelo o probar primero el flujo con marcadores de posición; La entrega de llaves y el cambio al usuario significa que todos pueden usar su propia cuota a su propio ritmo. En tercer lugar, y lo más importante: rigging más animación. Un modelo recién generado es sólo un caparazón estático; Para hacer que se mueva, primero se le coloca un esqueleto (aparejo) y luego se le aplican movimientos concretos a ese esqueleto. Ambos pasos ahora se pueden realizar en el banco de trabajo: la manipulación puede ser automática y los movimientos se seleccionan ya preparados desde un &quot;explorador de movimientos&quot; integrado. Al unirlos, &quot;generar un personaje a partir de una oración → darle un esqueleto → hacer que se mueva&quot; se puede hacer de un extremo a otro en un banco de trabajo por primera vez, sin exportar el modelo y sin tener que preocuparse por otras herramientas profesionales. Para los creadores sin habilidades de modelado o animación, este canal comprime lo que solía tomar varios programas profesionales y varias etapas en unos pocos clics en un solo panel.</p>
+<h2>Editor automatizado QA + no se elimina al cambiar</h2>
+<p>Este día configuró una verificación de estado automatizada de un extremo a otro para el editor. Específicamente, un conjunto de pruebas de humo ejecuta automáticamente varios tipos diferentes de juegos de muestra (los de código puro, los que tienen paquetes de escenas y los que toman la ruta alternativa en un entorno de escritorio), lo que confirma que cada uno se carga correctamente tanto en la edición como en la reproducción sin retroceder. El valor: la plataforma ve muchos cambios todos los días, cualquiera de los cuales podría dañar inadvertidamente un juego existente; Con esta verificación automatizada, la máquina verifica todas estas muestras antes de que se fusione un cambio, manteniendo las regresiones de &quot;cambio A roto B&quot; en la puerta. Mientras tanto, el editor incrustado se fortaleció, con el trabajo preliminar preparado para &quot;mantener vivo&quot;: el editor se ejecuta dentro de una página incrustada, y cuando cambia entre pestañas o hosts, el navegador a veces recupera silenciosamente el temporalmente invisible, por lo que al regresar su sesión en ejecución ya está muerta. El trabajo preliminar de endurecimiento y mantenimiento de vida de este día es precisamente para evitar que dichos cambios interrumpan su trabajo en progreso. Debajo, se incorporó al motor la &quot;recuperación automática después de que un dispositivo gráfico se cae inesperadamente&quot;, por lo que estos accidentes de bajo nivel interrumpen menos la creación.</p>
+<h2>Recuperación simétrica de recursos: no más fugas silenciosas de audio y GPU</h2>
+<p>El motor estableció una regla simétrica de &quot;pedir prestado, devolver&quot; para la gestión de recursos este día, marcando el cierre de toda una capa de base subyacente. Simétrico significa que cada operación de &quot;solicitar un recurso&quot; debe tener una operación de &quot;liberar el recurso&quot; explícita y coincidente: los recursos de GPU (texturas, búferes y similares) obtuvieron un conjunto completo de primitivas de liberación para que se recuperen limpiamente cuando terminen; Los recursos de audio también obtuvieron recuperación determinista, limpiados exactamente cuando deberían hacerlo en lugar de por suerte en la recolección de basura. ¿Por qué esto importa tanto? Porque un juego puede durar mucho tiempo, creando y descartando recursos constantemente; Si se &quot;solicita&quot; algo pero nadie es responsable de &quot;liberarlo&quot;, estos recursos no utilizados se acumulan silenciosamente en la memoria de video y audio, acumulándose hasta que el juego se vuelve más lento y finalmente falla. Esta &quot;fuga silenciosa&quot; es la causa de muerte más insidiosa y difícil de diagnosticar de escenas grandes y sesiones largas, porque no produce errores en el uso normal y solo estalla después de ejecutarse durante un tiempo suficiente. Hacer que los ciclos de vida de los recursos sean estrictamente simétricos y deterministamente recuperables institucionalmente elimina esta clase de fuga. Este día también marcó formalmente toda esta capa fundamental de la hoja de ruta del motor como completa, lo que significa que la gobernanza de recursos de bajo nivel del motor alcanzó un hito y se pueden construir con confianza cosas más complejas sobre él.</p>
+<h2>Los juegos pasan a un modelo de carga unificado más limpio</h2>
+<p>Este día también arregló el enfoque de carga de los juegos de muestra, unificándolos en un modelo más limpio. Anteriormente, cada juego tenía su propia forma de &quot;cargar sus propios recursos de escena&quot;: algunos buscaban, analizaban y mantenían su propio catálogo, con una lógica dispersa y propensa a divergir. Este día los cambió para que sean alimentados uniformemente por el &quot;anfitrión&quot;: un juego ya no organiza su propia carga, sino que el entorno de ejecución que lo lleva prepara los recursos de la escena y los entrega directamente. Los archivos de recursos de escena de cada juego también se movieron a una ubicación unificada que se puede descubrir automáticamente mediante escaneo. Dichos cambios son completamente invisibles para los usuarios, pero eliminan la duplicación y divergencia de &quot;una lógica de carga por juego&quot;, poniendo todos los juegos en la misma ruta de carga. El beneficio es doble: las mejoras posteriores relacionadas con la carga deben realizarse en un solo lugar para beneficiar a todos los juegos, sin necesidad de realizar adaptaciones por juego; y los problemas son más fáciles de diagnosticar: con todos en el mismo camino, un problema técnico significa verificar solo ese camino. La convergencia de enfoques dispersos en un camino unificado es exactamente la condición previa para que toda la biblioteca de juegos se mantenga y evolucione de manera consistente.</p>
+<h2>que significa este dia</h2>
+<p>Este día encarna dos fuerzas que avanzan juntas a medida que madura una plataforma de creación de IA: una que hace que la capacidad sea más &quot;autónoma&quot;: la generación 3D pasa de ser una herramienta que requiere operación humana paso a paso a una tubería que ejecuta todo el curso de &quot;generar, equipar, animar&quot; por sí solo, con los usuarios controlando sus propias claves y modos; el otro hace que el sistema sea más &quot;confiable&quot;: configurar un control de calidad automatizado para el editor, mantener vivo para la ejecución integrada, recuperación simétrica de los recursos del motor y una ruta de carga unificada para los juegos. Estas dos fuerzas parecen una de avance y otra de guardia, pero son complementarias: precisamente porque el control de calidad automatizado y la sólida gobernanza de recursos lo respaldan, se pueden entregar cada vez más pasos a la IA para que los realice de forma autónoma; y cuantas más medidas se adopten, más indispensables se volverán estas salvaguardias subyacentes. Un sistema automatizado verdaderamente confiable nunca es &quot;dejar ir e ignorar&quot;, sino &quot;tejer la red apretada antes de soltarlo&quot;. Ese día ambos tejieron esa red con más fuerza y ​​entregaron más con confianza.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

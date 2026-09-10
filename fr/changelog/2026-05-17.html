@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-17 · 3D en ligne et aperçu d'image + pilules @-mention — ForgeaX</title>
+<meta name="description" content="@-mentionnez les agents pour leur parler directement, voyez le bus partout dans l'interface utilisateur, prévisualisez les modèles et les images en ligne avec les pilules de mention, et une vague de consolidations de moteur : MeshRenderer unifié + gestion des matériaux, readPixels, inversion des dépendances de la console." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-17 · 3D en ligne et aperçu d'image + pilules @-mention — ForgeaX" />
+<meta property="og:description" content="@-mentionnez les agents pour leur parler directement, voyez le bus partout dans l'interface utilisateur, prévisualisez les modèles et les images en ligne avec les pilules de mention, et une vague de consolidations de moteur : MeshRenderer unifié + gestion des matériaux, readPixels, inversion des dépendances de la console." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-05-17.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-17.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-17.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-17.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-17.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-17.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-17.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-17.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-17.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-05-17.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-05-17.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-05-17</span></div>
+    <h1>3D en ligne et aperçu d'image + pilules @-mention</h1>
+    <p class="standfirst">Cette journée a fait passer la « collaboration multi-agents » de l&#39;arrière-plan à la vue de tous : vous pouvez @ un agent pour lui parler directement, l&#39;état des capacités est affiché sur toute l&#39;interface et les actifs sont prévisualisés en ligne dans le chat et sont présentés comme pilules de référence. Le moteur a effectué un gros lot de consolidations en parallèle : un moteur de rendu de maillage unifié, une capture unifiée, une inversion des dépendances de la console et un ensemble complet d&#39;exemples de didacticiels de rendu.</p>
+    <div class="prose"><h2>Rendre la collaboration visible et cliquable</h2>
+<p>Auparavant, la plate-forme offrait la possibilité de « plusieurs agents s&#39;exécutant longtemps en arrière-plan + un bus d&#39;événements », mais tout cela était encore caché à l&#39;intérieur du système. La ligne directe de ce jour a poussé cette fonctionnalité pleinement au premier plan de l&#39;interface : vous pouvez non seulement voir le trafic entre les agents dans le bus, mais également @ un agent spécifique par son nom, prévisualiser les actifs en place et introduire des objets dans la conversation comme pilules de référence. En d’autres termes, ce que cette journée a ajouté n’est pas une fonctionnalité isolée mais la couche d’interaction qui fait d’une « équipe d’agents collaborant » quelque chose qu’une personne ordinaire peut réellement exploiter. Une fois que la complexité du backend est traduite en éléments d&#39;interface que vous pouvez lire et cliquer, le multi-agent passe de « techniquement fonctionnel » à « confortable à utiliser ».</p>
+<h2>@ un agent pour lui parler directement</h2>
+<p>La collaboration multi-agents a franchi une étape clé aujourd&#39;hui : vous pouvez @un agent spécifique par son nom dans la conversation afin qu&#39;il capte ce message et réponde, plutôt que de seulement parler au responsable et de le transmettre aux autres. Un panel d&#39;agents compagnon a été mis en ligne, présentant en un coup d&#39;œil quels membres font partie de « l&#39;équipe » actuelle et ce qui fait que chacun est occupé. Ce que cela change, c&#39;est le &quot;style de commandement&quot; de la collaboration : là où vous pouviez parler uniquement au chef de projet, vous pouvez désormais dépasser le responsable et vous adresser directement à l&#39;art de gérer les membres, ou à celui qui gère les niveaux. Pour le scénario principal « une personne dirigeant une équipe d&#39;IA », la communication nommée constitue le tournant décisif entre la « diffusion » et le « commandement précis » : vous pouvez enfin dire la bonne chose au bon membre.</p>
+<h2>Statut du bus réparti dans l&#39;interface utilisateur : état des capacités partout</h2>
+<p>S&#39;appuyant sur le câblage du bus dans l&#39;interface de la veille, cette journée a diffusé « quelles capacités existent dans le système et dans quelle mesure chacune est saine » dans tous les coins de l&#39;interface utilisateur. La barre supérieure comporte une rangée de voyants d&#39;état pour des catégories telles que les outils, les compétences et les agents, chacun affichant un nombre et une santé ; le panneau de discussion, la barre latérale et le panneau d&#39;administration du bus sont également parsemés de cette présentation &quot;petite lampe + compte + lien profond cliquable&quot;, où un clic permet d&#39;accéder au détail correspondant. Sa valeur est de transformer « qu&#39;est-ce que le système a actuellement et comment il va » en informations ambiantes — vous n&#39;allez pas les chercher ; un coup d&#39;œil sur l&#39;interface vous le dit. Pour un système doté de toujours plus de fonctionnalités, extensible par des plugins, cette visualisation omniprésente de l&#39;état de santé est essentielle pour toujours avoir une idée de « dans quel état il se trouve ».</p>
+<h2>Aperçu des actifs en ligne + pilules de référence dans le chat</h2>
+<p>Cette journée a également rendu les « atouts » visibles et référençables dans les conversations. Le chat peut prévisualiser les pièces jointes en place : collez une image et obtenez une vignette ; déposez un fichier de modèle et il s&#39;affiche sous la forme d&#39;un petit aperçu visible, sans le connecter au préalable à un jeu en cours d&#39;exécution pour voir à quoi il ressemble. Lorsqu’on parle d’un personnage ou d’une texture, les deux côtés voient la même chose concrète plutôt que d’imaginer la leur. Les &quot;pilules de référence&quot; associées vous permettent de taper @ dans le compositeur pour transformer un agent ou une ressource en une balise cliquable - en vous souvenant de ce que vous avez utilisé récemment, en affichant une info-bulle au survol, cliquable après l&#39;insertion. Ensemble, ceux-ci transforment « l&#39;apport d&#39;un actif dans la conversation » – ce qui signifiait autrefois copier de longs chemins et décrire avec des mots – en une action directe de glisser-cliquer.</p>
+<h2>Moteur : un moteur de rendu de maillage unifié + un gestionnaire de matériaux + une valeur de repli par défaut</h2>
+<p>Le moteur a réalisé aujourd’hui d’importantes convergences au niveau des couches de rendu et de composants. Lors du rendu, il s&#39;est unifié en un seul moteur de rendu de maillage qui référence les matériaux par une « poignée de matériau » — c&#39;est-à-dire que la façon dont un objet est dessiné est uniformément décrite par « un maillage plus une poignée pointant vers un matériau », à la fois clair et facile à réutiliser un matériau sur plusieurs objets. Sur les composants, &quot;créer une entité&quot; et &quot;ajouter un composant&quot; ont obtenu une chaîne de repli de valeur par défaut : lorsque vous ne définissez pas explicitement un champ, le système parcourt des règles en couches pour trouver une valeur par défaut raisonnable plutôt que de commettre une erreur ou de la laisser vide. Cela signifie que l&#39;écriture du contenu du jeu peut consister à « écrire uniquement les parties qui vous intéressent, laisser le reste aux valeurs par défaut raisonnables », réduisant ainsi considérablement le passe-partout et la surface d&#39;erreur. Une telle convergence n&#39;est pas une fonctionnalité nouvelle, mais la clé pour que le moteur reste « à faible surprise et prévisible » à mesure que de plus en plus de personnes (et d&#39;IA) l&#39;utilisent.</p>
+<h2>Moteur : capture unifiée + inversion des dépendances de la console + exemples de didacticiels</h2>
+<p>Le moteur a également nettoyé plusieurs points de « duplication » et de « couplage » ce jour-là. Premièrement : la logique de « capture d&#39;écran », autrefois dispersée sur plusieurs exemples, chacun sa propre copie, a été unifiée en une capacité de rendu standard — une implémentation utilisable partout, réduisant la duplication et rendant la vérification visuelle plus cohérente. Deuxièmement : le canal de débogage &quot;console&quot; a obtenu une inversion de dépendances - il ne dépend plus directement de modules internes concrets mais fonctionne via une interface abstraite, les découplant - permettant à la console d&#39;évoluer de manière plus indépendante et aux plugins de se connecter de manière uniforme. Trois : un ensemble complet d&#39;exemples de didacticiels de rendu progressif (du triangle et des textures les plus élémentaires à la gestion des entrées), et des fonctionnalités communes telles que les images, les textures et les entrées ont été internalisées dans le moteur lui-même. Ces exemples constituent à la fois une documentation vivante des capacités du moteur et le meilleur point d&#39;entrée pour les nouveaux arrivants (et l&#39;IA) pour apprendre à l&#39;utiliser.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>Les deux lignes du jour — une collaboration multi-agents entièrement « révélatrice » dans l&#39;interface et un rendu et des composants fortement « convergents » dans le moteur — semblent sans rapport, mais partagent un objectif commun : garder un système qui se complique rapidement et clair pour les gens. Du côté de l&#39;interface, les @-mentions, les voyants de santé des capacités, l&#39;aperçu des actifs et les pilules de référence transforment ensemble « diriger une équipe d&#39;IA » d&#39;abstrait à concrètement exploitable ; Du côté du moteur, le moteur de rendu unifié, la capture unifiée, l&#39;inversion des dépendances et les exemples de didacticiels empêchent le niveau bas de devenir plus compliqué à mesure que les fonctionnalités gonflent. Un système qui peut évoluer à long terme doit à la fois développer ses capacités vers l’extérieur et maintenir l’ordre à l’intérieur – et cette journée a fait exactement les deux à la fois.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

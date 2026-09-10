@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-15 · A interface do chat cresce: layout redimensionável, chamadas de ferramentas aninhadas, cartões de subagentes — ForgeaX</title>
+<meta name="description" content="A UI do bate-papo amadurece (layout redimensionável, chamadas de ferramentas aninhadas, cartões de subagente, transmissão/reprodução unificada), enquanto o back-end estabelece uma base de tempo de execução do plug-in – barramento de eventos, permissões, API de arquivo em área restrita – e o mecanismo estende seu vocabulário de componentes." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-15 · A interface do chat cresce: layout redimensionável, chamadas de ferramentas aninhadas, cartões de subagentes — ForgeaX" />
+<meta property="og:description" content="A UI do bate-papo amadurece (layout redimensionável, chamadas de ferramentas aninhadas, cartões de subagente, transmissão/reprodução unificada), enquanto o back-end estabelece uma base de tempo de execução do plug-in – barramento de eventos, permissões, API de arquivo em área restrita – e o mecanismo estende seu vocabulário de componentes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-05-15.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-15.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-15.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/" data-nav="/">Início</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-15.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-15.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-15.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-15.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-15.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-15.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-15.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-05-15.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Atualização</span><span>2026-05-15</span></div>
+    <h1>A interface do chat cresce: layout redimensionável, chamadas de ferramentas aninhadas, cartões de subagentes</h1>
+    <p class="standfirst">Duas linhas diretas hoje: a interface cresceu – layout redimensionável, chamadas de ferramentas aninhadas em suas tarefas, subagentes com seus próprios cartões, live e replay unificados em um pipeline; e o back-end silenciosamente lançou uma grande base - um tempo de execução de plug-in (barramento de eventos, mecanismo de permissão, API de arquivo em área restrita, manifestos de plug-in) para preparar o caminho para &quot;qualquer recurso pode ser conectado&quot;. O motor também ampliou seu vocabulário de componentes e introduziu recursos de cena.</p>
+    <div class="prose"><h2>Um visível, outro silencioso: a IU cresce enquanto o back-end cria uma base</h2>
+<p>O trabalho do dia se dividiu em uma metade visível e outra invisível. A metade visível: a interface de bate-papo amadureceu um pouco - é isso que os usuários enfrentam todos os dias, onde cada progresso aparece imediatamente. A metade invisível: o backend lançou silenciosamente uma base de longo alcance, um tempo de execução que permite que “capacidades de terceiros sejam instaladas com segurança como um plugin”. Este último não forneceu quase nada que um usuário pudesse perceber naquele dia, mas decide se a plataforma pode crescer de “um aplicativo com recursos codificados” para “uma plataforma que pode ser estendida indefinidamente, até mesmo desenvolvida pelos usuários”. Vistos no mesmo dia, os dois representam um equilíbrio: continuar aprimorando a experiência em questão enquanto aposta na extensibilidade de longo prazo.</p>
+<h2>O bate-papo amadurece: layout redimensionável + chamadas de ferramentas aninhadas em suas tarefas</h2>
+<p>O progresso da interface neste dia centrou-se em “organizar as informações de forma mais clara”. Um: a barra lateral, a área de bate-papo e o painel inferior são redimensionáveis, para que você possa alocar espaço na tela para tudo o que estiver fazendo - restrinja o bate-papo ao ler o código, aumente a parte inferior ao observar a saída. Dois, e mais importante: as chamadas de ferramentas agora estão aninhadas no item de tarefa ao qual pertencem, em vez de se espalharem em uma longa lista plana. Quando um agente executa uma tarefa de várias etapas, você pode ver claramente “quais ferramentas ele chamou para concluir esta etapa”, com a hierarquia óbvia à primeira vista. O que as longas conversas e as tarefas de várias etapas mais temem é a confusão de informações em uma massa que esconde o progresso; essas duas mudanças tornam real &quot;ver claramente quem está fazendo o quê e até que ponto&quot;.</p>
+<h2>Subagentes recebem seus próprios cartões</h2>
+<p>À medida que a colaboração multiagente se tornou comum, “um agente líder delegando a vários subagentes” tornou-se um cenário cotidiano. Este dia deu à atividade dos subagentes sua própria apresentação de cartão: as subtarefas não se misturam mais ao fluxo de texto da conversa principal, mas cada uma recebe um cartão dobrável com seu próprio contexto. Isso torna instantaneamente distinguível “quem está trabalhando para quem e como cada um está progredindo”. Para uma plataforma que trata “uma pessoa dirigindo uma equipe de IAs” como cenário central, essa forma de “dar ao trabalho de cada membro seu próprio lugar” é essencial — caso contrário, à medida que a equipe cresce, a tela se torna um guisado ilegível. O cartão de subagente é o primeiro passo para transformar o “multiagente” abstrato em uma imagem que seus olhos possam ler diretamente.</p>
+<h2>Live e replay unificados em um pipeline</h2>
+<p>Antes disso, “assistir ao agente ao vivo” e “repetir a história depois” eram provavelmente dois caminhos de renderização separados – portanto, para o mesmo conteúdo, o que você via ao vivo e o que era reproduzido muitas vezes discordavam em detalhes. Este dia os unificou em um pipeline que compartilha os mesmos retornos de chamada de processamento: quer o conteúdo esteja sendo transmitido ao vivo ou reproduzido no registro histórico, ele percorre exatamente o mesmo caminho de análise e apresentação. O significado é a consistência: reabra um trecho da história e você verá exatamente o que realmente aconteceu, sem nenhum detalhe distorcido. Esse design de &quot;caminho de fonte única da verdade&quot; remove o fardo de manter duas lógicas e elimina na raiz a classe mais confusa de bug - &quot;discordância ao vivo e de repetição&quot;.</p>
+<h2>Uma base de tempo de execução de plug-in de back-end: barramento, permissões, sandbox</h2>
+<p>O trabalho mais pesado do back-end neste dia estava começando a lançar uma base de tempo de execução de plug-in, com o objetivo de permitir que “capacidades de terceiros fossem instaladas com segurança e executadas como um plug-in”. Ele é feito de partes em malha: um barramento de eventos em processo para que os componentes se comuniquem livremente por meio de publicação/assinatura; análise e validação de manifestos de plugins, com anti-falsificação no &quot;escopo&quot; declarado por um manifesto (para que um plugin não possa mentir sobre suas permissões); um mecanismo de permissão que restringe por regras o que cada plugin pode ou não tocar; uma API de arquivo em área restrita com bloqueios de arquivo cooperativos para que a leitura e a gravação de vários plug-ins não corrompam uns aos outros; além de um registro de arquivo somente anexado registrando o que aconteceu. Todo esse conjunto não enviou quase nada voltado ao usuário naquele dia, mas é o verdadeiro ponto de partida da direção de longo prazo &quot;tudo é um plug-in&quot; - com ele, novas ferramentas, novos ambientes de trabalho ou novos agentes podem posteriormente ser conectados de forma unificada, controlada e em área restrita, sem reescrever o núcleo para cada adição.</p>
+<h2>Motor: um vocabulário de componentes estendido + recursos de cena</h2>
+<p>O motor continuou expandindo o &quot;vocabulário&quot; com o qual descreve o mundo do jogo. O sistema de componentes ganhou suporte para formatos de dados como strings e arrays de comprimento fixo/variável, e um componente de &quot;nome&quot; integrado - para que cada objeto em uma cena possa ter um nome legível em vez de apenas um número interno, muito mais conveniente para depuração e visualização posterior em um editor. Mais importante ainda, foram introduzidos “ativos de cena”: gerenciar uma cena inteira como um objeto de ativo referenciável e instanciável, com um mecanismo para instanciar uma cena no mundo. Isso significa que as cenas agora podem ser salvas, referenciadas e reutilizadas estruturalmente, assim como modelos e texturas - a pré-condição subjacente para todas as habilidades posteriores, como &quot;construir cenas em um editor, montar cenas em níveis&quot;.</p>
+<h2>Uma porta de qualidade do motor: verificação de dois canais</h2>
+<p>O mecanismo também abriu um portão de qualidade de dois canais neste dia, verificando automaticamente a qualidade do código de dois ângulos complementares: um canal faz verificações convencionais de estilo e convenção, o outro observa especificamente o limite de uso de &quot;interfaces internas&quot; - garantindo que coisas destinadas apenas ao uso interno não sejam involuntariamente expostas como públicas. Ambos os canais são executados em integração contínua, automaticamente a cada commit. Seu valor está de acordo com o benchmark de renderização anterior: transformar &quot;a qualidade do código está correta&quot; da revisão humana e da autodisciplina em uma porta automática, objetiva e inevitável. Um mecanismo destinado a evoluir a longo prazo e enfrentar cada vez mais colaboradores depende de portão após portão automático para iterar rapidamente sem apodrecer lentamente.</p>
+<h2>O que este dia significa</h2>
+<p>As duas linhas do dia representam exatamente os dois extremos que um produto maduro deve ter ao mesmo tempo: um é a sensação atual do usuário, o outro é o esqueleto de longo prazo da plataforma. O amadurecimento da interface de bate-papo torna-a mais confortável de usar agora, enquanto o tempo de execução quase invisível do plug-in do back-end planta a semente para “se esta plataforma pode ser estendida sem limites posteriormente”. Cuidar do presente e investir no longo prazo no mesmo dia exige uma clara divisão de trabalho e um julgamento sobre prioridades – que são experiências que devem dar frutos imediatamente e que são alicerces que vale a pena estabelecer solidamente, mesmo que de forma mais lenta. Essa é uma experiência que vale a pena deixar para o desenvolvimento futuro: não acumule apenas características visíveis e não se enterre apenas em fundações invisíveis; o que é realmente difícil é não enganar nenhum dos dois.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

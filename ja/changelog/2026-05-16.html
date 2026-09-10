@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-16 · エージェント バスが UI + ダッシュボード フィルターに追加される — ForgeaX</title>
+<meta name="description" content="エージェント間のイベント バスは可視化され、ダッシュボードにはフィルターと検索が追加され、エンジンは標準の glTF モデルを読み込むことができ、ECS はそのデータ ボキャブラリーを 1 つのタイプ セーフ ファミリに統合します。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-16 · エージェント バスが UI + ダッシュボード フィルターに追加される — ForgeaX" />
+<meta property="og:description" content="エージェント間のイベント バスは可視化され、ダッシュボードにはフィルターと検索が追加され、エンジンは標準の glTF モデルを読み込むことができ、ECS はそのデータ ボキャブラリーを 1 つのタイプ セーフ ファミリに統合します。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-16.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-16.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-16.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-16.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-16.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-16.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-16.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-16.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-16.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-16.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-16</span></div>
+    <h1>エージェント バスが UI + ダッシュボード フィルターに追加される</h1>
+    <p class="standfirst">前日にバックエンドが流し込んだイベント バスがこの日表面化しました。バス エージェントが相互に会話するために使用するイベント バスが初めて目に見えるエントリ ポイントを獲得し、ダッシュボードにフィルタリングと検索が追加されました。一方、エンジンは標準 3D モデルをロードする方法を学習し、コンポーネント システムのデータ語彙を 1 つの統合されたタイプセーフ ファミリに統合しました。</p>
+    <div class="prose"><h2>目に見えない機械を見える化する</h2>
+<p>バックエンドが前日に静かに流し込んだプラグイン ランタイムとイベント バスは、それ自体「目に見えない」ものであり、バックグラウンドで実行され、ユーザーには認識されません。この日のテーマは、目に見えない機械をインターフェースに配線し、観察可能かつ操作可能にすることでした。システムが「バスを介して通信する複数のエージェント」のような内部アクティビティを開始すると、それをすべてバックグラウンドで隠すと、ユーザーと開発者は「実際に何をしているのか」というブラックボックスの不安に陥ります。したがって、この日の作業は明確でした。バスの窓を開け、タスク リストにフィルタリングを追加し、システム内で何が起こっているのかを人々に実際に確認してもらいました。可観測性はあれば便利というわけではありません。これは、複雑なシステムが信頼され、デバッグされるための前提条件です。</p>
+<h2>目に見えるエージェントバス</h2>
+<p>この日は、イベント バス エージェントが通信に使用するインターフェイスを接続しました。サイドバーに「バス健全性ランプ」が表示され、現在のプラグイン数が表示されるため、ロードされている機能の数と状態が健全であるかどうかが一目でわかります。また、専用のバス管理パネルがトップレベルのエントリに昇格され、イベントの種類を参照したり、キーボードで上下に移動したり、レコードを詳細に展開したり、レコードからサイドバー内の一致するイベント カテゴリに直接ディープリンクしたりすることができます。このすべての重要な点は、マルチエージェントのコラボレーションが初めて「可視化」されたことです。誰が誰と話しているのか、何が渡されているのか、各イベントの種類がどれだけあるのかが明確にレイアウトされ、推測することしかできないバックグラウンド アクティビティの塊ではなくなりました。 「エージェントのチームが協力する」ことで長期的に機能するプラットフォームにとって、このウィンドウは、抽象的なコラボレーションを、理解して介入できる具体的なイメージに変えるための重要なステップとなります。</p>
+<h2>ダッシュボード: ステータスの配信、フィルタリング、検索</h2>
+<p>より多くのタスクを一度に実行するようになると、フラットなリストだけでは十分ではなくなりました。この日は、ダッシュボードにいくつかの実用的なツールが追加されました。実行リストの上部に「ステータス分布ストリップ」が追加されたため、実行中の数、完了した数、またはエラーが発生した数の全体像が一目でわかります。また、タスク リストはステータスによるフィルタリングとタイトルによる検索をサポートしているため、膨大な履歴の中から関心のあるものをすぐに見つけることができます。これらは地味な機能ですが、実際に一度に数十のタスクを管理する場合、「一目で全体を把握する」か「長いリストから針を探す」かが決まります。問題の優先順位付けと履歴のレビューという 2 つの高頻度の操作をスムーズにすることは、本質的にはユーザーの時間を尊重することです。システムが成長するにつれて、適切なフィルタリングと検索は生産性そのものになります。</p>
+<h2>エンジンは標準 3D モデル (glTF) をロードできます。</h2>
+<p>このエンジンはこの日、コンテンツ エコシステムにおいて重要な一歩を踏み出しました。標準 3D モデル形式 glTF のロードのサポートと、前日に立ち上げられたアセット システムを介したそれのロードです。 glTF は 3D コンテンツの一般的な交換形式であり、ほとんどのモデリング ツールとモデル マーケットプレイスでサポートされています。 glTF を直接取り込めるということは、それぞれを手作業で作り直すことなく、大量の既製 3D モデルを取り込んで使用できることを意味します。個別の読み込みロジックを起動するのではなく、それをアセット システムに接続することも重要です。インポートされたモデルには、自然に統一された ID と、構造化された方法で参照、管理、再利用できる方法が備わります。ユーザーにとって、これは「ゲームを作成するためのアセットはどこから来るのか」という本当の疑問に対する重要な答えです。AI がアセットを生成できるだけでなく、すでに世に出ている標準モデルをそのまま取り込むこともできます。</p>
+<h2>エンジンの ECS 語彙は 1 つのファミリーに収束します</h2>
+<p>この日、エンジンは低レベルで重要な「収束」を果たした。以前は、コンポーネント内のさまざまなデータ形式 (文字列、固定長/可変長配列、バッファー) にはそれぞれ独自の処理層とラッパー層があり、概念が分散していて、読むのが面倒でした。この日、それらすべてを 1 つの「管理対象リソース」ファミリーの下にまとめ、冗長なラッパー コードの山を削除しました。同時に、「エンティティの作成」も型レベルでより厳密になりました。より正確な型制約により、エンティティがどのコンポーネントとどのようなデータで構成されているかが記述され、コンパイル時のミスをブロックし、「強制型キャスト」によって行われた古いパッチを 1 つずつ削除し、それらの再発を阻止する永続的なチェックが行われます。この作業はユーザー側ではまったく目に見えませんが、コアとなるエンジニアリングのスタンスを体現しています。つまり、コードの品質の尺度は行数ではなく、「単一の箇所を理解するためにどれだけ多くの概念を保持する必要があるか」です。分散した語彙を 1 つのファミリーに集めることで、後でこのコードを読むすべての人 (AI を含む) の負荷がまさに軽減されます。</p>
+<h2>作業スタンス: 直接編集 + ローカル テストが入り口</h2>
+<p>この日は、エンジニアリング文化における作業スタンスも明確にしました。明確な変更については、すべてに重いプロセスを適用するのではなく、直接編集します。しかし同時に、「ローカル テストの合格」がゲートアラウンドなしのしきい値として設定されました。迅速に行動することはできますが、検証をスキップすることはできません。この 2 つは矛盾しているように見えますが、1 つのものの表裏であり、自動テストがセーフティ ネットであるため、直接編集することが無謀になることはありません。 「いつ重いプロセスを実行するか、いつ直接編集が問題ないのか」を明確にすること自体が効率を尊重することになります。単純な作業がプロセスによって遅くなったり、速度が品質のコントロールを失う言い訳になったりしないようにすることです。このペース感は、反復の速いチームが高速かつ安定した状態を長期的に維持するための目に見えない秘密です。</p>
+<h2>この日が意味するもの</h2>
+<p>総合すると、この日は「システムを人々に透明にする」日でした。バックエンドの複雑な内部機構がインターフェースに接続され、監視可能かつ操作可能になりました。このエンジンは膨大な標準モデルへの扉を開いたため、コンテンツ ソースはもはや制限されません。また、低レベルにより、語彙の収束によってコード自体がより読みやすく、信頼できるものになりました。表面的には、視覚化、モデルの読み込み、型の収束は 3 つの関連性のないものですが、これらは 1 つの目標を指しています。それは、このますます複雑化するシステムを、ユーザー、開発者、そして後でコードを読み取る AI にとって「理解しやすく信頼できる」状態に保つことです。システムがどこまで進化するかは、多くの場合、機能がどれだけ積み重なるかよりも、複雑化しても透明性を維持できるかどうかにかかっています。そしてこの日は、まさにその透明性への投資でした。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

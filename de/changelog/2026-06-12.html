@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-12 · Charaktere sind tatsächlich animiert + ein ruhigerer Chat — ForgeaX</title>
+<meta name="description" content="Manipulierte Charaktere spielen jetzt ihre Skelettanimation Ende für Ende ab; Es entsteht eine Pipeline zum Generieren, Rig und Animieren von Charakteren. Chat behebt Speicherlecks, ermöglicht das Tippen während des Streamings und zeigt interaktive Fragekarten an; Der Editor kann eigenständig mit streng validierten oberflächenübergreifenden Nachrichten ausgeführt werden. und ein Wissensbrowser kommt." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-12 · Charaktere sind tatsächlich animiert + ein ruhigerer Chat — ForgeaX" />
+<meta property="og:description" content="Manipulierte Charaktere spielen jetzt ihre Skelettanimation Ende für Ende ab; Es entsteht eine Pipeline zum Generieren, Rig und Animieren von Charakteren. Chat behebt Speicherlecks, ermöglicht das Tippen während des Streamings und zeigt interaktive Fragekarten an; Der Editor kann eigenständig mit streng validierten oberflächenübergreifenden Nachrichten ausgeführt werden. und ein Wissensbrowser kommt." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-06-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-12.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-12.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-12.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-06-12.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-12.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-06-12</span></div>
+    <h1>Charaktere sind tatsächlich animiert + ein ruhigerer Chat</h1>
+    <p class="standfirst">Dieser Tag war der Höhepunkt des Monats bei den Commits. Zum ersten Mal spielte ein manipulierter Charakter wirklich eine Animation; Die passende Zeichengenerierungspipeline wurde zu „Rig + Bewegung hinzufügen + Polygone reduzieren“ erweitert und „einen Charakter generieren → ihn bewegen“ in einer Zeile zusammengeführt. Der Chat verfügt über einen gezielten Memory-Leak-Pass, lässt Sie während des Streamings weiter tippen und kann eine anklickbare „Fragenkarte“ öffnen; Der Editor kann eigenständig mit streng zweiseitig validierten oberflächenübergreifenden Nachrichten ausgeführt werden. und die Überwachungskonsole erhielt eine durchsuchbare Wissensdatenbank.</p>
+    <div class="prose"><h2>Ein Spitzentag: Charaktere, Chat und Architektur treffen aufeinander</h2>
+<p>Dies war der entwicklungsreichste Tag des Monats, aber unter der Hektik verlief ein deutlicher roter Faden. Das Sinnbildlichste war, dass sich zum ersten Mal ein Charakter wirklich bewegte – ein unvermeidlicher Meilenstein für eine Spieleplattform, denn ohne sich bewegende Charaktere sind die meisten Spiele unmöglich; und es spiegelte zufällig den Fortschritt der Charaktergenerierungs-Pipeline in Richtung „Rigging und Hinzufügen von Bewegung“ wider und verband zum ersten Mal die vollständige Kette von „einen Charakter aus dem Nichts generieren und ihn dann zum Leben erwecken“. Eine weitere Zeile landete bei „Konversation“, der Benutzeroberfläche, die Sie täglich am häufigsten berühren: Behebung von Speicherlecks, Eingabe während des Streamings, anklickbare Fragekarten – eine Reihe von Änderungen, die es sowohl stabiler als auch reibungsloser machen. Eine dritte Zeile war grundlegender: den Editor zu einem eigenständig ausführbaren Modul zu machen, oberflächenübergreifenden Nachrichten eine strenge Validierung hinzuzufügen und Wissen in einer durchsuchbaren Bibliothek zusammenzufassen – die Grundlage für langfristige Wartbarkeit und Erweiterbarkeit. Leistungsfähigkeit, Erfahrung, Architektur – dieser Tag vereinte alle drei Aspekte gleichzeitig.</p>
+<h2>Charaktere bewegen sich tatsächlich: Die Skelett-Animationskette läuft von Ende zu Ende</h2>
+<p>Ein Meilenstein: Ein manipuliertes Charaktermodell kann jetzt seine eingebaute Animation wirklich abspielen – jeder Frame des Gehens, Laufens und Springens wird durch das Animationssystem gesteuert, das das Skelett bewegt, was wiederum das Oberflächennetz verformt, und nicht durch eine an Ort und Stelle eingefrorene Statue. Technisch gesehen war damit die wichtigste Verbindung der Skelettanimation abgeschlossen: In jedem Frame berechnet das System die aktuelle Weltposition jedes Knochens, multipliziert sie mit dem Kehrwert seiner „Anfangsposition zum Bindungszeitpunkt“, um einen Satz Matrizen zu erhalten, die beschreiben, „um wie viel sich jeder Knochen von seiner Anfangsposition verschoben hat“, und lädt diesen Satz auf einmal auf die GPU hoch; Der Vertex-Shader liest es und verformt die Netzoberfläche korrekt, indem „welche Knochen jeden Vertex beeinflussen und um wie viel“ – diese Methode ist die Standardmethode für die Charakteranimation. Es baut auf der Vertex-Datenkette und dem Multiformat-Modellimport vom Vortag auf, und mehrere Tage der Vorarbeit trugen an diesem Tag endlich Früchte. In den Beispielen können jetzt mehrere manipulierte Charaktere gleichzeitig Aktionen ausführen. Für eine Engine, die darauf abzielt, Spiele zu erstellen, ist „Charaktere bewegen“ fast die Voraussetzung für alles – sobald sie funktioniert, haben Kampf, Interaktion und Leistung später alle eine Wurzel.</p>
+<h2>Generieren → Rig → Animieren: Eine Charakter-Pipeline nimmt Gestalt an</h2>
+<p>In Anlehnung an die Engine, die Charaktere bewegt, erreichte die Workbench zur Charaktergenerierung an diesem Tag einen wichtigen Meilenstein: die automatische Anpassung generierter Modelle, das Hinzufügen von Bewegung und die Bereitstellung einer Pipeline zur Polygonreduzierung. Jeder befasst sich mit einer konkreten Phase. „Rigging“ passt ein statisches Modell mit einem fahrbaren Skelett an – nur mit einem Skelett kann sich ein Modell überhaupt bewegen; Traditionell erfordert dies die Arbeit eines Künstlers, was Zeit und Geschick erfordert. „Bewegung hinzufügen“ ordnet Standardaktionen (Gehen, Laufen, Leerlauf usw.) diesem Skelett zu, sodass ein Charakter in dem Moment, in dem er generiert wird, über einen grundlegenden Aktionssatz verfügt. „Polygon-Reduktion“ vereinfacht automatisch das oft zu hochpolygonale und laufzeitlastig generierte Modell in eine spielfähige Low-Poly-Version und behält dabei sein Aussehen so weit wie möglich bei. Wenn Sie diese drei mit dem früheren „Text/Bild-zu-Modell“ verbinden, entsteht eine vollständige Charakter-Pipeline: Sie beschreiben einen Charakter → er wird generiert → automatisch manipuliert → mit Bewegung versehen → in ein verwendbares Low-Poly-Modell optimiert, das als lebender Charakter endet, den Sie in ein Spiel eintauchen und herumlaufen lassen können. Für Leute ohne Kunst- oder Animationskenntnisse komprimiert diese Pipeline „einen beweglichen Charakter erstellen“ – einst eine extrem hohe Messlatte – in ein paar automatisierte Schritte.</p>
+<h2>Ein stabilerer Chat: eine gezielte Leckbeseitigung, damit es nicht den ganzen Tag ins Stocken gerät</h2>
+<p>Chat erhielt heute einen stabilitätsorientierten Pass, bei dem es um die Behebung mehrerer Speicherlecks ging. Ein Speicherverlust liegt vor, wenn der von einem Programm verwendete Speicher nicht rechtzeitig zurückgewonnen wird und sich immer weiter ansammelt, wodurch die Benutzeroberfläche mit der Zeit langsamer wird. Bei einem Konversationspanel, das Sie möglicherweise den ganzen Tag geöffnet haben, ist dies die größte versteckte Bedrohung für das Erlebnis über lange Sitzungen. Dieser Tag hat es nach und nach an mehrere Stellen gebracht: Sehr lange Gesprächsverläufe werden jetzt begrenzt, anstatt sich unbegrenzt im Speicher anzuhäufen; Scrollen Sie nach oben, um alte Nachrichten einzublenden, anstatt Tausende auf einmal auf die Seite zu stopfen und sie aufzublähen. Jede Nachricht registrierte stillschweigend einen Fenstergrößen-Listener, ohne ihn freizugeben, was sich endlos anhäufte, und auch dieses Leck wurde behoben. Diese Probleme sind bei normaler Nutzung unauffällig und tauchen erst bei „langer Nutzung“ auf, sind aber genau das, was darüber entscheidet, ob einem Tool bei längeren Sitzungen vertraut werden kann. Wenn man diese unsichtbaren Abflüsse einzeln verschließt, ändert sich das Chat-Panel von „für eine Weile in Ordnung, nach längerem Gebrauch träge“ in „stabil, sogar den ganzen Tag geöffnet“.</p>
+<h2>Tippen Sie während des Streamings + die KI kann Ihnen strukturierte Fragen stellen</h2>
+<p>Die Chat-Interaktion hat an diesem Tag auch zwei sehr praktische Fähigkeiten erlangt. Eine davon ist die „Eingabe während des Streamings“: Während das Modell früher noch Text Zeile für Zeile ausgab, war das Eingabefeld oft gesperrt und man musste warten, bis es fertig war, bevor man etwas eintippte; Jetzt können Sie die Ausgabe beobachten, während Sie Ihre nächste Nachricht eingeben, sie in die Warteschlange stellen und jederzeit senden, ohne Ihren Gedankengang zu unterbrechen und zu warten. Das andere ist die KI, die Ihnen „strukturierte Fragen“ stellt: Wenn ein Agent Sie zum Auswählen oder Bestätigen auffordert, mischt er die Frage nicht mehr in einen langen Absatz, den Sie mühsam analysieren müssen, sondern blendet eine „Fragenkarte“ ein, die anklickbare Optionen (Einzel- oder Mehrfachauswahl) auflistet und auch eine benutzerdefinierte Antwort ermöglicht. Seine Bedeutung ist mehr als nur das Aussehen: Es verwandelt „die wichtigsten Entscheidungen, die Menschen in der Schleife treffen müssen“ in eine klare, explizite und unmissverständliche Interaktion. Für ein KI-gesteuertes Kooperationsmodell, bei dem der Mensch jedoch jederzeit eingreifen muss, um zu entscheiden, „wie die KI eine Frage sauber an eine Person weiterleitet und wie die Person klar und deutlich antwortet“, ist ein zentraler Zusammenhang. Eine aufgeräumte Karte verleiht dem Gespräch in diesen Schlüsselmomenten eine zuverlässige Schnittstelle.</p>
+<h2>Der Editor kann eigenständige und streng validierte oberflächenübergreifende Nachrichten ausführen</h2>
+<p>An diesem Tag wurde auch etwas Langfristigeres an der Architektur vorgenommen: Die Front-End-Shell wurde in ein wiederverwendbares Anwendungsframework mit einigen öffentlichen Schnittstellen extrahiert, sodass der Editor von der Hauptschnittstelle getrennt und als eigenständige App bereitgestellt und ausgeführt werden kann. Dadurch wird der Editor von „einem Teil, das nur im Hauptstudio leben kann“ zu „einem Modul, das eigenständig geöffnet und an anderer Stelle eingebettet werden kann“ – modularer und lässt Raum für spätere Szenarien, wie das Packen in eine Desktop-App oder das Einbetten in andere Seiten. Darüber hinaus unterliegen Nachrichten, die zwischen Teilen der Schnittstelle und über eingebettete Seiten übertragen werden, nun alle einer strengen zweiseitigen Validierung: Jede Nachricht wird sowohl auf der Sende- als auch auf der Empfangsseite anhand einer vordefinierten Struktur überprüft und bei fehlerhafter Formatierung abgelehnt. Es scheint trivial, ist aber der Schlüssel – die oberflächen- und seitenübergreifende Zustandssynchronisierung war früher eine Brutstätte seltsamer Fehler: Eine Seite glaubt, dass sie korrekt gesendet wurde, während die andere Seite etwas empfängt, das nicht übereinstimmt, was das Debuggen mühsam macht. Indem man jeder Nachricht einen klaren „Formatvertrag“ gibt, der auf beiden Seiten validiert wird, wird die Gefahr des „Blind Passing, Mismatched“ an der Wurzel eliminiert und die oberflächenübergreifende Zusammenarbeit vorhersehbar und vertrauenswürdig gemacht.</p>
+<h2>Die Überwachungskonsole erhält eine durchsuchbare Wissensdatenbank</h2>
+<p>An diesem Tag wurde der Überwachungskonsole eine vollständige Registerkarte „Wissensdatenbank“ hinzugefügt, auf der Sie gesammeltes Material und Einträge durchsuchen können. Auf der linken Seite befindet sich eine Facettenfilter-Seitenleiste, die Einträge nach Typ, Tags und Domäne gruppiert und zusammenklappbar ist. Auf der rechten Seite befindet sich ein zweispaltiges Eintragsraster. Wenn Sie einen beliebigen Eintrag öffnen, wird eine Vorschau angezeigt. Oben befindet sich eine anklickbare Tag-Cloud. Eine Reihe von Detailverbesserungen wurden mitgeliefert – animiertes Aktualisierungs-Feedback, themenfarbene dünne Bildlaufleisten, ausblendbare Gruppenköpfe usw. –, um das Surfen reibungsloser zu gestalten. Warum benötigt eine Entwicklungsplattform eine integrierte Wissensdatenbank? Denn wenn viel Arbeit durch KI vorangetrieben wird, werden die gesammelten Erfahrungen, Konventionen und Entscheidungsaufzeichnungen zum gemeinsamen „Gedächtnis“ des Teams und der KI; Die strukturierte, durchsuchbare und durchsuchbare Organisation dieses Wissens erleichtert den Menschen das Nachschlagen und gibt der KI eine Grundlage zum Handeln. Am selben Tag wurden die Designprinzipien, die das gesamte Projekt leiten, in die Form von „ein paar Komprimierungsaxiomen plus zwei Grenzen“ umgestaltet – die Grundüberzeugung blieb unverändert: Die Qualität eines Systems wird nicht daran gemessen, wie viel Code vorhanden ist, sondern daran, wie viele Konzepte man haben muss, um es zu verstehen, wobei weniger besser ist. Wissen durchsuchbar und Prinzipien darstellbar zu machen, ist das gleiche Ziel: dieses immer komplexere System sowohl für Menschen als auch für KI verständlich zu halten.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>An diesem Tag mit der höchsten Commit-Dichte des Monats wurde eine Strecke auf drei Ebenen gleichzeitig vorangetrieben, und sie deckten zufällig die drei wichtigsten Dinge für eine Erstellungsplattform ab. Im Hinblick auf „was es kann“ wurden die Charaktere verschoben und die Generationspipeline zusammengeführt – ein Leistungssprung, der die „Erstellung eines Spiels mit lebenden Charakteren“, die einmal in weiter Ferne liegt, einen großen Schritt näher bringt. Der Chat ist stabiler und flüssiger und die KI kann Sie klar und deutlich fragen – eine Erfahrung, die die Zusammenarbeit zwischen Mensch und KI sorgenfreier und flüssiger macht. In Bezug auf „wie weit es gehen kann“ kann der Redakteur alleine bleiben, Nachrichten haben Verträge und Wissen ist durchsuchbar – architektonische Voraussicht, die darüber entscheidet, ob das System gesund bleiben kann, während es weiter wächst. Ein Produkt, das wirklich für die Ewigkeit gedacht ist, stellt niemals nur eine einzige Herausforderung dar; Wie an diesem Tag ziehen sich Fähigkeiten, Erfahrung und Fundament gegenseitig an und kommen gemeinsam voran. Der Moment, in dem sich ein Charakter bewegt, ist bewegend, aber ebenso wichtig ist die gesamte Kette dahinter – von der Erzeugung über das Rigging bis zur Wiedergabe – und das immer stabilere, immer klarere Fundament, auf dem alles basiert.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-12 · Os personagens realmente são animados + um bate-papo mais estável — ForgeaX</title>
+<meta name="description" content="Personagens Rigged agora reproduzem sua animação esquelética de ponta a ponta; formulários de pipeline de personagem gerar-rigir-animar; o bate-papo corrige vazamentos de memória, permite digitar durante a transmissão e exibe cartões de perguntas interativos; o editor pode ser executado de forma independente com mensagens cross-surface estritamente validadas; e um navegador de conhecimento chega." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-12 · Os personagens realmente são animados + um bate-papo mais estável — ForgeaX" />
+<meta property="og:description" content="Personagens Rigged agora reproduzem sua animação esquelética de ponta a ponta; formulários de pipeline de personagem gerar-rigir-animar; o bate-papo corrige vazamentos de memória, permite digitar durante a transmissão e exibe cartões de perguntas interativos; o editor pode ser executado de forma independente com mensagens cross-surface estritamente validadas; e um navegador de conhecimento chega." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/" data-nav="/">Início</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-12.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-12.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-12.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-12.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-12.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Atualização</span><span>2026-06-12</span></div>
+    <h1>Os personagens realmente são animados + um bate-papo mais estável</h1>
+    <p class="standfirst">Este dia foi o pico de commits do mês. Um personagem manipulado reproduziu uma animação genuinamente pela primeira vez; o pipeline de geração de caracteres correspondente avançou para &quot;rigir + adicionar movimento + reduzir polígonos&quot;, unindo &quot;gerar um personagem → fazê-lo se mover&quot; em uma linha; o bate-papo tem um passe de vazamento de memória focado, permite que você continue digitando durante a transmissão e pode exibir um “cartão de pergunta” clicável; o editor pode ser executado de forma independente com mensagens de superfície cruzada validadas estritamente nos dois lados; e o console de monitoramento ganhou uma base de conhecimento navegável.</p>
+    <div class="prose"><h2>Um dia de pico: personagens, bate-papo e arquitetura, todos convergindo</h2>
+<p>Este foi o dia de desenvolvimento mais denso do mês, mas por baixo da agitação havia um fio claro. O mais emblemático foi um personagem genuinamente em movimento pela primeira vez — um marco inevitável para uma plataforma de criação de jogos, já que sem personagens em movimento a maioria dos jogos é impossível; e isso ecoou o avanço do pipeline de geração de personagens em &quot;equipar e adicionar movimento&quot;, conectando pela primeira vez a cadeia completa de &quot;gerar um personagem do nada e depois trazê-lo à vida&quot;. Outra linha chegou à “conversação”, a interface que você mais toca diariamente: correções de vazamento de memória, digitação durante a transmissão, cartões de perguntas clicáveis ​​– um conjunto de mudanças que a tornam mais estável e suave. Uma terceira linha era mais fundamental: tornar o editor um módulo executável de forma independente, adicionar validação rigorosa às mensagens de superfície cruzada e destilar o conhecimento em uma biblioteca navegável – base para manutenção e extensibilidade de longo prazo. Capacidade, experiência, arquitetura – este dia convergiu bastante para todos os três ao mesmo tempo.</p>
+<h2>Os personagens realmente se movem: a cadeia de animação esquelética corre de ponta a ponta</h2>
+<p>Um momento marcante: um modelo de personagem manipulado agora pode reproduzir genuinamente sua animação integrada – cada quadro de caminhada, corrida e salto é impulsionado pelo sistema de animação que move o esqueleto, que por sua vez deforma a malha da superfície, em vez de uma estátua congelada no lugar. Tecnicamente, isso completou o elo mais importante da animação esquelética: a cada quadro, o sistema calcula a pose mundial atual de cada osso, multiplica-a pelo inverso de sua &quot;pose inicial no momento da ligação&quot; para obter um conjunto de matrizes que descrevem &quot;quanto cada osso mudou de sua posição inicial&quot; e carrega esse conjunto para a GPU de uma só vez; o sombreador de vértice o lê e deforma a superfície da malha corretamente de acordo com &quot;quais ossos afetam cada vértice e por quanto&quot; - este método é o modo padrão pelo qual a animação de personagens é feita. Ele se baseia na cadeia de dados de vértices e na importação de modelo multiformato do dia anterior, e vários dias de trabalho de base finalmente deram frutos neste dia. Os samples agora podem ter vários personagens manipulados realizando ações ao mesmo tempo. Para um motor que visa fazer jogos, “os personagens se movem” é quase a pré-condição para tudo – uma vez que se mantém, o combate, a interação e o desempenho mais tarde têm uma raiz.</p>
+<h2>Gerar → rig → animar: um pipeline de personagem toma forma</h2>
+<p>Ecoando o mecanismo que faz os personagens se moverem, a bancada de geração de personagens atingiu um marco importante neste dia: manipular automaticamente os modelos gerados, adicionar movimento e fornecer um pipeline de redução de polígonos. Cada um aborda um estágio concreto. &quot;Rigging&quot; se ajusta a um modelo estático com um esqueleto dirigível - somente com um esqueleto um modelo pode se mover; tradicionalmente, isso requer um artista manual, caro em tempo e habilidade. &quot;Adicionar movimento&quot; mapeia ações padrão (caminhar, correr, ficar ocioso e assim por diante) nesse esqueleto, de modo que um personagem vem com um conjunto de ações básico no momento em que é gerado. A &quot;redução de polígonos&quot; simplifica automaticamente o modelo gerado, muitas vezes com muitos polígonos altos e com muito tempo de execução, em uma versão de polígonos baixos executável em jogos, preservando sua aparência tanto quanto possível. Conectar esses três ao &quot;texto/imagem-modelo&quot; anterior forma um pipeline de personagem completo: você descreve um personagem → ele é gerado → automaticamente manipulado → equipado com movimento → otimizado em um modelo low-poly utilizável, terminando como um personagem vivo que você pode colocar em um jogo e fazê-lo andar por aí. Para pessoas sem habilidades artísticas ou de animação, esse pipeline compacta “criar um personagem em movimento” – que já foi um padrão extremamente alto – em algumas etapas automatizadas.</p>
+<h2>Um bate-papo mais constante: uma correção de vazamento focada, para que não fique atolado o dia todo</h2>
+<p>O Chat recebeu um passe focado na estabilidade neste dia, centrado na correção de vários vazamentos de memória. Um vazamento de memória ocorre quando a memória usada por um programa não é recuperada a tempo e continua se acumulando, arrastando a interface mais lentamente ao longo do tempo – para um painel de conversação que você pode manter aberto o dia todo, esta é a maior ameaça oculta à experiência de sessão longa. Este dia conectou-o a diversas fontes, uma por uma: o longo histórico de conversas agora está limitado, em vez de se acumular na memória sem limites; rolar para cima até mensagens antigas as pagina em vez de colocar milhares na página de uma vez e inchá-la; cada mensagem era usada para registrar silenciosamente um ouvinte de redimensionamento de janela sem liberá-lo, acumulando-se indefinidamente, e esse vazamento também foi corrigido. Esses problemas são imperceptíveis no uso normal e só aparecem com o “uso prolongado”, mas são exatamente o que decide se uma ferramenta pode ser confiável para sessões prolongadas. Conectar esses drenos invisíveis um por um transforma o painel de bate-papo de &quot;bom por um tempo, lento após uso prolongado&quot; para &quot;estável, mesmo aberto o dia todo&quot;.</p>
+<h2>Digite durante a transmissão + a IA pode fazer perguntas estruturadas</h2>
+<p>A interação do Chat também ganhou duas habilidades muito práticas neste dia. Uma delas é a &quot;entrada durante o streaming&quot;: anteriormente, enquanto o modelo ainda estava derramando texto linha por linha, a caixa de entrada ficava frequentemente bloqueada e você tinha que esperar que ela terminasse antes de digitar; agora você pode assistir a saída enquanto digita sua próxima mensagem, colocá-la na fila e enviá-la quando quiser, sem interromper sua linha de pensamento para esperar. A outra é a IA que faz &quot;perguntas estruturadas&quot;: quando um agente precisa que você escolha ou confirme, ele não mistura mais a pergunta em um longo parágrafo que você precisa trabalhar para analisar, mas exibe um &quot;cartão de pergunta&quot; - listando opções clicáveis ​​(seleção única ou múltipla) e também permitindo uma resposta personalizada. Seu significado vai além da aparência: ele transforma “as principais decisões que os humanos devem tomar no circuito” em uma interação clara, explícita e incompreensível. Para um modelo de colaboração liderado pela IA, mas onde os humanos devem intervir para decidir a qualquer momento, “como a IA entrega uma pergunta a uma pessoa de maneira limpa e como a pessoa responde com clareza” é um elo fundamental. Torná-lo um cartão organizado equipa a conversa nesses momentos-chave com uma interface confiável.</p>
+<h2>O editor pode executar mensagens cross-surface autônomas + estritamente validadas</h2>
+<p>Este dia também fez algo mais de longo prazo na arquitetura: extrair o shell front-end em uma estrutura de aplicativo reutilizável com algumas interfaces públicas, para que o editor possa se separar da interface principal e montar e executar como um aplicativo independente. Isso transforma o editor de “uma peça que só pode viver dentro do estúdio principal” em “um módulo que pode ser aberto sozinho e incorporado em outro lugar” – mais modular e deixando espaço para cenários posteriores, como empacotá-lo em um aplicativo de desktop ou incorporá-lo em outras páginas. Além disso, as mensagens passadas entre partes da interface e através de páginas incorporadas agora carregam validação estrita de dois lados: cada mensagem é verificada em relação a uma estrutura predefinida tanto no envio quanto no recebimento, e rejeitada se estiver malformada. Parece trivial, mas é fundamental - a sincronização de estado entre superfícies e páginas incorporadas costumava ser um foco de bugs estranhos: um lado pensa que foi enviado corretamente enquanto o outro recebe algo que não corresponde, angustiante para depurar. Dar a cada mensagem um “contrato de formato” claro e validado em ambos os lados elimina o risco de “passagem cega e incompatibilidade” na raiz, tornando a colaboração entre superfícies previsível e confiável.</p>
+<h2>O console de monitoramento ganha uma base de conhecimento navegável</h2>
+<p>Este dia adicionou uma aba completa de “base de conhecimento” ao console de monitoramento, onde você pode navegar pelo material e entradas acumuladas. Seu lado esquerdo é uma barra lateral de filtro facetada que agrupa entradas por tipo, tags e domínio, recolhível; o lado direito é uma grade de entrada de duas colunas, e abrir qualquer entrada exibe uma visualização; a parte superior tem uma nuvem de tags clicável. Uma série de detalhes polidos veio com ele – feedback de atualização animado, barras de rolagem finas com a cor do tema, cabeçalhos de grupo recolhíveis e assim por diante – tornando a navegação mais fácil. Por que uma plataforma de desenvolvimento precisa de uma base de conhecimento integrada? Porque quando muito trabalho é impulsionado pela IA, a experiência acumulada, as convenções e os registros de decisões tornam-se a “memória” compartilhada da equipe e da IA; organizar esse conhecimento de forma estruturada, pesquisável e navegável ajuda as pessoas a pesquisar coisas e dá à IA uma base para agir. No mesmo dia, os princípios de design que orientam todo o projeto foram reorganizados na forma de “alguns axiomas de compressão mais dois limites” – a crença central inalterada: a qualidade de um sistema é medida não pela quantidade de código existente, mas por quantos conceitos você deve manter para entendê-lo, sendo menos melhor. Tornar o conhecimento pesquisável e os princípios expressáveis ​​são o mesmo objetivo: manter este sistema cada vez mais complexo compreensível tanto para as pessoas como para a IA.</p>
+<h2>O que este dia significa</h2>
+<p>Este dia, com a maior densidade de commits do mês, avançou bastante em três níveis ao mesmo tempo, e eles cobrem as três coisas mais importantes para uma plataforma de criação. Em “o que pode fazer”, os personagens se moveram e o pipeline de geração se uniu – um salto na capacidade que puxa “fazer um jogo com personagens vivos”, uma vez distante, um grande passo mais perto. Em &quot;como é usar&quot;, o bate-papo é mais estável e suave e a IA pode perguntar a você com clareza - um polimento de experiência que torna a colaboração humano-IA mais fluida e sem preocupações. Em “até onde pode ir”, o editor pode ser autônomo, as mensagens têm contratos e o conhecimento pode ser pesquisado – uma previsão arquitetônica que decide se o sistema pode permanecer saudável à medida que continua crescendo. Um produto genuinamente feito para durar nunca se esforça em apenas um nível; como neste dia, tem capacidade, experiência e base que se unem e avançam juntos. O momento em que um personagem se move está em movimento, mas igualmente importante é a cadeia completa por trás dele – da geração ao rigging e à reprodução – e a base cada vez mais estável e clara que sustenta tudo isso.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

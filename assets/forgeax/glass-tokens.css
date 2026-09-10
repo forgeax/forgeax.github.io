@@ -1,0 +1,46 @@
+/* Linear frosted-glass tokens — high transparency, low visual weight
+ *
+ * UI surface tiers (homepage):
+ *   T1 stat--display     — neon frosted stats (neon-display.css), per-card spotlight
+ *   T2 card--tile        — static feature tiles inside .spotlight-section
+ *   T3 a.card--link      — clickable cards with flowing edge halo (linear-light-system.css)
+ *
+ * Accent: --theme-cool-* is fixed brand lime/teal — never morphs by scroll section.
+ * Cache bust: forgeax-ui-33 (keep in sync with index.html + site.js ?v=) */
+.forgeax-site {
+  --site-ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --site-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --site-ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --site-dur-instant: 160ms;
+  --site-dur-fast: 480ms;
+  --site-dur-hover: 380ms;
+  --site-dur-silk: 920ms;
+  --site-dur-reveal: 1.55s;
+  --site-dur-hero: 1.65s;
+  --site-stagger: 84ms;
+
+  --glass-blur: 44px;
+  --glass-blur-heavy: 56px;
+  --glass-saturate: 205%;
+  --glass-bg: color-mix(in srgb, var(--color-background-elevated) 14%, transparent);
+  --glass-bg-soft: color-mix(in srgb, var(--color-background-base) 10%, transparent);
+  --glass-bg-hover: color-mix(in srgb, var(--color-background-elevated) 26%, transparent);
+  --glass-border: color-mix(in srgb, #fff 11%, transparent);
+  --glass-border-subtle: color-mix(in srgb, #fff 6.5%, transparent);
+  --glass-highlight: color-mix(in srgb, #fff 11%, transparent);
+  --glass-frost: color-mix(in srgb, #fff 4%, transparent);
+
+  /* site-wide fixed accent — brand neon lime (no section morph) */
+  --theme-cool-a: 212, 255, 72;   /* #D4FF48 brand primary */
+  --theme-cool-b: 72, 255, 207;   /* #48FFCF brand teal */
+  --theme-cool-c: 185, 255, 100;  /* lime highlight */
+  --theme-cool-veil: 106, 127, 36;
+  --glass-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 0 var(--glass-highlight),
+    inset 0 -1px 0 0 color-mix(in srgb, #000 8%, transparent);
+  --glass-shadow-hover:
+    0 20px 48px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 0 color-mix(in srgb, #fff 18%, transparent),
+    inset 0 -1px 0 0 color-mix(in srgb, #000 5%, transparent);
+}

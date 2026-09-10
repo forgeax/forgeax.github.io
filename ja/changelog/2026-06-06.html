@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-06 · モデルをドラッグするとシーンになります — ForgeaX</title>
+<meta name="description" content="3D モデルをインポートすると、階層、ライト、カメラがそのままの状態で編集可能なシーンに展開されます。エディターのマルチウィンドウ ドッキングは、安定したフラット アーキテクチャにオーバーホールされました。 HDR の空が戻ってきます。そしてインスタンスごとのトランスフォームランド用のシェーダーチャンネル。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-06 · モデルをドラッグするとシーンになります — ForgeaX" />
+<meta property="og:description" content="3D モデルをインポートすると、階層、ライト、カメラがそのままの状態で編集可能なシーンに展開されます。エディターのマルチウィンドウ ドッキングは、安定したフラット アーキテクチャにオーバーホールされました。 HDR の空が戻ってきます。そしてインスタンスごとのトランスフォームランド用のシェーダーチャンネル。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-06.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-06.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-06.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-06.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-06.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-06.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-06.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-06.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-06.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-06.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-06.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-06</span></div>
+    <h1>モデルをドラッグするとシーンになります</h1>
+    <p class="standfirst">この日、編集者は非常に実用的なことを学びました。3D モデルをアセット パネルにドラッグすると、自動的に編集可能なシーンに展開され、モデルのノード階層、ライト、カメラがそのまま復元されます。これに加えて、エディタのマルチウィンドウ ドッキング システムが徹底的に見直され、パネルの取り外しが誤動作しなくなり、かつて黒かった HDR の空が修正され、同じモデルの多数のコピーを効率的に配置するための基礎が築かれました。</p>
+    <div class="prose"><h2>「外部からのアセット」を「内部の編集」に接続する</h2>
+<p>編集者がこれまでの数日間を終えた後、この日追加されたのは、編集者が最もふさわしいのに欠けていた摂取、つまり外部で作成されたアセットの導入でした。どれほど強力な作成ツールであっても、それ自体が生成したものしか使用できない場合、作成者のアセット ライブラリは小さなサークルに閉じ込められてしまいます。真のオープン性とは、どこで作成されたモデルやテクスチャを取り込んで使い続けることができることです。この日のメインラインはこの 1 つだけでしたが、エディターに標準の 3D モデル ファイルを「取り込み」、それをアレンジし続けることができるシーンに変換するという重要な内容でした。その周りでは、バックエンドがいくつかの新しいエントリ ポイントを開き、フロントエンドがインポート メニューを追加しました。また同日には、エディタのマルチウィンドウ操作で長年蓄積された不安定性の山も一気に一掃し、一度壊れていた空の表示が修正されました。一言で言えば、この日は「アセットを取り込むことができる」ようになり、エディタ自体が「安定して使用できる」ようになりました。</p>
+<h2>モデルをドラッグするとシーンになります</h2>
+<p>この日の中心となる機能: 3D モデル ファイルをアセット パネルにドラッグすると、編集可能なシーンに自動的に分割されます。これまでの悩みは具体的でした。標準モデル ファイルはジオメトリの孤立した塊ではありません。その内部には通常、ノードの親子階層、個々のサブメッシュ、付属のライト、プリセット カメラなどの完全な構造が含まれます。しかし、インポート時には、これらの構造がすべて失われ、不透明な単一の塊が残されることがよくありました。現在のアプローチ: バックエンドはオンデマンドでモデル解析を実行し、モデルの内部ノード ツリーをその「ドキュメント駆動型」シーンに忠実に変換します。モデルが保持する階層、ライト、カメラが何であれ、シーンは対応するオブジェクトを 1 対 1 で復元し、個別に選択および編集可能です。一般的なモデル、テクスチャ、シーンパック形式の編集画面にインポート ドロップダウンが追加されました。バックエンドは、バイナリ アセットのアップロード、オンデマンドでのモデルの解析、ノード ツリーのシーン ドキュメントへの分割という 3 つのステップを開始してパスを配線し、手動でリロードしなくても、インポート後にアセット パネルが自動更新されます。これはクリエイターにとって、シーン全体や、外部でスカルプトしたリグ付きキャラクターを、最初から再構築するのではなく、すぐにドラッグして配置、調整できることを意味します。</p>
+<h2>パネルの取り外しが誤動作しなくなりました: ドッキングの見直し</h2>
+<p>この日、編集者のパネル ドッキングが徹底的に見直され、長年蓄積された「不具合」動作の山が一度に解消されました。以前の悩み: マルチウィンドウ操作には罠がいっぱいでした。インスペクターなどのパネルを独自の OS ウィンドウにドラッグしてそのウィンドウを閉じたり、切り離されたパネルで元に戻したりやり直したりすると、すべて不具合が発生したり、位置がずれたり、フリーズしたりする可能性がありました。根本的な原因は、状態を追跡することが困難なドッキングの深くネストされた内部構造でした。この日から「フラット構造」に変更されました。プレビューと編集が最上位の独立したパネルに昇格し、階層をフラット化することで動作が予測可能になりました。この新しい構造では、一連の特定のバグが 1 つずつ修正されました。パネルを空きスペースにドラッグすると、アプリ内で漠然と浮遊するのではなく、独自のウィンドウにきれいにポップされます。独立したウィンドウが閉じられると、内部のパネルは律儀にメイン インターフェイスに戻ります。そして、元に戻す/やり直しは最終的に分離されたパネルで機能します。視覚的には、ややきつい青色のタブのハイライトがニュートラルなダークトーンに置き換えられ、パネル名が整理されて統一されました。マルチウィンドウのワークフローは、「使いやすいが神経を使う」状態から「本当に安定した」状態になりました。</p>
+<h2>スカイボックスは次の結果を返します: HDR 環境マップのインポートが修正されました</h2>
+<p>少し前に、HDR 環境マップの読み込みを担当するチェーンが一時的に壊れ、その直接的な影響でシーン内の空が一時的に暗くなり、天空の光と周囲の雰囲気がすべて消えてしまいました。この日は、環境マップのインポートおよび読み込みパス全体が復元されたため、編集と再生の両方で HDR 空が再び正しくレンダリングされました。これが重要な理由を説明する価値はあります。HDR 環境マップは単に「美しい空の背景を描く」だけではありません。それは同時にシーン全体の光源でもあります。空の色、どこが明るく、どこが暗いかは、自然にシーン内のすべてのオブジェクトに当てられ、画像全体の明暗、暖かさ、冷たさを決定します。つまり、空が暗くなるとき、失われるのは背景だけではなく、そのシーンの「光の雰囲気」です。このチェーンを復元すると、シーンの「魂の照明」が再び点灯します。また、これは思い出させるものでもあります。基礎となるチェーンが下流のすべてに影響を与えるほど、回帰保護が必要になります。誰もすぐに気付かずに静かに再び壊れてしまわないようにするためです。</p>
+<h2>「1つのモデルを多数配置する」ための基礎を築く</h2>
+<p>このエンジンは、この日、いくつかのシェーダーを専用の「インスタンスごとの変換」チャネルに接続するという、パフォーマンスを向上させる作業も行いました。これはどういう意味ですか？多くのゲーム シーンでは、森の中の何百もの木、壁に並ぶレンガ、同じ形の敵の群れなど、同じモデルが頻繁に繰り返されます。最も単純なアプローチではモデルを 1 つずつ再描画しますが、そのコストはカウントに比例して膨れ上がり、大きなシーンが途切れます。より効率的なアプローチは「インスタンス化」です。同じモデルが GPU に 1 回だけ渡され、「各コピーの独自の位置、方向、スケール」のリストが添付され、GPU が 1 回のパスで数百または数千のコピーをその場所に描画できるようになります。この日は、シーン内のいくつかのシェーダーをこのインスタンスごとのデータ チャネルに接続し、シャドウ描画をそれに合わせて調整し、回帰保護を追加しました。これは、ユーザーには目に見えない内部作業の一種ですが、「シーンをどれくらいの大きさにスタックできるか、そしてどれだけスムーズに実行できるか」を直接決定します。これ自体は機能ではありませんが、その後の多くの「大規模シーン」機能を可能にする前提条件となります。</p>
+<h2>この日が意味するもの</h2>
+<p>これまでの数日が「編集者を育成する」ことだったとすると、この日は「編集者に水と力を注ぎ、基礎を固める」ことだった。インポート機能により、エディターは独自のマテリアルのみを使用できるアイランドではなく、外部アセットを取り込んでその上に作成を続けることができるオープン ワークベンチになります。これは、クリエイターが使用できるマテリアルの範囲を大幅に広げるステップです。ドッキングのオーバーホールは別の種類の価値があります。新しい機能の追加はなく、既存の機能を「使えるが不具合が多い」状態から「安定して使用できる」状態に純粋に磨き上げました。その堅牢性こそが、プロフェッショナル ツールが長期的な信頼を獲得するための基盤なのです。空の照明が復活し、インスタンス レンダリングの基礎が整ったこの日は、編集者の「摂取量、安定性、ビジュアル、パフォーマンス」の 4 つの側面が一度に一歩前進しました。それは私たちに思い出させます。ツールは、新しい機能を継続的に成長させることと、古い機能を真の信頼性に継続的に戻すことの両方によって成熟しますが、どちらも不可欠ではありません。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

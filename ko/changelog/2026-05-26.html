@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-26 · 원탭 컨텍스트 압축 + WebGPU 소프트웨어 폴백 — ForgeaX</title>
+<meta name="description" content="컨텍스트 사용 링 및 슬래시 자동 완성 기능을 갖춘 원탭/컴팩트, WebGPU 소프트웨어 폴백을 통해 더 많은 컴퓨터에서 3D 실행, 깔끔한 ECS 게임 템플릿, 2D 스프라이트 시트 애니메이션 및 엔진 견고성 수정이 가능합니다." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-26 · 원탭 컨텍스트 압축 + WebGPU 소프트웨어 폴백 — ForgeaX" />
+<meta property="og:description" content="컨텍스트 사용 링 및 슬래시 자동 완성 기능을 갖춘 원탭/컴팩트, WebGPU 소프트웨어 폴백을 통해 더 많은 컴퓨터에서 3D 실행, 깔끔한 ECS 게임 템플릿, 2D 스프라이트 시트 애니메이션 및 엔진 견고성 수정이 가능합니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ko/changelog/2026-05-26.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ko/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-26.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ko forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ko/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ko/" data-nav="/">홈</a>
+      <a href="/ko/tutorials/" data-nav="/tutorials/">튜토리얼</a>
+      <a href="/ko/examples/" data-nav="/examples/">예</a>
+      <a href="/ko/marketplace/" data-nav="/marketplace/">플러그인</a>
+      <a href="/ko/changelog/" data-nav="/changelog/" class="active">변경 내역</a>
+      <a href="/ko/about.html" data-nav="/about.html">에 대한</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="언어">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-26.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-26.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-26.html" data-l="ja">日本語</a><a class="lang-item active" href="/ko/changelog/2026-05-26.html" data-l="ko" aria-current="true">한국어</a><a class="lang-item" href="/es/changelog/2026-05-26.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-26.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-26.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-26.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">다운로드</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ko/changelog/">← 변경 내역</a>
+    <div class="meta"><span class="tag brand">업데이트</span><span>2026-05-26</span></div>
+    <h1>원탭 컨텍스트 압축 + WebGPU 소프트웨어 폴백</h1>
+    <p class="standfirst">오늘은 &quot;긴 대화 및 모든 종류의 기계가 고장나지 않도록 유지&quot;하는 작업을 수행했습니다. 원탭 대화 압축, 시각적 컨텍스트 게이지, 슬래시 명령 자동 완성; 하드웨어 가속이 누락된 경우 3D에 대한 소프트웨어 폴백이 제공됩니다. 새로운 게임은 깨끗한 ECS 템플릿에서 시작되며 엔진은 2D 스프라이트 시트 애니메이션과 일련의 견고성 수정 사항을 추가했습니다.</p>
+    <div class="prose"><h2>&quot;장기적이고 폭넓은 활용&quot;을 확실하게</h2>
+<p>일단 기능이 마련되면 다음 질문은 &#39;장기적이고 광범위하게 사용할 수 있는가?&#39;입니다. 장기적이란 컨텍스트가 넘치지 않고 단일 대화가 지속될 수 있는지 여부를 의미합니다. 광범위하다는 것은 개발자의 고급 컴퓨터뿐만 아니라 모든 종류의 컴퓨터에서 실행되는지 여부를 의미합니다. 오늘의 항목은 각각 다음 두 가지에 대한 답변입니다. 원탭 대화 압축은 &quot;채팅 시간이 너무 길어지는 문제&quot;를 해결하고 WebGPU 소프트웨어 폴백은 &quot;GPU가 좋지 않아 검은 화면이 발생함을 의미합니다.&quot;를 해결합니다. 깔끔한 새 게임 시작점, 2D 애니메이션 및 일련의 견고성 수정 사항을 추가하면 전체적인 내용이 명확해집니다. 새로운 특수 효과는 아니지만 &quot;더 많은 시스템에서 매일 장기적으로 사용&quot;하는 것입니다.</p>
+<h2>원탭 압축: /compact + 컨텍스트 사용 링</h2>
+<p>대형 모델을 가지고 오랫동안 왔다 갔다 하면서, 그것이 담길 수 있는 &quot;맥락&quot;이 쌓입니다. 한계에 가까워지면 응답이 느려지고 품질이 떨어지며 심지어 잊어버리기 시작합니다. 오늘은 /compact 명령이 추가되었습니다. 한 번의 탭으로 이전 교환을 간결한 요약으로 압축하여 계속 진행할 수 있는 공간을 확보하고 압축 자체가 전체 대화 차례를 소모하지 않고 백엔드에서 직접 수행됩니다. 작곡가는 연료 게이지처럼 예산이 얼마나 남았는지 한눈에 보여주는 &#39;컨텍스트 사용량 링&#39;도 확보해 예산이 가득 차면 이를 확인하고 정리 여부를 적극적으로 결정할 수 있다. 슬래시 명령 자동 완성 기능을 사용하면 빠른 선택을 위해 사용 가능한 모든 명령을 입력/표시합니다. 이러한 일련의 변화는 &quot;AI와의 장기적 협력&quot;이라는 핵심 제약에 정면으로 직면합니다. 즉, 맥락은 유한합니다. 관리를 사용자의 손에 맡기고 가볍게 수행하는 것이 긴 세션을 진정으로 지속 가능하게 만드는 것입니다.</p>
+<h2>WebGPU 소프트웨어 대체: 3D는 더 많은 시스템에서 실행됩니다.</h2>
+<p>3D 렌더링은 최신 GPU의 기능에 따라 다르지만 실제로 일부 기계나 환경에서는 하드웨어 가속을 얻을 수 없습니다. GPU가 너무 오래되었거나 런타임이 제한되어 있을 수 있습니다. 이전에는 이는 검은색 화면을 의미하여 해당 사용자를 완전히 차단했습니다. 오늘은 소프트웨어 폴백이 추가되었습니다. 하드웨어 가속 렌더링 장치를 얻을 수 없는 경우 시스템은 뒤로 물러나 소프트웨어 구현을 사용하여 그림을 렌더링합니다. 속도는 느리지만 최소한 실행되고 표시되며 작업을 계속할 수 있습니다. 그 아래에는 하드웨어 가속이 수행되지 않은 이유(예: 비보안 원본에서 실행)를 설명하는 보다 명확한 진단과 함께 다단계 폴백(실패 시 다음 경로 시도, 최후의 수단으로만 오류)이 추가되었습니다. 중요한 것은 적용 범위입니다. 대중 시장을 위한 플랫폼은 누구나 시작할 수 있기를 원하지만 모든 사람이 고급 기계를 가지고 있다고 가정할 수는 없습니다. 더 약한 기계에서 실행하는 것도 실제로 기준을 낮추는 것입니다.</p>
+<h2>새로운 게임은 깨끗한 ECS 템플릿에서 시작됩니다.</h2>
+<p>이제 새 게임을 만드는 것은 적절한 아키텍처에 따라 구성된 깨끗하고 잘 구성된 템플릿에서 생성됩니다. 오늘은 &quot;적절한 ECS 아키텍처&quot; 스타일로 기본 템플릿을 다시 작성하고 인라인 문자열에서 버전 제어 독립 실행형 파일로 추출한 다음 줄 수를 절반으로 줄였습니다. 즉, 게임을 만드는 순간 편집하기 전에 먼저 이해해야 하는 상용구 더미가 아닌 깨끗하고 간결한 기반을 구축할 준비가 됩니다. AI에 공급되는 템플릿과 시스템 지침도 최신 엔진 인터페이스로 업데이트되었습니다. 이는 특히 &quot;AI 쓰기 게임&quot;에 중요합니다. AI는 템플릿의 모양에서 이어지므로 템플릿이 더 깔끔하고 표준적일수록 AI 코드가 정확할 가능성이 높아지고 읽고 재사용하기가 더 쉬워집니다. 좋은 출발점은 나중에 수많은 수정 사항을 저장해 줍니다.</p>
+<h2>2D 스프라이트 시트 애니메이션</h2>
+<p>엔진은 오늘 2D 스프라이트 시트 애니메이션을 추가했습니다. &quot;스프라이트 시트&quot;(하나의 이미지에 배치된 일련의 액션 프레임)에서 여러 프레임을 순서대로 재생하여 2D 캐릭터 및 효과 애니메이션에 기성 표준 접근 방식을 제공합니다. 이것은 2D 게임에서 가장 일반적인 애니메이션 방법입니다. 작은 인물 걷기, 불꽃 깜박임은 본질적으로 몇 프레임이 빠르게 순환하는 것입니다. 이전에는 2D 콘텐츠가 정적 스프라이트만 가능했습니다. 시트 애니메이션을 사용하면 2D 라인이 실제로 움직일 수 있습니다. 이전 스프라이트 레이어와 함께 엔진의 2D 기본 사항, 즉 올바른 레이어링 및 스태킹과 각 스프라이트 이동을 채웁니다. 2D 게임을 만들고자 하는 사람이라면 이것이 &quot;이미지 배치 가능&quot;에서 &quot;애니메이션 가능&quot;까지의 핵심 단계입니다.</p>
+<h2>엔진 견고성: 회귀 테스트 + 일련의 렌더링 수정</h2>
+<p>엔진은 또한 이날 화려하지 않지만 중요한 견고성 작업을 수행했습니다. 렌더링 쿼리, 부모-자식 계층 구조, &quot;장면에 조명이 하나도 없는&quot; 극단적인 경우 등 실패하기 쉬운 여러 상황에 대한 회귀 테스트가 추가되어 향후 다른 변경 사항으로 인해 조용히 중단되지 않도록 테스트를 통해 고정했습니다. 모호하게 이름이 지정된 일부 필드의 이름이 더 정확하게 변경되어 코드를 잘못 읽기가 더 어렵습니다. 병합 후에만 나타나는 몇 가지 호환성 문제가 해결되었습니다. 이는 &quot;새로 추가된 기능을 용접&quot;하는 작업입니다. 이전에 많은 것을 강렬하게 추가한 후 오늘은 다시 테스트를 추가하고 가장자리를 정리하여 &quot;한 번만 실행&quot;하는 것이 아니라 &quot;앞으로도 신뢰성을 유지&quot;하도록 했습니다. 꾸준한 통합과 빠른 반복을 번갈아 수행하는 것이 이 제품 라인이 계속 실행될 수 있는 이유입니다.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ko/changelog/">← 모든 업데이트</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 기반 개인 게임 스튜디오 — 아이디어를 플레이 가능한 게임으로 바꿔보세요.</p>
+  </div>
+  <nav class="foot-links" aria-label="대지">
+    <a href="/ko/changelog/">변경 내역</a>
+    <a href="/ko/tutorials/">튜토리얼</a>
+    <a href="/ko/examples/">예</a>
+    <a href="/ko/marketplace/">플러그인</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 조직</a>
+    <a href="/ko/about.html">에 대한</a>
+    <a href="/ko/license.html">특허</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

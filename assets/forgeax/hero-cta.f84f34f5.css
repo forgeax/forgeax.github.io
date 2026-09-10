@@ -1,0 +1,283 @@
+/* Hero CTA — neon frosted pills (T1/T3 spec), no ambient background glow */
+
+.forgeax-site.has-immersive .hero .cta {
+  gap: 16px;
+}
+
+.forgeax-site.has-immersive .hero .cta .btn {
+  --halo-angle: 0deg;
+  --cta-flow-dur: 3.2s;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  min-height: 44px;
+  padding: 10px 44px;
+  font-size: clamp(16px, 1.65vw, 17px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  border: 1px solid transparent;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow:
+    var(--glass-shadow),
+    0 8px 28px rgba(0, 0, 0, 0.18);
+  transition:
+    transform var(--site-dur-hover) var(--halo-ease),
+    box-shadow var(--site-dur-hover) var(--halo-ease),
+    background var(--site-dur-hover) var(--halo-ease);
+}
+
+.forgeax-site.has-immersive .hero .cta .btn > span:not(.btn-fx) {
+  position: relative;
+  z-index: 3;
+}
+
+/* flowing neon edge */
+.forgeax-site.has-immersive .hero .cta .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 2;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.forgeax-site.has-immersive .hero .cta .btn::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #fff 9%, transparent) 0%,
+    transparent 38%,
+    color-mix(in srgb, rgba(var(--theme-cool-a), 1) 3%, transparent) 100%
+  );
+}
+
+/* primary — dense frosted plate + synced inner halo + particles */
+.forgeax-site.has-immersive .hero .cta .btn.primary {
+  color: var(--text-primary);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-background-canvas) 72%, transparent),
+      color-mix(in srgb, var(--color-background-canvas) 82%, transparent)
+    ) padding-box,
+    linear-gradient(
+      135deg,
+      rgba(var(--theme-cool-a), 0.58) 0%,
+      rgba(255, 255, 255, 0.16) 42%,
+      rgba(var(--theme-cool-b), 0.5) 100%
+    ) border-box !important;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 10%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, #000 22%, transparent),
+    0 8px 28px rgba(0, 0, 0, 0.22);
+}
+
+.forgeax-site.has-immersive .hero .cta .btn.primary::before {
+  background: conic-gradient(
+    from var(--halo-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(var(--theme-cool-a), 0.08) 10deg,
+    rgba(var(--theme-cool-a), 0.42) 44deg,
+    rgba(255, 255, 255, 0.78) 58deg,
+    rgba(var(--theme-cool-a), 0.62) 70deg,
+    rgba(var(--theme-cool-b), 0.38) 94deg,
+    rgba(var(--theme-cool-b), 0.1) 128deg,
+    transparent 168deg,
+    transparent 360deg
+  );
+  opacity: 1;
+  animation: halo-edge-flow var(--cta-flow-dur) linear infinite;
+}
+
+.forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx {
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* inner halo — follows border hotspot */
+.forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::before {
+  content: "";
+  position: absolute;
+  inset: -55%;
+  background: conic-gradient(
+    from var(--halo-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(var(--theme-cool-a), 0.03) 18deg,
+    rgba(var(--theme-cool-a), 0.26) 52deg,
+    rgba(255, 255, 255, 0.2) 66deg,
+    rgba(var(--theme-cool-b), 0.18) 84deg,
+    rgba(var(--theme-cool-a), 0.06) 118deg,
+    transparent 156deg,
+    transparent 360deg
+  );
+  filter: blur(16px);
+  opacity: 0.92;
+  animation: halo-edge-flow var(--cta-flow-dur) linear infinite;
+  will-change: transform;
+}
+
+/* micro particles — subtle drift + twinkle */
+.forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    radial-gradient(1px 1px at 11% 24%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+    radial-gradient(1px 1px at 24% 68%, rgba(var(--theme-cool-a), 0.55) 50%, transparent 100%),
+    radial-gradient(1px 1px at 38% 38%, rgba(255, 255, 255, 0.45) 50%, transparent 100%),
+    radial-gradient(1px 1px at 52% 72%, rgba(var(--theme-cool-b), 0.4) 50%, transparent 100%),
+    radial-gradient(1px 1px at 63% 22%, rgba(255, 255, 255, 0.55) 50%, transparent 100%),
+    radial-gradient(1px 1px at 71% 58%, rgba(var(--theme-cool-a), 0.35) 50%, transparent 100%),
+    radial-gradient(1px 1px at 82% 34%, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
+    radial-gradient(1px 1px at 88% 76%, rgba(var(--theme-cool-b), 0.38) 50%, transparent 100%),
+    radial-gradient(1px 1px at 18% 52%, rgba(255, 255, 255, 0.32) 50%, transparent 100%),
+    radial-gradient(1px 1px at 46% 14%, rgba(var(--theme-cool-a), 0.42) 50%, transparent 100%),
+    radial-gradient(1px 1px at 58% 48%, rgba(255, 255, 255, 0.28) 50%, transparent 100%),
+    radial-gradient(1px 1px at 92% 52%, rgba(var(--theme-cool-a), 0.3) 50%, transparent 100%);
+  opacity: 0.42;
+  animation:
+    cta-particle-twinkle 4.8s ease-in-out infinite,
+    cta-particle-drift var(--cta-flow-dur) linear infinite;
+}
+
+@keyframes cta-particle-twinkle {
+  0%,
+  100% {
+    opacity: 0.32;
+  }
+  45% {
+    opacity: 0.58;
+  }
+  70% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes cta-particle-drift {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1.02);
+  }
+}
+
+.forgeax-site.has-immersive .hero .cta .btn.primary:hover {
+  transform: translate3d(0, -1px, 0);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 14%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, #000 18%, transparent),
+    var(--glass-shadow-hover),
+    0 0 0 1px rgba(var(--theme-cool-a), 0.1),
+    0 12px 32px rgba(0, 0, 0, 0.24);
+}
+
+.forgeax-site.has-immersive .hero .cta .btn.primary:hover .btn-fx::before {
+  opacity: 1;
+  filter: blur(18px);
+}
+
+/* ghost — frosted neutral neon edge, flow on hover */
+.forgeax-site.has-immersive .hero .cta .btn.ghost {
+  color: rgba(255, 255, 255, 0.9);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-background-canvas) 38%, transparent),
+      color-mix(in srgb, var(--color-background-canvas) 48%, transparent)
+    ) padding-box,
+    linear-gradient(
+      135deg,
+      rgba(var(--theme-cool-a), 0.24) 0%,
+      rgba(255, 255, 255, 0.11) 48%,
+      rgba(var(--theme-cool-b), 0.2) 100%
+    ) border-box !important;
+}
+
+.forgeax-site.has-immersive .hero .cta .btn.ghost::before {
+  background: conic-gradient(
+    from var(--halo-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(var(--theme-cool-a), 0.06) 20deg,
+    rgba(255, 255, 255, 0.24) 68deg,
+    rgba(var(--theme-cool-b), 0.16) 108deg,
+    transparent 160deg,
+    transparent 360deg
+  );
+  opacity: 0.35;
+  transition: opacity var(--halo-fade-dur) var(--halo-ease);
+}
+
+.forgeax-site.has-immersive .hero .cta .btn.ghost:hover {
+  transform: translate3d(0, -1px, 0);
+  color: #fff;
+  box-shadow: var(--glass-shadow-hover), 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+.forgeax-site.has-immersive .hero .cta .btn.ghost:hover::before {
+  opacity: 0.85;
+  animation: halo-edge-flow var(--halo-flow-dur, 4s) linear infinite;
+}
+
+.forgeax-site.has-immersive .hero .cta .btn:active {
+  transform: translate3d(0, 0, 0);
+}
+
+@media (min-width: 720px) {
+  .forgeax-site.has-immersive .hero .cta {
+    gap: 18px;
+  }
+
+  .forgeax-site.has-immersive .hero .cta .btn {
+    min-height: 46px;
+    padding: 10px 56px;
+    font-size: 17px;
+    letter-spacing: 0.02em;
+  }
+
+  .forgeax-site.has-immersive .hero .cta .btn.primary {
+    min-width: 196px;
+    padding-inline: 60px;
+  }
+
+  .forgeax-site.has-immersive .hero .cta .btn.ghost {
+    min-width: 180px;
+    padding-inline: 52px;
+  }
+}
+
+@media (max-width: 420px) {
+  .forgeax-site.has-immersive .hero .cta .btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+    padding-inline: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forgeax-site.has-immersive .hero .cta .btn.primary::before,
+  .forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::before,
+  .forgeax-site.has-immersive .hero .cta .btn.primary .btn-fx::after,
+  .forgeax-site.has-immersive .hero .cta .btn.ghost:hover::before {
+    animation: none;
+  }
+}

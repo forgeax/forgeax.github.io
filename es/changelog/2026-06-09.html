@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-09 · Una puerta de construcción para que la IA no pueda fingir que está "hecho" — ForgeaX</title>
+<meta name="description" content="Una puerta de verificación de compilación impide que la IA declare finalizado hasta que el juego realmente se compila, y los errores reales se retroalimentan para que los solucione; el motor agrega modelos multimaterial, renderizado de muchas luces agrupadas, un límite de entidad desbloqueado y una API de entrada al juego más simple; el editor muestra geometría real; y se registra el progreso del equipo." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-09 · Una puerta de construcción para que la IA no pueda fingir que está "hecho" — ForgeaX" />
+<meta property="og:description" content="Una puerta de verificación de compilación impide que la IA declare finalizado hasta que el juego realmente se compila, y los errores reales se retroalimentan para que los solucione; el motor agrega modelos multimaterial, renderizado de muchas luces agrupadas, un límite de entidad desbloqueado y una API de entrada al juego más simple; el editor muestra geometría real; y se registra el progreso del equipo." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-09.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-09.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-09.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-09.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-09.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-09.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-09.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-09.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-09</span></div>
+    <h1>Una puerta de construcción para que la IA no pueda fingir que está "hecho"</h1>
+    <p class="standfirst">Este día instaló una puerta de compilación en la creación de juegos de la IA: si la compilación no se aprueba, la IA no puede declarar &quot;terminada&quot; y los errores específicos se retroalimentan para que los corrija. El mismo día, el motor avanzó: modelos multimaterial, renderizado de muchas luces agrupadas, un límite de objetos desbloqueado, una API de entrada al juego más intuitiva; el editor empezó a mostrar geometría real; y el progreso del equipo obtuvo gráficos de visualización.</p>
+    <div class="prose"><h2>Hacer que &quot;hecho&quot; sea algo verificable</h2>
+<p>Dejar el desarrollo de juegos en manos de una IA plantea una pregunta fundamental e inevitable: ¿cómo se sabe que su &quot;hecho&quot; está realmente hecho? La gente confía instintivamente en &quot;si dice completo, está completo&quot;, pero una IA no siempre es confiable: puede declarar éxito inmediatamente después de editar el código, solo para que usted abra una pantalla negra. La línea principal del día resuelve este problema de confianza mecánicamente: ya no dejar que la IA &quot;sea juez de sí misma&quot;, sino controlar con una verificación objetiva ejecutada por una máquina. Vistos junto con el lote de mejoras del motor del mismo día, los dos son complementarios: la puerta de construcción garantiza que &quot;lo que ofrece realmente funciona&quot;, mientras que las mejoras del motor garantizan que &quot;lo que puede ofrecer es más rico, más grande y con mejor apariencia&quot;. Uno es el piso de la calidad, el otro el techo de la capacidad; Impulsar ambos hacia adelante es lo que hace que la plataforma sea &quot;confiable&quot; y &quot;capaz&quot;.</p>
+<h2>Una puerta de compilación del juego: no está &quot;hecho&quot; hasta que realmente se compila</h2>
+<p>Los juegos de construcción de IA aquí solían tener un defecto que provocaba dolor de cabeza: se declaraba &quot;completo&quot; después de editar el código, solo para que el navegador abriera una pantalla negra, o para que el código no se compilara en absoluto; pensabas que tenías un juego jugable pero en realidad obtuviste una pila de código que no se ejecuta. Este día se instaló una puerta de compilación en todo el flujo: el backend agregó un paso de verificación previa de compilación que realmente compila el juego antes de que la IA declare su finalización; y se incluyó una regla estricta en los estatutos de la IA: solo puede declararse terminada una vez que se apruebe la compilación. El bloqueo por sí solo no es suficiente; la clave es dejar que la IA lo solucione ella misma: los errores de compilación específicos se reenvían en tiempo real a donde la IA pueda verlos, retroalimentando la causa detallada en lugar de un frío &quot;falló&quot;. Entonces tomó forma un ciclo completo de autocorrección: crear el juego → la IA escribe el código → el backend ejecuta la compilación → la falla produce errores específicos → la IA los corrige → hasta que realmente pasa. El significado de gran alcance: pasa de ser una afirmación subjetiva de una IA a un hecho objetivamente verificable; cuando dice &quot;está listo&quot;, puedes confiar en ello con mucha más confianza.</p>
+<h2>Modelos multimaterial: cada pieza finalmente obtiene su propio material</h2>
+<p>El motor agregó una capacidad clave para manejar modelos complejos hoy en día: un modelo puede contener múltiples &quot;submallas&quot;, cada una con su propia ranura de material. Suena abstracto, pero el caso de uso es muy concreto: en un personaje, la armadura es metal, la ropa es tela, la cara es piel, su textura, reflectividad y color son completamente diferentes; en un coche, la carrocería está pintada, los cristales de las ventanillas, los neumáticos de goma. Anteriormente, un modelo a menudo solo podía usar un material en su conjunto, aplanando estas diferencias por pieza para que pareciera completamente plástico o completamente metálico, muy distorsionado. Ahora el motor puede dividir un modelo en múltiples submallas por parte y asignar a cada una su propio material, de modo que los modelos complejos finalmente se representen correctamente con &quot;cada parte su propio material&quot;. Se solucionaron varios errores de puente de importación de modelos y todos los juegos de muestra reales completaron la migración del formato de datos para coincidir. Para los creadores, esto significa que los modelos detallados importados del exterior se pueden presentar correctamente tal y como debían verse, en lugar de forzarlos a utilizar un material uniforme.</p>
+<h2>Más luces, escenas más grandes: elevar el techo a escala</h2>
+<p>El motor también puso de relieve &quot;lo grande que puede ser una escena&quot; desde dos direcciones este día. Una es la iluminación: el renderizado pasó a un enfoque de &quot;iluminación agrupada&quot;: su idea central es dividir el espacio de la pantalla en muchas celdas pequeñas y, para cada celda, calcular solo las pocas luces que realmente la afectan, de modo que una escena pueda contener muchas más fuentes de luz que antes sin aplastar el rendimiento. Una ciudad nocturna, una manzana llena de neón y farolas, necesita exactamente la presencia simultánea de muchas luces, y este conducto abre espacio para ese tipo de escenas. La otra es la capacidad: los buffers de renderizado que contienen datos de objetos se cambiaron para &quot;crecer según demanda duplicándose&quot;; anteriormente, el recuento de objetos de una escena tenía un límite máximo de aproximadamente mil, más allá del cual se rompía; ahora el búfer se expande automáticamente en múltiplos a medida que los objetos crecen, se levanta el límite y las escenas grandes pueden contener mucho más. Ambos son trabajos ocultos que los usuarios aún no ven y que deciden directamente &quot;qué tan grande puede llegar a ser tu ambición&quot;; no es una característica específica del juego, sino la condición previa que convierte &quot;una escena más grandiosa&quot; de imposible a posible.</p>
+<h2>Una forma más intuitiva de escribir el punto de entrada de un juego.</h2>
+<p>El motor también reorganizó este día cómo se escribe &quot;crear una aplicación de juego&quot;, dividiéndola en tres capas más intuitivas: una para la cámara y la configuración básica de la pantalla, una para las opciones de construcción/empaquetado, otra para cómo se conectan los recursos. Anteriormente, estos parámetros de naturaleza diferente se mezclaban y eran fáciles de confundir, especialmente para la IA que depende de él para escribir código, cuanto más desordenados y menos claramente categorizados sean los parámetros, mayores serán las posibilidades de error. Dividido por responsabilidad en tres capas claras, lo que hace cada capa es obvio de un vistazo, por lo que la IA escribe juegos de manera más fluida y menos propensa a errores. Esto y la &quot;puerta de construcción&quot; del día son en realidad dos caras de una moneda: la puerta protege la salida, bloqueando la salida defectuosa; Hacer que la API sea más intuitiva reduce la posibilidad de error en la entrada. Una plataforma que tiene código de escritura de IA necesita verificar después del hecho y hacer que sea más difícil equivocarse de antemano; juntos aumentan constantemente la calidad de la salida. La plantilla predeterminada del nuevo juego también se actualizó y se envió de fábrica con un cielo HDR y un personaje controlable, por lo que cada juego nuevo comienza desde una base más presentable.</p>
+<h2>El editor muestra geometría real + repetición más estable</h2>
+<p>El editor se acercó un paso más a lo que-ve-es-lo-que-obtiene hoy: ahora precarga los archivos del modelo, por lo que la vista de edición muestra directamente la geometría real de un modelo en lugar de un cuadro de marcador de posición temporal. Parece un detalle, pero el impacto es real: cuando colocas, alineas y ajustas un objeto en el editor, ves cómo se ve realmente, en lugar de imaginar en qué se convertirá eventualmente un cuadro que lo representa. La canalización de activos subyacente también se trasladó al formato de paquete de escenas nativo del motor, y la vista de edición también incluye un cielo HDR, alineando aún más el entorno de edición con el tiempo de ejecución final. En caso de error, la superposición en el lienzo amplía la causa subyacente más detallada en lugar de un mensaje genérico, para un diagnóstico rápido. La repetición del chat también corrigió el orden entrelazado de las tarjetas entre agentes: cuando revisas un tramo de la historia, el ida y vuelta entre múltiples IA se entreteje correctamente, coincidiendo exactamente con el orden que viste en vivo. En conjunto, sirven para una cosa: hacer que lo que ves en el editor y en la repetición sea lo más real posible.</p>
+<h2>Trazando el progreso del equipo</h2>
+<p>Esta jornada también sumó gráficos de visualización del avance del trabajo del equipo. A medida que los agentes de IA impulsan cada vez más trabajo en paralelo, &quot;dónde estamos exactamente ahora y cuánto queda&quot; se convierte en una pregunta que es necesario analizar. Las curvas de rendimiento agregado y de consumo muestran esta información como líneas duales que se acumulan a lo largo del tiempo, junto con un panel de métricas del proyecto, de modo que el equipo ve el ritmo general de un vistazo: cuánto se completó en este tramo, cuánto queda todavía en vuelo, si la velocidad se está acelerando o desacelerando. Para un flujo de desarrollo que depende en gran medida de la automatización, esta &quot;visibilidad global&quot; es muy importante: aunque las personas entregan gran parte de la ejecución concreta a la IA, deben controlar la situación general, sabiendo en qué dirección y a qué velocidad se mueven las cosas. Trazar el progreso es precisamente un medio para alejarse de la maraña de detalles de ejecución y al mismo tiempo mantener estable el panorama general.</p>
+<h2>que significa este dia</h2>
+<p>Las dos líneas principales del día responden juntas a dos facetas de la propuesta central &quot;cómo hacer que una IA cree buenos juegos de manera confiable&quot;. La puerta de compilación responde &quot;confiable&quot;: a través de una verificación de compilación objetiva y comentarios de errores específicos, convierte &quot;hecho&quot; de palabras vacías en un hecho que puede verificarse y autocorregirse: la piedra angular de la confianza. La serie de mejoras del motor responden &quot;buenas&quot;: el multimaterial hace que los modelos sean más reales, la iluminación agrupada y la capacidad ampliada hacen que las escenas sean más grandiosas, una entrada más intuitiva hace que la IA se equivoque menos: la expansión de la capacidad. Lo que más teme una plataforma de creación impulsada por IA es &quot;parece impresionante pero no ofrece resultados confiables&quot;; y este día confirmó exactamente las dos cosas más fundamentales a la vez: &quot;confiable&quot; y &quot;bien hecho&quot;. Cuando la máquina es más capaz y está más estrictamente verificada, la gente puede confiarle verdaderamente y con confianza &quot;crear un juego&quot;.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

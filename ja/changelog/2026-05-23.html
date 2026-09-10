@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-23 · 危険な行為の前に確認 + エンジン周囲の光と影 — ForgeaX</title>
+<meta name="description" content="危険なアクションの前の確認ゲート、アプリ内プラグイン編集、プラグイン署名と信頼リスト、エンジン画像ベースの環境光 + 影 + 大規模シーンの読み込み、および完全にプラグイン化されたワークベンチ。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-23 · 危険な行為の前に確認 + エンジン周囲の光と影 — ForgeaX" />
+<meta property="og:description" content="危険なアクションの前の確認ゲート、アプリ内プラグイン編集、プラグイン署名と信頼リスト、エンジン画像ベースの環境光 + 影 + 大規模シーンの読み込み、および完全にプラグイン化されたワークベンチ。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-23.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-23.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-23.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-23.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-23.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-23.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-23.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-23.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-23.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-23.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-23.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-23</span></div>
+    <h1>危険な行為の前に確認 + エンジン周囲の光と影</h1>
+    <p class="standfirst">この日は、「AI に動作させる」ための実際の安全策が追加されました。危険なアクションには確認が求められるようになり、プラグインは署名、検証、信頼できるようになりました。プラグインはアプリ内で編集することもでき、ワークベンチは完全にプラグイン化されました。このエンジンには、画像ベースの環境光、影、およびゲーム規模の複雑なシーンを読み込む機能が追加されました。</p>
+    <div class="prose"><h2>手放す前に安全装置を取り付けてください</h2>
+<p>「AI に働いてもらいたい」と願うほど、最初に 1 つの質問に答えなければなりません。それは、AI があなたが見ていない間に、してはいけないことをするのではないかということです。この日のスルーラインでは、「手放す」ことに安全策を講じること、つまり危険な行為にはユーザーの承認が必要であること、そしてサードパーティのプラグインのソースが検証可能であることを規定することでした。同時に、ワークベンチは完全にプラグイン化され、プラグインは製品内で編集可能になり、エンジンの画質はリアリズムを目指し続けました。安全性、拡張性、見栄え - ピースを 3 方向に同時に配置。しかし、それらを乗り越えるには、一言で言えば「信頼」です。それが暴走することはなく、インストールしたものが信頼できるものであると確信できる場合にのみ、実際に作業を任せることができます。</p>
+<h2>危険なアクションの前に確認プロンプトを表示</h2>
+<p>エージェントはツールを呼び出すときに安全扉を獲得しました。各ツールは、常に確認する、絶対に確認しない、危険と判断した場合のみ確認するなどの確認ポリシーを宣言できます。エージェントが危険なアクション (重要なファイルの削除や上書きなど) を実行しようとしている場合、バックエンドはリアルタイムで「確認が必要」リクエストをインターフェイスにプッシュし、上部に確認バーが表示され、許可した場合にのみ処理が続行され、拒否した場合はその場でブロックされます。すべての決定は記録として記録されます。このゲートは、最も不安なリスク、つまり「エージェントがバックグラウンドで何か悪いことを静かに終えたが、あなたはそれに気付かなかった」というリスクに対処します。これを使用すると、重要なアクションに対して常に最終的な拒否権を保持しながら、簡単に手放すことができます。これは、「人間が最終権限を持つ」という原則を製品に具体的に着地させることです。</p>
+<h2>アプリ内でプラグインを直接編集</h2>
+<p>新しい「プラグイン作成者」ワークベンチが到着しました。左側にファイル ツリー、右側にエディタがあり、変更はすぐに有効になります。その重要性は、「自分で拡張する」ハードルをほぼゼロに下げることです。ツールのプロンプトを微調整したり、パラメーターを変更したり、アイデアを試したりする場合、製品から離れてコード エディターに切り替えて前後にシャッフルするのではなく、インターフェイス内で直接編集して、すぐに効果を確認することができます。これは、開発者がプリセットしたものだけを使用するのではなく、プロ以外の開発者（ユーザー自身も含む）がプラットフォームを実践的に拡張およびカスタマイズできるようにするという、プラットフォームの長期的な方向性を反映しています。今のところは単純なファイル ツリーとエディット ボックスですが、「製品内で製品を変更できる」ということが確立されれば、想像できる範囲が広がります。</p>
+<h2>プラグインは署名、検証、信頼できる</h2>
+<p>プラットフォームは「誰でもプラグインを作成して共有できる」エコシステムを目指しているため、安全性を第一にルールを設定する必要があります。この日、プラグイン パッケージに完全な信頼メカニズムが与えられました。エクスポート時のデジタル署名、インポート時の自動検証により、パッケージが本当に作成者からのものであり、転送中に改ざんされていないことを確認します。システムは、どのソースが信頼できるかを記録する信頼リストを保持します。ソースの署名が取り消されると、そのプラグインを新たにインストールすることは完全にブロックされます。これは、ソフトウェア配布における成熟した「署名 + 信頼の連鎖」アプローチを利用しており、その目的は明確です。他人のプラグインをインストールするときに、盲目的に信頼する必要はありません。この信頼基盤のないオープンなプラグイン エコシステムは、遅かれ早かれ、悪意のあるプラグインや改ざんされたプラグインに侵食されることになります。エコシステムがまだ小さいうちにそれを確立することが責任ある行動です。</p>
+<h2>エンジン: アンビエントスカイライト + 影 + ゲームスケールのシーン</h2>
+<p>この日、エンジンの画質がさらに向上しました。画像ベースの環境光が追加されると、オブジェクトはその周囲によって柔らかく照らされます。影になった領域は真っ黒ではなくなり、滑らかな表面は環境の色を反映し、シーン全体の光は自然で洗練されたものになります。既存の指向性のあるシャドウと組み合わせることで、明暗の関係がより完全で信頼できるものになります。さらに言えば、この日、エンジンはゲーム規模の複雑で大規模な屋内シーンを完全に読み込み、複数のライトを同時に点灯してレンダリングできました。このような実際のスケールのシーンを実行することは、レンダラーの「現実世界への対応力」を試す難しいテストです。これは、エンジンが「キューブを回転できる」デモ段階から「実際のゲーム コンテンツに耐えられる」段階に移行したことを意味します。</p>
+<h2>完全にプラグイン化されたワークベンチ: 1 つのアーキテクチャ上の多数のツール</h2>
+<p>この日、ワークベンチは完全にプラグイン化されました。キャラクター、ナラティブ、プラグイン作成者などのツールはすべて、同じ分割サーフェス プラグイン アーキテクチャ上で独自の埋め込みページとして実行されるようになり、メイン インターフェイスにハードコードされた特別なケースはなくなりました。インターフェイス側も、「どのプラグインをロードするか」をハードコーディングされたテーブルから動的なプラグイン レジストリへのサブスクライブに変更しました。メイン プログラムのコードは変更せず、インストールされたものが表示されます。チャットでは、/tool コマンドを使用してプラグインの機能を直接呼び出すこともできます。広範囲にわたる重要性: 「組み込み機能」と「サードパーティのプラグイン」を同じスタートラインに置きます。プラットフォーム独自のツールと他社のツールは同じ統合ルールに従います。システムのコア機能自体がプラグインとして存在できる場合にのみ、本当に無制限に拡張できる可能性を秘めています。</p>
+<h2>この日が意味するもの</h2>
+<p>この日のキーワードは「信頼」。リスクのあるアクションには、あなたのうなずきと検証可能なプラグイン ソースが必要で、「あえてそれを動作させようか、他人のものをインストールしようか」に対処します。製品内の完全にプラグイン化されたワークベンチと編集プラグインは、「このプラットフォームは無制限に拡張できますか、ユーザーは自分で拡張できますか?」このエンジンは、環境光と影を追加し、実際のスケールのシーンを実行することで、「実際に見栄えがよく、十分にリアルになるものです。」安全性、オープン性、画質は 3 つの要素のように見えますが、すべてが 1 つの未来への道を切り開きます。それは、真に手作業で作成する勇気があり、独自のアイデアを拡張し続けることができ、見栄えの良い作品を生み出すプラットフォームです。信頼の基盤をしっかりと築くことによってのみ、ユーザーにより大きな自由を与えることについて話すことができます。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-20 · チャットは新しいバックエンドに再接続 + 設定でモデルとキーを管理 — ForgeaX</title>
+<meta name="description" content="チャットはクリーンな REST セッション管理を使用して再構築されたバックエンドに再接続され、モデルとキーは設定で管理できるようになり、エンジンにはテクスチャ/マルチライト ライティングとカメラ ローミングが追加されます。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-20 · チャットは新しいバックエンドに再接続 + 設定でモデルとキーを管理 — ForgeaX" />
+<meta property="og:description" content="チャットはクリーンな REST セッション管理を使用して再構築されたバックエンドに再接続され、モデルとキーは設定で管理できるようになり、エンジンにはテクスチャ/マルチライト ライティングとカメラ ローミングが追加されます。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-20.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-20.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-20.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-20.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-20.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-20.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-20.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-20.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-20.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-20.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-20.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-20</span></div>
+    <h1>チャットは新しいバックエンドに再接続 + 設定でモデルとキーを管理</h1>
+    <p class="standfirst">前日に再注入されたバックエンドは、この日チャット インターフェイスに再接続されました。セッションの作成、切り替え、削除はすべてフローで、履歴は完全に再生され、プロセスはシステム ライン (着信/発信/警告/エラー) を区別します。モデルとキーは設定パネルに移動され、視覚的に管理できます。エンジンには、テクスチャ付きのマルチライト照明と固定一人称カメラのローミングが組み込まれています。</p>
+    <div class="prose"><h2>「書き換える」から「繋ぎ直す」へ</h2>
+<p>前日、バックエンドは解体され、階層化されたクラッシュ回復可能な新しいアーキテクチャに再注入されました。しかし、書き換えが完了しただけでは仕事の半分にすぎません。新しい基盤は、実際にインターフェイスに再接続し、完全なチェーンをエンドツーエンドで実行して、着陸したものとしてカウントする必要があります。この日のスルーラインは「再接続」でした。チャット インターフェイスを新しいバックエンド ランタイムに接続し、日常のセッション アクション (作成、切り替え、削除、再生) をすべて新しいアーキテクチャで実行し、途中でモデルとキー管理をインターフェイスに移行しました。言い換えれば、前日は「新しい基盤が確立している」ことを証明した。この日は「新しいファンデーションが使える」ことが証明された。大規模な書き換えの最も危険な瞬間は、多くの場合、書き換えそのものではなく、割れたガラスをあちこちに残さずに上位層をスムーズに再接続できるかどうかです。そして今日はまさにそのハードルをクリアしました。</p>
+<h2>チャットが新しいバックエンドに再接続され、セッションがスムーズになります</h2>
+<p>この日、チャット インターフェイスが新しいバックエンド ランタイムに接続され、日常のセッション操作が秩序正しくスムーズになりました。セッションの作成には、複数のエントリ ポイントが独自の処理を行うのではなく、一貫した 1 つのエントリ ポイントが存在するようになりました。セッションを切り替えると、そのタブが自動的に開き、コンテンツに注意が集中します。削除は 1 つのステップです。セッションを再度開くと、コンテキストをそのままにして、以前のやり取りが耐久性のあるレコードから完全に再生されます。また、このプロセスでは、システム メッセージが受信 / 送信 / 警告 / エラーに分類されるため、実行が失敗したときに、複雑な出力の塊を見つめる代わりに、どのステップでスタックしているのか、どのような種類であるのかを一目で確認できます。これらは、「セッション」が毎日の単位としてふさわしい基本であり、この日は新しいアーキテクチャでそれらをしっかりと実現しました。</p>
+<h2>セッションと履歴はクリーンなインターフェイスを経由します</h2>
+<p>「再接続」中に、バックエンドはセッション機能と履歴機能を 1 つのクリーンなインターフェイス セットに統合します。セッションの作成と削除は、標準の作成/削除エンドポイントを経由し、デフォルトのエージェントが自動的に準備されます。最上位レベルでエージェントを作成する場合、または 1 回のスイープでエージェントをその依存関係とともに削除する場合、それぞれに明確に対応するコマンドがあります。履歴は、ライブ ストリームにすべてを詰め込むのではなく、専用のフェッチ インターフェイスを通じてオンデマンドで読み取られます。基盤となるエージェント リストは、「ディスクをステートレスにスキャンし、ファイル変更を監視する」ことによって維持され、すべてのエージェント変更イベントがグローバル ログに記録されます。これらの機能を明確な単一責任インターフェイスに統合することは、上位層 (インターフェイス、コマンド ライン、さらには将来の他のクライアント) がそれぞれ独自のルールを記述するのではなく、すべて同じルールに従って動作できることを意味します。まさに、前日の階層化アーキテクチャが成果を上げ始める場所です。</p>
+<h2>設定でモデルとキーを直接管理</h2>
+<p>この日は、頻度は高くても以前は面倒だった 2 つのこと、つまり「どのモデル、どのキー」をインターフェイスに移しました。モデル ピッカーは、使用可能なモデルの実際のリストを読み取るようになりました。そのため、選択したものは、古い可能性のあるハードコードされたリストではなく、実際に有効になるものになります。また、各エージェントが使用するモデルを個別に割り当てることができるため、異なる役割が異なる層を使用することが可能になります。キー入力は、値の表示と非表示を切り替えるための目のトグルを備えた永続的な設定パネルに移動しました。これは確認するのに便利ですが、永久に目に見えないところに残されることはありません。これはユーザーにとって、キーを入力したりモデルを切り替えたりするときに、コマンド ラインにドロップしたり、設定ファイルを調べたりする必要がなくなったことを意味します。常にインターフェイスに属していたことが、実際にそこで行われるようになりました。このような操作のハードルを下げることは、プロ以外の開発者が開発を開始できるようにするための重要な部分です。</p>
+<h2>エンジン: テクスチャ ライティング + 1 つのシーン内の複数のライト</h2>
+<p>この日も実践に向けてエンジンの点灯が続いた。 1 つは「テクスチャ駆動型照明」です。テクスチャを使用して、表面のさまざまな部分が光にどれだけ強く反応するかを制御します。たとえば、金属象嵌を周囲の木材より明るくしたり、磨耗した部分を暗くしたりすることで、表面全体を 1 つの均一なマテリアルとして扱うのではなく、マテリアルのディテールを大幅に豊かにすることができます。もう 1 つは「1 つのシーンでの複数のライト」です。ポイント キャスターとスポット キャスターを組み合わせて、複数のライトを同時に点灯できます。これらを組み合わせることで、照明が「1 つのランプのみ」から「複数のライトを配置して実際のシーンのように奥行きを作り出す」ものに移行します。雰囲気のある触覚的な画像を求める人にとって、これは「明るい」と「見栄えの良い」の間の最も重要なストレッチです。</p>
+<h2>エンジン: 一人称カメラのローミングを修正 + テクスチャ付きシーン</h2>
+<p>この日は、一人称カメラのローミングも修正されました。WASD の動作は、古典的な小さな落とし穴に根ざして機能しなくなっていました。キーボード イベントが「物理キーの位置」を読み取るか、「文字」が位置合わせされていないため、押しても何も起こりませんでした。修正したら、WASD を使用してシーンの周りを歩き回ったり、ビューを回転させたりすることができます。これは、「歩き回ることができるシーン」の最も基本的な操作です。同時に、テクスチャ シーンがエンドツーエンドで実行されるようになり、外部アセット アドレスの処理が修正され、展開パス全体でテクスチャが正しく検出されるようになりました。いくつかのライトで照らされテクスチャーのあるシーンに自由に歩き回って周囲を見回すことができるようになったことで、この日は「歩き回れる世界の構築」を真の一歩に前進させました。</p>
+<h2>この日が意味するもの</h2>
+<p>この日は、前日の「書き直し」を真に「使える」ものに変えました。バックエンドの新しい基盤がインターフェイスに再接続され、日常の操作 (セッション、モデル、キー) が新しいアーキテクチャ上でスムーズに実行され、クリーンなインターフェイスに収束されました。エンジンは照明とカメラを並行して進化させ、画像に奥行きを与え、シーンをより歩きやすくしました。一方で、主要な低レベルの手術を、問題を残さずにスムーズに上層に再接続します。もう 1 つは、ユーザーが直接感じるエクスペリエンスを着実に増やしていくことです。この 2 つは並行して、骨の髄までのリファクタリングを敢行しながらも、毎日ユーザーにとって製品を少しでも良くすることを忘れていないチームを示しています。大規模な書き換えの直後に、その日のうちにインターフェイスに再接続し、モデルやキー管理などの身近なエクスペリエンスを埋めることができること自体が、「書き換えが正しく行われた」ことの最大の証拠です。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

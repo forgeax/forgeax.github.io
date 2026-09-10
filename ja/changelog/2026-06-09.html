@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-09 · AI が「完了」を偽装できないようにするためのビルドゲート — ForgeaX</title>
+<meta name="description" content="ビルド検証ゲートは、ゲームが実際にコンパイルされるまで AI が完了を宣言することを禁止し、実際のエラーがフィードバックされて修正されます。このエンジンは、マルチマテリアル モデル、クラスタ化された多光レンダリング、ロック解除されたエンティティ キャップ、およびよりシンプルなゲーム エントリ API を追加します。エディターには実際のジオメトリが表示されます。そしてチームの進捗状況がグラフ化されます。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-09 · AI が「完了」を偽装できないようにするためのビルドゲート — ForgeaX" />
+<meta property="og:description" content="ビルド検証ゲートは、ゲームが実際にコンパイルされるまで AI が完了を宣言することを禁止し、実際のエラーがフィードバックされて修正されます。このエンジンは、マルチマテリアル モデル、クラスタ化された多光レンダリング、ロック解除されたエンティティ キャップ、およびよりシンプルなゲーム エントリ API を追加します。エディターには実際のジオメトリが表示されます。そしてチームの進捗状況がグラフ化されます。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-09.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-09.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-09.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-09.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-09.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-09.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-09.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-09.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-09.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-09</span></div>
+    <h1>AI が「完了」を偽装できないようにするためのビルドゲート</h1>
+    <p class="standfirst">この日、AI のゲーム作成にビルドゲートが設置されました。ビルドが不合格の場合、AI は「完了」を宣言することができず、特定のエラーがフィードバックされて修正されます。同じ日、エンジンはマルチマテリアル モデル、クラスター化された多光レンダリング、ロック解除されたオブジェクト キャップ、より直感的なゲーム エントリ API など、前進を続けました。エディターは実際のジオメトリを表示し始めました。チームの進捗状況を視覚化したグラフが得られます。</p>
+    <div class="prose"><h2>「完了」を検証可能なものにする</h2>
+<p>ゲーム開発を AI に任せると、避けられない根本的な疑問が生じます。AI の「完了」が実際に完了したことをどうやって知ることができるのでしょうか。人々は本能的に「完了と言ったら完了」と信頼しますが、AI は必ずしも信頼できるわけではありません。コードを編集した直後に成功を宣言しても、黒い画面が開く場合があります。この日の主な内容は、この信頼性の問題を機械的に解決するものであり、もはや AI に「自分自身を判断させる」のではなく、機械が実行する客観的なチェックによるゲートキーピングです。同じ日に行われた一連のエンジン強化と並べて見ると、この 2 つは補完的です。ビルドゲートは「提供されるものが実際に動作する」ことを保証し、エンジンの強化は「提供できるものがより豊かで、より大きく、見栄えがよい」ことを保証します。 1 つは品質の下限であり、もう 1 つは能力の上限です。両方を推進することで、プラットフォームが「信頼性」と「機能」の両方を実現します。</p>
+<h2>ゲームのビルドゲート: 実際にコンパイルされるまで「完了」しない</h2>
+<p>ここでの AI 構築ゲームには、頭痛を引き起こす欠陥がありました。コードを編集した後に「完了」と宣言され、ブラウザーが黒い画面を開くだけか、コードがまったくコンパイルされませんでした。プレイ可能なゲームを手に入れたと思ったのに、実際には実行できないコードの山ができてしまったのです。この日は、フロー全体にビルド ゲートをインストールしました。バックエンドは、AI が完了を宣言する前にゲームを実際にコンパイルするビルド プリフライト ステップを追加しました。そして、AI の憲章には厳しいルールが組み込まれています。ビルドが成功した場合にのみ完了を宣言できるということです。ブロックするだけでは十分ではありません。重要なのは、AI 自身に修正させることです。特定のビルド エラーは、AI が確認できる場所にリアルタイムで転送され、冷たく「失敗しました」ではなく、詳細な原因がフィードバックされます。したがって、完全な自己修正ループが形になりました。ゲームを作成する → AI がコードを書く → バックエンドでビルドが実行される → 失敗すると特定のエラーが発生する → AI がそれらを修正する → 本当に合格するまで。広範囲にわたる重要性: AI の主観的な主張から「完了」を客観的に検証可能な事実に変える — AI が「準備ができた」と言えば、それをより自信を持って信頼できるようになります。</p>
+<h2>マルチマテリアル モデル: 各パーツは最終的に独自のマテリアルを取得します。</h2>
+<p>このエンジンには、今日、複雑なモデルを処理するための重要な機能が追加されました。モデルには、それぞれが独自のマテリアル スロットを持つ複数の「サブメッシュ」を含めることができます。抽象的に聞こえますが、使用例は非常に具体的です。キャラクターでは、鎧は金属、衣服は布、顔は皮膚であり、それらの質感、反射率、色はまったく異なります。車の場合、ボディは塗装され、窓ガラスは塗装され、タイヤはゴムになります。以前は、モデルは全体として 1 つの素材しか着用できないことが多く、パーツごとの違いが平坦化されていたため、すべてプラスチックかすべて金属で、ひどく歪んでいるように見えました。現在、エンジンはモデルをパーツごとに複数のサブメッシュに分割し、それぞれに独自のマテリアルを割り当てることができるため、最終的に複雑なモデルが「各パーツの独自のマテリアル」で正しくレンダリングされるようになりました。いくつかのモデル インポート ブリッジングのバグも同時に修正され、すべての実際のサンプル ゲームはそれに合わせてデータ形式の移行を完了しました。クリエーターにとって、これは、外部からインポートされた詳細なモデルが、1 つの均一なマテリアルに強制的に組み込まれるのではなく、本来の見た目どおりに正しく表示されることを意味します。</p>
+<h2>より多くの照明、より大きなシーン: 天井を大規模に引き上げる</h2>
+<p>この日、エンジンはまた、2 つの方向から「シーンがどれだけ大きくなり得るか」の上限を引き上げました。 1 つはライティングです。レンダリングは「クラスター ライティング」アプローチに移行しました。その中心となるアイデアは、画面スペースを多数の小さなセルにスライスし、各セルに対して実際に影響を与える少数のライトのみを計算することで、パフォーマンスを低下させることなく 1 つのシーンに以前よりもはるかに多くの光源を保持できるようにすることです。ネオンや街路灯で満たされた夜の街には、まさに多くの光が同時に存在することが必要であり、このパイプラインはそのようなシーンのための余地を開きます。もう 1 つは容量です。オブジェクト データを保持するレンダー バッファーは、「オンデマンドで 2 倍に増加する」ように変更されました。以前は、シーンのオブジェクト数には約 1,000 というハードキャップがあり、それを超えると上限が破られました。オブジェクトの成長に応じてバッファーが自動的に何倍にも拡張され、上限がなくなり、大きなシーンにはさらに多くのものを保持できるようになりました。どちらも、ユーザーがまだ目にしていない内部の作業であり、「あなたの野望がどこまで大きくなるか」を直接決定します。特定のゲームプレイ機能ではなく、「より壮大なシーン」を不可能から可能に変える前提条件です。</p>
+<h2>ゲームのエントリポイントを記述するためのより直感的な方法</h2>
+<p>この日、エンジンは「ゲーム アプリケーションの作成」の記述方法も再編成し、より直観的な 3 つのレイヤーに分割しました。1 つはカメラと基本的な表示設定、1 つはビルド/パッケージング オプション、もう 1 つはリソースの接続方法です。以前は、これらの性質の異なるパラメーターが混在していて混乱しやすかったのですが、特にコードの作成に依存する AI の場合、パラメーターが乱雑で明確に分類されないほど、エラーの可能性が高くなります。責任ごとに 3 つの明確なレイヤーに分割されており、各レイヤーが何を行うかは一目瞭然なので、AI はよりスムーズに、エラーが発生しにくいゲームを作成します。これと今日の「ビルドゲート」は実際にはコインの裏表のようなものです。ゲートは出口を守り、欠陥のある出力をブロックします。 API をより直感的にすることで、入り口でエラーが発生する可能性が低くなります。 AI にコードを作成させるプラットフォームには、事後検証と、事前の誤りをより困難にする両方が必要であり、これらが連携して出力品質を確実に向上させます。デフォルトの新しいゲーム テンプレートもアップグレードされ、HDR の空と制御可能なキャラクターを備えた状態で出荷されるため、新しいゲームはすべて、より見栄えの良いベースラインから開始されます。</p>
+<h2>エディターには実際のジオメトリとより安定したリプレイが表示されます</h2>
+<p>今日、エディターは、見たものをそのまま手に入れることに一歩近づきました。モデル ファイルがプリロードされるようになり、編集ビューには一時的なプレースホルダー ボックスではなく、モデルの実際のジオメトリが直接表示されます。細かいことのように見えますが、その影響は本物です。エディターでオブジェクトを配置、位置合わせ、調整すると、オブジェクトの代わりとなるボックスが最終的にどのようになるかを想像するのではなく、実際にどのように見えるかがわかります。基礎となるアセット パイプラインもエンジンのネイティブ シーン パック形式に移行し、編集ビューにも同様に HDR 空が表示され、編集環境が最終的なランタイムにさらに適合します。エラーが発生した場合、キャンバス上のオーバーレイにより、一般的なメッセージではなく、より詳細な根本的な原因が展開され、迅速な診断が可能になります。チャットのリプレイでは、エージェント間カードのインターリーブ順序も修正されました。一連の履歴を確認すると、複数の AI 間の行き来が正しく織り込まれ、ライブで見た順序と正確に一致します。これらを組み合わせることで、エディターと再生で表示されるものを可能な限り現実に近づけることができます。</p>
+<h2>チームの進捗状況をグラフ化する</h2>
+<p>この日は、チームの作業進捗状況の視覚化チャートも追加されました。 AI エージェントによって並行して進められる作業が増えるにつれ、「正確に今どこにいるのか、どれだけ残っているのか」を確認する必要がある問題になります。追加されたスループットとバーンダウン曲線は、プロジェクトメトリクスパネルと組み合わせて、時間の経過とともに蓄積されるこの情報を二重線としてグラフ化するため、チームは全体のペースを一目で確認できます。つまり、この区間でどれだけが完了したか、どれだけがまだ実行中か、速度が加速しているのか減速しているのかがわかります。自動化に大きく依存した開発フローにとって、この「グローバルな可視性」は非常に重要です。人間は具体的な実行の多くを AI に任せますが、全体的な状況を把握し、物事がどの方向にどのような速度で進んでいるのかを把握し続ける必要があります。進捗状況をグラフ化することは、まさに全体像を安定させながら、実行の詳細の混乱から一歩退くための手段です。</p>
+<h2>この日が意味するもの</h2>
+<p>この日の 2 つの主な内容は、「AI に優れたゲームを確実に構築させる方法」という中心的な命題の 2 つの側面に答えるものです。ビルドゲートは「信頼できる」という答えを返します。客観的なビルド検証と特定のエラー フィードバックを通じて、「完了」を空の言葉から検証して自己修正できる事実、つまり信頼の基礎に変えます。エンジンの一連の機能強化の答えは「良い」です。マルチマテリアルによりモデルがよりリアルになり、クラスター化されたライティングと拡張された容量によりシーンがより壮大になり、より直感的な入力により AI のエラーが減少します。つまり、機能の拡張です。 AI 主導の制作プラットフォームが最も恐れているのは、「見た目は印象的だが、提供の信頼性が低い」ことです。そしてこの日は、「信頼できる」と「よくできている」という、最も基本的な 2 つのことを同時にしっかりと固めることができました。マシンの性能が向上し、より厳密に検証されると、人々は真に、自信を持ってマシンに「ゲームの構築」を任せることができます。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

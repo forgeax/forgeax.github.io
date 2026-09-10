@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-21 · Une interface rafraîchie + un workbench intégrable — ForgeaX</title>
+<meta name="description" content="Une actualisation visuelle au niveau du système (jetons de conception, icônes, mouvement), un établi intégrable à surface divisée, un tableau de bord plus propre centré sur la session, des couches de sprite 2D du moteur et des exemples d'éclairage, et un démarrage/arrêt plus simple à une commande." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-21 · Une interface rafraîchie + un workbench intégrable — ForgeaX" />
+<meta property="og:description" content="Une actualisation visuelle au niveau du système (jetons de conception, icônes, mouvement), un établi intégrable à surface divisée, un tableau de bord plus propre centré sur la session, des couches de sprite 2D du moteur et des exemples d'éclairage, et un démarrage/arrêt plus simple à une commande." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-05-21.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-21.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-21.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-21.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-21.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-21.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-21.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-21.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-05-21.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-05-21.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-05-21</span></div>
+    <h1>Une interface rafraîchie + un workbench intégrable</h1>
+    <p class="standfirst">Aujourd&#39;hui, l&#39;interface a bénéficié d&#39;une actualisation au niveau du système : un système de conception unifié, un jeu d&#39;icônes complet, des mouvements fluides, un nouveau shell d&#39;aperçu. L&#39;atelier a développé une architecture de « plug-in à surface divisée », hébergeant pour la première fois une fenêtre d&#39;outils entièrement intégrée ; le tableau de bord a été réécrit en fonction de la session et le chat a cessé de traverser les flux ; le moteur a ajouté des couches de sprite 2D et un ensemble complet d&#39;exemples d&#39;éclairage, et le démarrage/arrêt a été simplifié en une seule commande.</p>
+    <div class="prose"><h2>De la sensation du prototype à la sensation du produit</h2>
+<p>Pendant un certain temps, la plus grande partie de l&#39;énergie était consacrée à « est-ce que ça peut fonctionner du tout » ; À ce jour, le produit a atteint le point de « grandir » tant au niveau visuel que structurel. La ligne directrice poussait systématiquement l&#39;interface d&#39;un prototype assemblé à partir de fonctionnalités vers quelque chose qui ressemble - et se sent - à un produit fini : un langage de conception unifié, des icônes cohérentes, un mouvement fluide et une présentation globale plus claire. Dans le même temps, l&#39;établi, le tableau de bord et le moteur ont chacun progressé. Ensemble, ils signalent que cette chose ne se contente plus d&#39;une « démonstration de canette », mais commence à prendre au sérieux l&#39;apparence et l&#39;ordre « d&#39;être ouvert et utilisé tous les jours, à long terme ». Pousser les deux – beau et utilisable – à la fois est le passage clé de l’utilisable à l’agréable.</p>
+<h2>Une interface rafraîchie : système de conception unifié, icônes, mouvement</h2>
+<p>L’interface a bénéficié d’une actualisation au niveau du système ce jour. En dessous se trouvait une structure de jetons de conception à trois couches - unifiant les variables visuelles de base telles que la couleur, la bordure et l&#39;espacement sous une seule gestion plutôt que des styles codés en dur dispersés partout ; cela rend l&#39;ensemble de l&#39;application visuellement cohérent par nature, donc changer un thème en un seul endroit prend effet partout et les coûts de maintenance diminuent fortement. Un ensemble épuré d&#39;icônes de ligne a été intégré à l&#39;établi et aux barres d&#39;outils, rendant les endroits qui se contentaient d&#39;emoji ou de texte professionnels et uniformes. Une couche de mouvement a été ajoutée : le contenu de la barre latérale et les panneaux effectuent une transition fluide au lieu de s&#39;accrocher instantanément, et la continuité visuelle rend l&#39;interaction moins discordante. La structure supérieure a également été améliorée. Aucun de ces éléments n&#39;est une « fonctionnalité » en soi, mais ensemble, ils décident si, à la première ouverture, vous pensez qu&#39;il s&#39;agit d&#39;un jouet ou d&#39;un outil.</p>
+<h2>L&#39;atelier peut héberger une fenêtre d&#39;outils entièrement intégrée</h2>
+<p>L&#39;atelier a été mis à niveau aujourd&#39;hui vers une architecture de « plugin à surface divisée » : un outil peut placer ses commandes dans la barre latérale et également prendre en charge toute la zone principale pour disposer d&#39;une surface de travail complète. Cela résout un véritable problème : un outil nécessitant une grande toile, comme la « génération de personnages », était auparavant coincé dans un petit panneau sans espace pour travailler ; il peut désormais vivre dans l&#39;atelier sous la forme d&#39;une fenêtre d&#39;outil intégrée remplissant la zone principale, fonctionnant comme un logiciel professionnel. Le premier outil migré sur cette architecture était l&#39;atelier de génération de personnages, qui fonctionne désormais comme sa propre page intégrée. Chat a également obtenu une commande /tool ​​pour invoquer directement la capacité d&#39;un outil, plutôt que de la décrire en langage naturel à chaque fois. L&#39;importance de l&#39;architecture va bien au-delà de « fenêtres plus grandes » : elle définit « comment un outil tiers se connecte au workbench en tant que citoyen de premier ordre », une étape clé vers une plateforme extensible sans limite par des plugins.</p>
+<h2>Un tableau de bord plus propre, un chat qui ne traverse pas les flux</h2>
+<p>Le tableau de bord a été réécrit ce jour-là, centré sur la session, réduit à trois vues claires (aperçu, sessions, analyses) et a supprimé certaines anciennes pages en double et obsolètes. L&#39;avantage le plus direct : l&#39;ouvrir ne génère plus une pile d&#39;erreurs rouges mais présente l&#39;état actuel de manière propre et fiable. Le chat a également corrigé un ancien problème : chaque onglet de conversation est désormais strictement lié à sa propre session, de sorte que changer de session ou revenir en arrière depuis le tableau de bord ne se répercutera pas sur le flux de sortie toujours en cours de la conversation précédente ; le bouton d&#39;arrêt est aligné sur l&#39;état d&#39;exécution réel du backend, donc cliquer dessus s&#39;arrête. Le numéro de version est toujours visible et s&#39;actualise au retour à la fenêtre. Ce sont les bases pour « ne pas vous gêner au quotidien », remplies une à une ce jour.</p>
+<h2>Moteur : calques de sprite 2D + un ensemble complet d&#39;exemples d&#39;éclairage</h2>
+<p>Le moteur a progressé à la fois en 2D et en éclairage ce jour-là. En 2D, une couche de sprites a été ajoutée : les sprites peuvent être superposés et empilés dans le bon ordre, donnant enfin au contenu 2D (la relation avant-arrière des arrière-plans, des personnages et des éléments de l&#39;interface utilisateur) une base appropriée, ne s&#39;appuyant plus sur des hacks manuels pour contrôler ce qui se trouve au-dessus de quoi. En ce qui concerne l&#39;éclairage, un ensemble complet et progressif d&#39;exemples d&#39;éclairage a été complété : des ombres et des matériaux de base à l&#39;éclairage texturé, en passant par les roulettes de lumière et plusieurs lumières dans une seule scène, une série de chapitres tous transformés en démos de moteur exécutables. Ces exemples constituent à la fois une documentation vivante de l&#39;éclairage du moteur et du matériel pédagogique prêt à l&#39;emploi pour que quiconque (y compris l&#39;IA) puisse apprendre « comment éclairer une scène avec ce moteur ». Faire progresser la 2D et la 3D ensemble signifie que le moteur n&#39;est pas déséquilibré – il peut faire aussi bien du plat que du dimensionnel.</p>
+<h2>Installation et démarrage/arrêt plus simples</h2>
+<p>Cette journée a grandement simplifié l&#39;installation et le démarrage/arrêt. Désormais, une commande fait apparaître l&#39;ensemble des services et une autre commande l&#39;arrête proprement ; l&#39;arrière-plan exécute un seul service principal de longue durée, ne dépendant plus d&#39;un environnement de conteneur ni ne nécessitant d&#39;abord une pile d&#39;installations comme avant. Un écueil qui bloquait autrefois les nouveaux arrivants sur certains systèmes en raison d’un échec d’installation du conteneur a été évité en cours de route. Pour tous ceux qui débutent, le chemin « du clone à la course » est réduit à son plus court – la partie la plus concrète de l’abaissement de la barre à utiliser. Quelle que soit la solidité d&#39;une plate-forme, si la toute première étape d&#39;installation refuse la moitié des utilisateurs, ses capacités ne seront jamais mises en œuvre ; le pavage de l&#39;appartement d&#39;entrée fait lui-même partie de la force du produit.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>C&#39;était une journée de mise à niveau simultanée du « look » et du « squelette » du produit. Le rafraîchissement visuel lui donne l&#39;apparence d&#39;un produit fini, l&#39;établi à surface divisée permet aux outils tiers de véritablement s&#39;installer, le tableau de bord épuré et le chat non croisé permettent une utilisation quotidienne dégagée, les couches 2D du moteur et les exemples d&#39;éclairage rendent les capacités plus complètes, et l&#39;installation simplifiée permet à plus de personnes de franchir la porte. Ces changements couvrent quatre dimensions différentes – esthétique, utilisable, extensible, accessible – mais pointent vers une chose : rendre la plate-forme digne d&#39;être utilisée à long terme en tant qu&#39;outil approprié. Entre &quot;un prototype exécutable&quot; et &quot;un outil que vous êtes heureux d&#39;ouvrir tous les jours&quot;, il n&#39;y a souvent pas une fonctionnalité qui tue, mais exactement ce genre de journée complète de polissage de la rugosité en raffinement dans plusieurs dimensions à la fois.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

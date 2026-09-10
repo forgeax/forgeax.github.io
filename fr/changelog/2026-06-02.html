@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-02 · Une commande pour lancer l'application de bureau + un éditeur de nœuds rejoint — ForgeaX</title>
+<meta name="description" content="Un lanceur de bureau à une commande, un éditeur de nœuds visuels se joignant via la découverte de plugins pilotée par manifeste avec des plugins isolés, une discussion plus fluide avec un chien de garde de prévisualisation et une grande réduction d'ECS." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-02 · Une commande pour lancer l'application de bureau + un éditeur de nœuds rejoint — ForgeaX" />
+<meta property="og:description" content="Un lanceur de bureau à une commande, un éditeur de nœuds visuels se joignant via la découverte de plugins pilotée par manifeste avec des plugins isolés, une discussion plus fluide avec un chien de garde de prévisualisation et une grande réduction d'ECS." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-02.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-02.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-02.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-02.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-02.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-02.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-02.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-02.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-02.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-02.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-02.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-06-02</span></div>
+    <h1>Une commande pour lancer l'application de bureau + un éditeur de nœuds rejoint</h1>
+    <p class="standfirst">Aujourd&#39;hui, une seule commande lance l&#39;ensemble du Studio de bureau ; le démarrage du plugin est passé d&#39;une découverte codée en dur à une découverte basée sur un manifeste, un éditeur de nœud visuel complet se joint en tant que plugin avec des plugins isolés les uns des autres ; le chat a gagné des interactions pratiques et l&#39;aperçu un chien de garde de charge ; et le moteur a fait une série d&#39;amincissements ECS.</p>
+    <div class="prose"><h2>Simplifier à la fois le « lancement » et le « branchement »</h2>
+<p>Le fil conducteur de la journée est constitué de deux « simplifiés ». La première consiste à simplifier le « lancement » : auparavant, exécuter l&#39;intégralité du Studio sur le bureau impliquait la mémorisation d&#39;une chaîne de commandes pour démarrer chaque service ; maintenant, une seule commande le fait. L&#39;autre consiste à simplifier le « branchement » : ajouter un nouvel outil à la plate-forme utilisée pour nécessiter une logique de démarrage codée en dur ; il s&#39;agit désormais de &quot;découverte automatique par manifeste&quot; : ajoutez n&#39;importe quel plugin qui suit la convention et il est reconnu et lancé. Avec une série de améliorations de l&#39;expérience de chat et un moteur interne allégé, le travail global de la journée ouvre la voie à la fois à &quot;l&#39;utiliser&quot; et à &quot;l&#39;étendre&quot; - plus facile à lancer pour les gens ordinaires, plus facile à intégrer pour les développeurs.</p>
+<h2>Une commande pour ouvrir l&#39;application de bureau</h2>
+<p>Le côté bureau a gagné aujourd&#39;hui un lanceur à une seule commande : une seule commande démarre le mode développement, crée un package, ouvre l&#39;application directement ou arrête tout, avec des documents expliquant les trois façons d&#39;exécuter : le développement de navigateur, le développement de bureau et l&#39;application de bureau packagée, et ce que chacun convient. Auparavant, exécuter l&#39;intégralité du Studio sur le bureau signifiait mémoriser et saisir une chaîne de commandes afin de démarrer chaque service, difficile à récupérer en cas de problème ; maintenant, une ligne fait apparaître tout le côté bureau. En dessous, le démarrage/arrêt a été déplacé vers des « groupes de processus » : un groupe de services démarre ensemble et est proprement nettoyé ensemble à la sortie – résolvant directement un problème de longue date où la fermeture de la fenêtre laissait une pile de « processus zombies » en arrière-plan, retenant silencieusement les ports et la mémoire et enlisant la machine. L&#39;aplatissement de la barre de lancement est une condition préalable pour que davantage de personnes l&#39;installent sur leur propre ordinateur et l&#39;utilisent quotidiennement.</p>
+<h2>Un éditeur de nœuds rejoint le store, avec des plugins isolés</h2>
+<p>Ce jour-là, le démarrage du plugin est passé d&#39;un « tas de logique codée en dur » à une « découverte automatique par manifeste » : tout plugin autonome avec une déclaration de manifeste, déposé, est automatiquement reconnu et lancé par le système, sans qu&#39;il soit nécessaire de modifier le code de démarrage du programme principal pour chaque plugin. En utilisant ce mécanisme générique, un éditeur de nœuds visuels complet (apportant un workbench &quot;3D low-poly&quot; et un &quot;générateur de scène&quot;) a été joint en un seul plugin. Un problème d&#39;isolation a été résolu en parallèle : chaque plugin a désormais sa propre racine de projet isolée, donc plusieurs ateliers ne partagent plus un même projet et éditent au mauvais endroit par diaphonie ; en développement, les plugins sont rechargés à chaud par défaut, donc une modification d&#39;une ligne prend effet immédiatement. L&#39;importance : il transforme « la manière dont les outils tiers s&#39;intègrent » d&#39;un codage en dur unique à une norme réutilisable, auto-découverte et mutuellement isolée – une étape clé vers un « écosystème de plugins », rendant tout futur outil à la fois propre et plug-and-play.</p>
+<h2>Un chat plus fluide + un chien de garde de chargement en aperçu</h2>
+<p>Le panneau de conversation a gagné aujourd&#39;hui un ensemble d&#39;interactions qui facilitent le quotidien : changer de modèle actuel à la volée, relire l&#39;historique par segments (au lieu de faire défiler laborieusement une longue bande), de nouvelles entrées pour les actions courantes dans la barre supérieure et un anneau d&#39;utilisation contextuelle montrant en un coup d&#39;œil le montant du budget restant. L&#39;aperçu a gagné un « chien de garde au chargement initial » : si la première image met du temps à apparaître après le chargement, elle se recharge automatiquement et réessaye jusqu&#39;à ce que l&#39;image soit réellement rendue, plutôt que de vous laisser attendre sur un écran blanc - ce genre de problème &quot;occasionnellement ne se charge pas, nécessite une actualisation manuelle&quot; fatigue le plus votre patience, et son automatisation rend l&#39;expérience beaucoup plus fluide. Le backend a également corrigé quelques blocages de discussion et garanti que les conversations se déroulaient véritablement sur le modèle que vous choisissez. Individuellement petits, ils polissent ensemble la surface la plus haute fréquence de la journée, de « utilisable » à « réactive ».</p>
+<h2>Un grand allégement de l&#39;ECS : moins de concepts, plus rapide, plus facile à comprendre</h2>
+<p>Le moteur a effectué aujourd&#39;hui une lourde opération de « mincissement » sur son noyau : le &quot;système de composants d&#39;entité&quot; (ECS) qui décrit un monde de jeu. Il a supprimé ou fusionné plusieurs concepts fastidieux : ne plus avoir besoin d&#39;une étape distincte de « enregistrement des composants », unifier la « transformation locale » et la « transformation du monde » en un seul ensemble qui n&#39;est plus divisé, regrouper la numérotation des composants de chaque monde en un identifiant globalement unifié, supprimer certains caches locaux redondants et supprimer une responsabilité qui n&#39;aurait pas dû être mélangée à l&#39;enregistrement des actifs à gérer séparément. Derrière cela se cache un axiome de conception qui traverse l&#39;ensemble du projet : la mesure de la qualité du code n&#39;est pas le nombre de lignes mais &quot;le nombre de concepts que vous devez maîtriser pour comprendre un seul point&quot; : moins de concepts, moins d&#39;erreurs pour les humains et l&#39;IA qui le lisent. Cet amincissement est entièrement invisible du côté de l&#39;utilisateur, mais décide pourtant directement si le moteur, à mesure qu&#39;il grandit, peut rester « décomposable, rapide, modifiable ». Réduire continuellement le bruit conceptuel du noyau est le travail interne qui permet à ce moteur d&#39;évoluer sainement à long terme.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>Les sujets de la journée semblent chacun avoir leur propre coin, mais à l&#39;intérieur ils partagent un objectif commun : réduire les frictions. Le lanceur à une seule commande a réduit les frictions liées au « lancement », la découverte automatique du manifeste a réduit les frictions liées au « branchement », le programme de surveillance du chat et de prévisualisation a réduit les frictions liées à « l&#39;utilisation quotidienne », et la réduction ECS a réduit les frictions liées à la « lecture et modification du code ». Pour qu&#39;une plate-forme soit utilisée par plus de personnes, étendue par plus d&#39;outils et maintenue à long terme, ce qui compte généralement n&#39;est pas une fonctionnalité éblouissante, mais l&#39;atténuation de ces frictions banales une par une. Moins il y a de frictions, plus la barre est basse et plus il y a de personnes disposées à venir, à rester et à contribuer. Cette journée a fait avancer plusieurs pas d&#39;un coup sur la question simple mais fondamentale de &quot;rendre tout un peu plus fluide&quot;.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

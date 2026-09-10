@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-16 · Der Agentenbus kommt in die UI + Dashboard-Filter — ForgeaX</title>
+<meta name="description" content="Der Ereignisbus zwischen Agenten erhält eine sichtbare Oberfläche, das Dashboard erhält Filter und Suche, die Engine kann Standard-glTF-Modelle laden und das ECS konvergiert sein Datenvokabular in einer typsicheren Familie." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-16 · Der Agentenbus kommt in die UI + Dashboard-Filter — ForgeaX" />
+<meta property="og:description" content="Der Ereignisbus zwischen Agenten erhält eine sichtbare Oberfläche, das Dashboard erhält Filter und Suche, die Engine kann Standard-glTF-Modelle laden und das ECS konvergiert sein Datenvokabular in einer typsicheren Familie." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-16.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-16.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-16.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-16.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-16.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-16.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-16.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-16.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-16.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-16.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-16.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-05-16</span></div>
+    <h1>Der Agentenbus kommt in die UI + Dashboard-Filter</h1>
+    <p class="standfirst">Der Event-Bus, den das Backend am Vortag gegossen hat, ist an diesem Tag aufgetaucht: Die Bus-Agenten, mit denen sie miteinander kommunizieren, haben zum ersten Mal einen sichtbaren Einstiegspunkt erhalten, und das Dashboard hat Filter- und Suchfunktionen erhalten. Mittlerweile hat die Engine gelernt, Standard-3D-Modelle zu laden und ihr Komponentensystem-Datenvokabular in einer einheitlichen, typsicheren Familie zusammenzuführen.</p>
+    <div class="prose"><h2>Die unsichtbare Maschinerie sichtbar machen</h2>
+<p>Die Plugin-Laufzeit und der Event-Bus, die das Backend am Vortag stillschweigend bereitgestellt hat, sind selbst „unsichtbar“ – sie laufen im Hintergrund und sind für Benutzer nicht wahrnehmbar. Das Thema dieses Tages war die Verkabelung dieser unsichtbaren Maschinerie mit der Schnittstelle, um sie beobachtbar und bedienbar zu machen. Sobald ein System beginnt, interne Aktivitäten wie „mehrere Agenten, die über einen Bus kommunizieren“ auszuführen, führt das Verbergen all dieser Aktivitäten im Hintergrund dazu, dass Benutzer und Entwickler sich nur noch fragen müssen, „was es eigentlich tut“. Die Arbeit dieses Tages war also klar: Öffnen Sie ein Fenster zum Bus, fügen Sie Filter zur Aufgabenliste hinzu und lassen Sie die Leute wirklich sehen, was im System passiert. Beobachtbarkeit ist kein „nice-to-have“; Dies ist die Voraussetzung dafür, dass ein komplexes System vertrauenswürdig und debuggbar ist.</p>
+<h2>Ein sichtbarer Agentenbus</h2>
+<p>An diesem Tag wurden die Event-Bus-Agenten verkabelt, die für die Kommunikation mit der Schnittstelle verwendet wurden. In der Seitenleiste wurde eine „Bus-Zustandslampe“ angezeigt, die die aktuelle Plugin-Anzahl anzeigt, sodass Sie auf einen Blick erkennen können, wie viele Funktionen geladen sind und ob der Status fehlerfrei ist. und ein spezielles Bus-Admin-Panel wurde zu einem Eintrag auf der obersten Ebene befördert, in dem Sie Ereignisarten durchsuchen, mit der Tastatur nach oben/unten navigieren, jeden vorhandenen Datensatz für seine Details erweitern und sogar einen Deep-Link von einem Datensatz direkt zur entsprechenden Ereigniskategorie in der Seitenleiste erstellen können. Der Sinn all dessen: Die Multi-Agenten-Zusammenarbeit wurde zum ersten Mal „sichtbar“ – wer mit wem spricht, was passiert, wie viele von jeder Veranstaltungsart –, klar dargestellt, nicht länger ein Klumpen Hintergrundaktivität, den man nur erahnen konnte. Für eine Plattform, die langfristig durch „die Zusammenarbeit eines Teams von Agenten“ funktioniert, ist dieses Fenster ein wichtiger Schritt, um abstrakte Zusammenarbeit in ein konkretes Bild zu verwandeln, das verstanden und interveniert werden kann.</p>
+<h2>Dashboard: Statusverteilung, Filterung und Suche</h2>
+<p>Da mehr Aufgaben gleichzeitig ausgeführt wurden, reichte eine flache Liste allein nicht mehr aus. Dieser Tag hat dem Dashboard einige praktische Tools hinzugefügt: Die Ausführungsliste hat oben einen „Statusverteilungsstreifen“ erhalten, sodass Sie auf einen Blick das Gesamtbild darüber sehen können, wie viele ausgeführt, erledigt oder fehlerhaft sind; und die Aufgabenliste unterstützt das Filtern nach Status und die Suche nach Titel, sodass Sie aus einem großen Stapel an Verlaufsdaten schnell die Aufgabe finden können, die Ihnen am Herzen liegt. Dies sind einfache Funktionen, aber wenn Sie wirklich Dutzende Aufgaben gleichzeitig verwalten, entscheiden sie darüber, ob Sie „das Ganze auf einen Blick erfassen“ oder „in einer langen Liste nach einer Nadel suchen“. Bei der Glättung der beiden hochfrequenten Vorgänge Problemtriage und Verlaufsüberprüfung geht es im Grunde darum, die Zeit des Benutzers zu respektieren – wenn ein System wächst, sind gute Filterung und Suche die eigentliche Produktivität.</p>
+<h2>Die Engine kann Standard-3D-Modelle (glTF) laden.</h2>
+<p>Die Engine hat an diesem Tag einen wichtigen Schritt in ihrem Content-Ökosystem gemacht: Die Unterstützung für das Laden des Standard-3D-Modellformats glTF und das Laden über das Asset-System wurde am Tag zuvor wieder aufgenommen. glTF ist das gängige Austauschformat für 3D-Inhalte, das von den meisten Modellierungstools und Modellmarktplätzen unterstützt wird; Durch die direkte Aufnahme von glTF können große Mengen vorgefertigter 3D-Modelle eingebracht und verwendet werden, ohne jedes einzelne von Hand neu erstellen zu müssen. Es ist auch wichtig, es mit dem Asset-System zu verbinden, anstatt separate Ladelogiken einzurichten – importierte Modelle haben dann natürlich eine einheitliche Identität und können auf strukturierte Weise referenziert, verwaltet und wiederverwendet werden. Für Benutzer ist dies eine wichtige Antwort auf die eigentliche Frage „Woher kommen die Assets für die Erstellung eines Spiels?“: KI kann sie nicht nur generieren, sondern es können auch bereits vorhandene Standardmodelle direkt eingebracht werden.</p>
+<h2>Das ECS-Vokabular der Engine läuft in einer Familie zusammen</h2>
+<p>Der Motor hat an diesem Tag eine wichtige „Annäherung“ an das niedrige Niveau geschafft. Zuvor hatten unterschiedliche Datenformen in Komponenten – Zeichenfolgen, Arrays mit fester/variabler Länge, Puffer – jeweils ihre eigenen Verarbeitungs- und Wrapper-Schichten, die im Konzept verstreut waren und ermüdend zu lesen waren. An diesem Tag wurden sie alle unter einer „Managed-Resource“-Familie zusammengefasst und ein Haufen überflüssiger Wrapper-Code gelöscht. Daneben wurde das „Erstellen einer Entität“ auf Typebene strenger: Präzisere Typeinschränkungen beschreiben, aus welchen Komponenten und Daten eine Entität besteht. Sie blockieren sowohl Fehler zur Kompilierungszeit als auch die alten Patches, die über „erzwungene Typumwandlungen“ vorgenommen wurden, einen nach dem anderen, mit einer permanenten Überprüfung, um zu verhindern, dass sie sich wieder einschleichen. Diese Arbeit ist für den Benutzer völlig unsichtbar, verkörpert jedoch eine grundlegende technische Haltung: Das Maß für die Codequalität ist nicht die Zeilenzahl, sondern „wie viele Konzepte Sie beherrschen müssen, um eine einzelne Stelle zu verstehen“ – die Zusammenführung verstreuter Vokabeln in einer Familie erleichtert genau die Belastung für alle (einschließlich KI), die diesen Code später lesen.</p>
+<h2>Eine funktionierende Haltung: direkt bearbeiten + der lokale Test ist das Tor</h2>
+<p>An diesem Tag wurde auch eine Arbeitshaltung in der Ingenieurskultur zum Ausdruck gebracht: Um Änderungen klar genug zu machen, bearbeiten Sie sie direkt, anstatt einen aufwändigen Prozess auf alles anzuwenden. aber gleichzeitig wurde „lokale Tests bestanden“ als Schwellenwert festgelegt, der nicht umgangen wird – Sie können schnell vorankommen, aber Sie können die Überprüfung nicht überspringen. Die beiden scheinen widersprüchlich, sind aber zwei Seiten einer Sache: Gerade weil automatisierte Tests das Sicherheitsnetz sind, wird die direkte Bearbeitung nicht zur Leichtsinnigkeit. Die Formulierung „wann man den aufwändigen Prozess in Angriff nehmen sollte und wann die direkte Bearbeitung in Ordnung ist“ zeugt von Respekt vor der Effizienz – man darf nicht zulassen, dass einfache Dinge durch den Prozess verlangsamt werden, und auch nicht, dass Geschwindigkeit zu einer Ausrede dafür wird, die Kontrolle über die Qualität zu verlieren. Dieses Tempogefühl ist das unsichtbare Geheimnis dafür, dass ein schnell iterierendes Team langfristig sowohl schnell als auch stabil bleibt.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Zusammengenommen war dies ein Tag, an dem es darum ging, „das System für die Menschen transparent zu machen“. Die komplexe interne Maschinerie des Backends wurde mit der Schnittstelle verbunden und so beobachtbar und bedienbar. Die Engine öffnete die Tür zu umfangreichen Standardmodellen, sodass die Inhaltsquellen nicht länger eingeschränkt sind. und die niedrige Ebene machte den Code selbst durch Vokabularkonvergenz lesbarer und vertrauenswürdiger. Oberflächlich betrachtet sind Visualisierung, Modellladen und Typkonvergenz drei Dinge, die nichts miteinander zu tun haben, aber sie weisen auf ein Ziel hin: dieses immer komplexere System „verständlich und vertrauenswürdig“ für Benutzer, Entwickler und die KI zu halten, die später den Code liest. Wie weit ein System kommt, hängt oft weniger davon ab, wie viele Funktionen es anhäuft, als vielmehr davon, ob es auch bei zunehmender Komplexität transparent bleiben kann – und dieser Tag war eine Investition in genau diese Transparenz.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

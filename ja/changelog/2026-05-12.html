@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-12 · エンジン アセット システム v1 + ディープ チャットの洗練 — ForgeaX</title>
+<meta name="description" content="30 時間のプッシュ: ハンドル参照を備えたエンジン アセット システム、CI でゲートされたピクセル パリティ ベンチマーク、サンドボックスの視覚的検証、最大 100 のチャットポリッシュ パス、強力なバックエンドの強化、および HMR に依存しないリファクタリング。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-12 · エンジン アセット システム v1 + ディープ チャットの洗練 — ForgeaX" />
+<meta property="og:description" content="30 時間のプッシュ: ハンドル参照を備えたエンジン アセット システム、CI でゲートされたピクセル パリティ ベンチマーク、サンドボックスの視覚的検証、最大 100 のチャットポリッシュ パス、強力なバックエンドの強化、および HMR に依存しないリファクタリング。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-12.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-12.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-12.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-12.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-12.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-12.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-12.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-12.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-12</span></div>
+    <h1>エンジン アセット システム v1 + ディープ チャットの洗練</h1>
+    <p class="standfirst">4 つの並列トラックにわたる 24 時間体制のプッシュ。エンジンには適切なアセット システムが導入され、レンダリングでは CI でゲートされた「ピクセル パリティ」品質の基準が引き上げられ、サンドボックスではエージェントが画像が正しいかどうかを「確認」でき、チャット パネルでは 100 回のポリッシュ パスが行われ、バックエンドでは安全性とコントラクトに関する厳しいテストが行​​われ、大規模なリファクタリングにより最終的にインターフェイスのホット リロードが独立しました。</p>
+    <div class="prose"><h2>1 日に 4 つのトラック: その日のパノラマ</h2>
+<p>この日はこれまでで最も密度の高い日で、真夜中から翌朝まで 4 つのトラックが同時に実行され、機能が次々と実行され、厳格な 7 ステップの閉ループの下で修正が行われ、チャット パネルは「決して終了しない」定常状態の磨きに入り、バックエンドの安全性の確保とインターフェイスは 1 つずつテストで縮小し、さらにインターフェイスのホットリロードを自動的に引き出す終了リファクタリングでした。混乱なく 1 日にこれだけの内容を詰め込むには、次の 2 つのことが重要でした。各トラックには明確な境界線と許容基準があったこと、そして変更が基礎に近づくほど、検証可能性が高まることです。以下ではテーマごとに分けていますが、それらが 1 日でかみ合って前進したことを思い出してください。</p>
+<h2>エンジン アセット システム v1: ハンドルによるゲーム コンテンツの参照</h2>
+<p>この日のエンジンの最も重要な納品は、資産システムの最初のバージョンでした。それ以前は、モデル、テクスチャ、シーンなどの「ゲーム コンテンツ」を管理するための統一された方法がありませんでした。アセット システムは、アセットに正式なアイデンティティを与えました。すべてのアセットは、巨大な生データを渡すのではなく、軽量の「ハンドル」を通じて参照される構造化オブジェクトです。ハンドルは図書館の請求番号のようなものです。ハンドルを握ると、本全体を持ち歩かなくても、本を取り出すことができます。チェーンを検証するためにサンプル ルーム シーンが構築されました。重要性: モデル、テクスチャ、シーンをロードするための 1 つのエントリ ポイントで、ゲーム コンテンツを構造化された方法で参照、共有、再利用できるようになりました。これは、後のすべての「モデルをインポートし、アセットをシーンに配置する」機能の真の開始点です。</p>
+<h2>ピクセルパリティのベンチマーク: レンダリング品質は静かに後退することはありません</h2>
+<p>社内のレンダラーが最も恐れているのは、単一の間違ったフレームではなく、「誰も気付かないうちに静かに悪化すること」です。1 つ変更すると、一部のフレームがリファレンスと数ピクセル異なり、目には見えないものの、時間の経過とともに消えていきます。この日は、「ピクセルパリティ」の基準を提起しました。つまり、エンジンのレンダリングされたフレームを基準とピクセルごとに比較し、その差がしきい値を超えた瞬間に、継続的統合が赤色になり、変更がトランクにマージされるのをブロックします。これは、「レンダリングが正しいかどうか」を手や感覚で観察するものから、コミットごとに実行される自動で客観的なゲートに変えます。長期的に画質を進化させるエンジンにとって、このゲートは品質を安定させるための前提条件であり、これを使用することで、恐れることなくレンダリングを大胆に変更できます。</p>
+<h2>サンドボックスの視覚的検証: エージェントに画像が正しいかどうかを「確認」させます。</h2>
+<p>AI にゲームを編集させると、避けられない問題が自動的に発生します。AI が変更を加えた後、その絵が実際に正しいかどうやって判断するのでしょうか。コードエラーかどうかだけを確認すると、成功したと思っていても「コードはクラッシュしていないのに画面が真っ暗」になってしまいがちです。この日はサンドボックス内に視覚的な検証の仕組みを構築し、「映像の制作」と「映像の確認」という2つの役割を意図的に分離し、一方がゲームを実行してフレームをキャプチャし、もう一方がキャプチャされたフレームを判断しました。役割を分離すると、検証の信頼性が高まります。「編集し、スクリーンショットを撮り、問題ないと宣言します」という自己認証の罠がなくなりました。このステップは、エージェントが「コードを書ける」状態から「その出力に責任がある」状態に移行するための鍵となります。エージェントは単にコードを投げ渡すだけでなく、ループを閉じて「私が作ったものが実際にどのようなものであるか」を確認できるようになります。</p>
+<h2>インスタンス化レンダリング + 多数のオブジェクト: 試金石としてのブロック ゲーム</h2>
+<p>この日はまた、「落ちているブロックをクリアする」ミニゲームのデモで、エンジンの多オブジェクト機能を叩き込みました。このようなゲームでは、画面上に一度に多数の同一のブロックが表示されるため、それぞれのブロックに対して個別の描画コマンドを発行すると、コストが急速に増加します。このため、エンジンは「インスタンス化描画」を追加しました。1 回の送信で同じオブジェクトの大きなバッチが描画され、反復コストが償却されます。多数のオブジェクトのレンダリング パスが整理されたため、「多数のエンティティが一緒に表示される」処理が高速かつ安定して実行されます。抽象的なテストではなく、本当にプレイ可能なミニゲームを使用して検証すること自体が規律です。実際のゲームをスムーズに実行させることは、孤立したスニペットを渡すよりもはるかに説得力があります。</p>
+<h2>~100 のチャット磨きパス: コスト、期間、複数のプロバイダー</h2>
+<p>この日、チャットパネルは「決して完成しない」定常状態の磨きをかけ、いくつかの実用的なことに焦点を当てて百数回の小さな反復を行った。 1 つ目: 各ターンの実際のコストと期間を、適切な精度でセント、ダイム、ドルなどの適切な金額形式で表示し、コストが一目でわかるようにします。 2 つ: 「どのコーディング バックエンドを使用するか」の切り替え可能なセレクター: 会話を 1 つに固定でき、選択は記憶され、タブ間で同期され、上下のキーボード選択をサポートし、選択したものが使用できない場合は警告します。 3 つ目: 不安を引き起こす「モデルが長時間黙って考えている」状態を慎重に処理すること。経過秒数を表示し、しきい値を超えた切り替えを示唆し、「完了したが出力が表示されない」ことを示すプレースホルダー メモを表示します。各パスで 1 つのことに触れ、自己テストし、メモを記録しました。このトラックは、ユーザーが毎日最も長く見つめる表面であるため、100 回のパスを獲得します。どんなに強力な機能があっても、苦労して読み取って不確かに感じられれば、信頼はありません。</p>
+<h2>バックエンドの安全性と契約の強化: ホワイトリスト、トラバーサル防御、多くのテスト</h2>
+<p>エージェントは実際にマシン上のファイルの読み書きを行うため、バックエンドは「アクセスすべきもののみにアクセスできる」ようにする必要があります。この日は、ファイルとパスの安全性に関する大規模な防御とテストが行​​われました。ホワイトリストを使用してアクセス可能なパスを制限し、「ディレクトリ トラバーサル」のオーバーリーチに対する防御を追加し、ファイルを書き込むときに既存のディレクトリを上書きすることを拒否し、外部応答でユーザーのホーム パスを編集します (マシンの実際のパスが漏洩しないように)。その間、バックエンドのインターフェイス コントラクトはテストごとに固定され、どの入力が何を返すか、エッジ ケースがどのように処理されるか、すべてがテストによって保護され、単体テストの数はその日マイルストーンを超えました。これらはいずれも「目に見える新機能」ではありませんが、ファイル編集 AI を自分のプロジェクトに導入する勇気があるかどうかを決定します。明確な境界、予測可能な動作、およびテストによって検出されたリグレッションが存在する場合にのみ、真の安心感が得られます。</p>
+<h2>終了リファクタリング: インターフェースのホットリロードを独立させる</h2>
+<p>早い時間に入り、この日は構造的なリファクタリングで終了しました。インターフェイスのホットリロード メカニズムを独立させ、途中で各パーツを所定の位置に配置しました。ユーザーのゲーム データはインスタンス独自のディレクトリに移動され、エンジン ソースは統合されたビルドの場所に抽出され、環境設定はリポジトリ ルートに引き上げられ、落とし穴が発生しやすいネストされたディレクトリのレイアウトが修正されました。このようなリファクタリングでは、ユーザー側にはほとんど変化がありませんが、「コードを編集し、インターフェイスが即座にホットリロードされる」エクスペリエンスがよりクリーンになり、相互干渉が起こりにくくなります。基礎が明確であればあるほど、後の構築が速くなります。これを 1 日の終わりに行うのは、まさに、非常に多くの新しいものが導入された後、ツリー全体を再調整するために 1 回の統合が必要になったためです。</p>
+<h2>この日が意味するもの</h2>
+<p>これまでの日々が「会話によって実行可能な何かを構築できる」ことを証明したとすれば、この日は「それが長期にわたって確実に実行できるか」の基礎を築きました。アセット システムにより、コンテンツが構造的に管理されます。ピクセルパリティベンチマークとサンドボックス視覚検証により、「画像が正しいかどうか」を客観的に判断できます。バックエンドの安全性とテストにより、「AI に動作させる」ことが信頼できるものになります。チャットの洗練度は人々に毎日使いたくなるものです。そして、クロージングリファクタリングにより、エンジニアリングの観点からすべてがクリーンに保たれます。これらを組み合わせると、スタンスが明らかになります。つまり、素早く前に突き進みながらも、あらゆるステップで検証、回帰、回顧できる確かな痕跡を残します。それはまさにこのログが将来の開発のために残したいモデルです。スピードと厳密さはどちらか一方ではなく、同じ日に達成できる 2 つのものです。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

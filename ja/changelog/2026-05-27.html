@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-27 · エンジンは完全自立 + 豊富なマテリアル — ForgeaX</title>
+<meta name="description" content="分岐点: エンジンは最後の外部レンダリング依存関係を削除し、ピクセル精度を自己検証し、Tier-1 PBR マテリアル、より幅広いデバイスのサポート、ネイティブ プレビュー プレーヤー、および HTTPS + 自動回復を獲得します。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-27 · エンジンは完全自立 + 豊富なマテリアル — ForgeaX" />
+<meta property="og:description" content="分岐点: エンジンは最後の外部レンダリング依存関係を削除し、ピクセル精度を自己検証し、Tier-1 PBR マテリアル、より幅広いデバイスのサポート、ネイティブ プレビュー プレーヤー、および HTTPS + 自動回復を獲得します。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-27.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-27.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-27.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-27.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-27.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-27.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-27.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-27.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-27.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-27.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-27.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-27</span></div>
+    <h1>エンジンは完全自立 + 豊富なマテリアル</h1>
+    <p class="standfirst">マイルストーン: エンジンは最後の外部レンダリング ライブラリへの依存関係を削除し、完全に単独で実行され、すべてのフレームのピクセル精度を自己検証するようになりました。マテリアルはエミッシブ + アンビエント オクルージョン + トーン マッピングの外観になりました。より古いデバイスでもレンダリングできます。プレビューにはネイティブの「プレーヤー」があり、ゲームは 50 行で始まります。さらにどこでも HTTPS を使用でき、自動回復のプレビューも可能です。</p>
+    <div class="prose"><h2>独り立ちの分水嶺「借りの殻」から「独り立ち」へ</h2>
+<p>これはエンジンの歴史における分岐点の日です。エンジンはずっと、成熟した外部の汎用レンダリング ライブラリへの低レベルの依存関係を維持し、それを自身のレンダリングが正しいかどうかを確認するための「参照回答」として使用していました。この日、最後の依存関係が完全に削除され、エンジンは独自のレンダリング パイプラインのみで実行されるようになりました。これは通常の依存関係の削除ではなく、「他人の肩の上に立って、常に他人を参照する」状態から「標準そのものである」状態への姿勢の変化です。以下の項目 (セルフチェック ベンチマーク、豊富なマテリアル、デバイスの互換性、ネイティブ プレビュー) はすべて、この「単独での動作」に関する付随物であり、このエンジンが単独で動作する成熟したレンダラに成長したことを宣言します。</p>
+<h2>組み込みのピクセルパリティベンチマーク: 自身を検証する</h2>
+<p>外部ライブラリを削除した後、実際的な問題が発生しました。以前は、そのライブラリは「レンダリングが正しいかどうか」を確認するための参照であり、それがなければ品質は何を保証するのでしょうか?答え: エンジンは独自の「ピクセル パリティ」ベンチマークを実行します。独自の参照答えを生成し、レンダリングされた各フレームをピクセルごとにチェックし、逸脱があれば警告します。これにより、「品質審査員」が外部から借用されたものからエンジン自体に組み込まれたものになります。その広範な重要性: 今後、エンジンの画質、パフォーマンス、機能の進化は完全に独自の管理下にあり、外部ライブラリの機能の境界やトレードオフによって主導されることはなくなります。追加または最適化したいものは何でも、他人の制限を回避する必要はありません。それ自体を検証できるエンジンは、長期的に独立して進化する真の資格を持っています。</p>
+<h2>Tier-1 PBR マテリアル: エミッシブ + アンビエント オクルージョン + トーン マッピングの外観</h2>
+<p>この日は素材系が統一され、ワンランクアップした。下位レベルでは、複数のマテリアル バリアントであったものが 1 つの統一された「レンダーパス」ベースのマテリアル モデルに統合され、概念が簡素化され、新しい機能を追加する余地が生まれました。この統合モデルでは、リアリズムを高めるいくつかの機能が追加されました。発光、ネオンサイン、光るルーン、エネルギー コアとしてオブジェクトを自動的に光らせます。アンビエント オクルージョン、自然に暗くなる隙間、角、接触点を使用して奥行きを大幅に強化します。画像の全体的な雰囲気 (クール、ウォーム、映画的など) を選択するためのいくつかのトーン マッピングの外観。 「マテリアルの種類を増やす」ことで「フレーム レートのコストがかかる」ことを防ぐために、これらの複雑なマテリアルはレンダー パイプライン キャッシュに通され、同じものを再利用し、異なるマテリアルは分離されます。全体として、シーン内のものがより「正しく」、より触感的に見えます。これは、「レンダリングできる」から「美しくレンダリングできる」への重要なアップグレードです。</p>
+<h2>より幅広いデバイスのサポート: デバイス層の完成 + 高度な機能なしのフォールバック</h2>
+<p>この日は「より多くのマシンにエンジンを稼働させる」ことも推し進めた。低レベルの「レンダリング デバイス層」は主要な機能の完全なセットを完成させたので、エンジンはブラウザーでレンダリングに必要なデバイス リソースを完全に要求して使用できるようになり、欠落する部分がなくなりました。最新の GPU 機能を備えていないフォールバック パスでは、「適切にレンダリングする」ための残りのギャップが 1 つずつ配線されていました。さらによく考えてみると、特定の最新の GPU 機能が欠けているデバイスのために、単純化されたパス上でもオブジェクトを正しく描画できるように、マテリアル互換ルートが構築されました。最終的な結果: 3D を適切に実行できるマシンの範囲がさらに広がりました。大衆向けプラットフォームの場合、「見た目が良くなる」ことと同じくらい「弱いマシンで動作する」ことが重要です。前者は何台が参入できるかを決定し、後者は彼らが留まるかどうかを決定します。</p>
+<h2>ネイティブ プレビュー プレーヤー - 50 行のゲーム</h2>
+<p>この日のプレビュー ゲームは、プラットフォーム独自のネイティブ ランタイム ホストに移行しました。クリーンなゲーム エントリとローダーは、外部ホストを経由することなく、ゲームを正しくロードして実行する役割を果たします。ゲーム テンプレートは約 50 行に圧縮されました。つまり、実行可能なゲームの作成は 50 行から始まります。ここでの価値は「十分に軽い出発点」です。初心者や AI が最初に直面するのは、最初に理解すべきフレームワーク コードの大きな塊ではなく、すぐに構築できる最小限の明確なスケルトンです。スタートが軽くて標準的であればあるほど、「ゲームをチャットで実現する」までの道のりはスムーズになります。このきれいなスタートから AI がコードを生成するとエラーが少なくなり、引き継ぐ人間が読みやすく編集しやすくなります。ネイティブ ホストと最小限のテンプレートは、「ゲームを作る」という参入障壁を最も低くするための一歩です。</p>
+<h2>安定性: どこでも HTTPS + 自動回復のプレビュー</h2>
+<p>この日はさらに2つの安定感を加えた。 1 つは、「どこでも HTTPS」開発モードのサポートです。一部の最新のブラウザー機能 (特定のグラフィックスやデバイス機能を含む) は安全なオリジンの下でのみ許可されますが、HTTPS により、実際のデプロイメント環境とよりよく一致しながら、これらの機能が適切に利用可能になります。もう 1 つはプレビューの自動回復です。バックエンドの一時的な問題が原因でプレビューがエラーになった場合、エラー ページで手動更新を待つのではなく、再接続して自動的に自己修復を試みます。どちらも「作業を中断しない」ための作業です。開発中に発生するほとんどの中断は、多くの場合、大きなバグではなく、これらの小さな繰り返し発生する問題であり、手動によるレスキューが必要になることがあります。それらを自動化することで、何時間も座ってゲームを作ることが本当にスムーズになります。</p>
+<h2>この日が意味するもの</h2>
+<p>この日の核心は、エンジンが“独立”を果たしたことだ。最後の外部レンダリング依存関係を削除し、独自のピクセル パリティ ベンチマークを搭載することは、「他のシェルを参照して借用したシェル上で実行する」状態から、自立して自身を検証する成熟したレンダラーに成長したことを意味します。その基盤の上で、マテリアルは実際の触感のある品質にまで向上し、デバイスの互換性は弱いマシンにまで到達し、プレビューは最小限のネイティブの開始点を獲得し、安定性はより回復力になりました。それぞれが、この独立後にさらに意味のある拡張です。外部ライブラリに依存せず、最も中核となるレンダリング基盤を完全に社内で作成しようとするプラットフォームは、自らの運命を自分自身で握っていることになります。これからは、画質をどこまで向上させることができるか、パフォーマンスをどこまで最適化できるか、そしてどのような新機能をサポートするかは、もはや他人のなすがままではなくなります。それがこの日の最も記憶に値する重みだ。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

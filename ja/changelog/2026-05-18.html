@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-18 · 任意のフォルダーをワークスペースとして開く + アプリ内バージョンとショートカット — ForgeaX</title>
+<meta name="description" content="ディスク上の任意のフォルダーをワークスペース、アプリ内バージョン/変更ログ/ショートカット システム、エンジン モデルのインスタンス化 + ビルド時のテクスチャ クッキング + ゲーム ループを備えたランタイム シェルとして開きます。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-18 · 任意のフォルダーをワークスペースとして開く + アプリ内バージョンとショートカット — ForgeaX" />
+<meta property="og:description" content="ディスク上の任意のフォルダーをワークスペース、アプリ内バージョン/変更ログ/ショートカット システム、エンジン モデルのインスタンス化 + ビルド時のテクスチャ クッキング + ゲーム ループを備えたランタイム シェルとして開きます。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-18.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-18.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-18.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-18.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-18.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-18.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-18.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-18.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-18.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-18.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-18.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-18</span></div>
+    <h1>任意のフォルダーをワークスペースとして開く + アプリ内バージョンとショートカット</h1>
+    <p class="standfirst">この日、プラットフォームはユーザーを固定ディレクトリに縛り付けることをやめました。ディスク上の任意のフォルダーを選択して開始します。アプリには「バージョンの感覚」も高まりました。ステータス バーには現在のバージョンが表示され、設定により変更履歴を読むことができ、グローバル キーボード ショートカットも使用できます。このエンジンには、モデルのインスタンス化、ビルド時のテクスチャ クッキング、およびゲーム ループを備えた完全なランタイム シェルが追加されました。</p>
+    <div class="prose"><h2>「ディレクトリにロック」から「任意のプロジェクトを開く」へ</h2>
+<p>これまでは、ゲーム コードはプラットフォームの組み込みの固定ディレクトリの 1 つに置いて管理する必要がありました。これは実際の制約でした。これは、プロジェクトにツールが対応するのではなく、プロジェクトがツールに対応する必要があることを意味していました。この日のスルーラインではその制約が取り除かれ、プラットフォームがディスク上の任意のディレクトリをワークスペースとして開くことができるようになりました。これは小さな「フォルダーを選択する」機能のように見えますが、その背後には製品の位置付けの緩和があり、「ルールに従ってコードを配置する必要があるアプリ」から「既存のプロジェクトを引き継ぐことができる開発プラットフォーム」への移行が見られます。バージョンの認識とこの日追加されたいくつかの改良と合わせて、プラットフォームは「適切なツールのように毎日使用される」ことに向けて、さらに確かな一歩を踏み出しました。</p>
+<h2>任意のフォルダーをワークスペースとして開きます</h2>
+<p>上部のバーには、ファイル ブラウザーで開くプロジェクト スイッチャーが追加されたため、ディスク上の任意のディレクトリを現在のワークスペースとして選択でき、コードを 1 つの組み込みフォルダーにドロップする必要がなくなりました。最近開いたプロジェクトは記憶されており、ワンクリックで戻ることができます。さらに良いことに、空のディレクトリを選択すると、システムは直接実行可能なデフォルトのゲーム スキャフォールドにドロップされるため、「新しいフォルダーを作成 → エージェントがその中で作業を開始する」という処理が完全にスムーズなパスになります。リポジトリのクローンを作成したばかりの人にとって、これは、最初にプラットフォームのディレクトリ規則を学習することなく、自分のプロジェクトのディレクトリを開いてすぐに開始することを意味します。それは本当に始めるハードルを下げます。</p>
+<h2>アプリ内バージョン + 変更履歴 + ショートカット</h2>
+<p>この日はアプリに「バージョン感」を与えた。ステータス バーには実行中のバージョンが表示され、自動的に更新されるようになりました。バックグラウンドでライブ コード バージョンを監視し、ファイルが変更されるとすぐに更新されるため、ウィンドウに戻ると、古くなった番号を見つめるのではなく、最新のものを使用しているかどうかを確認できます。設定に「変更ログ」セクションが追加されたため、他の場所に移動しなくても、製品内で最近変更された内容を確認できます。また、グローバル キーボード ショートカットのセットを備えた「ショートカット」セクションにより、一般的なアクションを見つけやすく、覚えやすく、キーを 1 回押すだけで実行できます。個々には明白ですが、これらを組み合わせると何かがわかります。これはもはや使い捨ての実験ではなく、更新され続け、長期的に使用する価値があり、「ユーザーが自分がどのバージョンを使用しているかをどうやって知るか」を真剣に考慮した製品です。</p>
+<h2>エンジン: モデルのインスタンス化 + ビルド時のテクスチャ クッキング</h2>
+<p>この日、エンジンはパフォーマンスと資産の両方で進歩しました。パフォーマンスに関しては、標準 3D モデルはインスタンス化された描画を実現しました。同じモデルがシーン (木々の列、敵の群衆) に大量に表示される場合、エンジンはそれらすべてを 1 回の送信で描画できるため、コストが大幅に削減されます。モデルをインポートすると、各ノードの独自の名前もエンジンに取り込まれるため、後の識別と操作が容易になります。アセットでは、画像テクスチャが「ビルド時」に事前にクックされ、実行時にハンドルによってフェッチされるようになりました。これにより、実行のたびに再処理することなく、読み込みが高速化され、安定性が向上しました。 1 つは「画面上の多数のオブジェクト」をターゲットにし、もう 1 つは「高速かつ安定した読み込み」をターゲットにしており、これらが連携して、今後の真に複雑でコンテンツが豊富なシーンへの道を切り開きます。</p>
+<h2>ゲームループを備えたエンジンランタイムシェルが具体化</h2>
+<p>この日、このエンジンは、完全な「ランタイム シェル」とゲーム ループという構造的基盤も満たしました。ランタイム シェルは、ゲームを正しく開始し、各フレームの更新とレンダリングを一定のリズムで実行する責任を負います。これは、あらゆるゲームを最低レベルで「回転」させるエンジンです。これまでは、個々のサンプルがこの起動とループのロジックを自分で組み立てることがよくありました。エンジンが提供する標準シェルにそれを統合することは、毎回スケルトンを再構築するのではなく、クリーンで統一されたポイントからゲームの作成を開始できることを意味します。これは、「AI にゲームを作成させる」場合に特に重要です。出発点が標準的で予測可能であればあるほど、AI のコードはより簡単に正しく実行され、再利用できます。</p>
+<h2>小さな人間工学: 選択可能なテキスト + コンポーザーの右クリック メニュー</h2>
+<p>この日は、日常のいくつかの摩擦も解消しました。チャット内のテキストを期待どおりに選択してコピーできるようになりました。これは当然のことのように聞こえますが、以前は意図せずに無効になっていたため、エージェントの返信の一節を取り出すのが不便でした。作曲家は右クリック メニューを獲得し、一般的なアクションをすぐに実行できるようにしました。これらのそれぞれはそれ自体は取るに足らないものですが、まさにツールが「スムーズに使用できるかどうか」を決定するレイヤーです。テキストをコピーするだけでもぎこちないインターフェイスでは、機能がどれほど強力であっても、信頼性が損なわれてしまいます。これらのエッジを 1 つずつ滑らかにすることは、毎日使用する人々への基本的な敬意です。</p>
+<h2>この日が意味するもの</h2>
+<p>この日の内容をまとめると、このプラットフォームは「適切なツール」として長期的に使用するに値するのかという素朴な質問に答えられます。自分のプロジェクトを開くことができるということは、既存の作業方法に喜んで対応していることを意味します。バージョン番号、変更ログ、ショートカットがあるということは、それ自体を進化し続ける製品として扱い、ユーザーに対して責任を負っていることを示しています。インスタンス化、ビルドタイム クッキング、標準ランタイム シェルを追加するエンジンは、低レベルがより大きなシーンとより多くのコンテンツに向けて真剣に準備していることを示しています。テキストをコピーできるかどうかなどの詳細を気にすることは、日常の感覚を重視していることを示しています。 「デモができる」と「日常的に使える」の間には、まさにこのような地味だが欠かせない作業が存在する。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

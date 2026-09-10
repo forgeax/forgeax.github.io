@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-27 · コンテンツ ブラウザーとシーンへのドラッグのための UE5 グレードのプラン、およびエディターの QA ゲート — ForgeaX</title>
+<meta name="description" content="設計初日: アセットを参照してシーンにドラッグする方法に関する UE5 グレードの計画と、スタンドアロン エディターが独自の自動化されたビルドとテスト ゲートの下に配置され、静かに壊れることなく拡張できるようにします。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-27 · コンテンツ ブラウザーとシーンへのドラッグのための UE5 グレードのプラン、およびエディターの QA ゲート — ForgeaX" />
+<meta property="og:description" content="設計初日: アセットを参照してシーンにドラッグする方法に関する UE5 グレードの計画と、スタンドアロン エディターが独自の自動化されたビルドとテスト ゲートの下に配置され、静かに壊れることなく拡張できるようにします。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-27.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-27.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-27.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-27.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-27.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-27.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-27.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-27.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-27.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-27.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-27.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-27</span></div>
+    <h1>コンテンツ ブラウザーとシーンへのドラッグのための UE5 グレードのプラン、およびエディターの QA ゲート</h1>
+    <p class="standfirst">基礎の日 — 派手な新しいゲームプレイはありませんが、その後のすべてをより安定させる 2 つのことが行われます。1 つは、アセットがどのように参照され、シーンにドラッグされるかについて UE5 グレードのデザインを書き留めることです。 2 つ目は、スタンドアロン エディターを独自の自動化された品質ゲートの下に置き、古い機能を静かに破壊することなく新しい機能を拡張できるようにすることです。</p>
+    <div class="prose"><h2>なぜ「最初に設計してから構築する」のか</h2>
+<p>何かをより洗練する必要があり、成熟したツールの機能に一致させることを目指すほど、構築する前によく考えて書き留める価値が高くなります。コンテンツ ブラウザーと「モデルをシーンにドラッグする」という言葉は簡単に聞こえますが、実際に快適かどうかを決定するのは、アセットの分類方法、サムネイルの生成方法、ドロップされたアイテムの着地位置、方向とスケールの決定方法、既存のオブジェクトへのスナップ方法など、さまざまな詳細です。即興で作られたこれらは、結果的に一貫性がなくなり、変化に巻き込まれる傾向があります。この日はまず、インタラクションを UE5 に対してベンチマークされた設計ドキュメントに整理しました。業界で実証済みの快適なパターンをリファレンスとして使用し、AI に実装させる前に「あるべき姿」を明確にしました。主に AI によって推進されるプロジェクトの場合、明確な設計ドキュメントがより重要になります。これは、AI の構造図であると同時に、それが正しく行われたかどうかを後で判断するための基準でもあります。</p>
+<h2>UE5 に対してベンチマークされたコンテンツ ブラウザーとシーンへのドラッグ</h2>
+<p>このデザインは、制作において最も頻繁に行われる 2 つの行為、つまりアセットを見つけてワールドに配置することをターゲットにしています。 「コンテンツ ブラウザ」は、成熟したエンジンの分類され、サムネイル化され、検索可能なアセット ライブラリに対してベンチマークされます。フォルダーを盲目的に探すのではなく、マテリアル キャビネットをめくるように、プロジェクト内のすべてのモデル、テクスチャ、シーン、キャラクターを参照できる必要があります。次に、「シーンへのドラッグ」では、パスがスムーズで自然であることが要求されます。ブラウザからモデルを取得し、3D ビューにドロップすると、マテリアルと参照が正しく配線された状態で、適切な位置、方向、サイズでシーンに着陸します。配置が間違っていたり、テクスチャが適用されていない BLOB ではありません。 UE5 など、何百万もの開発者によって実証されたパラダイムに対して両方のベンチマークを行うと、その目標は「動作するのに十分」ではなく、「プロのエンジンと同じくらい快適」であることを意味します。この日提供されたのは、そのパスの完全な設計とパリティ チェックリストであり、その後の実際の実装の青写真を示します。</p>
+<h2>エディターは独自の QA ゲートを取得します</h2>
+<p>もう一つは信頼性についてです。ビジュアル エディターはすでに、それ自体で構築および実行される部分になっています。この日はさらに進んで、独自の自動化された品質ゲートを設けました。すべての変更は、カウントされる前に、まず一連の自動化されたビルドとチェックのステップを通過する必要があります。目立たないように聞こえますが、これは継続的に成長するコンポーネントを健全に保つための鍵です。エディターはパネル、インタラクション、機能を追加し続けます。このゲートがないと、何らかの変更が行われて、ユーザーがそこに到達するまで気付かれないまま、別の角を静かに壊してしまう可能性があります。これにより、問題はすぐに、最も安価な段階、つまり変更が加えられた瞬間に、あなたに流れ込むのではなく、捕らえられます。言い換えれば、この日エディターに追加されたのは新しい機能ではなく、「成長しても後退しない」という保証です。</p>
+<h2>この日が意味するもの</h2>
+<p>毎日が新しい機能の打ち上げ花火である必要はありません。長持ちし、プロフェッショナルであることを意味するツールには、方向性を明確にし、標準を設定し、高品質のガードレールを構築するなど、スプリントの間に「基礎の日」を挟む必要があります。この日行われた 2 つのことは、まさにその通りでした。「アセットがどのように使用されるか」という最も頻繁に行われる経路にプロフェッショナルな目標を設定した UE5 グレードのデザインと、急成長するエディターを保証する自動化された QA ゲートです。どちらもすぐに画面上に何かを思い起こさせるわけではありませんが、その後に続く実際の建物が速く、安定して、落とし穴のないものにできるかどうかを一緒に決定します。目標を高く掲げ、しっかりとレールを踏むと、その後の一歩ごとにしっかりとした地面に着地します。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

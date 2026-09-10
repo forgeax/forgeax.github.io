@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-20 · Interface utilisateur bilingue complète + panneaux d'outils de développement complets — ForgeaX</title>
+<meta name="description" content="Une internationalisation approfondie rend l'ensemble de l'interface du studio commutable entre l'anglais et le chinois avec une synchronisation en direct entre les fenêtres ; les panneaux Console/Réseau/log devtools sont terminés ; L'empilement, le contraste et l'accessibilité de l'interface utilisateur sont corrigés ; le bug d'ombre directionnelle sur plusieurs jours est résolu ; Les systèmes ECS bénéficient d'une planification déclarative ; et les ressources du moteur bénéficient d'un cycle de vie discipliné et d'une isolation des pannes." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-20 · Interface utilisateur bilingue complète + panneaux d'outils de développement complets — ForgeaX" />
+<meta property="og:description" content="Une internationalisation approfondie rend l'ensemble de l'interface du studio commutable entre l'anglais et le chinois avec une synchronisation en direct entre les fenêtres ; les panneaux Console/Réseau/log devtools sont terminés ; L'empilement, le contraste et l'accessibilité de l'interface utilisateur sont corrigés ; le bug d'ombre directionnelle sur plusieurs jours est résolu ; Les systèmes ECS bénéficient d'une planification déclarative ; et les ressources du moteur bénéficient d'un cycle de vie discipliné et d'une isolation des pannes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-20.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-20.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-20.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-20.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-20.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-20.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-20.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-20.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-20.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-20.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-20.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-06-20</span></div>
+    <h1>Interface utilisateur bilingue complète + panneaux d'outils de développement complets</h1>
+    <p class="standfirst">Cette journée a permis une internationalisation approfondie : toute l&#39;interface du studio devient bilingue, commutable en un clic, synchronisée en direct sur Windows, avec l&#39;éditeur également entièrement bilingue ; les panneaux Console / Réseau / log devtools sont passés de coques vides à de vraies fonctionnalités ; L&#39;empilement de l&#39;interface utilisateur, le contraste des formes et les titres d&#39;accessibilité ont été corrigés ; le bug d&#39;ombre directionnelle du moteur sur plusieurs jours a finalement été corrigé ; la logique du jeu a gagné en planification déclarative du système ; et les ressources du moteur ont bénéficié d&#39;un cycle de vie discipliné et d&#39;une isolation des pannes.</p>
+    <div class="prose"><h2>Face au monde et face au débogage</h2>
+<p>Cette journée s&#39;est déroulée dans deux directions. Une première : bilingue entièrement l’ensemble de l’interface afin qu’elle ne serve plus uniquement aux utilisateurs chinois mais puisse s’adresser au monde entier – une étape nécessaire pour qu’un produit atteigne un public plus large. L&#39;autre aspect intérieur : compléter les outils de développement afin que les créateurs déboguant leurs propres jeux puissent voir clairement les sorties de la console, les requêtes réseau et les journaux d&#39;exécution - la confiance de pouvoir &quot;voir ce que vous faites&quot;. L’extérieur et l’intérieur semblent sans rapport, mais le noyau est le même : tous deux suppriment la barrière du « je ne peux pas voir / je ne peux pas comprendre ». Une barrière linguistique fait de l’interface un mur ; aucun moyen de déboguer ne fait d&#39;un problème un brouillard. Cette journée a fait tomber les deux types de barrières à la fois. Pendant ce temps, le moteur a résolu le problème d&#39;ombre sur plusieurs jours à la racine, a ajouté une manière plus ordonnée de planifier la logique du jeu et a défini des règles plus strictes pour sa propre gestion des ressources. Plus accessible vers l&#39;extérieur, plus transparent vers l&#39;intérieur, plus solide en dessous, telles sont les trois facettes de la journée.</p>
+<h2>Basculez toute l&#39;interface entre l&#39;anglais et le chinois en un clic</h2>
+<p>Cette journée a fait une internationalisation approfondie et avec soin. La première étape était un noyau multilingue léger : l&#39;anglais comme source de base (toutes les copies faisant autorité en anglais), le chinois comme superposition (remplaçant l&#39;anglais là où il est présent), commutable à tout moment. La deuxième étape a migré toute l&#39;interface vers ce système fichier par fichier, par lots : barre supérieure, tableau de bord, panneau de discussion, tiroir de paramètres, barre latérale, les différents commutateurs, des dizaines de panneaux et de composants, aucun n&#39;a été laissé de côté. Pourquoi &quot;fichier par fichier&quot; plutôt que d&#39;un seul coup ? Parce que la copie codée en dur est dispersée sur des centaines ou des milliers d&#39;endroits dans l&#39;interface, et qu&#39;en parcourant chacun d&#39;entre eux, rien ne manque. Après la migration, l&#39;interface par défaut est l&#39;anglais, suit automatiquement la langue du système et a obtenu un détail bien pensé : synchronisation multi-fenêtres en direct : passez la langue au chinois dans une fenêtre et une autre fenêtre ouverte suit immédiatement, sans changer d&#39;une à l&#39;autre. L&#39;éditeur a également effectué une bilinguisation complète et a réussi la vérification d&#39;exécution. Pour une plate-forme qui souhaite être utilisée par les créateurs du monde entier, le mur des langues doit d’abord être abattu – et ce jour-là, il l’a complètement détruit.</p>
+<h2>Panneaux Devtools terminés : Console + Réseau + journaux sur disque</h2>
+<p>La zone des outils de développement comportait auparavant des panneaux qui étaient soit des espaces réservés vides, soit des espaces réservés non cliquables ; cette journée les a transformés en fonctionnalités réelles à la fois. Le panneau de la console a connecté tous les flux de sortie du jeu et de l&#39;éditeur : chaque journal imprimé par votre jeu et chaque erreur qu&#39;il génère circule désormais ici en temps réel. Le panneau Réseau est passé d&#39;un espace réservé mort à un objet réel, capturant les différentes requêtes réseau émises par votre jeu testé : requêtes régulières, requêtes asynchrones et connexions de longue durée, toutes visibles. De plus, la console, le réseau et les flux d&#39;informations ne sont pas simplement affichés dans un panneau, mais mis en miroir dans les fichiers journaux locaux pour un examen ultérieur — vous n&#39;avez pas besoin de détecter un problème en direct ; vous pouvez le rejouer à partir des journaux par la suite. Un onglet redondant avec la vue de surveillance a été supprimé pour éviter la confusion liée à l&#39;affichage de la même chose à deux endroits. L&#39;importance : le débogage est une partie inévitable de la création, et la condition préalable au débogage est de « pouvoir voir ». Lorsqu&#39;un jeu se comporte mal, le fait de voir toutes les erreurs de la console et le trafic réseau directement dans un panneau transforme le débogage de « deviner au toucher » en « vérifier par rapport aux preuves ».</p>
+<h2>Finition de l&#39;interface utilisateur : empilement, contraste, accessibilité</h2>
+<p>Profitant de ce grand changement, plusieurs problèmes d’interface utilisateur de longue date ont été résolus ensemble. L&#39;un est l&#39;ordre d&#39;empilement : auparavant, certaines boîtes de dialogue, listes déroulantes et le sélecteur de langue couvraient à tort la barre supérieure ou se cachaient sous une boîte de dialogue, et aujourd&#39;hui, leur superposition était clairement réorganisée, de sorte que ce qui devrait être en haut reste fermement au-dessus. Le deuxième est le contraste du contrôle de forme : certaines zones de saisie et boutons natifs affichaient auparavant le texte noir par défaut du navigateur car les styles n&#39;étaient pas câblés, presque illisibles sur un fond sombre ; cette journée leur a donné des couleurs de thème lisibles. Troisièmement, l&#39;accessibilité : les boîtes de dialogue rapides obtiennent les titres requis par la norme, éliminant ainsi les erreurs d&#39;accessibilité et permettant aux personnes utilisant des lecteurs assistés de comprendre correctement le contenu des boîtes de dialogue. Chacun d’entre eux est petit, suffisamment petit pour que la plupart des gens ne le remarquent pas spécifiquement ; mais ensemble, ils décident d&#39;une chose : si l&#39;interface semble &quot;normale&quot; partout. Une interface avec des petites gênes partout épuise continuellement et subtilement la patience de l&#39;utilisateur ; les lisser un par un donne le sentiment solide que « tout semble bon à utiliser ».</p>
+<h2>Ombres directionnelles corrigées + planification du système déclaratif</h2>
+<p>Le moteur a corrigé, à la racine, un problème qui persistait depuis plusieurs jours : les ombres lumineuses directionnelles. Lors de la création d&#39;exemples de jeux au cours des jours précédents, il n&#39;y avait eu d&#39;autre choix que de &quot;changer le nombre de cascades d&#39;ombres de 4 à 1&quot; pour obtenir des ombres projetées de manière fiable - cela n&#39;avait fait qu&#39;éviter le symptôme, avec la vraie maladie dans le moteur. Cette journée l’a complètement guéri : les causes profondes de l’échec des ombres en cascade dans certaines configurations et du désalignement à un seul niveau ont été éliminées ensemble. Avec la stabilité en amont, les ombres directionnelles de chaque jeu en aval fonctionnent correctement, plus de solution de contournement basée uniquement sur les symptômes. Le même jour, la logique du jeu a acquis une capacité précieuse : la planification déclarative du système. Un jeu est composé de nombreux « systèmes » (modules logiques s&#39;occupant chacun d&#39;un domaine, comme le mouvement, la collision, l&#39;IA), dont le timing et l&#39;ordre d&#39;exécution étaient auparavant organisés à la main ; ils peuvent désormais être planifiés de manière déclarative par condition, par étiquette, par état actuel : &quot;exécuter cet ensemble de systèmes uniquement en état de combat&quot;, &quot;planifier ces systèmes ensemble sous une seule étiquette&quot;. Cela rend la logique de comportement de jeu complexe plus ordonnée à écrire et moins sujette au chaos. En dessous, une isolation des pannes (transformant un crash de bas niveau en une erreur récupérable avec une nouvelle tentative automatique) et une visionneuse d&#39;image de rendu hors ligne ont été ajoutées pour un débogage graphique plus fluide.</p>
+<h2>Le moteur discipline les ressources : récupérez une fois terminé, ne plante pas en cas de panne</h2>
+<p>Le moteur a également consacré aujourd&#39;hui un réel travail à la « gestion des ressources », exactement là où un programme de longue durée est le plus sujet aux problèmes. Une partie est le cycle de vie du GPU et des ressources audio : chaque morceau de mémoire vidéo et chaque canal audio, lorsqu&#39;il n&#39;est plus référencé par quoi que ce soit, peut être identifié avec précision et récupéré dans le temps plutôt que de s&#39;accumuler silencieusement - cette journée a spécifiquement construit un mécanisme de « libération des ressources qui ne sont plus référencées » et a vérifié avec un test de résistance de longue durée qu&#39;il se maintient effectivement à un niveau d&#39;utilisation stable et limité au lieu de gonfler. L&#39;autre partie est l&#39;isolation des pannes : lorsqu&#39;une erreur grave de bas niveau se produit, le moteur peut la transformer en une erreur correctement gérable plutôt que de planter en bloc, en réessayant si nécessaire. Les deux sont des travaux sous le capot que les utilisateurs ne voient pas encore qui décident directement « s&#39;ils peuvent fonctionner de manière stable pendant une longue période ». Un jeu peut durer plusieurs heures d’affilée, créant et détruisant constamment des ressources ; ce n&#39;est qu&#39;en rendant solide &quot;retour une fois terminé, résistance en cas de rupture&quot; qu&#39;un jeu long évite de prendre du retard ou de s&#39;écraser inexplicablement.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>Le mot clé de la journée est « éliminer les barrières ». La bilinguisation efface la barrière linguistique, donnant à la plateforme, pour la première fois, les conditions de base pour s&#39;adresser à un public mondial : la portée d&#39;un outil dépend d&#39;abord du nombre de personnes capables de le comprendre et de l&#39;utiliser. Compléter les outils de développement efface la barrière du débogage, permettant aux créateurs de voir la vérité lorsque des problèmes surviennent plutôt que de s&#39;inquiéter d&#39;une boîte noire. La correction des ombres du moteur efface la barrière entre le « traitement des symptômes » et le « traitement de la racine », résolvant à la source une maladie récurrente qui ne pouvait qu&#39;être contournée. Et la planification déclarative et la gestion des ressources éliminent la barrière des possibilités pour des jeux plus complexes et de plus longue durée. Supprimer ces barrières une à une rend la plateforme à la fois plus accessible, plus transparente et plus fiable. Un outil qui veut véritablement être largement utilisé et fiable à long terme fait souvent exactement cette chose simple : trouver continuellement les barrières, puis les éliminer sérieusement.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

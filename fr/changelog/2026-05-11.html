@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-11 · De zéro à un cube tournant créé par le chat — ForgeaX</title>
+<meta name="description" content="En 24 heures, toute la boucle de bout en bout a pris vie : prononcez une phrase, l'agent écrit du code, le navigateur recharge à chaud le résultat – prouvé avec un cube en rotation auto-vérifié." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-11 · De zéro à un cube tournant créé par le chat — ForgeaX" />
+<meta property="og:description" content="En 24 heures, toute la boucle de bout en bout a pris vie : prononcez une phrase, l'agent écrit du code, le navigateur recharge à chaud le résultat – prouvé avec un cube en rotation auto-vérifié." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-05-11.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-05-11.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-11.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-11.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-11.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-11.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-11.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-11.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-11.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-11.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-11.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-11.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-11.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-11.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-11.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-11.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-11.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-05-11.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-05-11.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-05-11</span></div>
+    <h1>De zéro à un cube tournant créé par le chat</h1>
+    <p class="standfirst">En 24 heures, quatre pistes parallèles ont transformé le pari principal du produit en quelque chose que vous pouvez voir : dites une phrase, il écrit du code et le navigateur recharge à chaud le résultat. La journée a livré une boucle de bout en bout « chat → cube tournant » auto-vérifiée, ainsi qu&#39;une architecture en couches, un véritable environnement d&#39;exécution d&#39;agent, une interface à trois colonnes et des centaines de passes de polissage qui la maintiennent en place.</p>
+    <div class="prose"><h2>L&#39;étoile du nord : pourquoi &quot;un cube qui tourne&quot;</h2>
+<p>Tout ce jour visait un point d&#39;acceptation : sur une machine propre, clonez, déposez une clé, exécutez une commande, puis dites à l&#39;agent dans l&#39;interface &quot;créez un cube qui tourne&quot; - il édite le code, le moteur se recharge à chaud et un cube tournant apparaît immédiatement dans le navigateur. Le cube lui-même n&#39;a rien de remarquable, mais c&#39;est la preuve minimale du pari principal du produit – &quot;vous pouvez construire quelque chose de véritablement exécutable simplement en parlant&quot; – et si un maillon de cette chaîne se brise, la plate-forme ne tient pas. Réduire l&#39;objectif en un seul point d&#39;acceptation sans ambiguïté qu&#39;une seule capture d&#39;écran peut prouver signifie que l&#39;équipe ne « ressent pas de progrès » mais poursuit un objectif difficile de réussite/échec. Ce jour-là, c&#39;est passé.</p>
+<h2>La boucle de bout en bout s&#39;exécute : dites une phrase, l&#39;image change</h2>
+<p>Cette boucle enchaîne six liens bout à bout : vous indiquez une exigence dans la boîte de discussion → l&#39;agent écrit le code correspondant dans le fichier du jeu → un observateur de fichiers remarque le changement → un canal en temps réel informe le front-end → le moteur charge dynamiquement le nouveau code → l&#39;image se met à jour instantanément. Ce jour-là, ces six liens ont été connectés de manière complète et stable pour la première fois, et une capture d&#39;écran automatisée du navigateur a en fait capturé le cube à mi-rotation avec une inclinaison, sans erreur tout au long du processus, à l&#39;exception d&#39;un avis d&#39;icône manquante inoffensif. Cela signifie que « ce que vous voyez est ce que vous obtenez » n&#39;est plus une ligne dans un jeu de vision mais un véritable pipeline déclenché de manière répétée. Chaque expérience ultérieure de « construire en discutant et voir le résultat immédiatement » repose sur cette boucle ; une fois que cela fonctionne, le produit a vraiment pris vie une fois.</p>
+<h2>Les trois couches débarquent : des rôles clairs, remplaçables</h2>
+<p>Pour que cette boucle puisse durer sur le long terme, le système a été découpé en parties avec des responsabilités claires et remplaçables indépendamment : un noyau d&#39;exécution qui pilote réellement la réflexion et l&#39;action de l&#39;agent (gestion des appels de modèles, des outils, des sessions, de la mémoire) ; un pur pont d&#39;orchestration et d&#39;interface (diffusant les modifications de fichiers vers le front-end, sans jamais toucher au grand modèle lui-même) ; un moteur (rendre le code du jeu dans une image) ; plus l&#39;interface à trois colonnes à laquelle l&#39;utilisateur est confronté. Cette scission a été inscrite dans un contrat d&#39;interface interne et définie comme une règle de fer à ne pas remettre en cause à la légère : le noyau est le noyau, l&#39;orchestration est l&#39;orchestration, les limites restent sans ambiguïté. Sa valeur : chaque couche peut évoluer et être permutée d&#39;elle-même, un problème dans une couche ne fait pas tomber l&#39;ensemble, et &quot;échanger le moteur, échanger l&#39;interface&quot; devient possible plus tard plutôt qu&#39;une réécriture.</p>
+<h2>Remplacement du « shell d&#39;espace réservé » par un véritable environnement d&#39;exécution d&#39;agent</h2>
+<p>Dans la version d&#39;avant l&#39;aube de la boucle, ce qui conduisait l&#39;agent était toujours un shell d&#39;espace réservé temporaire ; aujourd&#39;hui, en une trentaine d&#39;étapes, il a été remplacé par un véritable environnement d&#39;exécution d&#39;agent de « classe assistant de codage professionnel ». Ce noyau possède ce dont un véritable agent a besoin : il peut appeler le grand modèle, utiliser des outils, maintenir des sessions et de la mémoire, et avancer dans une boucle « penser-agir ». Après l&#39;échange, le système a reçu pour la première fois de véritables réponses de modèle et a exécuté une boucle complète « modèle réel + outils réels ». Cette étape a fait passer le produit de « on dirait qu&#39;il peut discuter » à « peut réellement faire le travail » – les conversations précédentes étaient une performance ; derrière eux se trouve désormais un moteur capable de lire, d&#39;écrire et d&#39;utiliser des outils pour véritablement changer votre projet.</p>
+<h2>Ne réinventez pas : réutilisez les standards au lieu de copier des milliers de lignes</h2>
+<p>Lors du remplissage des capacités de l&#39;agent, deux éléments auraient pu être réalisés en « copiant mille lignes d&#39;ailleurs » : la couche de protocole qui apporte la capacité de l&#39;outil et un protocole standard d&#39;événement de conversation. Le jugement d&#39;aujourd&#39;hui était clair : partout où un standard ouvert mature existe déjà et peut être installé et utilisé directement, ne le recopiez pas à la main. Ainsi, les deux ont été remplacés par des implémentations standard officielles des versions manuscrites précédentes : le code du protocole d&#39;outil est passé d&#39;une centaine de lignes à quatre-vingts et a obtenu des transports plus complets et des notifications de changement de capacité gratuitement ; le protocole d&#39;événements de conversation a extrait une bibliothèque standard et réexporté plus de trente événements standard sans presque aucun nouveau code. Ensemble, les deux étapes ont ajouté moins de deux cents lignes nettes tout en offrant des capacités de niveau entreprise. Derrière tout cela se cache une discipline récurrente : consacrer des efforts à des problèmes difficiles que personne n’a résolus pour vous, et non à réinventer des roues déjà inscrites dans les normes publiques.</p>
+<h2>Des centaines de passes d&#39;interface utilisateur de chat : du texte brut au niveau quasi-ordinateur de bureau</h2>
+<p>Une fois que la boucle a vraiment fonctionné, les lacunes d’expérience de l’interface sont devenues le point le plus sensible. Ce jour-là, en petites étapes sur une centaine d&#39;itérations, le panneau de discussion a été peaufiné, passant de &quot;zones de texte brut et d&#39;espace réservé&quot; à quelque chose qui se rapproche d&#39;un assistant de bureau mature. Il comprend un moteur de rendu Markdown entièrement écrit à la main (blocs de code, listes, tableaux, listes de tâches tous pris en charge), une animation en streaming caractère par caractère dont la vitesse s&#39;adapte à la longueur du contenu, des appels d&#39;outils condensés dans une balise « pilule » haute densité qui s&#39;étend jusqu&#39;au résultat complet, « l&#39;autocorrection/réflexion » de l&#39;agent déclenchée visuellement, le contraste entre les bulles et l&#39;arrière-plan réglé pour répondre aux normes d&#39;accessibilité, et les animations en boucle désactivées pour les utilisateurs qui préfèrent réduire les mouvements. Chaque passe touchait une chose, était auto-testée et enregistrait une note. Le point est clair : quelle que soit la puissance de la capacité, si la lecture est laborieuse ou semble bon marché, les utilisateurs ne lui feront pas confiance ; polir la surface sur laquelle vous regardez le plus pour obtenir quelque chose d&#39;agréable fait en soi partie de la fonctionnalité principale.</p>
+<h2>Une restructuration à plat + un développement sans build et exécuté à partir des sources</h2>
+<p>Dans l&#39;après-midi, il y a eu un aplatissement structurel : les répertoires autrefois profondément imbriqués ont été posés à plat afin que les parties soient placées côte à côte de manière plus directe. Parallèlement, un mode de développement « zéro build » a été établi : après le clonage, une commande exécute directement la source, sans aucune longue étape de compilation et de regroupement au préalable. Pour les développeurs, cela signifie changer une ligne et voir le résultat dans le navigateur presque immédiatement, une itération progressive accélère d&#39;un niveau ; pour les nouveaux arrivants, le chemin « du clone à la vision de l’image » est réduit à son plus court. La simplification structurelle est intangible, mais elle décide si les semaines à venir peuvent maintenir une cadence « un grand pas par jour » : plus les fondations sont simples et claires, plus vous construisez rapidement et de manière stable.</p>
+<h2>Le Studio à trois colonnes prend forme : fichiers, prévisualisation, console, mélangeurs</h2>
+<p>Le soir, le Studio à trois colonnes était aménagé, avec un lot de panneaux véritablement utilisables à la fois : l&#39;arborescence des fichiers à gauche reliée à de vrais fichiers de projet, cliquez sur un produit pour le prévisualiser ; une fenêtre d&#39;aperçu en direct au centre connectée directement au moteur, avec une lecture de la fréquence d&#39;images, des modes pause, rechargement, plein écran et ordinateur de bureau/appareil mobile ; plus un panneau qui canalise la sortie de la console du moteur, un sélecteur qui répertorie et rejoue les sessions passées, et des entrées pour changer de projet et de jeu avec un « nouveau » menu. Notamment, cette journée a également suivi un instinct et a fusionné les deux concepts « projet » et « jeu » en un seul : l&#39;utilisateur a dit qu&#39;il s&#39;agissait de la même chose, donc l&#39;interface ne devrait pas les séparer. Avec cela, la disposition « gérer-gauche / aperçu-centre / chat-droite » s&#39;est installée et le Studio a commencé à converger d&#39;un ensemble de fonctionnalités vers une forme de produit utilisable.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>Dans l&#39;ensemble, le poids de cette journée est le suivant : il ne s&#39;agissait pas d&#39;une livraison d&#39;une seule fonctionnalité, mais de la thèse fondamentale du produit qui a été prouvée de bout en bout pour la première fois. D’une phrase à un cube en mouvement, chaque lien intermédiaire – rendu, exécution, orchestration, interface – s’exécutait véritablement, sur une machine propre, comme en témoigne une capture d’écran. Tout ce qui est complexe après le cube – des jeux réels, des scènes complexes, toute une équipe d&#39;agents – se développe sur ce tronc déjà connecté. C&#39;est exactement pourquoi cette journée mérite d&#39;être enregistrée comme modèle : connectez d&#39;abord la chaîne principale la plus critique et la plus falsifiable, puis parlez des branches ; courir une fois est ce qui vous donne confiance pour la deuxième fois et la centième fois.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

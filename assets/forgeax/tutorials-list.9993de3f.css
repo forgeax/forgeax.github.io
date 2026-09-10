@@ -1,0 +1,106 @@
+/* Tutorials index — editorial card grid */
+
+.forgeax-site .tut-section {
+  padding-top: 20px;
+}
+
+.forgeax-site .tut-grid {
+  gap: 14px 16px;
+  margin-top: 0;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .forgeax-site .tut-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .forgeax-site .tut-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px 18px;
+  }
+}
+
+.forgeax-site .tut-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 0;
+  padding: 18px 20px 20px;
+  border-color: color-mix(in srgb, var(--border-subtle) 90%, transparent);
+  background: color-mix(in srgb, var(--bg-elevated) 94%, transparent);
+}
+
+.forgeax-site .tut-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.forgeax-site .tut-card .ico {
+  margin: 0;
+}
+
+/* category — unified type; brand tags differ by color only */
+.forgeax-site .tut-card .tag,
+.forgeax-site a.tut-card .tag {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none !important;
+  box-shadow: none;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  line-height: 1.2;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.forgeax-site .tut-card .tag.brand,
+.forgeax-site a.tut-card .tag.brand {
+  color: rgb(var(--theme-cool-a));
+}
+
+body.lang-en .forgeax-site .tut-card .tag,
+body.lang-en .forgeax-site a.tut-card .tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+body.lang-en .forgeax-site .tut-card .tag.brand,
+body.lang-en .forgeax-site a.tut-card .tag.brand {
+  color: var(--brand-light);
+}
+
+.forgeax-site .tut-card__title {
+  margin: 0 0 8px;
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1.38;
+  color: var(--text-primary);
+}
+
+.forgeax-site .tut-card__desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.58;
+  letter-spacing: -0.008em;
+  color: color-mix(in srgb, var(--text-secondary) 94%, var(--text-tertiary) 6%);
+}
+
+.forgeax-site .tut-card--soon {
+  opacity: 0.58;
+  pointer-events: none;
+}

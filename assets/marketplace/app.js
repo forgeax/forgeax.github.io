@@ -1,0 +1,1044 @@
+/* Marketplace interactions — single-language build.
+ * Data (window.MK_DATA) and UI labels (window.MK_UI) are injected per-language at build
+ * time, so there is no runtime i18n here: every string is already resolved for this page's
+ * language. This file owns: kind filtering, the plugin detail modal (built from the
+ * flat MK_DATA), and the looping agent idle avatars. */
+(function () {
+  var DATA = window.MK_DATA || {};
+  var UI = window.MK_UI || {};
+  var REPO_ROOT = "https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins";
+
+  // ── kind filter ──
+  (function () {
+    var tabs = [].slice.call(document.querySelectorAll(".mk-tab"));
+    var items = [].slice.call(document.querySelectorAll(".mk-item"));
+    var empty = document.getElementById("mkEmpty");
+    var kind = "authoring";
+    var rowbreak = document.querySelector(".mk-rowbreak");
+    function apply() {
+      var n = 0;
+      items.forEach(function (it) {
+        var okKind = it.getAttribute("data-kind") === kind;
+        var show = okKind;
+        it.classList.toggle("hide", !show);
+        if (show) n++;
+      });
+      if (rowbreak) rowbreak.classList.toggle("hide", kind !== "agent");
+      if (empty) empty.style.display = n ? "none" : "block";
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        tabs.forEach(function (x) { x.classList.remove("active"); });
+        t.classList.add("active");
+        kind = t.getAttribute("data-kind");
+        apply();
+      });
+    });
+    apply();
+  })();
+
+  // ── detail modal ──
+  (function () {
+    var modal = document.getElementById("mkModal");
+    if (!modal) return;
+    function $(id) { return document.getElementById(id); }
+    function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+
+    // ── studio screenshot previews (runtime manifest + gallery + lightbox) ──
+    var PREVIEW_CACHE_VERSION = "studio-previews-27";
+
+    function resolvePreviewAssetUrl(path) {
+      if (!path) return path;
+      if (/^https?:\/\//i.test(path)) return path;
+      var p = String(path);
+      // Root-absolute paths must stay at site root (not /zh/assets/… on localized pages).
+      if (p.charAt(0) === "/") return p;
+      return new URL(p, window.location.origin + "/").href;
+    }
+
+    var PREVIEW_MANIFEST_URL =
+      resolvePreviewAssetUrl("/assets/marketplace/previews/manifest.json") + "?v=" + PREVIEW_CACHE_VERSION;
+    var _previewManifest = null;
+    var _previewManifestPromise = null;
+
+    function loadPreviewManifest() {
+      if (_previewManifest) return Promise.resolve(_previewManifest);
+      if (_previewManifestPromise) return _previewManifestPromise;
+      _previewManifestPromise = fetch(PREVIEW_MANIFEST_URL)
+        .then(function (r) { return r.ok ? r.json() : { previews: {}, slides: {}, aliases: {}, panelLabels: {} }; })
+        .catch(function () { return { previews: {}, slides: {}, aliases: {}, panelLabels: {} }; })
+        .then(function (data) {
+          _previewManifest = data || { previews: {}, slides: {}, aliases: {}, panelLabels: {} };
+          if (!_previewManifest.previews) _previewManifest.previews = {};
+          if (!_previewManifest.slides) _previewManifest.slides = {};
+          if (!_previewManifest.aliases) _previewManifest.aliases = {};
+          if (!_previewManifest.panelLabels) _previewManifest.panelLabels = {};
+          return _previewManifest;
+        });
+      return _previewManifestPromise;
+    }
+
+    // Resolve the slug whose previews to use: the item's own if present, else a manifest alias.
+    // Agent cards never fall through to a linked authoring's shots.
+    function resolvePreviewSlug(d) {
+      if (!d || !d.slug) return "";
+      var slug = d.slug;
+      if (!_previewManifest) return slug;
+      var previews = _previewManifest.previews || {};
+      if (previews[slug] && previews[slug].length) return slug;
+      if (d.kind === "agent") return slug;
+      var aliases = _previewManifest.aliases || {};
+      if (aliases[slug] && previews[aliases[slug]] && previews[aliases[slug]].length) {
+        return aliases[slug];
+      }
+      return slug;
+    }
+
+    function getStudioPreviewImages(d) {
+      var fromData = (d && d.previewImages) || [];
+      if (fromData.length) return fromData;
+      if (!_previewManifest) return [];
+      var previews = _previewManifest.previews || {};
+      var slug = resolvePreviewSlug(d);
+      if (!slug) return [];
+      if (previews[slug] && previews[slug].length) return previews[slug];
+      if (d && d.kind === "agent") return [];
+      return [];
+    }
+
+    function slideLabelText(slide, lang) {
+      if (slide && slide.label && typeof slide.label === "object") {
+        return slide.label[lang] || slide.label.en || slide.label.zh || "";
+      }
+      return slide && slide.label ? String(slide.label) : "";
+    }
+
+    function pickBilingual(obj, fallback) {
+      if (!obj) return fallback || "";
+      if (typeof obj === "string") return obj;
+      var lang = document.documentElement.lang === "zh" ? "zh" : "en";
+      return obj[lang] || obj.en || obj.zh || fallback || "";
+    }
+
+    function panelLabelForSlide(slide, d) {
+      if (slide && slide.panelLabel) return pickBilingual(slide.panelLabel, "");
+      var cat = slide && slide.category ? slide.category : "studio";
+      if (cat === "output" || cat === "ui") return "UI";
+      if (cat === "chat") return "CHAT";
+      if (cat === "demo") return "DEMO";
+      if (!d) return "";
+      var slug = d.slug || "";
+      var fromManifest = _previewManifest && _previewManifest.panelLabels && slug && _previewManifest.panelLabels[slug];
+      if (fromManifest) return String(fromManifest).toUpperCase();
+      var authoring = d.caps && d.caps.authoring;
+      return authoring
+        ? String(authoring).toUpperCase()
+        : String(slug).replace(/^authoring-/, "").toUpperCase();
+    }
+
+    function mountStudioChromeFromSlide(d, slide) {
+      var panel = $("mkmStudioPanel");
+      if (!panel) return;
+      if (!d) { panel.textContent = ""; return; }
+      panel.textContent = panelLabelForSlide(slide, d);
+    }
+
+    // Structured slides from the manifest (image/video with poster + bilingual label); falls
+    // back to a flat image list when a slug has no `slides` entry.
+    function buildPreviewSlides(item, d) {
+      var isAgent = d && d.kind === "agent";
+      var slug = resolvePreviewSlug(d);
+      var pageLang = document.documentElement.lang === "zh" ? "zh" : "en";
+      var fromManifest = _previewManifest && _previewManifest.slides && slug && _previewManifest.slides[slug];
+      if (fromManifest && fromManifest.length) {
+        return fromManifest.map(function (slide, i) {
+          var label = slideLabelText(slide, pageLang) || slideLabelText(slide, pageLang === "zh" ? "en" : "zh");
+          return {
+            type: slide.type || "image",
+            src: resolvePreviewAssetUrl(slide.src),
+            poster: slide.poster ? resolvePreviewAssetUrl(slide.poster) : "",
+            category: slide.category || (isAgent ? "chat" : "studio"),
+            panelLabel: slide.panelLabel || null,
+            alt: label || ((isAgent ? "Agent chat preview " : "Studio preview ") + (i + 1)),
+            label: label || ((isAgent ? "Chat " : "Studio ") + (i + 1)),
+          };
+        });
+      }
+      return getStudioPreviewImages(d).map(function (url, i) {
+        return {
+          type: "image",
+          src: resolvePreviewAssetUrl(url),
+          poster: "",
+          category: isAgent ? "chat" : "studio",
+          panelLabel: null,
+          alt: (isAgent ? "Agent chat preview " : "Studio preview ") + (i + 1),
+          label: (isAgent ? "Chat " : "Studio ") + (i + 1),
+        };
+      });
+    }
+
+    function openPreviewLightbox(opts) {
+      var lb = $("mkPreviewLightbox");
+      var img = $("mkPreviewLightboxImg");
+      var vid = $("mkPreviewLightboxVideo");
+      if (!lb || !img) return;
+      var type = opts && opts.type === "video" ? "video" : "image";
+      if (type === "video" && vid) {
+        img.hidden = true;
+        img.removeAttribute("src");
+        img.alt = "";
+        vid.hidden = false;
+        vid.src = opts.src;
+        if (opts.poster) vid.poster = opts.poster;
+        else vid.removeAttribute("poster");
+        vid.muted = true;
+        vid.loop = true;
+        vid.currentTime = typeof opts.currentTime === "number" ? opts.currentTime : 0;
+        lb.hidden = false;
+        document.body.classList.add("mk-preview-lightbox-open");
+        try { vid.play(); } catch (e) { /* autoplay blocked */ }
+        return;
+      }
+      if (vid) {
+        vid.hidden = true;
+        try { vid.pause(); } catch (e) { /* ignore */ }
+        vid.removeAttribute("src");
+        vid.removeAttribute("poster");
+      }
+      img.hidden = false;
+      img.src = opts.src;
+      img.alt = opts.alt || "";
+      lb.hidden = false;
+      document.body.classList.add("mk-preview-lightbox-open");
+      if (window.forgeaxRefreshIcons) window.forgeaxRefreshIcons(lb);
+    }
+    function closePreviewLightbox() {
+      var lb = $("mkPreviewLightbox");
+      var img = $("mkPreviewLightboxImg");
+      var vid = $("mkPreviewLightboxVideo");
+      if (!lb) return;
+      lb.hidden = true;
+      if (img) { img.src = ""; img.alt = ""; img.hidden = false; }
+      if (vid) {
+        try { vid.pause(); } catch (e) { /* ignore */ }
+        vid.removeAttribute("src");
+        vid.removeAttribute("poster");
+        vid.hidden = true;
+      }
+      document.body.classList.remove("mk-preview-lightbox-open");
+    }
+
+    function getActivePreviewIndex() {
+      var frame = $("mkmPreviewFrame");
+      if (!frame) return 0;
+      var slides = frame.querySelectorAll(".mk-preview-slide");
+      for (var i = 0; i < slides.length; i++) {
+        if (slides[i].classList.contains("is-active")) return i;
+      }
+      return 0;
+    }
+    function setActivePreviewIndex(index) {
+      var frame = $("mkmPreviewFrame");
+      var track = $("mkmPreviewThumbsTrack");
+      if (!frame) return;
+      [].slice.call(frame.querySelectorAll(".mk-preview-slide")).forEach(function (sl, i) {
+        var active = i === index;
+        sl.classList.toggle("is-active", active);
+        var vid = sl.querySelector("video");
+        if (vid) {
+          if (active) {
+            try { vid.play(); } catch (e) { /* autoplay blocked */ }
+          } else {
+            vid.pause();
+          }
+        }
+      });
+      if (track) {
+        [].slice.call(track.querySelectorAll(".mk-preview-thumb")).forEach(function (btn, i) {
+          btn.classList.toggle("is-active", i === index);
+          if (i === index) btn.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "smooth" });
+        });
+      }
+      if (window._mkPreviewSlides && window._mkPreviewSlides[index]) {
+        mountStudioChromeFromSlide(window._mkPreviewCardData, window._mkPreviewSlides[index]);
+      }
+      if (window._mkSyncPreviewNav) window._mkSyncPreviewNav();
+    }
+    function wirePreviewThumbNav(slideCount) {
+      var prev = $("mkmPreviewPrev");
+      var next = $("mkmPreviewNext");
+      if (!prev || !next) return;
+      var multi = slideCount >= 2;
+      prev.hidden = !multi;
+      next.hidden = !multi;
+      if (!multi) { window._mkSyncPreviewNav = null; prev.onclick = null; next.onclick = null; return; }
+      function syncNav() {
+        var idx = getActivePreviewIndex();
+        var atStart = idx <= 0;
+        var atEnd = idx >= slideCount - 1;
+        prev.disabled = atStart; next.disabled = atEnd;
+        prev.classList.toggle("is-disabled", atStart);
+        next.classList.toggle("is-disabled", atEnd);
+      }
+      prev.onclick = function () { var idx = getActivePreviewIndex(); if (idx > 0) setActivePreviewIndex(idx - 1); };
+      next.onclick = function () { var idx = getActivePreviewIndex(); if (idx < slideCount - 1) setActivePreviewIndex(idx + 1); };
+      window._mkSyncPreviewNav = syncNav;
+      syncNav();
+      requestAnimationFrame(syncNav);
+    }
+
+    function wrapHeroMedia(node, slide) {
+      if (!node) return null;
+      var wrap = document.createElement("div");
+      wrap.className = "mk-preview-media";
+      var bgSrc = slide.type === "video" ? (slide.poster || slide.src) : slide.src;
+      if (bgSrc) {
+        var bg = document.createElement("img");
+        bg.className = "mk-preview-media-bg";
+        bg.src = bgSrc;
+        bg.alt = "";
+        bg.setAttribute("aria-hidden", "true");
+        bg.loading = "eager";
+        wrap.appendChild(bg);
+      }
+      wrap.appendChild(node);
+      return wrap;
+    }
+
+    function formatVideoTime(sec) {
+      if (!isFinite(sec) || sec < 0) sec = 0;
+      var m = Math.floor(sec / 60);
+      var s = Math.floor(sec % 60);
+      return m + ":" + (s < 10 ? "0" : "") + s;
+    }
+
+    function wireVideoScrubber(player, video, playBtn, progress, fill, thumb, timeEl) {
+      var dragging = false;
+      var wasPlaying = false;
+
+      function syncPlayIcon() {
+        if (!playBtn) return;
+        var paused = video.paused;
+        playBtn.innerHTML = paused
+          ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
+        playBtn.setAttribute("aria-label", paused ? "Play" : "Pause");
+      }
+
+      function pctFromEvent(ev) {
+        var rect = progress.getBoundingClientRect();
+        var clientX = ev.touches && ev.touches.length ? ev.touches[0].clientX : ev.clientX;
+        var x = Math.max(0, Math.min(rect.width, clientX - rect.left));
+        return rect.width ? x / rect.width : 0;
+      }
+
+      function setProgress(pct, seek) {
+        pct = Math.max(0, Math.min(1, pct));
+        var pctStr = (pct * 100) + "%";
+        fill.style.width = pctStr;
+        thumb.style.left = pctStr;
+        progress.setAttribute("aria-valuenow", String(Math.round(pct * 100)));
+        if (seek && isFinite(video.duration) && video.duration > 0) {
+          video.currentTime = pct * video.duration;
+        }
+      }
+
+      function updateTime() {
+        var cur = video.currentTime || 0;
+        var dur = isFinite(video.duration) ? video.duration : 0;
+        timeEl.textContent = formatVideoTime(cur) + " / " + formatVideoTime(dur);
+        if (!dragging && dur > 0) setProgress(cur / dur, false);
+        syncPlayIcon();
+      }
+
+      video.addEventListener("timeupdate", updateTime);
+      video.addEventListener("loadedmetadata", updateTime);
+      video.addEventListener("durationchange", updateTime);
+      video.addEventListener("play", syncPlayIcon);
+      video.addEventListener("pause", syncPlayIcon);
+
+      if (playBtn) {
+        playBtn.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          if (video.paused) video.play().catch(function () {});
+          else video.pause();
+        });
+      }
+
+      function onPointerDown(ev) {
+        if (ev.button !== undefined && ev.button !== 0) return;
+        dragging = true;
+        wasPlaying = !video.paused;
+        try { video.pause(); } catch (e) { /* ignore */ }
+        player.classList.add("is-scrubbing");
+        setProgress(pctFromEvent(ev), true);
+        updateTime();
+        ev.preventDefault();
+        ev.stopPropagation();
+      }
+
+      function onPointerMove(ev) {
+        if (!dragging) return;
+        setProgress(pctFromEvent(ev), true);
+        updateTime();
+        ev.preventDefault();
+      }
+
+      function onPointerUp(ev) {
+        if (!dragging) return;
+        dragging = false;
+        player.classList.remove("is-scrubbing");
+        setProgress(pctFromEvent(ev), true);
+        updateTime();
+        if (wasPlaying) video.play().catch(function () {});
+      }
+
+      progress.addEventListener("mousedown", onPointerDown);
+      progress.addEventListener("touchstart", onPointerDown, { passive: false });
+      window.addEventListener("mousemove", onPointerMove);
+      window.addEventListener("touchmove", onPointerMove, { passive: false });
+      window.addEventListener("mouseup", onPointerUp);
+      window.addEventListener("touchend", onPointerUp);
+      window.addEventListener("touchcancel", onPointerUp);
+
+      progress.addEventListener("keydown", function (ev) {
+        if (!isFinite(video.duration) || video.duration <= 0) return;
+        var step = ev.key === "ArrowRight" ? 5 : ev.key === "ArrowLeft" ? -5 : 0;
+        if (!step) return;
+        ev.preventDefault();
+        video.currentTime = Math.max(0, Math.min(video.duration, video.currentTime + step));
+        updateTime();
+      });
+
+      syncPlayIcon();
+    }
+
+    function openVideoLightbox(slide, video) {
+      openPreviewLightbox({
+        type: "video",
+        src: slide.src,
+        poster: slide.poster || "",
+        alt: slide.alt || "",
+        currentTime: video && isFinite(video.currentTime) ? video.currentTime : 0,
+      });
+    }
+
+    function createPreviewVideo(slide, isHero) {
+      var video = document.createElement("video");
+      video.className = "mk-modal-preview-img mk-modal-preview-video" + (isHero ? " mk-modal-preview-img--hero is-zoomable" : "");
+      video.src = slide.src;
+      if (slide.poster) video.poster = slide.poster;
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.controls = false;
+      video.preload = "metadata";
+      if (!isHero) return video;
+
+      var player = document.createElement("div");
+      player.className = "mk-preview-video-player";
+
+      var stage = document.createElement("div");
+      stage.className = "mk-preview-video-stage";
+      stage.title = slide.label || slide.alt || "";
+      stage.addEventListener("click", function (e) {
+        if (e.target.closest(".mk-preview-video-controls")) return;
+        e.stopPropagation();
+        openVideoLightbox(slide, video);
+      });
+
+      var controls = document.createElement("div");
+      controls.className = "mk-preview-video-controls";
+
+      var playBtn = document.createElement("button");
+      playBtn.type = "button";
+      playBtn.className = "mk-preview-video-play";
+      playBtn.setAttribute("aria-label", "Pause");
+
+      var progress = document.createElement("div");
+      progress.className = "mk-preview-video-progress";
+      progress.setAttribute("role", "slider");
+      progress.setAttribute("aria-label", "Video progress");
+      progress.setAttribute("aria-valuemin", "0");
+      progress.setAttribute("aria-valuemax", "100");
+      progress.setAttribute("aria-valuenow", "0");
+      progress.tabIndex = 0;
+
+      var rail = document.createElement("div");
+      rail.className = "mk-preview-video-progress-rail";
+      var fill = document.createElement("div");
+      fill.className = "mk-preview-video-progress-fill";
+      var thumb = document.createElement("div");
+      thumb.className = "mk-preview-video-progress-thumb";
+      thumb.setAttribute("aria-hidden", "true");
+      rail.appendChild(fill);
+      rail.appendChild(thumb);
+      progress.appendChild(rail);
+
+      var timeEl = document.createElement("span");
+      timeEl.className = "mk-preview-video-time";
+      timeEl.textContent = "0:00 / 0:00";
+
+      var zoomBtn = document.createElement("button");
+      zoomBtn.type = "button";
+      zoomBtn.className = "mk-preview-video-zoom";
+      zoomBtn.setAttribute("aria-label", "Enlarge video");
+      zoomBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>';
+      zoomBtn.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        openVideoLightbox(slide, video);
+      });
+
+      controls.appendChild(playBtn);
+      controls.appendChild(progress);
+      controls.appendChild(timeEl);
+      controls.appendChild(zoomBtn);
+      stage.appendChild(video);
+      player.appendChild(stage);
+      player.appendChild(controls);
+      wireVideoScrubber(player, video, playBtn, progress, fill, thumb, timeEl);
+      return player;
+    }
+
+    function renderSlideContent(slide, isHero) {
+      if (slide.type === "video") {
+        var node = createPreviewVideo(slide, isHero);
+        return isHero ? wrapHeroMedia(node, slide) : node;
+      }
+      if (slide.type === "image" || !slide.type) {
+        var img = document.createElement("img");
+        img.className = "mk-modal-preview-img" + (isHero ? " mk-modal-preview-img--hero is-zoomable" : "");
+        img.src = slide.src;
+        img.alt = slide.alt || "";
+        img.loading = isHero ? "eager" : "lazy";
+        if (isHero) {
+          img.addEventListener("click", function (e) {
+            e.stopPropagation();
+            openPreviewLightbox({ type: "image", src: slide.src, alt: slide.alt || "" });
+          });
+        }
+        return isHero ? wrapHeroMedia(img, slide) : img;
+      }
+      return null;
+    }
+
+    // Avatar cluster / single avatar / icon / placeholder, when there is no screenshot.
+    function mountPreviewFallback(item, d, frame) {
+      var kind = (d && d.kind) || (item && item.getAttribute("data-kind")) || "agent";
+
+      var cluster = item && item.querySelector(".mk-avatar-cluster");
+      if (cluster) {
+        var c = document.createElement("div");
+        c.className = "mk-avatar-cluster mk-modal-visual-cluster";
+        [].slice.call(cluster.querySelectorAll(".mk-avatar")).forEach(function (slot) {
+          var s = document.createElement("div");
+          s.className = "mk-avatar";
+          s.setAttribute("data-agent", slot.getAttribute("data-agent") || "");
+          c.appendChild(s);
+        });
+        frame.appendChild(c);
+        return;
+      }
+
+      var av = item && item.querySelector(".mk-avatar");
+      if (av) {
+        var slot = document.createElement("div");
+        slot.className = "mk-avatar";
+        slot.setAttribute("data-agent", av.getAttribute("data-agent") || "");
+        frame.appendChild(slot);
+        return;
+      }
+
+      if (d && window.forgeaxMountMarketplaceIcon) {
+        var iconKind = d.kind === "cli-provider" ? "backend" : d.kind;
+        if (["authoring", "skill", "backend", "tool", "binding", "model-binding"].indexOf(iconKind) >= 0) {
+          var iconEl = document.createElement("div");
+          iconEl.className = "mk-modal-icon ico";
+          window.forgeaxMountMarketplaceIcon(iconEl, d.slug, iconKind === "model-binding" ? "binding" : iconKind);
+          frame.appendChild(iconEl);
+          return;
+        }
+      }
+
+      var ph = document.createElement("div");
+      ph.className = "mk-modal-preview-placeholder";
+      var label = { agent: "PREVIEW", authoring: "AUTHORING", skill: "SKILL", tool: "TOOL", backend: "CLI BACKEND", binding: "MODEL BINDING" };
+      var lk = kind === "cli-provider" ? "backend" : (kind === "model-binding" ? "binding" : kind);
+      ph.innerHTML = '<span class="mk-ph-label">' + (label[lk] || "PLUGIN") + '</span><span class="mk-ph-title">' + esc(UI.previewLive || "") + '</span>';
+      frame.appendChild(ph);
+    }
+
+    function mountPreviewVisual(item, d, frame) {
+      if (!frame) return;
+      frame.innerHTML = "";
+      var track = $("mkmPreviewThumbsTrack");
+      var thumbsWrap = $("mkmPreviewThumbs");
+      if (track) track.innerHTML = "";
+      if (thumbsWrap) thumbsWrap.hidden = true;
+
+      loadPreviewManifest().then(function () {
+        // Guard against the modal being closed/reopened while the manifest was loading.
+        if ($("mkmPreviewFrame") !== frame) return;
+        var slides = buildPreviewSlides(item, d);
+        window._mkPreviewSlides = slides;
+        window._mkPreviewCardData = d;
+
+        if (slides.length) {
+          mountStudioChromeFromSlide(d, slides[0]);
+          slides.forEach(function (slide, i) {
+            var slideEl = document.createElement("div");
+            slideEl.className = "mk-preview-slide" + (i === 0 ? " is-active" : "");
+            var content = renderSlideContent(slide, true);
+            if (content) slideEl.appendChild(content);
+            frame.appendChild(slideEl);
+            if (track) {
+              var btn = document.createElement("button");
+              btn.type = "button";
+              btn.className = "mk-preview-thumb" + (i === 0 ? " is-active" : "");
+              var thumbInner = renderSlideContent(slide, false);
+              if (thumbInner) btn.appendChild(thumbInner);
+              if (slide.label) btn.setAttribute("title", slide.label);
+              btn.addEventListener("click", function () { setActivePreviewIndex(i); });
+              track.appendChild(btn);
+            }
+          });
+          if (track) track.classList.toggle("is-single", slides.length === 1);
+          if (thumbsWrap) thumbsWrap.hidden = false;
+          wirePreviewThumbNav(slides.length);
+          return;
+        }
+
+        mountPreviewFallback(item, d, frame);
+        [].slice.call(frame.querySelectorAll(".mk-avatar")).forEach(function (slot) {
+          if (window.forgeaxEnsureAvatar) window.forgeaxEnsureAvatar(slot);
+        });
+        if (window.forgeaxRefreshIcons) window.forgeaxRefreshIcons();
+      });
+    }
+
+    function mountStats(d) {
+      var wrap = $("mkmStats");
+      if (!wrap) return;
+      wrap.innerHTML = "";
+      if (!d) return;
+      var c = d.caps || {};
+      var toolPct = Math.min(100, (c.tools || 0) * 8);
+      var skillPct = Math.min(100, (c.skills || 0) * 25);
+      var stats = [
+        { label: UI.statTools, value: String(c.tools || 0), pct: toolPct, ring: true },
+        { label: UI.statSkills, value: String(c.skills || 0), pct: skillPct, ring: true },
+        { label: UI.statVersion, value: "v" + esc(d.version), pct: 100, ring: false },
+        { label: UI.statUpdated, value: esc(d.updated || d.created || "—"), pct: 72, ring: false },
+      ];
+      stats.forEach(function (s, i) {
+        if (s.ring) {
+          var dash = (s.pct * 1.005).toFixed(1);
+          wrap.innerHTML += '<div class="mk-stat mk-stat--ring" style="animation-delay:' + (0.06 + i * 0.04) + 's">' +
+            '<div class="mk-ring" style="--pct:' + s.pct + '">' +
+            '<svg viewBox="0 0 40 40" aria-hidden="true"><circle class="mk-ring-track" cx="20" cy="20" r="16"/>' +
+            '<circle class="mk-ring-fill" cx="20" cy="20" r="16" pathLength="100" stroke-dasharray="' + dash + ' 100"/></svg>' +
+            '<span class="mk-ring-val">' + s.value + '</span></div>' +
+            '<div class="mk-stat-label">' + s.label + '</div></div>';
+        } else {
+          wrap.innerHTML += '<div class="mk-stat" style="animation-delay:' + (0.06 + i * 0.04) + 's">' +
+            '<div class="mk-stat-label">' + s.label + '</div>' +
+            '<div class="mk-stat-value">' + s.value + '</div>' +
+            '<div class="mk-stat-bar"><i style="width:' + s.pct + '%"></i></div></div>';
+        }
+      });
+    }
+
+    function mountHudChrome(d, item) {
+      var slug = (d && d.slug) || (item && item.getAttribute("data-slug")) || "—";
+      var idShort = d ? String(d.id || slug).replace("@forgeax-plugin/", "") : slug;
+      var idEl = $("mkmReadoutId");
+      if (idEl) idEl.textContent = "ID · " + idShort.toUpperCase();
+      var verEl = $("mkmReadoutVer");
+      if (verEl) verEl.textContent = d ? "VER · v" + d.version : "VER · —";
+      var kindEl = $("mkmReadoutKind");
+      if (kindEl) kindEl.textContent = d ? String(d.kind || "plugin").replace("cli-provider", "CLI").replace("model-binding", "BIND").toUpperCase() : "PLUGIN";
+    }
+
+    function mountModels(d) {
+      var wrap = $("mkmModelsWrap");
+      var el = $("mkmModels");
+      if (!wrap || !el) return;
+      el.innerHTML = "";
+      var stack = d && d.stack;
+      if (!stack) { wrap.hidden = true; return; }
+
+      var rows = [];
+      if (stack.type === "agent") {
+        if (stack.preferredCli) rows.push({ key: UI.mdlCliBackend, val: esc(stack.preferredCli) });
+        if (stack.role) rows.push({ key: UI.mdlRole, val: esc(stack.role) });
+        if (stack.defaultSkills && stack.defaultSkills.length) {
+          rows.push({ key: UI.mdlDefaultSkills, val: stack.defaultSkills.map(esc).join(", ") });
+        }
+      } else if (stack.type === "cli") {
+        rows.push({ key: UI.mdlProvider, val: esc(stack.provider) });
+        if (stack.runner) rows.push({ key: UI.mdlRunner, val: '<span class="mono">' + esc(stack.runner) + '</span>' });
+        if (stack.models && stack.models.length) {
+          rows.push({
+            key: UI.mdlModels,
+            val: '<div class="mk-model-chips">' + stack.models.map(function (m) {
+              return '<span class="mk-model-chip">' + esc(m) + '</span>';
+            }).join("") + '</div>',
+          });
+        }
+        var caps = stack.capabilities || {};
+        var capKeys = Object.keys(caps).filter(function (k) { return caps[k]; });
+        if (capKeys.length) {
+          rows.push({ key: UI.mdlCaps, val: capKeys.map(esc).join(" · ") });
+        }
+      } else if (stack.type === "binding") {
+        rows.push({ key: UI.mdlChannel, val: esc(stack.channel) });
+        rows.push({ key: UI.mdlVendor, val: esc(stack.vendor) });
+        if (stack.roles && stack.roles.length) {
+          rows.push({ key: UI.mdlTiers, val: stack.roles.map(esc).join(" → ") });
+        }
+        if (stack.models && stack.models.length) {
+          rows.push({
+            key: UI.mdlModelPool,
+            val: '<div class="mk-model-chips">' + stack.models.map(function (m) {
+              return '<span class="mk-model-chip">' + esc(m) + '</span>';
+            }).join("") + '</div>',
+          });
+        }
+      }
+
+      if (!rows.length) { wrap.hidden = true; return; }
+      wrap.hidden = false;
+      el.innerHTML = rows.map(function (r) {
+        return '<div class="mk-model-row"><span class="mk-model-key">' + r.key + '</span><span class="mk-model-val">' + r.val + '</span></div>';
+      }).join("");
+    }
+
+    function mountTutorial(d) {
+      var wrap = $("mkmTutorialWrap");
+      var el = $("mkmTutorial");
+      if (!wrap || !el) return;
+      el.innerHTML = "";
+      var tut = (d && d.tutorial) || [];
+      if (!tut.length) { wrap.hidden = true; return; }
+      wrap.hidden = false;
+      el.innerHTML = tut.map(function (step) { return "<li>" + esc(step) + "</li>"; }).join("");
+    }
+
+    function mountHistory(d) {
+      var wrap = $("mkmHistoryWrap");
+      var el = $("mkmHistory");
+      if (!wrap || !el) return;
+      el.innerHTML = "";
+      var hist = (d && d.history) ? d.history.slice() : [];
+      if (!hist.length) { wrap.hidden = true; return; }
+      wrap.hidden = false;
+      hist.sort(function (a, b) { return String(b.date || "").localeCompare(String(a.date || "")); });
+      el.innerHTML = hist.map(function (h) {
+        var ver = h.version ? '<span class="mk-history-ver">v' + esc(h.version) + '</span>' : '';
+        return '<li class="mk-history-row">' +
+          '<div class="mk-history-head">' + ver + '<span class="mk-history-date">' + esc(h.date || "") + '</span></div>' +
+          '<div class="mk-history-note">' + esc(h.note || "") + '</div>' +
+        '</li>';
+      }).join("");
+    }
+
+    // Render the "Dedicated agent" section for authoring plugins with a preferredAgent binding.
+    // Data source: build-site.mjs > AUTHORING_PREFERRED_AGENT, injected into MK_DATA[slug].preferredAgent.
+    function mountPreferredAgent(d) {
+      var wrap = $("mkmAgentWrap");
+      if (!wrap) return;
+      var ag = d && d.preferredAgent;
+      if (!ag || !ag.agent) { wrap.hidden = true; return; }
+      wrap.hidden = false;
+      var av = $("mkmAgentAvatar");
+      if (av) {
+        // 切插件时头像 agent 可能变化：先清掉旧 <video>，避免 ensureVideo 复用旧 source。
+        var oldVid = av.querySelector("video");
+        if (oldVid) oldVid.parentNode.removeChild(oldVid);
+        av.setAttribute("data-agent", ag.avatarAgent || ag.agent);
+        if (window.forgeaxEnsureAvatar) window.forgeaxEnsureAvatar(av);
+      }
+      var nameEl = $("mkmAgentName"); if (nameEl) nameEl.textContent = ag.name || "";
+      var roleEl = $("mkmAgentRole"); if (roleEl) roleEl.textContent = ag.title || "";
+      var descEl = $("mkmAgentDesc"); if (descEl) descEl.textContent = ag.desc || "";
+    }
+
+    // Studio viewport panel label: prefer the manifest's per-slug label, else the item's
+    // authoring cap, else the slug (authoring- prefix stripped).
+    function mountStudioChrome(d) {
+      var panel = $("mkmStudioPanel");
+      if (!panel) return;
+      if (!d) { panel.textContent = ""; return; }
+      var slug = d.slug || "";
+      var fromManifest = _previewManifest && _previewManifest.panelLabels && slug && _previewManifest.panelLabels[slug];
+      if (fromManifest) { panel.textContent = String(fromManifest).toUpperCase(); return; }
+      var authoring = d.caps && d.caps.authoring;
+      panel.textContent = authoring
+        ? String(authoring).toUpperCase()
+        : String(slug).replace(/^authoring-/, "").toUpperCase();
+    }
+
+    // Live demo iframe when a plugin declares demoUrl; otherwise the screenshot/video gallery.
+    function mountStudioDemo(item, d) {
+      var embedWrap = $("mkmStudioEmbed");
+      var frame = $("mkmPreviewFrame");
+      if (embedWrap) { embedWrap.innerHTML = ""; embedWrap.hidden = true; }
+      if (frame) { frame.hidden = false; mountPreviewVisual(item, d, frame); }
+
+      var url = d && d.demoUrl;
+      if (!url || !embedWrap) return;
+
+      var iframe = document.createElement("iframe");
+      iframe.className = "mk-studio-iframe";
+      iframe.src = url;
+      iframe.setAttribute("title", (d && d.name) ? String(d.name) : "Studio demo");
+      iframe.loading = "lazy";
+      iframe.setAttribute("allow", "fullscreen");
+      embedWrap.appendChild(iframe);
+      embedWrap.hidden = false;
+      if (frame) frame.hidden = true;
+      var thumbs = $("mkmPreviewThumbs");
+      if (thumbs) thumbs.hidden = true;
+    }
+
+    function fill(d, fb, item) {
+      var card = modal.querySelector(".mk-modal-card");
+      var kind = (d && d.kind) || (item && item.getAttribute("data-kind")) || "agent";
+      var kindAttr = kind === "cli-provider" ? "backend" : (kind === "model-binding" ? "binding" : kind);
+      if (card) card.setAttribute("data-kind", kindAttr);
+      modal.setAttribute("data-kind", kindAttr);
+
+      $("mkmKind").textContent = d && d.kindLabel ? d.kindLabel : kindAttr.toUpperCase();
+      $("mkmTitle").textContent = d ? d.name : (fb ? fb.name : "");
+
+      loadPreviewManifest().then(function () {
+        mountStudioDemo(item, d);
+        mountStudioChrome(d);
+      });
+      mountStats(d);
+      mountModels(d);
+      mountTutorial(d);
+      mountHistory(d);
+      mountPreferredAgent(d);
+      mountHudChrome(d, item);
+
+      var meta = [];
+      if (d && d.experimental) meta.push('<span class="mk-meta-exp">' + esc(UI.experimental) + "</span>");
+      if (d) {
+        meta.push('<span class="mono">' + esc(d.id) + '</span>');
+        meta.push('<span>' + esc((UI.byAuthor || "") + d.author) + '</span>');
+        if (d.created) meta.push('<span>' + esc((UI.created || "") + d.created) + '</span>');
+      }
+      $("mkmMeta").innerHTML = meta.join("");
+      $("mkmDesc").textContent = d ? d.desc : (fb ? fb.desc : "");
+
+      var caps = (d && d.capsList) || [];
+      var capsWrap = $("mkmCapsWrap");
+      if (caps.length) { capsWrap.hidden = false; $("mkmCaps").innerHTML = caps.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join(""); }
+      else capsWrap.hidden = true;
+
+      $("mkmKw").innerHTML = (d && d.keywords ? d.keywords : []).map(function (k) { return "<span>" + esc(k) + "</span>"; }).join("");
+
+      var a = $("mkmRepo");
+      a.className = "mk-modal-btn mk-modal-btn--ghost";
+      if (d && d.repoUrl) { a.href = d.repoUrl; a.classList.remove("is-disabled"); a.removeAttribute("aria-disabled"); a.textContent = UI.actViewSource; }
+      else if (d && d.repoUrl === null) { a.href = "#"; a.classList.add("is-disabled"); a.setAttribute("aria-disabled", "true"); a.textContent = UI.actNotOpen; }
+      else { a.href = REPO_ROOT; a.classList.remove("is-disabled"); a.removeAttribute("aria-disabled"); a.textContent = UI.actBrowseAll; }
+
+      var docs = $("mkmDocs");
+      if (docs) {
+        var docsUrl = d && d.repoUrl ? d.repoUrl.replace(/\/tree\/main\/plugins\/[^/]+$/, "/tree/main") : null;
+        if (docsUrl) { docs.href = docsUrl; docs.hidden = false; docs.textContent = UI.actBrowseDocs; }
+        else docs.hidden = true;
+      }
+    }
+
+    var scrollLockY = 0;
+    function lockScroll() {
+      scrollLockY = window.scrollY || window.pageYOffset || 0;
+      document.body.style.position = "fixed";
+      document.body.style.top = "-" + scrollLockY + "px";
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+    }
+    function unlockScroll() {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      window.scrollTo(0, scrollLockY);
+    }
+
+    function replayModalMotion() {
+      [].slice.call(modal.querySelectorAll(
+        ".mk-modal-anchor, .mk-hud-header, .mk-modal-hero, .mk-modal-main, .mk-hud-footer, .mk-modal-preview, .mk-halo-flow, .mk-hud-orbit, .mk-hud-radar, .mk-modal-head, .mk-modal-meta, #mkmDesc, .mk-kw, .mk-modal-actions, .mk-stat, .mk-modal-section, .mk-stat-bar i, .mk-modal-preview-frame > *"
+      )).forEach(function (el) {
+        el.style.animation = "none";
+        void el.offsetHeight;
+        el.style.animation = "";
+      });
+      var backdrop = modal.querySelector(".mk-modal-backdrop");
+      if (backdrop) { backdrop.style.animation = "none"; void backdrop.offsetHeight; backdrop.style.animation = ""; }
+      var closeBtn = modal.querySelector(".mk-modal-x");
+      if (closeBtn) { closeBtn.style.animation = "none"; void closeBtn.offsetHeight; closeBtn.style.animation = ""; }
+    }
+
+    function cardFallback(item) {
+      var h = item.querySelector("h3");
+      var p = item.querySelector("p");
+      var name = "";
+      if (h) { var clone = h.cloneNode(true); var s = clone.querySelector(".slug"); if (s) s.remove(); name = clone.textContent.trim(); }
+      return { name: name || item.getAttribute("data-slug"), desc: p ? p.textContent.trim() : "" };
+    }
+
+    function openCard(item) {
+      var slug = item.getAttribute("data-slug");
+      var d = DATA[slug];
+      var fb = d ? null : cardFallback(item);
+      fill(d, fb, item);
+      modal.hidden = false;
+      replayModalMotion();
+      lockScroll();
+      if (window.forgeaxRefreshIcons) window.forgeaxRefreshIcons();
+      [].slice.call(modal.querySelectorAll(".mk-avatar")).forEach(function (slot) {
+        if (window.forgeaxEnsureAvatar) window.forgeaxEnsureAvatar(slot);
+      });
+      var x = modal.querySelector(".mk-modal-x");
+      if (x) { try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } }
+    }
+    function closeModal() {
+      modal.hidden = true;
+      unlockScroll();
+      closePreviewLightbox();
+      var frame = $("mkmPreviewFrame");
+      if (frame) frame.innerHTML = "";
+      var embed = $("mkmStudioEmbed");
+      if (embed) { embed.innerHTML = ""; embed.hidden = true; }
+      var track = $("mkmPreviewThumbsTrack");
+      if (track) track.innerHTML = "";
+      var thumbs = $("mkmPreviewThumbs");
+      if (thumbs) thumbs.hidden = true;
+    }
+
+    [].slice.call(document.querySelectorAll(".mk-item")).forEach(function (it) {
+      it.setAttribute("role", "button"); it.setAttribute("tabindex", "0");
+      it.addEventListener("click", function () { openCard(it); });
+      it.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCard(it); } });
+    });
+    modal.addEventListener("click", function (e) {
+      if (e.target.closest("[data-close]") || !e.target.closest(".mk-modal-card")) closeModal();
+    });
+    var lightbox = $("mkPreviewLightbox");
+    if (lightbox) {
+      lightbox.addEventListener("click", function (e) {
+        if (e.target.closest("[data-close-lightbox]")) closePreviewLightbox();
+      });
+    }
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      var lb = $("mkPreviewLightbox");
+      if (lb && !lb.hidden) { closePreviewLightbox(); return; }
+      if (!modal.hidden) closeModal();
+    });
+    window.forgeaxLoadPreviewManifest = loadPreviewManifest;
+  })();
+
+  // ── agent idle avatars (locked to the "期待" idle state, looping) ──
+  (function () {
+    var BASE = "/assets/avatars";
+    var IDLE_INDEX = 1; // 01 == 期待
+    var IDLE_VER = "3"; // cache-bust: bump whenever an avatar mp4/webm is re-exported
+    function pad(n) { return n < 10 ? "0" + n : String(n); }
+    function urlFor(agent, ext) {
+      return BASE + "/" + agent + "/" + pad(IDLE_INDEX) + "." + ext + "?v=" + IDLE_VER;
+    }
+
+    /* Apple WebKit (desktop Safari + every iOS/iPadOS browser, all forced onto
+     * WebKit) decodes VP9/WebM but drops its alpha channel, so a transparent
+     * avatar renders as an opaque black disc. We serve those engines a
+     * HEVC-with-alpha .mp4 (real transparency) and everyone else the smaller
+     * VP9 .webm. Some Chromium builds can *decode* HEVC without compositing its
+     * alpha (→ black again), so we pick the source per-engine in JS rather than
+     * relying on <source> type negotiation. */
+    function isAppleWebkit() {
+      try {
+        var ua = navigator.userAgent || "";
+        var vendor = navigator.vendor || "";
+        var isIOS = /iP(hone|od|ad)/.test(ua) ||
+          (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); // iPadOS 13+
+        var isDesktopSafari = vendor.indexOf("Apple") > -1 &&
+          !/(Chrome|Chromium|Edg|OPR)\//.test(ua) && !isIOS;
+        return isIOS || isDesktopSafari;
+      } catch (e) { return false; }
+    }
+    var APPLE_WEBKIT = isAppleWebkit();
+
+    function addSource(v, agent, ext, type) {
+      var s = document.createElement("source");
+      s.src = urlFor(agent, ext);
+      s.type = type;
+      v.appendChild(s);
+    }
+    function mkVideo() {
+      var v = document.createElement("video");
+      v.muted = true; v.playsInline = true; v.preload = "auto"; v.loop = true;
+      v.setAttribute("playsinline", ""); v.setAttribute("muted", "");
+      return v;
+    }
+    function playIdle(slot) {
+      var agent = slot.getAttribute("data-agent");
+      if (!agent) return;
+      var v = slot.querySelector("video");
+      if (!v) return;
+      v.classList.add("is-front");
+      if (APPLE_WEBKIT) {
+        addSource(v, agent, "mp4", 'video/mp4; codecs="hvc1"');
+        addSource(v, agent, "webm", "video/webm"); // fallback if no mp4 exists
+      } else {
+        addSource(v, agent, "webm", "video/webm");
+      }
+      v.load();
+      v.play().catch(function () {});
+    }
+    function ensureVideo(slot) {
+      var v = slot.querySelector("video");
+      if (v) return v;
+      v = mkVideo();
+      slot.appendChild(v);
+      playIdle(slot); // lazily attaches sources + starts playback
+      return v;
+    }
+    // Enter viewport: create-then-play (first time) or resume a paused clip.
+    function resumeIdle(slot) {
+      var v = ensureVideo(slot);
+      if (v && v.paused) v.play().catch(function () {});
+    }
+    // Leave viewport: pause so offscreen avatars stop decoding (mobile perf).
+    // Only touches already-created videos; never forces creation.
+    function pauseIdle(slot) {
+      var v = slot.querySelector("video");
+      if (v && !v.paused) { try { v.pause(); } catch (e) {} }
+    }
+
+    if ("IntersectionObserver" in window) {
+      // Keep observing (no unobserve) so we can pause/resume across scrolls.
+      // On load/refresh the observer fires for every slot: those in view (plus
+      // the 200px margin) resume+play, the rest stay uncreated until scrolled to.
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) resumeIdle(e.target);
+          else pauseIdle(e.target);
+        });
+      }, { rootMargin: "200px" });
+      [].slice.call(document.querySelectorAll(".mk-avatar")).forEach(function (s) { io.observe(s); });
+    } else {
+      [].slice.call(document.querySelectorAll(".mk-avatar")).forEach(ensureVideo);
+    }
+    window.forgeaxEnsureAvatar = ensureVideo;
+  })();
+})();

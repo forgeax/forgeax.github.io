@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-23 · Ein Asset-Inspektor + Umschalten ohne Verzögerung + Windows-Unterstützung — ForgeaX</title>
+<meta name="description" content="Ein artbewusster Asset-Inspektor kommt, das Wechseln von Szenen/Ansichten führt dank Keep-Alive nicht mehr zu einem Kaltstart des Renderers, eine Reihe plattformübergreifender Windows-Korrekturen landen, die Engine heilt sich selbst nach Geräteverlust und degradiert sich unter WebKit-Grenzwerten ordnungsgemäß, Ladezeit-Vertragsprüfungen erkennen Schnittstellendrift und Terminal-Checkpoints sowie Multi-Agent-Chat-Berührungen werden ausgeliefert." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-23 · Ein Asset-Inspektor + Umschalten ohne Verzögerung + Windows-Unterstützung — ForgeaX" />
+<meta property="og:description" content="Ein artbewusster Asset-Inspektor kommt, das Wechseln von Szenen/Ansichten führt dank Keep-Alive nicht mehr zu einem Kaltstart des Renderers, eine Reihe plattformübergreifender Windows-Korrekturen landen, die Engine heilt sich selbst nach Geräteverlust und degradiert sich unter WebKit-Grenzwerten ordnungsgemäß, Ladezeit-Vertragsprüfungen erkennen Schnittstellendrift und Terminal-Checkpoints sowie Multi-Agent-Chat-Berührungen werden ausgeliefert." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-06-23.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-23.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-23.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-23.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-23.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-23.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-23.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-06-23.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-23.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-23.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-06-23</span></div>
+    <h1>Ein Asset-Inspektor + Umschalten ohne Verzögerung + Windows-Unterstützung</h1>
+    <p class="standfirst">Nach der Open-Source-Veröffentlichung war dieser Tag eine solide Runde des Polierens und Härtens: Der Herausgeber erhielt einen Inspektor, der alle Arten von Assets abdeckte; Beim Wechseln zwischen Szenen und zwischen Bearbeiten und Abspielen wird der Renderer nicht mehr kalt neu gestartet oder friert auf einem schwarzen Bildschirm ein; eine Reihe von Windows-Kompatibilitätsproblemen wurden behoben; Die Engine hat gelernt, sich bei Geräteverlust selbst zu reparieren und sich in eingeschränkten Umgebungen ordnungsgemäß zu verschlechtern. Ladezeit-Vertragsprüfungen wurden hinzugefügt; und die Terminalversion erhielt einen Checkpoint-Rücklauf.</p>
+    <div class="prose"><h2>Nach der Freigabe zum Polieren wenden</h2>
+<p>Open-Sourcing hat das Projekt der Öffentlichkeit zugänglich gemacht, und der eigentliche Test beginnt in dem Moment, in dem es übergeben wird – mehr Leute, mehr unterschiedliche Computer, mehr kritische Augen werden jeden Punkt aufdecken, der nicht glatt oder stabil genug ist. Dieser Tag war die Wende nach der Veröffentlichung: Es ging nicht darum, umwerfende neue Funktionen zu jagen, sondern sich darauf einzulassen, das bestehende Erlebnis glatter zu polieren und das Fundament stabiler zu machen. Mit dem Asset-Inspektor können Ersteller jedes vorhandene Material klar sehen. Durch das Umschalten ohne Abwürgen entfällt das häufigste Problem im täglichen Gebrauch. Durch die Windows-Kompatibilität können mehr Leute die Tür betreten; Die Selbstheilung des Motors verhindert, dass Unfälle Menschen leicht stören. und Vertragsprüfungen während der Ladezeit verhindern, dass die Codeänderungen der KI zu Fehlern führen. Individuell klein, zielen sie alle darauf ab, „ist es tatsächlich reibungslos und stabil zu verwenden“ – genau das, was ein Projekt, das gerade erst an die Öffentlichkeit gelangt, sofort bekräftigen sollte. Den ersten Eindruck gibt es nur einmal, und jedes bisschen Feinschliff nach der Veröffentlichung schützt ihn.</p>
+<h2>Ein Asset-Inspektor: Sehen Sie sich jedes Asset klar an</h2>
+<p>Der Herausgeber hat heute ein Asset-Inspektor-Panel erhalten, das alle Arten von Assets in einem Projekt abdeckt. Es geht auf ein grundlegendes, aber lange vermisstes Bedürfnis ein: Wenn Ihr Projekt eine Menge Materialien stapelt – Netze, Materialien, Texturen, Animationen, Szenen – wie können Sie schnell erkennen, um was es sich tatsächlich handelt? Früher sah man oft nur einen Namen, und um sein Aussehen und seine Eigenschaften zu kennen, musste man ihn tatsächlich in einer Szene platzieren. Wählen Sie nun ein beliebiges Asset aus und der Inspektor auf der rechten Seite zeigt eine entsprechende Vorschau und Details an: Wählen Sie ein Netz aus und sehen Sie sich seine Form an, ein Material und sehen Sie sich seine Texturqualität an, eine Textur und sehen Sie sich das Bild an, eine Animation und sehen Sie sich ihre Informationen an. Außerdem wurde ein „Inhaltsbrowser“ mit dem Materialbereich verknüpft, der einen kohärenten Ablauf vom Durchsuchen über das Anzeigen bis zum Bearbeiten ermöglicht. Für Ersteller ist es von Bedeutung, „zu wissen, was man hat“ – ein etwas größeres Projekt enthält leicht Dutzende oder Hunderte von Assets, und die Möglichkeit, jedes einzelne zu öffnen und deutlich zu sehen, erspart einem das Herumtasten in einem Haufen vager Namen, was die Effizienz bei der Verwaltung und Wiederverwendung von Materialien erhöht.</p>
+<h2>Umschalten ohne Verzögerung: Den Renderkontext am Leben erhalten</h2>
+<p>An diesem Tag wurde ein seit langem quälendes und im täglichen Gebrauch äußerst häufiges altes Problem behoben: das Blockieren beim Umschalten. Bisher hat das System beim Wechsel zwischen verschiedenen Szenen oder beim Wechsel zwischen den Modi „Bearbeiten“ und „Wiedergabe“ die gesamte zugrunde liegende Grafikwiedergabe abgebaut und neu aufgebaut – ein schwarzer Blitz, eine Neuinitialisierung und im langsamsten Fall ein völliges Einfrieren. Die Hauptursache: Bei jedem Wechsel wurde der Renderkontext neu erstellt, und der Neuaufbau eines Grafikkontexts ist ein ziemlich teurer Vorgang, der in bestimmten Browserumgebungen fehleranfällig ist – je öfter Sie wechseln, desto wahrscheinlicher ist es, dass er kaputt geht. Die heutige Lösung ist „Keep-Alive“: Beim Umschalten wird der Renderkontext nicht mehr heruntergefahren und neu erstellt, sondern er bleibt im Hintergrund am Leben (verschoben außerhalb des Bildschirms statt zerstört) und wird bei Bedarf direkt wiederverwendet. Wenn Sie auf „In-Place“ umschalten, erfolgt das Wechseln zwischen Szenen und zwischen Bearbeiten und Abspielen reibungslos und sofort, ohne schwarze Bildschirme oder Verzögerungen. Bei einem Erstellungstool, das Sie dazu ermutigt, immer wieder „zu optimieren, einen Blick darauf zu werfen, noch einmal zu optimieren“, ist das Wechseln eine der am häufigsten ausgelösten Aktionen. Durch die Umwandlung dieses Pfads von „jedes Mal neu erstellen“ in „jederzeit sofortiger Wechsel“ wird das größte Hindernis im kreativen Fluss direkt beseitigt.</p>
+<h2>Plattformübergreifend: eine Reihe von Windows-Korrekturen</h2>
+<p>Da es nun Open Source ist und möglichst viele Menschen es nutzen möchten, musste Windows in Angriff genommen werden. An diesem Tag wurden eine Reihe von Windows-Kompatibilitätsproblemen behoben, alle die typische Fallstricke „auf einem anderen System in Ordnung, unter Windows aus unerklärlichen Gründen kaputt“: Die Methode, um festzustellen, ob ein Prozess noch aktiv ist, erfordert einen anderen Ansatz, um im Windows-Terminal korrekt zu sein; Die beim Erstellen eines neuen Projekts erstellten Symlinks stoßen unter Windows an die Berechtigungsgrenzen und werden durch ein natives Windows-Äquivalent umgangen. und die Dekodierung der Umgebungskarte (HDR-Format) wurde auch unter Windows behoben. Parallel dazu wurden Startskripte für den plattformübergreifenden Einsatz gehärtet. Jedes Problem ist unauffällig, aber ein einziges ungelöstes Problem könnte einen Windows-Benutzer bei der Installation, der Projekterstellung oder der ersten Ausführung blockieren und ihn komplett aus dem Weg räumen. Wenn dieser gesamte Weg, von der Installation bis zur Ausführung, unter Windows funktioniert, öffnet sich die Tür für die Windows-Benutzer, die den größten Teil des Desktop-Marktes beherrschen – und für ein reines Open-Source-Projekt, das unbedingt von mehr Menschen ausprobiert werden möchte, ist die praktische Bedeutung dieses Schritts besonders groß.</p>
+<h2>Selbstheilung des Motors: Wiederherstellung nach Geräteverlust, ordnungsgemäße Verschlechterung unter Grenzwerten</h2>
+<p>Der Motor hat an diesem Tag einen großen Schritt in Richtung „Unfallresistenz“ gemacht. Eine davon ist die Selbstheilung des Geräts/der Oberfläche: Ein Grafikgerät kann während des Betriebs aus verschiedenen Gründen (Auslastung der Systemressourcen, Zurücksetzen eines Treibers) plötzlich ausfallen, was früher oft dazu führte, dass der Bildschirm schwarz wurde und keine Wiederherstellung erfolgte; Jetzt erkennt die Engine einen solchen Abfall und versucht, das Rendering automatisch wiederherzustellen, sodass das Bild wiederhergestellt wird, anstatt abzusterben. Zweitens kommt es zu einer sanften Verschlechterung unter Grenzwerten: In einigen schwächeren Browserumgebungen erhält die Sonde der Engine für die Videospeicherkapazität möglicherweise keinen genauen Wert, und heute fällt sie auf eine sichere Standardobergrenze zurück, wenn dies nicht möglich ist. und wenn der zu rendernde Inhalt die Kapazität übersteigt, wird jetzt „eine abgeschnittene Teilmenge gerendert“, anstatt den gesamten Frame zu überspringen, und zieht es vor, etwas weniger zu zeichnen, anstatt das gesamte Bild zum Absturz zu bringen; Auch Abstürze auf niedriger Ebene wurden in behebbare Fehler isoliert. Das gemeinsame Thema ist „Resilienz“: Eine Engine, die allen möglichen realen Geräten standhalten und von normalen Menschen über weite Strecken genutzt werden soll, kann nicht davon ausgehen, dass alles perfekt ist; Das Zeichen wahrer Reife besteht darin, dass die Unvollkommenheit, wenn sie auftritt, standhält, sich erholt und auf reduziertem Niveau weiterarbeitet, anstatt gleich beim ersten Unfall zu streiken.</p>
+<h2>Ladezeit-Vertragsprüfungen + Szenen-Rückschreiben</h2>
+<p>An diesem Tag wurde der Zeile „KI schreibt Code“ eine weitere Schutzmaßnahme hinzugefügt: Vertragsprüfungen zur Ladezeit. Beim Laden eines Spiels überprüft das System automatisch, ob der Spielcode mit den Schnittstellen der Engine übereinstimmt – ein „Vertrag“ sind die Aufrufkonventionen, die die Engine vorschreibt; Wenn, nachdem die KI den Code bearbeitet hat, an einer Stelle eine Schnittstelle missbraucht wird oder dateiübergreifende Schnittstellen nicht übereinstimmen, weist das System direkt und deutlich auf diese „Abweichung“ in einer Fehlereinblendung auf dem Bildschirm hin, anstatt mittendrin aus unerklärlichen Gründen abzustürzen. Dadurch wird effektiv ein weiterer automatischer Prüfpunkt zwischen „Schreibvorgang abgeschlossen“ und „Wird ausgeführt“ festgelegt, wodurch Fehler auf Schnittstellenebene sofort erkannt werden. In der Zwischenzeit hat die Engine das „Rückschreiben“ der Szene abgeschlossen: Sie kann den Inhalt der aktuellen Szene in ein strukturiertes Asset-Paket serialisieren und die Kennung umgekehrt aus dem Inhalt heraussuchen. Dies legt den Grundstein für die Schleife „Im Editor bearbeiten und sofort speichern“ – Bearbeiten besteht nicht nur aus Anzeigen und Optimieren; Änderungen müssen zudem zuverlässig bestehen bleiben. Diese beiden machen nacheinander die „Produkte der Schöpfung“ zuverlässiger: Sie stellen sicher, dass der Code korrekt ausgerichtet ist und die Bearbeitungsergebnisse gespeichert werden.</p>
+<h2>Zurückspulen des Terminal-Checkpoints + Berührungen der Zusammenarbeit mit mehreren Agenten</h2>
+<p>An diesem Tag erhielt die Befehlszeilen-/Terminalversion Funktionen, die der grafischen Oberfläche entsprechen: Checkpoints und Zurückspulen. Sie können eine Konversation zu einem früheren Kontrollpunkt zurücksetzen und es noch einmal versuchen. Wenn Sie damit nicht zufrieden sind, können Sie die Konversation abbrechen. Sitzungswiederherstellung wurde hinzugefügt – nach einer Unterbrechung wird ein Befehl dort fortgesetzt, wo Sie aufgehört haben, kein Neustart; plus ein Overlay, um Ihnen Fragen zu stellen. Die Chat-Oberfläche hat die Live-Details der Zusammenarbeit mit mehreren Agenten ständig verbessert: Wenn ein Subagent eine Aufgabe an einen anderen weitergibt, zeigt ein klarer Relay-Header die Übergabebeziehung an; verwandte Agenten werden nach „Produzentenfamilie“ gruppiert, jeder in seiner eigenen Kategorie; Für sensible Vorgänge, die Ihren Anruf erfordern, wurde eine spezielle Genehmigungs- und Bestätigungskarte ausgestellt. und die Agenten-Avatare wurden leicht angehoben und vergrößert, um auf einen Blick klarer zu machen, wer aktiv ist und wer auf Sie wartet. Zusammengenommen dient dies einem Zweck: Wenn Sie ein Team von KIs mit unterschiedlichen Aufgaben zur Zusammenarbeit anweisen, muss der gesamte Prozess klar, kontrollierbar und jederzeit rückgängig zu machen sein – Sie verstehen, was sie tun, und behalten gleichzeitig die Initiative zum Anhalten und Zurückspulen.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Während es in der Open-Source-Veröffentlichung am Vortag darum ging, „die Tür zu öffnen und Leute einzuladen“, hieß es an diesem Tag: „Das Haus aufräumen, damit sich die Leute darin wohlfühlen.“ Es gab keine weltbewegende neue Funktion, alles wurde durch und durch verfeinert und verfestigt: So konnten Sie alle Assets deutlich sehen, es wurde verhindert, dass das Umschalten unterbrochen wurde, es wurde Windows-Benutzern die Tür gewährt, es half der Engine, Unfälle zu überstehen, es wurde verhindert, dass der KI-Code mit Fehlern durchsickerte, und es wurde die Zusammenarbeit mehrerer Agenten klar und kontrollierbar gemacht. All dies deutet auf „Benutzerfreundlichkeit“ und „Zuverlässigkeit“ hin – genau die beiden Dinge, die ein Projekt, das nur eine Flut neuer Benutzer willkommen heißt, am dringendsten gleichzeitig stärken muss. Neue Benutzer werden wegen einer großartigen Funktion nicht bleiben, sondern sich möglicherweise wegen eines einzigen Stillstands, eines einzigen Absturzes oder eines einzigen Fehlers bei der Ausführung unter Windows abwenden. Diese unauffälligen Erfahrungs- und Stabilitätsprobleme einzeln zu lösen, sieht einfach aus, schafft aber in Wirklichkeit die Grundlage für die tatsächliche Nutzung, die auf Open Source folgt. Befreiung ist ein Ausgangspunkt, kein Ende; Dieser Tag war der Beginn, „das tatsächliche Ausnutzen durch Menschen“ ernst zu nehmen.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

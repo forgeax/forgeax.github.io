@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-25 · Animación esquelética + bancos de trabajo de escena y observatorio. — ForgeaX</title>
+<meta name="description" content="Los personajes reproducen animaciones esqueléticas; llegan nuevos bancos de trabajo de escena y observatorio con soporte para múltiples juegos; las herramientas narrativas adquieren fuerza; el chat es más limpio y las credenciales más seguras; el motor adelgaza el estándar y se ejecuta limpiamente en el navegador." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-25 · Animación esquelética + bancos de trabajo de escena y observatorio. — ForgeaX" />
+<meta property="og:description" content="Los personajes reproducen animaciones esqueléticas; llegan nuevos bancos de trabajo de escena y observatorio con soporte para múltiples juegos; las herramientas narrativas adquieren fuerza; el chat es más limpio y las credenciales más seguras; el motor adelgaza el estándar y se ejecuta limpiamente en el navegador." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-05-25.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-25.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-25.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-25.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-25.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-25.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-25.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-05-25.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-05-25.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-25.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-25.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-05-25</span></div>
+    <h1>Animación esquelética + bancos de trabajo de escena y observatorio.</h1>
+    <p class="standfirst">Este día los personajes realmente se &quot;movieron&quot; por primera vez: el motor añadió animación esquelética desollada. La familia de herramientas también creció: un banco de trabajo de escenas (con múltiples juegos por proyecto), un observatorio y herramientas narrativas con dientes reales; el chat se volvió más limpio, las credenciales más seguras y el motor se redujo y se ejecutó limpiamente en el navegador.</p>
+    <div class="prose"><h2>De &quot;objetos estáticos&quot; a &quot;personajes vivos&quot;</h2>
+<p>Antes de este día, el motor podía representar objetos iluminados, texturizados y sombreados, pero todos eran &quot;estáticos&quot;, por refinados que fueran, sólo adornos. La animación esquelética añadida este día es la pieza clave que da vida a estos objetos; y en el lado de las herramientas, varias capacidades (escena, observatorio, narrativa) llegaron a la vez. Poner &quot;hacer que los personajes se muevan&quot; y &quot;rellenar las herramientas para crear juegos&quot; el mismo día es el ritmo constante de esta plataforma: el motor gobierna &quot;es lo que haces lo suficientemente vívido&quot;, las herramientas gobiernan &quot;lo hace fluido&quot;, avanzando ambos extremos juntos. Abajo, cada uno por turno.</p>
+<h2>Motor: animación esquelética desollada.</h2>
+<p>El motor agregó una de las piezas más esenciales para los juegos de hoy en día: la animación esquelética sin piel. Cómo funciona: construye un &quot;esqueleto&quot; para un modelo de personaje, luego &quot;pega&quot; la malla de la superficie sobre él; Cuando el esqueleto posa según los datos de la animación, la malla se estira y se dobla con él de forma natural, por lo que el personaje camina, corre y saluda en lugar de quedarse congelado. Este es el punto de inflexión entre &quot;representar un objeto estático&quot; y &quot;representar un personaje vivo&quot;: un personaje inmóvil, por atractivo que sea, es solo una estatua, mientras que un personaje en movimiento puede representar géneros reales como juegos de rol, acción y aventuras. Lograr que esta capacidad fundamental sea correcta significa que el motor, de &quot;puede mostrar escenas&quot;, pasa a estar calificado para &quot;llevar un protagonista vivo&quot;, la condición previa para cada juego posterior con personajes y combate.</p>
+<h2>Un nuevo banco de trabajo de escenas + múltiples juegos en un proyecto</h2>
+<p>La familia de herramientas ganó un miembro sólido: un banco de trabajo de escenas, que se convirtió en el primer complemento de este tipo que &quot;realmente funciona&quot; para construir y organizar las escenas de un juego. La plataforma comenzó a admitir la &quot;administración de múltiples juegos en un proyecto&quot;, con almacenamiento de datos aislado por juego: el contenido de cada juego pertenece a sí mismo, sin contaminación cruzada. Esto significa que puedes crear una serie en un proyecto, ampliar varios niveles o probar varias ideas diferentes en paralelo sin tener que empezar de nuevo cada vez. Para un creador que quiere cultivar sus propias obras a largo plazo, &quot;múltiples juegos coexistiendo en un proyecto sin interferencias&quot; es la base para resolver intentos dispersos en un sistema: elegir qué juego ejecutar o editar es ahora un paso suave en lugar de un movimiento.</p>
+<h2>Un nuevo observatorio: observe en vivo lo que hacen los agentes</h2>
+<p>Un nuevo banco de trabajo de &quot;observatorio&quot; presenta la actividad de los agentes en tiempo real: quién está ejecutando, a qué herramienta están llamando, qué eventos han producido, todo de un vistazo. Está respaldado por una interfaz de backend dedicada y un puente de eventos que transmite lo que sucede en segundo plano a este panel. Aborda el par de necesidades más conflictivas cuando se &quot;deja que un equipo de agentes trabaje por su cuenta&quot;: querer no intervenir pero temer una pérdida total de control. El observatorio le ofrece un término medio: déjelos funcionar solos con normalidad y un vistazo al panel le indicará el estado general; en el momento en que algo falla, puedes ver inmediatamente quién y en qué paso está el problema e intervenir. Para una plataforma que se apoya cada vez más en la colaboración de múltiples agentes, esta &quot;sensación visible de control&quot; es la base psicológica para atreverse a entregarle más a la IA.</p>
+<h2>Las herramientas narrativas cobran fuerza + el agente narrativo se activa</h2>
+<p>La línea narrativa pasó este día de &quot;un caparazón vacío&quot; a &quot;realmente utilizable&quot;. El backend agregó un conjunto de definiciones de herramientas narrativas orientadas a modelos grandes, equipando al agente con implementos útiles que realmente organizan la historia y el texto, no solo una interfaz que no puede actuar; Mientras tanto, el agente dedicado responsable de la narrativa fue activado formalmente desde el estado de marcador de posición y puede aceptar trabajo. Juntos, &quot;escribir la historia&quot; tiene, por primera vez, tanto una función como herramientas que realmente pueden impulsarla en la plataforma. Crear un juego nunca fue solo acumular jugabilidad; La trama, el diálogo y el ritmo son igualmente el alma de una obra. Completar las herramientas narrativas y el agente narrativo juntos es un paso concreto hacia &quot;una persona puede hacer un juego completo y desarrollado&quot;.</p>
+<h2>Un chat más limpio + credenciales más seguras</h2>
+<p>La interfaz y la seguridad recibieron un toque este día. La interfaz de chat tuvo un paso de simplificación: se eliminaron el brillo y el desenfoque redundantes, se unificaron los bordes, la lista se pagina cuando hay muchos agentes instalados y las alturas de desplazamiento son más estables, más agradables a la vista durante una sesión larga y más centradas en el contenido en sí. La ventana de vista previa también abrió los gráficos y los permisos de pantalla completa que necesita, para que los juegos internos se ejecuten de manera más completa. En materia de seguridad, el backend comenzó a migrar claves de modelo desde una bóveda separada hacia la administración &quot;solo de variables de entorno&quot; y agregó un libro de registro de actividad de archivos, simplificando la ruta de las credenciales y haciendo rastreable &quot;cuándo se tocó qué archivo&quot;. Una interfaz más limpia debe alterar menos las credenciales y estar más ordenadas para ser más confiables; ambas cosas acercan la plataforma un paso más a un uso &quot;seguro a largo plazo&quot;.</p>
+<h2>Motor: modelo estándar más delgado + ejecuciones limpias en el navegador</h2>
+<p>El motor realizó un trabajo de bajo nivel tanto en &quot;fácil de usar&quot; como en &quot;fácil de operar&quot; este día. Una es la reducción de textos repetitivos: brindar estructuras de datos comunes valores predeterminados sensatos y funciones de fábrica convenientes, y unificar cómo se exportan algunas utilidades comunes, de modo que escribir contenido de juegos requiera menos textos repetitivos y exprese la intención de manera más directa. La otra son las &quot;subexportaciones seguras para el navegador&quot;: eliminar las dependencias utilizables sólo en el entorno local (no en el navegador) de la entrada principal del motor, asegurando que el motor, cuando se carga en el navegador, no extraiga accidentalmente cosas que no se pueden ejecutar y se ejecute limpiamente. El primero reduce la carga de &quot;escribir&quot;, el segundo salvaguarda la estabilidad de &quot;correr&quot;; Ninguna es una característica llamativa, pero ambas realmente hacen que este motor interno sea más amigable para las personas que lo usan (y el código que genera IA).</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

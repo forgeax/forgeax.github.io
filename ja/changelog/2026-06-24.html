@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-24 · 新しいアセット ブラウザ + スムーズな初回実行オンボーディング — ForgeaX</title>
+<meta name="description" content="サムネイルを備えたデュアルペインのコンテンツ ブラウザーと AI へのバッチ ハンドオフ、2 ステップのノンブロッキング初回実行セットアップ、編集と保存のオーサリング ループ、テレメトリ パネルによるフロントエンドの可観測性、および統合されたエンジン ハンドルとインスタンス描画の最適化。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-24 · 新しいアセット ブラウザ + スムーズな初回実行オンボーディング — ForgeaX" />
+<meta property="og:description" content="サムネイルを備えたデュアルペインのコンテンツ ブラウザーと AI へのバッチ ハンドオフ、2 ステップのノンブロッキング初回実行セットアップ、編集と保存のオーサリング ループ、テレメトリ パネルによるフロントエンドの可観測性、および統合されたエンジン ハンドルとインスタンス描画の最適化。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-24.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-24.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-24.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-24.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-24.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-24.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-24.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-24.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-24.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-24.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-24</span></div>
+    <h1>新しいアセット ブラウザ + スムーズな初回実行オンボーディング</h1>
+    <p class="standfirst">この日は、到着したばかりの新人とすでに作業中のクリエイターという両方の側面を同時に推進しました。サムネイルを備えた新しいデュアルペインのコンテンツ ブラウザで、一度に一連のアセットを AI に渡すことができます。最初の実行セットアップでは、2 ステップ、3 パス、および非ブロッキングが行われました。 「プロジェクトを開く → 編集 → ディスクに保存する」というクリエイティブ ループを完了するエディター。さらに、システム全体をより透明にするテレメトリ/ログ パネル、および多くの同一オブジェクトの描画を統合してハンドルとインスタンス化を行うエンジンです。</p>
+    <div class="prose"><h2>両端を推進: 新人を捕まえ、ベテランをサポート</h2>
+<p>この日の作業は、ユーザーの種類ごとに 2 つの方向に分かれています。その目的の 1 つは「新規ユーザーの獲得」です。初回実行ガイドはよりスムーズになるように再作成され、「開く」から「AI とチャットしてゲームを作成する」まで、これまでに見たことのない訪問者を最速で獲得できるようになりました。もう一方の端は「退役軍人のサポート」です。新しいアセット ブラウザー、変更を確実にディスクに保存する編集フロー、すべてのランタイム状態を監視できるテレメトリ パネルなど、すべてはすでにプロジェクトに真剣に取り組んでおり、「始められるかどうか」ではなく、「ツールは便利で信頼性が十分か」という人向けです。オープンソース化され、あらゆる種類のユーザーを歓迎するプラットフォームでは、入り口のステップを平らに削り、内部に作業台を装備するという、まさに両端を推進する必要があります。この日はまさに双方向のプッシュでした。</p>
+<h2>新しいアセット ブラウザ: デュアルペイン + サムネイル + AI へのバッチの渡し</h2>
+<p>この日、アセット ブラウザが第 2 世代にアップグレードされ、デフォルトになりました。これは完全なプロ仕様のマテリアル管理パネルです。左側にはお気に入りとフォルダ ツリーがあり、ディレクトリごとに整理し、頻繁に使用するアイテムを固定できます。右側にはサムネイルと豊富なホバー ツールチップを備えたコンテンツ領域があり、各素材を一目で認識できます。追加、インポート、削除、保存がすべて揃っていることに加え、キーボード ショートカットも備えているため、一度練習すれば、キーボードから離れることなく効率的に整理できます。最も想像力豊かな部分は、AI に接続されていることです。ブラウザーで一連のアセットを選択し、ワンクリックでそれらすべてを参照としてチャット AI に渡すことができます。以前は、どのモデルとどのテクスチャーを AI に「シーンで使用」させるかを 1 つずつ記述する必要がありましたが、今ではブラウザーでそれらを選択して渡すと、AI はどのアセットを指しているかを正確に認識します。これにより、「素材の管理」と「AI の指示」という 2 つの別々の作業が統合され、「これを手に持った → 使用を手伝ってもらう」という 1 つのスムーズな連続したアクションが実現されます。</p>
+<h2>よりスムーズな最初の実行: 2 つのステップ、3 つの接続方法</h2>
+<p>この日、最初の実行セットアップ ガイドが書き直されました。その中心的な目標は、初心者が最も簡単につまずくステップを、できるだけ楽にできるようにすることです。新しいガイドはわずか 2 ステップで、3 つの接続パスから選択できます。デフォルトでは、初心者にとって最もフレンドリーで最小限の構成で実行できる集約モデル エントリが設定されていますが、必要なユーザーのために他のパスも用意されています。重要な設計は「決してブロックしない」ことです。入力する前に最初の画面ですべてを入力する必要はありません。最初にスキップして中を見て、必要なときに戻って入力することができます。ガイド自体はバイリンガルです。 「セットアップ ガイド」にはなぜ意図的に磨きをかける価値があるのでしょうか?なぜなら、これまで見たことのない訪問者にとって、開店後の最初の数分は、滞在するか去るかの分かれ目だからです。一度流れが面倒になり、どこかで停滞し、次のステップが何なのか分からなくなったら、人々は去っていきます。このしきい値を「2 ステップ、スキップ可能、デフォルトの推奨事項」まで下げることは、クリックしたいすべての人がスムーズに「使用を開始する」ステップに到達できるようにするための最大限の努力です。</p>
+<h2>エディターは「プロジェクトを開く → 編集 → ディスクに保存」のループを完了します。</h2>
+<p>エディターはこの日、プロジェクトを開いて編集し、変更をディスクに確実に保存するという、「表示して調整できる」状態から真に「作成に使用できる」状態に変える重要なループを完了しました。ゲームのエントリーとシーンのアセットを正しくロードする「プロジェクトを開く」オーサリング フローのサポート。 「手動保存」への切り替え - 以前の自動時間指定保存を削除して、明確な「未保存」マーカーを表示します。これにより、現在の変更が保存されているかどうかがわかり、いつ保存するかを決定できます。エディタ内の変更からディスク ファイルへのライトバック チェーン。ホット リロードを使用するため、変更は即座に表示され、安全に保存されます。エディターには、インスペクターに「システム パネル」(ゲーム内の各ロジック システムを切り替える) と「コンポーネントの追加」メニューも追加されました。これらは、エディターが単なる微調整のための補助的なビューではなく、完全な「開く→編集→保存」クリエイティブ ループを独立して実行する真のツールであることを意味します。クリエイターにとって最も基本的な安心感は、「変更した内容は保存され、復元可能である」ということですが、この日はその安心感が現実のものとなりました。</p>
+<h2>可観測性: テレメトリ/ログ パネル + チャットのフリーズ防止</h2>
+<p>この日、システム全体に「可観測性」が追加され、内部で実際に何が起こっているかを確認できるようになりました。テレメトリ パネルが追加され、「トレースとログ」が 1 つの観察可能なフィードに収集されます。エージェントが現在何をしているか、各ステップにかかった時間、何が問題だったかがすべて表示されます。バックエンドには、対応するテレメトリ シンクとレポート ルートが得られ、フロントエンドには監視の足場が得られました。なぜこれを意図的に構築するのでしょうか?なぜなら、AI によって自律的に推進される作業が増えるにつれて、「AI が実際に何をしているのか、どこが遅いのか、どこでエラーが発生したのか」という問題が目に見えなければならない問題になり、目に見えないため、信頼することも最適化することもできません。一方、チャットは実際のフリーズのリスクを修正しました。AI が非常に長い、フォーマットされた Markdown を出力すると、フロントエンドは再解析とレンダリングを繰り返し、頻繁にメモリを爆破してインターフェイス全体をフリーズします。この日はスロットルをかけたため、長い回答はストリーミング中に安定したままになりました。長期にわたる激しい使用に耐える透明なシステムにより、人々は自信を持って大きなタスクを実行できるようになります。</p>
+<h2>エンジン: 統合ハンドル + インスタンス化された描画 + 統合プラグイン プロトコル</h2>
+<p>この日、エンジンは広範囲にわたる低レベルの作業をいくつか実行しました。 1つ目は「ハンドル」を統一すること。ハンドルは、エンティティまたはアセット (何かを指すグリップ) へのプログラムの参照であり、現在では、エンティティとアセットのハンドルが、「世代」情報を保持する 1 つのエンコーディングに統合されています。世代とは、各ハンドルのバージョン スタンプであるため、ハンドルが指すものが破棄され、そのスロットが新しいものによって再利用された場合、システムは、それが有効であると誤認するのではなく、すぐに「これは古い参照である」と認識します。これにより、「すでになくなったものを参照する」という非常に微妙で診断が難しい種類のバグがソースから排除されます。 2: インスタンス描画の最適化 — シーンに多数の同一のオブジェクト (森、兵士の群衆) がある場合、以前は描画コマンドが 1 つずつ発行されていましたが、現在では同一のオブジェクトが 1 回の呼び出しで描画されるバケットにマージされ、描画コールが大幅に削減されました。これは大規模シーンのパフォーマンスの質的変化であり、数万の独立したオブジェクトのストレス テストで検証されました。 3 つ目は、拡張の一貫性を高めるためにプラグイン プロトコルを 1 つの形式に統合し、テスト用にヘッドレスでクリーンなバックエンドを追加することです。これらは、ユーザーがまだ目にしていない内部の作業であり、プラットフォームが実行できる規模、範囲、エラーの少なさを決定します。</p>
+<h2>この日が意味するもの</h2>
+<p>この日で最も記憶に残るのは、ユーザー ジャーニーの両端に同時に対応したことです。オープンソース化により初めてクリックする新規ユーザーのために、「エントリー」の敷居を最も低く引き下げました。スキップ可能な 2 ステップのガイドであり、デフォルトの推奨事項があり、試してみたいと思っている人がスムーズに始められるように最善を尽くしています。すでにプロジェクトに真剣に取り組んでいるクリエイター向けに、プロ仕様のアセット ブラウザ、確実に保存する編集ループ、内部を確認できるテレメトリ パネルなど、「作業」ツールがさらに充実しました。そして、エンジン レベルのハンドルの統合、インスタンス化された描画、および統合されたプラグイン プロトコルは、これらすべてを「大規模で拡張可能で信頼性の高い」ものにするためのサポートをより深く提供します。製品が真に定着するためには、新規参入者を捕まえるだけでは十分ではありません。製品に留まる人は、使えば使うほどスムーズになることがわかるはずです。ベテランを満足させるだけでは十分ではありません。新人も中に入ることができなければなりません。この日は、ドアを開けて家の設備を整えるという両方を同時に行うことはほとんどありませんでした。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

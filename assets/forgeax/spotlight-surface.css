@@ -1,0 +1,132 @@
+/* Section maps cursor → localized per-card border hotspot (no full-ring glow) */
+
+.forgeax-site .spotlight-card,
+.forgeax-site .stat--display {
+  --spot-x: 50%;
+  --spot-y: 50%;
+  --spot-on: 0;
+}
+
+.forgeax-site .spotlight-section {
+  position: relative;
+}
+
+/* ── display cards inside feature / AI grids ───────────────────────────── */
+.forgeax-site .spotlight-card {
+  position: relative;
+  isolation: isolate;
+  cursor: default;
+  overflow: hidden;
+}
+
+.forgeax-site .spotlight-card:hover,
+.forgeax-site .spotlight-card:active {
+  transform: none !important;
+}
+
+.forgeax-site .spotlight-card:hover .ico svg {
+  transform: none !important;
+}
+
+/* inner wash — only under cursor */
+.forgeax-site .spotlight-card .spotlight-surface__fx {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  opacity: calc(var(--spot-on) * 0.82);
+  transition: opacity 0.28s var(--site-ease-silk);
+  background: radial-gradient(
+    180px circle at var(--spot-x) var(--spot-y),
+    rgba(var(--theme-cool-a), 0.15) 0%,
+    rgba(var(--theme-cool-b), 0.06) 40%,
+    transparent 68%
+  );
+  mix-blend-mode: soft-light;
+}
+
+/* border ring — radial hotspot at cursor, not full perimeter */
+.forgeax-site .spotlight-card .spotlight-surface__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: calc(var(--spot-on) * 1);
+  transition: opacity 0.28s var(--site-ease-silk);
+  background: radial-gradient(
+    70px circle at var(--spot-x) var(--spot-y),
+    rgba(var(--theme-cool-a), 0.95) 0%,
+    rgba(255, 255, 255, 0.48) 34%,
+    rgba(var(--theme-cool-b), 0.58) 50%,
+    transparent 78%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: blur(0.15px);
+}
+
+.forgeax-site .spotlight-card > *:not(.spotlight-surface__fx):not(.spotlight-surface__ring) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── tier-1 stat cards ─────────────────────────────────────────────────── */
+.forgeax-site .stat--display {
+  isolation: isolate;
+}
+
+.forgeax-site .stat--display .spotlight-surface__fx {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: calc(var(--spot-on) * 0.76);
+  transition: opacity 0.38s var(--site-ease-silk);
+  background: radial-gradient(
+    190px circle at var(--spot-x) var(--spot-y),
+    rgba(var(--stat-neon-teal), 0.16) 0%,
+    rgba(var(--stat-neon-cyan), 0.07) 36%,
+    transparent 64%
+  );
+  mix-blend-mode: soft-light;
+}
+
+.forgeax-site .stat--display .spotlight-surface__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 3;
+  opacity: calc(var(--spot-on) * 1);
+  transition: opacity 0.28s var(--site-ease-silk);
+  background: radial-gradient(
+    72px circle at var(--spot-x) var(--spot-y),
+    rgba(var(--stat-neon-teal), 0.98) 0%,
+    rgba(255, 255, 255, 0.46) 32%,
+    rgba(var(--stat-neon-cyan), 0.56) 48%,
+    transparent 76%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: blur(0.15px);
+}
+
+.forgeax-site .stat--display .num,
+.forgeax-site .stat--display .lbl {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forgeax-site .spotlight-surface__fx,
+  .forgeax-site .spotlight-surface__ring { display: none !important; }
+}

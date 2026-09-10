@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-13 · Plusieurs niveaux par projet + une mise à niveau du système fantôme — ForgeaX</title>
+<meta name="description" content="Un projet peut contenir plusieurs niveaux avec un lanceur ; les ombres du moteur se transforment en ombres en cascade et en lumière ponctuelle avec HDR et bloom ; un échantillon devient une campagne à deux niveaux présentant des particules et des effets raffinés ; les fuites sont recherchées dans les ressources GPU du moteur et dans le chat ; et la fiabilité des agents est renforcée." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-13 · Plusieurs niveaux par projet + une mise à niveau du système fantôme — ForgeaX" />
+<meta property="og:description" content="Un projet peut contenir plusieurs niveaux avec un lanceur ; les ombres du moteur se transforment en ombres en cascade et en lumière ponctuelle avec HDR et bloom ; un échantillon devient une campagne à deux niveaux présentant des particules et des effets raffinés ; les fuites sont recherchées dans les ressources GPU du moteur et dans le chat ; et la fiabilité des agents est renforcée." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-13.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-13.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-13.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-13.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-13.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-13.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-13.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-13.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-13.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-13.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-13.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-06-13</span></div>
+    <h1>Plusieurs niveaux par projet + une mise à niveau du système fantôme</h1>
+    <p class="standfirst">Aujourd&#39;hui, le projet Day One peut contenir plusieurs niveaux, avec un lanceur de niveaux ; le système d&#39;ombres du moteur s&#39;est immédiatement intensifié : ombres en cascade pour les grandes scènes, ombres ponctuelles, HDR et floraison complètes ; l&#39;échantillon de survie par balle est devenu une campagne à deux niveaux « pâturage de jour + cimetière de nuit » tandis que toute sa chaîne d&#39;effets de particules était redressée ; les fuites ont été traquées aussi bien côté moteur que côté chat ; et la fiabilité des agents a obtenu une note de durcissement.</p>
+    <div class="prose"><h2>Grandir en se resserrant</h2>
+<p>Le travail de la journée se divise en deux forces : « grandir » et « se resserrer ». Du côté de la croissance : un projet peut contenir plusieurs niveaux, élevant l&#39;unité de création d&#39;« une scène » à « un ensemble complet d&#39;un jeu » ; les ombres, le HDR et la floraison du moteur se sont intensifiés en même temps, ce qui signifie que les visuels peuvent faire un autre grand pas vers le réalisme et la texture ; et l&#39;échantillon de survie par balle est devenu une campagne complète à deux niveaux, démontrant ces nouvelles capacités sur place. Côté resserrement : le moteur et le chat ont chassé l&#39;ennemi invisible des « fuites de ressources », bouchant point par point la mémoire vidéo et la mémoire non restituée après utilisation ; la fiabilité de l&#39;agent a également bénéficié d&#39;un renforcement ciblé afin qu&#39;il puisse réessayer en cas d&#39;erreur et résister à un contexte très long. Une plate-forme en croissance rapide doit resserrer ses fondations progressivement, ou plus l&#39;échelle est grande, plus les trous sont nombreux. Ce jour-là, c&#39;était les deux à la fois.</p>
+<h2>Plusieurs niveaux dans un projet + un lanceur de niveaux</h2>
+<p>Ce jour-là, l&#39;éditeur a gagné des « jeux multi-scènes », un changement clé qui élargit l&#39;unité de création. Auparavant, un projet était essentiellement mappé sur une seule scène, ce qui rendait maladroit un jeu complet avec plusieurs niveaux de branchement ; désormais, plusieurs fichiers de niveau peuvent coexister dans un même projet, et le panneau d&#39;actifs organise les &quot;sous-actifs&quot; par nom plutôt que d&#39;empiler la même scène dans des lignes en double vertigineuses. Un panneau de lancement de niveau a été ajouté afin que vous puissiez choisir le niveau auquel accéder pour l&#39;édition ou jouer directement dans Studio ; l&#39;édition et la lecture restent synchronisées, de sorte que tout ce que vous modifiez dans l&#39;éditeur s&#39;affiche fidèlement lorsque vous passez à la lecture. Pour concrétiser cette capacité, l&#39;échantillon de survie par balle est devenu une véritable campagne à plusieurs niveaux - un niveau pour un pâturage de jour, un pour un cimetière de nuit, deux ambiances entièrement différentes - une démonstration pratique de &quot;construire tout un ensemble de niveaux dans un seul projet&quot;. À partir de ce jour, construire un jeu complet avec un début, un milieu et plusieurs niveaux est enfin structurellement naturel, ne nécessitant plus un projet séparé par niveau assemblé manuellement.</p>
+<h2>Une mise à niveau des ombres : nettes de près, douces de loin, lumières ponctuelles également projetées</h2>
+<p>Les ombres du moteur ont augmenté d&#39;un niveau ce jour-là, et c&#39;est exactement ce qui décide si une image 3D est « crédible » : sans elles, les objets semblent flotter dans l&#39;air ou coller à l&#39;arrière-plan, sans aucun sentiment de solidité. Un ajout essentiel était les « ombres en cascade », définies comme approche unifiée. Il résout le problème récurrent des ombres sur les grandes scènes : couvrir une grande carte avec une carte d&#39;ombres à résolution fixe rend flous le proche ou le lointain ; les ombres en cascade divisent la vue en segments en fonction de la distance, en haute résolution de près et de loin, de sorte que les ombres à vos pieds sont nettes et nettes tandis que les ombres lointaines se transforment en douceur et que l&#39;ensemble de la grande carte tient le coup. L’autre ajout est que les lumières ponctuelles peuvent désormais projeter des ombres – auparavant, seule la lumière directionnelle semblable à celle du soleil produisait des ombres, tandis qu’une ampoule ou une torche rayonnant dans toutes les directions n’en projetait aucune ; maintenant, eux aussi projettent des ombres correctes qui se propagent tout autour. Avec le HDR complet (plage dynamique élevée, pour une gradation claire et sombre plus réaliste) et des exemples de floraison, le réalisme global a augmenté. Il s’agit de la base graphique indispensable pour créer des scènes réelles crédibles à partir d’ici.</p>
+<h2>L&#39;échantillon de survie par balle : de &quot;ça court&quot; à &quot;ressemble à un vrai jeu&quot;</h2>
+<p>Autour de cet échantillon de survie par balle, cette journée a soigneusement redressé toute la chaîne de particules et d&#39;effets, la polissant de &quot;ça court&quot; à &quot;ressemble à un vrai jeu&quot;. Une série de travaux concrets : le système de particules a été modifié pour adopter une approche instanciée, de sorte que les étincelles, les explosions et les effets de lumière remplissant immédiatement l&#39;écran ne bégayent plus ; le mélange additif et le rendu transparent ont été corrigés, éliminant les carrés noircis qui apparaissaient sur les bords de l&#39;effet ; les ondes de choc sont passées d&#39;une goutte désordonnée à des anneaux minces et propres ; chaque compétence a son propre shader personnalisé, donnant à l&#39;explosion, au feu et à la glace leur propre sensation ; surmonté d&#39;une couche de post-traitement cinématographique et d&#39;un ensemble complet d&#39;éléments d&#39;apparence pour les monstres et le personnage du joueur. La valeur est double : d’une part, l’échantillon lui-même est devenu un beau produit fini sur lequel vous pouvez jouer directement ou apprendre ; de l’autre, il a testé, de bout en bout, l’ensemble des capacités graphiques que le moteur venait de mettre à niveau ce jour-là – ombres, floraison, particules, effets – avec un vrai jeu. Ce n’est qu’en le maintenant qu’il est prouvé que ces capacités sous-jacentes sont véritablement utilisables.</p>
+<h2>Fuites de ressources de chasse aux deux extrémités</h2>
+<p>Cette journée avait un fil conducteur caché : la chasse aux « fuites de ressources ». Une fuite correspond à des ressources utilisées mais non restituées à temps, qui s’accumulent jusqu’à entraîner tout le système vers le bas – discrètes en utilisation normale, n’éclatant qu’en cas d’utilisation longue et à grande échelle, et donc particulièrement insidieuses. Du côté du moteur, une gestion complète du cycle de vie des ressources GPU a été ajoutée : chaque tampon et chaque texture de mémoire vidéo peuvent être explicitement détruits et récupérés après utilisation, et le moteur de rendu dans son ensemble peut être libéré proprement – ​​auparavant, cette mémoire vidéo pouvait fuir discrètement, se remplissant sur une longue période. Côté chat, plusieurs fuites de mémoire de l&#39;état frontal ont été résolues d&#39;un coup : lorsqu&#39;une session est fermée, les différents caches, écouteurs et enregistrements temporaires qui y sont liés sont correctement évincés plutôt que de rester en mémoire et de s&#39;accumuler. Les deux ne semblent pas liés – l’un dans le rendu de bas niveau, l’autre dans l’interface frontale – mais le principe est le même : celui qui demande une ressource est responsable de la restituer après utilisation. L’application de ce principe dans tous les recoins du système constitue la garantie fondamentale que les logiciels peuvent fonctionner de manière stable pendant une longue période et à grande échelle.</p>
+<h2>Renforcement de la fiabilité de l&#39;agent : il peut réessayer en cas d&#39;erreur et résister à un contexte long</h2>
+<p>Cette journée a également permis de renforcer la fiabilité des agents, en se concentrant sur les classes de problèmes qui affectent le plus « la fiabilité de l&#39;IA au travail ». Premièrement, une nouvelle tentative d&#39;appels de grand modèle a été ajoutée dans la boucle de travail de l&#39;agent : un appel de modèle échoue parfois en raison de la gigue du réseau, etc., et là où un échec interrompait l&#39;ensemble de la tâche, il réessaye désormais dans la boucle, absorbant ces erreurs sporadiques. Deuxièmement, lorsque le contexte de conversation devient trop long et s&#39;approche de la capacité du modèle, le système compresse l&#39;historique de manière proactive et réactive, évitant ainsi d&#39;atteindre la limite et de planter. Troisièmement, la gestion des rappels lors de la délégation d&#39;une tâche à un sous-agent a été renforcée, ainsi que le reporting du retard des événements. Ces changements étaient accompagnés d&#39;un moyen de vérification dédié : un « faux serveur de modèles » scriptable simulant diverses situations anormales, validant chaque durcissement dans une véritable pile en cours d&#39;exécution. Une plate-forme sur laquelle l&#39;IA fonctionne de manière autonome pour vous sur de longues périodes craint qu&#39;elle ne cale silencieusement ou ne s&#39;écrase à mi-chemin en raison d&#39;un problème sporadique ; renforcer ces maillons faibles un par un est exactement la confiance qui permet aux gens d&#39;oser « laisser tomber ».</p>
+<h2>Ce que signifie cette journée</h2>
+<p>Cette journée a mis côte à côte « ambition » et « assurance ». Les projets à plusieurs niveaux et la mise à niveau de l&#39;ombre représentent une ambition : permettre à la plate-forme de transporter des œuvres plus complètes, plus grandioses et plus belles, élevant ainsi le plafond créatif ; tandis que la chasse aux fuites et le renforcement de la fiabilité des agents représentent une assurance – laissant ces plus grandes ambitions reposer solidement sur une fondation qui ne fuit pas, ne tombe pas en panne et s&#39;auto-répare en cas d&#39;erreur. Un produit poursuivant l’ambition sans assurance s’effondre à mesure qu’il grandit ; une assurance protectrice sans ambition audacieuse reste en place pour toujours. Un rythme d&#39;ingénierie véritablement mature permet aux deux entreprises de se suivre comme elles l&#39;ont fait aujourd&#39;hui : chaque grand pas en avant en matière de capacité s&#39;accompagne d&#39;un raffermissement d&#39;une autre couche de fondation. L&#39;échantillon transformé en une campagne complète à deux niveaux avec des visuels raffinés est la meilleure note de bas de page de ce rythme - il montre à la fois à quel point il peut devenir bon et, en s&#39;exécutant lui-même, prouve si tout cela est vraiment stable.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

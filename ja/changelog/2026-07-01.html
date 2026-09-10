@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-01 · R4 フロントエンド ランド + ビューポート 2×2 の再設計 — ForgeaX</title>
+<meta name="description" content="R4 フロントエンド アプリの抽出は、インターフェイス ストアのスリム化とスタジオ ブートの配線で完了します。ビューポートは 2×2 の実行×表示の再設計を取得します。エディターはゲーム パスをベイクしなくなり、代わりに Studio がレイアウトを挿入します。 bun fx アップデートにより、色分けされた構造化レポートが得られます。デスクトップ ビルドはクロスプラットフォーム パッケージング用に強化されます。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-01 · R4 フロントエンド ランド + ビューポート 2×2 の再設計 — ForgeaX" />
+<meta property="og:description" content="R4 フロントエンド アプリの抽出は、インターフェイス ストアのスリム化とスタジオ ブートの配線で完了します。ビューポートは 2×2 の実行×表示の再設計を取得します。エディターはゲーム パスをベイクしなくなり、代わりに Studio がレイアウトを挿入します。 bun fx アップデートにより、色分けされた構造化レポートが得られます。デスクトップ ビルドはクロスプラットフォーム パッケージング用に強化されます。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-07-01.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-01.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-01.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-01.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-07-01.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-01.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-01.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-01.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-01.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-01.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-07-01</span></div>
+    <h1>R4 フロントエンド ランド + ビューポート 2×2 の再設計</h1>
+    <p class="standfirst">この日、エディターで感じられるいくつかの Studio の変更がリリースされました。R4 フロントエンド アプリ (チャット、ワークベンチ、設定、ダッシュボード) は、スリム化されたインターフェイス ストアを使用してブート チェーンに最終的に接続されました。ビューポートは、相互に排他的な編集/再生切り替えから 2×2 実行×表示マトリックスに移行しました。エディターはゲーム パスをハードコーディングしなくなり、代わりに Studio がゲーム レイアウトを挿入します。それに加えて、「bun fx update」には色分けされた構造化レポートが追加され、デスクトップ パッケージ化スクリプトはクロスプラットフォーム ビルド向けに強化されました。</p>
+    <div class="prose"><h2>R4 フロントエンド: スタンドアロンのサブモジュールから実際の実行まで</h2>
+<p>6 月 30 日にチャット、ワークベンチ、設定、ダッシュボードをスタンドアロンのサブモジュールに分割した後、この日はそれらを「有効にする」ということでした。インターフェイス パッケージは、純粋な AppKit レイヤー (バス、ブロードキャスト、ディープ リンク、オーバーレイ) にスリム化されました。 4 つの L2 アプリはそれぞれエージェントの設定を所有し、1 つの大きなストアに混雑するのではなく、バス経由でファイル プレビューを行います。 Studio の <code>main.tsx</code> は、起動時に <code>initAgentPrefs</code>、<code>initFilePreview</code>、<code>bootBroadcast</code>、およびデーモン ティック サブスクリプションを初期化するようになりました。4 つのモジュールはもはや「そこにあるサブディレクトリ」ではなく、エディターの正式な部分です。 R4 は、計画から、毎日開発できる構造へと移行しました。</p>
+<h2>ビューポート 2×2: 実行モード × 表示モード</h2>
+<p>この日、エディターのビューポートの 2×2 の再設計が完了しました。以前は、編集と再生は 2 つの相互排他的な状態でした。切り替えるにはビューポート全体を再構築する必要がありました。新しい設計では、「実行モード」(編集/再生) と「表示モード」(シーン/ゲーム) が、2×2 マトリックスを形成する 2 つの直交する次元に分割されています。異なる実行状態によって駆動される、シーン ビューとゲーム ビューの両方を一度に見ることができます。 AppMode は、インターフェイスとエディターのサブモジュールがこのビューポートのセマンティクスに合わせて、唯一の信頼できる情報源になりました。これは、UE5 スタイルの編集エクスペリエンスへの一歩です。前後に切り替えることなく、1 つの画面で編集とプレビューを実行できます。</p>
+<h2>エディターがゲーム パスを分離 — スタジオがレイアウトを挿入</h2>
+<p>この日、エディターのサブモジュールはゲーム ディレクトリへのハードコーディングされた依存関係を取り除き、レイアウトに依存しないスタンドアロン パッケージになりました。ゲーム ファイルが存在する場所と URL プレフィックスがエディターによって「ベイク」されなくなりました。ホスト (スタジオ) がそれを挿入します。メイン ビューポート iframe は EditSurfaceProps.gameRoot 経由でパスを取得し、localStorage は同じゲームを指すパネル iframe を保持します。エンジンを起動すると、ディスク スキャン ディレクトリとクライアント URL プレフィックスが渡されます。デスクトップ パッケージ化では、フリーズしたアプリがゲーム アセットを正しく提供できるように、URL プレフィックスもベイク処理されます。 Studio がプロジェクト レイアウトを所有しながら、エディターは独立して進化でき、境界が明確になります。</p>
+<h2>bun fx アップデート: コードをプルして一目ですべてを確認</h2>
+<p>開発者が毎朝最初に行うことは、通常、最新のコードをプルすることです。以前は、bun fx update は git pull とサブモジュールの同期をサイレントに実行していました。成功した場合は何も言わず、失敗した場合は不透明なエラーをダンプしていました。この日は、構造化された更新レポートを追加しました。これは、各サブモジュールのプル結果 (成功、スキップ、競合)、現在のブランチ、および最新のコミットの概要を示す色分けされた表です。サブモジュールにスタッシュが必要なローカル変更がある場合は、明示的に通知されます。 1 回更新すると、プロジェクト全体がどのような状態にあるかがわかります。各サブモジュールで git status を 1 つずつ実行する必要はなくなります。</p>
+<h2>デスクトップ パッケージ化: クロスプラットフォーム スクリプト + バージョン ベイク</h2>
+<p>この日もデスクトップのパッケージ化が強化されました。build-desktop.ts はテストが追加されたクロスプラットフォーム スクリプトになりました。ベンダーのプラットフォーム io とエージェント ホストをサイドカーにパッケージ化し、実行時にアセンブルするのではなく、lib/version.ts 経由でバージョンをアーティファクトにベイクします。また、bun fx start には、起動前に共通ポートがすでに使用されているかどうかを調べるポートビジー チェックが追加されているため、スタックの半分が実行されているにもかかわらず、その理由がわからないという事態は発生しません。これらはどれもそれ自体は派手なものではありませんが、パッケージ化と起動が Windows と macOS でスムーズに動作するかどうかを決定します。</p>
+<h2>この日が意味するもの</h2>
+<p>この日のテーマは「境界着陸」。昨日の R4 スプリットが方向性を定めました。今日、4 つのモジュールが実際にブート チェーンに接続されました。ビューポート 2×2 は、編集とプレビューを相互排他的なものからコンポーザブルなものに変えました。編集者はゲーム ディレクトリの所有権を Studio に戻しました。各作品は同じ質問に答えています。この編集者では、誰が何を所有していますか?境界が明確になると、モジュールは独立して反復処理できるようになります。ワークベンチを再構築せずにチャットに触れたり、Studio のプロジェクト レイアウトに触れることなくエディターを交換したりできます。スタジオは、1 つの大きな泥の塊から、明確な責任を持つ一連のモジュールに移行しつつあります。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

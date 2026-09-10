@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-18 · Avatares de agentes animados + uma fonte de verdade para dados do projeto — ForgeaX</title>
+<meta name="description" content="Cada agente recebe um avatar animado que reflete seu estado; os dados do projeto do jogo convergem para uma única fonte de verdade autodescritiva; um contrato de mecanismo host com projeção de tela e cenas de vídeo; e quatro bugs de renderização em jogos reais foram corrigidos em um mecanismo unificado." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-18 · Avatares de agentes animados + uma fonte de verdade para dados do projeto — ForgeaX" />
+<meta property="og:description" content="Cada agente recebe um avatar animado que reflete seu estado; os dados do projeto do jogo convergem para uma única fonte de verdade autodescritiva; um contrato de mecanismo host com projeção de tela e cenas de vídeo; e quatro bugs de renderização em jogos reais foram corrigidos em um mecanismo unificado." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/pt/changelog/2026-06-18.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/pt/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-18.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-18.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-pt forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pt/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/pt/" data-nav="/">Início</a>
+      <a href="/pt/tutorials/" data-nav="/tutorials/">Tutoriais</a>
+      <a href="/pt/examples/" data-nav="/examples/">Exemplos</a>
+      <a href="/pt/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/pt/changelog/" data-nav="/changelog/" class="active">Registro de alterações</a>
+      <a href="/pt/about.html" data-nav="/about.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Linguagem">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-18.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-18.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-18.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-18.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-18.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-18.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-18.html" data-l="fr">Français</a><a class="lang-item active" href="/pt/changelog/2026-06-18.html" data-l="pt" aria-current="true">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descarregar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/pt/changelog/">← Registro de alterações</a>
+    <div class="meta"><span class="tag brand">Atualização</span><span>2026-06-18</span></div>
+    <h1>Avatares de agentes animados + uma fonte de verdade para dados do projeto</h1>
+    <p class="standfirst">Este dia foi um divisor de águas: os dados do projeto do jogo convergiram em uma única fonte de verdade, com toda a plataforma lendo e gravando configurações por meio de uma entrada unificada; cada agente ganhou, na bancada, um avatar animado que muda de acordo com seu estado; um contrato de &quot;página host ↔ mecanismo&quot; e capacidade de projeção de tela foram lançados; e por meio dessa grande integração, vários bugs de renderização do motor que surgiram em jogos reais foram eliminados de uma só vez.</p>
+    <div class="prose"><h2>Convergindo a base enquanto adiciona calor</h2>
+<p>Dois temperamentos coexistiram neste dia. Uma delas é a “convergência” legal: unificar a lógica dispersa, cada parte por si, para ler dados de projetos de jogos em uma única entrada oficial; alinhar toda a plataforma em uma linha principal do motor; eliminando vários bugs de motor que surgiram em jogos reais de uma só vez. Eles desduplicam e desambiguam a base, tornando todo o sistema mais confiável e de fácil manutenção. A outra é a “acréscimo” calorosa: dar a cada agente um avatar animado que muda com o seu estado, para que a questão abstrata de “colaborar com uma equipe de IAs” ganhe, na tela, pela primeira vez uma presença humana. Uma boa plataforma precisa tanto de compostura para convergir complexidade em simplicidade quanto de cuidado para deixar um sistema frio mostrar um pouco de humanidade. Este dia uniu os dois temperamentos – firmando a base invisível e iluminando os detalhes visíveis.</p>
+<h2>Os dados do projeto do jogo obtêm uma única fonte de verdade</h2>
+<p>A coisa mais importante neste dia foi convergir a configuração do projeto de cada jogo (o arquivo principal que descreve “como este jogo é chamado, quais recursos ele usa, em que cena ele começa”) em uma “única fonte de verdade”. A dor anterior era típica: cada parte da plataforma – back-end, editor, play side – lia esse arquivo separadamente, escrevia à mão sua própria análise e escrevia seu próprio tratamento de erros; no momento em que o formato ou os campos do arquivo mudavam silenciosamente, ninguém poderia garantir que todos os lugares que o lêem continuassem atualizados, plantando o risco de campos incompatíveis. Este dia o unificou totalmente: toda a plataforma lê e grava dados do projeto por meio de apenas uma entrada oficial, e o formato da configuração se descreve com uma especificação validável por máquina - ou seja, a aparência do arquivo, quais campos ele possui e o tipo de cada campo são todos esclarecidos pela própria especificação, não mais dependendo de documentos dispersos e boca a boca. Também foi aproveitada a oportunidade de adotar um novo formato mais limpo: um número de versão (para atualizações posteriores sem problemas) e identificadores estáveis ​​para referenciar recursos (em vez de nomes que podem ser facilmente alterados). A essência é um credo central que permeia todo o projeto – um único fato deve ter apenas uma fonte confiável. Definir um manual oficial para o &quot;arquivo de projeto&quot; do ambiente de trabalho compra dados de projeto que são mais confiáveis, consistentes em todos os lugares e diagnosticáveis ​​em um só lugar.</p>
+<h2>Cada agente recebe um avatar animado</h2>
+<p>Este dia adicionou um detalhe humanizador à bancada de trabalho: cada agente não é mais uma imagem estática, mas um avatar animado que muda de acordo com seu estado – diferentes animações para pensar, trabalhar e ocioso. Isso se reuniu em quatro partes: um conjunto de avatares de personagens animados finalizados, a renderização que os reproduz no ambiente de trabalho, uma máquina de estado de backend que alterna o avatar pelo estado atual do agente e a interface que une tudo isso. Por que vale a pena construir um “avatar animado” deliberadamente? Como a experiência central da plataforma é direcionar uma equipe de agentes de IA com tarefas diferentes para colaborar (planejadores, designers, programadores...), e quando todos são apenas ícones estáticos, é difícil intuir &quot;quem está ocupado agora, com o quê&quot;. Com avatares que mudam de estado, um olhar transmite a presença de “uma sala cheia de pessoas, cada uma trabalhando em seu próprio trabalho”: quem está deliberando, quem está executando um trabalho, quem está esperando. Ele dá à questão antes abstrata de “colaborar com uma equipe de IAs” calor e vida na tela pela primeira vez – um detalhe aparentemente “bonito” que na verdade molda diretamente como as pessoas percebem e confiam nesse relacionamento colaborativo.</p>
+<h2>Uma página host ↔ contrato de mecanismo + projeção de tela</h2>
+<p>O mecanismo também estabeleceu um contrato de “página host ↔ mecanismo” neste dia e adicionou uma capacidade muito prática: projetar um ponto no mundo 3D em suas coordenadas 2D na tela. O contrato primeiro: um jogo roda no motor, envolvido por uma interface web (o host) fora dele, e os dois precisam de um acordo claro sobre &quot;quem pode perguntar a quem o quê, passando o quê&quot; - escrever esse acordo explicitamente significa que a colaboração através dessa fronteira não depende mais de compreensão tácita e adivinhação. Projeção de tela a seguir: resolve uma necessidade muito comum – como “fixar” um elemento de UI acima de um objeto 3D? Como uma barra de saúde flutuando sobre a cabeça de um inimigo, um crachá seguindo um personagem, um prompt de interação aparecendo ao lado de um item. Alcançar isso requer a conversão da posição mundial desse objeto 3D, em tempo real, em seu ponto de aterrissagem 2D atual na tela. Este dia tornou esta conversão do mundo para a tela um recurso padrão do mecanismo, com ajuste automático da câmera à proporção da imagem e uma demonstração de cena de vídeo ao lado. Juntos, eles fornecem uma base confiável para “sobrepor uma camada de informação 2D sobre uma imagem 3D” – algo que quase todos os jogos devem fazer.</p>
+<h2>Bugs de motor surgidos em jogos reais, corrigidos imediatamente</h2>
+<p>À medida que os dados do projeto foram unificados, toda a plataforma também foi totalmente alinhada em uma linha principal de mecanismo neste dia. Essa grande integração trouxe um ganho inesperado, mas valioso: vários problemas de mecanismo que surgiram anteriormente durante a construção de jogos reais foram confirmados como corrigidos de uma só vez – incluindo sombras em cenas grandes, uma classe de gravação de dados, colisões de identificadores de recursos e luz ambiente de cor sólida, quatro problemas concretos. Isso confirma um ciclo colaborativo saudável: testar o estresse do mecanismo subjacente com jogos reais geralmente revela problemas reais que os testes abstratos não conseguem; registrá-los fielmente, realizar as correções e confirmar que eles pousam torna o motor cada vez mais sólido em rodadas de uso real. Hoje o editor e todos os seis jogos de amostra também foram migrados para a nova interface do motor. O benefício da unificação é óbvio: o comportamento é consistente em todos os lugares, os problemas são mais fáceis de rastrear e novos recursos podem ser “construídos uma vez e entrar em vigor em qualquer lugar”, sem malabarismos de compatibilidade entre versões bifurcadas. Convergir o disperso para o unificado parece uma mera organização, mas na verdade elimina os obstáculos para toda a iteração rápida que se segue.</p>
+<h2>O que este dia significa</h2>
+<p>As palavras-chave do dia são “unificação” e “humanidade”. A unificação mostra a convergência dos dados do projeto em uma única fonte de verdade, o alinhamento da plataforma em um mecanismo e a escrita da colaboração transfronteiriça em um contrato explícito – tudo isso eliminando ambiguidade e duplicação, mantendo um sistema cada vez maior, compreensível e sustentável. Esta convergência é invisível e pouco glamorosa, mas o trabalho interno que permite a um sistema crescer de forma saudável a longo prazo; segue aquele princípio claro, mas fundamental: um único fato deve ter apenas uma fonte autorizada. E a “humanidade” aparece nesses avatares de agentes animados – quando o que você enfrenta não são mais ícones frios, mas uma equipe de companheiros aparentemente genuinamente ocupados, a colaboração humano-IA ganha uma camada de conexão emocional. Uma ferramenta verdadeiramente boa deve definir a ordem perfeitamente por baixo e deixar as pessoas confortáveis, até mesmo felizes, para usá-las por cima. Este dia atendeu a ambos.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/pt/changelog/">← Todas as atualizações</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Um estúdio de jogos pessoais nativo de IA — transforme ideias em jogos jogáveis.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/pt/changelog/">Registro de alterações</a>
+    <a href="/pt/tutorials/">Tutoriais</a>
+    <a href="/pt/examples/">Exemplos</a>
+    <a href="/pt/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organização GitHub</a>
+    <a href="/pt/about.html">Sobre</a>
+    <a href="/pt/license.html">Licença</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

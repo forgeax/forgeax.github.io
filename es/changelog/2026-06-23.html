@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-23 · Un inspector de activos + cambio sin bloqueo + soporte para Windows — ForgeaX</title>
+<meta name="description" content="Llega un inspector de activos atento, el cambio de escenas/vistas ya no reinicia en frío el renderizador gracias a keep-alive, un lote de correcciones multiplataforma de Windows aterrizan, el motor se recupera automáticamente de la pérdida del dispositivo y se degrada elegantemente bajo los límites de WebKit, las comprobaciones del contrato de tiempo de carga detectan la deriva de la interfaz y los puntos de control del terminal más los toques de chat de múltiples agentes se envían." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-23 · Un inspector de activos + cambio sin bloqueo + soporte para Windows — ForgeaX" />
+<meta property="og:description" content="Llega un inspector de activos atento, el cambio de escenas/vistas ya no reinicia en frío el renderizador gracias a keep-alive, un lote de correcciones multiplataforma de Windows aterrizan, el motor se recupera automáticamente de la pérdida del dispositivo y se degrada elegantemente bajo los límites de WebKit, las comprobaciones del contrato de tiempo de carga detectan la deriva de la interfaz y los puntos de control del terminal más los toques de chat de múltiples agentes se envían." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-23.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-23.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-23.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-23.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-23.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-23.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-23.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-23.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-23.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-23.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-23.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-23</span></div>
+    <h1>Un inspector de activos + cambio sin bloqueo + soporte para Windows</h1>
+    <p class="standfirst">Después del lanzamiento del código abierto, este día fue una sólida ronda de pulido y endurecimiento: el editor consiguió un inspector que cubriera todo tipo de activos; al cambiar entre escenas y entre editar y reproducir, ya no se reinicia en frío el renderizador ni se congela en una pantalla negra; se solucionaron una serie de problemas de compatibilidad con Windows; el motor aprendió a autocurarse tras la pérdida del dispositivo y a degradarse con gracia en entornos restringidos; se agregaron verificaciones de contratos en tiempo de carga; y la versión terminal obtuvo rebobinado de punto de control.</p>
+    <div class="prose"><h2>Después del lanzamiento, pasando a pulir.</h2>
+<p>El código abierto entregó el proyecto al público, y la verdadera prueba comienza en el momento en que se entrega: más personas, computadoras más variadas, ojos más críticos expondrán cada punto que no sea lo suficientemente fluido o estable. Este día fue el turno después del lanzamiento: no perseguimos nuevas funciones deslumbrantes, sino que nos sentamos a pulir la experiencia existente de manera más fluida y endurecer la base de manera más estable. El inspector de activos permite a los creadores ver claramente cada material que tienen entre manos; el cambio sin bloqueo elimina los problemas más frecuentes en el uso diario; La compatibilidad con Windows permite que más personas entren por la puerta; la autorreparación del motor evita que los accidentes interrumpan fácilmente a las personas; y las verificaciones de contratos en tiempo de carga evitan que las ediciones de código de la IA presenten errores. Individualmente pequeños, todos estos apuntan a &quot;si su uso es realmente fluido y estable&quot;, exactamente lo que un proyecto que acaba de salir a la luz pública debería reforzar de inmediato. Una primera impresión ocurre sólo una vez, y cada pequeño pulido después del lanzamiento la protege.</p>
+<h2>Un inspector de activos: vea cada activo con claridad</h2>
+<p>El editor obtuvo un panel de inspección de activos este día, que cubre todo tipo de activos en un proyecto. Aborda una necesidad básica pero desaparecida desde hace mucho tiempo: cuando su proyecto acumula una gran cantidad de materiales (mallas, materiales, texturas, animaciones, escenas), ¿cómo puede ver rápidamente lo que cada uno de ellos es realmente? Anteriormente, a menudo solo veías un nombre y, para conocer su apariencia y propiedades, tenías que ubicarlo en una escena. Ahora seleccione cualquier recurso y el inspector de la derecha le brindará una vista previa y detalles apropiados para su tipo: elija una malla y vea su forma, un material y vea la calidad de su textura, una textura y vea la imagen, una animación y vea su información. También se vinculó un &quot;buscador de contenidos&quot; al panel de materiales, formando un flujo coherente desde la navegación hasta la visualización y la edición. La importancia para los creadores es &quot;saber lo que tienes&quot;: un proyecto algo más grande fácilmente contiene docenas o cientos de activos, y ser capaz de abrir y ver claramente cada uno evita que busques a tientas entre un montón de nombres vagos, lo que aumenta la eficiencia de la gestión y reutilización de materiales.</p>
+<h2>Cambiar sin detenerse: mantener vivo el contexto de renderizado</h2>
+<p>Este día se solucionó un antiguo problema que atormentaba desde hacía mucho tiempo y, en el uso diario, extremadamente frecuente: el bloqueo al cambiar. Anteriormente, ya fuera cambiando entre diferentes escenas o cambiando entre los modos &quot;editar&quot; y &quot;reproducir&quot;, el sistema derribaba y reconstruía toda la representación gráfica subyacente: un destello negro, una reinicialización y, en el momento más lento, una congelación absoluta. La causa principal: cada cambio reconstruía el contexto de renderizado, y reconstruir un contexto de gráficos es una operación bastante costosa y propensa a errores en ciertos entornos del navegador; cuanto más a menudo cambia, es más probable que se rompa. La solución de hoy es &quot;mantener vivo&quot;: el cambio ya no destruye y reconstruye, sino que mantiene vivo el contexto de renderizado en segundo plano (sacado fuera de la pantalla en lugar de destruido) y lo reutiliza directamente cuando es necesario. Cambiado a in situ, el cambio entre escenas y entre edición y reproducción se vuelve fluido e instantáneo, sin pantallas negras ni bloqueos. Para una herramienta de creación que lo alienta a &quot;modificar, mirar, modificar nuevamente&quot; repetidamente, el cambio es una de las acciones desencadenadas con más frecuencia; convertir este camino de &quot;reconstruir cada vez&quot; a &quot;cambio instantáneo en cualquier momento&quot; elimina directamente el problema más obstructivo en el flujo creativo.</p>
+<h2>Multiplataforma: un lote de correcciones de Windows</h2>
+<p>Ahora que es de código abierto y quiere que lo use la mayor cantidad de personas posible, había que abordar Windows. Este día arrasó con una serie de problemas de compatibilidad con Windows, todos del tipo típico de error &quot;bien en otro sistema, inexplicablemente roto en Windows&quot;: la forma de saber si un proceso todavía está vivo necesita un enfoque diferente para ser correcto en la terminal de Windows; los enlaces simbólicos creados al crear un nuevo proyecto alcanzan los límites de permisos en Windows, eludidos con un equivalente nativo de Windows; y la decodificación del mapa de entorno (formato HDR) también se corrigió en Windows. Los scripts de inicio se reforzaron para su uso multiplataforma. Cada problema pasa desapercibido, pero un solo problema sin resolver podría bloquear a un usuario de Windows durante la instalación, la creación del proyecto o la primera ejecución, haciéndolo rebotar por completo. Obtener todo este camino, desde la instalación hasta la ejecución, trabajar en Windows abre la puerta a los usuarios de Windows que controlan la mayor parte del mercado de computadoras de escritorio, y para un proyecto de código abierto ansioso por ser probado por más personas, la importancia práctica de este paso es especialmente grande.</p>
+<h2>Autorreparación del motor: recuperarse de la pérdida del dispositivo, degradarse con gracia bajo los límites</h2>
+<p>El motor avanzó este día un gran paso en su &quot;resistencia a los accidentes&quot;. Una es la autorreparación del dispositivo/superficie: un dispositivo gráfico puede caer repentinamente durante el funcionamiento por varias razones (presión de recursos del sistema, reinicio del controlador), lo que anteriormente significaba que la pantalla se quedaba en negro sin recuperación; ahora el motor detecta dicha caída e intenta restablecer automáticamente el renderizado para que la imagen vuelva, en lugar de morir. La segunda es la degradación suave bajo límites: en algunos entornos de navegador más débiles, la prueba del motor de capacidad de memoria de video puede no obtener un valor preciso, y hoy vuelve a caer a un límite predeterminado seguro cuando no puede; y cuando el contenido a renderizar excede la capacidad, ahora &quot;renderiza un subconjunto truncado&quot; en lugar de saltarse todo el fotograma, prefiriendo dibujar un poco menos en lugar de colapsar toda la imagen; Los fallos de bajo nivel también se aislaron en errores recuperables. El tema compartido es la &quot;resiliencia&quot;: un motor destinado a enfrentar todo tipo de dispositivos reales y ser utilizado durante largos períodos por personas comunes y corrientes no puede asumir que todo es perfecto; la marca de la verdadera madurez es que cuando ocurre la imperfección, resiste, se recupera y sigue trabajando a un nivel reducido, en lugar de declararse en huelga ante el primer accidente.</p>
+<h2>Verificaciones de contrato en tiempo de carga + reescritura de escena</h2>
+<p>Este día se agregó otra salvaguarda a la línea &quot;La IA escribe código&quot;: verificaciones de contratos en tiempo de carga. Al cargar un juego, el sistema verifica automáticamente que el código del juego se alinea con las interfaces del motor; un &quot;contrato&quot; son las convenciones de llamada que prescribe el motor; Si, después de que la IA edita el código, algún punto hace un mal uso de una interfaz o las interfaces entre archivos no coinciden, el sistema señala esta &quot;deriva&quot; directa y prominentemente en una superposición de error en la pantalla, en lugar de fallar inexplicablemente a la mitad. Esto efectivamente establece otro punto de control automático entre &quot;escritura terminada&quot; y &quot;en ejecución&quot;, detectando errores a nivel de interfaz en el acto. Mientras tanto, el motor completó la &quot;escritura regresiva&quot; de la escena: puede serializar el contenido de la escena actual en un paquete de recursos estructurado y buscar el identificador al revés del contenido. Esto sienta las bases subyacentes para el ciclo de &quot;editar en el editor y guardarlo de inmediato&quot;: editar no es solo ver y ajustar; los cambios también deben persistir de manera confiable. Estos dos, uno tras otro, hacen que &quot;los productos de la creación&quot; sean más confiables: garantizan que el código se alinee y que los resultados de la edición se guarden.</p>
+<h2>Rebobinado del punto de control del terminal + toques de colaboración entre múltiples agentes</h2>
+<p>Este día, la versión de línea de comandos/terminal adquirió capacidades que coinciden con la interfaz gráfica: puntos de control y rebobinado. Puede revertir una conversación a un punto de control anterior y volver a intentarlo, retrocediendo si no está satisfecho; se agregó recuperación de sesión: después de una interrupción, un comando se reanuda donde lo dejó, sin comenzar de nuevo; además de una superposición para hacerle preguntas. La interfaz de chat siguió puliendo los detalles en vivo de la colaboración entre múltiples agentes: cuando un subagente entrega una tarea a otro, un encabezado de retransmisión claro muestra la relación de transferencia; los agentes relacionados se agrupan por &quot;familia de productores&quot;, cada uno en su propia categoría; las operaciones sensibles que necesitan su llamada obtuvieron una tarjeta de confirmación de permiso dedicada; y los avatares de los agentes se elevaron y ampliaron ligeramente para que &quot;quién está activo, quién está esperando por ti&quot; sea más claro de un vistazo. Estos juntos sirven para una cosa: cuando diriges a un equipo de IA con diferentes tareas para que colaboren, todo el proceso debe ser claro, controlable y siempre revertible: entiendes lo que están haciendo mientras mantienes la iniciativa de detener y rebobinar.</p>
+<h2>que significa este dia</h2>
+<p>Si el lanzamiento de código abierto del día anterior fue &quot;abrir la puerta e invitar a la gente a entrar&quot;, este día fue &quot;ordenar la casa para que la gente se sienta cómoda viviendo en ella&quot;. No tenía ninguna característica nueva trascendental, todo pulido y endurecido: permitirle ver claramente cada activo, evitar que los cambios se enganchen, permitir que los usuarios de Windows entren por la puerta, ayudar al motor a resistir accidentes, evitar que el código de la IA se escape con errores, hacer que la colaboración entre múltiples agentes sea clara y controlable. Todo esto apunta a &quot;usabilidad&quot; y &quot;confiabilidad&quot;, exactamente las dos cosas que un proyecto que acaba de dar la bienvenida a una avalancha de nuevos usuarios necesita reforzar a la vez. Los nuevos usuarios no se quedarán para disfrutar de alguna característica deslumbrante, pero es posible que se alejen por un solo bloqueo, un solo bloqueo o una sola falla al ejecutar Windows. Resolver estos problemas poco notables de experiencia y estabilidad uno por uno parece sencillo, pero en realidad está afianzando las bases para el uso real que sigue al código abierto. La liberación es un punto de partida, no un final; Este día fue el comienzo de tomar en serio &quot;ser utilizado por la gente&quot;.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

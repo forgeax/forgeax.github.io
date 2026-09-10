@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-24 · Un nuevo navegador de activos + incorporación de primera ejecución más fluida — ForgeaX</title>
+<meta name="description" content="Un navegador de contenido de doble panel con miniaturas y transferencia por lotes a la IA, una configuración de primera ejecución sin bloqueo de dos pasos, un bucle de creación para editar y guardar, observabilidad frontal con un panel de telemetría y controles de motor unificados, además de una optimización del dibujo de instancias." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-24 · Un nuevo navegador de activos + incorporación de primera ejecución más fluida — ForgeaX" />
+<meta property="og:description" content="Un navegador de contenido de doble panel con miniaturas y transferencia por lotes a la IA, una configuración de primera ejecución sin bloqueo de dos pasos, un bucle de creación para editar y guardar, observabilidad frontal con un panel de telemetría y controles de motor unificados, además de una optimización del dibujo de instancias." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-24.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-24.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-24.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-24.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-24.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-24.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-24.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-24.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-24.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-24.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-24.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-24</span></div>
+    <h1>Un nuevo navegador de activos + incorporación de primera ejecución más fluida</h1>
+    <p class="standfirst">Este día impulsó ambos extremos a la vez: el recién llegado que acaba de llegar y el creador que ya está trabajando: un nuevo navegador de contenido de doble panel con miniaturas que puede entregar un lote de recursos a la IA a la vez; una configuración de primera ejecución realizada en dos pasos, tres caminos y sin bloqueos; un editor que completa el bucle creativo &quot;abrir proyecto → editar → guardar nuevamente en el disco&quot;; además de un panel de telemetría/registro que hace que todo el sistema sea más transparente, y un motor que unifica los controles y crea instancias del dibujo de muchos objetos idénticos.</p>
+    <div class="prose"><h2>Empujar en ambos extremos: atrapar a los recién llegados, apoyar a los veteranos</h2>
+<p>El trabajo de este día se divide en dos direcciones, cada una para un tipo de usuario. Un extremo es &quot;atrapar a los recién llegados&quot;: la guía de primera ejecución se rehizo para que sea más fluida, logrando que un visitante nunca antes visto pase más rápido de &quot;abrirlo&quot; a &quot;chatear con la IA para crear un juego&quot;. El otro extremo es &quot;apoyar a los veteranos&quot;: un nuevo navegador de activos, un flujo de edición que guarda de manera confiable los cambios en el disco, un panel de telemetría que hace observable todo el estado del tiempo de ejecución, todo para aquellos que ya están trabajando seriamente en proyectos, que no necesitan &quot;puedo comenzar&quot; sino &quot;la herramienta es lo suficientemente práctica y confiable&quot;. Una plataforma de código abierto y que da la bienvenida a todo tipo de usuarios necesita exactamente presionar en ambos extremos: aplanar los escalones de entrada y equipar el banco de trabajo en el interior. Este día fue un empujón en ambos sentidos.</p>
+<h2>Un nuevo navegador de recursos: panel dual + miniaturas + entrega de un lote a la IA</h2>
+<p>El navegador de activos se actualizó a una segunda generación este día y se convirtió en el predeterminado. Es un panel de gestión de materiales completo y de nivel profesional: favoritos y un árbol de carpetas a la izquierda para organizar por directorio y fijar elementos de uso frecuente; un área de contenido con miniaturas e información detallada sobre herramientas a la derecha para que reconozca cada material de un vistazo; agregue, importe, elimine y guarde, todo en el mismo lugar, además de atajos de teclado para que, una vez practicado, pueda organizarse de manera eficiente sin salir del teclado. La parte más imaginativa es que está conectado a la IA: puedes seleccionar un lote de recursos en el navegador y entregárselos todos a la IA del chat como referencias con un solo clic; antes tenías que describir uno por uno qué modelos y qué textura querías que la IA &quot;usara en la escena&quot;, ahora los seleccionas en el navegador y los pasas, y la IA sabe exactamente a qué activos te refieres. Esto une &quot;administrar materiales&quot; y &quot;dirigir la IA&quot;, dos cosas previamente separadas, haciendo que &quot;Tengo estas cosas en la mano → ayúdame a usarlas&quot; una acción continua y fluida.</p>
+<h2>Una primera ejecución más fluida: dos pasos, tres formas de conectarse</h2>
+<p>La guía de configuración de primera ejecución se rehizo este día, su objetivo principal es hacer que el paso en el que los recién llegados se atasquen más fácilmente sea lo más sencillo posible. La nueva guía consta de solo dos pasos y ofrece tres rutas de conexión para elegir: por defecto es una entrada de modelo agregado, la más amigable para los recién llegados y ejecutable con la menor configuración, mientras mantiene otras rutas para aquellos que las necesitan. El diseño clave es &quot;nunca bloquear&quot;: no es necesario que te obliguen a llenar todo en la primera pantalla antes de ingresar; puedes saltarte primero, mirar el interior y volver para completarlo cuando quieras. La guía en sí es bilingüe. ¿Por qué vale la pena pulir deliberadamente una &quot;guía de configuración&quot;? Porque para un visitante nunca antes visto, los primeros minutos después de la apertura son el momento decisivo entre quedarse o irse: una vez que el flujo es engorroso, una vez que se estanca en algún lugar, una vez que no se puede saber cuál es el siguiente paso, la gente se va. Reducir este umbral a &quot;dos pasos, saltables, con una recomendación predeterminada&quot; es el mayor esfuerzo para permitir que todos los que estén dispuestos a hacer clic lleguen sin problemas al paso &quot;comenzar a usar&quot;.</p>
+<h2>El editor completa el ciclo &quot;abrir proyecto → editar → guardar en disco&quot;</h2>
+<p>El editor completó este día un bucle clave que lo convierte de &quot;puede ver y ajustar&quot; a genuinamente &quot;utilizable para la creación&quot;: abra un proyecto, edítelo y guarde los cambios de manera confiable en el disco. Llegaron varias cosas: soporte para un flujo de creación de &quot;abrir un proyecto&quot; que carga correctamente los recursos de entrada y escena del juego; un cambio a &quot;guardado manual&quot;: descartar el guardado programado automático anterior para obtener un marcador claro de &quot;no guardado&quot;, para que sepa si los cambios actuales se guardan y decida cuándo persistir; una cadena de reescritura desde cambios en el editor a archivos de disco, con recarga en caliente para que los cambios se muestren instantáneamente y se guarden de forma segura. El editor también obtuvo un &quot;panel de sistemas&quot; (alternando cada sistema lógico en el juego) y un menú &quot;agregar componente&quot; en el inspector. En conjunto, esto significa que el editor ya no es solo una vista auxiliar para realizar ajustes, sino una herramienta real que lleva de forma independiente el ciclo creativo completo &quot;abrir → editar → guardar&quot;. La sensación de seguridad más fundamental para un creador es &quot;lo que cambio se guarda y se recupera&quot;, y este día hizo que esa seguridad fuera real.</p>
+<h2>Observabilidad: un panel de telemetría/registro + un anticongelante de chat</h2>
+<p>Este día agregó &quot;observabilidad&quot; a todo el sistema, permitiéndole ver lo que realmente sucede dentro de él. Se agregó un panel de telemetría, que reúne &quot;rastros + registros&quot; en una fuente observable: lo que está haciendo un agente en ese momento, cuánto tiempo tomó cada paso y qué salió mal son visibles en él. El backend obtuvo un receptor de telemetría y una ruta de informes coincidentes, y el front-end obtuvo un andamio de monitoreo. ¿Por qué construir esto deliberadamente? Porque a medida que la IA impulsa más trabajo de forma autónoma, &quot;qué está haciendo realmente, dónde es lento, dónde se equivocó&quot; se convierte en una pregunta que debe ser visible: invisible, no se puede confiar en ella ni optimizarla. Mientras tanto, el chat solucionó un riesgo real de congelación: cuando la IA genera un Markdown muy largo y formateado, el front-end sigue analizando y renderizando, con suficiente frecuencia como para explotar la memoria y congelar toda la interfaz; este día lo limitó para que las respuestas permanezcan estables mientras se transmiten. Un sistema transparente que resiste un uso prolongado e intenso es lo que permite a las personas realizar con confianza grandes tareas para ejecutar.</p>
+<h2>Motor: identificadores unificados + dibujo instanciado + protocolo de complemento unificado</h2>
+<p>El motor hizo varias cosas de bajo nivel y de gran alcance este día. Uno: unificar &quot;asas&quot;. Un identificador es la referencia de un programa a una entidad o activo (un agarre que apunta a algo), y actualmente los identificadores de entidad y activo unificados en una codificación que lleva información &quot;generacional&quot; (una generación es un sello de versión en cada identificador, por lo que cuando lo que apunta ha sido destruido y su ranura reutilizada por algo nuevo, el sistema inmediatamente reconoce &quot;esta es una referencia antigua y obsoleta&quot; en lugar de confundirla con válida. Esto elimina desde el origen la clase de errores extremadamente sutiles y difíciles de diagnosticar en los que &quot;haces referencia a algo que ya desapareció&quot;. Dos: optimización del dibujo instanciado: cuando una escena tiene muchos objetos idénticos (un bosque, una multitud de soldados), los comandos de dibujo solían emitirse uno por uno, y este día fusionaron los idénticos en un cubo dibujado en una sola llamada, cortando drásticamente las llamadas de dibujo: un cambio cualitativo para el rendimiento de escenas grandes, verificado con una prueba de estrés de decenas de miles de objetos independientes. Tres: unificar el protocolo del complemento en una sola forma para una extensión más consistente, además de un backend limpio y sin cabeza para realizar pruebas. Estos son trabajos ocultos que los usuarios aún no ven y que deciden qué tan grande puede funcionar la plataforma, qué tan lejos se extiende y qué pocos errores comete.</p>
+<h2>que significa este dia</h2>
+<p>Lo más memorable de este día es que atendió a ambos extremos del recorrido del usuario al mismo tiempo. Para el recién llegado que hace clic por primera vez debido al código abierto, redujo el umbral de &quot;entrada&quot; al más bajo: una guía de dos pasos, saltable, con una recomendación predeterminada, que hace todo lo posible para que todos los que estén dispuestos a intentarlo comiencen sin problemas. Para los creadores que ya están trabajando seriamente en proyectos, equipó más completamente las herramientas de &quot;trabajo&quot;: un navegador de activos profesional, un bucle de edición que guarda de manera confiable, un panel de telemetría que ve el interior. Y la unificación de controles a nivel del motor, el dibujo instanciado y el protocolo de complemento unificado brindan, en un nivel más profundo, el soporte para que todo esto sea &quot;a gran escala, extensible y confiable&quot;. Para que un producto realmente se mantenga, no basta con captar a los recién llegados: aquellos que se quedan deben encontrarlo más fluido cuanto más lo usan; satisfacer a los veteranos no es suficiente: los recién llegados deben poder entrar. Este día rara vez se hicieron ambas cosas al mismo tiempo: abrir la puerta y equipar la casa por igual.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

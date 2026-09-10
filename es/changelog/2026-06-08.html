@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-08 · Una gran integración de editor + modelos texturizados renderizados en vivo — ForgeaX</title>
+<meta name="description" content="El editor integra un menú contextual unificado, referencia al chat, pestañas del espacio de trabajo y una ventana gráfica de estilo profesional a la vez; los modelos importados se renderizan en vivo con texturas, mapas MIP, materiales de doble cara y luz del cielo basada en imágenes tanto en edición como en reproducción; la consola del agente en vivo recibe una tormenta pulida; y las herramientas de animación están estandarizadas en una sola interfaz de usuario." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-08 · Una gran integración de editor + modelos texturizados renderizados en vivo — ForgeaX" />
+<meta property="og:description" content="El editor integra un menú contextual unificado, referencia al chat, pestañas del espacio de trabajo y una ventana gráfica de estilo profesional a la vez; los modelos importados se renderizan en vivo con texturas, mapas MIP, materiales de doble cara y luz del cielo basada en imágenes tanto en edición como en reproducción; la consola del agente en vivo recibe una tormenta pulida; y las herramientas de animación están estandarizadas en una sola interfaz de usuario." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-06-08.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-08.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-08.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-08.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-08.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-08.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-08.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-06-08.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-06-08.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-08.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-08.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-06-08</span></div>
+    <h1>Una gran integración de editor + modelos texturizados renderizados en vivo</h1>
+    <p class="standfirst">Este día, el editor integró todo un lote de interacciones a la vez: un menú contextual, referencia a un objeto seleccionado en el chat, pestañas del espacio de trabajo, controles de ventana gráfica de nivel profesional; los modelos importados se reproducen en vivo con materiales, texturas y luz del cielo tanto en edición como en reproducción por primera vez, por lo que lo que ves es lo que obtienes ya no tiene descuento; A la consola para ver la IA trabajar en vivo se le suavizaron las asperezas una por una y las herramientas de animación se unificaron en una sola interfaz.</p>
+    <div class="prose"><h2>Dos líneas &quot;convergiendo&quot; en un día</h2>
+<p>Este día se puede resumir en una palabra: &quot;convergir&quot;: reunir las partes dispersas durante los días anteriores, cada una de ellas utilizable individualmente, en un todo coherente, unificado y táctil. En el lado del editor, se integró un lote de interacciones dispersas a la vez, pasando de &quot;las características están ensambladas&quot; a &quot;funciona como una sola pieza&quot;; en el lado del renderizado, los modelos importados finalmente pueden aparecer en una escena en tiempo real con sus propios materiales y texturas reales, cerrando la última brecha visual de &quot;lo-que-ves-es-lo-que-obtienes&quot;; en el lado de las herramientas, se unificaron varios bancos de trabajo de animación en un lenguaje de diseño para que todo el producto parezca un solo producto; e incluso la consola administrativa para ver el trabajo de la IA en vivo tuvo cada pequeño defecto eliminado este día. Lo que separa el &quot;trabajo de las partes&quot; de un producto del &quot;el todo es agradable&quot; suele ser exactamente este tipo de trabajo convergente día a día: no aumenta lo que puedes hacer, pero cambia enormemente la sensación de hacerlo.</p>
+<h2>Una gran integración del editor: menú contextual, referencia al chat, una ventana gráfica profesional</h2>
+<p>El editor completó una gran cantidad de interacciones de sentimientos naturales a la vez este día. Un menú unificado de clic derecho pone acciones comunes al alcance de cualquier lugar: haga clic derecho cerca en lugar de buscar un botón en la interfaz. &quot;Hacer referencia a un objeto seleccionado en el chat&quot;: seleccione algo en la escena y, con un solo clic, llévelo como referencia a la conversación con la IA, de modo que cuando diga &quot;aumentar esto un poco&quot;, la IA sepa exactamente a qué &quot;esto&quot; se refiere sin que usted se esfuerce por describirlo. Múltiples espacios de trabajo cambian mediante pestañas, con diferentes diseños para diferentes trabajos que no se molestan entre sí. Los controles de movimiento/rotación/escala de la ventana gráfica y los controles de panorámica/zoom/órbita de la cámara adoptan las convenciones operativas comunes del software 3D profesional convencional: cualquiera que haya utilizado una herramienta 3D profesional la utiliza a un costo casi nulo. Se agregó una superposición de error en el lienzo: en el momento en que algo sale mal, aparece un mensaje directamente en la vista, en lugar de enterrar el error en una consola invisible y dejarte desconcertado. Toda esta ola de integración empujó claramente al editor de &quot;las funciones funcionan&quot; a &quot;natural de usar y profesional a la vista&quot;.</p>
+<h2>Los modelos se renderizan en vivo con materiales, tanto en edición como en reproducción.</h2>
+<p>Este día completó la última pieza visual que faltaba durante mucho tiempo en &quot;lo-que-ves-es-lo-que-obtienes&quot;: los modelos 3D importados ahora se procesan correctamente con materiales completos en tiempo de ejecución. Específicamente: texturas (el patrón y el color colocados en la superficie del modelo), mapas mip (para que los objetos ya no muestren un fino ruido brillante en la distancia) y materiales de doble cara (para que los objetos delgados, en forma de láminas, se muestren correctamente en ambas caras sin romperse). Combinados con la iluminación del cielo basada en imágenes del mapa ambiental, los modelos parecen reales y táctiles en una escena en lugar de un trozo de modelo gris sin detalles en la superficie. Más crucial que cualquier capacidad individual es la coherencia: esta representación en tiempo de ejecución hace que la edición y la reproducción se vean exactamente iguales: lo que organizaste y viste en el editor es lo que es cuando realmente lo reproduces, sin más brechas de &quot;se ve en un sentido editando, en otro sentido se ejecuta&quot;. El shooter de muestra se ha movido por completo hacia esta ruta de renderizado en tiempo de ejecución, con sus vistas de edición y reproducción coincidiendo a la perfección. Para los creadores, esto significa que finalmente pueden &quot;pulir con confianza lo que muestra el editor&quot;, porque así es como se ve el producto final.</p>
+<h2>Pulido de consola en vivo: ver cómo funciona la IA es más tranquilizador</h2>
+<p>Este día tuvo una densa explosión de pulido concentrado en la consola para &quot;ver a los agentes de IA trabajar en vivo&quot;: su ventana al progreso de múltiples tareas de IA en segundo plano y a intervenir en cualquier momento. Antes era un poco chirriante en cada rincón; este día fueron suavizados uno por uno. Cierre el navegador y regrese, y los agentes en segundo plano seguirán activos con el estado intacto; cuando se ejecuta un programa de terminal de pantalla completa en su interior, la rueda del mouse finalmente puede desplazarse directamente; A medida que varias tarjetas de tareas cambian de enfoque, su brillo y atenuación se convirtieron en una transición suave en lugar de un salto discordante; la tarjeta actualmente enfocada obtuvo un borde resaltado claro en lugar del feo borde blanco predeterminado del navegador; una tarjeta de pantalla completa cubre correctamente la barra superior en lugar de bloquearse; y se eliminó un molesto bucle que seguía informando falsamente &quot;historial perdido&quot;. Ninguna de estas es una &quot;característica nueva&quot;, pero en conjunto la consola pasó de &quot;apenas utilizable&quot; a &quot;puedes verla todo el día sin irritación&quot;. Para una plataforma centrada en agentes de IA, &quot;observar cómodamente lo que la IA está haciendo&quot; es en sí misma una capacidad clave: sólo cuando puedas ver con claridad y observar de manera constante podrás entregarle el trabajo con confianza.</p>
+<h2>Un banco de trabajo de animación unificado + herramientas de recorte y anotación</h2>
+<p>Varias herramientas relacionadas con la animación tenían cada una su propia interfaz antes: íconos, prioridad de botones, diseño de barra lateral y estilos de brindis, todos inconsistentes, por lo que los bancos de trabajo juntos parecían cosas cosidas por diferentes equipos. Este día los estandarizó en un lenguaje de diseño en una sola pasada: un conjunto de iconos unificado, jerarquía de botones clara (acciones primarias y secundarias distinguibles de un vistazo), diseño de barra lateral consistente, estilo de brindis unificado y colores de estado &quot;completo&quot; unificados. Más allá de la unidad visual, el proceso de animación esquelética en 2D adquirió varias capacidades prácticas: elegir entre múltiples resultados candidatos, eliminación automática del fondo y un modo de anotación; También se inauguró formalmente otro banco de trabajo para construir escenas 2D. La coherencia visual parece simplemente &quot;verse bien&quot;, pero en realidad se trata de confianza: cuando cada rincón de un producto parece igual, los usuarios instintivamente creen que detrás de ellos se esconde la misma lógica confiable. Para los creadores que no escriben código y solo usan la interfaz, este día fue la primera vez que Studio &quot;parecía un producto completo&quot; en lugar de un plato de herramientas variadas.</p>
+<h2>Motor: el cielo ya no se muestra al revés + demostraciones de renderizado avanzado</h2>
+<p>El motor solucionó un error pequeño pero irritante de los libros de texto este día: el mapa cúbico del skybox se dibujó previamente volteado verticalmente, dejando el cielo al revés. Este día se eliminó ese giro y el mapa del cubo finalmente se muestra del lado derecho hacia arriba: el cielo ha vuelto a la normalidad. La misma ola produjo un lote de demostraciones de técnicas de renderizado avanzadas que se ejecutan directamente en el motor: mapas de entornos cúbicos, formas eficientes de compartir datos en sombreadores y el renderizado instanciado mencionado anteriormente (usando una escena de anillo planetario para validar el dibujo eficiente de muchos objetos repetidos). Estas demostraciones tienen un doble propósito: por un lado, son &quot;documentación viva&quot; de las capacidades del motor: cualquiera que quiera saber cómo se utiliza una técnica encontrará una demostración ejecutable más intuitiva; por el otro, el mismo acto de crear demostraciones expone continuamente pequeños errores residuales en el proceso de renderizado y los corrige en el acto: el error del cielo al revés se encontró y solucionó exactamente de esta manera. Enseñarse a sí mismo mientras limpia es un buen hábito para mantener un motor continuamente saludable.</p>
+<h2>que significa este dia</h2>
+<p>Este día no descubrió ningún continente nuevo de la nada, pero llevó la promesa que recorre toda la plataforma - &quot;lo-que-ves-es-lo-que-obtienes&quot; - casi hasta su cumplimiento. La integración de la interacción del editor hace que el proceso creativo sea natural; la renderización texturizada en tiempo de ejecución hace que lo que ves al editar sea lo que es cuando se reproduce; la interfaz unificada de las herramientas de animación hace que todo el producto parezca un todo orgánico; el pulido de la consola te permite observar el trabajo de la IA con confianza; e incluso las demostraciones didácticas del motor limpian los cimientos mientras reparan sobre la marcha. Encadenados, todos los esfuerzos del día apuntan a un objetivo: eliminar la &quot;incomodidad en el proceso&quot;. La marca de la verdadera madurez de una herramienta a menudo no es lo nuevo y sorprendente que puede hacer, sino que hacer cada cosa vieja ya no te hace fruncir el ceño. Este día, alisando un pequeño surco tras otro, dio un sólido paso adelante.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

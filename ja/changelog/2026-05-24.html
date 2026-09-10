@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-24 · ゲームのランタイムは完全に社内エンジンに移行します — ForgeaX</title>
+<meta name="description" content="構築したゲームは、社内エンジンでエンドツーエンドで実行されます。マテリアルにはカスタム シェーダーが追加され、メッシュのアップロードは不正なデータですぐに失敗し、より専門的なエージェントが到着し、ドキュメントとコードのドリフト ゲートによりドキュメントが正直に保たれます。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-24 · ゲームのランタイムは完全に社内エンジンに移行します — ForgeaX" />
+<meta property="og:description" content="構築したゲームは、社内エンジンでエンドツーエンドで実行されます。マテリアルにはカスタム シェーダーが追加され、メッシュのアップロードは不正なデータですぐに失敗し、より専門的なエージェントが到着し、ドキュメントとコードのドリフト ゲートによりドキュメントが正直に保たれます。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-24.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-24.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-24.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-24.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-24.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-24.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-24.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-24.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-24.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-24.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-24.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-24</span></div>
+    <h1>ゲームのランタイムは完全に社内エンジンに移行します</h1>
+    <p class="standfirst">分岐点: プレビューでゲームを実際に実行するランタイムが社内エンジンに全面的に切り替えられ、これまでに構築された機能が初めて 1 つのエンジン内に集約されました。マテリアルにはカスタム シェーダーが追加され、不良データによるその場でのメッシュ アップロード エラーが発生し、スペシャリスト エージェントの名簿が増えてツール内で選択できるようになり、ドキュメントとコードには自動調整ゲートが追加されました。</p>
+    <div class="prose"><h2>分岐点: 今後、あなたのゲームは独自のエンジンで実行されます</h2>
+<p>ここは本物の分水嶺だ。それ以前は、プレビューで実際にゲームを動かしていたのは、まだ、素早い開始のために初期段階から借用した汎用レンダリング アプローチでした。そして、エンジン チームが最近構築していた機能は、着実に成長していましたが、真の意味で「ゲームを実行するエンジン」にはなっていませんでした。この日、ランタイムの大規模な社内エンジンへの切り替えが行われました。今日から、あなたがチャットするすべてのゲームは実際に私たち独自のエンジンで実行されます。その重要性は単に「ベースを交換する」ということではなく、これまでに構築された分散した機能 (物理ベースのライティング、シャドウ、アンビエントスカイライト、アセットシステム、2D レイヤー) を初めて 1 つのエンジン内に統合し、それぞれが独立したものではなくなりました。以下の項目は、このスイッチを中心に展開するか、このスイッチによって駆動されます。</p>
+<h2>自社製エンジンを選択する価値がある理由</h2>
+<p>既製の実用的なアプローチを置き換えてエンジンを一から構築するには、明らかに多額の費用がかかります。それでなぜ価値があるのでしょうか？核となるのはコントロールです。一般的なアプローチを借用すると、画質、パフォーマンス、機能がそのアプローチのトレードオフによって制限されたままになり、意図されていないことを行うのは厄介です。社内ではレンダリングが完全に制御可能で、問題を徹底的に追跡でき、新機能を一度構築すれば、他人の制限を回避することなくどこにでも適用できます。さらに重要なのは、このエンジンは「AI ライティング ゲーム」専用に設計されているということです。そのインターフェイス、アセット システム、デフォルトの動作はすべて、「AI が正しく書きやすく、生成されたコードを簡単に再利用できるようにする」ことを中心に磨き上げることができますが、これは一般的なサードパーティのアプローチでは提供できません。この日のスイッチにより、製品の最も核となる基盤が「レンタル」から「自社」に変わります。</p>
+<h2>マテリアルはカスタム シェーダを取得します</h2>
+<p>エンジンの切り替えに伴い、マテリアル システムもテンプレートとインスタンスの 2 つのレイヤーに分割されます。 1 つは、ほとんどの通常のオブジェクトをカバーする、すぐに使用できる標準の物理ベースのマテリアルです。もう 1 つは、オブジェクトに独自のカスタム シェーダを持たせて、標準マテリアルに束縛されない独特の視覚効果 (グロー、ディストーション、パルス、エネルギー フィールド) を実現します。 「多様性」が「遅くなる」ことを防ぐために、エンジンはマテリアルごとにレンダー パイプラインをキャッシュし、同じマテリアルを再利用し、異なるマテリアルを分離して、柔軟性と効率の両方を実現します。 「パルスグロー」デモでは、パスが端から端まで機能することが証明されました。オブジェクトを他のものと違った外観にしたい人にとって、標準マテリアルの使いやすさに加え、必要に応じて完全にカスタマイズできる自由という適切なルートが提供されます。</p>
+<h2>より厳密なメッシュアップロード: その場で不正なデータエラーが発生</h2>
+<p>この日はまた、「メッシュ データを GPU にアップロードする」という低レベル パスに厳密なエントリ チェックを追加しました。受信したメッシュ データが不正な形式である場合 (たとえば、頂点ごとのデータ数が期待と一致しない場合)、エンジンはそれを黙って飲み込み、後で画像が何らかの異常な方法で壊れるときを推測することになるのではなく、その場ですぐに失敗します。統一されたデータ形式の移行が並行して行われ、関連する頂点データ形式が 1 つの一貫した標準に合わせられました。これは「チェックを追加しているだけ」のように見えますが、重要なエンジニアリング原則を体現しています。つまり、エラーがパイプラインを流れて追跡が難しい奇妙なものになるのではなく、エラーをできるだけ早く、実際に発生する場所にできるだけ近づけて表面化します。 AI にメッシュ データを一括生成させるエンジンの場合、この「不正なデータが侵入できない」ゲートキーピングにより、後のデバッグにかかる​​膨大な時間を節約できます。</p>
+<h2>より多くの専門エージェント + ツール内での選択</h2>
+<p>この日もコラボレーションの名簿が埋まりました。明確な専門分野を持つ数人の新しいエージェントが到着したため、1 人のゼネラリストにすべてを任せるのではなく、タスクを引き受けるのに適切なエージェントを選ぶことができます。ツール ウィンドウの上部バーには、特定のワークベンチ内で動作するエージェントを割り当て、ワンクリックで詳細を開いてそのエージェントの得意分野を確認できるエージェント ピッカーが追加されました。バックエンドには、ロール サポートを備えたエージェントの統合された作成/読み取り/更新/削除機能も追加され、「AI チームの管理」自体が秩序正しく行われるようになりました。適切な仕事に適切なエージェントを配置することがコラボレーション効率の鍵となります。アートのニーズをアート専門のエージェントに引き渡すことは、何でも屋に依頼するよりもはるかに信頼できます。この日を境に「人選び」が便利かつスムーズになりました。</p>
+<h2>ドキュメントに嘘をつかないように: ドキュメントとコードの自動調整</h2>
+<p>この日は、「設計ドキュメント」と「実際のコード」がまだ一致しているかどうかを自動的にチェックするという特別なゲートも設けられました。長く進化するプロジェクトには必ず共通の問題があります。コードは変更され続ける一方でドキュメントは当初の意図を説明し、時間が経つにつれて 2 つの意見は静かに乖離し、ドキュメントが誤解を招き始めるようになります。この調整ゲートは、ドキュメントで参照されるキー コードの場所が変更されると警告を発し、コードまたはドキュメントの更新を強制し、密かに別れることを防ぎます。これは、最も見落とされがちだが長期的に効率を損なう問題である「文書の信頼性」に対処します。 「AI もシステムを理解するためにドキュメントに依存している」ことを真剣に受け止めているプラ​​ットフォームにとって、ドキュメントを正直に保つこと自体が中核的なインフラストラクチャです。なぜなら、嘘をついたドキュメントは人間も AI も同様に誤解させるからです。</p>
+<h2>この日が意味するもの</h2>
+<p>この日の重要性は、ランタイム スイッチにほぼ完全にかかっています。つまり、ゲームを実行するエンジンを「レンタル」から「独自」に変更することです。それは画像を瞬時に美しくする機能ではなく、「将来の主導権を誰が握るか」という根本的な決定です。これからは、画質、パフォーマンス、AI 最適化の方向性はすべて私たちの手の中にあります。この切り替えにより、マテリアルがカスタマイズ可能になり、不正なデータが入り込めなくなり、チームの人員配置が容易になり、ドキュメントが嘘をつかなくなりました。それぞれがこの「独自のエンジン」をより制御しやすく、信頼できるものにしました。すでに機能しているプラ​​ットフォームが、その最も中核的な基盤を自社の基盤に置き換えるという大胆な決断をするのは、一時的な見栄えではなく、永続的な自律性を求めているのです。そしてそれが、この日の最も記憶に値する判断です。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

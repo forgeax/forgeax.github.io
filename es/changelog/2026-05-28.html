@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-28 · Un banco de trabajo de animación dedicado + transmisión de herramientas en vivo — ForgeaX</title>
+<meta name="description" content="El banco de trabajo de personajes se divide en herramientas enfocadas, la ejecución de herramientas se transmite en vivo y se contrae automáticamente, la vista previa es más estable y el motor obtiene audio, herencia de materiales y demostraciones de renderizado avanzado." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-28 · Un banco de trabajo de animación dedicado + transmisión de herramientas en vivo — ForgeaX" />
+<meta property="og:description" content="El banco de trabajo de personajes se divide en herramientas enfocadas, la ejecución de herramientas se transmite en vivo y se contrae automáticamente, la vista previa es más estable y el motor obtiene audio, herencia de materiales y demostraciones de renderizado avanzado." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/es/changelog/2026-05-28.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/es/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-28.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-28.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-es forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/es/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/es/" data-nav="/">Inicio</a>
+      <a href="/es/tutorials/" data-nav="/tutorials/">Tutoriales</a>
+      <a href="/es/examples/" data-nav="/examples/">Ejemplos</a>
+      <a href="/es/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/es/changelog/" data-nav="/changelog/" class="active">Registro de cambios</a>
+      <a href="/es/about.html" data-nav="/about.html">Acerca de</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Idioma">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-28.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-28.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-28.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-28.html" data-l="ko">한국어</a><a class="lang-item active" href="/es/changelog/2026-05-28.html" data-l="es" aria-current="true">Español</a><a class="lang-item" href="/de/changelog/2026-05-28.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-28.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/es/changelog/">← Registro de cambios</a>
+    <div class="meta"><span class="tag brand">Actualización</span><span>2026-05-28</span></div>
+    <h1>Un banco de trabajo de animación dedicado + transmisión de herramientas en vivo</h1>
+    <p class="standfirst">Este día dividió el inflado banco de trabajo de personajes en herramientas enfocadas (personaje, animación, efectos), y la ejecución de la herramienta se convirtió en transmisión en vivo y colapso automático cuando terminó. La vista previa es más estable; el motor agregó un sistema de audio, herencia de material y un lote de demostraciones de renderizado avanzado.</p>
+    <div class="prose"><h2>Divida y transmita: enfoque las grandes herramientas y haga que la espera sea transparente</h2>
+<p>Las dos líneas del día tienen que ver con la claridad. Una es dividir una gran mesa de trabajo cada vez más grande en herramientas enfocadas: grande y todo a menudo significa que nada es fluido y, después de dividirlas, cada una puede estar más enfocada y profundizar. La otra es convertir la llamada de herramientas del agente de &quot;una caja negra en la que esperas&quot; a &quot;ver cómo funciona en vivo&quot;, haciendo que la espera sea transparente para que puedas ver en qué paso se encuentra. Una es la claridad estructural, la otra la claridad del proceso; Con un pulido previo de estabilidad y varias capacidades nuevas del motor, el trabajo general del día es mantener este sistema cada vez más claro y controlable para las personas.</p>
+<h2>El banco de trabajo de personajes se divide: personaje, animación, efectos, cada uno enfocado</h2>
+<p>El banco de trabajo de personajes original conllevaba demasiadas responsabilidades: modelado, animación y efectos, todos amontonados, cada vez más inflados sin espacio para estirarse. Este día lo dividió por función: las capacidades relacionadas con la animación (animación esquelética, generación de video y canales relacionados) se trasladaron al por mayor a un banco de trabajo de animación dedicado; las capacidades relacionadas con los efectos (generación de varios efectos visuales) se trasladaron a un banco de trabajo de efectos/habilidades separado; y el banco de trabajo del personaje se redujo a &quot;centrarse en el personaje&quot;. La división fue cuidadosa: el código compartido de bajo nivel se transfirió con anotaciones claras para que luego las herramientas no dependan unas de otras y cada una pueda evolucionar de forma independiente. Con una división del trabajo más clara, cada herramienta está más enfocada y es más utilizable, y cada una puede profundizar en su propia dirección sin que un cambio se repercuta en todo.</p>
+<h2>La ejecución de la herramienta se transmite en vivo y luego se ordena sola</h2>
+<p>Cuando un agente llama a una herramienta, el proceso ahora se transmite en vivo: la salida se despliega línea por línea para que pueda observar su progreso en lugar de esperar sin comprender el resultado final. Detrás de esto, el backend obtuvo &quot;salida de transmisión incremental para llamadas a herramientas&quot;: una herramienta envía fragmentos a la interfaz en tiempo real mientras se ejecuta, en lugar de retener todo hasta que finalice. Para evitar inundar la pantalla, ésta mantiene una &quot;cola rodante&quot; de sólo las últimas líneas; cuando finaliza el paso, su panel de herramientas se colapsa automáticamente y la interfaz vuelve a estar limpia de inmediato. Esto mejora la &quot;experiencia de espera&quot;: mientras se espera una herramienta que puede funcionar durante decenas de segundos, verla moverse genuinamente y saber en qué paso se encuentra es mucho más tranquilizador que mirar una ruleta congelada. Transparente mientras miras, fuera del camino una vez que lo has visto: exactamente la discreción que debe tener una buena herramienta.</p>
+<h2>Una vista previa más estable: prevención de fallos + eliminación de la superposición redundante</h2>
+<p>La estabilidad previa tuvo otro pase este día. La pieza clave: antes de recargar la vista previa, ahora libera &quot;con gracia&quot; los recursos gráficos que se tenían anteriormente y luego carga el nuevo, evitando que la renderización antigua y nueva acapare recursos y bloquee todo el entorno gráfico. La detección de fallos también se volvió más inteligente y cambió a &quot;comenzar a juzgar solo después de que aparezca el primer fotograma&quot;, evitando falsas alarmas durante la ventana recién cargada y aún no renderizada. Se eliminó la superposición de bloqueo algo redundante: si realmente necesita comenzar de nuevo, la barra de herramientas ya tiene un botón de recarga, lo cual es suficiente. La salida de streaming también se limitó para evitar que se actualice demasiado rápido y reduzca el renderizado. Individualmente detallados, estos juntos deciden una cosa: si, al intentar editar repetidamente en la vista previa, sigue fallando. Eliminar estos pequeños fallos uno por uno es lo que mantiene la creación ininterrumpida.</p>
+<h2>Motor: un sistema de audio + herencia de materiales + demostraciones de renderizado avanzado</h2>
+<p>El motor se ha llenado de varias piezas este día. Lo más notable es el sistema de audio: el motor conectado a un sistema de sonido basado en la capacidad de audio estándar de la web, por lo que los juegos ahora pueden emitir sonido: música de fondo, efectos de sonido y audio basado en escenas tienen soporte subyacente; A un juego sin sonido siempre le falta la mitad de su alma, y ​​este paso añade la dimensión de &quot;audición&quot;. En cuanto a los materiales, se admitió la herencia de un material &quot;principal&quot;: coloque configuraciones compartidas en el padre, y un hijo anula solo lo que difiere, haciendo que un lote de materiales estilísticamente unificados pero ligeramente variables sean manejables y menos propensos a errores; También se unificó el registro de materiales. En las demostraciones de renderizado, se completó una serie de demostraciones de técnicas avanzadas (profundidad, estarcido, combinación, selección, etc.): documentación viva de las capacidades del motor y una plantilla para efectos visuales más complejos más adelante.</p>
+<h2>que significa este dia</h2>
+<p>Este día trabajó en &quot;mantenerse alejado después de crecer&quot;. La división de herramientas admite que &quot;una herramienta no puede hacerlo todo&quot;, así que deje que los especializados se especialicen; la ejecución de streaming admite que &quot;los usuarios tienen derecho a ver lo que está haciendo la IA&quot;, así que hágalo transparente; Obtenga una vista previa de la prevención de accidentes y el audio del motor, además de la herencia de materiales, suavice las asperezas y rellene los huecos en sus propios rincones. Lo que un sistema pierde más fácilmente cuando se expande rápidamente es &quot;claridad&quot;: las características se acumulan, las herramientas se enredan y el proceso se convierte en una caja negra. Este día fue al revés: en lugar de seguir llenando una herramienta grande, divídela para que cada una esté limpia; En lugar de dejar que la espera sea una caja negra, deje el proceso abierto a la gente. Mantenerse alejado es la condición previa para que se confíe en un sistema complejo y se lo dirija a largo plazo.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/es/changelog/">← Todas las actualizaciones</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un estudio de juegos personales nativo de IA: convierte ideas en juegos jugables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Sitio">
+    <a href="/es/changelog/">Registro de cambios</a>
+    <a href="/es/tutorials/">Tutoriales</a>
+    <a href="/es/examples/">Ejemplos</a>
+    <a href="/es/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organización GitHub</a>
+    <a href="/es/about.html">Acerca de</a>
+    <a href="/es/license.html">Licencia</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

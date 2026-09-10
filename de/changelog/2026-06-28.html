@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-28 · Ein Befehl – ​​jetzt auch unter Windows — ForgeaX</title>
+<meta name="description" content="Die Installations- und Startskripte werden vollständig von Bash auf plattformübergreifendes Bun TypeScript umgestellt, sodass dieselben Befehle auf macOS, Linux und Windows ohne Git-Bash ausgeführt werden. plus Windows-spezifische Korrekturen, spielbezogene Sitzungen, stabilerer glTF/GLB-Import und ein schnellerer, besser überprüfbarer CLI-Kern." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-28 · Ein Befehl – ​​jetzt auch unter Windows — ForgeaX" />
+<meta property="og:description" content="Die Installations- und Startskripte werden vollständig von Bash auf plattformübergreifendes Bun TypeScript umgestellt, sodass dieselben Befehle auf macOS, Linux und Windows ohne Git-Bash ausgeführt werden. plus Windows-spezifische Korrekturen, spielbezogene Sitzungen, stabilerer glTF/GLB-Import und ein schnellerer, besser überprüfbarer CLI-Kern." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-06-28.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-28.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-28.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-28.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-28.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-28.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-28.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-28.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-06-28.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-28.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-06-28</span></div>
+    <h1>Ein Befehl – ​​jetzt auch unter Windows</h1>
+    <p class="standfirst">An diesem Tag wurden die Installations- und Startskripte vollständig von Bash auf plattformübergreifendes Bun TypeScript verschoben: Dieselben Befehle werden auf macOS, Linux und Windows identisch ausgeführt, und Windows benötigt Git-Bash nicht mehr. Daneben wurde eine Reihe von Windows-spezifischen Blockern behoben, „Sitzungen“ von „global gebunden“ auf „pro Spiel begrenzt“ geändert, der Asset-Import stabiler gestaltet und die zugrunde liegende CLI schneller, kontrollierbarer und überprüfbarer gemacht.</p>
+    <div class="prose"><h2>Das größte Hindernis: Es ließe sich nicht installieren, wenn Sie die Plattform wechseln würden</h2>
+<p>Lange Zeit war für die Installation und Ausführung ein Haufen Bash-Skripte erforderlich. Gut für macOS und Linux, aber eine harte Hürde für Windows-Benutzer – Bash ist nicht nativ in Windows enthalten, sodass Sie entweder eine Kompatibilitätsebene wie Git-Bash installieren mussten oder auf verschiedene kryptische Fehler stoßen. Für ein Tool, das möchte, dass „jeder Ideen in Spiele umwandelt“, ist „es lässt sich nicht installieren“ die fatalste erste Abschreckung. An diesem Tag wurde genau das behoben: Alle Installations- und Startskripte wurden komplett neu geschrieben, von Bash in plattformübergreifendes TypeScript, das von Bun ausgeführt wird. Bun verhält sich auf allen drei Hauptsystemen identisch, sodass unter Windows dieselben Befehle und dieselbe Logik genauso ausgeführt werden wie auf dem Mac, ohne dass eine Kompatibilitätsschicht erforderlich ist.</p>
+<h2>Die Befehle werden zu einem einprägsamen Satz zusammengefasst</h2>
+<p>Mit dem Umzug wurden auch die Einstiegspunkte bereinigt. Die verstreuten, plattformspezifischen Skripte der Vergangenheit („.sh“, „.bat“, „.ps1“ usw.) wurden zusammen gelöscht und in einem einfachen, einprägsamen Satz vereint: „bun run setup“ zum einmaligen Installieren der Umgebung, „bun run start“ zum Starten des gesamten Stapels, „bun run stop“ zum Stoppen, „bun run app“ für die Desktop-App. Welches System Sie auch verwenden, diese wenigen sind alles, was Sie sich merken müssen. Für neue Benutzer bedeutet es: „Kopieren Sie vier Zeilen aus der README-Datei und es wird ausgeführt“, ohne mehr: „Ich verwende Windows, gegen welches tausche ich das aus“; Für bestehende Benutzer bedeutet es keinen Wartungsaufwand mehr, da „zwei Kopien jedes Skripts (eine SH, eine PS1) im Gleichschritt bearbeitet werden müssen und leicht zu übersehen sind.“ Das Zusammenfassen mehrerer gleichwertiger Skripte in einer plattformübergreifenden Quelle der Wahrheit ist das Herzstück der täglichen Arbeit – eine Sache weniger, die synchron gehalten werden muss, bedeutet eine Stelle weniger, an der Fehler passieren können.</p>
+<h2>Eine Reihe von Windows-spezifischen Blockern wird gelöscht</h2>
+<p>Um Windows wirklich reibungslos zu machen, reichen plattformübergreifende Skripte allein nicht aus – Sie müssen auch die Kuriositäten, die nur unter Windows auftauchen, nach und nach beheben. Ein typischer Fall, der heute behandelt wird: Das „falsche“ Python des Systems – Windows liefert einen Python3-Platzhalter aus, der nicht wirklich installiert ist und nur beim Aufruf den App Store öffnet, und ein Skript, das naiv annimmt, dass es funktioniert, bleibt während der Installation auf mysteriöse Weise stehen. An diesem Tag lernte der Installationsablauf, diesen Platzhalter zu erkennen und zu überspringen und ein Python zu finden, das tatsächlich funktioniert. Details wie diese – die auf anderen Systemen nicht vorhanden sind und Sie nur unter Windows stolpern lassen – sind der mühsamste und zugleich notwendigste Teil der plattformübergreifenden Unterstützung: Sie fügen keine Funktionen hinzu, aber jedes einzelne Problem bedeutet, dass eine Gruppe von Windows-Benutzern einmal weniger ins Stocken geraten und weitermachen können.</p>
+<h2>Die Sitzungen ändern sich von „global gebunden“ zu „pro Spiel begrenzt“.</h2>
+<p>Dieser Tag berührte auch eine eher interne Struktur: wem eine Sitzung gehört (eine Sitzung ist ein Teil Ihres Gesprächs mit Forge). Früher waren Sitzungen global und von einem bestimmten Spiel getrennt; An diesem Tag wurden sie unter jedem Spiel verschachtelt, je nach Spiel. Das heißt: Ihr Gespräch mit Forge für das „Weltraum-Shooter“-Projekt und das für das „Farm-Sim“-Projekt sind jetzt jeweils für sich und gehen nie ineinander über. Es ist intuitiver – ein Gespräch gehört in erster Linie zu einem bestimmten Spiel – und legt den Grundstein für ein späteres, saubereres Projektmanagement: Wechselspiele und der dazugehörige Chat-Verlauf und -Kontext kommen mit, anstatt sich mit einem globalen Topf gemischter Sitzungen auseinandersetzen zu müssen. Diese Art des Aufräumens „Daten dort ablegen, wo sie wirklich hingehören“ ist im Alltag unscheinbar, hält aber das mentale Modell des gesamten Systems sauber.</p>
+<h2>Stabilerer Asset-Import + eine schnellere, besser kontrollierbare CLI</h2>
+<p>An diesem Tag wurden auch mehrere Fehlerbehebungen vorgenommen, die die tägliche Nutzung stabiler machen. Bei Assets wurde ein Indizierungsproblem beim Importieren größerer Modelle behoben (große Netze benötigen breitere Ganzzahlen, um ihre Scheitelpunkte zu indizieren, was hier früher fehlschlug) und dafür gesorgt, dass die beim Modellimport geschriebenen Metadaten einem kanonischen Format folgen – so fällt der Import eines größeren, komplexeren Modells nicht mehr so ​​leicht ins Stocken. Auch der CLI-Kern, der die KI antreibt, wurde mehrfach verfeinert: Reduzierung der Redundanz, damit die erste Runde in manchen Fällen schneller funktioniert; Behebung eines Problems bei der Einführung des „Verhaltenskodex“ eines Agenten; und das Hinzufügen einer optionalen Maskierung der eigenen externen Tools eines Benutzers sowie eines Audit-Trails der Anrufe eines Agenten an Host-Tools – letzteres bedeutet „Welche Tools hat die KI dieses Mal tatsächlich verwendet?“ wird aktenkundig nachvollziehbar. Zusammengenommen legt dies den Grundstein für eine weitere Ebene in Richtung „schneller, kontrollierbarer, vertrauenswürdiger“.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Der Protagonist dieses Tages ist „die Barriere“. So leistungsfähig ein Tool auch ist, wenn eine große Gruppe ausgeschlossen wird, weil ihr System fehlerhaft ist und es sich nicht installieren lässt, ist die Hälfte seines Werts verloren, bevor jemand es verwendet. Durch die vollständige plattformübergreifende Installation und den Start, sodass auch Windows-Benutzer es mit einem Befehl ausführen können, wird diese Tür für alle geöffnet – eine der Voraussetzungen dafür, dass „Jeder kann Spiele erstellen“ gilt. Und am selben Tag wurde der Raum aufgeräumt, während die Tür geöffnet wurde, indem Sitzungen unter ihrem Spiel abgelegt, der Asset-Import stabilisiert und der CLI-Kern schneller und überprüfbarer gemacht wurde. Senken Sie die Eintrittsbarriere und erhöhen Sie dann die Qualität im Inneren – an diesem Tag gelang beides.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-09 · プロジェクトのキックオフ — ForgeaX</title>
+<meta name="description" content="1 日目: 動作する WebGPU シェーダー パイプライン、エンドツーエンドで引き継がれるレンダリング デバイス レイヤ、クロス環境の GPU メモリ ホットフィックス、安全な同時エージェント、およびより堅牢なターミナル。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-09 · プロジェクトのキックオフ — ForgeaX" />
+<meta property="og:description" content="1 日目: 動作する WebGPU シェーダー パイプライン、エンドツーエンドで引き継がれるレンダリング デバイス レイヤ、クロス環境の GPU メモリ ホットフィックス、安全な同時エージェント、およびより堅牢なターミナル。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-09.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-09.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-09.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-09.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-09.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-09.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-09.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-09.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-09.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-09</span></div>
+    <h1>プロジェクトのキックオフ</h1>
+    <p class="standfirst">1 日目は、基礎の最も難しい部分を注ぎます。つまり、動作する WebGPU シェーダー パイプライン、エンドツーエンドで引き継がれるレンダリング デバイス レイヤ、クロス環境の GPU メモリ ライフサイクル ホットフィックス、およびより堅牢な入力で同時実行安全なチャット エージェントです。すべての高さは、ブラウザーで最初のピクセルを正しく照明することから始まります。</p>
+    <div class="prose"><h2>初日がレンダリングの基礎から始まる理由</h2>
+<p>これは、プラットフォームの公開記録の 1 日目です。 「チャットするとゲームが表示される」プラットフォームの場合、根本的に重要なことが 1 つ当てはまります。それは、ブラウザーが 3D を真に安定してレンダリングする必要があるということです。したがって、初日は派手なインターフェースを積み上げることではありませんでした。最も難しい部分であるレンダリング基盤に全力を注ぎ、既製の汎用ライブラリをラップするのではなく、ブラウザの次世代グラフィックス機能 (WebGPU) 上に直接レンダリング パイプラインを社内で構築します。その道は最初は難しく、遅くなります。他の人がパッケージ化した多くの詳細を自分自身で歩き、落とし穴を 1 つずつ埋めなければなりません。しかし、画質、パフォーマンス、機能が上流ライブラリのトレードオフによって抑制されるのではなく、後になって私たち自身の手に残るかどうかは、それが決定します。今日の成果物は、「ブラウザで最初のピクセルを正しく照らす」という 1 つの大きなことの実際には異なる側面です。この最も過小評価され、最も妥協しにくいものを最初にしっかりと確立することが、「会話によってゲームを生成する」というその後の夢に足場を与えることになります。</p>
+<h2>動作するシェーダー パイプライン: WGSL + シェーダー コンパイル シム + 簡素化された PBR</h2>
+<p>レンダリングの中核はシェーダーです。これは、GPU に「各ピクセルを何色にするか」を指示する小さなプログラムです。この日は、シェーダー パイプライン全体を配線しました。ブラウザー グラフィックス標準のシェーダー言語 (WGSL) で記述され、シェーダー ソースを適切な GPU 実行可能形式に変換するコンパイル シムと組み合わせられ、さらに簡略化された物理ベース シェーディング (PBR) 実装も行われました。 「物理ベース」とは、材料が現実世界のルールに従って光に反応することを意味します。金属は金属のように、プラスチックはプラスチックのように見え、色付きの紙の切り抜きではありません。この簡素化された PBR は、無駄のないリソース バインディング構造 (バインド グループが 3 つだけ) を意図的に使用して、イメージの信頼性を維持しながら軽量性を維持し、理解しやすく、拡張しやすくしています。コンパイル シムは特に重要です。WebGPU は高レベルのシェーダー ソースを直接消費しないため、その間に低レベルの形式への変換ステップが必要になります。ブラウザ内でそれを解決することで、「シェーダーを作成してすぐに結果を確認する」ことが可能になります。この日から、エンジンは単に三角形に色を付けるだけではなくなりました。これは、ライティングされマテリアルを備えたオブジェクトをレンダリングします。これは、「描画できる」から「正しく描画できる」までの重要な最初のステップであり、その後に続くすべてのより豊かなマテリアルとライティングの適切な出発点となります。</p>
+<h2>レンダリング デバイス レイヤがエンドツーエンドで引き継がれる</h2>
+<p>シェーダーを実行するには、GPU リソースの要求、キャンバス サーフェスの管理、各フレームの描画コマンドの整理、GPU への送信など、すべてを処理する下に「レンダリング デバイス レイヤー」が必要です。この日はそのレイヤーを最初から最後まで完全に引き継ぎ、初期セットアップからフレームごとに安定して生成するまで、チェーン全体を段階的に検証し、一連のマイルストーンをすべて達成しました。プレイヤーはこのレイヤーを見ることはありませんが、すべてのレンダリングの管理者です。これがソリッドである場合、その上のゲームもソリッドです。穴があると、最も美しいエフェクトでもランダムにブラックアウトしたりクラッシュしたりします。レンダリングの問題の多くは、表面上はエフェクトが壊れているように見えますが、実際の根本はこのレイヤーが整理されていないことにあります。それを段階的に検証可能にすることは、長期的な利益ももたらします。将来のフレームに問題が発生した場合、黒い画面を無力に見つめるのではなく、これらのマイルストーンを遡ってどのリンクが壊れたかを特定することができます。まず頑丈にすることで、今後のあらゆるレンダリング機能に信頼できる軌道を築きます。</p>
+<h2>最初のクロス環境のハードル: GPU メモリのライフサイクル ホットフィックス</h2>
+<p>さまざまな環境で WebGPU を実行すると、GPU メモリ バッファーは「使用可能なとき、いつ返却するか」に関する厳密なライフサイクル ルールに従います。タイミングがずれると、読みかけのダーティデータが発生したり、完全にクラッシュしたりすることになります。この日は、「マップされた読み取り/書き込み」段階でのバッファーのライフサイクルをホットフィックスし、2 つのまったく異なる環境でのルールに従うようにしました。1 つは個別の GPU を使用せず、レンダリングが純粋にソフトウェアでシミュレートされる環境で、もう 1 つはブラウザーがマシンのネイティブ グラフィックスを直接呼び出す環境です。同じコードが両方のパスで正しく動作するためには、GPU メモリの割り当てと返却のタイミングが正確に行われる必要があります。このような修正は「目に見える新機能」を提供するものではありませんが、エンジンが「私のマシン上で時々動作するおもちゃ」であるか、「別のマシンや別の環境でも動作するベース」であるかを決定するのはまさにそれらです。社内レンダラーのコストの大部分は、環境間の不確実性を一度に 1 つずつ解決するという大変な作業に費やされます。それぞれが接続されると、プラットフォームが確実にカバーできるデバイスの範囲が広がります。</p>
+<h2>安全な同時実行性: エージェントごとのライフサイクル ロック</h2>
+<p>プラットフォームのもう一方の側は、あなたとチャットして仕事を行うエージェントです。このプラットフォームは最初から「同時に働くエージェントのチーム」、つまり一度に 1 人のアシスタントと話すのではなく、リードがタスクを配り、サブエージェントがそれぞれ担当することを想定しています。しかし、複数のエージェントが同時に実行されると、古典的な「競合状態」が発生します。つまり、2 つのアクションが順序が保証されずにほぼ同時に同じエージェントの状態に影響を及ぼし、断続的な破損やハングが発生します。この日は、各エージェントのライフサイクル管理を専用の「非同期ロック」コンポーネントに抽出しました。同じエージェント上の操作 (開始、停止、切り替え) は、そのロックを通じてキューにシリアル化され、常に 1 つのアクションのみがその状態に影響することが保証されます。これにより、多数のエージェントを実行してもお互いに踏みにじる必要がなくなり、動作が予測可能になります。 「マルチエージェントのコラボレーション」を中核的な約束として扱うプラットフォームにとって、このロックは、ブループリントをデモ内でのみ実行するのではなく、実際に着陸させるための重要な部分です。</p>
+<h2>より頑丈な端末: ペーストがクラッシュしない + コラボレーション ガイダンス</h2>
+<p>同時実行の安全性を超えて、チャット エージェントには 2 つの「日常的な」修正が加えられました。まず、ターミナル入力です。古い「2 回目の貼り付けがフリーズする」バグが修正され、コマンド ラインに長い要件テキストを貼り付けることがより弾力的になりました。セットアップのブロック全体または長い仕様を貼り付けると、固まることはありません。 2 つ目は、コラボレーション コミュニケーションです。エージェントが互いにメッセージを送信するために使用するツールには、使用シナリオと返信ガイダンスが具体化されているため、「誰が、いつ、どのようにメッセージを送信するか」が構造化され、複数エージェントのコラボレーション中のコミュニケーションが場当たり的ではなくなります。 「使いにくく感じない」ための重要な詳細は次のとおりです。要件を貼り付けるときにクラッシュしたり、共同作業中におしゃべりになったりするアシスタントは、どんなに賢くても信頼できません。この荒削りな部分を一つ一つ滑らかにしてこそ、本物の仕事にふさわしいものになるのです。</p>
+<h2>無駄なキャッシュなし: 新しいメッセージを追加する動的なリマインダー</h2>
+<p>大規模なモデルと通信する場合、時間とコストを節約するために、前もって安定したコンテキストを「キャッシュ」できます。ただし、毎回最前部を書き直すと、そのキャッシュが無効になり、完全な再計算が強制されます。この日は、「動的なリマインダー」（モデルに渡される会話を変更する一時的な情報）を「先頭の書き換え」から「最後に新しいメッセージを追加」に変更し、プレフィックス キャッシュを保持しました。ダイレクトな感触: 応答が速くなり、長時間の会話でもコストが削減されます。このような最適化自体は小規模に見えますが、AI との長時間のやり取りを中心に構築されたプラットフォームでは、スムーズさと支出に実質的な違いが生じます。会話が長くなればなるほど、この早期の適切な判断がより効果的になります。また、プロジェクト全体を貫く姿勢も明らかにしています。つまり、「モデルと対話する方法」を、思い付きでまとめたプロンプトではなく、真に磨きをかける価値のあるエンジニアリングとして扱うということです。</p>
+<h2>この日が意味するもの</h2>
+<p>初日の作品をまとめて見ると、どれも意図的に「自慢するための機能」ではないことがわかります。きれいなホームページや派手なデモはありません。これらは、レンダリング、エンジン、同時実行性、会話という 4 つのスルーラインのそれぞれの最初の基礎です。その背後には、明確な判断があります。「チャットによるゲームの生成」が最終的に機能するかどうかは、その日にトリックをデモできるかどうかではなく、基礎が十分に難しいかどうか、つまり、ブラウザーで描画可能、どの環境でも安定している、エージェントが戦わない、お金を無駄にしない長い会話ができるかどうかにかかっています。これら 4 つのファンデーションを一度に注ぐと、毎日その上に着実に重ねていくことができます。これは、この変更履歴が将来の開発のために残しておきたい最初のモデルでもあります。最も困難で、あまり魅力的でなく、最も妥協しにくいものを最初に正しく設定します。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

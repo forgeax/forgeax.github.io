@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-21 · 刷新されたインターフェース + 埋め込み可能なワークベンチ — ForgeaX</title>
+<meta name="description" content="システム レベルのビジュアル リフレッシュ (デザイン トークン、アイコン、モーション)、埋め込み可能な分割サーフェス ワークベンチ、よりクリーンなセッション中心のダッシュボード、エンジン 2D スプライト レイヤーとライティングのサンプル、およびよりシンプルな 1 つのコマンドによる開始/停止。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-21 · 刷新されたインターフェース + 埋め込み可能なワークベンチ — ForgeaX" />
+<meta property="og:description" content="システム レベルのビジュアル リフレッシュ (デザイン トークン、アイコン、モーション)、埋め込み可能な分割サーフェス ワークベンチ、よりクリーンなセッション中心のダッシュボード、エンジン 2D スプライト レイヤーとライティングのサンプル、およびよりシンプルな 1 つのコマンドによる開始/停止。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-21.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-21.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-21.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-21.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-21.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-21.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-21.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-21.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-21.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-21.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-21.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-21</span></div>
+    <h1>刷新されたインターフェース + 埋め込み可能なワークベンチ</h1>
+    <p class="standfirst">この日、インターフェースはシステムレベルで刷新され、統一されたデザインシステム、完全なアイコンセット、スムーズな動き、新しいプレビューシェルが追加されました。ワークベンチは「スプリットサーフェスプラグイン」アーキテクチャを発展させ、初めて完全な組み込みツールウィンドウをホストしました。ダッシュボードはセッション中心に書き直され、チャットはストリームを横断しなくなりました。エンジンには 2D スプライト レイヤーと照明サンプルの完全なセットが追加され、開始/停止は 1 つのコマンドに簡素化されました。</p>
+    <div class="prose"><h2>試作品の感触から製品の感触へ</h2>
+<p>しばらくの間、ほとんどのエネルギーは「本当に実行できるか」に注がれていました。この日までに、製品はビジュアルと構造の両方で「成長」する段階に達しました。スルーラインでは、機能から組み立てられたプロトタイプからインターフェイスを、統一されたデザイン言語、一貫したアイコン、スムーズな動き、より明確な全体のレイアウトなど、完成品のような見た目と感触を目指して体系的に推進していました。同時に、ワークベンチ、ダッシュボード、エンジンもそれぞれ進化しました。彼らは一緒に、この製品がもはや「デモができる」ことに満足せず、「毎日開かれ、長期間使用される」外観と順序を真剣に考慮し始めていることを示しています。見た目の良さと使いやすさの両方を同時に実現することが、使いやすさから快適さへの重要な飛躍となります。</p>
+<h2>刷新されたインターフェース: 統一されたデザインシステム、アイコン、モーション</h2>
+<p>この日、インターフェイスがシステムレベルで更新されました。その下には 3 層のデザイン トークン構造があり、色、境界線、間隔などの基本的な視覚変数を、あちこちに散在するハードコードされたスタイルではなく、1 つの管理下で統合します。これにより、本質的にアプリ全体の視覚的な一貫性が保たれるため、1 か所でテーマを変更するとどこでも反映され、メンテナンスコストが大幅に削減されます。きれいなライン アイコンのセットがワークベンチとツールバーに組み込まれ、絵文字やテキストで済ませていた場所がプロフェッショナルで統一されたものになりました。モーション レイヤーが追加されました。サイドバーのコンテンツとパネルは瞬時にスナップするのではなくスムーズに遷移し、視覚的な連続性によりインタラクションの不快感が軽減されます。上部構造もアップグレードされました。これらはどれもそれ自体では「機能」ではありませんが、最初に開いたときに、それをおもちゃと思うか道具と思うかは、これらの組み合わせによって決まります。</p>
+<h2>ワークベンチは完全な組み込みツール ウィンドウをホストできます</h2>
+<p>この日、ワークベンチは「分割サーフェス プラグイン」アーキテクチャにアップグレードされました。ツールはコントロールをサイドバーに配置し、メイン領域全体を引き継いで完全な作業面をレイアウトすることもできます。これにより、実際の窮屈さが解決されました。「キャラクター生成」などの大きなキャンバスを必要とするツールは、以前は作業する余地のない小さなパネルに押し込められていました。今では、メインエリアを埋める埋め込みツールウィンドウとしてワークベンチに常駐し、プロフェッショナルなソフトウェアのように動作します。このアーキテクチャに移行された最初のツールは文字生成ワークベンチで、現在は独自の埋め込みページとして実行されています。 Chat には、毎回自然言語でツールの機能を記述するのではなく、ツールの機能を直接呼び出す /tool コマンドも追加されました。このアーキテクチャの重要性は、「より大きなウィンドウ」をはるかに超えています。「サードパーティ ツールがどのように第一級市民としてワークベンチにプラグインされるか」を定義しており、プラグインによって無制限に拡張可能なプラットフォームに向けた重要なステップです。</p>
+<h2>よりクリーンなダッシュボード、ストリームを越えないチャット</h2>
+<p>この日、ダッシュボードはセッション中心に書き直され、概要、セッション、分析という 3 つの明確なビューに絞り込まれ、重複した古いページの一部が廃止されました。最も直接的な利点は、開いたときに大量の赤いエラーがスローされなくなり、現在の状態が明確かつ信頼できる状態で表示されることです。チャットでは、古い煩わしさも修正されました。各会話タブは独自のセッションに厳密にバインドされるため、セッションを切り替えたり、ダッシュボードから戻ったりしても、前の会話のまだ流れている出力ストリームに影響することはありません。停止ボタンはバックエンドの実際の実行状態と一致しているため、ボタンをクリックすると実際に停止します。バージョン番号は常に表示され、ウィンドウに戻ると更新されます。この日は「日々を邪魔しない」ための基本をひとつひとつ埋めていきました。</p>
+<h2>エンジン: 2D スプライト レイヤー + 照明サンプルのフルセット</h2>
+<p>この日は2D、照明ともにエンジンが進んでいた。 2D では、スプライト レイヤーが追加されました。スプライトを正しい順序で重ねて積み重ねることができるため、最終的に 2D コンテンツ (背景、キャラクター、UI 要素の前後関係) に適切な基盤が与えられ、何が何の上に配置されるかを制御するために手動のハックに依存する必要がなくなりました。ライティングに関しては、基本的なシェーディングとマテリアルからテクスチャ付きライティング、ライト キャスター、1 つのシーン内の複数のライトに至るまで、一連の章がすべて実行可能なエンジン デモにまとめられた、完全なプログレッシブ セットのライティング サンプルが完成しました。これらの例は、エンジンのライティングの生きたドキュメントであると同時に、「このエンジンでシーンをライティングする方法」を誰でも (AI を含む) 学習できるすぐに使える教材でもあります。 2D と 3D を一緒に進めるということは、エンジンが偏っていないことを意味し、立体的なものだけでなく平面的なものにも対応できます。</p>
+<h2>インストールと起動/停止がより簡単に</h2>
+<p>この日はインストールと起動・停止を徹底的に簡略化。 1 つのコマンドでサービスのセット全体が起動し、1 つのコマンドでサービスを完全に停止できるようになりました。バックグラウンドでは、長時間実行される単一のコア サービスが実行され、以前のようにコンテナ環境に依存したり、最初に大量のインストールを行う必要はなくなりました。かつて、コンテナーのインストールの失敗により、特定のシステムの初心者が行き詰まった落とし穴は、途中で回避されました。これから始める人にとって、「クローンから実行まで」の道は最短距離に詰められています。これは、使用するハードルを下げる最も具体的な部分です。どんなに強力なプラットフォームであっても、インストールの最初のステップで半数の人が拒否してしまうと、その機能は決して伝わりません。入り口を平らに舗装すること自体が商品の強度の一部です。</p>
+<h2>この日が意味するもの</h2>
+<p>製品の「見た目」と「骨格」を一気にグレードアップした一日でした。ビジュアルの刷新により完成品のように見え、分割サーフェスのワークベンチによりサードパーティ製ツールを本格的に導入できるようになり、クリーンなダッシュボードと非交差チャットにより日常の使用が妨げられなくなり、エンジンの 2D レイヤーと照明サンプルにより機能がより完全になり、インストールの簡素化によりより多くの人がドアを通過できるようになります。これらの変更は、見た目の良さ、使いやすさ、拡張性、親しみやすさという 4 つの異なる側面にまたがっていますが、目的は 1 つあります。それは、プラットフォームを適切なツールとして長期的に使用する価値のあるものにすることです。 「実行可能なプロトタイプ」と「毎日開けるのが楽しいツール」の間には、多くの場合、何か決定的な機能ではなく、まさにこのような、多くの側面を同時に磨き上げて洗練されたものに仕上げるこの種の 1 日の作業が必要です。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

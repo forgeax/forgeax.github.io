@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-22 · Die Engine lernt Schatten + eine neue Erzählwerkbank — ForgeaX</title>
+<meta name="description" content="Gerichtete Lichtschatten, bildbasierte Himmelsbeleuchtung und objektspezifische Texturen landen in der Engine; Es gibt eine neue Narrativ-Workbench und die Charakter-Workbench gewinnt an Asset-Persistenz und Uploads." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-22 · Die Engine lernt Schatten + eine neue Erzählwerkbank — ForgeaX" />
+<meta property="og:description" content="Gerichtete Lichtschatten, bildbasierte Himmelsbeleuchtung und objektspezifische Texturen landen in der Engine; Es gibt eine neue Narrativ-Workbench und die Charakter-Workbench gewinnt an Asset-Persistenz und Uploads." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-22.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-22.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-22.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-22.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-22.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-22.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-22.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-22.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-22.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-22.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-22.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-22.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-22.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-22.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-22.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-22.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-22.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-22.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-22.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-05-22</span></div>
+    <h1>Die Engine lernt Schatten + eine neue Erzählwerkbank</h1>
+    <p class="standfirst">An diesem Tag lernte die Engine, Schatten zu werfen – gerichtete Lichtschatten, bildbasiertes Himmelslicht und objektspezifische Texturen, alles an Ort und Stelle, was den Szenen eine weitaus glaubwürdigere Tiefe verleiht. Auch die Tool-Familie wurde erweitert: eine neue Erzähl-Workbench, eine Charakter-Workbench, die generierte Assets speichert und Uploads entgegennimmt, sowie ein UI-Workshop und eine Reihe plattformübergreifender Korrekturen.</p>
+    <div class="prose"><h2>Zwei Linien im Vormarsch: Die Bildqualität steigt, die Werkzeugfamilie wächst</h2>
+<p>Dieser Tag teilte sich deutlich in zwei Zeilen. Eine davon ist die Bildqualität der Engine: In den vergangenen Tagen war die Beleuchtung heller, und an diesem Tag wurden Schatten und Umgebungslicht hinzugefügt, sodass die Bilder von „beleuchtet“ zu „mit Volumen und Atmosphäre“ wechselten. Das andere ist die Erweiterung der Tool-Familie: Auf der am Vortag etablierten „Split-Surface-Plugin“-Architektur zogen nacheinander neue Werkbänke ein – Erzählung, Charakter, ein UI-Workshop, jede mit ihrer eigenen Rolle. Eine Linie geht in Richtung „sieht gut aus“, die andere in Richtung „bequem zu machen“, und zusammen wird die Plattform sowohl schöner als auch vollständiger. Dieser Rhythmus aus „Bildqualität auf niedrigem Niveau + Tools auf hohem Niveau“ parallel voranschreitet, ist genau der Grund, warum es sowohl ein Motor als auch eine Produktivitätsplattform sein kann.</p>
+<h2>Die Engine lernt, gerichtete Lichtschatten zu werfen</h2>
+<p>Das Engine-Rendering hat heute eine wichtige Schwelle überschritten – gerichtete Lichtschatten. Objekte werfen jetzt Schatten unter einem gerichteten Licht (wie Sonnenlicht) und empfangen Schatten von anderen. Ein Schatten sieht aus wie ein dunkler Fleck auf dem Boden, ist aber eine wichtige Quelle für die „Tiefe“ eines Bildes: Das menschliche Auge nutzt Schatten hauptsächlich, um Höhe, Abstand und Kontakt zwischen Objekten zu beurteilen – ohne Schatten schwebt eine Figur wie ein Aufkleber über dem Boden; mit einem steht es wirklich da. Die richtigen gerichteten Lichtschatten zu erzielen, ist ein wichtiger Schritt von „Objekte werden beleuchtet“ zu „Objekte existieren im Raum“ und eine grundlegende Fähigkeit, an der kein Spiel vorbeikommen kann, das auf realistische Szenen abzielt.</p>
+<h2>Bildbasiertes Himmelslicht + Texturen pro Objekt</h2>
+<p>Neben gerichteten Lichtschatten wurden an diesem Tag zwei weitere Funktionen hinzugefügt, die Bilder realistischer machen. Eine davon ist „bildbasiertes Himmelslicht“: die Verwendung eines Umgebungsbilds als Lichtquelle, sodass Objekte sanft von ihrer Umgebung beleuchtet werden – schattige Bereiche werden nicht mehr völlig schwarz, und Metall und glatte Oberflächen reflektieren das Aussehen ihrer Umgebung, wodurch das Licht der gesamten Szene plötzlich viel natürlicher und raffinierter wird, was ein wesentlicher Bestandteil einer realistischeren Darstellung ist. Das andere Problem besteht in der Behebung der „Materialtexturbindung pro Objekt“: Verschiedene Objekte in derselben Szene können jetzt jeweils ihre eigene Textur tragen, ohne dass es mehr zu Überschneidungen kommt, bei denen „die Änderung der Textur eines Objekts Auswirkungen auf ein anderes Objekt hat“. Mit gerichteten Schatten, Umgebungshimmellicht und objektspezifischen Texturen zusammen ist die Engine viel näher dran, eine vollständige Szene zu rendern, die einfach „richtig aussieht“.</p>
+<h2>Eine neue narrative Werkbank</h2>
+<p>Die Werkzeugfamilie begrüßte heute ein neues Mitglied: eine narrative Werkbank. Basierend auf der Split-Surface-Plugin-Architektur, die am Vortag eingeführt wurde, lebt es in der Workbench als eingebettetes Werkzeugfenster, das den Hauptbereich ausfüllt, um die Geschichte und den Text eines Spiels zu organisieren. Es löst eine echte Fragmentierung – ein Spiel zu erstellen bedeutet nicht nur, Gameplay-Code zu schreiben, sondern auch die Handlung zu skripten, Dialoge zu schreiben und Zweige zu entwerfen; Diese mussten oft in einem anderen Tool erledigt und dann irgendwie zurückgebracht werden. Jetzt laufen „Gameplay aufbauen“ und „Geschichte schreiben“ innerhalb einer Plattform ab, ohne dass zwischen separaten Tools gewechselt und kopiert werden muss. Es bestätigt auch den Wert dieser Split-Surface-Architektur: Sie ermöglicht es der Plattform, kontinuierlich eine Workbench nach der anderen mit verschiedenen Funktionen, wie z. B. Bausteinen, anzuschließen.</p>
+<h2>Charakter-Workbench: Behält Ihre Assets, nimmt Ihre Uploads entgegen</h2>
+<p>Die Charakter-Workbench hat an diesem Tag einen großen Schritt von „Spaß beim Ausprobieren“ hin zu „tatsächlich für ein Projekt verwendbar“ gemacht. Der Schlüssel liegt in der Asset-Persistenz: Generierte Porträts und Assets werden jetzt gespeichert und sind immer noch vorhanden, wenn Sie die Workbench schließen und zurückkehren, ohne sie jedes Mal neu zu generieren – ein qualitativer Unterschied für jemanden, der einen Charakter wiederholt verfeinert. Die beiden Seiten einer geteilten Ansicht bleiben synchron, sodass durch die Bearbeitung einer Seite die andere aktualisiert wird und es nicht zu Meinungsverschiedenheiten kommt. Sie können auch Ihre eigenen vorhandenen Assets hochladen, um sie parallel zu verwenden, ohne sich für alles auf die Generierung verlassen zu müssen; und die Generierung kann bei Bedarf an verschiedene externe Dienste weiterleiten und den richtigen für das Bild auswählen. Zusammen machen diese die Werkbank von einem interessanten Demogerät zu einem Werkzeug, das wirklich alltägliche Arbeiten bewältigen kann.</p>
+<h2>Ein neuer UI-Workshop + plattformübergreifende und Schnittstellenpolitur</h2>
+<p>An diesem Tag wurde auch eine UI-Workshop-Workbench hinzugefügt, wodurch die Tool-Matrix weiter erweitert wurde. Die Benutzeroberfläche hat Details wie die Tool-Switcher-Leiste und die Breite im minimierten Zustand an die Designspezifikationen angepasst, um ein aufgeräumteres Erscheinungsbild zu erzielen. Die niedrige Ebene hat auch eine Menge Dinge bereinigt: Einige nicht mehr benötigte Build-Time-Plugins wurden entfernt, die Namespaces einiger Beispiele konsolidiert und ein Fehler bei der plattformübergreifenden Pfadbehandlung unter Windows behoben – so können Entwickler auf mehr Systemen reibungslos arbeiten. Für sich genommen sehen diese unbedeutend aus, aber sie sind genauso wichtig wie die oben genannten großen Funktionen: Große Funktionen entscheiden darüber, was die Plattform leisten kann, während diese Polituren darüber entscheiden, ob es auf Ihrem Computer zu Ihrer Zeit tatsächlich angenehm ist. Nur wenn beides solide gelingt, hält das Produkt stand.</p>
+<h2>Was dieser Tag bedeutet</h2>
+<p>Dieser Tag brachte sowohl „gut aussehend“ als auch „brauchbar“ voran. Da die Engine lernt, Schatten zu werfen und Umgebungshimmellicht hinzuzufügen, ist sie tatsächlich in der Lage, eine reale Szene mit Volumen und Atmosphäre darzustellen. Die Erzähl-, Charakter- und UI-Workbenches, die nacheinander verschoben werden, bedeuten, dass „die verschiedenen Aufgaben beim Erstellen eines Spiels“ nun direkt auf einer Plattform erledigt werden können. Ein Spiel ist mehr als nur Code – es verfügt über visuelle Elemente, eine Handlung, Charaktere und eine Benutzeroberfläche – und heutzutage wurden Teile genau in diesen Dimensionen auf einmal platziert, was die Plattform dem Motto „Eine Person kann hier ein komplettes Spiel erstellen“ näher bringt. Die gemeinsame Weiterentwicklung von Werkzeugen für die Bildqualität auf niedriger Ebene und Tools für die oberen Ebenen ist der sicherste Weg auf diesem Produktweg.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-07-01 · Terrain frontal R4 + refonte de la fenêtre d'affichage 2 × 2 — ForgeaX</title>
+<meta name="description" content="L'extraction de l'application frontale R4 est complétée par un amincissement du magasin d'interface et un câblage de démarrage en studio ; la fenêtre d'affichage bénéficie d'une refonte de l'affichage 2 × 2 ; l'éditeur ne crée plus de chemins de jeu — Studio injecte à la place une mise en page ; bun fx update obtient un rapport structuré à code couleur ; et les versions de bureau sont renforcées pour le packaging multiplateforme." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-07-01 · Terrain frontal R4 + refonte de la fenêtre d'affichage 2 × 2 — ForgeaX" />
+<meta property="og:description" content="L'extraction de l'application frontale R4 est complétée par un amincissement du magasin d'interface et un câblage de démarrage en studio ; la fenêtre d'affichage bénéficie d'une refonte de l'affichage 2 × 2 ; l'éditeur ne crée plus de chemins de jeu — Studio injecte à la place une mise en page ; bun fx update obtient un rapport structuré à code couleur ; et les versions de bureau sont renforcées pour le packaging multiplateforme." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-07-01.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/fr/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-07-01.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-07-01.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-fr forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/fr/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/fr/" data-nav="/">Accueil</a>
+      <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
+      <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
+      <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
+      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Langue">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-07-01.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-07-01.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-01.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-01.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-01.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-01.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-07-01.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-07-01.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/fr/changelog/">← Journal des modifications</a>
+    <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-07-01</span></div>
+    <h1>Terrain frontal R4 + refonte de la fenêtre d'affichage 2 × 2</h1>
+    <p class="standfirst">Cette journée a apporté plusieurs modifications de Studio que vous pouvez ressentir dans l&#39;éditeur : les applications frontales R4 (chat, workbench, paramètres, tableau de bord) enfin connectées à la chaîne de démarrage avec un magasin d&#39;interface allégé ; la fenêtre d&#39;affichage est passée de bascules Édition/Lecture mutuellement exclusives à une matrice d&#39;affichage 2 × 2 ; et l&#39;éditeur ne code plus en dur les chemins de jeu – Studio injecte à la place la mise en page du jeu. En plus de cela, « bun fx update » a obtenu un rapport structuré à code couleur et le script d&#39;empaquetage de bureau a été renforcé pour les versions multiplateformes.</p>
+    <div class="prose"><h2>Frontend R4 : des sous-modules autonomes à l&#39;exécution réelle</h2>
+<p>Après avoir divisé le chat, le workbench, les paramètres et le tableau de bord en sous-modules autonomes le 30 juin, cette journée était consacrée à &quot;les activer&quot;. Le package d’interface a été réduit à une pure couche AppKit (bus, diffusion, liens profonds, superpositions) ; les quatre applications L2 possèdent chacune leurs préférences d&#39;agent et un aperçu des fichiers via le bus au lieu d&#39;encombrer un grand magasin. <code>main.tsx</code> de Studio initialise désormais <code>initAgentPrefs</code>, <code>initFilePreview</code>, <code>bootBroadcast</code> et les abonnements aux ticks de démon au démarrage — les quatre modules ne sont plus des « sous-répertoires assis là » mais des parties formelles de l&#39;éditeur. R4 est passé du plan à la structure que vous pouvez développer quotidiennement.</p>
+<h2>Fenêtre d&#39;affichage 2 × 2 : mode d&#39;exécution × mode d&#39;affichage</h2>
+<p>La fenêtre de l&#39;éditeur a terminé sa refonte 2×2 ce jour. Avant, Edit et Play étaient deux états qui s&#39;excluaient mutuellement : changer de mode signifiait reconstruire l&#39;intégralité de la fenêtre d&#39;affichage. La nouvelle conception divise le « mode d&#39;exécution » (Édition/Lecture) et le « mode d&#39;affichage » (Scène/Jeu) en deux dimensions orthogonales formant une matrice 2×2 — vous pouvez voir à la fois la vue de la scène et la vue du jeu, pilotées par différents états d&#39;exécution. AppMode est devenu la source unique de vérité, avec les sous-modules d&#39;interface et d&#39;éditeur alignés sur cette sémantique de fenêtre d&#39;affichage. C&#39;est une étape vers une expérience d&#39;édition de style UE5 : éditez et prévisualisez sur un seul écran sans basculer d&#39;avant en arrière.</p>
+<h2>L&#39;éditeur découple les chemins de jeu – Studio injecte la mise en page</h2>
+<p>Le sous-module éditeur s&#39;est aujourd&#39;hui débarrassé de sa dépendance codée en dur sur les répertoires de jeux, devenant un package autonome indépendant de la mise en page. L&#39;endroit où vivent les fichiers du jeu et le préfixe de l&#39;URL n&#39;est plus &quot;préparé&quot; par l&#39;éditeur - l&#39;hôte (Studio) l&#39;injecte : l&#39;iframe de la fenêtre principale obtient son chemin via EditSurfaceProps.gameRoot, localStorage conserve les iframes du panneau pointées vers le même jeu ; le lancement du moteur transmet le répertoire d&#39;analyse du disque et le préfixe de l&#39;URL du client ; L&#39;empaquetage de bureau crée également le préfixe d&#39;URL afin qu&#39;une application gelée serve correctement les ressources du jeu. L&#39;éditeur peut évoluer indépendamment tandis que Studio est propriétaire de la présentation du projet — des limites plus claires.</p>
+<h2>Mise à jour de Bun FX : extrayez le code et voyez tout en un coup d&#39;œil</h2>
+<p>La première chose qu&#39;un développeur fait chaque matin est généralement d&#39;extraire le dernier code. Avant, la mise à jour de bun fx exécutait silencieusement git pull plus la synchronisation des sous-modules — ne disait rien en cas de succès et vidait une erreur opaque en cas d&#39;échec. Ce jour a ajouté un rapport de mise à jour structuré : un tableau codé par couleur montrant le résultat de l&#39;extraction de chaque sous-module (succès, ignoré, conflit), sa branche actuelle et le dernier résumé de validation. Si un sous-module comporte des modifications locales nécessitant un stockage, il vous l&#39;indique explicitement. Après une mise à jour, vous savez dans quel état se trouve l&#39;ensemble du projet - plus besoin d&#39;exécuter git status dans chaque sous-module un par un.</p>
+<h2>Packaging de bureau : script multiplateforme + préparation de versions</h2>
+<p>Le package Desktop a également été renforcé ce jour-là : build-desktop.ts est devenu un script multiplateforme avec des tests ajoutés ; empaqueter les fournisseurs platform-io et agent-host dans le side-car, en intégrant la version via lib/version.ts dans l&#39;artefact au lieu de l&#39;assembler au moment de l&#39;exécution ; et bun fx start a obtenu une vérification de port occupé qui vérifie si les ports communs sont déjà utilisés avant le lancement, de sorte que vous ne vous retrouvez pas avec la moitié d&#39;une pile en cours d&#39;exécution sans savoir pourquoi. Aucun de ces éléments n&#39;est flashy en soi, mais ils déterminent si l&#39;empaquetage et le lancement fonctionnent correctement sous Windows et macOS.</p>
+<h2>Ce que signifie cette journée</h2>
+<p>Le thème de cette journée est « l&#39;atterrissage des frontières ». La division R4 d&#39;hier a donné la direction ; aujourd&#39;hui, les quatre modules sont réellement connectés à la chaîne de démarrage. La fenêtre d&#39;affichage 2 × 2 a transformé l&#39;édition et la prévisualisation de mutuellement exclusives en composables. L&#39;éditeur a restitué la propriété du répertoire du jeu au Studio. Chaque pièce répond à la même question : dans cet éditeur, à qui appartient quoi ? Une fois les limites claires, les modules peuvent itérer indépendamment : touchez le chat sans reconstruire l&#39;atelier, échangez l&#39;éditeur sans toucher à la présentation du projet de Studio. Studio passe d&#39;une grosse boule de boue à un ensemble de modules avec des responsabilités claires.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/fr/changelog/">Journal des modifications</a>
+    <a href="/fr/tutorials/">Tutoriels</a>
+    <a href="/fr/examples/">Exemples</a>
+    <a href="/fr/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
+    <a href="/fr/about.html">À propos</a>
+    <a href="/fr/license.html">Licence</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-06-01 · デスクトップ アプリはエンドツーエンドで実行され、鮮明なインワールド テキストが表示されます — ForgeaX</title>
+<meta name="description" content="デスクトップ アプリは、初回起動キーのオンボーディングでエンドツーエンドで実行されます。エンジンは鮮明なワールド空間テキストをレンダリングし、ECS リレーションを同期し、フレームごとの状態をキャッシュし、アンチエイリアスを修正します。そしてローポリモデリングアシスタントが到着します。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-06-01 · デスクトップ アプリはエンドツーエンドで実行され、鮮明なインワールド テキストが表示されます — ForgeaX" />
+<meta property="og:description" content="デスクトップ アプリは、初回起動キーのオンボーディングでエンドツーエンドで実行されます。エンジンは鮮明なワールド空間テキストをレンダリングし、ECS リレーションを同期し、フレームごとの状態をキャッシュし、アンチエイリアスを修正します。そしてローポリモデリングアシスタントが到着します。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-06-01.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-06-01.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-06-01.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-01.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-01.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-06-01.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-01.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-01.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-01.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-01.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-01.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-06-01</span></div>
+    <h1>デスクトップ アプリはエンドツーエンドで実行され、鮮明なインワールド テキストが表示されます</h1>
+    <p class="standfirst">6 月の初日: 初回起動キーのオンボーディングにより、デスクトップ アプリが初めてインストールから再生までエンドツーエンドで実行されました。このエンジンは、3D ワールドでの鮮明なテキスト、双方向のオブジェクト関係、パフォーマンスのためのフレームごとのキャッシュ、アンチエイリアシングとテクスチャ方向の修正など、次々と成果を上げました。さらに、新しいローポリモデリングアシスタントも追加されました。</p>
+    <div class="prose"><h2>「デスクトップシェルが立つ」から「エンドツーエンドで使える」へ</h2>
+<p>デスクトップ シェルはつい先日立ち上がったばかりでしたが、「立ち上がる」と「使える」の間には一連の連鎖があります。バックエンドがバンドルされ、プレビューが埋め込まれ、サンプル ゲームがシードされ、最初の起動でユーザーがスムーズにキーを入力できるようにする必要があります。この日、そのチェーン全体がエンドツーエンドで接続され、デスクトップ アプリが初めて「インストール」から「プレイ」まで進むことができました。その間、エンジンは 1 日で長い進歩を遂げ (テキスト、リレーション、パフォーマンス、画質の修正)、コラボレーション側は新しいアシスタントを追加しました。この日は、「インストール可能で実行可能な」デスクトップ エクスペリエンスのループを終了し、エンジンとツールへの供給を継続し、6 月のオープニングは「使用可能でまだ成長中」という 2 つの軌道にしっかりと乗りました。</p>
+<h2>デスクトップ アプリはエンドツーエンドで実行され、初回起動キーのオンボーディングが行われます。</h2>
+<p>この日初めてデスクトップアプリが最初から最後まで実行された。バックエンド サービスをインストーラーに直接バンドルし、エンジン プレビューをウィンドウに埋め込み、初回起動時にサンプル ゲームを自動的にシードし、さらに一人称ゲームに必要なマウス ポインター キャプチャ (カーソルをウィンドウにロックしてビューを回転させる) を接続します。最も考慮されているのは初回起動時のエクスペリエンスです。オンボーディング オーバーレイにより API キーの入力が求められ、これはアプリを再起動せずにすぐに有効になります。バックエンドは新しく入力されたキーを実行環境にライブで適用します。ポートは環境変数を介してオーバーライドしてさまざまなマシンに適合させることができ、依存関係の配置に関する一般的な問題はアセンブリ前に自己修復され、ビルドの失敗を回避します。この日から、これを直接インストールして開いて再生できるデスクトップ アプリケーションとして使用することで、真にエンドツーエンドで動作します。これは、「ソースで実行する開発者」から「一般の人がアプリをインストールして使用する」までの重要なステップです。</p>
+<h2>エンジン: 3D 世界での鮮明なテキスト</h2>
+<p>このエンジンはこの日、「ワールドスペース テキスト レンダリング」を実現しました。3D シーンのどこにでも、拡大しても鮮明なテキストを直接配置できるようになりました。これは思っている以上に重要です。ゲームでは、標識、道路標識、キャラクターの上の名前、ヘルスバーの番号、フローティングダメージポップアップ、インタラクションプロンプトなど、世界のあらゆる場所にテキストが存在する必要があります。特別なグリフ表現を使用しており、テキストが近くに移動しても遠くに移動しても、拡大または縮小しても、ぼやけたピクセルに変化することなく、エッジを鮮明に保ちます。これ以前は、エンジンはジオメトリとテクスチャしか描画できず、テキストは明らかな隙間でした。これを埋めるということは、UI、プロンプト、数値フィードバックを備えたゲームを作成する際に、初めて適切なテキスト機能が追加されることを意味します。ほぼすべてのジャンルにとって、これは「世界を表現できる」から「世界の情報を伝えることができる」までの重要なステップです。</p>
+<h2>エンジン: 双方向リレーション + 統合エンティティ ライフサイクル + パフォーマンス キャッシュ</h2>
+<p>この日、エンジンは低レベルの「オブジェクト編成」におけるいくつかのことを強化しました。 1 つ目: オブジェクト間の関係が双方向に自動同期されるようになりました。親子リンクまたは所有権リンクを作成または解除すると、両端が自動的に一貫性を保ち、「親はこの子を要求しているが、子は親を認識していない」というダーティな状態がなくなり、構成と破棄が容易になります。 2 つ目: シーンとインスタンスのライフサイクルが統合されました。デタッチ、破棄、および完全なクリアは 1 つの秩序あるセマンティクスに従い、エッジ ケースでの削除の見逃しや残留物を回避します。 3 番目のパフォーマンス: フレームごとのレンダリング ステート キャッシュが追加され、フレームごとに再計算される内容をキャッシュして再利用し、不必要なオーバーヘッドを削減しました。これらは目に見えない内部作業ですが、オブジェクトが頻繁に追加、削除、結合されるにつれて、複雑なシーンがより乱雑になり、遅くなるかどうかを決定します。 「オブジェクトがどのように接続され、誕生し、消滅するか」に関するルールを確立することは、エンジンが実際のゲームの複雑さに耐えるための基礎となります。</p>
+<h2>エンジンの画質修正: アンチエイリアス + テクスチャ方向</h2>
+<p>この日は、見た目や雰囲気に直接影響するいくつかの画質の問題も修正されました。アンチエイリアスには 2 つの修正が加えられました。1 つはサンプリング オフセットの計算が間違っており、エッジ スムージングが不正確になりました。もう 1 つは、より微妙です。カラーがスペースを 2 回誤って変換され、画像の平坦な領域が全体的に明るくなり、色褪せてしまいました。両方を固定すると、エッジがよりきれいになり、色がより正確になります。手続き的に生成されたジオメトリでのテクスチャの上下が逆になる問題も修正されました。根本的な原因は、テクスチャ座標の方向とグラフィックス サンプラーの原点規則が一致していないことでした (1 つは上から数え、もう 1 つは下から数えます)。古典的な「1 回の反転でオフになる」落とし穴です。草などのテクスチャは逆さまに適用されていましたが、現在は右側が上になっています。これらはいずれも新しい機能ではありませんが、既存の機能の詳細を「見た目がちょうどいい」ように刻み込んでいます。多くの場合、これらの一見明白でありながら見落とされやすい細部においては、画質が優先されます。</p>
+<h2>新しいローポリモデリングアシスタント + 自動起動外部プラグイン</h2>
+<p>この日、コラボレーションの名簿にはもう 1 人のメンバーが加わりました。ヘッドレス レンダリングを使用したローポリ 3D モデリングに特化したアシスタントで、面数が少なく、シャープなエッジですっきりとしたスタイルの 3D モデルを生成するのを支援します。この 3D モデルは、多くのインディーズ ゲームで好まれ、迅速に作成でき、特徴的なアート スタイルです。このプラットフォームでは、外部ワークベンチ プラグインをシステムとともに自動起動することもできます。インストールされたサードパーティ ツールは、毎回手動で起動することなく起動時から動作するため、統合エクスペリエンスがスムーズになります。一部のツールが「不明なツール」を誤って報告する同期の問題も修正されました。根本的な原因は、ツール登録の同期がタイムリーでないか、冪等性が十分でないことであり、修正されるとツール呼び出しがより安定します。新しいモデリング アシスタント、プラグインのメンテナンスを軽減する統合の改善、および修正作成ツールの信頼性を向上させることで、「ゲームを作成するための専門 AI チームとの連携」をよりスムーズなものに磨き続けています。</p>
+<h2>この日が意味するもの</h2>
+<p>このような日を迎える 6 月の幕開けは、視覚的な表現力 (テキスト)、低レベルの順序 (オブジェクトの関係とライフサイクル)、パフォーマンスと画質の詳細においてエンジンを一気に前進させながら、「普通の人がアプリをインストールして使用する」ことを真にエンドツーエンドで実現するという明確なシグナルを発します。デスクトップ側が「開ける」から「使える」に移行するということは、ツールが実際のユーザーに届く形を持ち始めることを意味します。このエンジンが世界テキストを追加し、オブジェクトの関係を修正することは、このエンジンで実行できるゲームが「完全な作品」に近づくことを意味します。マスマーケット向けの作成プラットフォームは、人々が簡単に参加できるようにすること (デスクトップ アプリと初回起動時のオンボーディング) と、見栄えのするものを作成できるようにすること (継続的なエンジンの強化) の両方を行う必要があります。そしてこの日は、これら 2 つの最も基本的な方針のそれぞれについて確実な一歩を踏み出しました。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

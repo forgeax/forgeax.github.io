@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-10 · Build- und Laufzeitarchitektur nimmt Gestalt an — ForgeaX</title>
+<meta name="description" content="Die ECS↔render-Brücke verbindet die Spielwelt mit dem Bildschirm, ein Benchmark-Spike setzt einen Maßstab für die Leistung, die Front-End-Shell erscheint und der Agent erhält ein Befehlssystem und eine intelligentere Kontextkomprimierung." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-10 · Build- und Laufzeitarchitektur nimmt Gestalt an — ForgeaX" />
+<meta property="og:description" content="Die ECS↔render-Brücke verbindet die Spielwelt mit dem Bildschirm, ein Benchmark-Spike setzt einen Maßstab für die Leistung, die Front-End-Shell erscheint und der Agent erhält ein Befehlssystem und eine intelligentere Kontextkomprimierung." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/de/changelog/2026-05-10.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-10.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-10.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/de/changelog/" data-nav="/changelog/" class="active">Änderungsprotokoll</a>
+      <a href="/de/about.html" data-nav="/about.html">Um</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-10.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-10.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-10.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-10.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-10.html" data-l="es">Español</a><a class="lang-item active" href="/de/changelog/2026-05-10.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-10.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-10.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/changelog/">← Änderungsprotokoll</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-05-10</span></div>
+    <h1>Build- und Laufzeitarchitektur nimmt Gestalt an</h1>
+    <p class="standfirst">Am zweiten Tag wird die „Spielwelt“ offiziell mit dem „Bildschirm“ verbunden: Die ECS↔render-Brücke wird ausgeführt, ein Benchmark legt einen Maßstab für die Leistung fest, die Studio-Frontend-Shell erscheint zum ersten Mal und der Chat-Agent entwickelt ein Befehlssystem und eine intelligentere Kontextkomprimierung. Die Grundlage bewegt sich von „kann einen Rahmen zeichnen“ zu „einer Laufzeit, die sich tatsächlich dreht“.</p>
+    <div class="prose"><h2>Von „kann einen Rahmen zeichnen“ bis „die Architektur nimmt Gestalt an“</h2>
+<p>Wenn am ersten Tag die Frage beantwortet wurde: „Kann ein Pixel im Browser korrekt gezeichnet werden“, beantwortet dieser Tag die nächste Frage: Woher kommt das Bild? Was sich in einem Spiel tatsächlich bewegt, ist ein Weltmodell namens ECS (Entity-Component-System) – jeder Charakter, jede Requisite und jede Kamera ist eine „Entität“, und ihre Position, ihr Aussehen und ihr Verhalten werden durch „Komponenten“ und „Systeme“ bestimmt. Mit Rendering, aber ohne Weltmodell ist die Engine nur ein Zeichenwerkzeug; Mit einem Weltmodell, aber ohne Rendering bleibt die Welt unsichtbar. Der heutige Tagesablauf verbindet diese beiden Hälften und stellt gleichzeitig die gesamte Build- und Runtime-Architektur, die Front-End-Shell und mehrere grundlegende Agentenfunktionen auf – sodass jedes Glied in der Kette „ein Spiel durch Konversation generieren“ beginnt, Gestalt anzunehmen.</p>
+<h2>Die ECS↔render-Brücke: Die Welt mit dem Bildschirm verbinden</h2>
+<p>Der wichtigste Schritt an diesem Tag war die Erstellung einer ersten funktionierenden Version der Brücke zwischen der ECS-Welt und dem Renderer. Was es löst, klingt einfach, ist aber absolut grundlegend: Es gibt eine „Entität“ auf der Welt, die Komponenten wie Position, Ausrichtung, Netz und Material trägt – woher weiß der Renderer, wo auf dem Bildschirm und in welcher Form er es zeichnen muss? Die Brücke ist dieser Übersetzungskanal – in jedem Frame wandelt sie den Zustand des Weltmodells in Zeichenbefehle um, die der Renderer versteht. Wenn Sie damit ein sich bewegendes Objekt in der Welt platzieren, erscheint es tatsächlich und bewegt sich auf dem Bildschirm, ohne dass Zeichencode von Hand geschrieben werden muss. Dies ist der Wendepunkt, an dem der Motor von „zwei unabhängigen Subsystemen“ zu „einem Ganzen, das sich dreht“ übergeht; Jede spätere Erfahrung von „Platziere ein Objekt und es erscheint auf dem Bildschirm“ geht auf die Brücke zurück, die mit diesem Tag verbunden ist.</p>
+<h2>Ein Dual-Implementierungs-Benchmark: ein Maßstab für die Leistung</h2>
+<p>Auf den kritischen Pfaden einer Engine gibt es oft mehr als eine Möglichkeit, etwas zu implementieren, jede mit ihrer eigenen Geschwindigkeit und eigenen Kompromissen. An diesem Tag wurde eine „Dual-Implementation-Benchmark“-Sonde entwickelt: Machen Sie dasselbe auf zwei verschiedene Arten und messen Sie deren tatsächliche Kosten nebeneinander. Der Wert liegt nicht darin, dass man ein einzelnes Rennen gewonnen hat, aber diese Leistung beruht nicht länger auf Vermutungen – jede Vermutung, dass „es auf diese Weise schneller sein könnte“, kann sofort mit demselben Maßstab gemessen werden, wodurch eine klug aussehende Entscheidung vermieden wird, die tatsächlich langsamer ist. Für eine Engine, die sich langfristig weiterentwickeln und auf allen Arten von Geräten laufen soll, ist die Festlegung, „wie man die Leistung objektiv vergleicht“, so, als würde man jeder zukünftigen Optimierung einen Gutachter zuweisen, also haben Schnell und Langsam Beweise hinter sich.</p>
+<h2>Die Studio-Frontend-Shell ist geboren</h2>
+<p>An diesem Tag geschah auch ein Meilenstein: Die Studio-Frontend-Shell erhielt ihre erste grobe Form. Bis dahin waren alle Funktionen auf der Engine- und Befehlszeilenseite angesiedelt; Was der Endbenutzer jedoch tatsächlich vor sich hat, ist eine Weboberfläche, die er öffnen, darin chatten und das Bild rechts ansehen kann. Der an diesem Tag errichtete Rohbau dient als „Grundgerüst“ für das Chat-Panel, das Vorschaufenster und verschiedene zukünftige Arbeitsbereiche. Im Moment ist es noch nichts Neues, aber die Bedeutung liegt darin, dass das Produkt beginnt, sich von einem „Haufen von Fähigkeiten“ zu einer „brauchbaren Form“ zu entwickeln. Auf der einen Seite ein immer härteres Engine-Fundament, auf der anderen eine Schnittstelle, die langsam Gestalt annimmt – wie Sie sehen, docken die beiden in den kommenden Wochen an das Studio an.</p>
+<h2>Der Agent baut ein Befehlssystem auf: einen Entwurf + /context</h2>
+<p>Der Chat-Agent hat heute einen Schritt „von der einfachen Konversation zu Befehlen“ gemacht: Ein Designentwurf für ein Befehlssystem ist eingetroffen, und die Spezifikation für den Befehl /context wurde zuerst festgelegt. Ein Befehlssystem bietet „Zusammenarbeit mit KI“ eine Reihe vorhersehbarer, wiederverwendbarer Verknüpfungen – anstatt eine häufige Aktion jedes Mal in einem umständlichen Satz zu beschreiben, löst ein Befehl sie präzise aus. /context, der erste Befehl, der angegeben wird, befasst sich genau mit dem, was in langen Sitzungen am wichtigsten ist: „Welchen Kontext hält das Modell gerade?“ Wenn man zuerst die Form des Befehlssystems und seinen ersten Befehl festlegt, können spätere Befehle aus demselben Standard erwachsen, anstatt dass jeder auf seine eigene Weise geschrieben wird und in Konflikt gerät.</p>
+<h2>Intelligentere automatische Verdichtung: nach Werkzeug, nach Leerlaufspalt</h2>
+<p>Durch langes Hin und Her mit der KI wird der angesammelte Kontext immer länger, was die Reaktionszeit verlangsamt und die Kosten erhöht; aber durch eine grobe Verdichtung gehen nützliche Informationen verloren. Dieser Tag hat der Kontextkomprimierung zwei clevere Aspekte hinzugefügt: Erstens: Behandeln Sie sie „nach Werkzeug“ – die Ergebnisse verschiedener Werkzeuge sind unterschiedlich wichtig, sodass Sie pro Werkzeug entscheiden können, was getrimmt und was behalten werden soll, anstatt eine Einheitslösung zu finden; Zweitens: Lösen Sie es „durch Leerlauflücke“ aus – führen Sie die Komprimierung in den Fenstern durch, wenn Sie nicht auf ein Ergebnis warten, und verbergen Sie die Kosten in Momenten, die Sie nicht bemerken, und nicht dann, wenn Sie am liebsten eine schnelle Antwort wünschen. Zusammen sorgen sie dafür, dass lange Sitzungen weiter abnehmen und Sie dabei so wenig wie möglich stören. Diese sorgfältige Betrachtung der „Verwaltung des Modellkontexts“ ist genau der Punkt, an dem diese Plattform die Dinge von Anfang an als echtes Engineering behandelt.</p>
+<h2>Robustheit der Tools und des Terminals: Abruf, Schlüssel, Ereignisbus</h2>
+<p>An diesem Tag wurden auch eine Reihe von Details geklärt, die dafür sorgen, dass der tägliche Gebrauch weniger anfällig für Schieflagen wird. Beide Modi des Web-Fetch-Tools sind stabiler geworden: Die Fehlermeldungen des Deep-Modus sind spezifischer und einfacher zu diagnostizieren, während der Direct-Modus keine zusätzlichen Komponenten selbst installieren darf, wodurch sein Verhalten besser kontrollierbar ist. Die Cursorbewegung im Terminal (Zeilenanfang/-ende) wurde auf eine klarere Tastenführung verschoben, sodass Fokus und Tastenanschläge genauer ausgerichtet sind. Der Ereignisbus hat eine selbstverstärkende Schleife behoben, bei der der Fehler eines Beobachters neue Fehler auslöste, die sich wie ein Schneeball ausbreiteten. Sobald dies geschieht, explodieren die Protokolle sofort, sodass es darauf ankommt, sie an der Quelle abzuschneiden. Keines davon sind auffällige neue Funktionen; Es ist die Arbeit, Stück für Stück herauszuarbeiten, dass es sich nicht schwer anfühlt, es zu benutzen.</p>
+<h2>Einfachere Installation und Inbetriebnahme</h2>
+<p>Da das Ziel darin besteht, „in wenigen Minuten lokal ausgeführt zu werden“, darf der Installations- und Startpfad nicht holprig sein. An diesem Tag wurde der Startablauf in Module neu organisiert, mit einer neueren Paketmanagerversion kompatibel gemacht, „Automatische Installation als Fallback, wenn die Laufzeit fehlt“ hinzugefügt und das Bereinigungsskript an dieselben Konventionen angepasst. Für eine Plattform, die möchte, dass mehr Leute – darunter auch nicht-professionelle Entwickler – loslegen, ist die Messlatte umso niedriger, je glatter der Weg „vom Klonen zum Sehen des Bildes“ ist. Wer diesen Weg frühzeitig ebnet, erspart allen, die später eine Reihe möglicherweise abstoßender Probleme versuchen wollen.</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/de/changelog/">← Alle Updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/changelog/">Änderungsprotokoll</a>
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/about.html">Um</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

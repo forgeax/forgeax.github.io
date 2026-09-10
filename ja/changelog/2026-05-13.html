@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-13 · ライブホットリロードプレビュー + セッションリプレイ — ForgeaX</title>
+<meta name="description" content="ゲームのファイルを編集すると、プレビューが自動的に更新されます。セッションを再度開くと、その全履歴が再生されます。コンポーザブル シェーダはファイル間でホットリロードします。新しいゲームには実行可能なスターターが同梱されており、エージェントはどのゲームをプレイしているのかを常に把握しています。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-13 · ライブホットリロードプレビュー + セッションリプレイ — ForgeaX" />
+<meta property="og:description" content="ゲームのファイルを編集すると、プレビューが自動的に更新されます。セッションを再度開くと、その全履歴が再生されます。コンポーザブル シェーダはファイル間でホットリロードします。新しいゲームには実行可能なスターターが同梱されており、エージェントはどのゲームをプレイしているのかを常に把握しています。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-13.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-13.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-13.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-13.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-13.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-13.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-13.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-13.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-13.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-13.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-13.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-13</span></div>
+    <h1>ライブホットリロードプレビュー + セッションリプレイ</h1>
+    <p class="standfirst">この日は、「言って、見て」という感覚を完全に終わらせました。ゲームのファイルを編集すると、センターのプレビューが自動的に更新されます。セッションを再開し、以前の前後のリプレイを完全に再開します。それに加えて、シェーダーをファイル間で構成してホットリロードすることができ、新しいゲームには実行可能なスターターが同梱され、エージェントはユーザーがどのゲームに取り組んでいるのかを常に認識します。</p>
+    <div class="prose"><h2>賭けから筋肉の記憶へ: 「言う、見る」を反射的にする</h2>
+<p>これまでは、「会話によって実行可能なものを構築できる」ことが証明され、レンダリング、アセット、安全性の基礎が強化されました。この日のテーマは、そのループを「1 回実行」から「快適に使用できる」ループに磨き上げることです。変更は即座に表示され、履歴は失われることがなく、エージェントがどのターゲットに作用しているのかを混乱することはありません。これらはすべて「うまくいくはず」のエクスペリエンスのように聞こえますが、それぞれの背後にはエンジニアリング上の実際のギャップが埋められています。すべてが埋まって初めて、プラットフォームは「デモできる」状態から「何時間も座って使用できる」状態になります。</p>
+<h2>ライブホットリロードプレビュー: ファイルを編集すると、画像が自動的に変化します</h2>
+<p>この日は、センター プレビューを「ホット リロード ブリッジ」に接続しました。ゲームのファイルが変更されると、手動でリロード クリックすることなく、プレビューが自動的に更新されて最新のものが表示されます。これは、バックエンドがゲームのディレクトリ内のファイルの変更を継続的に監視し、何かが変更された瞬間にリアルタイム チャネル経由でフロントエンドに通知し、プレビューをリロードすることによって機能します。これは「クリックを節約する」ように見えるかもしれませんが、「言って、見てみる」ループの重要なリンクです。エージェントが編集を完了すると、ほぼ即座に結果が画面に表示され、会話と画像の間の待ち時間が最小限に抑えられます。何時間も座ってゲームを作る人にとって、この「変更した内容が表示されたものになる」という即時フィードバックは、インスピレーションを実装に結びつけるものです。</p>
+<h2>セッションリプレイ: セッションを再度開くと、やり取りが戻ります</h2>
+<p>AI と十分に長くコラボレーションすると、提起した要件、AI が下した決定、迂回した迂回路など、セッション履歴が貴重な資産になります。この日は、セッション履歴を耐久性のある「台帳」に永続化し、そこから以前のやり取りをリプレイしてセッションを再開できるようにしました。技術的な微妙な点が 1 つ処理されました。リアルタイム イベント ストリームは、フルテキストではなく、「何が起こったか」の軽量の記録のみを伝送するため、リプレイではイベントを単純にリプレイするのではなく、台帳から実際のコンテンツを再構築する必要があります。重要性: 閉じて戻っても、コンテキストは失われません。一連の歴史はいつでも、起こったとおりに再訪することができます。これにより、毎回白紙のページから始めるのではなく、「長期にわたって、何ラウンドにもわたってプロジェクトに取り組む」ことが可能になります。</p>
+<h2>コンポーザブル シェーダ + ファイル間ホットリロード</h2>
+<p>このエンジンは、今日シェーダーに「コンポーザブル」機能を提供しました。シェーダーは、すべてのコードを 1 つのファイルにまとめるのではなく、相互にインポートし、フラグメントを共有し、マクロ定義でパラメータ化することができます。さらに良いことに、ファイル間のホットリロードをサポートしています。他の人が参照している共有フラグメントを編集すると、それを使用しているすべてのシェーダーが即座に更新されます。視覚効果を作成する人にとって、これはシェーダ コードをビルディング ブロックのように整理することを意味します。共通の照明、ノイズ、色の処理を、どこでも参照される再利用可能なモジュールに組み込むことができます。 1 つ変更すると、どこにでも反映され、一度に確認できます。これにより、「エフェクトの作成」が「1 つの大きな blob に対する試行錯誤」から「再利用可能なモジュールの構成とライブ調整」に変わり、レンダリング表現力が真に拡張されます。</p>
+<h2>統合されたエンジン コンソール: 1 つの実行チャネル、どこでも一貫性のある</h2>
+<p>このエンジンは、「コンソール」デバッグ/検査チャネルを単一の抽象化に統合しました。バックエンドは 1 つの実行チャネルに収束し、コマンドライン側は軽量の読み取り専用検査エントリを提供します。統合の利点は、一貫した動作とよりシンプルなメンタル モデルです。どこで検査または実行を開始しても、それぞれの場所でわずかに異なる独自のバージョンが存在するのではなく、同じ秩序あるパスをたどります。このような抽象化の収束は通常、ユーザー側では目に見えませんが、機能が積み重なるにつれてシステムがさらに乱雑になるかどうかは、それによって決まります。 「コンソールの動作方法」を 1 つの権威あるチャネルに早期に統合すると、後でコンソールに接続されるすべての機能に同じルールが設定されます。</p>
+<h2>新しいゲームには実行可能なスターターが同梱されており、エージェントはどのゲームを知っているかを常に把握しています</h2>
+<p>この日は「ゲームを作る」をよりスムーズにするための2つの内容を詰め込みました。 1 つ目: 新しいゲームには直接実行可能なスターター (回転キューブの開口部) が同梱されているため、ゲームを作成した瞬間に、空白を見つめて最初から書き込むのではなく、絵が表示されます。 2 つ目: 「現在どのゲームに取り組んでいるか」というコンテキストがエージェントのシステム プロンプトに明示的に入力されるため、コードを書き込むべきゲームが明確にわかります。後者は、危険な落とし穴を修正します。複数のゲームが共存しているため、現在のターゲットがわからないエージェントは間違った場所を簡単に編集してしまいます。 「アクティブなゲーム」を明示的で確実に渡されるコンテキストにすることは、エージェントに間違った方向を指さないコンパスを与えるようなものです。</p>
+<h2>バックエンドはそれを堅固に保ちます: より多くのテスト、パスの編集、名前の検証</h2>
+<p>バックエンドは「テストで動作を抑制する」というリズムを維持し、エンドツーエンドのプローブと単体テストの大規模なバッチをさらに追加しました。いくつかの焦点は、ゲームとプロジェクトの命名規則を多くのケースでロックすること (どの名前が有効で、どの名前が拒否されるべきか、テストによってすべての境界が保護される)、外部応答でユーザーのホーム パスを編集し続けること (マシンの実際のパスが漏洩しないこと)、システム プロンプトを純粋な個別にテスト可能な関数に構築するなどの重要なロジックを抽出することです。これらはどれも派手な機能ではありません。彼らは「信頼に値するファイル編集システムを作る」という日々の仕事なのです。注目すべきことに、この日は別のコーディング バックエンドのイベント形式にも適応し、より多くのモデル駆動オプションの統合がスムーズになり、選択肢が 1 つ増え、一貫したエクスペリエンスが得られました。</p>
+<h2>この日が意味するもの</h2>
+<p>一緒に見ると、一貫した方針は明らかです。「会話しながら構築」を可能にするだけでなく、スムーズに行うことです。変更は即座に表示され（ホットリロード）、履歴は完全に回復可能（セッションリプレイ）、ビルディングブロックのように整理されたエフェクト（コンポーザブルシェーダー）、エージェントが間違ったターゲットを編集することはありません（アクティブゲームコンテキスト）、信頼に値するバックエンド（テストとリダクション）、それぞれがフローを中断する可能性のある小さな摩擦を取り除きます。ツールが使いやすいかどうかは、多くの場合、そのツールが 1 つの大きなことを実行できるかどうかよりも、日常的な 100 の小さなことをどれだけスムーズに実行できるかによって決まります。この日に記入されたのは、その 100 件のうち最も重要なもののいくつかでした。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>

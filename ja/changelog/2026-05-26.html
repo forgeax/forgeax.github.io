@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-05-26 · ワンタップのコンテキスト圧縮 + WebGPU ソフトウェア フォールバック — ForgeaX</title>
+<meta name="description" content="コンテキスト使用リングとスラッシュのオートコンプリートを備えたワンタップ /コンパクト、より多くのマシンで 3D を実行できるようにする WebGPU ソフトウェア フォールバック、クリーンな ECS ゲーム テンプレート、2D スプライトシート アニメーション、エンジンの堅牢性の修正。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-05-26 · ワンタップのコンテキスト圧縮 + WebGPU ソフトウェア フォールバック — ForgeaX" />
+<meta property="og:description" content="コンテキスト使用リングとスラッシュのオートコンプリートを備えたワンタップ /コンパクト、より多くのマシンで 3D を実行できるようにする WebGPU ソフトウェア フォールバック、クリーンな ECS ゲーム テンプレート、2D スプライトシート アニメーション、エンジンの堅牢性の修正。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-05-26.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/ja/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-05-26.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-05-26.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-ja forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/ja/" data-nav="/">ホーム</a>
+      <a href="/ja/tutorials/" data-nav="/tutorials/">チュートリアル</a>
+      <a href="/ja/examples/" data-nav="/examples/">例</a>
+      <a href="/ja/marketplace/" data-nav="/marketplace/">プラグイン</a>
+      <a href="/ja/changelog/" data-nav="/changelog/" class="active">変更履歴</a>
+      <a href="/ja/about.html" data-nav="/about.html">について</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="言語">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-26.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-26.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-05-26.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-26.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-26.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-26.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-26.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-26.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/ja/changelog/">← 変更履歴</a>
+    <div class="meta"><span class="tag brand">更新</span><span>2026-05-26</span></div>
+    <h1>ワンタップのコンテキスト圧縮 + WebGPU ソフトウェア フォールバック</h1>
+    <p class="standfirst">この日は「長い会話やあらゆる種類のマシンが故障しないようにする」ことに取り組みました。ワンタップの会話圧縮、目に見えるコンテキストゲージ、スラッシュコマンドの自動補完。ハードウェア アクセラレーションが欠落している場合の 3D のソフトウェア フォールバック。新しいゲームはクリーンな ECS テンプレートから開始され、エンジンには 2D スプライトシート アニメーションと一連の堅牢性修正が追加されました。</p>
+    <div class="prose"><h2>「長く・幅広く使える」を確固たるものにする</h2>
+<p>機能が整ったら、次の質問は、それを長期的かつ広範囲に使用できるかどうかです。長期とは、コンテキストが溢れ出ることなく 1 つの会話が継続できるかどうかを意味します。幅広いとは、開発者のハイエンドマシンだけでなく、あらゆる種類のマシンで実行できるかどうかを意味します。この日の項目は、それぞれこれら 2 つに答えます。ワンタップの会話圧縮は「長時間チャットすると天井に達する」という問題に対処し、WebGPU ソフトウェアのフォールバックは「適切な GPU がないということは黒い画面を意味します」という問題に対処します。クリーンなニューゲームの開始点、2D アニメーション、堅牢性の修正を加えれば、全体像は明らかです。新しいギミックではありませんが、「より多くのマシンでの毎日の長時間実行」を確実なものにします。</p>
+<h2>ワンタップ圧縮: /compact + コンテキスト使用リング</h2>
+<p>大きなモデルを長くやり取りすると、モデルが保持できる「コンテキスト」が積み重なっていきます。限界に近づくと、応答が遅くなり、品質が低下し、さらには忘れ始めます。この日は、/compact コマンドを追加しました。ワンタップで以前のやり取りが簡潔な要約に圧縮され、作業を続行するためのスペースが解放されます。また、圧縮自体は会話のターン全体を消費するものではなく、バックエンドで直接行われます。また、作曲家は、燃料計のように予算がどのくらい残っているかを一目で示す「コンテキスト使用リング」も獲得しました。そのため、予算がいっぱいになりそうになったら、それを見て、片づけるべきかどうかを積極的に決定できます。スラッシュ コマンド オートコンプリートを使用すると、 / を入力すると、使用可能なすべてのコマンドが表示され、すばやく選択できます。この一連の変更は、「AI との長期的なコラボレーション」という中核的な制約に正面から直面しています。つまり、コンテキストは有限です。管理をユーザーの手に委ね、簡単に実行できるため、長時間のセッションが本当に持続可能になります。</p>
+<h2>WebGPU ソフトウェア フォールバック: 3D はより多くのマシンで実行されます</h2>
+<p>3D レンダリングは最新の GPU の機能に依存しますが、実際には一部のマシンや環境ではハードウェア アクセラレーションを利用できません。おそらく GPU が古すぎるか、ランタイムに制限がある可能性があります。以前は、これは黒い画面を意味し、ユーザーを完全にシャットアウトしていました。この日は、ソフトウェア フォールバックが追加されました。ハードウェア アクセラレーションのレンダリング デバイスが入手できない場合、システムはステップバックし、ソフトウェア実装を使用して画像をレンダリングします。速度は遅くなりますが、少なくとも実行、表示され、作業を続けることができます。その下に、マルチレベルのフォールバックが追加され (失敗した場合は次のパスを試行し、エラーは最後の手段としてのみ)、ハードウェア アクセラレーションが使用されなかった理由 (たとえば、安全でないオリジンで実行されている場合) を説明する明確な診断が追加されました。重要なのは対象範囲です。大衆市場向けのプラットフォームでは、誰でも始められるようにしたいため、誰もがハイエンド マシンを持っていると想定することはできません。より弱いマシンで実行することも、本当にハードルを下げます。</p>
+<h2>新しいゲームはクリーンな ECS テンプレートから始まります</h2>
+<p>新しいゲームの作成は、適切なアーキテクチャに沿って編成されたクリーンで適切に構造化されたテンプレートから生成されるようになりました。この日は、そのデフォルトのテンプレートを「適切な ECS アーキテクチャ」スタイルで書き直し、インライン文字列からバージョン管理されたスタンドアロン ファイルに抽出し、行数を半分に減らしました。つまり、ゲームを作成した瞬間に、編集する前に最初に理解する必要がある定型文の山ではなく、構築の準備が整ったクリーンでコンパクトなベースが得られることを意味します。 AI に供給されるテンプレートとシステム命令は、最新のエンジン インターフェイスに更新されました。これは、「AI がゲームを書く」場合に特に重要です。AI はテンプレートの形状を継承するため、テンプレートがよりクリーンで標準的であればあるほど、AI のコードが正しい可能性が高く、読みやすく再利用しやすくなります。適切な出発点があれば、後から数え切れないほど修正を加える必要がなくなります。</p>
+<h2>2D スプライトシート アニメーション</h2>
+<p>このエンジンはこの日、2D スプライト シート アニメーションを追加しました。「スプライト シート」(1 つの画像内にレイアウトされた一連のアクション フレーム) から複数のフレームを順番に再生し、2D キャラクターとエフェクト アニメーションに既製の標準的なアプローチを与えました。これは 2D ゲームで最も一般的なアニメーション方法です。小さな人物が歩いたり、炎が点滅したりするのは、基本的に数フレームが高速で循環するものです。これ以前は、2D コンテンツは静的なスプライトのみでした。シートアニメーションを使用すると、2D ラインを実際に動かすことができます。以前のスプライト レイヤーと合わせて、エンジンの 2D の基本、つまり正しいレイヤー化とスタッキング、さらに各スプライトの動きを実現します。 2D ゲームを作りたい人にとって、これは「画像を配置できる」から「アニメーションができる」までの重要なステップです。</p>
+<h2>エンジンの堅牢性: 回帰テスト + 一連のレンダリング修正</h2>
+<p>この日、エンジンは地味だが重要な堅牢性の向上にも取り組んだ。回帰テストは、レンダー クエリ、親子階層、「シーンにライトが 1 つもない」というエッジ ケースなど、失敗しやすいいくつかの状況に対して追加されました。これにより、将来の他の場所での変更によってそれらが壊れることがないよう、テストで問題を特定します。一部のあいまいな名前のフィールドは、コードが読み間違えられにくくなるように、より正確に名前が変更されました。また、マージ後にのみ表面化したいくつかの互換性の問題が修正されました。これらは、「新たに追加された機能を徹底的に検討する」作業です。前日までに多くの機能を集中的に追加した後、この日はテストを追加してエッジをクリーンアップし、機能が「一度だけ実行される」だけでなく「今後も信頼性が維持される」ことを確認しました。高速な反復と安定した統合を交互に行うことで、この製品ラインは稼働し続けることができます。</p>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
+  </div>
+  <nav class="foot-links" aria-label="サイト">
+    <a href="/ja/changelog/">変更履歴</a>
+    <a href="/ja/tutorials/">チュートリアル</a>
+    <a href="/ja/examples/">例</a>
+    <a href="/ja/marketplace/">プラグイン</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub組織</a>
+    <a href="/ja/about.html">について</a>
+    <a href="/ja/license.html">ライセンス</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>
