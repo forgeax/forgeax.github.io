@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
+<script>(function(){if(window.__fxDemoFetchRebase)return;window.__fxDemoFetchRebase=1;var orig=window.fetch;if(typeof orig!=='function')return;var root=new URL('.',location.href);function rewrite(url){try{var u=new URL(url,location.href);if(u.origin!==location.origin)return url;if(u.pathname.indexOf(root.pathname)===0)return url;if(!/^\/(shaders\/manifest\.json|pack-index\.json|[^/]+-pack-index\.json)$/.test(u.pathname))return url;return new URL(u.pathname.slice(1),root).href;}catch(e){return url;}}window.fetch=function(input,init){if(typeof input==='string')return orig.call(this,rewrite(input),init);if(typeof Request!=='undefined'&&input instanceof Request){var next=rewrite(input.url);if(next!==input.url)input=new Request(next,input);}return orig.call(this,input,init);};})();</script>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <meta name="forgeax-build" content="2026-08-26T09:54:20.645Z engine=56310763ae games=5b0f9a8e0f" />
-    <script>console.info('%c[go-karts] ForgeaX build 2026-08-26T09:54:20.645Z · engine 0.0.0 (56310763ae) · games 5b0f9a8e0f', 'color:#7cf;font-weight:600');</script>
+    <meta name="forgeax-build" content="2026-09-12T12:31:17.114Z engine=3c8bdd1f10 games=9119b5c570" />
+    <script>console.info('%c[go-karts] ForgeaX build 2026-09-12T12:31:17.114Z · engine 0.0.0 (3c8bdd1f10) · games 9119b5c570', 'color:#7cf;font-weight:600');</script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,28 +18,73 @@
       #app { display: block; }
       #app-shell { position: relative; }
       #game-ui { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-      #game-ui > * { pointer-events: auto; }
       #forgeax-fatal { position: fixed; inset: 0; z-index: 2147483647; display: none; place-items: center; padding: 24px; background: #0b0d10; color: #e6e6e6; font: 15px/1.6 system-ui, sans-serif; text-align: center; white-space: pre-wrap; }
     </style>
-    <script type="module" crossorigin src="/games/go-karts/assets/index-BPWc8o3B.js"></script>
-    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/chunk-CilyBKbf.js">
-    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/preload-helper-p9cH1RK5.js">
-    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-dodkeU9z.js">
-    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-Dt813bjY.js">
-    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-D_lp0nyf.js">
-    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist--kudphYl.js">
-    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-rN1q1aVW.js">
-    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-BXjeLUyM.js">
-    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-CoeM7BzE.js">
+    <script type="module" crossorigin src="/games/go-karts/assets/index-DT8ccNn3.js"></script>
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/chunk-DtRyYLXJ.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/preload-helper-A6UEXwqO.js">
+    <link rel="modulepreload" crossorigin href="/games/go-karts/assets/dist-1GlfZJtb.js">
   </head>
   <body>
     <div id="app-shell"><canvas id="app"></canvas><div id="game-ui"></div></div><div id="forgeax-fatal" role="alert"></div>
     <script>
       (() => {
+        const appendStructuredFailure = (value, prefix, depth, seen, lines) => {
+          if (value === null || typeof value !== 'object' || depth > 3) return;
+          if (seen.has(value)) {
+            lines.push((prefix || 'cause') + ': [circular]');
+            return;
+          }
+          seen.add(value);
+          const record = value;
+          const name = typeof record.name === 'string' && record.name.length > 0
+            ? record.name
+            : undefined;
+          const code = typeof record.code === 'string' && record.code.length > 0
+            ? record.code
+            : undefined;
+          const message = typeof record.message === 'string' && record.message.length > 0
+            ? record.message
+            : undefined;
+          if (name !== undefined || code !== undefined || message !== undefined) {
+            const identity = [name || 'Error', code].filter(Boolean).join(' ');
+            lines.push((prefix ? prefix + ': ' : '') + identity + (message ? ': ' + message : ''));
+          }
+          for (const key of ['expected', 'hint', 'reason']) {
+            if (typeof record[key] === 'string' && record[key].length > 0) {
+              lines.push((prefix ? prefix + '.' : '') + key + ': ' + record[key]);
+            }
+          }
+          for (const key of ['cause', 'detail', 'failure', 'webgpuError', 'wgpuError', 'error']) {
+            const nested = record[key];
+            const nestedPrefix = (prefix ? prefix + '.' : '') + key;
+            if (nested !== null && typeof nested === 'object') {
+              appendStructuredFailure(nested, nestedPrefix, depth + 1, seen, lines);
+            } else if (typeof nested === 'string' && nested.length > 0) {
+              lines.push(nestedPrefix + ': ' + nested);
+            }
+          }
+        };
+        const formatStartupFailure = (reason) => {
+          if (reason !== null && typeof reason === 'object') {
+            const lines = [];
+            appendStructuredFailure(reason, '', 0, new Set(), lines);
+            if (lines.length > 0) return lines.join('\n');
+            try {
+              return JSON.stringify(reason) || 'Unknown structured startup failure';
+            } catch {
+              return 'Unserializable structured startup failure';
+            }
+          }
+          return String(reason ?? 'Unknown startup failure');
+        };
         const show = (reason) => {
           const notice = document.querySelector('#forgeax-fatal');
           if (!(notice instanceof HTMLElement)) return;
-          const message = reason instanceof Error ? reason.message : String(reason ?? 'Unknown startup failure');
+          let message = formatStartupFailure(reason);
+          if (/webgpu|adapter-unavailable|no usable (rendering )?backend/i.test(message)) {
+            message += '\n\nRenderer diagnosis: ForgeaX supports browser WebGPU and a wgpu/WebGL2 fallback. This failure alone does not prove that WebGPU is unsupported; use the structured code, hint, and nested backend causes above.';
+          }
           notice.textContent = 'ForgeaX game failed to start.\n' + message;
           notice.style.display = 'grid';
         };
