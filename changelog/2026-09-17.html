@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026-09-17 · Permission confirmation, conversations, scene editing updates — ForgeaX</title>
+<meta name="description" content="Added a collapsible role-collaboration view for task handoffs, progress, requests needing attention, and navigation to role conversations. Parallel delegations now have their own cards and retain the owning task identity instead of being mixed into the todo list." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="2026-09-17 · Permission confirmation, conversations, scene editing updates — ForgeaX" />
+<meta property="og:description" content="Added a collapsible role-collaboration view for task handoffs, progress, requests needing attention, and navigation to role conversations. Parallel delegations now have their own cards and retain the owning task identity instead of being mixed into the todo list." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://forgeax.github.io/changelog/2026-09-17.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/changelog/2026-09-17.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/changelog/2026-09-17.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/changelog/2026-09-17.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/changelog/2026-09-17.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/changelog/2026-09-17.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/changelog/2026-09-17.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/changelog/2026-09-17.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/changelog/2026-09-17.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/changelog/2026-09-17.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/changelog/2026-09-17.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+
+</head>
+<body class="lang-en forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/" data-nav="/">Home</a>
+      <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
+      <a href="/examples/" data-nav="/examples/">Examples</a>
+      <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
+      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
+      <a href="/about.html" data-nav="/about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-09-17.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-09-17.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-09-17.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-09-17.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-09-17.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-09-17.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-09-17.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-09-17.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/changelog/">← Changelog</a>
+    <div class="meta"><span class="tag brand">Update</span><span>2026-09-17</span></div>
+    <h1>Permission confirmation, conversations, scene editing updates</h1>
+    <p class="standfirst">Added a collapsible role-collaboration view for task handoffs, progress, requests needing attention, and navigation to role conversations. Parallel delegations now have their own cards and retain the owning task identity instead of being mixed into the todo list.</p>
+    <div class="prose"><h3>Permission confirmation, conversations, scene editing updates</h3>
+<ul>
+<li>Added a collapsible role-collaboration view for task handoffs, progress, requests needing attention, and navigation to role conversations.</li>
+<li>Parallel delegations now have their own cards and retain the owning task identity instead of being mixed into the todo list.</li>
+<li>Concurrent questions can be presented together while preserving each request identity so replies reach the correct task.</li>
+<li>Execution notices distinguish connection errors, validation failures, and interruption, and show later activity without hiding the original failure.</li>
+<li>Local file references in conversations offer path copying instead of opening broken browser routes; normal web links remain usable.</li>
+<li>Added an explicit multi-file text-reading tool that retains individual errors and bounds output without silently rewriting single-file reads.</li>
+<li>Escape closes active overlays first and no longer implicitly stops Play, leaving gameplay pause/menu handling to the game.</li>
+<li>Settings invalidation now propagates across same-origin windows, with focus revalidation to refresh cached configuration.</li>
+<li>A failed model-list request preserves the last successful provider-scoped catalog, while an authoritative empty response still clears removed models.</li>
+<li>Feedback delivery status refreshes in the background without hiding existing cards; failed refreshes retain cached reports and polling stops on close.</li>
+<li>Kernel permission changes update only the selected kernel rather than replacing the whole map, reducing unrelated-setting overwrite races.</li>
+<li>Added 3D-library candidate listing, selected-source downloading and validation, and staging before normal editor import.</li>
+<li>Added source-metadata recovery that preserves valid asset identities and rejects escaping paths or invalid existing metadata.</li>
+<li>Play failures now have a dismissible viewport notice with a readable cause and recovery hint instead of only hidden diagnostics.</li>
+<li>Asset-rebuild recovery preserves the last usable snapshot on failure and fences late recovery results after cancellation or session closure.</li>
+<li>Audio verification distinguishes preparation, integration, and real-runtime evidence; passing static checks no longer proves playback.</li>
+<li>Audio-event inspection recognizes direct forwarding wrappers while avoiding shadowed or unrelated same-name playback functions.</li>
+<li>Kernel process adapters support closing input for one-shot calls while retaining piped input for persistent communication.</li>
+<li>Extended application-host interfaces for extension loading, pages, panel contributions, native menus, and context-aware keyboard routing.</li>
+<li>Native context compaction tracks start, completion, failure, and cancellation; manual compaction waits for real completion and deduplicates events.</li>
+<li>History replay avoids repeating processed user inputs and bounds tool-output previews while retaining access to the original session evidence.</li>
+</ul>
+</div>
+    <p style="margin-top:32px"><a class="btn ghost" href="/changelog/">← All updates</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>An AI-native personal game studio — turn ideas into playable games.</p>
+  </div>
+  <nav class="foot-links" aria-label="Site">
+    <a href="/changelog/">Changelog</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/examples/">Examples</a>
+    <a href="/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/about.html">About</a>
+    <a href="/license.html">License</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
+<script src="/assets/site.js?v=cc748cc1"></script>
+</body>
+</html>
