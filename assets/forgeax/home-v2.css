@@ -48,35 +48,6 @@
   --home-gap: clamp(16px, 1.8vw, 24px);
 }
 
-.home-v2 .sec-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-.home-v2 .sec-head h2 {
-  font-size: clamp(26px, 3.4vw, 36px);
-  font-weight: 650;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  max-width: 20ch;
-}
-.home-v2 .sec-head p {
-  color: var(--text-secondary);
-  font-size: 15.5px;
-  max-width: 46ch;
-  margin-top: 8px;
-}
-.home-v2 .sec-head .all {
-  color: var(--brand);
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.home-v2 .sec-head .all:hover { text-decoration: underline; }
-
 /* ── ambient — the first screen carries more brand light than inner pages ──
    Scoped to .home-immersive: docs/games also set .has-immersive and must keep
    the quieter default from linear-light-system.css. */
@@ -1255,13 +1226,16 @@
 .home-v2 .publish-band {
   margin-top: clamp(28px, 3.2vw, 40px);
 }
-.home-v2 .publish-label {
+.home-v2 .publish-label,
+.home-v2 h2.publish-label {
   margin: 0 0 14px;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.02em;
+  line-height: 1.35;
   color: var(--text-tertiary);
   text-align: center;
+  max-width: none;
 }
 .home-v2 .publish-row {
   display: flex;
@@ -1300,6 +1274,10 @@
   height: 48px;
   border-radius: 10px;
 }
+.home-v2 .publish-item__icon img[src*="wechat"] {
+  width: 50px;
+  height: 50px;
+}
 .home-v2 .publish-item__icon img[src*="kubee"] {
   width: 54px;
   height: 54px;
@@ -1327,6 +1305,10 @@
     width: 40px;
     height: 40px;
     border-radius: 8px;
+  }
+  .home-v2 .publish-item__icon img[src*="wechat"] {
+    width: 42px;
+    height: 42px;
   }
   .home-v2 .publish-item__icon img[src*="kubee"] {
     width: 46px;
@@ -1708,11 +1690,6 @@
    and the section heads are fixed px — on a 2320px rail they read as postage
    stamps next to a 78px H1, so they get their own step up here. */
 @media (min-width: 1680px) {
-    .home-v2 .sec-head { margin-bottom: 24px; }
-  .home-v2 .sec-head h2 { font-size: clamp(36px, 2.4vw, 48px); }
-  .home-v2 .sec-head p { font-size: clamp(15.5px, 1vw, 19px); }
-  .home-v2 .sec-head .all { font-size: 16px; }
-
   .home-v2 .fxi__bar { font-size: 13.5px; padding: 14px 18px; }
   .home-v2 .fxi__docHead { padding: 18px 22px 12px; }
   .home-v2 .fxi__docHead h3 { font-size: 18px; }
