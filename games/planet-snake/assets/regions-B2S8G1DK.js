@@ -1,0 +1,1 @@
+import{c as e,u as t}from"./surface-Devi_PG7.js";function n(t){return e(t)}function r(e){if(t(e)<=0)return`ocean`;let r=n(e),i=`iceCap`;for(let e of Object.keys(r))r[e]>r[i]&&(i=e);return i}export{r as argmaxRegionOrOcean,n as regionAt};
