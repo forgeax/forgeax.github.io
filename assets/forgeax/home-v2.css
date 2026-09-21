@@ -5,21 +5,27 @@
    Everything here is scoped to .home-v2 so the rest of the site is untouched.
    ============================================================================= */
 
-/* Content rail. Holds the 1220px measure up to ~1400px viewports, then tracks
-   the viewport so 2K/4K screens are not two thirds empty gutter. Capped at
-   2480px — past that the split hero columns stop reading as one composition. */
+/* Content rail. Prefer 1220px on typical desktops, then track 90vw up to 2480px.
+   The 1220px floor is itself capped by the viewport so mid-width windows never
+   overflow or collapse the lockup. */
 .forgeax-site.home-immersive {
-  --home-rail: min(max(1220px, min(90vw, 2480px)), calc(100% - 28px));
+  --home-gutter: clamp(16px, 3vw, 32px);
+  --home-rail: min(
+    max(min(1220px, 100% - var(--home-gutter) * 2), min(90vw, 2480px)),
+    calc(100% - var(--home-gutter) * 2)
+  );
 }
 
 .forgeax-site main.home-v2 {
   --home-gap: clamp(20px, 2.4vw, 36px);
   --panel-radius: 24px;
   --hairline: var(--glass-border-subtle);
-  max-width: none;
+  max-width: 100%;
+  min-width: 0;
   width: var(--home-rail, min(1220px, calc(100% - 40px)));
   margin-inline: auto;
   padding-inline: 0;
+  overflow-x: clip;
 }
 
 /* The nav rail has to track the hero rail or the logo stops lining up with the
@@ -116,7 +122,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: clamp(12px, 1.6vw, 18px);
+  max-width: 100%;
+  min-width: 0;
   margin: 0 0 clamp(18px, 2.6vh, 30px);
 }
 .home-v2 .hero-mark {
@@ -148,52 +157,43 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: fit-content;
-  max-width: 92vw;
+  width: 100%;
+  max-width: min(60rem, 100%);
+  min-width: 0;
   container-type: inline-size;
   container-name: herolock;
 }
 .forgeax-site .home-v2 .hero--center h1 {
-  /* Short lockup: “AI-native 游戏引擎” reads as one large line. */
-  font-size: clamp(40px, 10.4cqi, 92px);
-  line-height: 1.12;
+  /* Sized by the lockup (100% of the rail), not fit-content: width:0 +
+     min-width:100% against a shrink-wrapped parent collapsed CJK to one
+     glyph per line as soon as the viewport dropped below 1080px. */
+  font-size: clamp(32px, min(10.4cqi, 6.6vw + 8px), 92px);
+  line-height: 1.15;
   letter-spacing: -0.042em;
   font-weight: 750;
-  width: 0;
-  min-width: 100%;
+  width: auto;
+  max-width: 100%;
+  min-width: 0;
   margin: 0;
   text-wrap: balance;
   hyphens: manual;
-  overflow-wrap: normal;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 .forgeax-site .home-v2 .hero--center .sub {
   margin: clamp(12px, 1.6vh, 18px) 0 0;
-  width: 0;
-  min-width: 100%;
-  font-size: clamp(15px, 2.4cqi, 20px);
+  width: auto;
+  max-width: min(36ch, 100%);
+  min-width: 0;
+  font-size: clamp(15px, min(2.4cqi, 2.2vw), 20px);
   line-height: 1.5;
   color: var(--text-secondary);
+  text-wrap: balance;
 }
 
 @media (min-width: 860px) and (min-height: 560px) {
   .forgeax-site .home-v2 .hero--center h1 {
-    font-size: clamp(50px, 11.2cqi, 96px);
-  }
-}
-
-@media (min-width: 1080px) {
-  .home-v2 .hero-lockup {
-    min-width: min(48rem, 92vw);
-  }
-}
-@media (min-width: 1600px) {
-  .home-v2 .hero-lockup {
-    min-width: min(54rem, 92vw);
-  }
-}
-@media (min-width: 1920px) {
-  .home-v2 .hero-lockup {
-    min-width: min(60rem, 90vw);
+    font-size: clamp(40px, min(11.2cqi, 6.8vw + 8px), 96px);
   }
 }
 
@@ -236,8 +236,9 @@
 }
 
 .home-v2 .hero-get {
-  width: max-content;
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
   margin: clamp(26px, 3.4vh, 36px) 0 0;
   display: flex;
   flex-direction: column;
@@ -249,10 +250,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 9px;
-  width: 100%;
+  width: max-content;
   max-width: 100%;
+  min-width: 0;
   position: relative;
   z-index: 4;
 }
@@ -331,8 +333,7 @@
   align-items: center;
   gap: 8px;
   flex: 0 1 auto;
-  width: max-content;
-  max-width: 100%;
+  width: auto;
   min-width: 0;
   min-height: var(--fx-cmd-h, 41px);
   height: auto;
@@ -342,16 +343,17 @@
   background: var(--fx-color-surface-raised);
 }
 .home-v2 .hero-cmd__chip code {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
+  width: auto;
   min-width: 0;
   padding: 6px 8px 6px 9px;
   font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
   font-size: clamp(10px, 0.94vw, 11.5px);
   line-height: 1.45;
   color: var(--text-primary);
-  white-space: normal;
+  white-space: nowrap;
   overflow: hidden;
-  overflow-wrap: break-word;
+  text-overflow: ellipsis;
   text-align: left;
 }
 .home-v2 .hero-cmd__copy {
@@ -417,6 +419,7 @@
   line-height: 1.2;
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .home-v2 .hero-prompt-btn:hover {
   color: var(--text-primary);
@@ -1086,11 +1089,25 @@
 .home-v2 .lp-artifact .name { display: block; font-size: 13.5px; font-weight: 600; overflow-wrap: anywhere; }
 .home-v2 .lp-artifact .meta { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); margin-top: 3px; }
 
-/* ── §2 three product surfaces ──────────────────────────────────────────── */
+/* ── §2 three product surfaces ────────────────────────────────────────────
+   Three cards: 3-up when the rail can hold them, otherwise a single column.
+   Never 2-up — three items in two columns leave a stranded third card, which
+   is what looked broken as soon as the window dropped below ~1080px. The
+   query is on the section's own width (not the viewport) so the home rail
+   gutters are what decide the layout. */
+.home-v2 #sec-proof {
+  container-type: inline-size;
+  container-name: pitch;
+}
 .home-v2 .pitch-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 14px;
+}
+@container pitch (min-width: 800px) {
+  .home-v2 .pitch-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 .home-v2 .pitch-card {
   border: 1px solid var(--hairline);
@@ -1154,8 +1171,11 @@
   padding-top: 18px;
 }
 .home-v2 .pitch-card__get .btn { width: 100%; justify-content: center; }
-@media (max-width: 900px) {
-  .home-v2 .pitch-grid { grid-template-columns: 1fr; }
+
+@container pitch (max-width: 799px) {
+  .home-v2 .pitch-card {
+    padding: 22px 22px 20px;
+  }
 }
 
 /* ── §3 games band — hero-agents-style ticker, at most 3 cards in view */
@@ -1721,55 +1741,67 @@
 
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1079px), (max-height: 760px) {
   .forgeax-site .home-v2 .hero--center {
     min-height: 0;
-    padding: 36px 0 28px;
+    padding: clamp(28px, 5vh, 48px) 0 clamp(36px, 6vh, 72px);
   }
-  .forgeax-site .home-v2 .hero--center h1 {
-    width: 0;
-    min-width: 100%;
-  }
-  .forgeax-site .home-v2 .hero--center .sub {
-    white-space: normal;
-    width: 0;
-    min-width: 100%;
-  }
-  .home-v2 .hero-cmd {
-    --fx-cmd-h: 36px;
-    --fx-cmd-inner: 30px;
-    width: 100%;
-  }
-  .home-v2 .hero-cmd__chip {
-    padding: 3px;
-    gap: 6px;
-    width: 100%;
-  }
-  .home-v2 .hero-scheme__btn {
-    padding: 0 11px;
-    font-size: 10px;
-  }
-  .home-v2 .hero-scheme__menu { left: 0; right: auto; }
   .forgeax-site .home-v2 .hero--center > .hero-agents {
     position: static;
     left: auto;
     right: auto;
     bottom: auto;
-    width: min(22rem, 92vw);
-    margin-top: 22px;
+    width: min(36rem, 100%);
+    margin-top: clamp(24px, 3.6vh, 36px);
   }
+}
+
+@media (max-width: 860px) {
+  .home-v2 .hero-cmd,
+  .home-v2 .hero-cmd--end {
+    --fx-cmd-h: 36px;
+    --fx-cmd-inner: 30px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: max-content;
+    max-width: 100%;
+    gap: 6px;
+  }
+  .home-v2 .hero-cmd__chip {
+    padding: 3px;
+    gap: 6px;
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
+  }
+  .home-v2 .hero-scheme__btn {
+    padding: 0 10px;
+    font-size: 10px;
+  }
+  .home-v2 .hero-scheme__menu { left: 0; right: auto; }
+  .home-v2 .hero-cmd__chip code { font-size: 10px; }
+  .home-v2 .hero-prompt-btn {
+    width: auto;
+    max-width: none;
+    padding: 0 11px;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .forgeax-site .home-v2 .hero--center {
+    padding: 28px 0 24px;
+  }
+  .home-v2 h1 .nowrap { white-space: normal; }
   .home-v2 .hero-agents__row img {
     width: 44px;
     height: 44px;
     border-radius: 12px;
   }
-  .home-v2 .hero-cmd__chip code {
-    font-size: 10px;
-  }
-  .home-v2 .hero-prompt-btn {
-    width: 100%;
-    max-width: 100%;
-    font-size: 10px;
+  .forgeax-site .home-v2 .hero--center > .hero-agents {
+    width: min(22rem, 100%);
   }
   .home-v2 .loop__media { max-width: 860px; }
   .forgeax-site.home-immersive .scroll-cue { display: none; }
@@ -1777,12 +1809,33 @@
 
 @media (max-width: 620px) {
   .forgeax-site main.home-v2 { width: calc(100% - 32px); }
+  .home-v2 .founding {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .home-v2 .founding .more { margin-left: 0; }
   .home-v2 .dl-card {
     width: max-content;
     min-width: min(17.5em, calc(100vw - 48px));
     max-width: calc(100vw - 48px);
   }
+  .home-v2 .endcta h2 { font-size: clamp(22px, 7vw, 30px); }
+}
+
+@media (max-width: 480px) {
+  .home-v2 .hero-brand { gap: 10px; }
+  .home-v2 .hero-mark {
+    width: 48px;
+    padding: 8px;
+    border-radius: 12px;
+  }
+  .home-v2 .hero-wordmark { font-size: clamp(28px, 9vw, 40px); }
+  .home-v2 .hero-cmd,
+  .home-v2 .hero-cmd--end { gap: 5px; }
+  .home-v2 .hero-scheme__btn { padding: 0 8px; }
+  .home-v2 .hero-prompt-btn { padding: 0 9px; }
+  .home-v2 .pitch-card { padding: 22px 18px 20px; }
+  .home-v2 .publish-item { width: 80px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
