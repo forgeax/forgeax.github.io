@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-06-16.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-06-16.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-16.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-16.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-16.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-16.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-16.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-16.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -69,7 +69,7 @@
 <h2>The editor runs fully standalone</h2>
 <p>The editor&#39;s standalone entry was rewritten this day into a truly self-contained shell. It had been working toward &quot;standalone&quot; for a while, but that standalone entry was still entangled with the main chat interface — it had to run inside the main interface, not truly independent. This day it was fully separated and rewritten: it brings its own dockable multi-panel layout, renders and organizes all nine panels the editor needs itself, depending not at all on the main interface&#39;s setup. A one-click bootstrap script was added that, on a fresh machine, automatically prepares the various build artifacts needed to run — including the binary pieces low-level rendering needs — so it&#39;s ready to edit out of the box. The significance is turning the editor from &quot;an embedded part of the main Studio&quot; fully into &quot;a complete application you can open and use on its own.&quot; It&#39;s both a thorough fulfillment of modular design and a paving of the way to later embed the editor in other products or distribute it as a standalone tool.</p>
 <h2>The whole codebase gets its first CI gate</h2>
-<p>This day fitted the whole codebase with its first automated quality gate. A CI (continuous integration) gate means that whenever someone submits a change, the system automatically runs a check — this initial check has three parts: type checking (confirming the interfaces between code parts line up), build (confirming the code actually compiles), and smoke testing (a run confirming basic functionality didn&#39;t break). Only if all three pass is the change allowed into the mainline. The gate, once up, immediately surfaced over twenty type inconsistencies that had been &quot;quietly drifting&quot; in a few sub-projects — they didn&#39;t error in normal use but had already planted hazards; they were cleaned up in batches that same day. The far-reaching significance: from this day, no new change can quietly carry such problems into the mainline — the machine automatically stops them at the door. For a codebase changed at high frequency in parallel by many AI agents, this automated &quot;gatekeeper&quot; is especially crucial: a person can&#39;t watch every change, but a gate can, and it never tires and never plays favorites. Handing the floor of quality to automation to guard is exactly the mark of a project moving from &quot;fast growth&quot; to &quot;sustainable growth.&quot;</p>
+<p>This day fitted the whole codebase with its first automated quality gate. A CI (continuous integration) gate means that whenever someone submits a change, the system automatically runs a check — this initial check has three parts: type checking (confirming the interfaces between code parts line up), build (confirming the code actually compiles), and smoke testing (a run confirming basic functionality didn&#39;t break). Only if all three pass is the change allowed into the mainline. The gate, once up, immediately surfaced over twenty type inconsistencies that had been &quot;quietly drifting&quot; in a few sub-projects — they didn&#39;t error in normal use but had already planted hazards; they were cleaned up in batches that same day. The far-reaching significance: from this day, no new change can quietly carry such problems into the mainline — the machine automatically stops them at the door. For a codebase changed at high frequency in parallel by many AI Agents, this automated &quot;gatekeeper&quot; is especially crucial: a person can&#39;t watch every change, but a gate can, and it never tires and never plays favorites. Handing the floor of quality to automation to guard is exactly the mark of a project moving from &quot;fast growth&quot; to &quot;sustainable growth.&quot;</p>
 <h2>Professional model formats + smooth animation blending</h2>
 <p>The engine added two solid capabilities on characters and assets this day. One: it formally ingests the model formats that professional modeling tools output directly. This format fully carries animation, skeleton and even physics parameters, whereas using it before required converting to another web-common format first, inevitably losing detail; now the engine reads it directly, so assets flowing from professional tools come into the game faithfully. Two: it makes character actions cross-fade smoothly: where switching from &quot;walk&quot; to &quot;run&quot; or &quot;idle&quot; to &quot;attack&quot; used to be a hard instant cut that looked jumpy, now several clips can blend proportionally and transition smoothly, making a character&#39;s motion far more coherent and natural — crucial to the feel of action games. An immediate debug-draw tool was also added, drawing helper lines and bounding boxes right on the picture, what-you-see-is-what-you-get for diagnosis, far more intuitive than guessing from numbers. Together these complete another stretch of the toolchain for &quot;making a character that moves, and moves naturally.&quot;</p>
 <h2>A complete 2D tile-map system lands in the engine</h2>
@@ -87,19 +87,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
       <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
-      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-24.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-24.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-24.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-24.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-24.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-24.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-24.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-24.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+      <a class="nav-cta" href="/fr/#install">Commencer</a>
     </div>
   </div>
 </nav>
@@ -71,7 +71,7 @@
 <h2>L&#39;éditeur boucle la boucle &quot;ouvrir le projet → éditer → enregistrer sur le disque&quot;</h2>
 <p>L&#39;éditeur a complété ce jour une boucle clé qui le transforme de « peut visualiser et régler » en véritablement « utilisable pour la création » : ouvrir un projet, le modifier et enregistrer de manière fiable les modifications sur le disque. Plusieurs choses ont été apportées : la prise en charge d&#39;un flux de création &quot;ouvrir un projet&quot; qui charge correctement les éléments d&#39;entrée et de scène du jeu ; un passage à la « sauvegarde manuelle » — abandonnant la sauvegarde automatique chronométrée précédente pour un marqueur clair « non sauvegardé », afin que vous sachiez si les modifications actuelles sont enregistrées et décidez quand persister ; une chaîne de réécriture depuis les modifications apportées dans l&#39;éditeur aux fichiers disque, avec rechargement à chaud pour que les modifications s&#39;affichent instantanément tout en étant enregistrées en toute sécurité. L&#39;éditeur a également gagné un « panneau de systèmes » (basculant chaque système logique du jeu) et un menu « ajouter un composant » dans l&#39;inspecteur. Ensemble, cela signifie que l&#39;éditeur n&#39;est plus seulement une vue auxiliaire pour un réglage fin, mais un véritable outil qui réalise de manière indépendante la boucle créative complète « ouvrir → modifier → enregistrer ». Le sentiment de sécurité le plus fondamental pour un créateur est « ce que je change est sauvegardé et récupérable » – et cette journée a rendu cette sécurité réelle.</p>
 <h2>Observabilité : un panneau de télémétrie/log + un antigel du chat</h2>
-<p>Cette journée a ajouté « l&#39;observabilité » à l&#39;ensemble du système, vous permettant de voir ce qui se passe réellement à l&#39;intérieur. Un panneau de télémétrie a été ajouté, rassemblant « traces + journaux » dans un seul flux observable : ce qu&#39;un agent fait en ce moment, la durée de chaque étape et ce qui n&#39;a pas fonctionné y sont tous visibles. Le backend a obtenu un récepteur de télémétrie et un itinéraire de reporting correspondants, et le front-end a obtenu un échafaudage de surveillance. Pourquoi construire cela délibérément ? Parce que plus le travail est poussé de manière autonome par l&#39;IA, &quot;que fait-elle réellement, où est-elle lente, où a-t-elle commis une erreur&quot; devient une question qui doit être visible - invisible, on ne peut ni y faire confiance ni l&#39;optimiser. Pendant ce temps, le chat a corrigé un réel risque de gel : lorsque l&#39;IA produit un Markdown très long et formaté, le frontal continue de ré-analyser et de restituer, assez fréquemment pour faire exploser la mémoire et geler toute l&#39;interface ; cette journée l&#39;a limité si longtemps que les réponses restent stables pendant leur diffusion. Un système transparent qui résiste à une utilisation longue et intense est ce qui permet aux utilisateurs de lui confier en toute confiance de grandes tâches à exécuter.</p>
+<p>Cette journée a ajouté « l&#39;observabilité » à l&#39;ensemble du système, vous permettant de voir ce qui se passe réellement à l&#39;intérieur. Un panneau de télémétrie a été ajouté, rassemblant « traces + journaux » dans un seul flux observable : ce qu&#39;un Agent fait en ce moment, la durée de chaque étape et ce qui n&#39;a pas fonctionné y sont tous visibles. Le backend a obtenu un récepteur de télémétrie et un itinéraire de reporting correspondants, et le front-end a obtenu un échafaudage de surveillance. Pourquoi construire cela délibérément ? Parce que plus le travail est poussé de manière autonome par l&#39;IA, &quot;que fait-elle réellement, où est-elle lente, où a-t-elle commis une erreur&quot; devient une question qui doit être visible - invisible, on ne peut ni y faire confiance ni l&#39;optimiser. Pendant ce temps, le chat a corrigé un réel risque de gel : lorsque l&#39;IA produit un Markdown très long et formaté, le frontal continue de ré-analyser et de restituer, assez fréquemment pour faire exploser la mémoire et geler toute l&#39;interface ; cette journée l&#39;a limité si longtemps que les réponses restent stables pendant leur diffusion. Un système transparent qui résiste à une utilisation longue et intense est ce qui permet aux utilisateurs de lui confier en toute confiance de grandes tâches à exécuter.</p>
 <h2>Moteur : handles unifiés + dessin instancié + un protocole de plugin unifié</h2>
 <p>Le moteur a fait plusieurs choses de grande envergure à bas niveau ce jour-là. Un : des « poignées » unificatrices. Un handle est la référence d&#39;un programme à une entité ou à un actif (une poignée pointant vers quelque chose), et aujourd&#39;hui, l&#39;entité et l&#39;actif sont unifiés dans un seul encodage contenant des informations &quot;générationnelles&quot; - une génération étant un cachet de version sur chaque handle, donc lorsque la chose vers laquelle elle pointe a été détruite et son emplacement réutilisé par quelque chose de nouveau, le système reconnaît immédiatement &quot;il s&#39;agit d&#39;une vieille référence obsolète&quot; plutôt que de la prendre pour valide. Cela élimine à la source la classe de bogues extrêmement subtile et difficile à diagnostiquer où vous « faites référence à quelque chose qui a déjà disparu ». Deux : optimisation du dessin instancié – lorsqu&#39;une scène comporte de nombreux objets identiques (une forêt, une foule de soldats), les commandes de dessin étaient émises une par une, et aujourd&#39;hui, les commandes identiques étaient fusionnées dans un seau dessiné en un seul appel, réduisant considérablement les appels de dessin – un changement qualitatif pour les performances de grandes scènes, vérifié par un test de résistance de dizaines de milliers d&#39;objets indépendants. Troisièmement : unifier le protocole du plugin sous une seule forme pour une extension plus cohérente, ainsi qu&#39;un backend propre et sans tête pour les tests. Il s&#39;agit d&#39;un travail caché que les utilisateurs ne voient pas encore et qui détermine la taille de la plate-forme, jusqu&#39;où elle s&#39;étend et le nombre d&#39;erreurs qu&#39;elle commet.</p>
 <h2>Ce que signifie cette journée</h2>
@@ -87,19 +87,17 @@
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/fr/changelog/">Journal des modifications</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
     <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
-    <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

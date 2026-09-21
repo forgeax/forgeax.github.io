@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site has-immersive">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/" class="active">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/docs/" data-l="en">English</a><a class="lang-item active" href="/zh/docs/" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item" href="/es/docs/" data-l="es">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/docs/" data-l="fr">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -129,7 +129,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                 <p>界面就三块：顶栏 + 左侧对话 + 右侧预览/扩展页面。</p>
                 <ul>
                   <li><strong>顶栏(TopBar)</strong> —— <code>⊕</code> 新建菜单、<strong>项目切换器</strong>（在不同游戏间切换，什么是"项目"见 <a href="#ch2">核心概念</a>）、<strong>会话切换器</strong>（回看 / 切换历史对话）。</li>
-                  <li><strong>左侧 · 对话区(ChatPanel)</strong> —— 团队栏（Forge 与各子 agent）、消息流（含子 agent 卡片、Forge 的思考与工具调用），底部是输入框(Composer)，右下角有<strong>后端切换</strong>（见 <a href="#ch8">进阶</a>）。</li>
+                  <li><strong>左侧 · 对话区(ChatPanel)</strong> —— 团队栏（Forge 与各子 Agent）、消息流（含子 Agent 卡片、Forge 的思考与工具调用），底部是输入框(Composer)，右下角有<strong>后端切换</strong>（见 <a href="#ch8">进阶</a>）。</li>
                   <li><strong>右侧 · 主区(MainArea)</strong> —— 在<strong>预览</strong>（游戏实时 iframe）与<strong>扩展页面</strong>（文件编辑 / 设计文档）之间切换，详见 <a href="#ch4">场景与编辑器</a>。</li>
                 </ul>
                 <p>右上角齿轮是<strong>设置(SettingsPanel)</strong>：填 API key、选模型、切 CLI 后端、管理插件。桌面应用首次启动时还有一个引导浮层(FirstRun)直接让你填 key。</p>
@@ -157,19 +157,19 @@ bun fx start          # → http://localhost:18920</code></pre>
               </div>
             </details>
             <details class="doc-item">
-              <summary>Forge 与它的子 agent 团队</summary>
+              <summary>Forge 与它的子 Agent 团队</summary>
               <div class="doc-body">
-                <p><strong>Forge（主 agent）</strong>是唯一直接写游戏代码的角色 —— 它写 <code>games/&lt;slug&gt;/src/main.ts</code>，右侧预览<strong>热重载</strong>，它立刻看到运行结果，据此决定下一步。这个"改 → 看 → 再改"的闭环必须握在能看到预览的 Forge 手里（详见 <a href="#ch3">用对话做游戏</a>）。</p>
-                <p><strong>子 agent</strong>（如 Iori 玩法、Suzu 设计、Kotone 叙事、Iro 美术、Tsumugi 工程）只做规划 / 设计 / 资产 / 文档，<strong>不碰 <code>src/</code></strong> —— 因为子 agent 没有实时预览反馈，写了代码也看不见效果。完整阵容见 <a href="/zh/marketplace/">插件市场</a> 与 <a href="#ch10">第 10 章 · Agent 团队</a>。</p>
-                <p><strong>怎么派活：</strong>Forge 用一次工具调用派发子 agent（形如 <code>subagent(type="iori", task="…")</code>），经服务端的 <code>/api/subagent</code> 流式桥接，把子 agent 的产出实时回流进主对话 —— 你在消息流里看到的就是嵌入的子 agent 卡片。子 agent 产出的设计文档会自动归到扩展页面里它自己的栏目下（见 <a href="#ch4">场景与编辑器</a>）。</p>
+                <p><strong>Forge（主 Agent）</strong>是唯一直接写游戏代码的角色 —— 它写 <code>games/&lt;slug&gt;/src/main.ts</code>，右侧预览<strong>热重载</strong>，它立刻看到运行结果，据此决定下一步。这个"改 → 看 → 再改"的闭环必须握在能看到预览的 Forge 手里（详见 <a href="#ch3">用对话做游戏</a>）。</p>
+                <p><strong>子 Agent</strong>（如 Iori 玩法、Suzu 设计、Kotone 叙事、Iro 美术、Tsumugi 工程）只做规划 / 设计 / 资产 / 文档，<strong>不碰 <code>src/</code></strong> —— 因为子 Agent 没有实时预览反馈，写了代码也看不见效果。完整阵容见 <a href="/zh/marketplace/">插件市场</a> 与 <a href="#ch10">第 10 章 · Agent 团队</a>。</p>
+                <p><strong>怎么派活：</strong>Forge 用一次工具调用派发子 Agent（形如 <code>subagent(type="iori", task="…")</code>），经服务端的 <code>/api/subagent</code> 流式桥接，把子 Agent 的产出实时回流进主对话 —— 你在消息流里看到的就是嵌入的子 Agent 卡片。子 Agent 产出的设计文档会自动归到扩展页面里它自己的栏目下（见 <a href="#ch4">场景与编辑器</a>）。</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>一次对话(session)是怎么回事</summary>
               <div class="doc-body">
-                <p>一个 <strong>session</strong> 就是某个 agent 的对话记忆 —— 一条<strong>只追加</strong>的事件流（每条是一个事件：用户消息 / 助手消息 / 思考 / 工具调用 / 工具结果）。Forge（主）与每个子 agent 各有自己的 session。</p>
-                <p>前端按"是谁发的"把事件切成主对话与子 agent 两路，主对话里的子 agent 那段渲染成嵌入的卡片。所以同一屏里，你既看到 Forge 的主线，也看到它派出去的子 agent 干了什么。</p>
-                <p>在顶栏的会话切换器里可以回看、切换历史会话。<strong>切换会话不会重启任何服务</strong> —— 只是前端换了读取的那个 agent 的事件流而已。</p>
+                <p>一个 <strong>session</strong> 就是某个 Agent 的对话记忆 —— 一条<strong>只追加</strong>的事件流（每条是一个事件：用户消息 / 助手消息 / 思考 / 工具调用 / 工具结果）。Forge（主）与每个子 Agent 各有自己的 session。</p>
+                <p>前端按"是谁发的"把事件切成主对话与子 Agent 两路，主对话里的子 Agent 那段渲染成嵌入的卡片。所以同一屏里，你既看到 Forge 的主线，也看到它派出去的子 Agent 干了什么。</p>
+                <p>在顶栏的会话切换器里可以回看、切换历史会话。<strong>切换会话不会重启任何服务</strong> —— 只是前端换了读取的那个 Agent 的事件流而已。</p>
               </div>
             </details>
           </div>
@@ -191,7 +191,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                 <pre><code>做一个俯视角小游戏：角色在场地里跑，
 按空格发射子弹，四周不断刷新敌人，
 打中消失并记分。</code></pre>
-                <p>想要一步步带着做第一个游戏，见 <a href="/zh/tutorials/getting-started.html">快速开始</a>;不确定能做出什么效果，先看 <a href="/zh/showcase/">案例</a>。设计较重时 Forge 会叫上设计类子 agent（见 <a href="#ch2">核心概念</a>）。</p>
+                <p>想要一步步带着做第一个游戏，见 <a href="/zh/tutorials/getting-started.html">快速开始</a>;不确定能做出什么效果，先看 <a href="/zh/showcase/">案例</a>。设计较重时 Forge 会叫上设计类子 Agent（见 <a href="#ch2">核心概念</a>）。</p>
               </div>
             </details>
             <details class="doc-item">
@@ -199,12 +199,12 @@ bun fx start          # → http://localhost:18920</code></pre>
               <div class="doc-body">
                 <p>你发出需求后，链路是这样的：</p>
                 <ul>
-                  <li><strong>理解 + 规划</strong> —— Forge 先把需求理清，设计较重时派设计 / 玩法子 agent（见 <a href="#ch2">核心概念</a>）。</li>
+                  <li><strong>理解 + 规划</strong> —— Forge 先把需求理清，设计较重时派设计 / 玩法子 Agent（见 <a href="#ch2">核心概念</a>）。</li>
                   <li><strong>写代码</strong> —— Forge <strong>自己</strong>写到 <code>games/&lt;slug&gt;/src/main.ts</code>（及拆分出的模块）。</li>
                   <li><strong>热重载</strong> —— 文件一改，引擎的 vite 侦测到改动，右侧预览就地<strong>热替换模块</strong>，不整页刷新，画面几乎即时变。</li>
                   <li><strong>看结果</strong> —— Forge 通过预览看到运行效果（预览还把游戏里的 <code>console</code> 转发回来），据此决定下一步。</li>
                 </ul>
-                <p>整个过程是透明的：消息流里能看到 Forge 的思考、每次工具调用，以及它派出去的子 agent 卡片。预览 / 扩展页面的切换与控制见 <a href="#ch4">场景与编辑器</a>;热重载机制见 <a href="#ch6">运行与预览</a>。</p>
+                <p>整个过程是透明的：消息流里能看到 Forge 的思考、每次工具调用，以及它派出去的子 Agent 卡片。预览 / 扩展页面的切换与控制见 <a href="#ch4">场景与编辑器</a>;热重载机制见 <a href="#ch6">运行与预览</a>。</p>
               </div>
             </details>
             <details class="doc-item">
@@ -375,10 +375,10 @@ bun fx start          # → http://localhost:18920</code></pre>
               </div>
             </details>
             <details class="doc-item">
-              <summary>定制 agent 人格</summary>
+              <summary>定制 Agent 人格</summary>
               <div class="doc-body">
-                <p>用<strong>人格编辑器</strong>（<code>agent-persona</code>）：从列表里选一个 agent，在文本区改它的人设，<strong>保存即热重载、不用重启</strong>。这样你不动一行代码，就能给某个 agent 换个性格 / 说话风格。</p>
-                <p>谁是主 agent、谁是子 agent、默认人格怎么来，见 <a href="#ch2">核心概念</a> 与 <a href="#ch10">Agent 团队</a>;完整阵容见 <a href="/zh/marketplace/">插件市场</a>。</p>
+                <p>用<strong>人格编辑器</strong>（<code>agent-persona</code>）：从列表里选一个 Agent，在文本区改它的人设，<strong>保存即热重载、不用重启</strong>。这样你不动一行代码，就能给某个 Agent 换个性格 / 说话风格。</p>
+                <p>谁是主 Agent、谁是子 Agent、默认人格怎么来，见 <a href="#ch2">核心概念</a> 与 <a href="#ch10">Agent 团队</a>;完整阵容见 <a href="/zh/marketplace/">插件市场</a>。</p>
               </div>
             </details>
           </div>
@@ -462,13 +462,13 @@ bun fx start          # → http://localhost:18920</code></pre>
               <div class="doc-body">
                 <div class="doc-subs">
                   <details class="doc-sub"><summary><code>code</code> · <strong>代码</strong></summary>
-                    <div class="doc-subbody"><p>在扩展页面里直接<strong>浏览 / 跳转 <code>src/</code> 文件</strong>，和编码 agent <strong>跨对话线程协作</strong> —— 人看哪、AI 改哪，同一个项目无缝接力。</p></div>
+                    <div class="doc-subbody"><p>在扩展页面里直接<strong>浏览 / 跳转 <code>src/</code> 文件</strong>，和编码 Agent <strong>跨对话线程协作</strong> —— 人看哪、AI 改哪，同一个项目无缝接力。</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>observatory</code> · <strong>轨迹观察台</strong></summary>
-                    <div class="doc-subbody"><p>像<strong>黑匣子</strong>一样，实时 + 离线回放每个 agent / 子 agent 的回合、工具调用，以及系统提示词的模块切片。出问题时能<strong>精确定位是哪一步、哪句提示词</strong>的锅，也帮你管理上下文 / 技能 / 护栏 / 缓存。会话与回放的概念见 <a href="#ch2">核心概念</a>。</p></div>
+                    <div class="doc-subbody"><p>像<strong>黑匣子</strong>一样，实时 + 离线回放每个 Agent / 子 Agent 的回合、工具调用，以及系统提示词的模块切片。出问题时能<strong>精确定位是哪一步、哪句提示词</strong>的锅，也帮你管理上下文 / 技能 / 护栏 / 缓存。会话与回放的概念见 <a href="#ch2">核心概念</a>。</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>agent-persona</code> · <strong>人格编辑器</strong></summary>
-                    <div class="doc-subbody"><p>从列表选一个 agent，在文本区改它的人设，<strong>保存即热重载、不用重启</strong>。不动一行代码就能给某个 agent 换性格 / 说话风格。Agent 阵容见 <a href="#ch10">Agent 团队</a>，操作见 <a href="#ch8">进阶</a>。</p></div>
+                    <div class="doc-subbody"><p>从列表选一个 Agent，在文本区改它的人设，<strong>保存即热重载、不用重启</strong>。不动一行代码就能给某个 Agent 换性格 / 说话风格。Agent 阵容见 <a href="#ch10">Agent 团队</a>，操作见 <a href="#ch8">进阶</a>。</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>plugin-author</code> · <strong>插件作者</strong></summary>
                     <div class="doc-subbody"><p>让<strong>不会编程的人</strong>也能做出自己的扩展页面插件。当下的路子是"复制现成的 + 改 + 录操作"，更完整的 in-app 可视化编辑器（文件树 + 代码编辑、保存自动重载）正在路上。做插件的整体说明见 <a href="#ch8">进阶 · 写自己的扩展页面插件</a>。</p></div>
@@ -491,7 +491,7 @@ bun fx start          # → http://localhost:18920</code></pre>
               <div class="doc-body">
                 <p><strong>Arin · 制作人</strong> —— 全能制作人，把策划 / 程序 / 美术 / 音效统筹到一起，对整款游戏负责。</p>
                 <p><strong>Reia · 影游导演</strong> —— 互动影游 (FMV) 导演，拼提示词、定 QTE 节拍、织分支与多结局，驱动 reel「影游制作页」把一句 idea 变成可点按、可试玩的悬念片。</p>
-                <p>这些都是<strong>命名 agent</strong>，由主创 Forge 按需派发（主 / 子 agent 的关系见 <a href="#ch2">核心概念</a>）;完整阵容见 <a href="/zh/marketplace/">插件市场</a>。</p>
+                <p>这些都是<strong>命名 Agent</strong>，由主创 Forge 按需派发（主 / 子 Agent 的关系见 <a href="#ch2">核心概念</a>）;完整阵容见 <a href="/zh/marketplace/">插件市场</a>。</p>
               </div>
             </details>
             <details class="doc-item">
@@ -531,14 +531,14 @@ bun fx start          # → http://localhost:18920</code></pre>
                     <div class="doc-subbody"><p>一组<strong>编码力相当、性格各异</strong>的可选角色 —— 有的沉稳内敛，有的机敏俏皮，有的细致缜密。它们能力相同，区别只在与你协作时的相处风格。性格可在<strong>人格编辑器</strong>里随时调整（见 <a href="#ch8">进阶</a>）;完整阵容见 <a href="/zh/marketplace/">插件市场</a>。</p></div>
                   </details>
                 </div>
-                <p>此外还有一批<strong>美术 / 资产专精 agent</strong>（2D 角色 / 动画、3D 低多边形 / 特效、影游导演等），各自对接相应的创作扩展页面（见 <a href="#ch9">创作工具</a>）。</p>
+                <p>此外还有一批<strong>美术 / 资产专精 Agent</strong>（2D 角色 / 动画、3D 低多边形 / 特效、影游导演等），各自对接相应的创作扩展页面（见 <a href="#ch9">创作工具</a>）。</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>可换的默认人格</summary>
               <div class="doc-body">
                 <p>每个 CLI 后端自带一个开箱人格：<strong>Claude</strong>（Claude Code）、<strong>Codex</strong>、<strong>Cursor</strong>、<strong>ForgeaX</strong>（自研 forgeax-cli）。<strong>切换后端就换默认人格，无需先写人设</strong> —— 想用哪家的智能内核，就有哪家的默认 persona。</p>
-                <p>怎么切后端、怎么改人格见 <a href="#ch8">进阶</a>;完整 agent 阵容与可装载人格见 <a href="/zh/marketplace/">插件市场</a>。</p>
+                <p>怎么切后端、怎么改人格见 <a href="#ch8">进阶</a>;完整 Agent 阵容与可装载人格见 <a href="/zh/marketplace/">插件市场</a>。</p>
               </div>
             </details>
           </div>
@@ -775,19 +775,17 @@ bun fx start          # → http://localhost:18920</code></pre>
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

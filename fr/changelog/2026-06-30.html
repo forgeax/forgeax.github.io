@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
       <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
-      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-30.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-30.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-30.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-30.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-30.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-30.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-30.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-30.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+      <a class="nav-cta" href="/fr/#install">Commencer</a>
     </div>
   </div>
 </nav>
@@ -65,7 +65,7 @@
     <div class="prose"><h2>R4 : diviser le frontend en modules véritablement indépendants</h2>
 <p>L&#39;interface du studio était devenue suffisamment grande pour que ses quatre packages les plus lourds – chat, workbench, paramètres, tableau de bord – soient tous intégrés dans le dépôt principal, compilés ensemble et publiés ensemble. Pour les développeurs, changer une ligne dans le chat signifiait attendre que l&#39;ensemble du frontend soit reconstruit ; sur le plan architectural, les dépendances enchevêtrées entre les quatre blocs devenaient de plus en plus difficiles à démêler. Le plan R4 d&#39;aujourd&#39;hui a enregistré chacun de ces quatre packages en tant que sous-modules indépendants, chacun avec son propre référentiel, sa propre version, son propre CI. L&#39;avantage a été immédiat : chaque module peut itérer et tester indépendamment, et toucher le chat ne force pas une reconstruction de l&#39;atelier. L&#39;inconvénient est également clair : plus de sous-modules à gérer. Mais pour qu&#39;un projet passe du &quot;prototype rapide&quot; au &quot;maintenable à long terme&quot;, cette étape devait arriver tôt ou tard, et le plus tôt sera le mieux.</p>
 <h2>La fermeture des dépendances CLI devient également autonome</h2>
-<p>Pas seulement le front-end. Ce jour-là, nous avons également extrait la fermeture des dépendances de la CLI (contrats, agent-hôte, plateforme-io, noyau) du référentiel principal vers des référentiels de sous-modules autonomes. Auparavant, ils vivaient comme des sous-répertoires du dépôt principal, partageant un « node_modules » et un pipeline de construction ; mais la CLI est fondamentalement un produit indépendant qui doit rester compatible entre les différentes versions de Studio, et son intégration dans le monorepo limite sa flexibilité. Une fois extraite, la CLI peut versionner et tester indépendamment, et le miroir OSS n&#39;a besoin que de synchroniser ces référentiels pour se construire complètement - avant cela, les dépendances manquantes provoquaient l&#39;échec de l&#39;installation du bun du miroir public.</p>
+<p>Pas seulement le front-end. Ce jour-là, nous avons également extrait la fermeture des dépendances de la CLI (contrats, Agent-hôte, plateforme-io, noyau) du référentiel principal vers des référentiels de sous-modules autonomes. Auparavant, ils vivaient comme des sous-répertoires du dépôt principal, partageant un « node_modules » et un pipeline de construction ; mais la CLI est fondamentalement un produit indépendant qui doit rester compatible entre les différentes versions de Studio, et son intégration dans le monorepo limite sa flexibilité. Une fois extraite, la CLI peut versionner et tester indépendamment, et le miroir OSS n&#39;a besoin que de synchroniser ces référentiels pour se construire complètement - avant cela, les dépendances manquantes provoquaient l&#39;échec de l&#39;installation du bun du miroir public.</p>
 <h2>Le miroir OSS : du « navigable » au « constructible »</h2>
 <p>Cette journée a donné au miroir public OSS (ForgeaX-Games/forgeax-studio) un durcissement en profondeur. Le plus gros changement : le transfert de code vers le dépôt public ne va plus directement vers le référentiel principal : il doit passer par un flux PR + fusion automatique, ce qui signifie que chaque synchronisation reçoit une vérification CI, une piste de révision et un point de restauration. Dans le même temps, le dépôt public a obtenu pour la première fois un véritable build CI : vérification de type, &quot;bun fx setup&quot;, tests de fumée, exécution de bout en bout pour garantir que le code open source que les utilisateurs reçoivent est réellement compilé. Une faille de sécurité a également été comblée : les administrateurs pouvaient auparavant contourner la protection des succursales et effectuer des opérations directement ; maintenant <code>enforce_admins=true</code> ferme ce chemin. La fuite MIRROR_TOKEN a également été corrigée et une porte de fonctionnement à sec du miroir PR a été ajoutée. En une phrase : le miroir est passé de &quot;code que vous pouvez parcourir mais ne peut pas créer&quot; à &quot;CI garantit qu&#39;il est construit, le processus garantit qu&#39;il est traçable&quot;.</p>
 <h2>Refonte de la fenêtre 2 × 2 : exécuter × afficher les modes orthogonaux</h2>
@@ -85,19 +85,17 @@
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/fr/changelog/">Journal des modifications</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
     <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
-    <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

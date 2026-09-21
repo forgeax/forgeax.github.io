@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>2026-06-13 · Multiple levels per project + a shadow-system upgrade — ForgeaX</title>
-<meta name="description" content="One project can hold multiple levels with a launcher; the engine's shadows step up to cascaded and point-light shadows with HDR and bloom; a sample becomes a two-level campaign showcasing polished particles and effects; leaks are hunted across engine GPU resources and chat; and agent reliability is hardened." />
+<meta name="description" content="One project can hold multiple levels with a launcher; the engine's shadows step up to cascaded and point-light shadows with HDR and bloom; a sample becomes a two-level campaign showcasing polished particles and effects; leaks are hunted across engine GPU resources and chat; and Agent reliability is hardened." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="2026-06-13 · Multiple levels per project + a shadow-system upgrade — ForgeaX" />
-<meta property="og:description" content="One project can hold multiple levels with a launcher; the engine's shadows step up to cascaded and point-light shadows with HDR and bloom; a sample becomes a two-level campaign showcasing polished particles and effects; leaks are hunted across engine GPU resources and chat; and agent reliability is hardened." />
+<meta property="og:description" content="One project can hold multiple levels with a launcher; the engine's shadows step up to cascaded and point-light shadows with HDR and bloom; a sample becomes a two-level campaign showcasing polished particles and effects; leaks are hunted across engine GPU resources and chat; and Agent reliability is hardened." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/changelog/2026-06-13.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-06-13.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-06-13.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-13.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-13.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-13.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-13.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-13.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-13.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -61,9 +61,9 @@
     <a class="back" href="/changelog/">← Changelog</a>
     <div class="meta"><span class="tag brand">Update</span><span>2026-06-13</span></div>
     <h1>Multiple levels per project + a shadow-system upgrade</h1>
-    <p class="standfirst">This day one project can hold multiple levels, with a level launcher; the engine&#39;s shadow system stepped up at once — cascaded shadows for large scenes, point-light shadows, and complete HDR and bloom; the bullet-survival sample became a two-level &quot;day pasture + night graveyard&quot; campaign while its whole particle-effects chain was straightened out; leaks were hunted on both the engine and the chat side; and agent reliability got a hardening pass.</p>
+    <p class="standfirst">This day one project can hold multiple levels, with a level launcher; the engine&#39;s shadow system stepped up at once — cascaded shadows for large scenes, point-light shadows, and complete HDR and bloom; the bullet-survival sample became a two-level &quot;day pasture + night graveyard&quot; campaign while its whole particle-effects chain was straightened out; leaks were hunted on both the engine and the chat side; and Agent reliability got a hardening pass.</p>
     <div class="prose"><h2>Growing bigger while tightening up</h2>
-<p>The day&#39;s work splits into two forces: &quot;growing bigger&quot; and &quot;tightening up.&quot; On the growing side: a project can hold multiple levels, lifting the unit of creation from &quot;one scene&quot; to &quot;a whole set of a game&quot;; the engine&#39;s shadows, HDR and bloom stepped up at once, meaning visuals can push another big step toward realism and texture; and the bullet-survival sample became a complete two-level campaign, demonstrating these new capabilities on the spot. On the tightening side: both the engine and the chat hunted the invisible enemy of &quot;resource leaks,&quot; plugging spot by spot the video memory and memory that weren&#39;t returned after use; agent reliability also got a focused hardening so it can retry on error and withstand very long context. A platform growing fast must tighten its foundation in step, or the bigger the scale, the more the holes. This day happened to do both at once.</p>
+<p>The day&#39;s work splits into two forces: &quot;growing bigger&quot; and &quot;tightening up.&quot; On the growing side: a project can hold multiple levels, lifting the unit of creation from &quot;one scene&quot; to &quot;a whole set of a game&quot;; the engine&#39;s shadows, HDR and bloom stepped up at once, meaning visuals can push another big step toward realism and texture; and the bullet-survival sample became a complete two-level campaign, demonstrating these new capabilities on the spot. On the tightening side: both the engine and the chat hunted the invisible enemy of &quot;resource leaks,&quot; plugging spot by spot the video memory and memory that weren&#39;t returned after use; Agent reliability also got a focused hardening so it can retry on error and withstand very long context. A platform growing fast must tighten its foundation in step, or the bigger the scale, the more the holes. This day happened to do both at once.</p>
 <h2>Multiple levels in one project + a level launcher</h2>
 <p>This day the editor gained &quot;multi-scene games,&quot; a key change that enlarges the unit of creation. Previously a project basically mapped to one scene, making a complete game with multiple branching levels awkward; now multiple level files can coexist in one project, and the asset panel organizes &quot;sub-assets&quot; by name rather than stacking the same scene into dizzying duplicate rows. A level launcher panel was added so you can pick which level to enter for editing or play right in Studio; edit and play stay paired in sync, so whatever you change in the editor shows up faithfully on switching to play. To make this capability concrete, the bullet-survival sample became a real multi-level campaign — one level a daytime pasture, one a night graveyard, two entirely different moods — a hands-on demonstration of &quot;build a whole set of levels in one project.&quot; From this day, building a complete game with a beginning-middle-end and multiple levels is finally structurally natural, no longer needing a separate project per level manually stitched together.</p>
 <h2>A shadow upgrade: crisp near, smooth far, point lights cast too</h2>
@@ -73,9 +73,9 @@
 <h2>Hunting resource leaks on both ends</h2>
 <p>This day had a hidden thread running through front and back: hunting &quot;resource leaks.&quot; A leak is resources used but not returned in time, piling up until they drag the whole system down — inconspicuous in normal use, erupting only under long, large-scale use, and thus especially insidious. On the engine side, complete lifecycle management for GPU resources was added: every video-memory buffer and texture can be explicitly destroyed and reclaimed after use, and the renderer as a whole can release cleanly — previously this video memory might quietly leak, filling up over a long run. On the chat side, several front-end state memory leaks were cleared at once: when a session is closed, the various caches, listeners and temporary records tied to it are correctly evicted rather than lingering in memory and piling up. The two seem unrelated — one in low-level rendering, one in the front-end interface — but the core is the same principle: whoever requests a resource is responsible for returning it after use. Enforcing this principle in every corner of the system is the fundamental guarantee that software can run stably for a long time at large scale.</p>
 <h2>Agent-reliability hardening: it can retry on error and withstand long context</h2>
-<p>This day also gave agent reliability a targeted hardening pass, focusing on the classes of problems that most affect &quot;whether the AI is dependable at work.&quot; First, retry of large-model calls was added inside the agent&#39;s work loop: a model call occasionally fails due to network jitter and the like, and where one failure used to break the whole task, it now retries itself within the loop, absorbing such sporadic faults. Second, when the conversation context grows too long and nears the model&#39;s capacity, the system proactively and reactively compresses the history, avoiding hitting the limit and crashing. Third, the callback handling when delegating a task to a sub-agent was hardened, along with reporting of event backlog. These changes came with a dedicated verification means — a scriptable &quot;fake model server&quot; simulating various abnormal situations, validating each hardening in a real running stack. A platform that has the AI work autonomously for you over long stretches most fears it quietly stalling or crashing midway on some sporadic problem; reinforcing these weak links one by one is exactly the confidence that lets people dare to &quot;let it run.&quot;</p>
+<p>This day also gave Agent reliability a targeted hardening pass, focusing on the classes of problems that most affect &quot;whether the AI is dependable at work.&quot; First, retry of large-model calls was added inside the Agent&#39;s work loop: a model call occasionally fails due to network jitter and the like, and where one failure used to break the whole task, it now retries itself within the loop, absorbing such sporadic faults. Second, when the conversation context grows too long and nears the model&#39;s capacity, the system proactively and reactively compresses the history, avoiding hitting the limit and crashing. Third, the callback handling when delegating a task to a sub-Agent was hardened, along with reporting of event backlog. These changes came with a dedicated verification means — a scriptable &quot;fake model server&quot; simulating various abnormal situations, validating each hardening in a real running stack. A platform that has the AI work autonomously for you over long stretches most fears it quietly stalling or crashing midway on some sporadic problem; reinforcing these weak links one by one is exactly the confidence that lets people dare to &quot;let it run.&quot;</p>
 <h2>What this day means</h2>
-<p>This day placed &quot;ambition&quot; and &quot;assurance&quot; side by side. Multi-level projects and the shadow upgrade represent ambition — letting the platform carry more complete, grander, better-looking works, raising the creative ceiling once more; while the leak hunt and agent-reliability hardening represent assurance — letting these bigger ambitions rest steadily on a foundation that doesn&#39;t leak, doesn&#39;t crash, and self-heals on error. A product chasing ambition without assurance collapses the harder the bigger it grows; one guarding assurance without daring ambition stays in place forever. A truly mature engineering rhythm has the two pace each other as they did this day: every big step forward in capability is matched by tamping down another layer of foundation. The sample made into a complete two-level campaign with refined visuals is the best footnote to this rhythm — it both shows how good it can get and, by running itself, proves whether all of it is truly stable.</p>
+<p>This day placed &quot;ambition&quot; and &quot;assurance&quot; side by side. Multi-level projects and the shadow upgrade represent ambition — letting the platform carry more complete, grander, better-looking works, raising the creative ceiling once more; while the leak hunt and Agent-reliability hardening represent assurance — letting these bigger ambitions rest steadily on a foundation that doesn&#39;t leak, doesn&#39;t crash, and self-heals on error. A product chasing ambition without assurance collapses the harder the bigger it grows; one guarding assurance without daring ambition stays in place forever. A truly mature engineering rhythm has the two pace each other as they did this day: every big step forward in capability is matched by tamping down another layer of foundation. The sample made into a complete two-level campaign with refined visuals is the best footnote to this rhythm — it both shows how good it can get and, by running itself, proves whether all of it is truly stable.</p>
 </div>
     <p style="margin-top:32px"><a class="btn ghost" href="/changelog/">← All updates</a></p>
   </article>
@@ -87,19 +87,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

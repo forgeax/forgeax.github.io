@@ -52,11 +52,7 @@
 .forgeax-site .ambient__vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 130% 90% at 50% 0%,
-    transparent 48%,
-    color-mix(in srgb, #000 55%, transparent) 100%
-  );
+  background: none;
 }
 
 @keyframes ambient-drift-a {
@@ -71,11 +67,11 @@
 .forgeax-site:has(.ambient) > .glow { display: none; }
 
 .forgeax-site .nav {
-  background: color-mix(in srgb, var(--color-background-canvas) 16%, transparent) !important;
+  background: color-mix(in srgb, var(--fx-color-surface-canvas) 82%, transparent) !important;
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  border-bottom-color: var(--glass-border-subtle);
-  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  border-bottom-color: var(--fx-color-border-subtle);
+  box-shadow: none;
   transition:
     background calc(var(--site-dur-silk) * 1.1) var(--site-ease-silk),
     box-shadow calc(var(--site-dur-silk) * 1.1) var(--site-ease-silk),
@@ -83,10 +79,8 @@
     backdrop-filter var(--site-dur-silk) var(--site-ease-silk);
 }
 .forgeax-site .nav.is-scrolled {
-  background: color-mix(in srgb, var(--color-background-canvas) 26%, transparent) !important;
-  box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 color-mix(in srgb, #fff 11%, transparent);
+  background: color-mix(in srgb, var(--fx-color-surface-canvas) 92%, transparent) !important;
+  box-shadow: var(--fx-shadow-subtle);
 }
 
 .forgeax-site .hero {
@@ -101,7 +95,7 @@
   height: 132px;
   cursor: pointer;
   user-select: none;
-  filter: drop-shadow(0 0 48px color-mix(in srgb, var(--primary) 28%, transparent));
+  filter: drop-shadow(0 8px 18px color-mix(in srgb, var(--fx-ref-color-neutral-950) 12%, transparent));
   transition:
     transform var(--site-dur-silk) var(--site-ease-silk),
     filter var(--site-dur-silk) var(--site-ease-silk);
@@ -109,15 +103,15 @@
 .forgeax-site.has-immersive .hero-logo {
   position: relative;
   z-index: 2;
-  filter: drop-shadow(0 0 40px rgba(var(--theme-cool-a), 0.22));
+  filter: drop-shadow(0 8px 16px color-mix(in srgb, var(--fx-ref-color-neutral-950) 10%, transparent));
 }
 .forgeax-site.has-immersive .hero-logo:hover {
   transform: translate3d(0, -1px, 0) scale(1.01);
-  filter: drop-shadow(0 0 52px rgba(var(--theme-cool-a), 0.32));
+  filter: drop-shadow(0 10px 20px color-mix(in srgb, var(--fx-ref-color-neutral-950) 14%, transparent));
 }
 .forgeax-site:not(.has-immersive) .hero-logo:hover {
   transform: translate3d(0, -2px, 0) scale(1.015);
-  filter: drop-shadow(0 0 60px color-mix(in srgb, var(--primary) 38%, transparent));
+  filter: drop-shadow(0 10px 22px color-mix(in srgb, var(--fx-ref-color-neutral-950) 16%, transparent));
 }
 .forgeax-site .hero .badge {
   display: inline-flex;
@@ -149,7 +143,7 @@
   font-weight: 800;
 }
 .forgeax-site .hero h1 .grad {
-  background: linear-gradient(100deg, var(--color-brand-primary-light) 0%, var(--primary) 42%, var(--teal) 100%);
+  background: linear-gradient(100deg, var(--fx-color-text-primary) 0%, var(--fx-color-brand-text) 72%, var(--fx-color-brand-accent) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

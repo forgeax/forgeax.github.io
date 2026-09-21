@@ -2,9 +2,9 @@
 
 .forgeax-site.has-immersive,
 .forgeax-site[data-forge-page] {
-  --particle-a: 212, 255, 72;
-  --particle-b: 72, 255, 207;
-  --particle-veil: 106, 127, 36;
+  --particle-a: 197, 221, 120;
+  --particle-b: 80, 99, 31;
+  --particle-veil: 239, 245, 219;
 }
 
 .forgeax-site[data-forge-page]::after,
@@ -36,16 +36,14 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.26;
-  mix-blend-mode: soft-light;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
   filter: saturate(0.85) blur(0.4px);
   transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .forgeax-site .ambient--lite .ambient__base {
-  background:
-    radial-gradient(ellipse 100% 55% at 50% -8%, color-mix(in srgb, var(--primary) 4%, #080808), #050505 58%),
-    linear-gradient(180deg, #070707 0%, #030303 100%);
+  background: var(--fx-color-surface-canvas);
 }
 
 .forgeax-site[data-forge-page="studio"]::after,

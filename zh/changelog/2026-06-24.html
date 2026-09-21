@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-24.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-24.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-24.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-24.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-24.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-24.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-24.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-24.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -71,7 +71,7 @@
 <h2>编辑器补上&quot;打开工程 → 改 → 存回磁盘&quot;的完整闭环</h2>
 <p>编辑器这天补上了一个让它从&quot;能看能调&quot;真正变成&quot;能用来创作&quot;的关键闭环:打开工程、修改、再把改动可靠地存回磁盘。具体落地了几件事:支持&quot;打开一个工程&quot;的创作流程,把游戏的入口和场景资产正确地装载进来;改成了&quot;手动保存&quot;——去掉了之前那种自动定时保存,改用一个清晰的&quot;未保存&quot;标记,让你明确知道当前改动存没存、由你决定什么时候落盘;打通了从编辑器内的改动到磁盘文件的回写链路,并配了热重载,改完能即时看到效果又能稳妥保存。此外还给编辑器加了&quot;系统面板&quot;(可以开关游戏里各个逻辑系统)和检视器里的&quot;添加组件&quot;菜单。这些拼在一起,意味着编辑器不再只是一个用来微调的辅助视图,而是一个能独立承载&quot;打开 → 编辑 → 保存&quot;完整创作循环的真正工具。对创作者来说,最根本的安全感就是&quot;我改的东西存得住、找得回&quot;——这天把这份安全感坐实了。</p>
 <h2>可观测性:遥测与日志面板 + 聊天防卡死</h2>
-<p>这天给整个系统增添了&quot;可观测性&quot;——让你能看清它内部到底在发生什么。新增了一个遥测面板,把&quot;追踪 + 日志&quot;两类信息汇成一条可观测的信息流:某个 agent 此刻在干什么、每一步花了多长时间、中间出了什么状况,都能在这个面板里看到。后端配了对应的遥测汇集与上报通路,前端也加了一层监控脚手架。为什么要专门做这个?因为当越来越多的工作由 AI 自主推进时,&quot;它到底在干什么、慢在哪、错在哪&quot;就成了一个必须能被看见的问题——看不见,就既无法信任,也无法优化。与此同时,聊天这边修了一个真实的卡死风险:当 AI 输出超长的、带格式的 Markdown 内容时,前端会不停地重新解析渲染,频繁到一定程度就会把内存吃爆、整个界面卡死;这天给它加了节流,让长回答能边输出边稳定显示。一个透明、且扛得住长时间高强度使用的系统,才能让人放心地把大任务交给它跑。</p>
+<p>这天给整个系统增添了&quot;可观测性&quot;——让你能看清它内部到底在发生什么。新增了一个遥测面板,把&quot;追踪 + 日志&quot;两类信息汇成一条可观测的信息流:某个 Agent 此刻在干什么、每一步花了多长时间、中间出了什么状况,都能在这个面板里看到。后端配了对应的遥测汇集与上报通路,前端也加了一层监控脚手架。为什么要专门做这个?因为当越来越多的工作由 AI 自主推进时,&quot;它到底在干什么、慢在哪、错在哪&quot;就成了一个必须能被看见的问题——看不见,就既无法信任,也无法优化。与此同时,聊天这边修了一个真实的卡死风险:当 AI 输出超长的、带格式的 Markdown 内容时,前端会不停地重新解析渲染,频繁到一定程度就会把内存吃爆、整个界面卡死;这天给它加了节流,让长回答能边输出边稳定显示。一个透明、且扛得住长时间高强度使用的系统,才能让人放心地把大任务交给它跑。</p>
 <h2>引擎:统一句柄 + 实例化绘制 + 插件协议归一</h2>
 <p>引擎这天在底层做了几件影响深远的事。其一是把&quot;句柄&quot;统一:句柄是程序里对实体和资产的引用(相当于一个指向某个东西的把手),这天把实体和资产的句柄统一成同一套带&quot;代际&quot;信息的编码——所谓代际,就是给每个句柄盖一个版本戳,这样当它指向的东西已经被销毁、那个位置又被新东西占用时,系统能立刻识别出&quot;这是个过期的旧引用&quot;,而不是误以为还有效。这从源头上消除了&quot;引用到一个已经没了的东西&quot;这类极其隐蔽、极难排查的 bug。其二是实例化绘制优化:当场景里有大量长得一模一样的物体(一片树、一群兵)时,以前是逐个发出绘制指令,这天改成把同类的合并成一桶、一次画出来,绘制调用大幅减少——这对大规模场景的性能是质变,并用上万个独立物体的压力测试验证了效果。其三是把插件协议统一成一种写法,让扩展更一致;还提供了一个无界面的纯净后端用于测试。这些都是用户看不见、却决定平台&quot;能跑多大、扩多远、错多少&quot;的底层功夫。</p>
 <h2>这一天意味着什么</h2>
@@ -87,19 +87,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

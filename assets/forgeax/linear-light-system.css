@@ -33,8 +33,8 @@
   --light-fx: 0.5;
   --light-fy: 0.42;
   --light-morph: 0;
-  --light-beam-opacity: 0.22;
-  --light-shadow-depth: 0.3;
+  --light-beam-opacity: 0.08;
+  --light-shadow-depth: 0.08;
   --motion-duration-beam: 24s;
   --halo-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --halo-fade-dur: 0.38s;
@@ -71,8 +71,8 @@
   will-change: transform, opacity;
   background: radial-gradient(
     ellipse 100% 85% at 50% 45%,
-    rgba(var(--theme-cool-a), 0.28) 0%,
-    rgba(var(--theme-cool-b), 0.12) 42%,
+    rgba(var(--theme-cool-a), 0.18) 0%,
+    rgba(var(--theme-cool-c), 0.12) 42%,
     transparent 72%
   );
   transition: opacity 2.4s var(--halo-ease);
@@ -94,8 +94,8 @@
   transform: translate(calc(var(--light-fx) * 100vw - 36vw), calc(var(--light-fy) * 100vh - 48vh));
   background: radial-gradient(
     ellipse 100% 85% at 50% 100%,
-    rgba(var(--theme-cool-a), 0.5) 0%,
-    rgba(var(--theme-cool-a), 0.1) 44%,
+    rgba(var(--theme-cool-a), 0.22) 0%,
+    rgba(var(--theme-cool-a), 0.06) 44%,
     transparent 72%
   );
   animation: beam-breathe var(--motion-duration-beam) ease-in-out infinite alternate;
@@ -106,8 +106,8 @@
   transform: translate(calc(var(--light-fx) * 100vw - 22vw), calc(var(--light-fy) * 100vh + 8vh));
   background: radial-gradient(
     ellipse 100% 78% at 50% 0%,
-    rgba(var(--theme-cool-b), 0.42) 0%,
-    rgba(var(--theme-cool-c), 0.08) 46%,
+    rgba(var(--theme-cool-a), 0.14) 0%,
+    rgba(var(--theme-cool-c), 0.2) 46%,
     transparent 70%
   );
   animation: beam-breathe-b calc(var(--motion-duration-beam) * 1.12) ease-in-out infinite alternate;
@@ -324,7 +324,8 @@
 }
 
 .forgeax-site .forge-particles {
-  opacity: 0.44;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -5,10 +5,10 @@
 .about-evolution {
   --strength: 0;
   --stage-progress: 0;
-  --evolution-ink: #171816;
-  --evolution-muted: #656963;
-  --evolution-accent: #b52b24;
-  --evolution-thumb: #e8e9e5;
+  --evolution-ink: var(--fx-color-text-primary, #1A1C1F);
+  --evolution-muted: var(--fx-color-text-secondary, #626366);
+  --evolution-accent: var(--fx-color-brand-text, #50631F);
+  --evolution-thumb: var(--fx-color-surface-canvas, #FFFFFF);
   --rail-inset: 13px;
   isolation: isolate;
   position: relative;
@@ -20,7 +20,7 @@
   color: var(--evolution-ink);
   background:
     radial-gradient(circle at 28% 44%, rgba(255,255,255,.72) 0 17%, transparent 53%),
-    #e8e9e5;
+    var(--fx-color-surface-canvas, #FFFFFF);
   transition: color .38s ease;
 }
 
@@ -53,13 +53,13 @@
 .about-evolution[data-stage="3"],
 .about-evolution[data-stage="4"],
 .about-evolution[data-stage="5"] {
-  --evolution-ink: #f4f1e8;
-  --evolution-muted: #b8b4a9;
-  --evolution-thumb: #1a1715;
+  --evolution-ink: var(--fx-color-text-inverse, #FFFFFF);
+  --evolution-muted: color-mix(in srgb, var(--fx-color-text-inverse, #FFFFFF) 72%, #C7C7C8);
+  --evolution-thumb: var(--fx-ref-color-neutral-950, #1A1C1F);
 }
 
 .about-evolution[data-stage="5"] {
-  --evolution-accent: #d4ff6a;
+  --evolution-accent: var(--fx-color-brand-accent, #C5DD78);
 }
 
 .about-evolution__masthead {

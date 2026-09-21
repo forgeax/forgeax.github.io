@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-fr forgeax-site has-immersive">
@@ -40,8 +42,6 @@
       <a href="/fr/tutorials/" data-nav="/tutorials/" class="active">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
       <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/fr/changelog/" data-nav="/changelog/">Journal des modifications</a>
-      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/docs/" data-l="en">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item" href="/es/docs/" data-l="es">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/docs/" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+      <a class="nav-cta" href="/fr/#install">Commencer</a>
     </div>
   </div>
 </nav>
@@ -88,7 +88,7 @@
           <a href="#ch7">7 · Publier et partager</a>
           <a href="#ch8">8 · Avancé</a>
           <a href="#ch9">9 · Outils de création</a>
-          <a href="#ch10">10 · L'équipe des agents</a>
+          <a href="#ch10">10 · L'équipe des Agents</a>
         </nav>
       </aside>
 
@@ -129,7 +129,7 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
                 <p>L'interface est composée de trois parties : une barre supérieure, le chat à gauche et l'aperçu/authoring à droite.</p>
                 <ul>
                   <li><strong>Barre supérieure</strong>- le<code>⊕</code>nouveau menu, un<strong>sélecteur de projet</strong>(passer d'un jeu à l'autre - ce qu'est un "projet" est couvert dans<a href="#ch2">Concepts de base</a>), et un<strong>commutateur de session</strong>(réviser/changer les conversations passées).</li>
-                  <li><strong>Gauche · chat (ChatPanel)</strong>— un rail d'équipe (Forge et les sous-agents), un flux de messages (cartes de sous-agents, réflexions et appels d'outils de Forge), et un compositeur en bas avec un<strong>commutateur principal</strong>en bas à droite (voir<a href="#ch8">Avancé</a>).</li>
+                  <li><strong>Gauche · chat (ChatPanel)</strong>— un rail d'équipe (Forge et les sous-Agents), un flux de messages (cartes de sous-Agents, réflexions et appels d'outils de Forge), et un compositeur en bas avec un<strong>commutateur principal</strong>en bas à droite (voir<a href="#ch8">Avancé</a>).</li>
                   <li><strong>Droite · zone principale (MainArea)</strong>— bascule entre les<strong>aperçu</strong>(votre jeu vit dans une iframe) et le<strong>extension</strong>(édition de fichiers / documents de conception) ; voir<a href="#ch4">Scènes et éditeur</a>.</li>
                 </ul>
                 <p>Le rouage en haut à droite s'ouvre<strong>Paramètres</strong>: Clés API, choix du modèle, backend CLI et gestion des plugins. L'application de bureau affiche également une superposition de première exécution qui vous demande la clé la première fois que vous l'ouvrez.</p>
@@ -157,19 +157,19 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
               </div>
             </details>
             <details class="doc-item">
-              <summary>Forge et son équipe de sous-agents</summary>
+              <summary>Forge et son équipe de sous-Agents</summary>
               <div class="doc-body">
-                <p><strong>Forge (l'agent principal)</strong>est le seul à écrire directement le code du jeu — il écrit<code>jeux/<slug>/src/main.ts</code>, l'aperçu<strong>recharges à chaud</strong>, et il voit le résultat en cours pour décider de l'étape suivante. Cette boucle édition → voir → édition doit rester avec quiconque peut voir l'aperçu, c'est-à-dire Forge (voir<a href="#ch3">Construisez en discutant</a>).</p>
-                <p><strong>Sous-agents</strong>(par exemple, gameplay Iori, conception Suzu, récit Kotone, art Iro, construction Tsumugi) uniquement planifier/concevoir/créer des actifs/écrire des documents et<strong>ne jamais toucher<code>src/</code></strong>- ils n'ont pas de retour d'aperçu en direct, donc tout code qu'ils ont écrit n'aurait rien pour le guider. Retrouvez le casting complet dans<a href="/fr/marketplace/">marché</a>et<a href="#ch10">Chapitre 10 · L'équipe d'agents</a>.</p>
-                <p><strong>Comment fonctionne l'expédition :</strong>Forge envoie un sous-agent avec un seul appel d'outil (en forme<code>sous-agent(type="iori", tâche="…")</code>); celui du serveur<code>/api/sous-agent</code>stream relie sa sortie à la conversation principale en temps réel : il s'agit de la carte de sous-agent intégrée que vous voyez dans le flux de messages. Les documents de conception d'un sous-agent sont classés dans sa propre section dans l'atelier (voir<a href="#ch4">Scènes et éditeur</a>).</p>
+                <p><strong>Forge (l'Agent principal)</strong>est le seul à écrire directement le code du jeu — il écrit<code>jeux/<slug>/src/main.ts</code>, l'aperçu<strong>recharges à chaud</strong>, et il voit le résultat en cours pour décider de l'étape suivante. Cette boucle édition → voir → édition doit rester avec quiconque peut voir l'aperçu, c'est-à-dire Forge (voir<a href="#ch3">Construisez en discutant</a>).</p>
+                <p><strong>Sous-Agents</strong>(par exemple, gameplay Iori, conception Suzu, récit Kotone, art Iro, construction Tsumugi) uniquement planifier/concevoir/créer des actifs/écrire des documents et<strong>ne jamais toucher<code>src/</code></strong>- ils n'ont pas de retour d'aperçu en direct, donc tout code qu'ils ont écrit n'aurait rien pour le guider. Retrouvez le casting complet dans<a href="/fr/marketplace/">marché</a>et<a href="#ch10">Chapitre 10 · L'équipe d'Agents</a>.</p>
+                <p><strong>Comment fonctionne l'expédition :</strong>Forge envoie un sous-Agent avec un seul appel d'outil (en forme<code>sous-agent(type="iori", tâche="…")</code>); celui du serveur<code>/api/sous-agent</code>stream relie sa sortie à la conversation principale en temps réel : il s'agit de la carte de sous-Agent intégrée que vous voyez dans le flux de messages. Les documents de conception d'un sous-Agent sont classés dans sa propre section dans l'atelier (voir<a href="#ch4">Scènes et éditeur</a>).</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>Qu'est-ce qu'une séance</summary>
               <div class="doc-body">
-                <p>UN<strong>session</strong>est la mémoire d'un agent - un<strong>ajout uniquement</strong>flux d'événements (chacun est un message utilisateur / un message d'assistant / une réflexion / un appel d'outil / un résultat d'outil). Forge (principal) et chaque sous-agent gardent chacun le sien.</p>
-                <p>L'interface utilisateur divise les événements selon celui qui les a émis dans le thread principal par rapport aux sous-agents, rendant la tranche de chaque sous-agent sous la forme d'une carte intégrée. Ainsi, sur un écran, vous voyez à la fois le fil principal de Forge et ce que les sous-agents qu'il a envoyés ont réellement fait.</p>
-                <p>Utilisez le sélecteur de session dans la barre supérieure pour consulter et basculer entre les sessions passées.<strong>Changer de session ne redémarre rien</strong>- l'interface utilisateur lit simplement le flux d'événements d'un autre agent.</p>
+                <p>UN<strong>session</strong>est la mémoire d'un Agent - un<strong>ajout uniquement</strong>flux d'événements (chacun est un message utilisateur / un message d'assistant / une réflexion / un appel d'outil / un résultat d'outil). Forge (principal) et chaque sous-Agent gardent chacun le sien.</p>
+                <p>L'interface utilisateur divise les événements selon celui qui les a émis dans le thread principal par rapport aux sous-Agents, rendant la tranche de chaque sous-Agent sous la forme d'une carte intégrée. Ainsi, sur un écran, vous voyez à la fois le fil principal de Forge et ce que les sous-Agents qu'il a envoyés ont réellement fait.</p>
+                <p>Utilisez le sélecteur de session dans la barre supérieure pour consulter et basculer entre les sessions passées.<strong>Changer de session ne redémarre rien</strong>- l'interface utilisateur lit simplement le flux d'événements d'un autre Agent.</p>
               </div>
             </details>
           </div>
@@ -189,7 +189,7 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
                 </ul>
                 <p>Commencez petit, faites-le fonctionner, puis superposez la mécanique. Par exemple:</p>
                 <pre><code>Un jeu descendant : un personnage court dans une arène, l'espace tire des balles, les ennemis continuent d'apparaître, les frappes les suppriment et ajoutent des points.</code></pre>
-                <p>Pour un premier jeu étape par étape, voir<a href="/fr/tutorials/getting-started.html">Démarrage rapide</a>; pour savoir ce qui est réalisable, parcourez le<a href="/fr/showcase/">vitrine</a>. Pour une conception plus lourde, Forge fait appel à des sous-agents de conception (voir<a href="#ch2">Concepts de base</a>).</p>
+                <p>Pour un premier jeu étape par étape, voir<a href="/fr/tutorials/getting-started.html">Démarrage rapide</a>; pour savoir ce qui est réalisable, parcourez le<a href="/fr/showcase/">vitrine</a>. Pour une conception plus lourde, Forge fait appel à des sous-Agents de conception (voir<a href="#ch2">Concepts de base</a>).</p>
               </div>
             </details>
             <details class="doc-item">
@@ -197,12 +197,12 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
               <div class="doc-body">
                 <p>Une fois que vous envoyez une demande, la chaîne est :</p>
                 <ul>
-                  <li><strong>Comprendre + planifier</strong>— Forge clarifie l'exigence en envoyant des sous-agents de conception/gameplay pour des travaux plus lourds (voir<a href="#ch2">Concepts de base</a>).</li>
+                  <li><strong>Comprendre + planifier</strong>— Forge clarifie l'exigence en envoyant des sous-Agents de conception/gameplay pour des travaux plus lourds (voir<a href="#ch2">Concepts de base</a>).</li>
                   <li><strong>Écrire du code</strong>— Forge écrit<strong>lui-même</strong>dans<code>jeux/<slug>/src/main.ts</code>(et ses modules split-out).</li>
                   <li><strong>Rechargement à chaud</strong>— lors de la sauvegarde, le vite du moteur détecte le changement et l'aperçu<strong>remplacement à chaud du module</strong>en place – pas de rechargement complet, l’image se met à jour presque instantanément.</li>
                   <li><strong>Voir le résultat</strong>— Forge voit le résultat en cours d'exécution via l'aperçu (qui transmet également le<code>console</code>retour) et décide de l'étape suivante.</li>
                 </ul>
-                <p>L'ensemble du processus est transparent : le flux de messages montre la pensée de Forge, chaque appel d'outil et les cartes des sous-agents qu'il a envoyés. Pour basculer/contrôler l'aperçu par rapport au Authoring extension, voir<a href="#ch4">Scènes et éditeur</a>; pour savoir comment fonctionne le rechargement à chaud, voir<a href="#ch6">Exécuter et prévisualiser</a>.</p>
+                <p>L'ensemble du processus est transparent : le flux de messages montre la pensée de Forge, chaque appel d'outil et les cartes des sous-Agents qu'il a envoyés. Pour basculer/contrôler l'aperçu par rapport au Authoring extension, voir<a href="#ch4">Scènes et éditeur</a>; pour savoir comment fonctionne le rechargement à chaud, voir<a href="#ch6">Exécuter et prévisualiser</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -361,7 +361,7 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
             <details class="doc-item">
               <summary>Changer/configurer le backend IA</summary>
               <div class="doc-body">
-                <p><strong>Changer de backend (échanger la puce) :</strong>choisissez le noyau à partir du commutateur backend en bas à droite du compositeur ou sous le<strong>CLI</strong>section des paramètres -<strong>Claude Code / Codex / Cursor / Kimi Code / CodeBuddy / DeepSeek Harness / forgeax-cli</strong>. La section CLI montre chaque backend<strong>santé</strong>et un<strong>Test</strong>bouton. Changer de backend permute également son personnage par défaut (voir<a href="#ch10">L'équipe des agents</a>); détails par backend dans le<a href="/fr/marketplace/">marché</a>.</p>
+                <p><strong>Changer de backend (échanger la puce) :</strong>choisissez le noyau à partir du commutateur backend en bas à droite du compositeur ou sous le<strong>CLI</strong>section des paramètres -<strong>Claude Code / Codex / Cursor / Kimi Code / CodeBuddy / DeepSeek Harness / forgeax-cli</strong>. La section CLI montre chaque backend<strong>santé</strong>et un<strong>Test</strong>bouton. Changer de backend permute également son personnage par défaut (voir<a href="#ch10">L'équipe des Agents</a>); détails par backend dans le<a href="/fr/marketplace/">marché</a>.</p>
                 <p><strong>Clés / modèles :</strong>définissez la clé API de votre modèle (par ex.<code>ANTHROPIC_API_KEY</code>) sous Paramètres → Clés - il<strong>s'applique en direct, pas de redémarrage</strong>(vous pouvez également modifier<code>.env</code>directement); choisissez le modèle sous Paramètres → Modèles. Le dépannage de clé manquante est en cours<a href="#ch6">Exécuter et prévisualiser</a>.</p>
               </div>
             </details>
@@ -373,10 +373,10 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
               </div>
             </details>
             <details class="doc-item">
-              <summary>Personnaliser les personnages des agents</summary>
+              <summary>Personnaliser les personnages des Agents</summary>
               <div class="doc-body">
-                <p>Utilisez le<strong>éditeur de personnages</strong>(<code>personnage-agent-authoring</code>) : choisissez un agent dans la liste, modifiez son personnage dans une zone de texte, et<strong>sauvegarder → recharger à chaud, pas de redémarrage</strong>. Vous pouvez donner à un agent un personnage ou une voix différente sans toucher à aucun code.</p>
-                <p>Pour savoir qui sont les agents principaux et les sous-agents et d'où viennent les personnages par défaut, voir<a href="#ch2">Concepts de base</a>et<a href="#ch10">L'équipe des agents</a>; le casting complet est dans le<a href="/fr/marketplace/">marché</a>.</p>
+                <p>Utilisez le<strong>éditeur de personnages</strong>(<code>personnage-agent-authoring</code>) : choisissez un Agent dans la liste, modifiez son personnage dans une zone de texte, et<strong>sauvegarder → recharger à chaud, pas de redémarrage</strong>. Vous pouvez donner à un Agent un personnage ou une voix différente sans toucher à aucun code.</p>
+                <p>Pour savoir qui sont les Agents principaux et les sous-Agents et d'où viennent les personnages par défaut, voir<a href="#ch2">Concepts de base</a>et<a href="#ch10">L'équipe des Agents</a>; le casting complet est dans le<a href="/fr/marketplace/">marché</a>.</p>
               </div>
             </details>
           </div>
@@ -460,13 +460,13 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
               <div class="doc-body">
                 <div class="doc-subs">
                   <details class="doc-sub"><summary><code>code</code> · <strong>code</strong></summary>
-                    <div class="doc-subbody"><p>Parcourir et<strong>sauter à travers<code>src/</code>fichiers</strong>directement sur l'extension,<strong>collaborer avec l'agent de codage sur les fils de discussion</strong>— vous lisez où, l'IA édite où, sur un projet sans lâcher le témoin.</p></div>
+                    <div class="doc-subbody"><p>Parcourir et<strong>sauter à travers<code>src/</code>fichiers</strong>directement sur l'extension,<strong>collaborer avec l'Agent de codage sur les fils de discussion</strong>— vous lisez où, l'IA édite où, sur un projet sans lâcher le témoin.</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>observatory</code> · <strong>observatoire</strong></summary>
-                    <div class="doc-subbody"><p>Comme un<strong>boîte noire</strong>: relecture en direct + hors ligne de chaque tour d'agent/sous-agent, appel d'outil et tranches de l'invite système. Quand quelque chose se brise, tu peux<strong>identifier quelle étape ou quelle invite</strong>l'a causé, et cela aide à gérer le contexte/les compétences/les garde-corps/le cache. Le concept de session & replay est en place<a href="#ch2">Concepts de base</a>.</p></div>
+                    <div class="doc-subbody"><p>Comme un<strong>boîte noire</strong>: relecture en direct + hors ligne de chaque tour d'Agent/sous-Agent, appel d'outil et tranches de l'invite système. Quand quelque chose se brise, tu peux<strong>identifier quelle étape ou quelle invite</strong>l'a causé, et cela aide à gérer le contexte/les compétences/les garde-corps/le cache. Le concept de session & replay est en place<a href="#ch2">Concepts de base</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>agent-persona</code> · <strong>éditeur de personnages</strong></summary>
-                    <div class="doc-subbody"><p>Choisissez un agent dans une liste, modifiez son personnage dans une zone de texte et<strong>sauvegarder → recharger à chaud, pas de redémarrage</strong>. Donnez à un agent un nouveau personnage ou une nouvelle voix sans toucher au code. Le casting est en<a href="#ch10">L'équipe des agents</a>; le comment faire est dans<a href="#ch8">Avancé</a>.</p></div>
+                    <div class="doc-subbody"><p>Choisissez un Agent dans une liste, modifiez son personnage dans une zone de texte et<strong>sauvegarder → recharger à chaud, pas de redémarrage</strong>. Donnez à un Agent un nouveau personnage ou une nouvelle voix sans toucher au code. Le casting est en<a href="#ch10">L'équipe des Agents</a>; le comment faire est dans<a href="#ch8">Avancé</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>plugin-author</code> · <strong>auteur du plugin</strong></summary>
                     <div class="doc-subbody"><p>Permet<strong>non-codeurs</strong>créer leurs propres plugins d'atelier. Le chemin aujourd'hui est "copier un existant + adapter + enregistrer les actions" ; un éditeur visuel intégré à l'application plus complet (arborescence de fichiers + éditeur de code, sauvegarde → rechargement automatique) est en route. La marche à suivre globale est dans<a href="#ch8">Avancé · Écrivez votre propre plugin</a>.</p></div>
@@ -482,14 +482,14 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
         </section>
 
         <section class="docs-chapter" id="ch10">
-          <h2><span class="n">10</span>L'équipe des agents</h2>
+          <h2><span class="n">10</span>L'équipe des Agents</h2>
           <div class="doc-items">
             <details class="doc-item">
               <summary>Réalisation & architecture</summary>
               <div class="doc-body">
                 <p><strong>Arin · producteur</strong>— un producteur polyvalent qui coordonne le design/le code/l'art/l'audio et possède l'ensemble du jeu.</p>
                 <p><strong>Reia · directeur de bobine</strong>- réalisateur FMV interactif qui crée des invites, rythme les QTE et tisse des branches et des fins, conduisant le reel Reel Studio à transformer une idée en un film à suspense cliquable et jouable.</p>
-                <p>Ce sont<strong>agents nommés</strong>expédié à la demande par Forge (la relation principal/sous-agent est en<a href="#ch2">Concepts de base</a>); le casting complet est dans le<a href="/fr/marketplace/">marché</a>.</p>
+                <p>Ce sont<strong>Agents nommés</strong>expédié à la demande par Forge (la relation principal/sous-Agent est en<a href="#ch2">Concepts de base</a>); le casting complet est dans le<a href="/fr/marketplace/">marché</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -529,14 +529,14 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
                     <div class="doc-subbody"><p>Un ensemble de caractères facultatifs avec<strong>compétences de codage comparables mais personnalités distinctes</strong>– certains mesurés, certains ludiques, certains méticuleux. Ils ont la même capacité ; la seule différence est la sensation de travailler à leurs côtés. Les personnalités sont modifiables à tout moment dans<strong>éditeur de personnages</strong>(voir<a href="#ch8">Avancé</a>); le casting complet est dans le<a href="/fr/marketplace/">marché</a>.</p></div>
                   </details>
                 </div>
-                <p>Il y a aussi un ensemble de<strong>agents spécialisés en art/actifs</strong>(personnage/animation 2D, low-poly/VFX 3D, réalisateur de film interactif, et plus), chacun étant connecté à son atelier de création correspondant (voir<a href="#ch9">Outils de création</a>).</p>
+                <p>Il y a aussi un ensemble de<strong>Agents spécialisés en art/actifs</strong>(personnage/animation 2D, low-poly/VFX 3D, réalisateur de film interactif, et plus), chacun étant connecté à son atelier de création correspondant (voir<a href="#ch9">Outils de création</a>).</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>Personnages par défaut échangeables</summary>
               <div class="doc-body">
                 <p>Chaque backend CLI est livré avec un personnage prêt à l'emploi :<strong>Claude</strong>(ClaudeCode),<strong>Manuscrit</strong>,<strong>Curseur</strong>, et<strong>ForgeaX</strong>(le forgeax-cli auto-construit).<strong>Le changement de backend permute le personnage par défaut – aucune configuration nécessaire</strong>; quel que soit le noyau que vous choisissez, il est livré avec son personnage par défaut.</p>
-                <p>Comment changer de backend et modifier les personnages est disponible<a href="#ch8">Avancé</a>; le casting complet de l'agent et les personnages chargeables sont dans le<a href="/fr/marketplace/">marché</a>.</p>
+                <p>Comment changer de backend et modifier les personnages est disponible<a href="#ch8">Avancé</a>; le casting complet de l'Agent et les personnages chargeables sont dans le<a href="/fr/marketplace/">marché</a>.</p>
               </div>
             </details>
           </div>
@@ -773,19 +773,17 @@ chignon fx démarrer # → http://localhost:18920</code></pre>
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/fr/changelog/">Journal des modifications</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
     <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
-    <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

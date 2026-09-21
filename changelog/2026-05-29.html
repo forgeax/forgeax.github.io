@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-05-29.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-05-29.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-29.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-29.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-29.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-29.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-29.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-29.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -71,7 +71,7 @@
 <h2>A rebuilt UI foundation: a modern component library + render-error safety net</h2>
 <p>The interface did a &quot;replace the foundation&quot;-level upgrade this day: moving a whole set of interaction components — dialogs, dropdowns, menus, form controls — onto a modern, mature, reliable component base. The benefits are many — smoother interaction feel, more unified visuals, better accessibility; places that used to make do with the browser&#39;s native popups (those ugly, uncustomizable system prompt boxes) were upgraded to consistently-styled dialogs. More crucially, a &quot;render-error safety net&quot; was added underneath: if a UI component throws while rendering, the system isolates it rather than letting a local error freeze the whole startup screen into a blank. This looks like &quot;just swapping a UI library,&quot; but it actually lifts the interface from &quot;usable but fragile&quot; to &quot;robust and durable&quot; — for a tool you stare at for hours every day, whether the interface is stable directly decides whether using it feels safe.</p>
 <h2>Material inheritance read-through + picking a game activates it</h2>
-<p>Two more everyday-smoothing improvements landed this day. One: material inheritance became &quot;read-through&quot; — a property a child material doesn&#39;t explicitly set automatically falls through to the parent&#39;s value — so putting shared settings on the parent and overriding only differences on children makes a batch of unified-yet-slightly-varying materials both manageable and less error-prone. Two, and a critical one: picking or creating a game now genuinely &quot;activates&quot; it as the current game, with the background agent&#39;s working directory switching to match. Before this, with multiple games coexisting it was easy to have &quot;you&#39;re looking at this one while the agent edits that one&quot; — once whatever you pick is what gets targeted, this mismatch is eliminated. One makes materials maintainable, the other keeps operations unconfused — both key details in straightening out the complex matter of &quot;multiple contents coexisting.&quot;</p>
+<p>Two more everyday-smoothing improvements landed this day. One: material inheritance became &quot;read-through&quot; — a property a child material doesn&#39;t explicitly set automatically falls through to the parent&#39;s value — so putting shared settings on the parent and overriding only differences on children makes a batch of unified-yet-slightly-varying materials both manageable and less error-prone. Two, and a critical one: picking or creating a game now genuinely &quot;activates&quot; it as the current game, with the background Agent&#39;s working directory switching to match. Before this, with multiple games coexisting it was easy to have &quot;you&#39;re looking at this one while the Agent edits that one&quot; — once whatever you pick is what gets targeted, this mismatch is eliminated. One makes materials maintainable, the other keeps operations unconfused — both key details in straightening out the complex matter of &quot;multiple contents coexisting.&quot;</p>
 <h2>A new reel workbench + engine debugging and a default-model upgrade</h2>
 <p>The tool family gained another member this day: a reel workbench for organizing cutscenes and cinematic content, one more handy tool for making games with narrative and staging. The engine side added a dedicated debugging-technique guide, distilling the routines for diagnosing rendering issues so people and AI can locate problems by following them. The backend upgraded the default model to a stronger tier, so the same conversation gets smarter responses. Individually small, these point one way: beyond the big &quot;playable&quot; and &quot;steadier&quot; blocks, nudging the tools&#39; coverage, the engine&#39;s debuggability and the AI&#39;s underlying capability each forward a bit. A platform&#39;s maturity rests both on a few big strides and on this kind of continuous small reinforcement.</p>
 <h2>What this day means</h2>
@@ -87,19 +87,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

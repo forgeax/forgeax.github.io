@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-05-16 · Le bus agent entre dans les filtres de l'interface utilisateur + du tableau de bord — ForgeaX</title>
-<meta name="description" content="Le bus d'événements entre les agents obtient une surface visible, le tableau de bord gagne en filtres et en recherche, le moteur peut charger des modèles glTF standard et l'ECS fait converger son vocabulaire de données en une seule famille de type sécurisé." />
+<title>2026-05-16 · Le bus Agent entre dans les filtres de l'interface utilisateur + du tableau de bord — ForgeaX</title>
+<meta name="description" content="Le bus d'événements entre les Agents obtient une surface visible, le tableau de bord gagne en filtres et en recherche, le moteur peut charger des modèles glTF standard et l'ECS fait converger son vocabulaire de données en une seule famille de type sécurisé." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-05-16 · Le bus agent entre dans les filtres de l'interface utilisateur + du tableau de bord — ForgeaX" />
-<meta property="og:description" content="Le bus d'événements entre les agents obtient une surface visible, le tableau de bord gagne en filtres et en recherche, le moteur peut charger des modèles glTF standard et l'ECS fait converger son vocabulaire de données en une seule famille de type sécurisé." />
+<meta property="og:title" content="2026-05-16 · Le bus Agent entre dans les filtres de l'interface utilisateur + du tableau de bord — ForgeaX" />
+<meta property="og:description" content="Le bus d'événements entre les Agents obtient une surface visible, le tableau de bord gagne en filtres et en recherche, le moteur peut charger des modèles glTF standard et l'ECS fait converger son vocabulaire de données en une seule famille de type sécurisé." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-05-16.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
       <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
-      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-16.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-16.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-16.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-16.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-16.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-16.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-05-16.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-05-16.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+      <a class="nav-cta" href="/fr/#install">Commencer</a>
     </div>
   </div>
 </nav>
@@ -60,12 +60,12 @@
   <article class="read article">
     <a class="back" href="/fr/changelog/">← Journal des modifications</a>
     <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-05-16</span></div>
-    <h1>Le bus agent entre dans les filtres de l'interface utilisateur + du tableau de bord</h1>
-    <p class="standfirst">Le bus d&#39;événements que le backend a déployé la veille a fait surface ce jour-là : les agents de bus utilisés pour se parler ont obtenu pour la première fois un point d&#39;entrée visible, et le tableau de bord a gagné en filtrage et en recherche. Pendant ce temps, le moteur a appris à charger des modèles 3D standard et a fait converger son vocabulaire de données de composants-systèmes en une famille unifiée et sécurisée.</p>
+    <h1>Le bus Agent entre dans les filtres de l'interface utilisateur + du tableau de bord</h1>
+    <p class="standfirst">Le bus d&#39;événements que le backend a déployé la veille a fait surface ce jour-là : les Agents de bus utilisés pour se parler ont obtenu pour la première fois un point d&#39;entrée visible, et le tableau de bord a gagné en filtrage et en recherche. Pendant ce temps, le moteur a appris à charger des modèles 3D standard et a fait converger son vocabulaire de données de composants-systèmes en une famille unifiée et sécurisée.</p>
     <div class="prose"><h2>Rendre visible la machinerie invisible</h2>
-<p>Le runtime du plugin et le bus d&#39;événements que le backend a discrètement versé la veille sont eux-mêmes &quot;invisibles&quot; - ils s&#39;exécutent en arrière-plan, imperceptibles pour les utilisateurs. Le thème de cette journée était de connecter cette machinerie invisible à l&#39;interface, la rendant observable et exploitable. Une fois qu&#39;un système commence à avoir une activité interne comme « plusieurs agents communiquant via un bus », le fait de tout cacher en arrière-plan laisse les utilisateurs et les développeurs dans l&#39;anxiété de la boîte noire de « ce qu&#39;il fait réellement ». Le travail de cette journée était donc clair : ouvrir une fenêtre sur le bus, ajouter un filtrage à la liste des tâches, permettre aux gens de vraiment voir ce qui se passe à l&#39;intérieur du système. L&#39;observabilité n&#39;est pas un avantage ; c&#39;est la condition préalable pour qu&#39;un système complexe soit fiable et débogué.</p>
-<h2>Un bus d&#39;agent visible</h2>
-<p>Aujourd’hui, les agents de bus d’événements utilisent le câble pour communiquer avec l’interface. Un « voyant d&#39;état de santé du bus » est apparu dans la barre latérale, indiquant le nombre actuel de plugins, afin que vous puissiez savoir en un coup d&#39;œil combien de fonctionnalités sont chargées et si l&#39;état est sain ; et un panneau d&#39;administration de bus dédié a été promu au rang d&#39;entrée de niveau supérieur, où vous pouvez parcourir les types d&#39;événements, naviguer vers le haut/bas à l&#39;aide du clavier, développer n&#39;importe quel enregistrement en place pour ses détails, et même créer un lien profond depuis un enregistrement directement vers la catégorie d&#39;événement correspondante dans la barre latérale. Le point de tout cela : la collaboration multi-agents est devenue « visible » pour la première fois – qui parle à qui, ce qui est transmis, combien d’événements de chaque type – présentée clairement, et non plus une goutte d’activité en arrière-plan que vous ne pouviez que deviner. Pour une plateforme qui fonctionne à long terme grâce à « une équipe d’agents collaborant », cette fenêtre est une étape clé pour transformer la collaboration abstraite en une image concrète qui peut être comprise et dans laquelle intervenir.</p>
+<p>Le runtime du plugin et le bus d&#39;événements que le backend a discrètement versé la veille sont eux-mêmes &quot;invisibles&quot; - ils s&#39;exécutent en arrière-plan, imperceptibles pour les utilisateurs. Le thème de cette journée était de connecter cette machinerie invisible à l&#39;interface, la rendant observable et exploitable. Une fois qu&#39;un système commence à avoir une activité interne comme « plusieurs Agents communiquant via un bus », le fait de tout cacher en arrière-plan laisse les utilisateurs et les développeurs dans l&#39;anxiété de la boîte noire de « ce qu&#39;il fait réellement ». Le travail de cette journée était donc clair : ouvrir une fenêtre sur le bus, ajouter un filtrage à la liste des tâches, permettre aux gens de vraiment voir ce qui se passe à l&#39;intérieur du système. L&#39;observabilité n&#39;est pas un avantage ; c&#39;est la condition préalable pour qu&#39;un système complexe soit fiable et débogué.</p>
+<h2>Un bus d&#39;Agent visible</h2>
+<p>Aujourd’hui, les Agents de bus d’événements utilisent le câble pour communiquer avec l’interface. Un « voyant d&#39;état de santé du bus » est apparu dans la barre latérale, indiquant le nombre actuel de plugins, afin que vous puissiez savoir en un coup d&#39;œil combien de fonctionnalités sont chargées et si l&#39;état est sain ; et un panneau d&#39;administration de bus dédié a été promu au rang d&#39;entrée de niveau supérieur, où vous pouvez parcourir les types d&#39;événements, naviguer vers le haut/bas à l&#39;aide du clavier, développer n&#39;importe quel enregistrement en place pour ses détails, et même créer un lien profond depuis un enregistrement directement vers la catégorie d&#39;événement correspondante dans la barre latérale. Le point de tout cela : la collaboration multi-Agents est devenue « visible » pour la première fois – qui parle à qui, ce qui est transmis, combien d’événements de chaque type – présentée clairement, et non plus une goutte d’activité en arrière-plan que vous ne pouviez que deviner. Pour une plateforme qui fonctionne à long terme grâce à « une équipe d’Agents collaborant », cette fenêtre est une étape clé pour transformer la collaboration abstraite en une image concrète qui peut être comprise et dans laquelle intervenir.</p>
 <h2>Tableau de bord : répartition des statuts, filtrage et recherche</h2>
 <p>À mesure que de plus en plus de tâches étaient exécutées en même temps, une liste simple ne suffisait plus. Cette journée a ajouté quelques outils pratiques au tableau de bord : la liste des exécutions a gagné une &quot;bande de distribution de statut&quot; en haut, afin que vous puissiez voir en un coup d&#39;œil l&#39;image globale du nombre d&#39;exécutions en cours d&#39;exécution, terminées ou erronées ; et la liste des tâches prend en charge le filtrage par statut et la recherche par titre, vous permettant de localiser rapidement celle qui vous intéresse parmi une grande pile d&#39;historique. Ce sont des fonctionnalités simples, mais lorsque vous gérez réellement des dizaines de tâches à la fois, elles décident si vous « saisissez l&#39;ensemble d&#39;un coup d&#39;œil » ou « pêchez une aiguille dans une longue liste ». Lisser les deux opérations à haute fréquence que sont le tri des problèmes et la révision de l&#39;historique revient, au fond, à respecter le temps de l&#39;utilisateur : à mesure qu&#39;un système se développe, un bon filtrage et une bonne recherche sont la productivité elle-même.</p>
 <h2>Le moteur peut charger des modèles 3D standards (glTF)</h2>
@@ -87,19 +87,17 @@
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/fr/changelog/">Journal des modifications</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
     <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
-    <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

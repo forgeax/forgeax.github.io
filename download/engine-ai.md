@@ -1,6 +1,6 @@
 # ForgeaX Engine + SDK: AI bootstrap contract
 
-You are an AI coding agent. Execute this contract exactly. Do not guess versions,
+You are an AI coding Agent. Execute this contract exactly. Do not guess versions,
 URLs, packages, or recovery steps.
 
 ## Mandatory rules

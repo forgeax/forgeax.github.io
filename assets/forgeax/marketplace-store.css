@@ -1,0 +1,772 @@
+/* Plugin store — list + rail + detail dock, mapped onto site / Codex tokens */
+
+.forgeax-site.has-plugin-store main.wrap.store-page {
+  width: min(1280px, calc(100% - 40px));
+  max-width: min(1280px, calc(100% - 40px));
+}
+
+.forgeax-site.has-plugin-store .store-page-head {
+  padding: 36px 0 20px;
+  text-align: left;
+}
+
+.forgeax-site.has-plugin-store .store-page-head h1 {
+  font-size: clamp(28px, 4vw, 36px);
+  letter-spacing: -0.8px;
+  margin-top: 0;
+}
+
+.forgeax-site.has-plugin-store .store-page-head p {
+  margin: 8px 0 0;
+  max-width: 48rem;
+  font-size: 15px;
+}
+
+.forgeax-site .store {
+  min-height: calc(100svh - var(--nav-h) - 200px);
+}
+
+.forgeax-site .store-body {
+  position: relative;
+  display: flex;
+  height: calc(100svh - var(--nav-h) - 200px);
+  min-height: 520px;
+  max-height: calc(100svh - var(--nav-h) - 160px);
+  border: 1px solid var(--fx-color-border-subtle);
+  border-radius: var(--radius-xl);
+  background: var(--fx-color-surface-canvas);
+  overflow: hidden;
+  container: storeBody / inline-size;
+}
+
+.forgeax-site .store-rail {
+  width: 240px;
+  flex: 0 0 auto;
+  padding: 12px;
+  border-right: 1px solid var(--fx-color-border-subtle);
+  background: var(--fx-color-surface-sidebar);
+  overflow-y: auto;
+}
+
+.forgeax-site .store-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  height: 32px;
+  padding: 0 12px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-md);
+  background: var(--fx-color-surface-inset);
+  border: 1px solid var(--fx-color-border-control);
+  color: var(--fx-color-text-muted);
+}
+
+.forgeax-site .store-search svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.forgeax-site .store-search input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--fx-color-text-primary);
+  font: inherit;
+  font-size: 13px;
+}
+
+.forgeax-site .store-search input::placeholder {
+  color: var(--fx-color-text-muted);
+}
+
+.forgeax-site .store-rl {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fx-color-text-muted);
+  padding: 0 8px;
+  margin: 12px 0 8px;
+}
+
+.forgeax-site .store-search + .store-rl {
+  margin-top: 0;
+}
+
+.forgeax-site .store-ri {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 36px;
+  text-align: left;
+  font: inherit;
+  font-size: 13px;
+  color: var(--fx-color-text-secondary);
+  background: transparent;
+  border: none;
+  padding: 0 8px;
+  border-radius: var(--radius-md);
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+
+.forgeax-site .store-ri:hover {
+  background: var(--fx-color-surface-hover);
+  color: var(--fx-color-text-primary);
+}
+
+.forgeax-site .store-ri.active {
+  background: var(--fx-color-surface-raised);
+  color: var(--fx-color-selection-fg);
+  font-weight: 500;
+  box-shadow: var(--fx-shadow-subtle);
+}
+
+.forgeax-site .store-ri-ico {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  opacity: 0.78;
+}
+
+.forgeax-site .store-ri-ico svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+
+.forgeax-site .store-ri[data-kind="authoring"] .store-ri-ico { color: #c8dc88; }
+.forgeax-site .store-ri[data-kind="agent"] .store-ri-ico { color: #c4a3ff; }
+.forgeax-site .store-ri[data-kind="backend"] .store-ri-ico { color: #8eb0e8; }
+
+.forgeax-site .store-rn {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--fx-color-text-muted);
+}
+
+.forgeax-site .store-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 24px 24px 12px;
+  background: var(--fx-color-surface-canvas);
+  container: storeList / inline-size;
+}
+
+.forgeax-site .store-sec {
+  margin-bottom: 24px;
+}
+
+.forgeax-site .store-sec:last-child {
+  margin-bottom: 0;
+}
+
+.forgeax-site .store-sec-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fx-color-text-muted);
+}
+
+.forgeax-site .store-sec-h span {
+  font-weight: 400;
+}
+
+.forgeax-site .store-sec-h::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--fx-color-border-subtle);
+}
+
+.forgeax-site .store-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+
+.forgeax-site .store-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background var(--fx-motion-hover) var(--fx-motion-ease),
+    border-color var(--fx-motion-hover) var(--fx-motion-ease);
+}
+
+.forgeax-site .store-row:hover {
+  background: var(--fx-color-surface-hover);
+}
+
+.forgeax-site .store-row.is-active {
+  background: var(--fx-color-surface-selected);
+  border-color: var(--fx-color-border-default);
+}
+
+.forgeax-site .store-row-ic {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--fx-color-text-muted);
+  background: var(--fx-color-surface-inset);
+  border: 1px solid var(--fx-color-border-subtle);
+  overflow: hidden;
+}
+
+.forgeax-site .store-row-ic.is-agent {
+  border-radius: var(--radius-pill);
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+}
+
+.forgeax-site .store-row-ic.is-brand {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: 0 0 0 1px rgba(15, 17, 21, 0.08);
+}
+
+.forgeax-site .store-row-brand {
+  display: block;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.forgeax-site .mk-modal-brand {
+  width: 96px;
+  height: 96px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(15, 17, 21, 0.2);
+}
+
+.forgeax-site .mk-modal-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.forgeax-site .store-row-ic .mk-card-icon,
+.forgeax-site .store-row-ic .ico {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  color: inherit;
+}
+
+.forgeax-site .store-row-ic .mk-avatar,
+.forgeax-site .store-row-agent .mk-avatar {
+  width: 36px;
+  height: 36px;
+  animation: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.forgeax-site .store-row-agent .mk-avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.forgeax-site .store-row .mk-avatar::before,
+.forgeax-site .store-row .mk-avatar::after {
+  display: none;
+}
+
+.forgeax-site .store-row-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.forgeax-site .store-row-top {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.forgeax-site .store-row-nm {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fx-color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.forgeax-site .store-row-ver {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--fx-color-text-muted);
+}
+
+.forgeax-site .store-row-desc {
+  font-size: 13px;
+  color: var(--fx-color-text-secondary);
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.forgeax-site .store-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--fx-color-text-muted);
+}
+
+.forgeax-site .store-row-by {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--fx-color-text-secondary);
+  font-weight: 500;
+}
+
+.forgeax-site .store-row-badge {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  color: var(--fx-color-text-secondary);
+}
+
+.forgeax-site .store-row-badge svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.forgeax-site .store-row-sep {
+  color: var(--fx-color-text-disabled);
+}
+
+.forgeax-site .store-row-agent {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.forgeax-site .store-row-agent .nm {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.forgeax-site .store-row .mk-companions {
+  margin-top: 4px;
+}
+
+.forgeax-site .store-cbtn2 {
+  flex: 0 0 auto;
+  height: 28px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  border: 1px solid var(--fx-color-border-control);
+  background: var(--fx-color-action-secondary-bg);
+  color: var(--fx-color-action-secondary-fg);
+  transition:
+    background var(--fx-motion-hover) var(--fx-motion-ease),
+    color var(--fx-motion-hover) var(--fx-motion-ease),
+    border-color var(--fx-motion-hover) var(--fx-motion-ease);
+}
+
+.forgeax-site .store-cbtn2:hover,
+.forgeax-site .store-row:hover .store-cbtn2,
+.forgeax-site .store-row.is-active .store-cbtn2 {
+  background: var(--fx-color-action-primary-bg);
+  color: var(--fx-color-action-primary-fg);
+  border-color: transparent;
+}
+
+.forgeax-site .store-empty {
+  display: none;
+  padding: 32px 0;
+  text-align: center;
+  color: var(--fx-color-text-muted);
+  font-size: 13px;
+}
+
+/* ── detail dock ── */
+.forgeax-site #mkModal.store-detail-dock {
+  position: relative;
+  inset: auto;
+  display: none;
+  flex: 0 0 clamp(360px, 40%, 520px);
+  min-width: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-left: 1px solid var(--fx-color-border-subtle);
+  background: var(--fx-color-surface-canvas);
+  z-index: 2;
+}
+
+.forgeax-site .store.has-detail #mkModal.store-detail-dock {
+  display: block;
+  animation: store-drawer-in var(--fx-motion-panel) var(--fx-motion-ease) both;
+}
+
+@keyframes store-drawer-in {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-backdrop {
+  display: none;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-anchor {
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-card {
+  flex: 1;
+  width: 100%;
+  max-height: none;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-cosmic-glow,
+.forgeax-site #mkModal.store-detail-dock .mk-halo-flow,
+.forgeax-site #mkModal.store-detail-dock .mk-hud-grid,
+.forgeax-site #mkModal.store-detail-dock .mk-hud-orbit,
+.forgeax-site #mkModal.store-detail-dock .mk-hud-radar,
+.forgeax-site #mkModal.store-detail-dock .mk-hud-crosshair,
+.forgeax-site #mkModal.store-detail-dock .mk-hud-corner,
+.forgeax-site #mkModal.store-detail-dock .mk-hud-header,
+.forgeax-site #mkModal.store-detail-dock .mk-hud-footer,
+.forgeax-site #mkModal.store-detail-dock .mk-studio-chrome,
+.forgeax-site #mkModal.store-detail-dock .mk-modal-stats,
+.forgeax-site #mkModal.store-detail-dock .mk-hud-panel::before,
+.forgeax-site #mkModal.store-detail-dock .mk-modal-preview-frame::after {
+  display: none !important;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-x {
+  position: sticky;
+  top: 8px;
+  left: auto;
+  align-self: flex-end;
+  margin: 8px 8px -24px 0;
+  z-index: 10;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--fx-color-border-control);
+  background: var(--fx-color-surface-raised);
+  color: var(--fx-color-text-secondary);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-x:hover {
+  background: var(--fx-color-surface-hover);
+  color: var(--fx-color-text-primary);
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: none;
+  min-height: 0;
+  gap: 0;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-hero {
+  order: 1;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  padding: 12px 12px 0;
+  transform: none;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-studio {
+  padding: 12px 12px 0;
+  gap: 8px;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-main {
+  order: 2;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+  padding: 12px;
+  border-right: 0;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-preview-gallery {
+  flex: 0 1 auto;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-preview-stage {
+  flex: 0 0 auto;
+  min-height: 0;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fx-color-surface-inset);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--fx-color-border-subtle);
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-hud-panel {
+  background: var(--fx-color-surface-raised);
+  border: 1px solid var(--fx-color-border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-section {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--fx-color-border-subtle);
+  background: var(--fx-color-surface-raised);
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-section h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--fx-color-text-muted);
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-plugin-intro {
+  margin-top: 0;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-head {
+  margin-bottom: 8px;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-kind {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--fx-color-text-muted);
+  margin-bottom: 4px;
+}
+
+.forgeax-site #mkModal.store-detail-dock #mkmTitle {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--fx-color-text-primary);
+}
+
+.forgeax-site #mkModal.store-detail-dock #mkmDesc {
+  color: var(--fx-color-text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  color: var(--fx-color-text-muted);
+  font-size: 12px;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-meta-exp {
+  background: var(--fx-color-brand-soft);
+  color: var(--fx-color-brand-text);
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-caps,
+.forgeax-site #mkModal.store-detail-dock .mk-history,
+.forgeax-site #mkModal.store-detail-dock .mk-tutorial {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fx-color-text-secondary);
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-history {
+  list-style: disc;
+  margin: 0;
+  padding: 0 0 0 16px;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-history-row::before {
+  display: none;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-history-ver {
+  color: var(--fx-color-text-primary);
+  text-shadow: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-agent-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--fx-color-text-primary);
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-agent-role {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--fx-color-surface-hover);
+  border: 0;
+  color: var(--fx-color-text-secondary);
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-card > .mk-modal-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  margin: 0;
+  padding: 8px 12px;
+  gap: 8px;
+  border: 0;
+  border-top: 1px solid var(--fx-color-border-subtle);
+  background: var(--fx-color-surface-canvas);
+  display: flex;
+  align-items: center;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-modal-btn {
+  height: 28px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-preview-thumbs {
+  height: 64px;
+  padding: 8px;
+  gap: 6px;
+  border-top: 1px solid var(--fx-color-border-subtle);
+  background: transparent;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-preview-thumb.is-active {
+  border-color: var(--fx-color-border-strong);
+  box-shadow: none;
+}
+
+.forgeax-site #mkModal.store-detail-dock .mk-hud-readout {
+  color: var(--fx-color-text-muted);
+  text-shadow: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+@container storeBody (max-width: 1080px) {
+  .forgeax-site .store.has-detail #mkModal.store-detail-dock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    flex: none;
+    width: min(420px, 100%);
+    box-shadow: var(--fx-shadow-floating);
+    z-index: 20;
+    background: var(--fx-color-surface-raised);
+  }
+}
+
+@container storeBody (max-width: 720px) {
+  .forgeax-site .store-rail {
+    width: 196px;
+  }
+}
+
+@container storeList (max-width: 560px) {
+  .forgeax-site .store-row-desc {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@media (max-width: 720px) {
+  .forgeax-site.has-plugin-store main.wrap.store-page {
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+  }
+
+  .forgeax-site .store-body {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .forgeax-site .store-rail {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid var(--fx-color-border-subtle);
+  }
+
+  .forgeax-site .store.has-detail #mkModal.store-detail-dock {
+    position: relative;
+    width: 100%;
+    box-shadow: none;
+  }
+}

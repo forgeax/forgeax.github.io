@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-20.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-20.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-20.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-20.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-20.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-20.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-20.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-20.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -67,9 +67,9 @@
 <h2>聊天接回新后端,会话管理更顺</h2>
 <p>聊天界面这天对接上了新的后端运行时,日常的会话操作随之变得规整顺手。新建会话有了一个统一的入口,不再是几处入口各行其是;切换会话时会自动打开对应的标签页,你的注意力跟着内容走;删除也一步到位。重新打开一个会话,能从持久记录里完整回放此前的来回,上下文不丢。过程里还把系统消息按&quot;来信 / 出信 / 警告 / 报错&quot;分门别类地显示出来——当一次运行出问题时,你能一眼看出是卡在哪一步、属于哪一类,而不是对着一团混在一起的输出干瞪眼。这些都是&quot;会话&quot;作为日常单位该有的基本盘,这天把它们在新架构上稳稳兑现了。</p>
 <h2>会话与历史走规整接口</h2>
-<p>在&quot;接回来&quot;的同时,后端把会话与历史的相关能力都收敛成了一套规整的接口。会话的创建与删除走标准的增删接口,默认 agent 会被自动准备好;顶层创建一个 agent、或者把它连同附属一锅端地删掉,也都有对应的明确命令;历史则通过专门的取数接口按需读取,而不是把一切都塞进实时流里。底层的 agent 列表改成&quot;无状态地扫一遍磁盘 + 监听文件变化&quot;来维护,所有 agent 的变动事件都落进一份全局日志。把这些能力都规整成清晰、单一职责的接口,好处是上层(界面、命令行、甚至将来别的客户端)都能用同一套规矩去操作,而不必各写各的——这正是前一天那套分层架构开始兑现红利的地方。</p>
+<p>在&quot;接回来&quot;的同时,后端把会话与历史的相关能力都收敛成了一套规整的接口。会话的创建与删除走标准的增删接口,默认 Agent 会被自动准备好;顶层创建一个 Agent、或者把它连同附属一锅端地删掉,也都有对应的明确命令;历史则通过专门的取数接口按需读取,而不是把一切都塞进实时流里。底层的 Agent 列表改成&quot;无状态地扫一遍磁盘 + 监听文件变化&quot;来维护,所有 Agent 的变动事件都落进一份全局日志。把这些能力都规整成清晰、单一职责的接口,好处是上层(界面、命令行、甚至将来别的客户端)都能用同一套规矩去操作,而不必各写各的——这正是前一天那套分层架构开始兑现红利的地方。</p>
 <h2>在设置里直接管模型与密钥</h2>
-<p>这天把&quot;用哪个模型、填什么密钥&quot;这两件高频却以前很麻烦的事,搬进了界面。模型选择器现在读取真实的可用模型清单——你选的就是会真正生效的那一个,而不是一个可能早已过时的写死列表;而且可以为每个 agent 分别指定它用哪个模型,让不同角色用不同档位的模型成为可能。密钥输入也搬进了常驻的设置面板,配一个&quot;眼睛&quot;按钮在显示与隐藏之间切换,既方便核对又不至于一直明文晾着。对用户来说,这意味着填 key、换模型不再需要退到命令行、去翻配置文件——这些本就该在界面里完成的事,现在真的在界面里完成了。降低这类操作的门槛,正是让非专业开发者也能上手的关键一环。</p>
+<p>这天把&quot;用哪个模型、填什么密钥&quot;这两件高频却以前很麻烦的事,搬进了界面。模型选择器现在读取真实的可用模型清单——你选的就是会真正生效的那一个,而不是一个可能早已过时的写死列表;而且可以为每个 Agent 分别指定它用哪个模型,让不同角色用不同档位的模型成为可能。密钥输入也搬进了常驻的设置面板,配一个&quot;眼睛&quot;按钮在显示与隐藏之间切换,既方便核对又不至于一直明文晾着。对用户来说,这意味着填 key、换模型不再需要退到命令行、去翻配置文件——这些本就该在界面里完成的事,现在真的在界面里完成了。降低这类操作的门槛,正是让非专业开发者也能上手的关键一环。</p>
 <h2>引擎:贴图光照 + 多光源同场</h2>
 <p>引擎的光照能力这天继续往实用方向补。其一是&quot;贴图驱动的光照&quot;:用一张纹理去控制物体表面不同部位对光的反应强弱——比如让金属嵌条比周围的木头更亮、让磨损处更暗,材质细节因此丰富很多,而不必把整块表面当成均匀的一种材质。其二是&quot;多光源同场&quot;:一个场景里可以同时点亮好几盏灯,并把点光、聚光等不同投光体组合起来用。这两件事合起来,意味着布光从&quot;只能打一盏灯&quot;进入了&quot;能像真实场景那样布置多光源、营造层次&quot;的阶段。对想做出有氛围、有质感画面的人来说,这是从&quot;亮着&quot;到&quot;好看&quot;之间最关键的一段路。</p>
 <h2>引擎:第一人称相机漫游修好 + 带图场景</h2>
@@ -87,19 +87,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

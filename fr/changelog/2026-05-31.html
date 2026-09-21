@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
       <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
-      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-31.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-31.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-31.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-31.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-31.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-31.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-05-31.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-05-31.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+      <a class="nav-cta" href="/fr/#install">Commencer</a>
     </div>
   </div>
 </nav>
@@ -71,7 +71,7 @@
 <h2>L&#39;aperçu se charge correctement sous un préfixe d&#39;URL</h2>
 <p>Cette journée a également été aux prises avec un chemin peu glamour mais critique en termes de flexibilité de déploiement : faire en sorte que l&#39;aperçu charge correctement toutes les ressources sous un « préfixe de chemin d&#39;URL ». Dans de nombreux déploiements réels, une application ne se trouve pas à la racine du site Web mais sous un sous-chemin (un sous-répertoire d&#39;un site) - et si les adresses de ressources ne tiennent pas compte de ce préfixe, le chargement ne parvient pas à trouver les fichiers et les erreurs. Cette journée a aligné toute la chaîne, du moteur au packaging en passant par l&#39;index des ressources, pour &quot;respecter le préfixe du chemin&quot;, et a verrouillé un test de régression pour éviter que cela ne se reproduise ; il a également corrigé le flux de démarrage pour garantir que l&#39;ensemble complet des éléments d&#39;exécution nécessaires est correctement construit avant le lancement. Il résout le problème d&#39;environnement le plus problématique : &quot;le déployer ailleurs et le chargement s&#39;interrompt&quot;. Faire fonctionner ce chemin signifie que les jeux exportés et les aperçus intégrés trouvent leurs ressources et s&#39;exécutent de manière fiable, quel que soit le chemin d&#39;URL sous lequel ils sont placés - exactement la garantie sous-jacente qui rend « le package dans un site Web et l&#39;emporter » véritablement utilisable.</p>
 <h2>Le pipeline narratif interactif parcourt une boucle complète</h2>
-<p>Le pipeline d’histoire pour les jeux narratifs a été intégré aujourd’hui dans une boucle de bout en bout. Une intrigue est essentiellement un « arbre d&#39;histoire » ramifié, et dessiner et exécuter cet arbre correctement signifie résoudre une série de problèmes épineux : lever l&#39;ambiguïté de la numérotation répétée, réparer les bords arrière, acheminer les connexions à longue portée et monter automatiquement au démarrage pour qu&#39;il soit visible depuis le début - tout a été corrigé ce jour-là, de sorte que toute la structure de l&#39;histoire se présente correctement. L&#39;agent responsable de la narration est connecté à l&#39;ensemble d&#39;outils du pipeline complet et rapporte les progrès en direct au fur et à mesure de son exécution. L&#39;élément clé : lorsque l&#39;ensemble du pipeline est terminé, le système réveille automatiquement cet agent pour faire un résumé de clôture, plutôt que de s&#39;arrêter à mi-chemin et de laisser une fin en suspens. Avec cela, construire une intrigue ramifiée et bien rythmée devient un flux fluide, visible et à fermeture automatique du début à la fin – la ligne narrative passe de « a des outils » à véritablement « peut se dérouler jusqu&#39;au bout une fois ».</p>
+<p>Le pipeline d’histoire pour les jeux narratifs a été intégré aujourd’hui dans une boucle de bout en bout. Une intrigue est essentiellement un « arbre d&#39;histoire » ramifié, et dessiner et exécuter cet arbre correctement signifie résoudre une série de problèmes épineux : lever l&#39;ambiguïté de la numérotation répétée, réparer les bords arrière, acheminer les connexions à longue portée et monter automatiquement au démarrage pour qu&#39;il soit visible depuis le début - tout a été corrigé ce jour-là, de sorte que toute la structure de l&#39;histoire se présente correctement. L&#39;Agent responsable de la narration est connecté à l&#39;ensemble d&#39;outils du pipeline complet et rapporte les progrès en direct au fur et à mesure de son exécution. L&#39;élément clé : lorsque l&#39;ensemble du pipeline est terminé, le système réveille automatiquement cet Agent pour faire un résumé de clôture, plutôt que de s&#39;arrêter à mi-chemin et de laisser une fin en suspens. Avec cela, construire une intrigue ramifiée et bien rythmée devient un flux fluide, visible et à fermeture automatique du début à la fin – la ligne narrative passe de « a des outils » à véritablement « peut se dérouler jusqu&#39;au bout une fois ».</p>
 <h2>Ce que signifie cette journée</h2>
 <p>Le changement le plus important aujourd&#39;hui est que la plateforme connaît pour la première fois une « sortie » complète. Avant, aussi bien réalisé soit-il, un jeu restait prisonnier de l&#39;outil ; et &quot;exporter en tant que site Web&quot; plus &quot;se charger correctement sous n&#39;importe quel chemin&quot; permettent à votre travail de véritablement partir d&#39;ici et d&#39;atteindre les autres pour la première fois. Avec skybox et bloom le rendant plus beau et la boucle narrative le rendant plus complet, cette journée a rempli le dernier maillon de la chaîne « créer – prendre forme – expédier ». La valeur d&#39;un outil de création est finalement rachetée par le fait que « ce que vous créez peut être vu par le monde ». À partir d’aujourd’hui, le jeu que vous créez ici n’est plus seulement une démo locale mais une véritable œuvre que vous pouvez empaqueter, héberger et partager pour que tout le monde puisse y jouer.</p>
 </div>
@@ -85,19 +85,17 @@
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/fr/changelog/">Journal des modifications</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
     <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
-    <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

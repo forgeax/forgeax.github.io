@@ -1,20 +1,21 @@
 @import '/assets/forgeax/primitive.css?v=91dfbea0';
 
 /* =============================================================================
-   SEMANTIC LAYER — 来自 semantic.tokens.json (Figma Semantic 集合)
+   SEMANTIC LAYER — Codex light (forgeax-codex-design-system.html)
+   旧 --color-* 名保留，值映射到 --fx-* 浅色 token。
    命名规则：--color-{category}-{role}
    ============================================================================= */
 :root {
 
   /* ── text ───────────────────────────────────────────────────────────────── */
-  --color-text-primary:             var(--prim-color-neutral-0);       /* #FFFFFF */
-  --color-text-secondary:           rgba(255, 255, 255, 0.60);
-  --color-text-tertiary:            rgba(255, 255, 255, 0.30);
-  --color-text-disabled:            rgba(255, 255, 255, 0.20);
-  --color-text-on-bright-primary:   var(--prim-color-neutral-1000);    /* #000000 */
-  --color-text-on-bright-secondary: rgba(0, 0, 0, 0.60);
-  --color-text-on-bright-tertiary:  rgba(0, 0, 0, 0.30);
-  --color-text-on-bright-disabled:  rgba(0, 0, 0, 0.10);
+  --color-text-primary:             var(--fx-color-text-primary);
+  --color-text-secondary:           var(--fx-color-text-secondary);
+  --color-text-tertiary:            var(--fx-color-text-muted);
+  --color-text-disabled:            var(--fx-color-text-disabled);
+  --color-text-on-bright-primary:   var(--fx-color-brand-on-accent);
+  --color-text-on-bright-secondary: var(--fx-color-text-secondary);
+  --color-text-on-bright-tertiary:  var(--fx-color-text-muted);
+  --color-text-on-bright-disabled:  var(--fx-color-text-disabled);
 
   /* ── icon (aliases of text) ─────────────────────────────────────────────── */
   --color-icon-primary:            var(--color-text-primary);
@@ -27,57 +28,57 @@
   --color-icon-on-dark-disabled:   var(--color-text-on-bright-disabled);
 
   /* ── background ─────────────────────────────────────────────────────────── */
-  --color-background-canvas:   var(--prim-color-neutral-950);  /* #0D0D0D — deepest */
-  --color-background-base:     var(--prim-color-neutral-900);  /* #191919 — topbar/panel */
-  --color-background-elevated: var(--prim-color-neutral-850);  /* #242424 — card/component */
-  --color-background-floating: var(--prim-color-neutral-800);  /* #333333 — hover/tooltip */
+  --color-background-canvas:   var(--fx-color-surface-canvas);
+  --color-background-base:     var(--fx-color-surface-sidebar);
+  --color-background-elevated: var(--fx-color-surface-raised);
+  --color-background-floating: var(--fx-color-surface-hover);
 
   /* ── border ─────────────────────────────────────────────────────────────── */
-  --color-border-subtle:  var(--prim-color-neutral-800);  /* #333333 */
-  --color-border-default: var(--prim-color-neutral-750);  /* #404040 */
-  --color-border-strong:  var(--prim-color-neutral-550);  /* #737373 */
+  --color-border-subtle:  var(--fx-color-border-subtle);
+  --color-border-default: var(--fx-color-border-default);
+  --color-border-strong:  var(--fx-color-border-strong);
 
   /* ── brand ──────────────────────────────────────────────────────────────── */
-  --color-brand-primary:       var(--prim-color-lime-400);  /* #D4FF48 */
-  --color-brand-primary-light: var(--prim-color-lime-300);  /* #DFFF78 */
-  --color-brand-primary-soft:  var(--prim-color-lime-700);  /* #6A7F24 */
+  --color-brand-primary:       var(--fx-color-brand-accent);
+  --color-brand-primary-light: var(--fx-color-brand-accent);
+  --color-brand-primary-soft:  var(--fx-color-brand-soft);
 
   /* ── accent ─────────────────────────────────────────────────────────────── */
-  --color-accent-blue-default:   var(--prim-color-blue-400);    /* #639CF8 */
-  --color-accent-blue-soft:      var(--prim-color-blue-900);    /* #0B182D */
-  --color-accent-green-default:  var(--prim-color-green-400);   /* #4FD17F */
-  --color-accent-green-soft:     var(--prim-color-green-800);   /* #0D4C24 */
-  --color-accent-orange-default: var(--prim-color-orange-400);  /* #FFB056 */
-  --color-accent-orange-soft:    var(--prim-color-orange-800);  /* #633C10 */
-  --color-accent-purple-default: var(--prim-color-purple-500);  /* #A855F7 */
-  --color-accent-purple-soft:    var(--prim-color-purple-800);  /* #412160 */
-  --color-accent-error-default:  var(--prim-color-red-400);     /* #F26A6A */
-  --color-accent-error-soft:     var(--prim-color-red-800);     /* #5C1A1A */
+  --color-accent-blue-default:   var(--fx-ref-color-blue-600);
+  --color-accent-blue-soft:      var(--fx-ref-color-blue-50);
+  --color-accent-green-default:  var(--fx-color-status-success-fg);
+  --color-accent-green-soft:     var(--fx-color-status-success-bg);
+  --color-accent-orange-default: var(--fx-color-status-warning-fg);
+  --color-accent-orange-soft:    var(--fx-color-status-warning-bg);
+  --color-accent-purple-default: var(--prim-color-purple-500);
+  --color-accent-purple-soft:    var(--prim-color-purple-50);
+  --color-accent-error-default:  var(--fx-color-status-error-fg);
+  --color-accent-error-soft:     var(--fx-color-status-error-bg);
 
   /* ── status ─────────────────────────────────────────────────────────────── */
-  --color-status-success: var(--prim-color-green-600);   /* #1B9D4B */
-  --color-status-warning: var(--prim-color-yellow-600);  /* #BA8E06 */
-  --color-status-error:   var(--prim-color-red-600);     /* #BE3636 */
+  --color-status-success: var(--fx-color-status-success-fg);
+  --color-status-warning: var(--fx-color-status-warning-fg);
+  --color-status-error:   var(--fx-color-status-error-fg);
 
   /* ── overlay ────────────────────────────────────────────────────────────── */
-  --color-overlay-modal: rgba(0, 0, 0, 0.50);
-  --color-overlay-focus: rgba(212, 255, 72, 0.30);
+  --color-overlay-modal: var(--fx-color-scrim);
+  --color-overlay-focus: color-mix(in srgb, var(--fx-color-border-focus) 28%, transparent);
 
   /* ── divider ────────────────────────────────────────────────────────────── */
-  --color-divider-strong:  rgba(255, 255, 255, 0.15);
-  --color-divider-default: rgba(255, 255, 255, 0.10);
-  --color-divider-subtle:  rgba(255, 255, 255, 0.05);
+  --color-divider-strong:  var(--fx-color-border-default);
+  --color-divider-default: var(--fx-color-border-subtle);
+  --color-divider-subtle:  color-mix(in srgb, var(--fx-color-border-subtle) 70%, transparent);
 
   /* ── skeleton ───────────────────────────────────────────────────────────── */
-  --color-skeleton-default: rgba(255, 255, 255, 0.10);
+  --color-skeleton-default: var(--fx-color-surface-hover);
 
   /* ── interaction ────────────────────────────────────────────────────────── */
-  --color-interaction-hover:            rgba(255, 255, 255, 0.05);
-  --color-interaction-selected-brand:   rgba(212, 255, 72, 0.10);
-  --color-interaction-selected-neutral: rgba(255, 255, 255, 0.10);
-  --color-interaction-disabled:         rgba(0, 0, 0, 0.50);
-  --color-interaction-error:            rgba(255, 107, 107, 0.08);
-  --color-interaction-error-strong:     rgba(255, 107, 107, 0.14);
+  --color-interaction-hover:            var(--fx-color-surface-hover);
+  --color-interaction-selected-brand:   var(--fx-color-brand-soft);
+  --color-interaction-selected-neutral: var(--fx-color-surface-selected);
+  --color-interaction-disabled:         var(--fx-color-action-disabled-bg);
+  --color-interaction-error:            var(--fx-color-status-error-bg);
+  --color-interaction-error-strong:     color-mix(in srgb, var(--fx-color-status-error-fg) 14%, transparent);
 
   /* ── rgb channels (for alpha composition: rgba(var(--rgb-*), α)) ──────── */
   --rgb-accent-green:  75, 222, 128;   /* tb-providers is-ok  */
@@ -254,7 +255,7 @@
   --color-status-warning-text: #ffc966;  /* connection-status warn chip text */
 
   /* ── brand hover ─────────────────────────────────────────────────── */
-  --color-brand-primary-hover: #c5f038;  /* primary button :hover (darkened lime) */
+  --color-brand-primary-hover: color-mix(in srgb, var(--fx-ref-color-brand-400) 65%, var(--fx-ref-color-brand-700));
 
   /* ── accent violet ───────────────────────────────────────────────── */
   --accent-violet:       #7c5cff;  /* settings active nav inset shadow */

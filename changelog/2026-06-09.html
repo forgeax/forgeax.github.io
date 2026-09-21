@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-06-09.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-06-09.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-09.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-09.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-09.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-09.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -73,9 +73,9 @@
 <h2>A more intuitive way to write a game&#39;s entry point</h2>
 <p>The engine also reorganized this day how &quot;creating a game application&quot; is written, splitting it into a more intuitive three layers: one for the camera and basic display settings, one for build/packaging options, one for how resources are wired in. Previously these differently-natured parameters were mixed together and easy to confuse — especially for the AI that relies on it to write code, the messier and less clearly-categorized the parameters, the higher the chance of error. Split by responsibility into three clear layers, what each layer does is obvious at a glance, so the AI writes games more smoothly and less error-prone. This and the day&#39;s &quot;build-gate&quot; are really two sides of one coin: the gate guards the exit, blocking faulty output; making the API more intuitive lowers the chance of error at the entrance. A platform that has the AI write code needs both to verify after the fact and to make it harder to err beforehand — together they steadily raise output quality. The default new-game template was upgraded too, shipping out of the box with an HDR sky and a controllable character, so every new game starts from a more presentable baseline.</p>
 <h2>The editor shows real geometry + steadier replay</h2>
-<p>The editor moved a step closer to what-you-see-is-what-you-get this day: it now preloads model files, so the edit view directly shows a model&#39;s real geometry rather than a temporary placeholder box. It seems like a detail but the impact is real — when you place, align and adjust an object in the editor, you see what it actually looks like, instead of imagining what a box standing in for it will eventually become. The underlying asset pipeline also moved to the engine&#39;s native scene-pack format, and the edit view likewise carries an HDR sky, aligning the editing environment further with the final runtime. On error, the on-canvas overlay expands the more detailed underlying cause rather than a generic message, for quick diagnosis. Chat replay also fixed the interleaving order of cross-agent cards — when you review a stretch of history, the back-and-forth between multiple AIs is woven back together correctly, exactly matching the order you saw live. Together these serve one thing: making what you see in the editor, and in replay, as close to real as possible.</p>
+<p>The editor moved a step closer to what-you-see-is-what-you-get this day: it now preloads model files, so the edit view directly shows a model&#39;s real geometry rather than a temporary placeholder box. It seems like a detail but the impact is real — when you place, align and adjust an object in the editor, you see what it actually looks like, instead of imagining what a box standing in for it will eventually become. The underlying asset pipeline also moved to the engine&#39;s native scene-pack format, and the edit view likewise carries an HDR sky, aligning the editing environment further with the final runtime. On error, the on-canvas overlay expands the more detailed underlying cause rather than a generic message, for quick diagnosis. Chat replay also fixed the interleaving order of cross-Agent cards — when you review a stretch of history, the back-and-forth between multiple AIs is woven back together correctly, exactly matching the order you saw live. Together these serve one thing: making what you see in the editor, and in replay, as close to real as possible.</p>
 <h2>Charting the team&#39;s progress</h2>
-<p>This day also added visualization charts for the team&#39;s work progress. As more and more work is pushed forward in parallel by AI agents, &quot;where exactly are we now, and how much is left&quot; becomes a question that needs to be seen. The added throughput and burn-down curves chart this information as dual lines accumulating over time, paired with a project-metrics panel, so the team sees the overall pace at a glance: how much was completed in this stretch, how much is still in flight, whether the speed is accelerating or slowing. For a development flow heavily reliant on automation, this &quot;global visibility&quot; matters greatly — though people hand much concrete execution to the AI, they must keep a grip on the overall situation, knowing in what direction and at what speed things are moving. Charting progress is precisely a means to step back from the tangle of execution details while still holding the big picture steady.</p>
+<p>This day also added visualization charts for the team&#39;s work progress. As more and more work is pushed forward in parallel by AI Agents, &quot;where exactly are we now, and how much is left&quot; becomes a question that needs to be seen. The added throughput and burn-down curves chart this information as dual lines accumulating over time, paired with a project-metrics panel, so the team sees the overall pace at a glance: how much was completed in this stretch, how much is still in flight, whether the speed is accelerating or slowing. For a development flow heavily reliant on automation, this &quot;global visibility&quot; matters greatly — though people hand much concrete execution to the AI, they must keep a grip on the overall situation, knowing in what direction and at what speed things are moving. Charting progress is precisely a means to step back from the tangle of execution details while still holding the big picture steady.</p>
 <h2>What this day means</h2>
 <p>The day&#39;s two main lines together answer two facets of the core proposition &quot;how to make an AI reliably build good games.&quot; The build-gate answers &quot;reliable&quot;: through objective build verification and specific error feedback, it turns &quot;done&quot; from empty words into a fact that can be verified and self-corrected — the cornerstone of trust. The engine&#39;s series of enhancements answer &quot;good&quot;: multi-material makes models more real, clustered lighting and expanded capacity make scenes grander, a more intuitive entry makes the AI err less — the expansion of capability. What an AI-driven creation platform most fears is &quot;looks impressive but delivers unreliably&quot;; and this day firmed up exactly the two most fundamental things at once — &quot;dependable&quot; and &quot;well-made.&quot; When the machine is both more capable and more strictly verified, people can truly, confidently entrust &quot;building a game&quot; to it.</p>
 </div>
@@ -89,19 +89,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

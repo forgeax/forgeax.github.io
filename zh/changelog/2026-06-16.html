@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-16.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-16.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-16.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-16.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-16.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-16.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-16.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-16.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -69,7 +69,7 @@
 <h2>编辑器能完全独立运行</h2>
 <p>编辑器的独立入口这天被整体重写成了一套真正自包含的外壳。此前虽然一直在朝&quot;独立&quot;努力,但那个独立访问入口其实还和主聊天界面藕断丝连——必须挂在主界面里才能跑起来,算不上真正独立。这天把它彻底拆开重写:自带一套可停靠的多面板布局,编辑器需要的九个面板都自己渲染、自己组织,完全不依赖主界面那一套。还加了一个一键引导脚本,在一台新机器上能自动把运行所需的各种构件准备好——包括底层渲染所需的二进制件,做到开箱就能编。这件事的意义,是让编辑器从&quot;主 Studio 的一个内嵌部分&quot;彻底变成了&quot;一个能单独打开、单独使用的完整应用&quot;。它既是模块化设计的一次彻底兑现,也为将来把编辑器嵌进其他产品、或者作为独立工具单独分发,铺平了道路。</p>
 <h2>整个代码库第一次有了 CI 闸门</h2>
-<p>这天给整个代码库装上了第一道自动化的质量闸门。所谓 CI(持续集成)闸门,就是每当有人提交一处改动,系统会自动跑一遍检查——这次上线的基础检查包含三关:类型检查(确认代码各部分的接口对得上)、构建(确认代码真能编译出来)、以及冒烟测试(跑一遍确认基本功能没崩)。三关全过,改动才被允许并入主干。这道闸门一立,立刻照出了之前在几个子项目里&quot;默默漂移&quot;了一阵的二十多处类型不一致问题——它们平时不报错,但其实已经埋下了隐患;当天就被分批清理干净。这件事的深远意义在于:从今天起,任何新的改动都不能再悄悄把这类问题带进主干了——机器会在门口自动拦下。对一个由大量 AI agent 高频并行改动的代码库来说,这种自动化的&quot;守门人&quot;尤其关键:人不可能盯住每一处改动,但闸门可以,而且它从不疲劳、从不徇私。把质量的底线交给自动化来守,正是一个项目从&quot;快速生长&quot;走向&quot;可持续生长&quot;的标志。</p>
+<p>这天给整个代码库装上了第一道自动化的质量闸门。所谓 CI(持续集成)闸门,就是每当有人提交一处改动,系统会自动跑一遍检查——这次上线的基础检查包含三关:类型检查(确认代码各部分的接口对得上)、构建(确认代码真能编译出来)、以及冒烟测试(跑一遍确认基本功能没崩)。三关全过,改动才被允许并入主干。这道闸门一立,立刻照出了之前在几个子项目里&quot;默默漂移&quot;了一阵的二十多处类型不一致问题——它们平时不报错,但其实已经埋下了隐患;当天就被分批清理干净。这件事的深远意义在于:从今天起,任何新的改动都不能再悄悄把这类问题带进主干了——机器会在门口自动拦下。对一个由大量 AI Agent 高频并行改动的代码库来说,这种自动化的&quot;守门人&quot;尤其关键:人不可能盯住每一处改动,但闸门可以,而且它从不疲劳、从不徇私。把质量的底线交给自动化来守,正是一个项目从&quot;快速生长&quot;走向&quot;可持续生长&quot;的标志。</p>
 <h2>接专业模型格式 + 角色动作平滑过渡</h2>
 <p>引擎这天在角色与资产上补了两块实打实的能力。一是正式接入了专业建模工具直出的模型格式:这种格式能完整携带动画、骨骼乃至物理参数,而此前要把它用进来必须先转换成另一种网页通用格式,转换过程难免丢细节;现在引擎能直接读它,从专业工具流出的资产可以原汁原味地搬进游戏。二是让角色动作之间能平滑交叉过渡:以前从&quot;走&quot;切到&quot;跑&quot;、从&quot;待机&quot;切到&quot;攻击&quot;,往往是生硬的瞬间切换,看着很跳;现在多段动作之间能按比例混合、平滑衔接,角色的动作连贯自然了许多——这对动作类游戏的手感至关重要。此外还加了一个即时调试绘制工具,能在画面上直接画出辅助线、包围盒之类的标记,排查问题时所见即所得,比对着数字猜直观得多。这几样合起来,让&quot;做一个会动、且动得自然的角色&quot;这件事的工具链又完整了一截。</p>
 <h2>引擎落地完整的 2D 瓦片地图系统</h2>
@@ -87,19 +87,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

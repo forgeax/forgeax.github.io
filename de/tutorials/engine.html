@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meet ForgeaX Engine — ForgeaX</title>
+<meta name="description" content="An AI-native TypeScript game engine designed to maximize AI efficiency. Data, lifecycles, APIs, and tools serve one goal." />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="Meet ForgeaX Engine — ForgeaX" />
+<meta property="og:description" content="An AI-native TypeScript game engine designed to maximize AI efficiency. Data, lifecycles, APIs, and tools serve one goal." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/de/tutorials/engine.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/de/tutorials/engine.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/engine.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/engine.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/engine.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/engine.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/engine.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/engine.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/engine.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/engine.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/engine.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
+
+</head>
+<body class="lang-de forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/de/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/de/" data-nav="/">Startseite</a>
+      <a href="/de/tutorials/" data-nav="/tutorials/" class="active">Tutorials</a>
+      <a href="/de/examples/" data-nav="/examples/">Beispiele</a>
+      <a href="/de/marketplace/" data-nav="/marketplace/">Plugins</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="Sprache">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/engine.html" data-l="en">English</a><a class="lang-item" href="/zh/tutorials/engine.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/engine.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/engine.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/engine.html" data-l="es">Español</a><a class="lang-item active" href="/de/tutorials/engine.html" data-l="de" aria-current="true">Deutsch</a><a class="lang-item" href="/fr/tutorials/engine.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/engine.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" href="/de/#install">Loslegen</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/de/tutorials/">← Zurück zu den Tutorials</a>
+    <h1>Meet ForgeaX Engine</h1>
+    <p class="standfirst"><strong>An AI-native game engine designed to maximize AI efficiency.</strong></p>
+
+    <div class="prose">
+      <p>ForgeaX is a TypeScript game engine with <strong>AI agents as its primary users</strong>. Data, lifecycles, APIs, and tools serve one goal: help AI understand the system, act precisely, inspect results, and repair failures.</p>
+      <div class="note"><strong>Efficiency is the goal; design is the method.</strong> Complete more verified game-development work with less context, fewer failed attempts, and shorter feedback cycles.</div>
+
+      <p class="eng-toc">
+        <a href="#ai-efficiency">AI efficiency</a>
+        <span aria-hidden="true">·</span>
+        <a href="#design">Design principles</a>
+        <span aria-hidden="true">·</span>
+        <a href="#architecture">Architecture</a>
+        <span aria-hidden="true">·</span>
+        <a href="#start">Get started</a>
+        <span aria-hidden="true">·</span>
+        <a href="#explore">Explore</a>
+      </p>
+
+      <h2 id="ai-efficiency">AI efficiency</h2>
+      <p>Efficiency means <strong>verified useful work</strong>, accounting for diagnosis and rework, context, and tool round trips.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>How it improves AI efficiency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Transparent rendering</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/rhi-debug/README.md" target="_blank" rel="noopener">RHI-debug</a> records and replays self-contained frames, exposing draw/dispatch work, bindings, resources, and pixels to locate incorrect inputs</td></tr>
+            <tr><td><strong>Transparent runtime logic and data</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/ecs/README.md" target="_blank" rel="noopener">ECS</a> makes components, queries, and schedules explicit; <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/remote/README.md" target="_blank" rel="noopener">Remote</a> queries live instances to locate failures from actual state</td></tr>
+            <tr><td><strong>Authorable, traceable assets</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/pack/README.md" target="_blank" rel="noopener">ScriptablePack / Pack</a> generate content in TypeScript or declare it in JSON; stable GUIDs connect sources and artifacts, with repair routed through the producer</td></tr>
+            <tr><td><strong>Reversible plugin changes</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/plugin/README.md" target="_blank" rel="noopener">Native Cordis</a> unifies dependencies, activation, and cleanup; failed configuration updates can restore the last working Fiber</td></tr>
+            <tr><td><strong>Measurable performance and results</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/profiler/README.md" target="_blank" rel="noopener">Profiler</a> provides bounded CPU captures and offline comparison; <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/preview/README.md" target="_blank" rel="noopener">Preview</a>, browser captures, and project tests supply runtime evidence</td></tr>
+            <tr><td><strong>CLI-first operation</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/devkit/README.md" target="_blank" rel="noopener">DevKit</a> unifies <code>forgeax</code> discovery, JSON input/output, and persistent instances for repeatable, composable operations</td></tr>
+            <tr><td><strong>Context on demand</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/skills" target="_blank" rel="noopener">Skills</a>, package contracts, and tool descriptions reveal only the knowledge needed for the task</td></tr>
+            <tr><td><strong>Structured failure and recovery</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/types/README.md" target="_blank" rel="noopener"><code>Result</code> and closed error unions</a> provide codes, expectations, hints, and details; capabilities, execution tiers, and recovery state are explicit</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Screenshots, structural checks, and real GPU execution answer different questions. CPU captures cannot substitute for GPU performance measurements.</div>
+
+      <h2 id="design">Design principles</h2>
+      <p><strong>Compression is intelligence: reduce the concepts needed to understand local behavior.</strong> Avoid duplicate state, extra lifecycles, and implicit branches.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Design principle</th>
+              <th>How ForgeaX applies it</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>AI is the primary user</strong></td><td>Prioritize discoverable, callable, verifiable machine contracts; AI usability takes precedence over human convention</td></tr>
+            <tr><td><strong>One source of truth</strong></td><td>World owns game state, Renderer owns render projections, and source assets plus Meta own author facts; other layers consume or derive</td></tr>
+            <tr><td><strong>Derive from declarations</strong></td><td>Material <code>paramSchema</code> derives layouts; RenderGraph derives dependencies and lifetimes from accesses; project declarations generate the Catalog</td></tr>
+            <tr><td><strong>Compose within domain boundaries</strong></td><td>Physics, rendering, assets, and audio own their execution data; plugins assemble capabilities and ECS schedules frame work</td></tr>
+            <tr><td><strong>Native lifecycle and unified cleanup</strong></td><td>Cordis <code>Context / Entry / Fiber</code> manage capability existence; <code>inject / provide / effect</code> express dependencies, services, and cleanup</td></tr>
+            <tr><td><strong>Explicit states and failures</strong></td><td>Closed unions, structured errors, and reported capability absence and fallback reduce hidden branches</td></tr>
+            <tr><td><strong>Prepare at build time, consume at runtime</strong></td><td>Import, WGSL composition and reflection, and VFX compilation produce published content for runtime loading</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>See the <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/AGENTS.md#design-axiom--compression--intelligence" target="_blank" rel="noopener">AI-first design axiom</a> and <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/AGENTS.md#module-design-map--cognitive-injection" target="_blank" rel="noopener">module ownership map</a> for the full constraints.</p>
+
+      <h2 id="architecture">Architecture</h2>
+      <p><strong>One authoritative World.</strong> Runtime assembles services, Render maintains render projections, and build tools produce resources.</p>
+
+      <div class="arch" role="img" aria-label="Engine architecture from the game project through DevKit into runtime and GPU backends">
+        <div class="arch__cap">Project and build</div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>Game project</strong>forge.json · code · asset sources</div>
+          <div class="arch__box"><strong>DevKit / CLI</strong>project operations · build · inspect</div>
+          <div class="arch__box"><strong>Build-time production</strong>import · cook · shader / VFX compilation</div>
+          <div class="arch__box"><strong>AssetRegistry</strong>GUID → published content</div>
+        </div>
+        <div class="arch__join">↓ DevKit starts the App; cooked artifacts enter AssetRegistry</div>
+        <div class="arch__cap">Runtime assembly</div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>App + native Cordis</strong>realm assembly · input · frame pacing · lifecycle</div>
+          <div class="arch__box"><strong>ECS World</strong>state · time · Update / FixedUpdate</div>
+          <div class="arch__box"><strong>Domain systems</strong>scene · animation · physics · audio intents · net</div>
+          <div class="arch__box"><strong>Runtime</strong>select backends and services · assemble Renderer</div>
+        </div>
+        <div class="arch__join">↓ World changes and assets enter Render; Runtime assembles the Renderer</div>
+        <div class="arch__cap">Render and GPU</div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>Render</strong>persistent projection · extract / prepare / record</div>
+          <div class="arch__box"><strong>RenderGraph</strong>resource accesses · pass dependencies · lifetimes</div>
+          <div class="arch__box"><strong>RHI</strong>opaque handles · capabilities</div>
+        </div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>rhi-webgpu / rhi-wgpu</strong>browser WebGPU / wgpu WASM</div>
+          <div class="arch__box"><strong>rhi-null</strong>structural validation</div>
+          <div class="arch__box"><strong>RHI-debug</strong>optional: capture · replay · inspect</div>
+        </div>
+      </div>
+
+      <h3>Rendering and GPU</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Subsystem</th>
+              <th>Key design and responsibility</th>
+              <th>Read more</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Render / RenderGraph</strong></td><td>Persistent CPU projection and capability-gated GPU Scene; programmable pipelines and RenderFeatures; derived dependencies, usages, and lifetimes with raster / compute / copy passes executed in declaration order</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/render/README.md" target="_blank" rel="noopener">Render</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/render-graph/README.md" target="_blank" rel="noopener">RenderGraph</a></td></tr>
+            <tr><td><strong>Shader / Material</strong></td><td>Schema-derived parameter and binding layouts; WGSL composition, Naga validation and reflection; runtime lookup of content-addressed compiled artifacts</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/shader/README.md" target="_blank" rel="noopener">Shader</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/shader-compiler/README.md" target="_blank" rel="noopener">Compiler</a></td></tr>
+            <tr><td><strong>GPU VFX</strong></td><td>GPU simulation and indirect rendering; code authoring and build-time compilation; particles, ribbons, trails, beams, billboards, and meshes</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/vfx/README.md" target="_blank" rel="noopener">VFX</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/vfx-render/README.md" target="_blank" rel="noopener">VFX render</a></td></tr>
+            <tr><td><strong>RHI / Backends</strong></td><td>Capability-gated operations across browser WebGPU, wgpu WASM, and null backends; a spec-aligned, math-free interface with opaque handles</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/rhi/README.md" target="_blank" rel="noopener">RHI</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/rhi-wgpu/README.md" target="_blank" rel="noopener">wgpu</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>ECS and multiple Workers</h3>
+      <p><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/ecs/README.md" target="_blank" rel="noopener">ECS World</a> owns entities, components, relationships, resources, and time. Systems declare access and scheduling in <code>Update</code> / <code>FixedUpdate</code>. <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/scene/README.md" target="_blank" rel="noopener">Scene</a> owns hierarchy and transforms; <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/state/README.md" target="_blank" rel="noopener">State</a> owns state-scoped entity lifetimes. Renderer consumes World changes into a persistent projection.</p>
+      <div class="arch" role="img" aria-label="Execution relationship among Host, Engine Worker, and the Kernel Worker pool">
+        <div class="arch__lane arch__lane--row">
+          <div class="arch__box"><strong>Host</strong>DOM / UI · input · Web Audio · frame credit</div>
+          <div class="arch__box"><strong>Engine Worker</strong>World + Renderer + Assets + game plugins</div>
+          <div class="arch__box"><strong>Kernel Worker pool</strong>QuerySpan shards over shared numeric columns</div>
+        </div>
+        <p class="arch__legend">Host supplies input and one frame credit → Engine returns results and audio intents → eligible numeric work goes to Kernel, then a completion barrier returns to Engine.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Execution tier</th>
+              <th>Placement</th>
+              <th>Constraints and scope</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>shared</code></td><td>Engine Worker plus persistent Kernel Worker pool</td><td>Requires cross-origin isolation, SharedArrayBuffer, and related capabilities; only eligible numeric work runs in parallel</td></tr>
+            <tr><td><code>engine-worker</code></td><td>World, Renderer, assets, and game plugins in one Worker</td><td>Host retains DOM, input, and audio; requires Worker rendering capabilities</td></tr>
+            <tr><td><code>main-serial</code></td><td>World and Renderer on the main thread</td><td>The direct serial execution path</td></tr>
+            <tr><td><code>auto</code></td><td>Selects an available tier from capabilities</td><td>Reports the actual selection and reason; explicitly requesting an unavailable tier returns an error</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Multiple Workers preserve <strong>one logical World</strong> with serial structural changes, no live-object transfer, and no split RenderGraph. Partial shared writes require World rebuild. See <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/app/README.md#execution-tiers" target="_blank" rel="noopener">App execution</a> and the <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/apps/hello/multithreaded-execution/README.md" target="_blank" rel="noopener">multithreaded example</a>.</div>
+
+      <h3>Text and scripted assets</h3>
+      <p><strong>Procedural generation and parameter reuse bring content into the code workflow.</strong> AI can generate assets in batches, edit text directly, review diffs, and validate automatically.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Authoring form</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>ScriptablePack · <code>.pack.ts</code></strong></td><td>Generate asset collections with functions, loops, and composition; reuse scene and geometry logic</td></tr>
+            <tr><td><strong>Parameterized instances</strong></td><td>Independent package identity, parent source, and sparse overrides for reusable variants</td></tr>
+            <tr><td><strong>Pack · <code>.pack.json</code></strong></td><td>Declare assets, references, and instance parameters for direct field editing and diff review</td></tr>
+            <tr><td><strong>Imported assets and sidecars</strong></td><td>External glTF / FBX / image sources and metadata share the identity and cooking path</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="arch" role="img" aria-label="ScriptablePack, Pack, and external sources cook into published content loaded by GUID">
+        <div class="arch__lane">
+          <div class="arch__box"><strong>ScriptablePack</strong><code>.pack.ts</code></div>
+          <div class="arch__box"><strong>Pack</strong><code>.pack.json</code></div>
+          <div class="arch__box"><strong>External sources + Meta</strong>models · images · fonts</div>
+        </div>
+        <div class="arch__join">↓ Producer validation and cook → published content (stable GUID · receipt · Catalog)</div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>Producer validation and cook</strong></div>
+          <div class="arch__box"><strong>Published content</strong>stable GUID · receipt · Catalog</div>
+          <div class="arch__box"><strong>Runtime</strong>load by GUID</div>
+        </div>
+      </div>
+      <div class="note"><strong>Sources and artifacts are separate.</strong> <code>.pack.ts</code> executes at build time; runtime loads cooked content by stable GUID. Textures, models, and audio can still use binary sources. Repair source inputs, then cook again. See the <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/pack/README.md" target="_blank" rel="noopener">Pack authoring contract</a>.</div>
+
+      <h3>Game and engine plugins</h3>
+      <p>Game and engine plugins share native Cordis dependencies, activation, updates, and disposal.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Plugin layer</th>
+              <th>Typical responsibility</th>
+              <th>Composition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Project assembly</td><td>Installed plugins, configuration, and realm placement</td><td><code>forge.json.plugins[]</code> declares Entries; DevKit generates a static Catalog for native Loader activation</td></tr>
+            <tr><td>Engine plugins</td><td>Scene, input, physics, audio, and ECS capabilities</td><td>Native <code>inject / provide</code> declare dependencies and services; <code>effect</code> registers contributions and their inverses</td></tr>
+            <tr><td>Game plugins</td><td>Player movement, camera, game UI, and gameplay systems</td><td>The reference template combines children through <code>definePluginGroup</code> / <code>usePlugin</code> in <code>assets/plugin.ts</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Effects unwind when their Fiber exits. ECS schedules frame work; plugin assembly stays outside hot paths. See the <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/plugin/README.md" target="_blank" rel="noopener">plugin contract</a> and <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/templates/game-3d/assets/plugin.ts" target="_blank" rel="noopener"><code>game-3d</code> root plugin</a>.</p>
+
+      <h3>Simulation and interaction</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Subsystem</th>
+              <th>Key design and responsibility</th>
+              <th>Read more</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Networking</strong></td><td>Sessions own replication, ACKs, retries, baselines/deltas, and connection recovery; WebSocket supplies transport</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/net/README.md" target="_blank" rel="noopener">Net</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/net-websocket/README.md" target="_blank" rel="noopener">WebSocket</a></td></tr>
+            <tr><td><strong>Physics</strong></td><td>ECS physics contracts separated from Rapier 2D / 3D backends; input synchronization, simulation stepping, and state writeback</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/physics/README.md" target="_blank" rel="noopener">Physics</a></td></tr>
+            <tr><td><strong>Animation / Skinning</strong></td><td>Renderer-independent animation graphs, clips, and playback; Skin binding and joint-path resolution</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/animation/README.md" target="_blank" rel="noopener">Animation</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/skinning/README.md" target="_blank" rel="noopener">Skinning</a></td></tr>
+            <tr><td><strong>Runtime intelligence</strong></td><td>Optional provider-neutral Activity / Session; bounded output, cancellation, and polling; asynchronous services stay outside the ECS frame loop</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/intelligence/README.md" target="_blank" rel="noopener">Intelligence</a></td></tr>
+            <tr><td><strong>Input / UI / Audio</strong></td><td>Frozen frame-start input snapshots; Shadow DOM UI; realm-neutral audio intents played by Host Web Audio</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/input/README.md" target="_blank" rel="noopener">Input</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/ui/README.md" target="_blank" rel="noopener">UI</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/audio/README.md" target="_blank" rel="noopener">Audio</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="start">Get started</h2>
+      <p>Install <strong><code>@forgeax/engine</code></strong>, use focused subpaths such as <code>/ecs</code> and <code>/app</code>, and operate through <code>forgeax</code>.</p>
+      <pre><code>pnpm dlx @forgeax/engine project new my-game --template game-3d
+cd my-game
+pnpm exec forgeax help --tree --json
+pnpm exec forgeax project check
+pnpm exec forgeax dev start --headless false --json</code></pre>
+      <p><code>game-3d</code> is a third-person reference; <code>empty</code> is a minimal start. Read the generated README and skills. See <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/engine/README.md" target="_blank" rel="noopener">Engine</a> and the <a href="/docs/cli/">CLI guide</a>.</p>
+
+      <details class="eng-details">
+        <summary>Run and verify</summary>
+        <pre><code>pnpm exec forgeax dev status --json
+pnpm exec forgeax dev capture --json
+pnpm exec forgeax dev stop --json
+pnpm exec forgeax project test
+pnpm exec forgeax project package --format web-zip</code></pre>
+        <p>Observations carry a <code>revision</code>; captures return PNG and report references. For entity lookup, camera control, and runtime identity constraints, see <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/devkit/README.md#persistent-live-control" target="_blank" rel="noopener">persistent live control</a>.</p>
+      </details>
+
+      <details class="eng-details">
+        <summary>Source and SDK</summary>
+        <p>Toolchain versions are defined in <code>.nvmrc</code>, <code>.pnpm-version</code>, and <code>.bun-version</code> in the repository.</p>
+        <pre><code>pnpm install
+pnpm build:engine
+pnpm test</code></pre>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Entry</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Install the SDK</td><td><code>pnpm dlx @forgeax/engine sdk install ./forgeax-sdk</code></td></tr>
+              <tr><td>SDK <code>source/engine/</code></td><td>Independent public source with <code>.forgeax-public-distribution</code> and prebuilt WASM; run the install/build commands above without private submodules</td></tr>
+              <tr><td>Full contributor checkout</td><td>Clone with <code>--recurse-submodules</code> for authorized private asset access; run <code>pnpm build</code> for the complete application fleet</td></tr>
+              <tr><td>Single demo iteration</td><td><code>pnpm build:app hello/triangle</code>; broader acceptance follows the <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/AGENTS.md#smoke-gate" target="_blank" rel="noopener">Smoke gate</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The SDK includes built packages, templates, skills, and Engine source. See the <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/skills/forgeax-engine-sdk/SKILL.md" target="_blank" rel="noopener">SDK guide</a>.</p>
+      </details>
+
+      <h2 id="explore">Explore</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Entry</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/AGENTS.md" target="_blank" rel="noopener">AGENTS.md</a></td><td>Design axioms, module ownership, errors, source-work rules, and verification constraints</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/packages" target="_blank" rel="noopener">Packages</a></td><td>Package READMEs defining APIs, lifecycles, and capability contracts</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/schemas" target="_blank" rel="noopener">Schemas</a> / <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/scripts/ci/README.md" target="_blank" rel="noopener">CI guide</a></td><td>Machine-readable contracts and verification workflows</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/skills" target="_blank" rel="noopener">Engine skills</a></td><td>Task-oriented capability discovery and operating paths</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/apps" target="_blank" rel="noopener">Apps</a> / <a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/templates" target="_blank" rel="noopener">Templates</a></td><td>Examples, regression scenarios, and game starting points</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/apps/showcase/palace/README.md" target="_blank" rel="noopener">Forbidden City showcase</a></td><td><code>pack.ts</code> architecture, lighting, and continuous CLI inspection; visual quality remains a work in progress</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">This page is adapted from the engine README. Linked package contracts define precise capabilities and limitations.</div>
+
+      <h2>License</h2>
+      <p>The engine is licensed under <a href="/de/license.html">Apache-2.0</a>.</p>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/de/tutorials/getting-started.html">Make your first game →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>Ein KI-natives persönliches Spielestudio – verwandeln Sie Ideen in spielbare Spiele.</p>
+  </div>
+  <nav class="foot-links" aria-label="Website">
+    <a href="/de/tutorials/">Tutorials</a>
+    <a href="/de/examples/">Beispiele</a>
+    <a href="/de/marketplace/">Plugins</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
+    <a href="/de/license.html">Lizenz</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-05-31.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-05-31.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-31.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-31.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-31.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-31.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-31.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-31.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -71,7 +71,7 @@
 <h2>Preview loads correctly under a URL prefix</h2>
 <p>This day also grappled with an unglamorous but deployment-flexibility-critical path: making the preview load all resources correctly under a &quot;URL path prefix.&quot; In many real deployments, an app isn&#39;t at the website root but under some sub-path (a subdirectory of some site) — and if resource addresses don&#39;t account for that prefix, loading fails to find files and errors. This day aligned the whole chain, from engine to packaging to the resource index, to &quot;respect the path prefix,&quot; and locked a regression test to keep it from going wrong again; it also fixed the startup flow to ensure the full set of needed runtime pieces is correctly built before launch. It addresses the most headache-inducing class of environment issue — &quot;deploy it somewhere else and loading breaks.&quot; Getting this path working means exported games and embedded previews reliably find their resources and run no matter what URL path they&#39;re placed under — exactly the underlying guarantee that makes &quot;package it into a website and take it&quot; genuinely usable.</p>
 <h2>The interactive-narrative pipeline runs a full loop</h2>
-<p>The story pipeline for narrative-driven games was wired into an end-to-end loop this day. A plot is essentially a branching &quot;story tree,&quot; and drawing and running that tree correctly means solving a string of thorny problems: disambiguating repeated numbering, repairing back edges, routing long-span connections around, and auto-mounting on start so it&#39;s visible from the beginning — all fixed this day, so the whole story structure presents correctly. The agent responsible for narrative connected to the full pipeline toolset and reports progress live as it runs. The key piece: when the whole pipeline finishes, the system automatically wakes that agent back to do a closing summary, rather than stopping halfway and leaving a dangling end. With that, building a branching, well-paced plot becomes a smooth, visible, self-closing flow from start to finish — the narrative line moves from &quot;has tools&quot; to genuinely &quot;can run all the way through once.&quot;</p>
+<p>The story pipeline for narrative-driven games was wired into an end-to-end loop this day. A plot is essentially a branching &quot;story tree,&quot; and drawing and running that tree correctly means solving a string of thorny problems: disambiguating repeated numbering, repairing back edges, routing long-span connections around, and auto-mounting on start so it&#39;s visible from the beginning — all fixed this day, so the whole story structure presents correctly. The Agent responsible for narrative connected to the full pipeline toolset and reports progress live as it runs. The key piece: when the whole pipeline finishes, the system automatically wakes that Agent back to do a closing summary, rather than stopping halfway and leaving a dangling end. With that, building a branching, well-paced plot becomes a smooth, visible, self-closing flow from start to finish — the narrative line moves from &quot;has tools&quot; to genuinely &quot;can run all the way through once.&quot;</p>
 <h2>What this day means</h2>
 <p>The most important shift this day is the platform having a complete &quot;exit&quot; for the first time. Before, however well-made, a game was still trapped in the tool; and &quot;export as a website&quot; plus &quot;loads correctly under any path&quot; together let your work genuinely leave here and reach others for the first time. With skybox and bloom making it better-looking and the narrative loop making it more complete, this day filled in the last link of the &quot;create — take shape — ship&quot; chain. A creation tool&#39;s value is ultimately redeemed by whether &quot;what you make can be seen by the world.&quot; From today, the game you make here is no longer just a local demo but a real work you can package, host and share for anyone to play.</p>
 </div>
@@ -85,19 +85,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

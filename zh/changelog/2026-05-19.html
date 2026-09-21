@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>2026-05-19 · 断电也能恢复的后端地基 + 引擎第一次点灯 — ForgeaX</title>
-<meta name="description" content="这天三条线都"扒到地基重浇":后端运行时重写成一套分层、能断电恢复的多 agent 架构;引擎第一次点亮基于物理的光照——方向光、点光、聚光、色调映射、带贴图的立方体全部到位;AI 开发流程也大幅瘦身,同一个改动少绕好几圈。" />
+<meta name="description" content="这天三条线都"扒到地基重浇":后端运行时重写成一套分层、能断电恢复的多 Agent 架构;引擎第一次点亮基于物理的光照——方向光、点光、聚光、色调映射、带贴图的立方体全部到位;AI 开发流程也大幅瘦身,同一个改动少绕好几圈。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="2026-05-19 · 断电也能恢复的后端地基 + 引擎第一次点灯 — ForgeaX" />
-<meta property="og:description" content="这天三条线都"扒到地基重浇":后端运行时重写成一套分层、能断电恢复的多 agent 架构;引擎第一次点亮基于物理的光照——方向光、点光、聚光、色调映射、带贴图的立方体全部到位;AI 开发流程也大幅瘦身,同一个改动少绕好几圈。" />
+<meta property="og:description" content="这天三条线都"扒到地基重浇":后端运行时重写成一套分层、能断电恢复的多 Agent 架构;引擎第一次点亮基于物理的光照——方向光、点光、聚光、色调映射、带贴图的立方体全部到位;AI 开发流程也大幅瘦身,同一个改动少绕好几圈。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-05-19.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-19.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-05-19.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-05-19.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-19.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-19.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-19.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-19.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-19.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -61,13 +61,13 @@
     <a class="back" href="/zh/changelog/">← 更新日志</a>
     <div class="meta"><span class="tag brand">更新</span><span>2026-05-19</span></div>
     <h1>断电也能恢复的后端地基 + 引擎第一次点灯</h1>
-    <p class="standfirst">这天三条线都&quot;扒到地基重浇&quot;:后端运行时重写成一套分层、能断电恢复的多 agent 架构;引擎第一次点亮基于物理的光照——方向光、点光、聚光、色调映射、带贴图的立方体全部到位;AI 开发流程也大幅瘦身,同一个改动少绕好几圈。</p>
+    <p class="standfirst">这天三条线都&quot;扒到地基重浇&quot;:后端运行时重写成一套分层、能断电恢复的多 Agent 架构;引擎第一次点亮基于物理的光照——方向光、点光、聚光、色调映射、带贴图的立方体全部到位;AI 开发流程也大幅瘦身,同一个改动少绕好几圈。</p>
     <div class="prose"><h2>三条线,同一种决心:扒到地基重浇</h2>
 <p>这一天的三件大事有一个共同特征:都不是在原有基础上小修小补,而是&quot;扒到地基重浇&quot;。后端把整套运行时推倒,按一套清晰分层重写;引擎把渲染从只能清屏推进到真正点亮物理光照;连构建这一切的 AI 开发流程本身,也被大幅精简。敢在产品已经能演示之后,还回头把地基重做,背后是一种判断:有些早期为了快而欠下的结构性债务,越往后拖代价越大,不如趁现在还来得及,一次性还清。这天体现的,正是&quot;在正确的时机做正确的重写&quot;这种工程上的成熟。</p>
-<h2>后端推倒重盖:能&quot;断电恢复&quot;的多 agent 地基</h2>
-<p>后端运行时这天从地基重浇成一套更稳、更清晰的多 agent 架构。最关键的变化是&quot;断电恢复&quot;:每个 agent 都自己写一本只追加的事件日志(账本),记录它经历的每一件事;一旦进程崩溃、甚至机器断电,重新打开时系统能从这本账本把事件完整回放,把 agent 恢复到崩溃前那一刻的状态。这条命脉被一个端到端的烟雾测试反复验证过——从产生事件、写入账本、重新打开、到完整回放,整条路径都跑通。对一个要让 agent 在后台长时间干活的平台,这是从&quot;出意外就前功尽弃&quot;到&quot;出意外也能原地复活&quot;的根本性升级。</p>
+<h2>后端推倒重盖:能&quot;断电恢复&quot;的多 Agent 地基</h2>
+<p>后端运行时这天从地基重浇成一套更稳、更清晰的多 Agent 架构。最关键的变化是&quot;断电恢复&quot;:每个 Agent 都自己写一本只追加的事件日志(账本),记录它经历的每一件事;一旦进程崩溃、甚至机器断电,重新打开时系统能从这本账本把事件完整回放,把 Agent 恢复到崩溃前那一刻的状态。这条命脉被一个端到端的烟雾测试反复验证过——从产生事件、写入账本、重新打开、到完整回放,整条路径都跑通。对一个要让 Agent 在后台长时间干活的平台,这是从&quot;出意外就前功尽弃&quot;到&quot;出意外也能原地复活&quot;的根本性升级。</p>
 <h2>分层架构:为什么把后端拆成清晰的几层</h2>
-<p>这次重写不是简单换个写法,而是把后端拆成了职责单一、自底向上的若干层:最底是类型与默认值的骨架,往上是事件总线与队列、共享黑板(临时状态)、可恢复的事件账本、监听磁盘的 agent 列表、上下文窗口、agent 本体与驱动它一回合思考的循环、每个会话各自的调度器,最顶是会话与会话管理。每一层只依赖它下面那层、只暴露明确的接口,这样任何一层都能独立理解、独立测试、独立替换。配套还把 agent 列表改成直接盯着磁盘上的文件变化来感知增删,不再维护一份容易写歪的索引。分层的真正价值,是让一个会越来越复杂的系统始终&quot;拆得开、看得懂、改得动&quot;——这正是它值得花大力气重浇的原因。</p>
+<p>这次重写不是简单换个写法,而是把后端拆成了职责单一、自底向上的若干层:最底是类型与默认值的骨架,往上是事件总线与队列、共享黑板(临时状态)、可恢复的事件账本、监听磁盘的 Agent 列表、上下文窗口、Agent 本体与驱动它一回合思考的循环、每个会话各自的调度器,最顶是会话与会话管理。每一层只依赖它下面那层、只暴露明确的接口,这样任何一层都能独立理解、独立测试、独立替换。配套还把 Agent 列表改成直接盯着磁盘上的文件变化来感知增删,不再维护一份容易写歪的索引。分层的真正价值,是让一个会越来越复杂的系统始终&quot;拆得开、看得懂、改得动&quot;——这正是它值得花大力气重浇的原因。</p>
 <h2>引擎第一次&quot;点灯&quot;:基于物理的光照</h2>
 <p>引擎渲染这天迈过一道象征性的门槛:第一次点亮了一束基于物理的光。&quot;基于物理&quot;意味着材质对光的反应遵循真实世界的能量规律——而不是简单地把颜色乘个亮度。亮起这第一束方向光,看似只是屏幕上多了点明暗,实则是引擎从&quot;能把形状涂上颜色&quot;跨进了&quot;能模拟光和物体之间真实交互&quot;的世界。这是所有真实感画面的起点:有了正确的光照模型,后面金属的反光、布料的柔和、表面的凹凸才谈得上可信。把这件最基础也最关键的事第一步走对,等于给后面所有画质提升定了正确的基调。</p>
 <h2>投光体、衰减与色调映射</h2>
@@ -89,19 +89,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

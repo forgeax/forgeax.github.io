@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html" class="active">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/about.html" data-l="en">English</a><a class="lang-item active" href="/zh/about.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/about.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/about.html" data-l="ko">한국어</a><a class="lang-item" href="/es/about.html" data-l="es">Español</a><a class="lang-item" href="/de/about.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/about.html" data-l="fr">Français</a><a class="lang-item" href="/pt/about.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -84,7 +84,7 @@
     </article>
 
     <article class="read-panel prose" id="how-it-works" data-read-panel="how-it-works" data-read-alias="how-the-loop-works">
-      <p>你在工作室里向一个叫 Forge 的 AI 主创描述你想要的游戏 —— 可以用对话，也可以在可视化编辑器里直接动手，未来还会支持图片、视频等更多输入。它会规划、必要时叫上各司其职的子 agent（玩法、设计、美术……），然后<strong>自己编写引擎代码</strong>，结果实时热重载到浏览器预览里。</p>
+      <p>你在工作室里向一个叫 Forge 的 AI 主创描述你想要的游戏 —— 可以用对话，也可以在可视化编辑器里直接动手，未来还会支持图片、视频等更多输入。它会规划、必要时叫上各司其职的子 Agent（玩法、设计、美术……），然后<strong>自己编写引擎代码</strong>，结果实时热重载到浏览器预览里。</p>
       <p>这背后有两块自研的底座：一个<strong>为 AI 视角重新设计的游戏引擎</strong>（让 AI 读得懂、写得动、错得明白），和一套<strong>引导 AI 持续收敛到正确结果的开发流程</strong>（需求进、可玩产物出，中间每一步可观测、可回溯）。</p>
       <div id="how-the-loop-works"><h2>七步闭环</h2>
 <p>在引擎内部，每个功能都经过同一条流水线 —— 需求进、可用产物出，中间每一步都留下可读的记录：</p>
@@ -97,8 +97,8 @@
 <li><strong>验收</strong> —— 人来把最后一关。</li>
 <li><strong>合入</strong> —— 通过后并进主干。</li>
 </ol>
-<h2>编排者 + 子 agent</h2>
-<p>一个&quot;编排者&quot;推进这条状态机，决定每一步派哪个子 agent、并检查它的产物；子 agent 各有角色、各自独立上下文。人类只在两个出入点注入判断：<strong>提需求</strong>和<strong>做验收</strong>。</p>
+<h2>编排者 + 子 Agent</h2>
+<p>一个&quot;编排者&quot;推进这条状态机，决定每一步派哪个子 Agent、并检查它的产物；子 Agent 各有角色、各自独立上下文。人类只在两个出入点注入判断：<strong>提需求</strong>和<strong>做验收</strong>。</p>
 <h2>不让&quot;看起来过了&quot;溜过去</h2>
 <p>验证步里有两道 AI 关卡：一个以 AI 用户视角静态扫文档与 API，抓&quot;承诺了却没实现&quot;；另一个在隔离沙箱里真跑 demo、截图，再回头核对画面对不对 —— 防止&quot;测试假绿、画面却是黑的&quot;。</p>
 <h2>越跑越稳</h2>
@@ -113,10 +113,10 @@
       <p>四块东西协同工作：</p>
       <ul>
         <li><strong>一个 AI 原生引擎</strong> —— TypeScript 写的 ECS 引擎，双 RHI 渲染（WebGPU + 一套 wasm 后端）、PBR/IBL/SSAO 渲染、2D/3D 物理、glTF/FBX 资产与骨骼动画。它的 API、错误与状态都为 AI 读写而设计。</li>
-        <li><strong>自进化开发闭环（ForgeaX closed loop）</strong> —— 七步闭环（需求 → 研究 → 计划 → 实现 → 验证 → 验收 → 合入），由编排者驱动一组角色化子 agent，内置 AI 评审与"真跑 + 截图"的沙箱验证；它吃自己的反馈持续进化，越跑越稳。</li>
+        <li><strong>自进化开发闭环（ForgeaX closed loop）</strong> —— 七步闭环（需求 → 研究 → 计划 → 实现 → 验证 → 验收 → 合入），由编排者驱动一组角色化子 Agent，内置 AI 评审与"真跑 + 截图"的沙箱验证；它吃自己的反馈持续进化，越跑越稳。</li>
         <li><strong>AI 原生玩法</strong> —— 不止用 AI 做游戏，还支持把 AI 做进玩法本身：智能 NPC、生成式内容、可交互的 AI 体验。</li>
         <li><strong>工作室与编辑器</strong> —— 对话区紧挨实时预览，可视化场景编辑器的改动直接回流到运行中的游戏；网页或桌面应用皆可。</li>
-        <li><strong>Agent 团队与创作工具</strong> —— 制作、玩法、设计、叙事、美术、编码各有命名 agent；还有一整套扩展页面插件，生成角色、动画、3D 模型、特效、UI、音乐等。</li>
+        <li><strong>Agent 团队与创作工具</strong> —— 制作、玩法、设计、叙事、美术、编码各有命名 Agent；还有一整套扩展页面插件，生成角色、动画、3D 模型、特效、UI、音乐等。</li>
       </ul>
     </article>
 
@@ -175,19 +175,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

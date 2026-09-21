@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-08.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-08.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-08.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-08.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-08.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-08.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-08.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-08.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -69,7 +69,7 @@
 <h2>模型在编辑和试玩里都能带材质实时渲染</h2>
 <p>这天补上了&quot;所见即所得&quot;长期缺的最后一块视觉拼图:导入的 3D 模型现在能在运行时带着完整材质正确渲染。具体包含几样:纹理(贴在模型表面的那层图案与色彩)、多级纹理细节(让物体在远处不再出现细碎的闪烁噪点)、双面材质(薄片状的物体两面都能正确显示而不穿帮);再配上基于环境贴图的天光照明,模型在场景里看起来真实、有质感,而不再是一团没有表面细节的灰模型。比单点能力更关键的是一致性:这套运行时渲染让编辑态和试玩态看到的完全是同一个样子——你在编辑器里摆好、看到的效果,就是真正玩起来时的效果,中间不再有&quot;编辑时一个样、跑起来另一个样&quot;的落差。示例射击游戏已经整体切到这条运行时渲染链路上,编辑与试玩两边的画面严丝合缝。对创作者而言,这意味着你终于可以&quot;放心地照着编辑器里的样子去打磨&quot;,因为它就是最终成品的样子。</p>
 <h2>实时控制台抛光:盯着 AI 干活更踏实</h2>
-<p>这天有一阵密集的抛光集中在那个&quot;实时盯着 AI agent 干活&quot;的控制台界面上——它是你观察后台多个 AI 任务进展、随时介入的窗口。此前它每一处都还有点硌手,这天被一项项磨平。关掉浏览器再回来,后台的 agent 还活着、状态不丢;在里面跑那种占满整屏的终端程序时,鼠标滚轮终于能直接滚动了;多个任务卡片在切换焦点时,变亮变暗改成了平滑过渡而不是生硬地&quot;啪&quot;地一跳;当前聚焦的那张卡片有了清晰的高亮边框,不再是浏览器默认的难看白边;全屏的卡片会正确地盖在顶栏之上而不被挡住;还消除了一个会反复误报&quot;历史记录丢失&quot;的烦人循环。这些改动没有一个是&quot;新功能&quot;,但合起来,这个控制台从&quot;勉强能用&quot;变成了&quot;可以盯着看一整天而不心烦&quot;。对一个以 AI agent 为核心的平台来说,&quot;能舒服地观察 AI 在干什么&quot;本身就是一项关键能力——看得清、盯得住,人才放心把活交给它。</p>
+<p>这天有一阵密集的抛光集中在那个&quot;实时盯着 AI Agent 干活&quot;的控制台界面上——它是你观察后台多个 AI 任务进展、随时介入的窗口。此前它每一处都还有点硌手,这天被一项项磨平。关掉浏览器再回来,后台的 Agent 还活着、状态不丢;在里面跑那种占满整屏的终端程序时,鼠标滚轮终于能直接滚动了;多个任务卡片在切换焦点时,变亮变暗改成了平滑过渡而不是生硬地&quot;啪&quot;地一跳;当前聚焦的那张卡片有了清晰的高亮边框,不再是浏览器默认的难看白边;全屏的卡片会正确地盖在顶栏之上而不被挡住;还消除了一个会反复误报&quot;历史记录丢失&quot;的烦人循环。这些改动没有一个是&quot;新功能&quot;,但合起来,这个控制台从&quot;勉强能用&quot;变成了&quot;可以盯着看一整天而不心烦&quot;。对一个以 AI Agent 为核心的平台来说,&quot;能舒服地观察 AI 在干什么&quot;本身就是一项关键能力——看得清、盯得住,人才放心把活交给它。</p>
 <h2>动画工坊统一界面 + 抠图与标注新工具</h2>
 <p>动画相关的几个工具此前各自一套界面,图标、按钮主次、侧栏布局、提示风格都不一致,几个工坊放在一起像是几个不同团队拼出来的东西。这天把它们一口气标准化到同一套设计语言上:统一的图标库、清晰的按钮层级(主操作和次操作一眼分得清)、一致的侧栏布局、统一的提示样式、统一的&quot;完成&quot;状态配色。除了视觉统一,2D 骨骼动画的处理管线还新增了几样实用能力:从多个候选结果里挑选、自动抠掉背景、以及一个用来标注的模式;另一个用来搭 2D 场景的工作台也被正式开放出来。视觉一致看似只是&quot;好看&quot;,实则关乎信任——当一个产品的各个角落长得像同一个东西时,用户才会本能地相信它们背后是同一套靠谱的逻辑。对不写代码、只用界面的创作者来说,这天是 Studio 第一次&quot;看起来像一个完整的产品&quot;,而不是一堆工具的拼盘。</p>
 <h2>引擎:天空不再倒着画 + 进阶渲染教学示例</h2>
@@ -87,19 +87,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

@@ -105,3 +105,117 @@ body.lang-en .forgeax-site a.tut-card .tag.brand {
 .forgeax-site .tut-card[id] {
   scroll-margin-top: calc(var(--nav-h) + 16px);
 }
+
+/* Engine overview article */
+.prose .eng-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  align-items: center;
+  margin: 8px 0 28px;
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+.prose .eng-toc a {
+  border-bottom-color: transparent;
+}
+.prose .table-wrap {
+  overflow-x: auto;
+  margin: 18px 0;
+}
+.prose .table-wrap table {
+  margin: 0;
+  min-width: 520px;
+}
+.prose h2[id],
+.prose h3[id] {
+  scroll-margin-top: calc(var(--nav-h, 64px) + 16px);
+}
+.arch {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+}
+.arch__cap {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.arch__lane {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+.arch__lane--row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.arch__box {
+  padding: 10px 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-base);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+.arch__box strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--text-primary);
+  font-size: 13.5px;
+}
+.arch__join,
+.arch__legend {
+  margin: 0;
+  text-align: center;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+}
+.eng-details {
+  margin: 16px 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--bg-elevated) 80%, transparent);
+  padding: 4px 16px 4px;
+}
+.eng-details > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 12px 0;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.eng-details > summary::-webkit-details-marker {
+  display: none;
+}
+.eng-details > summary::before {
+  content: "›";
+  color: var(--brand);
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.eng-details[open] > summary::before {
+  transform: rotate(90deg);
+}
+.eng-details[open] {
+  padding-bottom: 12px;
+}
+
+@media (max-width: 720px) {
+  .arch__lane--row {
+    grid-template-columns: 1fr;
+  }
+  .prose .table-wrap table {
+    min-width: 460px;
+  }
+}

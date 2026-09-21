@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-09.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-09.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-09.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-09.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-09.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-09.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-09.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-09.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -73,9 +73,9 @@
 <h2>更直觉的游戏入口写法</h2>
 <p>引擎这天还把&quot;创建一个游戏应用&quot;的入口写法重新做了梳理,分成更直觉的三层:一层管摄像机与画面基本设置,一层管打包构建的选项,一层管资源的接入方式。此前这些不同性质的参数是混在一起的,写起来容易混淆——尤其对要靠它来写代码的 AI 而言,参数越杂、越没有清晰的归类,写错的概率就越高。把它按职责分成清楚的三层之后,每一层是干什么的一目了然,AI 写起游戏来更顺手、更不容易出错。这件事和当天的&quot;验车线&quot;其实是一体两面:验车线在出口处把关,堵住错误的产物;而把 API 设计得更直觉,则是在入口处降低出错的概率。一个让 AI 来写代码的平台,既要在事后能检验,也要在事前让它更难写错——两者配合,产出的质量才能稳步提升。新建游戏的默认模板也一并升级,开箱就自带 HDR 天空和一个能操控的角色,让每个新游戏都从一个更体面的起点开始。</p>
 <h2>编辑器显示真实几何 + 更稳的回放</h2>
-<p>编辑器这天朝&quot;所见即所得&quot;又靠近了一步:现在它会预先加载模型文件,所以编辑视图里直接显示的是模型真实的几何形状,而不再是一个临时的占位方块。这看似细节,但影响很实在——你在编辑器里摆放、对齐、调整一个物体时,看到的就是它真正的样子,而不是凭空想象一个方块代表的东西最终会长成什么。底层资产管线也切到了引擎原生的场景包格式,编辑态同样带上了 HDR 天空,让编辑环境和最终运行环境进一步对齐。出错时,画面上的错误浮层会展开更详细的内层原因,而不只是一句笼统的报错,方便快速定位问题。此外还修了聊天回放里跨 agent 卡片的交错顺序——当你回看一段历史时,多个 AI 之间你来我往的发言能正确地穿插还原,和当时实时看到的顺序完全一致。这些改动共同服务于一件事:让你在编辑器里看到的、回放里看到的,都尽可能地接近真实。</p>
+<p>编辑器这天朝&quot;所见即所得&quot;又靠近了一步:现在它会预先加载模型文件,所以编辑视图里直接显示的是模型真实的几何形状,而不再是一个临时的占位方块。这看似细节,但影响很实在——你在编辑器里摆放、对齐、调整一个物体时,看到的就是它真正的样子,而不是凭空想象一个方块代表的东西最终会长成什么。底层资产管线也切到了引擎原生的场景包格式,编辑态同样带上了 HDR 天空,让编辑环境和最终运行环境进一步对齐。出错时,画面上的错误浮层会展开更详细的内层原因,而不只是一句笼统的报错,方便快速定位问题。此外还修了聊天回放里跨 Agent 卡片的交错顺序——当你回看一段历史时,多个 AI 之间你来我往的发言能正确地穿插还原,和当时实时看到的顺序完全一致。这些改动共同服务于一件事:让你在编辑器里看到的、回放里看到的,都尽可能地接近真实。</p>
 <h2>把团队的进度画成图</h2>
-<p>这天还给团队的工作进度加上了可视化图表。当越来越多的工作由 AI agent 并行推进时,&quot;现在到底进行到哪了、还剩多少没做完&quot;就成了一个需要被看见的问题。新增的吞吐量与燃尽曲线把这些信息画成了随时间累积的双线图,再配上一个项目指标面板,团队一眼就能看到整体的推进节奏:这段时间完成了多少、还有多少在路上、速度是在加快还是放缓。对一个高度依赖自动化的开发流程来说,这种&quot;全局可见性&quot;非常重要——人虽然把大量具体执行交给了 AI,但必须始终对整体态势保持掌控,知道事情正朝什么方向、以什么速度推进。把进度画成图,正是让人从繁杂的执行细节里抽身出来、仍能稳稳把握全局的一种手段。</p>
+<p>这天还给团队的工作进度加上了可视化图表。当越来越多的工作由 AI Agent 并行推进时,&quot;现在到底进行到哪了、还剩多少没做完&quot;就成了一个需要被看见的问题。新增的吞吐量与燃尽曲线把这些信息画成了随时间累积的双线图,再配上一个项目指标面板,团队一眼就能看到整体的推进节奏:这段时间完成了多少、还有多少在路上、速度是在加快还是放缓。对一个高度依赖自动化的开发流程来说,这种&quot;全局可见性&quot;非常重要——人虽然把大量具体执行交给了 AI,但必须始终对整体态势保持掌控,知道事情正朝什么方向、以什么速度推进。把进度画成图,正是让人从繁杂的执行细节里抽身出来、仍能稳稳把握全局的一种手段。</p>
 <h2>这一天意味着什么</h2>
 <p>这一天的两条主线,合起来回答了&quot;如何让 AI 可靠地造出好游戏&quot;这个核心命题的两个侧面。验车线回答的是&quot;可靠&quot;:通过客观的构建检验和具体的错误反馈,把&quot;做完&quot;从一句空话变成一个能被验证、能被自我纠正的事实——这是信任的基石。引擎的一系列增强回答的是&quot;好&quot;:多材质让模型更真实、集群光照与扩容让场景更宏大、更直觉的入口让 AI 更少出错——这是能力的拓展。一个由 AI 驱动的创作平台,最怕的就是&quot;看起来很厉害,实际交付靠不住&quot;;而这一天恰恰是在同时夯实&quot;靠得住&quot;和&quot;做得好&quot;这两件最根本的事。当机器既能力更强、又被更严格地检验时,人才能真正放心地把&quot;造一个游戏&quot;这件事托付出去。</p>
 </div>
@@ -89,19 +89,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

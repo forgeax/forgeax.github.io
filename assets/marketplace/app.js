@@ -8,33 +8,59 @@
   var UI = window.MK_UI || {};
   var REPO_ROOT = "https://github.com/ForgeaX-Games/forgeax-marketplace/tree/main/plugins";
 
-  // ── kind filter ──
+  // ── search + kind filter ──
   (function () {
-    var tabs = [].slice.call(document.querySelectorAll(".mk-tab"));
-    var items = [].slice.call(document.querySelectorAll(".mk-item"));
+    var root = document.getElementById("storeRoot") || document.querySelector(".store");
+    var rail = document.getElementById("storeRail");
+    var input = document.getElementById("storeSearch");
     var empty = document.getElementById("mkEmpty");
-    var kind = "authoring";
-    var rowbreak = document.querySelector(".mk-rowbreak");
+    var items = [].slice.call(document.querySelectorAll(".store-row"));
+    var sections = [].slice.call(document.querySelectorAll(".store-sec"));
+    var filter = { type: "all", kind: null };
+
     function apply() {
-      var n = 0;
-      items.forEach(function (it) {
-        var okKind = it.getAttribute("data-kind") === kind;
-        var show = okKind;
-        it.classList.toggle("hide", !show);
-        if (show) n++;
+      var q = (input && input.value ? input.value : "").trim().toLowerCase();
+      var any = false;
+      sections.forEach(function (sec) {
+        var secKind = sec.getAttribute("data-kind");
+        var shown = 0;
+        [].slice.call(sec.querySelectorAll(".store-row")).forEach(function (row) {
+          var okKind = filter.type === "all" || (filter.type === "kind" && secKind === filter.kind);
+          var hay = ((row.getAttribute("data-search") || "") + " " + (row.textContent || "")).toLowerCase();
+          var okSearch = !q || hay.indexOf(q) !== -1;
+          var show = okKind && okSearch;
+          row.classList.toggle("hide", !show);
+          if (show) shown++;
+        });
+        sec.classList.toggle("hide", !shown);
+        if (shown) any = true;
       });
-      if (rowbreak) rowbreak.classList.toggle("hide", kind !== "agent");
-      if (empty) empty.style.display = n ? "none" : "block";
+      if (empty) empty.style.display = any ? "none" : "block";
+      var active = root && root.querySelector(".store-row.is-active");
+      if (active && active.classList.contains("hide") && window.forgeaxCloseStoreDetail) {
+        window.forgeaxCloseStoreDetail();
+      }
     }
-    tabs.forEach(function (t) {
-      t.addEventListener("click", function () {
-        tabs.forEach(function (x) { x.classList.remove("active"); });
-        t.classList.add("active");
-        kind = t.getAttribute("data-kind");
-        apply();
+
+    if (rail) {
+      [].slice.call(rail.querySelectorAll(".store-ri")).forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          [].slice.call(rail.querySelectorAll(".store-ri")).forEach(function (x) { x.classList.remove("active"); });
+          btn.classList.add("active");
+          var f = btn.getAttribute("data-filter");
+          filter = { type: f, kind: f === "kind" ? btn.getAttribute("data-kind") : null };
+          apply();
+        });
       });
-    });
+    }
+    if (input) input.addEventListener("input", apply);
     apply();
+
+    [].slice.call(document.querySelectorAll("[data-store-icon]")).forEach(function (el) {
+      if (window.forgeaxMountMarketplaceIcon) {
+        window.forgeaxMountMarketplaceIcon(el, el.getAttribute("data-slug"), el.getAttribute("data-kind"));
+      }
+    });
   })();
 
   // ── detail modal ──
@@ -550,6 +576,18 @@
         return;
       }
 
+      var brand = item && item.querySelector(".store-row-brand");
+      if (brand && brand.getAttribute("src")) {
+        var wrap = document.createElement("div");
+        wrap.className = "mk-modal-brand";
+        var img = document.createElement("img");
+        img.src = brand.getAttribute("src");
+        img.alt = "";
+        wrap.appendChild(img);
+        frame.appendChild(wrap);
+        return;
+      }
+
       if (d && window.forgeaxMountMarketplaceIcon) {
         var iconKind = d.kind === "cli-provider" ? "backend" : d.kind;
         if (["authoring", "skill", "backend", "tool", "binding", "model-binding"].indexOf(iconKind) >= 0) {
@@ -889,31 +927,44 @@
     }
 
     function cardFallback(item) {
-      var h = item.querySelector("h3");
-      var p = item.querySelector("p");
+      var nameEl = item.querySelector(".store-row-nm") || item.querySelector("h3");
+      var descEl = item.querySelector(".store-row-desc") || item.querySelector("p");
       var name = "";
-      if (h) { var clone = h.cloneNode(true); var s = clone.querySelector(".slug"); if (s) s.remove(); name = clone.textContent.trim(); }
-      return { name: name || item.getAttribute("data-slug"), desc: p ? p.textContent.trim() : "" };
+      if (nameEl) { var clone = nameEl.cloneNode(true); var s = clone.querySelector(".slug"); if (s) s.remove(); name = clone.textContent.trim(); }
+      return { name: name || item.getAttribute("data-slug"), desc: descEl ? descEl.textContent.trim() : "" };
     }
+
+    var storeRoot = document.getElementById("storeRoot") || document.querySelector(".store");
 
     function openCard(item) {
       var slug = item.getAttribute("data-slug");
       var d = DATA[slug];
       var fb = d ? null : cardFallback(item);
+      if (storeRoot) {
+        [].slice.call(storeRoot.querySelectorAll(".store-row.is-active")).forEach(function (x) { x.classList.remove("is-active"); });
+        item.classList.add("is-active");
+        storeRoot.classList.add("has-detail");
+      }
       fill(d, fb, item);
       modal.hidden = false;
+      modal.setAttribute("aria-hidden", "false");
+      modal.scrollTop = 0;
       replayModalMotion();
-      lockScroll();
       if (window.forgeaxRefreshIcons) window.forgeaxRefreshIcons();
       [].slice.call(modal.querySelectorAll(".mk-avatar")).forEach(function (slot) {
         if (window.forgeaxEnsureAvatar) window.forgeaxEnsureAvatar(slot);
       });
-      var x = modal.querySelector(".mk-modal-x");
-      if (x) { try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } }
+      requestAnimationFrame(function () {
+        item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
     }
     function closeModal() {
       modal.hidden = true;
-      unlockScroll();
+      modal.setAttribute("aria-hidden", "true");
+      if (storeRoot) {
+        storeRoot.classList.remove("has-detail");
+        [].slice.call(storeRoot.querySelectorAll(".store-row.is-active")).forEach(function (x) { x.classList.remove("is-active"); });
+      }
       closePreviewLightbox();
       var frame = $("mkmPreviewFrame");
       if (frame) frame.innerHTML = "";
@@ -924,14 +975,25 @@
       var thumbs = $("mkmPreviewThumbs");
       if (thumbs) thumbs.hidden = true;
     }
+    window.forgeaxCloseStoreDetail = closeModal;
 
-    [].slice.call(document.querySelectorAll(".mk-item")).forEach(function (it) {
+    [].slice.call(document.querySelectorAll(".store-row")).forEach(function (it) {
       it.setAttribute("role", "button"); it.setAttribute("tabindex", "0");
-      it.addEventListener("click", function () { openCard(it); });
-      it.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCard(it); } });
+      it.addEventListener("click", function (e) {
+        if (e.target.closest(".store-cbtn2")) {
+          e.preventDefault();
+          openCard(it);
+          return;
+        }
+        if (it.classList.contains("is-active")) closeModal();
+        else openCard(it);
+      });
+      it.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCard(it); }
+      });
     });
     modal.addEventListener("click", function (e) {
-      if (e.target.closest("[data-close]") || !e.target.closest(".mk-modal-card")) closeModal();
+      if (e.target.closest("[data-close]")) closeModal();
     });
     var lightbox = $("mkPreviewLightbox");
     if (lightbox) {

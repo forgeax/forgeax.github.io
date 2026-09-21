@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site has-immersive">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/" class="active">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/docs/" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/docs/" data-l="zh">中文</a><a class="lang-item" href="/ja/docs/" data-l="ja">日本語</a><a class="lang-item" href="/ko/docs/" data-l="ko">한국어</a><a class="lang-item" href="/es/docs/" data-l="es">Español</a><a class="lang-item" href="/de/docs/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/docs/" data-l="fr">Français</a><a class="lang-item" href="/pt/docs/" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -88,7 +88,7 @@
           <a href="#ch7">7 · Publish &amp; share</a>
           <a href="#ch8">8 · Advanced</a>
           <a href="#ch9">9 · Creation tools</a>
-          <a href="#ch10">10 · The agent team</a>
+          <a href="#ch10">10 · The Agent team</a>
         </nav>
       </aside>
 
@@ -129,7 +129,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                 <p>The interface is three parts: a top bar, the chat on the left, and the preview/authoring on the right.</p>
                 <ul>
                   <li><strong>Top bar</strong> — the <code>⊕</code> new menu, a <strong>project switcher</strong> (move between games — what a "project" is is covered in <a href="#ch2">Core concepts</a>), and a <strong>session switcher</strong> (review / switch past conversations).</li>
-                  <li><strong>Left · chat (ChatPanel)</strong> — a team rail (Forge and the sub-agents), a message stream (sub-agent cards, Forge's thinking and tool calls), and a composer at the bottom with a <strong>backend switch</strong> at its bottom-right (see <a href="#ch8">Advanced</a>).</li>
+                  <li><strong>Left · chat (ChatPanel)</strong> — a team rail (Forge and the sub-Agents), a message stream (sub-Agent cards, Forge's thinking and tool calls), and a composer at the bottom with a <strong>backend switch</strong> at its bottom-right (see <a href="#ch8">Advanced</a>).</li>
                   <li><strong>Right · main area (MainArea)</strong> — toggles between the <strong>preview</strong> (your game live in an iframe) and the <strong>authoring</strong> (file editing / design docs); see <a href="#ch4">Scenes &amp; editor</a>.</li>
                 </ul>
                 <p>The top-right cog opens <strong>Settings</strong>: API keys, model choice, CLI backend, and plugin management. The desktop app also shows a first-run overlay that prompts for the key the first time you open it.</p>
@@ -157,19 +157,19 @@ bun fx start          # → http://localhost:18920</code></pre>
               </div>
             </details>
             <details class="doc-item">
-              <summary>Forge and its team of sub-agents</summary>
+              <summary>Forge and its team of sub-Agents</summary>
               <div class="doc-body">
-                <p><strong>Forge (the main agent)</strong> is the only one that writes game code directly — it writes <code>games/&lt;slug&gt;/src/main.ts</code>, the preview <strong>hot-reloads</strong>, and it sees the running result to decide the next step. That edit → see → edit loop has to stay with whoever can see the preview, i.e. Forge (see <a href="#ch3">Build by chatting</a>).</p>
-                <p><strong>Sub-agents</strong> (e.g. Iori gameplay, Suzu design, Kotone narrative, Iro art, Tsumugi build) only plan / design / make assets / write docs and <strong>never touch <code>src/</code></strong> — they have no live-preview feedback, so any code they wrote would have nothing to steer it. See the full cast in the <a href="/marketplace/">marketplace</a> and <a href="#ch10">Chapter 10 · The agent team</a>.</p>
-                <p><strong>How dispatch works:</strong> Forge dispatches a sub-agent with one tool call (shaped like <code>subagent(type="iori", task="…")</code>); the server's <code>/api/subagent</code> stream bridges its output back into the main conversation in real time — that's the embedded sub-agent card you see in the message stream. A sub-agent's design docs are filed under its own section in the authoring (see <a href="#ch4">Scenes &amp; editor</a>).</p>
+                <p><strong>Forge (the main Agent)</strong> is the only one that writes game code directly — it writes <code>games/&lt;slug&gt;/src/main.ts</code>, the preview <strong>hot-reloads</strong>, and it sees the running result to decide the next step. That edit → see → edit loop has to stay with whoever can see the preview, i.e. Forge (see <a href="#ch3">Build by chatting</a>).</p>
+                <p><strong>Sub-Agents</strong> (e.g. Iori gameplay, Suzu design, Kotone narrative, Iro art, Tsumugi build) only plan / design / make assets / write docs and <strong>never touch <code>src/</code></strong> — they have no live-preview feedback, so any code they wrote would have nothing to steer it. See the full cast in the <a href="/marketplace/">marketplace</a> and <a href="#ch10">Chapter 10 · The Agent team</a>.</p>
+                <p><strong>How dispatch works:</strong> Forge dispatches a sub-Agent with one tool call (shaped like <code>subagent(type="iori", task="…")</code>); the server's <code>/api/subagent</code> stream bridges its output back into the main conversation in real time — that's the embedded sub-Agent card you see in the message stream. A sub-Agent's design docs are filed under its own section in the authoring (see <a href="#ch4">Scenes &amp; editor</a>).</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>What a session is</summary>
               <div class="doc-body">
-                <p>A <strong>session</strong> is an agent's memory — an <strong>append-only</strong> stream of events (each one is a user message / assistant message / thinking / tool call / tool result). Forge (main) and each sub-agent each keep their own.</p>
-                <p>The UI splits events by who emitted them into the main thread vs sub-agents, rendering each sub-agent's slice as an embedded card. So on one screen you see both Forge's main thread and what the sub-agents it dispatched actually did.</p>
-                <p>Use the top-bar session switcher to review and switch past sessions. <strong>Switching a session restarts nothing</strong> — the UI just reads a different agent's event stream.</p>
+                <p>A <strong>session</strong> is an Agent's memory — an <strong>append-only</strong> stream of events (each one is a user message / assistant message / thinking / tool call / tool result). Forge (main) and each sub-Agent each keep their own.</p>
+                <p>The UI splits events by who emitted them into the main thread vs sub-Agents, rendering each sub-Agent's slice as an embedded card. So on one screen you see both Forge's main thread and what the sub-Agents it dispatched actually did.</p>
+                <p>Use the top-bar session switcher to review and switch past sessions. <strong>Switching a session restarts nothing</strong> — the UI just reads a different Agent's event stream.</p>
               </div>
             </details>
           </div>
@@ -191,7 +191,7 @@ bun fx start          # → http://localhost:18920</code></pre>
                 <pre><code>A top-down game: a character runs around an arena,
 space fires bullets, enemies keep spawning,
 hits remove them and add score.</code></pre>
-                <p>For a step-by-step first game, see <a href="/tutorials/getting-started.html">Quick start</a>; for what's achievable, browse the <a href="/showcase/">showcase</a>. For heavier design, Forge pulls in design sub-agents (see <a href="#ch2">Core concepts</a>).</p>
+                <p>For a step-by-step first game, see <a href="/tutorials/getting-started.html">Quick start</a>; for what's achievable, browse the <a href="/showcase/">showcase</a>. For heavier design, Forge pulls in design sub-Agents (see <a href="#ch2">Core concepts</a>).</p>
               </div>
             </details>
             <details class="doc-item">
@@ -199,12 +199,12 @@ hits remove them and add score.</code></pre>
               <div class="doc-body">
                 <p>Once you send a request, the chain is:</p>
                 <ul>
-                  <li><strong>Understand + plan</strong> — Forge clarifies the requirement, dispatching design / gameplay sub-agents for heavier work (see <a href="#ch2">Core concepts</a>).</li>
+                  <li><strong>Understand + plan</strong> — Forge clarifies the requirement, dispatching design / gameplay sub-Agents for heavier work (see <a href="#ch2">Core concepts</a>).</li>
                   <li><strong>Write code</strong> — Forge writes <strong>itself</strong> into <code>games/&lt;slug&gt;/src/main.ts</code> (and its split-out modules).</li>
                   <li><strong>Hot-reload</strong> — on save, the engine's vite detects the change and the preview <strong>hot-replaces the module</strong> in place — no full reload, the picture updates almost instantly.</li>
                   <li><strong>See the result</strong> — Forge sees the running result through the preview (which also forwards the game's <code>console</code> back), and decides the next step.</li>
                 </ul>
-                <p>The whole process is transparent: the message stream shows Forge's thinking, each tool call, and the cards of the sub-agents it dispatched. For switching/controlling preview vs authoring, see <a href="#ch4">Scenes &amp; editor</a>; for how hot-reload works, see <a href="#ch6">Run &amp; preview</a>.</p>
+                <p>The whole process is transparent: the message stream shows Forge's thinking, each tool call, and the cards of the sub-Agents it dispatched. For switching/controlling preview vs authoring, see <a href="#ch4">Scenes &amp; editor</a>; for how hot-reload works, see <a href="#ch6">Run &amp; preview</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -363,7 +363,7 @@ hits remove them and add score.</code></pre>
             <details class="doc-item">
               <summary>Switch / configure the AI backend</summary>
               <div class="doc-body">
-                <p><strong>Switch backends (swap the chip):</strong> pick the kernel from the backend switch at the composer's bottom-right, or under the <strong>CLI</strong> section of Settings — <strong>Claude Code / Codex / Cursor / Kimi Code / CodeBuddy / DeepSeek Harness / forgeax-cli</strong>. The CLI section shows each backend's <strong>health</strong> and a <strong>Test</strong> button. Switching a backend also swaps its default persona (see <a href="#ch10">The agent team</a>); details per backend in the <a href="/marketplace/">marketplace</a>.</p>
+                <p><strong>Switch backends (swap the chip):</strong> pick the kernel from the backend switch at the composer's bottom-right, or under the <strong>CLI</strong> section of Settings — <strong>Claude Code / Codex / Cursor / Kimi Code / CodeBuddy / DeepSeek Harness / forgeax-cli</strong>. The CLI section shows each backend's <strong>health</strong> and a <strong>Test</strong> button. Switching a backend also swaps its default persona (see <a href="#ch10">The Agent team</a>); details per backend in the <a href="/marketplace/">marketplace</a>.</p>
                 <p><strong>Keys / models:</strong> set your model API key (e.g. <code>ANTHROPIC_API_KEY</code>) under Settings → Keys — it <strong>applies live, no restart</strong> (you can also edit <code>.env</code> directly); choose the model under Settings → Models. Missing-key troubleshooting is in <a href="#ch6">Run &amp; preview</a>.</p>
               </div>
             </details>
@@ -375,10 +375,10 @@ hits remove them and add score.</code></pre>
               </div>
             </details>
             <details class="doc-item">
-              <summary>Customize agent personas</summary>
+              <summary>Customize Agent personas</summary>
               <div class="doc-body">
-                <p>Use the <strong>persona editor</strong> (<code>agent-persona</code>): pick an agent from the list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. You can give an agent a different character or voice without touching any code.</p>
-                <p>For who's the main vs sub-agents and where default personas come from, see <a href="#ch2">Core concepts</a> and <a href="#ch10">The agent team</a>; the full cast is in the <a href="/marketplace/">marketplace</a>.</p>
+                <p>Use the <strong>persona editor</strong> (<code>agent-persona</code>): pick an Agent from the list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. You can give an Agent a different character or voice without touching any code.</p>
+                <p>For who's the main vs sub-Agents and where default personas come from, see <a href="#ch2">Core concepts</a> and <a href="#ch10">The Agent team</a>; the full cast is in the <a href="/marketplace/">marketplace</a>.</p>
               </div>
             </details>
           </div>
@@ -462,13 +462,13 @@ hits remove them and add score.</code></pre>
               <div class="doc-body">
                 <div class="doc-subs">
                   <details class="doc-sub"><summary><code>code</code> · <strong>code</strong></summary>
-                    <div class="doc-subbody"><p>Browse and <strong>jump through <code>src/</code> files</strong> right in the authoring, <strong>collaborating with the coding agent across chat threads</strong> — you read where, the AI edits where, on one project without dropping the baton.</p></div>
+                    <div class="doc-subbody"><p>Browse and <strong>jump through <code>src/</code> files</strong> right in the authoring, <strong>collaborating with the coding Agent across chat threads</strong> — you read where, the AI edits where, on one project without dropping the baton.</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>observatory</code> · <strong>observatory</strong></summary>
-                    <div class="doc-subbody"><p>Like a <strong>black box</strong>: live + offline replay of every agent / sub-agent turn, tool call, and slices of the system prompt. When something breaks you can <strong>pinpoint which step or which prompt</strong> caused it, and it helps manage context / skills / guardrails / cache. The session &amp; replay concept is in <a href="#ch2">Core concepts</a>.</p></div>
+                    <div class="doc-subbody"><p>Like a <strong>black box</strong>: live + offline replay of every Agent / sub-Agent turn, tool call, and slices of the system prompt. When something breaks you can <strong>pinpoint which step or which prompt</strong> caused it, and it helps manage context / skills / guardrails / cache. The session &amp; replay concept is in <a href="#ch2">Core concepts</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>agent-persona</code> · <strong>persona editor</strong></summary>
-                    <div class="doc-subbody"><p>Pick an agent from a list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. Give an agent a new character or voice without touching code. The cast is in <a href="#ch10">The agent team</a>; the how-to is in <a href="#ch8">Advanced</a>.</p></div>
+                    <div class="doc-subbody"><p>Pick an Agent from a list, edit its persona in a text area, and <strong>save → hot-reload, no restart</strong>. Give an Agent a new character or voice without touching code. The cast is in <a href="#ch10">The Agent team</a>; the how-to is in <a href="#ch8">Advanced</a>.</p></div>
                   </details>
                   <details class="doc-sub"><summary><code>plugin-author</code> · <strong>plugin author</strong></summary>
                     <div class="doc-subbody"><p>Lets <strong>non-coders</strong> build their own authoring plugins. The path today is "copy an existing one + adapt + record actions"; a fuller in-app visual editor (file tree + code editor, save → auto-reload) is on the way. The overall how-to is in <a href="#ch8">Advanced · Write your own plugin</a>.</p></div>
@@ -484,14 +484,14 @@ hits remove them and add score.</code></pre>
         </section>
 
         <section class="docs-chapter" id="ch10">
-          <h2><span class="n">10</span>The agent team</h2>
+          <h2><span class="n">10</span>The Agent team</h2>
           <div class="doc-items">
             <details class="doc-item">
               <summary>Production &amp; architecture</summary>
               <div class="doc-body">
                 <p><strong>Arin · producer</strong> — an all-round producer who coordinates design / code / art / audio and owns the whole game.</p>
                 <p><strong>Reia · reel director</strong> — interactive FMV director who forges prompts, paces QTEs and weaves branches and endings, driving the reel Reel Studio to turn one idea into a clickable, playable suspense film.</p>
-                <p>These are <strong>named agents</strong> dispatched on demand by Forge (the main vs sub-agent relationship is in <a href="#ch2">Core concepts</a>); the full cast is in the <a href="/marketplace/">marketplace</a>.</p>
+                <p>These are <strong>named Agents</strong> dispatched on demand by Forge (the main vs sub-Agent relationship is in <a href="#ch2">Core concepts</a>); the full cast is in the <a href="/marketplace/">marketplace</a>.</p>
               </div>
             </details>
             <details class="doc-item">
@@ -531,14 +531,14 @@ hits remove them and add score.</code></pre>
                     <div class="doc-subbody"><p>A set of optional characters with <strong>comparable coding skill but distinct personalities</strong> — some measured, some playful, some meticulous. They have the same ability; the only difference is how it feels to work alongside them. Personalities are editable any time in the <strong>persona editor</strong> (see <a href="#ch8">Advanced</a>); the full cast is in the <a href="/marketplace/">marketplace</a>.</p></div>
                   </details>
                 </div>
-                <p>There's also a set of <strong>art / asset specialist agents</strong> (2D character / animation, 3D low-poly / VFX, interactive-film director, and more), each wired to its matching creation authoring (see <a href="#ch9">Creation tools</a>).</p>
+                <p>There's also a set of <strong>art / asset specialist Agents</strong> (2D character / animation, 3D low-poly / VFX, interactive-film director, and more), each wired to its matching creation authoring (see <a href="#ch9">Creation tools</a>).</p>
               </div>
             </details>
             <details class="doc-item">
               <summary>Swappable default personas</summary>
               <div class="doc-body">
                 <p>Each CLI backend ships with an out-of-the-box persona: <strong>Claude</strong> (Claude Code), <strong>Codex</strong>, <strong>Cursor</strong>, and <strong>ForgeaX</strong> (the self-built forgeax-cli). <strong>Switching the backend swaps the default persona — no setup needed</strong>; whichever kernel you pick comes with its default persona.</p>
-                <p>How to switch backends and edit personas is in <a href="#ch8">Advanced</a>; the full agent cast and loadable personas are in the <a href="/marketplace/">marketplace</a>.</p>
+                <p>How to switch backends and edit personas is in <a href="#ch8">Advanced</a>; the full Agent cast and loadable personas are in the <a href="/marketplace/">marketplace</a>.</p>
               </div>
             </details>
           </div>
@@ -775,19 +775,17 @@ hits remove them and add score.</code></pre>
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

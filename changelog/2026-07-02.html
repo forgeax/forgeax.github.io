@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-07-02.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-07-02.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-07-02.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-07-02.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-07-02.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-07-02.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-07-02.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-07-02.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -68,12 +68,12 @@
 <p>Memory is a good thing, but &quot;the AI deciding what to remember on its own&quot; can also be unsettling. So this day also added a Memory section in the Settings panel: you can toggle automatic memory extraction on or off, see what Forge has remembered, and delete entries you don&#39;t want kept. This design follows a principle: the AI can learn proactively, but humans always have a veto. The memory switch defaults to on (so most users benefit immediately), but can be turned off with one click at any time — and turning it off reverts Forge to &quot;start fresh each time&quot; mode with no residue.</p>
 <h2>The editor: Mesh panel shows geometry detail per entity</h2>
 <p>The editor&#39;s Mesh panel added a handy small feature this day: in entity mode, each object shows its geometry stats alongside — vertex count, triangle count, material count and so on. Before you could only see &quot;this is a mesh&quot; without knowing how heavy it was; now you can tell at a glance &quot;this model has 500K faces, probably needs decimation&quot; or &quot;this one is just 200 faces, safe to place many.&quot; The previously shown &quot;Kind&quot; field, which was misleading in this context, was hidden at the same time. It looks like a small change, but for anyone doing scene optimization, it means no longer needing to open an external tool just to check polygon counts.</p>
-<h2>Agent-host: a dedicated housekeeper for agents</h2>
-<p>A new agent-host process supervisor landed at the infrastructure level — think of it as a &quot;housekeeper&quot; for agents. Running as a ring-0 sidecar, it handles agent process lifecycle management (start, monitor, restart, graceful shutdown) and inter-process communication (IPC). Previously agent process management was scattered across the codebase with no unified supervisor; now with agent-host, a crashed agent restarts automatically and message passing between multiple agents has a standard channel. This is the infrastructure that makes Team multi-agent collaboration more robust — a team can only work efficiently when someone is &quot;watching&quot; each member.</p>
+<h2>Agent-host: a dedicated housekeeper for Agents</h2>
+<p>A new agent-host process supervisor landed at the infrastructure level — think of it as a &quot;housekeeper&quot; for Agents. Running as a ring-0 sidecar, it handles Agent process lifecycle management (start, monitor, restart, graceful shutdown) and inter-process communication (IPC). Previously Agent process management was scattered across the codebase with no unified supervisor; now with agent-host, a crashed Agent restarts automatically and message passing between multiple Agents has a standard channel. This is the infrastructure that makes Team multi-Agent collaboration more robust — a team can only work efficiently when someone is &quot;watching&quot; each member.</p>
 <h2>Windows CLI fix: Cursor integration no longer truncates</h2>
-<p>A Windows-only issue was also fixed: when calling the Forge CLI through Cursor, a long prompt would be truncated by Windows <code>cmd.exe</code> due to its argument-length limit, causing the agent to receive only half an instruction. The fix feeds the prompt through stdin instead, bypassing the command-line argument length cap. This kind of platform-specific edge case is insidious — works perfectly on Mac, mysteriously fails on Windows — but fixing it is a real reliability gain for Windows users.</p>
+<p>A Windows-only issue was also fixed: when calling the Forge CLI through Cursor, a long prompt would be truncated by Windows <code>cmd.exe</code> due to its argument-length limit, causing the Agent to receive only half an instruction. The fix feeds the prompt through stdin instead, bypassing the command-line argument length cap. This kind of platform-specific edge case is insidious — works perfectly on Mac, mysteriously fails on Windows — but fixing it is a real reliability gain for Windows users.</p>
 <h2>What this day means</h2>
-<p>The keyword of this day is &quot;accumulation.&quot; Soul memory means Forge&#39;s capability no longer resets to zero each time, but accumulates with use — the more you use it, the better it knows your project, your habits, your preferences, and the more efficient it becomes. Agent-host gives multi-agent collaboration a reliable foundation, and the editor&#39;s geometry stats give optimization a data basis. Every change points in the same direction: turning Forge from &quot;a temp worker improvising each session&quot; into &quot;a partner who remembers, is dependable, and can work alongside you long-term.&quot;</p>
+<p>The keyword of this day is &quot;accumulation.&quot; Soul memory means Forge&#39;s capability no longer resets to zero each time, but accumulates with use — the more you use it, the better it knows your project, your habits, your preferences, and the more efficient it becomes. Agent-host gives multi-Agent collaboration a reliable foundation, and the editor&#39;s geometry stats give optimization a data basis. Every change points in the same direction: turning Forge from &quot;a temp worker improvising each session&quot; into &quot;a partner who remembers, is dependable, and can work alongside you long-term.&quot;</p>
 </div>
     <p style="margin-top:32px"><a class="btn ghost" href="/changelog/">← All updates</a></p>
   </article>
@@ -85,19 +85,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

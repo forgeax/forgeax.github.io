@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-12.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-12.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-12.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-12.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-12.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-12.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-12.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-12.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -71,7 +71,7 @@
 <h2>聊天更稳:专项修内存泄漏,挂一整天也不卡</h2>
 <p>聊天这天做了一轮针对稳定性的专项,核心是集中修掉了几处内存泄漏。所谓内存泄漏,就是程序用过的内存没被及时回收,越积越多,时间一长就把界面拖得越来越卡——对一个你可能要开着聊一整天的对话面板来说,这是最影响长时体验的隐患。这天从几个源头一一堵住:超长的对话历史会被限量保留,不再无限制地堆在内存里;向上翻看旧消息时改成分页加载,避免一次性把成千上万条消息全塞进页面把它撑垮;每条消息曾经会悄悄注册一个窗口缩放的监听器却不释放,越积越多,这个泄漏也被修掉了。这些问题平时不显眼,只在&quot;用得久&quot;时才暴露,但恰恰是它们决定了一个工具能不能被信任地长时间使用。把这些隐形的消耗一处处堵住,等于让聊天面板从&quot;用一会儿挺好、用久了发卡&quot;变成了&quot;开一整天也稳&quot;。</p>
 <h2>流式时也能打字 + AI 能向你提结构化的问题</h2>
-<p>聊天的交互这天也补了两处很实用的能力。一是&quot;流式期间可输入&quot;:以前模型还在一行行往外吐字时,输入框往往是锁住的,你得干等它说完才能打字;现在你可以一边看它输出、一边把下一条想说的话敲好,排进队列随时发出去,不必中断思路去等。二是 AI 能向你提&quot;结构化的问题&quot;:当 agent 需要你做个选择或确认时,它不再把问题混在一长段文字里让你费力辨认,而是直接弹出一张&quot;询问卡片&quot;——上面列出可点选的选项(单选或多选),也允许你填自定义答案。这件事的意义不只是好看:它把&quot;人机之间需要拍板的关键决策&quot;变成了一次清晰、明确、不会误读的交互。对一个 AI 主导、但人随时要介入做决定的协作模式来说,&quot;AI 怎么把问题清楚地抛给人、人怎么干脆地回答&quot;是个核心环节。把它做成规整的卡片,等于给这种关键时刻的对话装上了一个可靠的接口。</p>
+<p>聊天的交互这天也补了两处很实用的能力。一是&quot;流式期间可输入&quot;:以前模型还在一行行往外吐字时,输入框往往是锁住的,你得干等它说完才能打字;现在你可以一边看它输出、一边把下一条想说的话敲好,排进队列随时发出去,不必中断思路去等。二是 AI 能向你提&quot;结构化的问题&quot;:当 Agent 需要你做个选择或确认时,它不再把问题混在一长段文字里让你费力辨认,而是直接弹出一张&quot;询问卡片&quot;——上面列出可点选的选项(单选或多选),也允许你填自定义答案。这件事的意义不只是好看:它把&quot;人机之间需要拍板的关键决策&quot;变成了一次清晰、明确、不会误读的交互。对一个 AI 主导、但人随时要介入做决定的协作模式来说,&quot;AI 怎么把问题清楚地抛给人、人怎么干脆地回答&quot;是个核心环节。把它做成规整的卡片,等于给这种关键时刻的对话装上了一个可靠的接口。</p>
 <h2>编辑器能独立运行 + 跨界面消息严格校验</h2>
 <p>这天还在架构上做了一件偏长远的事:把前端外壳抽成了一套可复用的应用框架,并提供了几个公开接口,于是编辑器可以脱离主界面、作为一个独立应用单独挂载运行。这让编辑器从&quot;只能长在主 Studio 里的一块&quot;变成了&quot;一个能被单独打开、被嵌入别处的模块&quot;——更模块化,也为后面把它装进桌面应用、嵌入其他页面等场景留好了空间。与此配套,底层把界面各部分之间、以及跨内嵌页面之间传递的消息全部加上了双侧严格校验:每一条消息在发出和接收两端都按预先定义好的结构核对一遍,格式不对就直接拦下不放行。这件事看似琐碎,实则关键——跨界面、跨内嵌页面的状态同步,过去是各种诡异 bug 的高发区:一边以为发对了、另一边收到的却是个对不上的东西,排查起来极其耗神。给每条消息都立一份明确的&quot;格式契约&quot;并双侧校验,等于从根上杜绝了&quot;瞎传一气、对不上号&quot;的隐患,让跨界面协作变得可预期、可信赖。</p>
 <h2>监控台多了一个可翻阅的知识库</h2>
@@ -89,19 +89,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>2026-05-19 · Un backend récupérable en cas de crash + le premier véritable éclairage du moteur — ForgeaX</title>
-<meta name="description" content="Le backend est reconstruit dans une architecture en couches dans laquelle chaque agent conserve un journal récupérable et le relit après un crash ; le moteur éclaire sa première scène physique avec des lumières, des roulettes, un mappage de tons et un cube texturé." />
+<meta name="description" content="Le backend est reconstruit dans une architecture en couches dans laquelle chaque Agent conserve un journal récupérable et le relit après un crash ; le moteur éclaire sa première scène physique avec des lumières, des roulettes, un mappage de tons et un cube texturé." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="2026-05-19 · Un backend récupérable en cas de crash + le premier véritable éclairage du moteur — ForgeaX" />
-<meta property="og:description" content="Le backend est reconstruit dans une architecture en couches dans laquelle chaque agent conserve un journal récupérable et le relit après un crash ; le moteur éclaire sa première scène physique avec des lumières, des roulettes, un mappage de tons et un cube texturé." />
+<meta property="og:description" content="Le backend est reconstruit dans une architecture en couches dans laquelle chaque Agent conserve un journal récupérable et le relit après un crash ; le moteur éclaire sa première scène physique avec des lumières, des roulettes, un mappage de tons et un cube texturé." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-05-19.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
       <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
-      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-05-19.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-05-19.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-19.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-19.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-19.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-19.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-05-19.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-05-19.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+      <a class="nav-cta" href="/fr/#install">Commencer</a>
     </div>
   </div>
 </nav>
@@ -61,13 +61,13 @@
     <a class="back" href="/fr/changelog/">← Journal des modifications</a>
     <div class="meta"><span class="tag brand">Mise à jour</span><span>2026-05-19</span></div>
     <h1>Un backend récupérable en cas de crash + le premier véritable éclairage du moteur</h1>
-    <p class="standfirst">Ce jour-là, les trois lignes ont été « creusées jusqu&#39;au substrat rocheux et coulées à nouveau » : le moteur d&#39;exécution du backend a été réécrit dans une architecture multi-agents en couches et récupérable en cas d&#39;accident ; le moteur a allumé son premier éclairage basé sur la physique : des lumières directionnelles, ponctuelles et ponctuelles, un mappage de tons et un cube texturé ; le tout en place ; et le processus de développement de l’IA a été allégé, de sorte que le même changement nécessite beaucoup moins de détours.</p>
+    <p class="standfirst">Ce jour-là, les trois lignes ont été « creusées jusqu&#39;au substrat rocheux et coulées à nouveau » : le moteur d&#39;exécution du backend a été réécrit dans une architecture multi-Agents en couches et récupérable en cas d&#39;accident ; le moteur a allumé son premier éclairage basé sur la physique : des lumières directionnelles, ponctuelles et ponctuelles, un mappage de tons et un cube texturé ; le tout en place ; et le processus de développement de l’IA a été allégé, de sorte que le même changement nécessite beaucoup moins de détours.</p>
     <div class="prose"><h2>Trois lignes, une résolution : creuser jusqu&#39;au substrat rocheux et re-couler</h2>
 <p>Les trois grands efforts de la journée partagent un trait commun : aucun n&#39;est de petites réparations sur le sol existant - tous &quot;creusent jusqu&#39;au substrat rocheux et re-versent&quot;. Le backend a détruit tout son environnement d&#39;exécution et l&#39;a réécrit selon des couches claires ; le moteur a poussé le rendu du simple nettoyage de l&#39;écran à un véritable éclairage physique ; et même le processus de développement de l’IA qui construit tout cela a été considérablement rationalisé. Oser refaire les fondations alors que le produit peut déjà faire une démonstration reflète un jugement : certaines dettes structurelles contractées tôt pour accélérer deviennent plus coûteuses à mesure qu&#39;elles sont différées, il est donc préférable de les rembourser d&#39;un coup pendant qu&#39;il est encore temps. Cette journée incarne la maturité technique consistant à « faire la bonne réécriture au bon moment ».</p>
-<h2>Un backend reconstruit : une fondation multi-agents récupérable en cas de crash</h2>
-<p>Le runtime backend a été réintégré ce jour dans une architecture multi-agents plus robuste et plus claire. Le changement clé est la « récupération après incident » : chaque agent écrit son propre journal d&#39;événements (grand livre) enregistrant tout ce qu&#39;il vit ; Si le processus tombe en panne, ou même si la machine perd de l&#39;alimentation, la réouverture permet au système de rejouer les événements de ce grand livre et de restaurer l&#39;agent dans son état exact d&#39;avant le crash. Cette bouée de sauvetage a été vérifiée à plusieurs reprises par un test de fumée de bout en bout : produire un événement, l&#39;écrire dans le grand livre, le rouvrir et le rejouer dans son intégralité, tout le chemin prouvé. Pour une plate-forme qui souhaite que les agents travaillent longtemps en arrière-plan, il s&#39;agit d&#39;une mise à niveau fondamentale de &quot;un accident efface tout progrès&quot; à &quot;un accident le laisse toujours revivre sur place&quot;.</p>
+<h2>Un backend reconstruit : une fondation multi-Agents récupérable en cas de crash</h2>
+<p>Le runtime backend a été réintégré ce jour dans une architecture multi-Agents plus robuste et plus claire. Le changement clé est la « récupération après incident » : chaque Agent écrit son propre journal d&#39;événements (grand livre) enregistrant tout ce qu&#39;il vit ; Si le processus tombe en panne, ou même si la machine perd de l&#39;alimentation, la réouverture permet au système de rejouer les événements de ce grand livre et de restaurer l&#39;Agent dans son état exact d&#39;avant le crash. Cette bouée de sauvetage a été vérifiée à plusieurs reprises par un test de fumée de bout en bout : produire un événement, l&#39;écrire dans le grand livre, le rouvrir et le rejouer dans son intégralité, tout le chemin prouvé. Pour une plate-forme qui souhaite que les Agents travaillent longtemps en arrière-plan, il s&#39;agit d&#39;une mise à niveau fondamentale de &quot;un accident efface tout progrès&quot; à &quot;un accident le laisse toujours revivre sur place&quot;.</p>
 <h2>Une architecture en couches : pourquoi diviser le backend en couches claires</h2>
-<p>Cette réécriture n&#39;était pas seulement un nouveau style de codage, mais divisait le backend en plusieurs couches ascendantes à responsabilité unique : à la base, un squelette de types et de valeurs par défaut ; au-dessus, un bus d&#39;événements et une file d&#39;attente, un tableau noir partagé (état transitoire), un registre d&#39;événements récupérables, une liste d&#39;agents surveillés sur le disque, une fenêtre contextuelle, l&#39;agent lui-même et la boucle qui pilote un tour de sa réflexion, un planificateur par session et, au sommet, les sessions et la gestion des sessions. Chaque couche dépend uniquement de celle située en dessous et n&#39;expose que des interfaces claires, de sorte que chaque couche peut être comprise, testée et remplacée seule. Parallèlement, la liste des agents a été modifiée pour détecter les ajouts et les suppressions en surveillant directement les modifications de fichiers sur le disque, sans maintenir un index susceptible de dériver. La véritable valeur de la superposition est de garder un système de plus en plus complexe toujours « décomposable, compréhensible, modifiable » – c&#39;est exactement pourquoi cela vaut la peine de le recréer.</p>
+<p>Cette réécriture n&#39;était pas seulement un nouveau style de codage, mais divisait le backend en plusieurs couches ascendantes à responsabilité unique : à la base, un squelette de types et de valeurs par défaut ; au-dessus, un bus d&#39;événements et une file d&#39;attente, un tableau noir partagé (état transitoire), un registre d&#39;événements récupérables, une liste d&#39;Agents surveillés sur le disque, une fenêtre contextuelle, l&#39;Agent lui-même et la boucle qui pilote un tour de sa réflexion, un planificateur par session et, au sommet, les sessions et la gestion des sessions. Chaque couche dépend uniquement de celle située en dessous et n&#39;expose que des interfaces claires, de sorte que chaque couche peut être comprise, testée et remplacée seule. Parallèlement, la liste des Agents a été modifiée pour détecter les ajouts et les suppressions en surveillant directement les modifications de fichiers sur le disque, sans maintenir un index susceptible de dériver. La véritable valeur de la superposition est de garder un système de plus en plus complexe toujours « décomposable, compréhensible, modifiable » – c&#39;est exactement pourquoi cela vaut la peine de le recréer.</p>
 <h2>Le premier véritable éclairage du moteur : une lumière basée sur la physique</h2>
 <p>Le rendu du moteur a franchi un seuil symbolique ce jour-là : il a allumé pour la première fois une lumière physique. « Basé sur le physique » signifie que la réponse d&#39;un matériau à la lumière suit les règles énergétiques du monde réel, plutôt que de simplement multiplier une couleur par une luminosité. Allumer cette première lumière directionnelle ressemble à de la lumière et de l&#39;ombre ajoutées à l&#39;écran, mais c&#39;est en réalité le moteur qui passe de &quot;peut colorer des formes&quot; au monde de &quot;peut simuler l&#39;interaction réelle entre la lumière et les objets&quot;. C&#39;est le point de départ de toute imagerie réaliste : ce n&#39;est qu&#39;avec un modèle d&#39;éclairage correct que les reflets du métal, la douceur du tissu et les bosses d&#39;une surface deviennent ensuite crédibles. Réussir cette première étape la plus fondamentale et la plus cruciale donne le ton correct pour tous les gains ultérieurs de qualité d’image.</p>
 <h2>Roulettes de lumière, atténuation et cartographie des tons</h2>
@@ -89,19 +89,17 @@
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/fr/changelog/">Journal des modifications</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
     <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
-    <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

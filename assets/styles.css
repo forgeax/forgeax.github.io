@@ -3,36 +3,38 @@
    SSOT: forgeax-studio/packages/interface/src/styles/
    ============================================================================= */
 @import url('/assets/forgeax/primitive.css?v=91dfbea0');
-@import url('/assets/forgeax/tokens.css?v=0c109a85');
-@import url('/assets/forgeax/site-aliases.css?v=e50d4422');
-@import url('/assets/forgeax/glass-tokens.css?v=f49e145d');
-@import url('/assets/forgeax/glass-surfaces.css?v=91114a10');
-@import url('/assets/forgeax/motion-site.css?v=106e31be');
-@import url('/assets/forgeax/linear-premium.css?v=34e6c042');
-@import url('/assets/forgeax/linear-light-system.css?v=482561d1');
-@import url('/assets/forgeax/neon-display.css?v=82c666ec');
+@import url('/assets/forgeax/codex-tokens.css?v=1c6958cb');
+@import url('/assets/forgeax/tokens.css?v=ffe8468c');
+@import url('/assets/forgeax/site-aliases.css?v=7a8b7fa0');
+@import url('/assets/forgeax/glass-tokens.css?v=9217e3d8');
+@import url('/assets/forgeax/glass-surfaces.css?v=0d6d04b3');
+@import url('/assets/forgeax/motion-site.css?v=4953d4cb');
+@import url('/assets/forgeax/linear-premium.css?v=24ba94ef');
+@import url('/assets/forgeax/linear-light-system.css?v=98b1ed9d');
+@import url('/assets/forgeax/neon-display.css?v=981c8a0b');
 @import url('/assets/forgeax/spotlight-surface.css?v=765cc905');
-@import url('/assets/forgeax/immersive.css?v=e5c78137');
-@import url('/assets/forgeax/visual-guide.css?v=8d98e4de');
-@import url('/assets/forgeax/hero-cta.css?v=b56a3bcf');
-@import url('/assets/forgeax/link-action.css?v=2b7aa7b8');
-@import url('/assets/forgeax/manifest-line.css?v=d8199bfb');
-@import url('/assets/forgeax/page-head-premium.css?v=c654e8f5');
-@import url('/assets/forgeax/blog-list.css?v=55f96b00');
-@import url('/assets/forgeax/icon-system.css?v=cafd054d');
-@import url('/assets/forgeax/neon-cta.css?v=210a9c52');
-@import url('/assets/forgeax/marketplace-bar.css?v=3c4afc4e');
+@import url('/assets/forgeax/immersive.css?v=04a33ba5');
+@import url('/assets/forgeax/visual-guide.css?v=2b5d19bf');
+@import url('/assets/forgeax/hero-cta.css?v=b1b1609c');
+@import url('/assets/forgeax/link-action.css?v=3f8c9333');
+@import url('/assets/forgeax/manifest-line.css?v=70ba5b26');
+@import url('/assets/forgeax/page-head-premium.css?v=2eca79a8');
+@import url('/assets/forgeax/blog-list.css?v=8e7b59c6');
+@import url('/assets/forgeax/icon-system.css?v=ce03754d');
+@import url('/assets/forgeax/neon-cta.css?v=3da73855');
+@import url('/assets/forgeax/marketplace-bar.css?v=9f719240');
 @import url('/assets/forgeax/marketplace-cards.css?v=1c9f18b0');
+@import url('/assets/forgeax/marketplace-store.css?v=2cc4331e');
 @import url('/assets/forgeax/games-premium.css?v=745bd429');
 @import url('/assets/forgeax/marketplace-agents.css?v=c87e9203');
-@import url('/assets/forgeax/docs-premium.css?v=0be857a4');
-@import url('/assets/forgeax/tutorials-list.css?v=b45d61cb');
+@import url('/assets/forgeax/docs-premium.css?v=6cb2b4d6');
+@import url('/assets/forgeax/tutorials-list.css?v=955aafe3');
 @import url('/assets/forgeax/about-read.css?v=659f1b76');
-@import url('/assets/forgeax/nav-premium.css?v=78066ca0');
-@import url('/assets/forgeax/home-v2.css?v=cc311fb7');
+@import url('/assets/forgeax/nav-premium.css?v=b3974b45');
+@import url('/assets/forgeax/home-v2.css?v=46b6c1dc');
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;color-scheme:light}
 body{
   background:var(--bg-canvas);color:var(--text-primary);
   font-family:var(--font-sans);font-size:16px;line-height:1.7;
@@ -46,16 +48,16 @@ img{max-width:100%}
 
 /* ── scrollbars — ported 1:1 from packages/interface global.css ──────────
    thin · brand-lime translucent thumb · transparent track · pearl inset · no buttons */
-*{scrollbar-width:thin;scrollbar-color:rgba(212,255,72,.22) transparent}
+*{scrollbar-width:thin;scrollbar-color:color-mix(in srgb, var(--fx-color-border-strong) 45%, transparent) transparent}
 *::-webkit-scrollbar{width:6px;height:6px}
 *::-webkit-scrollbar-track{background:transparent}
 *::-webkit-scrollbar-thumb{
-  background-color:rgba(212,255,72,.14);border-radius:3px;border:1px solid transparent;background-clip:padding-box;
-  box-shadow:0 1px 0 0 rgba(255,255,255,.10) inset, 0 -1px 0 0 rgba(0,0,0,.20) inset;transition:background-color .15s}
-*::-webkit-scrollbar-thumb:hover{background-color:rgba(212,255,72,.32)}
+  background-color:color-mix(in srgb, var(--fx-color-border-strong) 35%, transparent);border-radius:3px;border:1px solid transparent;background-clip:padding-box;
+  transition:background-color var(--fx-motion-hover)}
+*::-webkit-scrollbar-thumb:hover{background-color:color-mix(in srgb, var(--fx-color-border-strong) 55%, transparent)}
 *::-webkit-scrollbar-corner{background:transparent}
 *::-webkit-scrollbar-button{display:none!important;width:0!important;height:0!important;-webkit-appearance:none!important;background:transparent!important}
-::selection{background:rgba(212,255,72,.25);color:#fff}
+::selection{background:var(--fx-color-brand-soft);color:var(--fx-color-text-primary)}
 :focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px;border-radius:var(--radius-sm)}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
@@ -66,13 +68,15 @@ img{max-width:100%}
    fixed mobile dropdown always paint on top. (immersive.css puts #site-header AND
    main both at z-index:1, so the later-in-DOM main was covering the dropdown.) */
 .forgeax-site #site-header{position:relative;z-index:200!important}
-.nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,.82);backdrop-filter:saturate(180%) blur(14px);
+.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb, var(--fx-color-surface-canvas) 86%, transparent);backdrop-filter:saturate(140%) blur(16px);
   border-bottom:1px solid var(--border-subtle);transition:box-shadow var(--dur-fast) var(--ease-out),background var(--dur-fast) var(--ease-out)}
-.nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--grad);opacity:.45;pointer-events:none}
-.nav.is-scrolled{background:rgba(13,13,13,.92);box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.nav::after{content:none}
+.nav.is-scrolled{background:color-mix(in srgb, var(--fx-color-surface-canvas) 94%, transparent);box-shadow:var(--fx-shadow-subtle)}
 .nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:var(--nav-h);display:flex;align-items:center;gap:18px}
 .nav-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px;letter-spacing:-.2px;flex-shrink:0}
-.nav-brand img{width:26px;height:26px;display:block}
+.nav-brand img,.foot-brand img,.hero-mark,.hero-logo{
+  background:var(--fx-ref-color-neutral-950);border-radius:7px;padding:4px;box-sizing:border-box}
+.nav-brand img{width:26px;height:26px;display:block;padding:3px}
 .nav-brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .nav-links{display:flex;align-items:center;gap:4px;margin-left:0}
 .nav-links a{color:var(--text-secondary);font-size:14.5px;font-weight:500;padding:8px 12px;border-radius:var(--radius-md);
@@ -83,20 +87,20 @@ img{max-width:100%}
 .nav-github{color:var(--text-secondary);font-size:13.5px;font-weight:600;padding:8px 10px;border-radius:var(--radius-md);
   transition:color var(--dur-fast) var(--ease-out),background var(--dur-fast) var(--ease-out)}
 .nav-github:hover{color:var(--text-primary);background:var(--hover-surface)}
-.nav-cta{background:var(--primary);color:var(--color-text-on-bright-primary);font-weight:600;font-size:14px;padding:8px 16px;border-radius:var(--radius-md);
+.nav-cta{background:var(--action-primary-bg);color:var(--action-primary-fg);font-weight:600;font-size:14px;padding:8px 16px;border-radius:var(--fx-component-button-radius);
   transition:background var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)}
-.nav-cta:hover,.nav-cta:active{background:var(--color-brand-primary-hover);color:var(--color-text-on-bright-primary);transform:translateY(-1px)}
+.nav-cta:hover,.nav-cta:active{background:var(--action-primary-hover);color:var(--action-primary-fg);transform:translateY(-1px)}
 .nav-burger{display:none;background:none;border:1px solid var(--border-default);border-radius:var(--radius-md);
   width:38px;height:38px;cursor:pointer;color:var(--text-primary);font-size:18px;align-items:center;justify-content:center}
 .lang-toggle{display:flex;gap:2px;border:1px solid var(--border-subtle);border-radius:var(--radius-pill);padding:2px}
 .lang-toggle button{font-family:inherit;font-size:12.5px;font-weight:600;color:var(--text-tertiary);background:none;border:0;cursor:pointer;
   padding:4px 10px;border-radius:var(--radius-pill);transition:all var(--dur-fast) var(--ease-out)}
-.lang-toggle button.active{color:var(--text-on-bright);background:var(--brand)}
+.lang-toggle button.active{color:var(--action-primary-fg);background:var(--action-primary-bg)}
 .md-copy{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-secondary);
   background:var(--bg-base);border:1px solid var(--border-default);border-radius:var(--radius-md);padding:7px 11px;cursor:pointer;
   transition:color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out)}
 .md-copy:hover{color:var(--text-primary);border-color:var(--border-strong)}
-.md-copy.ok{color:var(--brand);border-color:rgba(212,255,72,.4)}
+.md-copy.ok{color:var(--brand);border-color:var(--fx-color-brand-accent)}
 .md-copy .ic{font-size:14px;line-height:1}
 
 /* collapse the link row into the hamburger before it crowds the right cluster.
@@ -114,8 +118,8 @@ img{max-width:100%}
     flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;margin:0;
     width:auto!important;max-width:none!important;height:auto;
     transform:none!important;
-    background:var(--bg-base,#191919)!important;
-    border:0;border-bottom:1px solid var(--border-default);box-shadow:0 16px 40px rgba(0,0,0,.55);padding:8px;
+    background:var(--fx-color-surface-raised)!important;
+    border:0;border-bottom:1px solid var(--border-default);box-shadow:var(--fx-shadow-floating);padding:8px;
     opacity:0;pointer-events:none;z-index:40;transition:opacity var(--dur-fast),transform var(--dur-fast)
   }
   .forgeax-site .nav .nav-links.open{transform:none!important;opacity:1;pointer-events:auto}
@@ -129,22 +133,22 @@ img{max-width:100%}
 /* ── page header / hero ─────────────────────────────────────────────────── */
 .page-head{padding:54px 0 8px;text-align:center}
 .page-head .eyebrow{font-family:var(--font-mono);font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brand)}
-.page-head h1{font-size:clamp(30px,5.5vw,46px);letter-spacing:-1.2px;font-weight:800;margin-top:10px}
+.page-head h1{font-size:clamp(30px,5.5vw,46px);letter-spacing:-1.2px;font-weight:800;margin-top:10px;color:var(--text-primary)}
 .page-head p{color:var(--text-secondary);max-width:620px;margin:14px auto 0;font-size:17px}
 
 /* ── ambient hero glow (home) ──────────────────────────────────────────── */
 .glow{position:fixed;inset:0;pointer-events:none;z-index:0;background:
-  radial-gradient(1000px 520px at 75% -5%,rgba(212,255,72,.16),transparent 62%),
-  radial-gradient(800px 480px at 8% 2%,rgba(72,255,207,.10),transparent 58%)}
+  radial-gradient(1000px 520px at 75% -5%,color-mix(in srgb, var(--fx-color-brand-soft) 80%, transparent),transparent 62%),
+  radial-gradient(800px 480px at 8% 2%,color-mix(in srgb, var(--fx-color-surface-sidebar) 70%, transparent),transparent 58%)}
 main{position:relative;z-index:1}
 
 /* ── buttons ───────────────────────────────────────────────────────────── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 22px;border-radius:var(--radius-pill);font-weight:600;font-size:15px;line-height:1.15;
   border:1px solid transparent;cursor:pointer;box-sizing:border-box;vertical-align:middle;transition:transform var(--dur-fast) var(--ease-out),background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out)}
 .btn:active{transform:scale(.996)}
-.btn.primary{color:#f2ffd4;background:transparent}
-.btn.primary:hover,.btn.primary:active{color:#fff;transform:translateY(-1px)}
-.btn.ghost{border-color:var(--border-default);color:var(--text-primary);background:var(--bg-base)}
+.btn.primary{color:var(--action-primary-fg);background:var(--action-primary-bg)}
+.btn.primary:hover,.btn.primary:active{color:var(--action-primary-fg);transform:translateY(-1px)}
+.btn.ghost{border-color:var(--border-default);color:var(--action-secondary-fg);background:var(--action-secondary-bg)}
 .btn.ghost:hover{border-color:var(--border-strong);transform:translateY(-1px)}
 
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:32px}
@@ -240,7 +244,7 @@ main{position:relative;z-index:1}
   box-shadow:var(--glass-shadow)}
 #sec-ai .ai-logo{flex:0 0 auto;width:40px;height:40px;border-radius:var(--radius-md);display:grid;place-items:center;
   background:color-mix(in srgb,var(--primary) 7%,transparent);border:1px solid color-mix(in srgb,var(--primary) 16%,transparent);
-  color:var(--color-brand-primary-light)}
+  color:var(--fx-color-brand-text)}
 #sec-ai .ai-logo svg{width:20px;height:20px}
 #sec-ai .ai-ebody{flex:1 1 auto;min-width:0}
 #sec-ai .ai-name{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
@@ -255,7 +259,7 @@ main{position:relative;z-index:1}
 /* tag / chip */
 .tag{display:inline-block;font-family:var(--font-mono);font-size:11.5px;padding:3px 9px;border-radius:var(--radius-pill);
   background:var(--bg-floating);color:var(--text-secondary);border:1px solid var(--border-subtle)}
-.tag.brand{background:var(--color-interaction-selected-brand);color:var(--color-brand-primary-light);
+.tag.brand{background:var(--color-interaction-selected-brand);color:var(--fx-color-brand-text);
   border-color:color-mix(in srgb, var(--primary) 25%, transparent)}
 
 /* ── stats row ─────────────────────────────────────────────────────────── */
@@ -276,7 +280,7 @@ main{position:relative;z-index:1}
 /* ── article typography ────────────────────────────────────────────────── */
 .article{padding:40px 0 20px}
 .article .meta{font-family:var(--font-mono);font-size:13px;color:var(--text-tertiary);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.article h1{font-size:clamp(28px,5vw,40px);letter-spacing:-1px;font-weight:800;margin:14px 0 6px;line-height:1.15}
+.article h1{font-size:clamp(28px,5vw,40px);letter-spacing:-1px;font-weight:800;margin:14px 0 6px;line-height:1.15;color:var(--text-primary)}
 .article .standfirst{color:var(--text-secondary);font-size:18px;margin-bottom:8px}
 .media-embed{margin:22px 0 8px;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-subtle);background:#000;aspect-ratio:16/9}
 .media-embed video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
@@ -284,13 +288,13 @@ main{position:relative;z-index:1}
 .media-figure .media-embed{margin:0}
 .media-figure figcaption{margin:10px 0 0;text-align:center;font-size:13px;line-height:1.45;color:var(--text-tertiary);font-weight:400}
 
-.prose{font-size:16.5px;color:rgba(255,255,255,.86)}
-.prose h2{font-size:24px;font-weight:700;margin:36px 0 12px;letter-spacing:-.4px}
+.prose{font-size:16.5px;color:var(--text-primary)}
+.prose h2{font-size:24px;font-weight:700;margin:36px 0 12px;letter-spacing:-.4px;color:var(--text-primary)}
 .prose h3{font-size:19px;font-weight:600;margin:26px 0 8px;color:var(--text-primary)}
 .prose p{margin:14px 0}
 .prose ul,.prose ol{margin:14px 0 14px 22px}
 .prose li{margin:6px 0}
-.prose a{color:var(--brand);border-bottom:1px solid rgba(212,255,72,.3)}
+.prose a{color:var(--fx-color-text-link);border-bottom:1px solid color-mix(in srgb, var(--fx-color-text-link) 30%, transparent)}
 .prose a:hover{border-bottom-color:var(--brand)}
 .prose strong{color:var(--text-primary)}
 .prose code{font-family:var(--font-mono);font-size:.88em;background:var(--bg-elevated);border:1px solid var(--border-subtle);
@@ -391,7 +395,7 @@ details.doc-sub > summary strong{color:var(--text-primary);font-weight:600}
 .foot{border-top:1px solid var(--border-subtle);margin-top:52px;background:var(--bg-base)}
 .foot-inner{max-width:var(--maxw);margin:0 auto;padding:22px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 32px}
 .foot-brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px}
-.foot-brand img{width:21px;height:21px}
+.foot-brand img{width:21px;height:21px;padding:3px;border-radius:6px}
 .foot-brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .foot-brand-col{flex:0 1 auto}
 .foot p{color:var(--text-tertiary);font-size:13px;margin-top:5px;white-space:nowrap}
@@ -418,7 +422,7 @@ details.doc-sub > summary strong{color:var(--text-primary);font-weight:600}
 /* keep this dropdown solid — --glass-bg is only ~14% opaque and mobile browsers
    often drop the heavy backdrop-filter, leaving it see-through (match lang menu) */
 .forgeax-site .ask-ai .ask-menu{
-  background:color-mix(in srgb, var(--bg-elevated) 94%, #0d0d0d) !important;
+  background:var(--fx-color-surface-raised) !important;
   backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%)}
 .ask-item{display:block;width:100%;text-align:left;font-family:inherit;font-size:13.5px;color:var(--text-primary);
   background:none;border:0;border-radius:var(--radius-sm);padding:8px 10px;cursor:pointer}
@@ -436,7 +440,7 @@ details.doc-sub > summary strong{color:var(--text-primary);font-weight:600}
 .forgeax-site .lang-menu-trigger--icon{padding:8px 10px!important;gap:0!important;min-width:0}
 .forgeax-site .lang-menu-trigger--icon .ui-icon{margin:0}
 .lang-menu-list{position:fixed;z-index:10000;min-width:150px;pointer-events:auto;
-  background:color-mix(in srgb, var(--bg-elevated) 94%, #0d0d0d);
+  background:var(--fx-color-surface-raised);
   backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
   border:1px solid var(--border-default);border-radius:var(--radius-md);padding:5px;box-shadow:var(--shadow-menu);max-height:70vh;overflow:auto}
 .lang-item{display:block;width:100%;text-align:left;font-family:inherit;font-size:13.5px;color:var(--text-primary);
@@ -511,7 +515,7 @@ details.doc-sub > summary strong{color:var(--text-primary);font-weight:600}
 .ex-bar-title small{color:var(--text-secondary);font-weight:400;margin-left:10px;font-size:13px}
 .ex-frame-wrap{flex:1;position:relative;background:#0b0d10;min-height:0}
 .ex-frame-wrap.is-loading::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(212,255,72,.06),transparent);background-size:200% 100%;
+  background:linear-gradient(90deg,transparent,var(--fx-color-brand-soft),transparent);background-size:200% 100%;
   animation:ex-shimmer 1.2s var(--ease-out) infinite}
 @keyframes ex-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 #exFrame{position:absolute;inset:0;width:100%;height:100%;max-width:none;border:0;display:block;background:#0b0d10;pointer-events:auto;touch-action:none}
@@ -571,7 +575,7 @@ code{overflow-wrap:anywhere;word-break:break-word}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}
   .ex-frame-wrap.is-loading::after{display:none}}
 
-/* ── nav layout — JS centers links in brand↔actions slot (see layoutNavLinks in site.js) */
+/* ── nav layout — desktop is a 3-column grid (logo | links | actions) */
 @media (min-width:821px){
   /* Shared content rail. `width` is required on main: body is a column flex container and
      main.wrap uses margin:auto, so without an explicit width flex shrink-wraps to content
@@ -582,10 +586,5 @@ code{overflow-wrap:anywhere;word-break:break-word}
     max-width:min(1280px,calc(100% - 40px));
   }
   .forgeax-site .nav-brand{flex:0 0 auto!important;z-index:4}
-  .forgeax-site .nav-right{flex:0 0 auto!important;margin-left:auto!important;z-index:4}
-}
-@media (min-width:1160px){
-  /* Desktop JS centering is relative to this box. Keep it off at hamburger widths
-     so the dropdown positions against the full-width .nav instead. */
-  .forgeax-site .nav-inner{position:relative}
+  .forgeax-site .nav-right{flex:0 0 auto!important;z-index:4}
 }

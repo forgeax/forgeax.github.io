@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>2026-06-23 · Un inspecteur d'actifs + un commutateur sans blocage + un support Windows — ForgeaX</title>
-<meta name="description" content="Un inspecteur d'actifs sensible au genre arrive, le changement de scènes/vues ne redémarre plus à froid le moteur de rendu grâce au maintien en vie, un lot de correctifs multiplateformes Windows arrive, le moteur s'auto-répare de la perte de périphérique et se dégrade gracieusement sous les limites de WebKit, les contrôles de contrat de temps de chargement détectent la dérive de l'interface et les points de contrôle des terminaux ainsi que les touches de chat multi-agents sont expédiés." />
+<meta name="description" content="Un inspecteur d'actifs sensible au genre arrive, le changement de scènes/vues ne redémarre plus à froid le moteur de rendu grâce au maintien en vie, un lot de correctifs multiplateformes Windows arrive, le moteur s'auto-répare de la perte de périphérique et se dégrade gracieusement sous les limites de WebKit, les contrôles de contrat de temps de chargement détectent la dérive de l'interface et les points de contrôle des terminaux ainsi que les touches de chat multi-Agents sont expédiés." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="2026-06-23 · Un inspecteur d'actifs + un commutateur sans blocage + un support Windows — ForgeaX" />
-<meta property="og:description" content="Un inspecteur d'actifs sensible au genre arrive, le changement de scènes/vues ne redémarre plus à froid le moteur de rendu grâce au maintien en vie, un lot de correctifs multiplateformes Windows arrive, le moteur s'auto-répare de la perte de périphérique et se dégrade gracieusement sous les limites de WebKit, les contrôles de contrat de temps de chargement détectent la dérive de l'interface et les points de contrôle des terminaux ainsi que les touches de chat multi-agents sont expédiés." />
+<meta property="og:description" content="Un inspecteur d'actifs sensible au genre arrive, le changement de scènes/vues ne redémarre plus à froid le moteur de rendu grâce au maintien en vie, un lot de correctifs multiplateformes Windows arrive, le moteur s'auto-répare de la perte de périphérique et se dégrade gracieusement sous les limites de WebKit, les contrôles de contrat de temps de chargement détectent la dérive de l'interface et les points de contrôle des terminaux ainsi que les touches de chat multi-Agents sont expédiés." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-23.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
       <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
-      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-23.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-23.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-23.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-23.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-23.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-23.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-23.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-23.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+      <a class="nav-cta" href="/fr/#install">Commencer</a>
     </div>
   </div>
 </nav>
@@ -74,10 +74,10 @@
 <p>Le moteur a fait un grand pas en avant dans la « résistance aux accidents » ce jour-là. La première est l’auto-réparation du périphérique/surface : un périphérique graphique peut soudainement tomber en cours de fonctionnement pour diverses raisons (pression des ressources du système, réinitialisation du pilote), ce qui signifiait auparavant souvent que l’écran devenait noir sans récupération ; maintenant, le moteur détecte une telle baisse et tente de rétablir automatiquement le rendu afin que l&#39;image revienne, plutôt que de mourir. Deuxièmement, il y a une dégradation gracieuse sous certaines limites : dans certains environnements de navigateur plus faibles, la sonde du moteur sur la capacité de la mémoire vidéo peut ne pas obtenir une valeur précise, et aujourd&#39;hui, elle retombe à un plafond par défaut sûr alors qu&#39;elle ne le peut pas ; et lorsque le contenu à restituer dépasse la capacité, il « restitue désormais un sous-ensemble tronqué » plutôt que de sauter l&#39;image entière, préférant dessiner un peu moins plutôt que de détruire l&#39;image entière ; les crashs de bas niveau ont également été isolés en erreurs récupérables. Le thème commun est la « résilience » : un moteur destiné à faire face à toutes sortes d’appareils réels et à être utilisé pendant de longues périodes par des gens ordinaires ne peut pas supposer que tout est parfait ; la marque de la vraie maturité est que, lorsque l&#39;imperfection survient, elle résiste, se rétablit et continue de travailler à un niveau réduit, plutôt que de se mettre en grève au premier accident.</p>
 <h2>Vérifications du contrat de temps de chargement + réécriture de scène</h2>
 <p>Cette journée a ajouté une autre protection à la ligne « L&#39;IA écrit du code » : les vérifications des contrats au moment du chargement. Lors du chargement d&#39;un jeu, le système vérifie automatiquement que le code du jeu correspond aux interfaces du moteur — un « contrat » étant les conventions d&#39;appel prescrites par le moteur ; Si, après que l&#39;IA a modifié le code, certains endroits utilisent mal une interface ou si les interfaces entre fichiers ne correspondent pas, le système signale cette &quot;dérive&quot; directement et de manière visible dans une superposition d&#39;erreurs à l&#39;écran, plutôt que de planter inexplicablement à mi-chemin. Cela définit effectivement un autre point de contrôle automatique entre « écriture terminée » et « en cours d&#39;exécution », détectant sur place les erreurs au niveau de l&#39;interface. Pendant ce temps, le moteur a terminé la « réécriture » de la scène : il peut sérialiser le contenu de la scène actuelle dans un pack d&#39;actifs structuré et rechercher l&#39;identifiant à l&#39;envers à partir du contenu. Cela pose les bases sous-jacentes à la boucle « modifier dans l&#39;éditeur et enregistrer immédiatement » : l&#39;édition ne consiste pas seulement à visualiser et à régler ; les changements doivent également persister de manière fiable. Ces deux éléments, l&#39;un après l&#39;autre, fiabilisent « les produits de la création » : en garantissant l&#39;alignement du code et la sauvegarde des résultats d&#39;édition.</p>
-<h2>Rembobinage du point de contrôle du terminal + touches de collaboration multi-agents</h2>
-<p>Aujourd&#39;hui, la version ligne de commande/terminal a gagné des fonctionnalités correspondant à l&#39;interface graphique : points de contrôle et rembobinage. Vous pouvez ramener une conversation à un point de contrôle antérieur et réessayer, en revenant si vous n&#39;êtes pas satisfait ; la récupération de session a été ajoutée : après une interruption, une commande reprend là où vous l&#39;avez laissée, sans recommencer ; plus une superposition pour vous poser des questions. L&#39;interface de chat a continué à peaufiner les détails en direct de la collaboration multi-agents : lorsqu&#39;un sous-agent confie une tâche à un autre, un en-tête de relais clair indique la relation de transfert ; les agents liés sont regroupés par « familles de producteurs », chacun dans sa propre catégorie ; les opérations sensibles nécessitant votre appel reçoivent une carte de confirmation d&#39;autorisation dédiée ; et les avatars des agents ont été légèrement surélevés et agrandis pour rendre plus clair d&#39;un seul coup d&#39;œil « qui est actif, qui vous attend ». Ensemble, ils servent une chose : lorsque vous demandez à une équipe d&#39;IA chargées de tâches différentes de collaborer, l&#39;ensemble du processus doit être clair, contrôlable et toujours susceptible d&#39;être annulé : vous comprenez ce qu&#39;ils font tout en gardant l&#39;initiative de s&#39;arrêter et de revenir en arrière.</p>
+<h2>Rembobinage du point de contrôle du terminal + touches de collaboration multi-Agents</h2>
+<p>Aujourd&#39;hui, la version ligne de commande/terminal a gagné des fonctionnalités correspondant à l&#39;interface graphique : points de contrôle et rembobinage. Vous pouvez ramener une conversation à un point de contrôle antérieur et réessayer, en revenant si vous n&#39;êtes pas satisfait ; la récupération de session a été ajoutée : après une interruption, une commande reprend là où vous l&#39;avez laissée, sans recommencer ; plus une superposition pour vous poser des questions. L&#39;interface de chat a continué à peaufiner les détails en direct de la collaboration multi-Agents : lorsqu&#39;un sous-Agent confie une tâche à un autre, un en-tête de relais clair indique la relation de transfert ; les Agents liés sont regroupés par « familles de producteurs », chacun dans sa propre catégorie ; les opérations sensibles nécessitant votre appel reçoivent une carte de confirmation d&#39;autorisation dédiée ; et les avatars des Agents ont été légèrement surélevés et agrandis pour rendre plus clair d&#39;un seul coup d&#39;œil « qui est actif, qui vous attend ». Ensemble, ils servent une chose : lorsque vous demandez à une équipe d&#39;IA chargées de tâches différentes de collaborer, l&#39;ensemble du processus doit être clair, contrôlable et toujours susceptible d&#39;être annulé : vous comprenez ce qu&#39;ils font tout en gardant l&#39;initiative de s&#39;arrêter et de revenir en arrière.</p>
 <h2>Ce que signifie cette journée</h2>
-<p>Si la version open source de la veille consistait à « ouvrir la porte et inviter les gens à entrer », cette journée consistait à « ranger la maison pour que les gens y vivent à l&#39;aise ». Il n&#39;avait aucune nouvelle fonctionnalité révolutionnaire, tout était peaufiné et renforcé : vous permettant de voir clairement chaque actif, de continuer à passer des accrocs, de laisser les utilisateurs de Windows entrer, d&#39;aider le moteur à résister aux accidents, d&#39;empêcher le code de l&#39;IA de s&#39;échapper avec des erreurs, de rendre la collaboration multi-agents claire et contrôlable. Ce que tout cela souligne, c&#39;est la « convivialité » et la « fiabilité » – exactement les deux choses qu&#39;un projet qui vient d&#39;accueillir un flot de nouveaux utilisateurs doit le plus renforcer en même temps. Les nouveaux utilisateurs ne resteront pas pour une fonctionnalité éblouissante, mais pourraient bien se détourner à cause d&#39;un seul blocage, d&#39;un seul crash, d&#39;un seul échec d&#39;exécution sous Windows. Résoudre ces problèmes banals d&#39;expérience et de stabilité un par un semble évident, mais cela renforce réellement les bases de l&#39;utilisation réelle qui suit l&#39;open source. La libération est un point de départ et non une fin ; cette journée a marqué le début de la prise au sérieux du fait d&#39;être réellement utilisé par les gens.</p>
+<p>Si la version open source de la veille consistait à « ouvrir la porte et inviter les gens à entrer », cette journée consistait à « ranger la maison pour que les gens y vivent à l&#39;aise ». Il n&#39;avait aucune nouvelle fonctionnalité révolutionnaire, tout était peaufiné et renforcé : vous permettant de voir clairement chaque actif, de continuer à passer des accrocs, de laisser les utilisateurs de Windows entrer, d&#39;aider le moteur à résister aux accidents, d&#39;empêcher le code de l&#39;IA de s&#39;échapper avec des erreurs, de rendre la collaboration multi-Agents claire et contrôlable. Ce que tout cela souligne, c&#39;est la « convivialité » et la « fiabilité » – exactement les deux choses qu&#39;un projet qui vient d&#39;accueillir un flot de nouveaux utilisateurs doit le plus renforcer en même temps. Les nouveaux utilisateurs ne resteront pas pour une fonctionnalité éblouissante, mais pourraient bien se détourner à cause d&#39;un seul blocage, d&#39;un seul crash, d&#39;un seul échec d&#39;exécution sous Windows. Résoudre ces problèmes banals d&#39;expérience et de stabilité un par un semble évident, mais cela renforce réellement les bases de l&#39;utilisation réelle qui suit l&#39;open source. La libération est un point de départ et non une fin ; cette journée a marqué le début de la prise au sérieux du fait d&#39;être réellement utilisé par les gens.</p>
 </div>
     <p style="margin-top:32px"><a class="btn ghost" href="/fr/changelog/">← Toutes les mises à jour</a></p>
   </article>
@@ -89,19 +89,17 @@
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/fr/changelog/">Journal des modifications</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
     <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
-    <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

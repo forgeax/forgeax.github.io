@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>认识 ForgeaX Engine — ForgeaX</title>
+<meta name="description" content="AI 原生 TypeScript 游戏引擎：为最大化 AI 能效而设计。数据、生命周期、API 与工具围绕同一目标。" />
+<link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
+<meta property="og:title" content="认识 ForgeaX Engine — ForgeaX" />
+<meta property="og:description" content="AI 原生 TypeScript 游戏引擎：为最大化 AI 能效而设计。数据、生命周期、API 与工具围绕同一目标。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forgeax.github.io/zh/tutorials/engine.html" />
+<meta property="og:image" content="https://forgeax.github.io/logo.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://forgeax.github.io/zh/tutorials/engine.html" />
+<link rel="alternate" hreflang="en" href="https://forgeax.github.io/tutorials/engine.html" />
+<link rel="alternate" hreflang="zh-CN" href="https://forgeax.github.io/zh/tutorials/engine.html" />
+<link rel="alternate" hreflang="ja" href="https://forgeax.github.io/ja/tutorials/engine.html" />
+<link rel="alternate" hreflang="ko" href="https://forgeax.github.io/ko/tutorials/engine.html" />
+<link rel="alternate" hreflang="es" href="https://forgeax.github.io/es/tutorials/engine.html" />
+<link rel="alternate" hreflang="de" href="https://forgeax.github.io/de/tutorials/engine.html" />
+<link rel="alternate" hreflang="fr" href="https://forgeax.github.io/fr/tutorials/engine.html" />
+<link rel="alternate" hreflang="pt" href="https://forgeax.github.io/pt/tutorials/engine.html" />
+<link rel="alternate" hreflang="x-default" href="https://forgeax.github.io/tutorials/engine.html" />
+<link rel="alternate" type="text/markdown" href="https://forgeax.github.io/llms.txt" title="llms.txt" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
+
+</head>
+<body class="lang-zh forgeax-site">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="/zh/" data-nav="/">主页</a>
+      <a href="/zh/tutorials/" data-nav="/tutorials/" class="active">教程</a>
+      <a href="/zh/examples/" data-nav="/examples/">示例</a>
+      <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-menu" id="langMenu">
+        <button type="button" class="lang-menu-trigger lang-menu-trigger--icon" id="langMenuBtn" aria-expanded="false" aria-haspopup="listbox" aria-label="语言">
+          <span class="ui-icon ui-icon--sm" aria-hidden="true"><i data-lucide="globe"></i></span>
+        </button>
+        <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/engine.html" data-l="en">English</a><a class="lang-item active" href="/zh/tutorials/engine.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/tutorials/engine.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/engine.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/engine.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/engine.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/engine.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/engine.html" data-l="pt">Português</a></div>
+      </div>
+      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <article class="read article">
+    <a class="back" href="/zh/tutorials/">← 返回教程</a>
+    <h1>认识 ForgeaX Engine</h1>
+    <p class="standfirst"><strong>AI 原生：为最大化 AI 能效而设计的游戏引擎。</strong></p>
+
+    <div class="prose">
+      <p>ForgeaX 是以 <strong>AI agent 为第一用户</strong>的 TypeScript 游戏引擎。数据、生命周期、API 与工具围绕同一目标设计：让 AI 理解系统、准确操作、检查结果并完成修复。</p>
+      <div class="note"><strong>能效是目标，设计是方法。</strong> 让 AI 用更少上下文、更少试错和更短反馈时间，完成更多经过验证的游戏开发工作。</div>
+
+      <p class="eng-toc">
+        <a href="#ai-efficiency">AI 能效</a>
+        <span aria-hidden="true">·</span>
+        <a href="#design">设计原则</a>
+        <span aria-hidden="true">·</span>
+        <a href="#architecture">引擎架构</a>
+        <span aria-hidden="true">·</span>
+        <a href="#start">开始使用</a>
+        <span aria-hidden="true">·</span>
+        <a href="#explore">深入阅读</a>
+      </p>
+
+      <h2 id="ai-efficiency">AI 能效</h2>
+      <p>能效关注<strong>经过验证的结果</strong>，同时考虑错误定位与返工、上下文和工具往返成本。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>能力</th>
+              <th>如何提高 AI 能效</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>渲染透明</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/rhi-debug/README.md" target="_blank" rel="noopener">RHI-debug</a> 录制并重放自包含帧，检查 draw/dispatch、binding、资源与像素，定位异常输入</td></tr>
+            <tr><td><strong>运行时逻辑与数据透明</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/ecs/README.md" target="_blank" rel="noopener">ECS</a> 显式描述组件、查询和调度；<a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/remote/README.md" target="_blank" rel="noopener">Remote</a> 查询活实例，依据真实状态定位逻辑错误</td></tr>
+            <tr><td><strong>资产可编写、可溯源</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/pack/README.md" target="_blank" rel="noopener">ScriptablePack / Pack</a> 以 TypeScript 生成或 JSON 声明内容；稳定 GUID 连接源与产物，修复沿 producer 返回源输入</td></tr>
+            <tr><td><strong>插件变更可撤销</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/plugin/README.md" target="_blank" rel="noopener">原生 Cordis</a> 统一依赖、激活与清理；配置更新失败可回到上一个工作的 Fiber</td></tr>
+            <tr><td><strong>性能与结果可验证</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/profiler/README.md" target="_blank" rel="noopener">Profiler</a> 提供有界 CPU capture 与离线比较；<a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/preview/README.md" target="_blank" rel="noopener">Preview</a>、浏览器截图和项目测试提供运行证据</td></tr>
+            <tr><td><strong>CLI 优先操作</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/devkit/README.md" target="_blank" rel="noopener">DevKit</a> 统一 <code>forgeax</code> 命令发现、JSON 输入输出和持久实例，使操作可组合、可重复</td></tr>
+            <tr><td><strong>按需获取上下文</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/skills" target="_blank" rel="noopener">Skills</a>、包契约与工具描述逐层展开，只加载当前任务需要的知识</td></tr>
+            <tr><td><strong>结构化失败与恢复</strong></td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/types/README.md" target="_blank" rel="noopener"><code>Result</code> 与闭合错误 union</a> 提供 code、预期、提示与详情；能力、执行层级和恢复状态显式可查</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">截图、结构检查和真实 GPU 执行回答不同问题；CPU capture 也不能替代 GPU 性能测量。</div>
+
+      <h2 id="design">设计原则</h2>
+      <p><strong>压缩即智能：减少理解局部行为所需的概念数。</strong> 避免重复状态源、额外生命周期和隐式分支。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>设计原则</th>
+              <th>在 ForgeaX 中的落实</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>AI 是第一用户</strong></td><td>优先机器可发现、可调用、可验证的契约；与人类使用习惯冲突时，优先服务 AI</td></tr>
+            <tr><td><strong>单一事实来源</strong></td><td>World 拥有游戏状态，Renderer 拥有渲染投影，源资产与 Meta 拥有作者事实；其他层读取或推导</td></tr>
+            <tr><td><strong>从声明推导，避免手动同步</strong></td><td>材质 <code>paramSchema</code> 推导布局；RenderGraph 从访问声明推导资源依赖与生命周期；Catalog 从项目声明生成</td></tr>
+            <tr><td><strong>组合能力，保持领域边界</strong></td><td>物理、渲染、资产、音频各自拥有执行数据；插件负责装配，ECS 负责帧内逻辑</td></tr>
+            <tr><td><strong>原生生命周期，统一撤销</strong></td><td>Cordis 的 <code>Context / Entry / Fiber</code> 管理能力存在性，<code>inject / provide / effect</code> 表达依赖、服务与清理</td></tr>
+            <tr><td><strong>显式状态与失败</strong></td><td>闭合 union、结构化错误、明确的能力缺失与 fallback 报告，减少隐藏分支</td></tr>
+            <tr><td><strong>构建期准备，运行时消费</strong></td><td>导入、WGSL 组合与反射、VFX 编译在构建期完成；运行时加载已发布内容</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>完整约束见引擎仓库的 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/AGENTS.md#design-axiom--compression--intelligence" target="_blank" rel="noopener">AI-first 设计公理</a> 与 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/AGENTS.md#module-design-map--cognitive-injection" target="_blank" rel="noopener">模块职责地图</a>。</p>
+
+      <h2 id="architecture">架构</h2>
+      <p><strong>一个权威 World。</strong> Runtime 装配服务，Render 维护渲染投影，构建工具生产资源。</p>
+
+      <div class="arch" role="img" aria-label="引擎架构：从游戏工程经 DevKit 进入运行时与渲染后端">
+        <div class="arch__cap">工程与构建</div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>游戏工程</strong>forge.json · 代码 · 资产源</div>
+          <div class="arch__box"><strong>DevKit / CLI</strong>项目操作 · 构建 · 检查</div>
+          <div class="arch__box"><strong>构建期生产</strong>导入 · cook · shader / VFX 编译</div>
+          <div class="arch__box"><strong>AssetRegistry</strong>GUID → 已发布内容</div>
+        </div>
+        <div class="arch__join">↓ DevKit 启动 App，cook 产物进入 AssetRegistry</div>
+        <div class="arch__cap">运行时装配</div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>App + 原生 Cordis</strong>realm 装配 · 输入 · 帧节奏 · 生命周期</div>
+          <div class="arch__box"><strong>ECS World</strong>状态 · 时间 · Update / FixedUpdate</div>
+          <div class="arch__box"><strong>领域系统</strong>场景 · 动画 · 物理 · 音频意图 · 网络</div>
+          <div class="arch__box"><strong>Runtime</strong>选择后端与服务 · 装配 Renderer</div>
+        </div>
+        <div class="arch__join">↓ World 变化与资产进入 Render；Runtime 装配 Renderer</div>
+        <div class="arch__cap">渲染与 GPU</div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>Render</strong>持久投影 · extract / prepare / record</div>
+          <div class="arch__box"><strong>RenderGraph</strong>资源访问 · pass 依赖 · 生命周期</div>
+          <div class="arch__box"><strong>RHI</strong>不透明句柄 · capabilities</div>
+        </div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>rhi-webgpu / rhi-wgpu</strong>浏览器 WebGPU / wgpu WASM</div>
+          <div class="arch__box"><strong>rhi-null</strong>结构验证</div>
+          <div class="arch__box"><strong>RHI-debug</strong>可选：capture · replay · inspect</div>
+        </div>
+      </div>
+
+      <h3>渲染与 GPU</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>子系统</th>
+              <th>关键设计与职责</th>
+              <th>深入阅读</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Render / RenderGraph</strong></td><td>持久 CPU 投影与能力门控的 GPU Scene；可编程管线与 RenderFeature；图推导依赖、资源使用与生命周期，按声明顺序执行 raster / compute / copy pass</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/render/README.md" target="_blank" rel="noopener">Render</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/render-graph/README.md" target="_blank" rel="noopener">RenderGraph</a></td></tr>
+            <tr><td><strong>Shader / Material</strong></td><td>材质 schema 推导参数和绑定布局；WGSL 组合、Naga 验证与反射；运行时查询内容寻址的已编译产物</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/shader/README.md" target="_blank" rel="noopener">Shader</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/shader-compiler/README.md" target="_blank" rel="noopener">Compiler</a></td></tr>
+            <tr><td><strong>GPU VFX</strong></td><td>GPU 模拟与间接绘制；代码定义、构建期编译；粒子、ribbon、trail、beam、billboard 与 mesh 效果</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/vfx/README.md" target="_blank" rel="noopener">VFX</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/vfx-render/README.md" target="_blank" rel="noopener">VFX render</a></td></tr>
+            <tr><td><strong>RHI / 后端</strong></td><td>按 capability 统一浏览器 WebGPU、wgpu WASM 与 null 后端；接口规范对齐，采用不透明句柄且无数学依赖</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/rhi/README.md" target="_blank" rel="noopener">RHI</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/rhi-wgpu/README.md" target="_blank" rel="noopener">wgpu</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>ECS 与多 Worker</h3>
+      <p><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/ecs/README.md" target="_blank" rel="noopener">ECS World</a> 统一管理实体、组件、关系、资源和时间；<code>Update</code> / <code>FixedUpdate</code> 系统声明访问与调度。<a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/scene/README.md" target="_blank" rel="noopener">Scene</a> 管理层级与变换，<a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/state/README.md" target="_blank" rel="noopener">State</a> 管理状态所属实体；Renderer 消费 World 变化，维护持久渲染投影。</p>
+      <div class="arch" role="img" aria-label="Host、Engine Worker 与 Kernel Worker 池的执行关系">
+        <div class="arch__lane arch__lane--row">
+          <div class="arch__box"><strong>Host</strong>DOM / UI · 输入 · Web Audio · 帧 credit</div>
+          <div class="arch__box"><strong>Engine Worker</strong>World + Renderer + Assets + 游戏插件</div>
+          <div class="arch__box"><strong>Kernel Worker 池</strong>共享数值列上的 QuerySpan 分片</div>
+        </div>
+        <p class="arch__legend">Host 给出输入与一帧执行许可 → Engine 返回结果与音频意图 → 符合条件的数值任务进入 Kernel，完成后再屏障回到 Engine。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>执行层级</th>
+              <th>放置方式</th>
+              <th>约束与适用边界</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>shared</code></td><td>Engine Worker 加持久 Kernel Worker 池</td><td>需要跨源隔离、SharedArrayBuffer 等能力；仅符合条件的数值任务并行</td></tr>
+            <tr><td><code>engine-worker</code></td><td>World、Renderer、资产与游戏插件共置于一个 Worker</td><td>Host 保留 DOM、输入与音频；需要对应 Worker 渲染能力</td></tr>
+            <tr><td><code>main-serial</code></td><td>World 与 Renderer 在主线程</td><td>最直接的串行执行路径</td></tr>
+            <tr><td><code>auto</code></td><td>根据能力选择可用层级</td><td>报告实际选择和原因；显式指定不可用层级则返回错误</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">多 Worker 保持<strong>一个逻辑 World</strong>，结构变更串行，不传递活对象或拆分 RenderGraph；共享写入部分失败须重建 World。详见 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/app/README.md#execution-tiers" target="_blank" rel="noopener">App 执行契约</a> 与 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/apps/hello/multithreaded-execution/README.md" target="_blank" rel="noopener">多线程示例</a>。</div>
+
+      <h3>文本化与脚本化资产</h3>
+      <p><strong>程序生成与参数复用，让内容创作进入代码工作流。</strong> AI 能批量生成资产，也能直接编辑文本、审查 diff 和自动验证。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>创作形式</th>
+              <th>用途</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>ScriptablePack · <code>.pack.ts</code></strong></td><td>用函数、循环与组合生成资产集合，复用场景和几何生成逻辑</td></tr>
+            <tr><td><strong>参数化实例</strong></td><td>独立包身份、父源与稀疏覆盖，复用定义生成变体</td></tr>
+            <tr><td><strong>Pack · <code>.pack.json</code></strong></td><td>声明资产、引用与实例参数，直接编辑字段、审查差异</td></tr>
+            <tr><td><strong>导入资产与 sidecar</strong></td><td>glTF / FBX / 图像等外部源与元数据，共享身份和 cook 路径</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="arch" role="img" aria-label="ScriptablePack、Pack 与外部源经 cook 发布后按 GUID 加载">
+        <div class="arch__lane">
+          <div class="arch__box"><strong>ScriptablePack</strong><code>.pack.ts</code></div>
+          <div class="arch__box"><strong>Pack</strong><code>.pack.json</code></div>
+          <div class="arch__box"><strong>外部源 + Meta</strong>模型 · 图像 · 字体</div>
+        </div>
+        <div class="arch__join">↓ 生产者校验与 cook → 发布产物（稳定 GUID · receipt · Catalog）</div>
+        <div class="arch__lane">
+          <div class="arch__box"><strong>生产者校验与 cook</strong></div>
+          <div class="arch__box"><strong>发布产物</strong>稳定 GUID · receipt · Catalog</div>
+          <div class="arch__box"><strong>运行时</strong>按 GUID 加载</div>
+        </div>
+      </div>
+      <div class="note"><strong>源与产物分离。</strong> <code>.pack.ts</code> 在构建期执行，运行时按稳定 GUID 加载 cook 产物；纹理、模型、音频仍可使用二进制源。修复回到源输入，再重新 cook。详见 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/pack/README.md" target="_blank" rel="noopener">Pack 创作契约</a>。</div>
+
+      <h3>游戏插件与引擎插件</h3>
+      <p>游戏插件与引擎插件共享原生 Cordis 的依赖、激活、更新与退出机制。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>插件层次</th>
+              <th>典型职责</th>
+              <th>组合方式</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>项目装配</td><td>选择安装哪些插件、配置与所在 realm</td><td><code>forge.json.plugins[]</code> 声明 Entry；DevKit 生成静态 Catalog，由原生 Loader 激活</td></tr>
+            <tr><td>引擎插件</td><td>场景、输入、物理、音频等服务与 ECS 能力</td><td>原生 <code>inject / provide</code> 声明依赖与服务，通过 <code>effect</code> 注册贡献及其逆操作</td></tr>
+            <tr><td>游戏插件</td><td>角色移动、镜头、游戏 UI 与玩法系统</td><td>参考模板在 <code>assets/plugin.ts</code> 用 <code>definePluginGroup</code> / <code>usePlugin</code> 组合子插件</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><code>effect</code> 的逆操作随 Fiber 退出执行；帧内逻辑由 ECS 调度，插件装配不进入热路径。参考 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/plugin/README.md" target="_blank" rel="noopener">插件契约</a> 与 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/templates/game-3d/assets/plugin.ts" target="_blank" rel="noopener"><code>game-3d</code> 根插件</a>。</p>
+
+      <h3>模拟与交互</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>子系统</th>
+              <th>关键设计与职责</th>
+              <th>深入阅读</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>网络</strong></td><td>Session 拥有复制、ACK、重试、baseline / delta 与连接恢复；WebSocket 只提供传输</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/net/README.md" target="_blank" rel="noopener">Net</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/net-websocket/README.md" target="_blank" rel="noopener">WebSocket</a></td></tr>
+            <tr><td><strong>物理</strong></td><td>ECS 物理契约与 Rapier 2D / 3D 后端分离；同步输入、推进模拟、写回状态</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/physics/README.md" target="_blank" rel="noopener">Physics</a></td></tr>
+            <tr><td><strong>动画 / 蒙皮</strong></td><td>动画图、clip 与播放系统独立于 Renderer；Skin 负责骨骼绑定与关节路径解析</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/animation/README.md" target="_blank" rel="noopener">Animation</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/skinning/README.md" target="_blank" rel="noopener">Skinning</a></td></tr>
+            <tr><td><strong>运行时智能服务</strong></td><td>可选的 provider 无关 Activity / Session；有界输出、取消与轮询；异步服务不阻塞 ECS 帧循环</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/intelligence/README.md" target="_blank" rel="noopener">Intelligence</a></td></tr>
+            <tr><td><strong>输入 / UI / 音频</strong></td><td>帧起点冻结输入快照；Shadow DOM UI；realm 无关的音频意图交给 Host Web Audio 播放</td><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/input/README.md" target="_blank" rel="noopener">Input</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/ui/README.md" target="_blank" rel="noopener">UI</a> · <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/audio/README.md" target="_blank" rel="noopener">Audio</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="start">开始使用</h2>
+      <p>安装 <strong><code>@forgeax/engine</code></strong>，通过 <code>/ecs</code>、<code>/app</code> 等子路径使用聚焦能力，统一命令为 <code>forgeax</code>。</p>
+      <pre><code>pnpm dlx @forgeax/engine project new my-game --template game-3d
+cd my-game
+pnpm exec forgeax help --tree --json
+pnpm exec forgeax project check
+pnpm exec forgeax dev start --headless false --json</code></pre>
+      <p><code>game-3d</code> 是第三人称参考工程，<code>empty</code> 是最小起点。先读生成的 README 与技能；操作入口见 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/engine/README.md" target="_blank" rel="noopener">Engine</a> 与 <a href="/docs/cli/">CLI 使用指南</a>。</p>
+
+      <details class="eng-details">
+        <summary>运行与验证</summary>
+        <pre><code>pnpm exec forgeax dev status --json
+pnpm exec forgeax dev capture --json
+pnpm exec forgeax dev stop --json
+pnpm exec forgeax project test
+pnpm exec forgeax project package --format web-zip</code></pre>
+        <p>观察结果携带 <code>revision</code>，截图返回 PNG 与报告引用。实体查找、摄像机控制和实例身份约束见 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/packages/devkit/README.md#persistent-live-control" target="_blank" rel="noopener">持久运行实例</a>。</p>
+      </details>
+
+      <details class="eng-details">
+        <summary>源码与 SDK</summary>
+        <p>工具链版本以仓库中的 <code>.nvmrc</code>、<code>.pnpm-version</code>、<code>.bun-version</code> 为准。</p>
+        <pre><code>pnpm install
+pnpm build:engine
+pnpm test</code></pre>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>场景</th>
+                <th>入口</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>获取 SDK</td><td><code>pnpm dlx @forgeax/engine sdk install ./forgeax-sdk</code></td></tr>
+              <tr><td>SDK 的 <code>source/engine/</code></td><td>独立公开源码面，带 <code>.forgeax-public-distribution</code> 标记与预构建 WASM；运行上述 install / build，无需私有子模块</td></tr>
+              <tr><td>完整贡献者 checkout</td><td>首次 clone 使用 <code>--recurse-submodules</code> 获取有权限访问的私有资产；完整应用构建运行 <code>pnpm build</code></td></tr>
+              <tr><td>单个示例迭代</td><td><code>pnpm build:app hello/triangle</code>；更大范围验收遵循 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/AGENTS.md#smoke-gate" target="_blank" rel="noopener">Smoke gate</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>SDK 包含构建产物、模板、技能与 Engine 源码。详见 <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/skills/forgeax-engine-sdk/SKILL.md" target="_blank" rel="noopener">SDK 指南</a>。</p>
+      </details>
+
+      <h2 id="explore">深入阅读</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>入口</th>
+              <th>用途</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/AGENTS.md" target="_blank" rel="noopener">AGENTS.md</a></td><td>设计公理、模块职责、错误模型、源码工作与验证约束</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/packages" target="_blank" rel="noopener">Packages</a></td><td>各包 README 的 API、生命周期与能力契约</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/schemas" target="_blank" rel="noopener">Schemas</a> / <a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/scripts/ci/README.md" target="_blank" rel="noopener">CI 指南</a></td><td>机器可读契约与验证流程</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/skills" target="_blank" rel="noopener">Engine skills</a></td><td>按任务发现引擎能力与操作路径</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/apps" target="_blank" rel="noopener">Apps</a> / <a href="https://github.com/ForgeaX-Games/forgeax-engine/tree/main/templates" target="_blank" rel="noopener">Templates</a></td><td>示例、回归场景与游戏起点</td></tr>
+            <tr><td><a href="https://github.com/ForgeaX-Games/forgeax-engine/blob/main/apps/showcase/palace/README.md" target="_blank" rel="noopener">故宫建筑示例</a></td><td><code>pack.ts</code> 建筑、灯光和持续 CLI 观察示例；视觉效果仍在迭代</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">本页由引擎 README 整理。具体能力和限制以链接的包契约为准。</div>
+
+      <h2>License</h2>
+      <p>引擎遵循 <a href="/zh/license.html">Apache-2.0</a>。</p>
+    </div>
+    <p style="margin-top:32px"><a class="btn primary" href="/zh/tutorials/getting-started.html">去做第一款游戏 →</a></p>
+  </article>
+</main>
+
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-brand-col">
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
+  </div>
+  <nav class="foot-links" aria-label="站点">
+    <a href="/zh/tutorials/">教程</a>
+    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/marketplace/">插件</a>
+    <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
+    <a href="/zh/license.html">版权说明</a>
+  </nav>
+</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+</footer>
+
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
+</body>
+</html>

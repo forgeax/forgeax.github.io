@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>2026-06-08 · Une grande intégration d'éditeur + des modèles texturés rendus en direct — ForgeaX</title>
-<meta name="description" content="L'éditeur intègre à la fois un menu contextuel unifié, une référence au chat, des onglets d'espace de travail et une fenêtre d'affichage de style professionnel ; les modèles importés s'affichent en direct avec des textures, des mipmaps, des matériaux double face et des lucarne basées sur des images, à la fois en édition et en lecture ; la console d'agent en direct subit une tempête polonaise ; et les outils d'animation sont standardisés dans une seule interface utilisateur." />
+<meta name="description" content="L'éditeur intègre à la fois un menu contextuel unifié, une référence au chat, des onglets d'espace de travail et une fenêtre d'affichage de style professionnel ; les modèles importés s'affichent en direct avec des textures, des mipmaps, des matériaux double face et des lucarne basées sur des images, à la fois en édition et en lecture ; la console d'Agent en direct subit une tempête polonaise ; et les outils d'animation sont standardisés dans une seule interface utilisateur." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="2026-06-08 · Une grande intégration d'éditeur + des modèles texturés rendus en direct — ForgeaX" />
-<meta property="og:description" content="L'éditeur intègre à la fois un menu contextuel unifié, une référence au chat, des onglets d'espace de travail et une fenêtre d'affichage de style professionnel ; les modèles importés s'affichent en direct avec des textures, des mipmaps, des matériaux double face et des lucarne basées sur des images, à la fois en édition et en lecture ; la console d'agent en direct subit une tempête polonaise ; et les outils d'animation sont standardisés dans une seule interface utilisateur." />
+<meta property="og:description" content="L'éditeur intègre à la fois un menu contextuel unifié, une référence au chat, des onglets d'espace de travail et une fenêtre d'affichage de style professionnel ; les modèles importés s'affichent en direct avec des textures, des mipmaps, des matériaux double face et des lucarne basées sur des images, à la fois en édition et en lecture ; la console d'Agent en direct subit une tempête polonaise ; et les outils d'animation sont standardisés dans une seule interface utilisateur." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/fr/changelog/2026-06-08.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-fr forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/fr/tutorials/" data-nav="/tutorials/">Tutoriels</a>
       <a href="/fr/examples/" data-nav="/examples/">Exemples</a>
       <a href="/fr/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/fr/changelog/" data-nav="/changelog/" class="active">Journal des modifications</a>
-      <a href="/fr/about.html" data-nav="/about.html">À propos</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-08.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-06-08.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-08.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-08.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-08.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-08.html" data-l="de">Deutsch</a><a class="lang-item active" href="/fr/changelog/2026-06-08.html" data-l="fr" aria-current="true">Français</a><a class="lang-item" href="/pt/changelog/2026-06-08.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Télécharger</a>
+      <a class="nav-cta" href="/fr/#install">Commencer</a>
     </div>
   </div>
 </nav>
@@ -69,7 +69,7 @@
 <h2>Les modèles s&#39;affichent en direct avec les matériaux, en édition et en lecture</h2>
 <p>Cette journée a permis de compléter le dernier élément visuel manquant depuis longtemps dans « ce que vous voyez est ce que vous obtenez » : les modèles 3D importés s&#39;affichent désormais correctement avec les matériaux complets au moment de l&#39;exécution. Plus précisément : les textures (le motif et la couleur appliqués sur la surface du modèle), les mipmaps (pour que les objets ne présentent plus de fins bruits chatoyants au loin) et les matériaux double face (pour que les objets fins, en forme de feuille, s&#39;affichent correctement sur les deux faces sans se casser). Combinés à un éclairage du ciel basé sur une carte d&#39;environnement basé sur des images, les modèles semblent réels et tactiles dans une scène plutôt qu&#39;un morceau de modèle gris sans détail de surface. La cohérence est plus cruciale que n&#39;importe quelle fonctionnalité unique : ce rendu d&#39;exécution donne exactement la même apparence à l&#39;édition et à la lecture : ce que vous avez arrangé et vu dans l&#39;éditeur est ce qu&#39;il est réellement lorsqu&#39;il est joué, sans plus d&#39;écart &quot;ressemble dans un sens à l&#39;édition, dans un autre sens à l&#39;exécution&quot;. Le jeu de tir d&#39;échantillons s&#39;est globalement déplacé vers ce chemin de rendu d&#39;exécution, avec ses vues d&#39;édition et de lecture correspondant parfaitement. Pour les créateurs, cela signifie que vous pouvez enfin « peaufiner en toute confiance ce que l&#39;éditeur montre », car c&#39;est à cela que ressemble le produit final.</p>
 <h2>Vernissage console live : regarder l&#39;IA fonctionner, plus rassurant</h2>
-<p>Cette journée a été marquée par une intense explosion de polissage concentrée sur la console pour « regarder les agents IA travailler en direct » – votre fenêtre sur la progression de plusieurs tâches d&#39;IA en arrière-plan et intervenir à tout moment. Auparavant, c&#39;était un peu grinçant dans tous les coins ; ce jour-là, celles-ci ont été lissées une à une. Fermez le navigateur et revenez, et les agents d&#39;arrière-plan sont toujours actifs avec un état intact ; lors de l&#39;exécution d&#39;un programme de terminal en plein écran à l&#39;intérieur, la molette de la souris peut enfin défiler directement ; Au fur et à mesure que plusieurs cartes de tâches changent de focus, leur éclaircissement et leur atténuation sont devenus une transition en douceur au lieu d&#39;un saut discordant ; la carte actuellement ciblée a obtenu une bordure de surbrillance claire au lieu du bord blanc laid par défaut du navigateur ; une carte plein écran recouvre correctement la barre supérieure au lieu d&#39;être bloquée ; et une boucle ennuyeuse qui rapportait faussement &quot;l&#39;historique perdu&quot; a été éliminée. Aucune de ces fonctionnalités n&#39;est une &quot;nouvelle fonctionnalité&quot;, mais ensemble, la console est passée de &quot;à peine utilisable&quot; à &quot;vous pouvez la regarder toute la journée sans irritation&quot;. Pour une plate-forme centrée sur les agents d&#39;IA, « observer confortablement ce que fait l&#39;IA » est en soi une capacité clé : ce n&#39;est que lorsque vous pouvez voir clairement et observer régulièrement que vous lui confierez le travail en toute confiance.</p>
+<p>Cette journée a été marquée par une intense explosion de polissage concentrée sur la console pour « regarder les Agents IA travailler en direct » – votre fenêtre sur la progression de plusieurs tâches d&#39;IA en arrière-plan et intervenir à tout moment. Auparavant, c&#39;était un peu grinçant dans tous les coins ; ce jour-là, celles-ci ont été lissées une à une. Fermez le navigateur et revenez, et les Agents d&#39;arrière-plan sont toujours actifs avec un état intact ; lors de l&#39;exécution d&#39;un programme de terminal en plein écran à l&#39;intérieur, la molette de la souris peut enfin défiler directement ; Au fur et à mesure que plusieurs cartes de tâches changent de focus, leur éclaircissement et leur atténuation sont devenus une transition en douceur au lieu d&#39;un saut discordant ; la carte actuellement ciblée a obtenu une bordure de surbrillance claire au lieu du bord blanc laid par défaut du navigateur ; une carte plein écran recouvre correctement la barre supérieure au lieu d&#39;être bloquée ; et une boucle ennuyeuse qui rapportait faussement &quot;l&#39;historique perdu&quot; a été éliminée. Aucune de ces fonctionnalités n&#39;est une &quot;nouvelle fonctionnalité&quot;, mais ensemble, la console est passée de &quot;à peine utilisable&quot; à &quot;vous pouvez la regarder toute la journée sans irritation&quot;. Pour une plate-forme centrée sur les Agents d&#39;IA, « observer confortablement ce que fait l&#39;IA » est en soi une capacité clé : ce n&#39;est que lorsque vous pouvez voir clairement et observer régulièrement que vous lui confierez le travail en toute confiance.</p>
 <h2>Un atelier d&#39;animation unifié + outils de découpe et d&#39;annotation</h2>
 <p>Plusieurs outils liés à l&#39;animation avaient chacun leur propre interface auparavant : les icônes, la priorité des boutons, la disposition de la barre latérale et les styles de toast étaient tous incohérents, de sorte que les établis ressemblaient ensemble à des éléments assemblés par différentes équipes. Cette journée les a standardisés dans un seul langage de conception en un seul passage : un jeu d&#39;icônes unifié, une hiérarchie de boutons claire (actions primaires et secondaires distinguables en un coup d&#39;œil), une disposition cohérente de la barre latérale, un style de toast unifié et des couleurs d&#39;état « complète » unifiées. Au-delà de l&#39;unité visuelle, le pipeline d&#39;animation squelettique 2D a acquis plusieurs capacités pratiques : choisir parmi plusieurs résultats candidats, suppression automatique de l&#39;arrière-plan et mode d&#39;annotation ; un autre atelier pour créer des scènes 2D a également été officiellement ouvert. La cohérence visuelle semble être simplement une « belle apparence », mais c&#39;est vraiment une question de confiance : lorsque chaque coin d&#39;un produit ressemble à la même chose, les utilisateurs croient instinctivement que la même logique fiable se cache derrière eux. Pour les créateurs qui n&#39;écrivent pas de code et n&#39;utilisent que l&#39;interface, cette journée était la première fois que Studio « ressemblait à un produit complet » plutôt qu&#39;à un plateau d&#39;outils assortis.</p>
 <h2>Moteur : le ciel ne s&#39;affiche plus à l&#39;envers + démos de rendu avancées</h2>
@@ -87,19 +87,17 @@
     <p>Un studio de jeux personnels natif d'IA : transformez vos idées en jeux jouables.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/fr/changelog/">Journal des modifications</a>
     <a href="/fr/tutorials/">Tutoriels</a>
     <a href="/fr/examples/">Exemples</a>
     <a href="/fr/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">Organisation GitHub</a>
-    <a href="/fr/about.html">À propos</a>
     <a href="/fr/license.html">Licence</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

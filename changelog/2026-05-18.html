@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-05-18.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-05-18.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-05-18.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-05-18.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-05-18.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-05-18.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-05-18.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-05-18.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -65,7 +65,7 @@
     <div class="prose"><h2>From &quot;locked to a directory&quot; to &quot;open any project&quot;</h2>
 <p>Before this, your game code had to live in one of the platform&#39;s built-in fixed directories to be managed — a real constraint: it meant your project had to accommodate the tool rather than the tool accommodating your project. This day&#39;s through-line was removing that constraint, letting the platform open any directory on disk as a workspace. It looks like a small &quot;pick a folder&quot; feature, but behind it is a loosening of product positioning: from &quot;an app where you must arrange code by its rules&quot; toward &quot;a development platform that can take over your existing project.&quot; Together with the version awareness and several polishes added this day, the platform took another solid step toward &quot;being used daily like a proper tool.&quot;</p>
 <h2>Open any folder as a workspace</h2>
-<p>The top bar gained a project switcher that opens into a file browser, so you can pick any directory on disk as your current workspace — no longer forced to drop code into one built-in folder. Recently opened projects are remembered for one-click return. Even better: if you choose an empty directory, the system drops in a directly-runnable default game scaffold, so &quot;make a new folder → have an agent start working in it&quot; becomes a perfectly smooth path. For someone who just cloned a repo, this means opening their own project&#39;s directory and starting right away, without first learning the platform&#39;s directory conventions. It genuinely lowers the bar to getting started.</p>
+<p>The top bar gained a project switcher that opens into a file browser, so you can pick any directory on disk as your current workspace — no longer forced to drop code into one built-in folder. Recently opened projects are remembered for one-click return. Even better: if you choose an empty directory, the system drops in a directly-runnable default game scaffold, so &quot;make a new folder → have an Agent start working in it&quot; becomes a perfectly smooth path. For someone who just cloned a repo, this means opening their own project&#39;s directory and starting right away, without first learning the platform&#39;s directory conventions. It genuinely lowers the bar to getting started.</p>
 <h2>In-app version + changelog + shortcuts</h2>
 <p>This day gave the app a &quot;sense of version.&quot; The status bar now shows the running version and refreshes on its own — it watches the live code version in the background and updates the moment files change, so switching back to the window confirms whether you&#39;re on the latest rather than staring at a long-stale number. Settings gained a &quot;Changelog&quot; section so you can read what recently changed inside the product, without going elsewhere. And a &quot;Shortcuts&quot; section with a set of global keyboard shortcuts makes common actions discoverable, memorable and one keypress away. Individually plain, together these signal something: this is no longer a throwaway experiment but a product that keeps updating, is worth using long-term, and takes seriously &quot;how does the user know which version they&#39;re on.&quot;</p>
 <h2>Engine: model instancing + build-time texture cooking</h2>
@@ -73,7 +73,7 @@
 <h2>An engine runtime shell with a game loop takes shape</h2>
 <p>The engine also filled in a structural foundation this day: a complete &quot;runtime shell&quot; plus a game loop. The runtime shell is responsible for starting a game correctly and driving each frame&#39;s update and render at a steady cadence — the engine that makes any game &quot;turn&quot; at the lowest level. Before this, individual examples often assembled this startup-and-loop logic themselves; converging it into a standard shell the engine provides means writing a game can start from a clean, uniform point rather than rebuilding the skeleton each time. This matters especially for &quot;having AI write games&quot;: the more standard and predictable the starting point, the more easily the AI&#39;s code runs correctly and can be reused.</p>
 <h2>Small ergonomics: selectable text + a composer right-click menu</h2>
-<p>This day also smoothed a few everyday frictions. Text in chat can now be selected and copied as expected — which sounds obvious, but it had been unintentionally disabled before, making it inconvenient to pull out a passage of the agent&#39;s reply. The composer gained a right-click menu, putting common actions within reach. Each of these is trivial on its own, but they&#39;re exactly the layer that decides whether a tool &quot;feels smooth to use.&quot; An interface where even copying text is awkward will erode goodwill no matter how strong the capability; smoothing these edges one by one is basic respect for the people who use it every day.</p>
+<p>This day also smoothed a few everyday frictions. Text in chat can now be selected and copied as expected — which sounds obvious, but it had been unintentionally disabled before, making it inconvenient to pull out a passage of the Agent&#39;s reply. The composer gained a right-click menu, putting common actions within reach. Each of these is trivial on its own, but they&#39;re exactly the layer that decides whether a tool &quot;feels smooth to use.&quot; An interface where even copying text is awkward will erode goodwill no matter how strong the capability; smoothing these edges one by one is basic respect for the people who use it every day.</p>
 <h2>What this day means</h2>
 <p>The day&#39;s pieces together answer a plain question: does this platform deserve to be used long-term as a &quot;proper tool&quot;? Being able to open any project of your own says it&#39;s willing to accommodate your existing way of working; having a version number, changelog and shortcuts says it treats itself as a product that keeps evolving and is accountable to users; the engine adding instancing, build-time cooking and a standard runtime shell says the low level is seriously preparing for bigger scenes and more content; and bothering with details like whether text can be copied says it cares about your daily feel. Between &quot;can demo&quot; and &quot;can use daily&quot; lies exactly this kind of unglamorous but indispensable work.</p>
 </div>
@@ -87,19 +87,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

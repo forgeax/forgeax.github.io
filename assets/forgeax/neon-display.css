@@ -6,9 +6,9 @@
 
 /* locked brand neon lime — never follows scroll theme morph */
 .forgeax-site .stat--display {
-  --stat-neon-teal: 212, 255, 72;
-  --stat-neon-cyan: 72, 255, 207;
-  --stat-neon-ice: 185, 255, 100;
+  --stat-neon-teal: 197, 221, 120;
+  --stat-neon-cyan: 80, 99, 31;
+  --stat-neon-ice: 197, 221, 120;
 
   position: relative;
   isolation: isolate;
@@ -16,30 +16,11 @@
   cursor: default;
   padding: 22px 16px 20px;
   text-align: center;
-  border-radius: var(--radius-xl);
-
-  /* dock-style translucent frosted plate */
-  border: 1px solid transparent;
-  background:
-    linear-gradient(
-      color-mix(in srgb, var(--color-background-canvas) 6%, transparent),
-      color-mix(in srgb, var(--color-background-canvas) 6%, transparent)
-    ) padding-box,
-    linear-gradient(
-      135deg,
-      rgba(var(--stat-neon-teal), 0.38) 0%,
-      rgba(255, 255, 255, 0.07) 44%,
-      rgba(var(--stat-neon-cyan), 0.32) 100%
-    ) border-box !important;
-  backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
-  -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.24),
-    0 0 24px -14px rgba(var(--stat-neon-teal), 0.16),
-    0 0 40px -20px rgba(var(--stat-neon-cyan), 0.1),
-    inset 0 1px 0 var(--glass-highlight),
-    inset 0 -1px 0 rgba(var(--stat-neon-teal), 0.08);
-  transition: box-shadow 0.38s var(--site-ease-silk);
+  border-radius: var(--fx-radius-card);
+  border: 1px solid var(--fx-color-border-subtle);
+  background: var(--fx-color-surface-raised) !important;
+  box-shadow: var(--fx-shadow-subtle);
+  transition: box-shadow var(--fx-motion-hover) var(--fx-motion-ease);
 }
 
 .forgeax-site .stat--display::before {
@@ -93,19 +74,12 @@
 
 .forgeax-site .stat--display .num {
   font-size: clamp(28px, 4vw, 34px);
-  background: linear-gradient(
-    100deg,
-    rgba(var(--stat-neon-cyan), 1) 0%,
-    rgba(var(--stat-neon-ice), 1) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 16px rgba(var(--stat-neon-cyan), 0.32));
+  color: var(--fx-color-text-primary);
+  filter: none;
 }
 
 .forgeax-site .stat--display .lbl {
-  color: color-mix(in srgb, var(--text-secondary) 90%, #fff 10%);
+  color: var(--fx-color-text-secondary);
 }
 
 .forgeax-site .stat--display:hover,

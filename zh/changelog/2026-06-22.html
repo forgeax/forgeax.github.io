@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>2026-06-22 · 项目正式对外开源 + 桌面端不再开机崩 — ForgeaX</title>
-<meta name="description" content="这是一个里程碑日子:整个项目正式对外开源——每个模块都配齐了图文并茂的中英双语文档、开源许可,并支持"自带你自己的 agent 订阅";同一天还修好了打包后桌面应用一启动就崩的顽疾、把官网示例画廊改成可边看列表边实时跑的分栏,引擎也落地了资产优先启动、阴影开关合并与骨骼动画修正。" />
+<meta name="description" content="这是一个里程碑日子:整个项目正式对外开源——每个模块都配齐了图文并茂的中英双语文档、开源许可,并支持"自带你自己的 Agent 订阅";同一天还修好了打包后桌面应用一启动就崩的顽疾、把官网示例画廊改成可边看列表边实时跑的分栏,引擎也落地了资产优先启动、阴影开关合并与骨骼动画修正。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="2026-06-22 · 项目正式对外开源 + 桌面端不再开机崩 — ForgeaX" />
-<meta property="og:description" content="这是一个里程碑日子:整个项目正式对外开源——每个模块都配齐了图文并茂的中英双语文档、开源许可,并支持"自带你自己的 agent 订阅";同一天还修好了打包后桌面应用一启动就崩的顽疾、把官网示例画廊改成可边看列表边实时跑的分栏,引擎也落地了资产优先启动、阴影开关合并与骨骼动画修正。" />
+<meta property="og:description" content="这是一个里程碑日子:整个项目正式对外开源——每个模块都配齐了图文并茂的中英双语文档、开源许可,并支持"自带你自己的 Agent 订阅";同一天还修好了打包后桌面应用一启动就崩的顽疾、把官网示例画廊改成可边看列表边实时跑的分栏,引擎也落地了资产优先启动、阴影开关合并与骨骼动画修正。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/zh/changelog/2026-06-22.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-22.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-22.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-22.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-22.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-22.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-22.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-22.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-22.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -61,11 +61,11 @@
     <a class="back" href="/zh/changelog/">← 更新日志</a>
     <div class="meta"><span class="tag brand">更新</span><span>2026-06-22</span></div>
     <h1>项目正式对外开源 + 桌面端不再开机崩</h1>
-    <p class="standfirst">这是一个里程碑日子:整个项目正式对外开源——每个模块都配齐了图文并茂的中英双语文档、开源许可,并支持&quot;自带你自己的 agent 订阅&quot;;同一天还修好了打包后桌面应用一启动就崩的顽疾、把官网示例画廊改成可边看列表边实时跑的分栏,引擎也落地了资产优先启动、阴影开关合并与骨骼动画修正。</p>
+    <p class="standfirst">这是一个里程碑日子:整个项目正式对外开源——每个模块都配齐了图文并茂的中英双语文档、开源许可,并支持&quot;自带你自己的 Agent 订阅&quot;;同一天还修好了打包后桌面应用一启动就崩的顽疾、把官网示例画廊改成可边看列表边实时跑的分栏,引擎也落地了资产优先启动、阴影开关合并与骨骼动画修正。</p>
     <div class="prose"><h2>从&quot;自己用&quot;到&quot;给所有人用&quot;</h2>
 <p>这一天是一个项目生命中很特别的节点:它第一次完整地、体面地把自己交到了公众手里。开源不只是&quot;把代码公开&quot;这么一个动作,它意味着一整套面向陌生人的准备——别人凭什么看懂你在做什么?凭什么相信它能跑起来?凭什么愿意自己装、自己改?这一天做的所有事,都在回答这些问题:给每个模块写清楚&quot;它是什么、怎么协作、怎么上手&quot;的双语文档,补齐开源许可让别人能合法地使用和修改,确保下载下来的东西真能一键跑通而不是缺东少西,把桌面应用启动即崩的拦路虎清掉,把官网的示例做得能让人一眼看见&quot;这东西能做出什么&quot;。一个内部项目走向开源,最难的从来不是公开代码本身,而是把&quot;只有自己人懂&quot;的东西,重新打磨成&quot;任何人都能上手&quot;的样子。这一天,做的正是这件事。</p>
-<h2>项目正式对外开源:全模块双语文档 + 自带你自己的 agent 订阅</h2>
-<p>这天把对外开源所需的门面一次性磨完。最核心的一项,是给全部核心模块加上整个超级工程都配齐了图文并茂的中英双语文档,而且统一成同一种三段式结构:第一段讲&quot;它为什么不一样&quot;(这个平台到底特别在哪),第二段讲&quot;一条七步的人机协作闭环&quot;(人和 AI 是怎么一步步把一个想法变成游戏的),第三段是&quot;各模块地图&quot;(整个项目由哪些部分组成、各管什么)。这种统一结构让任何一个陌生人,无论先点开哪个模块,都能用同一套心智模型快速读懂。命令行那块还专门加了一节&quot;自带你自己的 agent 订阅&quot;:你不必被绑死在某一家,而是可以接上自己已有的编码 agent 订阅或接口来驱动整个平台——四种主流方式任选其一。每个子模块也都补齐了开源许可,让别人能在清晰的授权下放心地使用、修改、再分发。对一个想被社区了解、被开发者二次开发的项目来说,这套文档和许可,就是它递给世界的第一张名片。</p>
+<h2>项目正式对外开源:全模块双语文档 + 自带你自己的 Agent 订阅</h2>
+<p>这天把对外开源所需的门面一次性磨完。最核心的一项,是给全部核心模块加上整个超级工程都配齐了图文并茂的中英双语文档,而且统一成同一种三段式结构:第一段讲&quot;它为什么不一样&quot;(这个平台到底特别在哪),第二段讲&quot;一条七步的人机协作闭环&quot;(人和 AI 是怎么一步步把一个想法变成游戏的),第三段是&quot;各模块地图&quot;(整个项目由哪些部分组成、各管什么)。这种统一结构让任何一个陌生人,无论先点开哪个模块,都能用同一套心智模型快速读懂。命令行那块还专门加了一节&quot;自带你自己的 Agent 订阅&quot;:你不必被绑死在某一家,而是可以接上自己已有的编码 Agent 订阅或接口来驱动整个平台——四种主流方式任选其一。每个子模块也都补齐了开源许可,让别人能在清晰的授权下放心地使用、修改、再分发。对一个想被社区了解、被开发者二次开发的项目来说,这套文档和许可,就是它递给世界的第一张名片。</p>
 <h2>桌面 App 不再开机就崩</h2>
 <p>开源发布要让人&quot;下载就能跑&quot;,而当时打包出来的桌面应用恰恰栽在这一关上:一启动就反复崩溃,后端不断报找不到某个核心运行模块。根因在于打包时漏带了那个模块及其依赖,离线运行时自然找不到。这天的修法是把所需的整个运行依赖闭包都完整打进桌面包里随包自带,确保离线环境下也一应俱全、能正常起来。同时还顺手解决了两个相关的坑:一是把桌面包改成单游戏打包,绕开了多个游戏同时存在时资源标识相互撞车的老问题;二是容忍了打包过程中复制大量文件时偶发的&quot;文件刚刚消失&quot;的小故障——以前这种瞬时抖动会因为严格的错误检查而把整个构建直接中断。改完之后,桌面应用能稳定地启动、正常地进入,不再开机就挂。这件事的意义,正好踩在开源发布的节骨眼上:再好的项目,如果别人下载下来连打都打不开,一切都无从谈起。</p>
 <h2>官网示例画廊:边看列表边跑 demo</h2>
@@ -85,19 +85,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

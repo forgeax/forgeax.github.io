@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>2026-06-08 · A big editor integration + textured models render live — ForgeaX</title>
-<meta name="description" content="The editor integrates a unified context menu, reference-to-chat, workspace tabs and pro-style viewport at once; imported models render live with textures, mipmaps, double-sided materials and image-based sky light in both edit and play; the live agent console gets a polish storm; and the animation tools are standardized into one UI." />
+<meta name="description" content="The editor integrates a unified context menu, reference-to-chat, workspace tabs and pro-style viewport at once; imported models render live with textures, mipmaps, double-sided materials and image-based sky light in both edit and play; the live Agent console gets a polish storm; and the animation tools are standardized into one UI." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="2026-06-08 · A big editor integration + textured models render live — ForgeaX" />
-<meta property="og:description" content="The editor integrates a unified context menu, reference-to-chat, workspace tabs and pro-style viewport at once; imported models render live with textures, mipmaps, double-sided materials and image-based sky light in both edit and play; the live agent console gets a polish storm; and the animation tools are standardized into one UI." />
+<meta property="og:description" content="The editor integrates a unified context menu, reference-to-chat, workspace tabs and pro-style viewport at once; imported models render live with textures, mipmaps, double-sided materials and image-based sky light in both edit and play; the live Agent console gets a polish storm; and the animation tools are standardized into one UI." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/changelog/2026-06-08.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-06-08.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-06-08.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-08.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-08.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-08.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-08.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-08.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-08.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -69,7 +69,7 @@
 <h2>Models render live with materials, in edit and play alike</h2>
 <p>This day filled in the last visual piece long missing from &quot;what-you-see-is-what-you-get&quot;: imported 3D models now render correctly with full materials at runtime. Specifically: textures (the pattern and color laid on the model&#39;s surface), mipmaps (so objects no longer show fine shimmering noise in the distance), and double-sided materials (so thin, sheet-like objects display correctly on both faces without breaking). Combined with image-based environment-map sky lighting, models look real and tactile in a scene rather than a lump of gray model with no surface detail. More crucial than any single capability is consistency: this runtime rendering makes edit and play look exactly the same — what you arranged and saw in the editor is what it is when actually played, with no more &quot;looks one way editing, another way running&quot; gap. The sample shooter has moved wholesale onto this runtime rendering path, with its edit and play views matching seamlessly. For creators this means you can finally &quot;polish confidently against what the editor shows,&quot; because that is what the final product looks like.</p>
 <h2>Live console polish: watching the AI work, more reassuring</h2>
-<p>This day had a dense burst of polish concentrated on the console for &quot;watching the AI agents work live&quot; — your window into the progress of multiple background AI tasks and stepping in at any time. Previously it was a bit grating in every corner; this day those were smoothed one by one. Close the browser and come back, and the background agents are still alive with state intact; when running a full-screen terminal program inside it, the mouse wheel can finally scroll directly; as multiple task cards switch focus, their brightening and dimming became a smooth transition instead of a jarring jump; the currently-focused card gained a clear highlight border instead of the browser&#39;s default ugly white edge; a full-screen card correctly covers above the top bar instead of being blocked; and an annoying loop that kept falsely reporting &quot;history lost&quot; was eliminated. None of these is a &quot;new feature,&quot; but together the console went from &quot;barely usable&quot; to &quot;you can watch it all day without irritation.&quot; For a platform centered on AI agents, &quot;comfortably observing what the AI is doing&quot; is itself a key capability — only when you can see clearly and watch steadily will you confidently hand the work to it.</p>
+<p>This day had a dense burst of polish concentrated on the console for &quot;watching the AI Agents work live&quot; — your window into the progress of multiple background AI tasks and stepping in at any time. Previously it was a bit grating in every corner; this day those were smoothed one by one. Close the browser and come back, and the background Agents are still alive with state intact; when running a full-screen terminal program inside it, the mouse wheel can finally scroll directly; as multiple task cards switch focus, their brightening and dimming became a smooth transition instead of a jarring jump; the currently-focused card gained a clear highlight border instead of the browser&#39;s default ugly white edge; a full-screen card correctly covers above the top bar instead of being blocked; and an annoying loop that kept falsely reporting &quot;history lost&quot; was eliminated. None of these is a &quot;new feature,&quot; but together the console went from &quot;barely usable&quot; to &quot;you can watch it all day without irritation.&quot; For a platform centered on AI Agents, &quot;comfortably observing what the AI is doing&quot; is itself a key capability — only when you can see clearly and watch steadily will you confidently hand the work to it.</p>
 <h2>A unified animation workbench + cutout and annotation tools</h2>
 <p>Several animation-related tools each had their own interface before — icons, button priority, sidebar layout and toast styles all inconsistent, so the workbenches together looked like things stitched from different teams. This day standardized them onto one design language in a single pass: a unified icon set, clear button hierarchy (primary and secondary actions distinguishable at a glance), consistent sidebar layout, unified toast style, and unified &quot;complete&quot;-state colors. Beyond visual unity, the 2D skeletal-animation pipeline gained several practical abilities: choosing among multiple candidate results, automatic background removal, and an annotation mode; another workbench for building 2D scenes was also formally opened up. Visual consistency seems like just &quot;looking nice,&quot; but it&#39;s really about trust — when every corner of a product looks like the same thing, users instinctively believe the same reliable logic sits behind them. For creators who don&#39;t write code and only use the interface, this day was the first time Studio &quot;looked like a complete product&quot; rather than a platter of assorted tools.</p>
 <h2>Engine: the sky no longer renders upside-down + advanced rendering demos</h2>
@@ -87,19 +87,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

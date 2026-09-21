@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/" class="active">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/changelog/2026-06-24.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/changelog/2026-06-24.html" data-l="zh">中文</a><a class="lang-item" href="/ja/changelog/2026-06-24.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-24.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-24.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-24.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-24.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-24.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -71,7 +71,7 @@
 <h2>The editor completes the &quot;open project → edit → save to disk&quot; loop</h2>
 <p>The editor completed this day a key loop that turns it from &quot;can view and tune&quot; into genuinely &quot;usable for creation&quot;: open a project, edit, and reliably save changes back to disk. Several things landed: support for an &quot;open a project&quot; authoring flow that correctly loads the game&#39;s entry and scene assets; a switch to &quot;manual save&quot; — dropping the previous automatic timed save for a clear &quot;unsaved&quot; marker, so you know whether current changes are saved and decide when to persist; a writeback chain from in-editor changes to disk files, with hot reload so changes show instantly yet save safely. The editor also gained a &quot;systems panel&quot; (toggling each logic system in the game) and an &quot;add component&quot; menu in the inspector. Together these mean the editor is no longer just an auxiliary view for fine-tuning but a real tool that independently carries the full &quot;open → edit → save&quot; creative loop. The most fundamental sense of security for a creator is &quot;what I change is saved and recoverable&quot; — and this day made that security real.</p>
 <h2>Observability: a telemetry/log panel + a chat anti-freeze</h2>
-<p>This day added &quot;observability&quot; to the whole system — letting you see what&#39;s actually happening inside it. A telemetry panel was added, gathering &quot;traces + logs&quot; into one observable feed: what an agent is doing at the moment, how long each step took, and what went wrong are all visible in it. The backend got a matching telemetry sink and reporting route, and the front end gained a monitoring scaffold. Why build this deliberately? Because as more work is pushed autonomously by AI, &quot;what is it actually doing, where is it slow, where did it err&quot; becomes a question that must be visible — invisible, it can be neither trusted nor optimized. Meanwhile, the chat fixed a real freeze risk: when the AI outputs very long, formatted Markdown, the front end keeps re-parsing and rendering, frequently enough to blow up memory and freeze the whole interface; this day throttled it so long answers stay stable as they stream. A transparent system that withstands long, intense use is what lets people confidently hand it big tasks to run.</p>
+<p>This day added &quot;observability&quot; to the whole system — letting you see what&#39;s actually happening inside it. A telemetry panel was added, gathering &quot;traces + logs&quot; into one observable feed: what an Agent is doing at the moment, how long each step took, and what went wrong are all visible in it. The backend got a matching telemetry sink and reporting route, and the front end gained a monitoring scaffold. Why build this deliberately? Because as more work is pushed autonomously by AI, &quot;what is it actually doing, where is it slow, where did it err&quot; becomes a question that must be visible — invisible, it can be neither trusted nor optimized. Meanwhile, the chat fixed a real freeze risk: when the AI outputs very long, formatted Markdown, the front end keeps re-parsing and rendering, frequently enough to blow up memory and freeze the whole interface; this day throttled it so long answers stay stable as they stream. A transparent system that withstands long, intense use is what lets people confidently hand it big tasks to run.</p>
 <h2>Engine: unified handles + instanced drawing + a unified plugin protocol</h2>
 <p>The engine did several far-reaching low-level things this day. One: unifying &quot;handles.&quot; A handle is a program&#39;s reference to an entity or asset (a grip pointing at something), and this day unified entity and asset handles into one encoding carrying &quot;generational&quot; info — a generation being a version stamp on each handle, so when the thing it points to has been destroyed and its slot reused by something new, the system immediately recognizes &quot;this is a stale old reference&quot; rather than mistaking it as valid. This eliminates at the source the extremely subtle, hard-to-diagnose class of bugs where you &quot;reference something that&#39;s already gone.&quot; Two: instanced-drawing optimization — when a scene has many identical objects (a forest, a crowd of soldiers), drawing commands used to be issued one by one, and this day merged the identical ones into a bucket drawn in one call, sharply cutting draw calls — a qualitative change for large-scene performance, verified with a stress test of tens of thousands of independent objects. Three: unifying the plugin protocol into one form for more consistent extension, plus a headless clean backend for testing. These are under-the-hood work users don&#39;t see yet that decides how big the platform can run, how far it extends, and how few errors it makes.</p>
 <h2>What this day means</h2>
@@ -87,19 +87,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

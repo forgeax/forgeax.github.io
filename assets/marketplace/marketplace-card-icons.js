@@ -28,6 +28,8 @@
     "cli-codex": "square-code",
     "cli-cursor-agent": "mouse-pointer-click",
     "cli-forgeax": "cpu",
+    "cli-kimi-code": "sparkle",
+    "cli-deepseek-harness": "orbit",
     "tool-balance-resim": "repeat-2",
     "model-anthropic-text": "text-cursor-input",
   };

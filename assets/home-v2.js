@@ -396,223 +396,222 @@
     }
   })();
 
-  /* ── editor install (one command for Claude / Codex / Cursor) ── */
-  (function editorInstall() {
-    var box = document.getElementById("fxEditorInstall");
-    var trigger = document.querySelector("[data-editor-install]");
-    if (!box || !trigger) return;
-
-    var INSTALL = "npx -y @forgeax/game install --ide claude,codex,cursor";
-    var host = trigger.closest(".cta-path__anchor") || trigger.parentElement;
-    var promptEl = box.querySelector("[data-editor-prompt]");
-    var proofBtn = document.querySelector("[data-copy-prompt]");
-    var hideTimer = 0;
-    var canHover = window.matchMedia("(hover: hover)").matches;
-    var bin = box.getAttribute("data-install-bin") || "npx -y @forgeax/game";
+  /* ── install command + paste-into-agent prompt ── */
+  (function installCommand() {
+    var root = document.querySelector("main.home-v2");
+    var BIN = (root && root.getAttribute("data-install-bin")) || "npx -y @forgeax/game";
+    var DEFAULT_IDE = "";
+    var PREFERRED_IDE_KEY = "forgeax.preferred-ide";
+    var ide = DEFAULT_IDE;
+    var command = commandFor(ide);
+    var prompt = "";
 
     function attr(name) {
-      return box.getAttribute(name) || "";
+      return (root && root.getAttribute(name)) || "";
+    }
+
+    function commandFor(nextIde) {
+      if (!nextIde) return BIN + " install";
+      return BIN + " install --ide " + nextIde;
+    }
+
+    function isSingleIde(value) {
+      return !!value && value.indexOf(",") === -1;
+    }
+
+    function readPreferredIde() {
+      try {
+        var saved = window.localStorage.getItem(PREFERRED_IDE_KEY);
+        return isSingleIde(saved) ? saved : "";
+      } catch (e) {
+        return "";
+      }
+    }
+
+    function rememberIde(nextIde) {
+      if (!isSingleIde(nextIde) || !deeplinkFor(nextIde, "x")) return;
+      try { window.localStorage.setItem(PREFERRED_IDE_KEY, nextIde); } catch (e) { /* ignore */ }
+    }
+
+    function openerIde(current) {
+      if (isSingleIde(current)) return current;
+      var saved = readPreferredIde();
+      if (saved && deeplinkFor(saved, "x")) return saved;
+      return "cursor";
+    }
+
+    function deeplinkFor(agent, text) {
+      if (!agent || !text) return "";
+      if (agent === "cursor") {
+        return "cursor://anysphere.cursor-deeplink/prompt?text=" + encodeURIComponent(text);
+      }
+      if (agent === "codex") {
+        return "codex://new?prompt=" + encodeURIComponent(text);
+      }
+      if (agent === "claude") {
+        var q = text.length > 5000 ? text.slice(0, 5000) : text;
+        return "claude-cli://open?q=" + encodeURIComponent(q);
+      }
+      return "";
+    }
+
+    function openLocalAgent(url) {
+      if (!url) return;
+      var link = document.createElement("a");
+      link.href = url;
+      link.rel = "noopener";
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
 
     function buildPrompt() {
       return [
         attr("data-step1-label"),
-        INSTALL,
+        command,
         attr("data-step1-note"),
         "",
         attr("data-step2-label"),
         attr("data-step2-note"),
-        bin + " init"
-      ].join("\n");
+        BIN + " init"
+      ].filter(function (line, i, arr) {
+        return line || (i > 0 && arr[i - 1]);
+      }).join("\n");
     }
 
-    function isOpen() {
-      return host.classList.contains("is-open");
-    }
-
-    function setOpen(next) {
-      if (hideTimer) { clearTimeout(hideTimer); hideTimer = 0; }
-      host.classList.toggle("is-open", !!next);
-      trigger.setAttribute("aria-expanded", next ? "true" : "false");
-    }
-
-    function closeSoon() {
-      hideTimer = setTimeout(function () { setOpen(false); }, 140);
+    function setCopied(btn) {
+      var copied = btn.getAttribute("data-copied");
+      var keepWidth = btn.classList.contains("hero-prompt-btn")
+        || btn.querySelector("svg, i, [data-lucide]");
+      if (keepWidth) {
+        btn.classList.add("is-copied");
+        if (copied) {
+          if (!btn.getAttribute("data-aria-orig")) {
+            btn.setAttribute("data-aria-orig", btn.getAttribute("aria-label") || btn.textContent.trim() || "");
+          }
+          btn.setAttribute("aria-label", copied);
+        }
+        setTimeout(function () {
+          btn.classList.remove("is-copied");
+          var orig = btn.getAttribute("data-aria-orig");
+          if (orig) btn.setAttribute("aria-label", orig);
+        }, 1600);
+        return;
+      }
+      var was = btn.getAttribute("data-label") || btn.textContent;
+      btn.setAttribute("data-label", was);
+      btn.textContent = copied || was;
+      btn.classList.add("is-copied");
+      setTimeout(function () {
+        btn.textContent = was;
+        btn.classList.remove("is-copied");
+      }, 1600);
     }
 
     function copyText(text, btn) {
       if (!text) return;
-      var done = function () {
-        var was = btn.getAttribute("data-label") || btn.textContent;
-        btn.setAttribute("data-label", was);
-        btn.textContent = btn.getAttribute("data-copied") || was;
-        setTimeout(function () { btn.textContent = was; }, 1600);
-      };
+      function fallback() {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); setCopied(btn); } catch (e) { /* ignore */ }
+        document.body.removeChild(ta);
+      }
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, function () {});
+        navigator.clipboard.writeText(text).then(function () { setCopied(btn); }, fallback);
         return;
       }
-      var range = document.createRange();
-      var code = btn.previousElementSibling;
-      if (!code) return;
-      range.selectNodeContents(code);
-      var sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-      try { document.execCommand("copy"); done(); } catch (e) { /* ignore */ }
-      sel.removeAllRanges();
+      fallback();
     }
 
-    /* Pages cannot list installed apps. Copy is the fallback; the same click
-     * also fires each known Agent protocol. Registered handlers prefill the
-     * prompt. Unknown schemes usually no-op (Windows may show a system dialog,
-     * so we only open the preferred handler there). */
-    var AGENT_STORE = "forgeax.local-agent";
-    var AGENTS = [
-      {
-        id: "cursor",
-        url: function (prompt) {
-          return "cursor://anysphere.cursor-deeplink/prompt?text=" + encodeURIComponent(prompt);
-        }
-      },
-      {
-        id: "codex",
-        url: function (prompt) {
-          return "codex://new?prompt=" + encodeURIComponent(prompt);
-        }
-      },
-      {
-        id: "claude",
-        url: function (prompt) {
-          var q = prompt.length > 5000 ? prompt.slice(0, 5000) : prompt;
-          return "claude-cli://open?q=" + encodeURIComponent(q);
-        }
-      }
-    ];
-
-    function readLastAgent() {
-      try { return localStorage.getItem(AGENT_STORE) || ""; } catch (e) { return ""; }
+    function applyCommand() {
+      command = commandFor(ide);
+      prompt = buildPrompt();
+      Array.prototype.forEach.call(document.querySelectorAll("[data-install-prompt]"), function (el) {
+        el.textContent = command;
+      });
+      Array.prototype.forEach.call(document.querySelectorAll("[data-copy-cmd]"), function (btn) {
+        btn.setAttribute("data-copy-text", command);
+      });
+      Array.prototype.forEach.call(document.querySelectorAll("[data-copy-prompt]"), function (btn) {
+        btn.setAttribute("data-copy-text", prompt);
+      });
     }
 
-    function writeLastAgent(id) {
-      try { localStorage.setItem(AGENT_STORE, id); } catch (e) { /* private mode */ }
+    function closeScheme(box) {
+      var btn = box.querySelector("[data-scheme-toggle]");
+      var menu = box.querySelector(".hero-scheme__menu");
+      box.classList.remove("is-open");
+      if (btn) btn.setAttribute("aria-expanded", "false");
+      if (menu) menu.hidden = true;
     }
 
-    function agentById(id) {
-      var i = 0;
-      for (; i < AGENTS.length; i++) if (AGENTS[i].id === id) return AGENTS[i];
-      return null;
+    function closeAllSchemes() {
+      Array.prototype.forEach.call(document.querySelectorAll("[data-scheme]"), closeScheme);
     }
 
-    function orderedAgents() {
-      var last = readLastAgent();
-      var preferred = agentById(last);
-      if (!preferred) return AGENTS.slice();
-      return [preferred].concat(AGENTS.filter(function (a) { return a.id !== last; }));
+    function selectScheme(nextIde) {
+      ide = nextIde || DEFAULT_IDE;
+      rememberIde(ide);
+      applyCommand();
+      Array.prototype.forEach.call(document.querySelectorAll("[data-scheme]"), function (box) {
+        Array.prototype.forEach.call(box.querySelectorAll("[data-scheme-opt]"), function (opt) {
+          opt.setAttribute("aria-selected", opt.getAttribute("data-ide") === ide ? "true" : "false");
+        });
+        closeScheme(box);
+      });
     }
 
-    function isWindows() {
-      return /Windows/i.test(navigator.userAgent);
-    }
+    applyCommand();
 
-    function openProtocol(url) {
-      window.location.href = url;
-    }
-
-    function openProtocolHidden(url) {
-      var iframe = document.createElement("iframe");
-      iframe.setAttribute("hidden", "");
-      iframe.setAttribute("aria-hidden", "true");
-      iframe.tabIndex = -1;
-      iframe.style.cssText = "position:absolute;left:0;top:0;width:0;height:0;border:0;overflow:hidden";
-      iframe.src = url;
-      document.body.appendChild(iframe);
-      setTimeout(function () {
-        if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
-      }, 2500);
-    }
-
-    function watchAgentOpen(id, rotateOnMiss) {
-      var hit = false;
-      function mark() {
-        if (hit) return;
-        hit = true;
-        writeLastAgent(id);
-        cleanup();
-      }
-      function vis() {
-        if (document.hidden) mark();
-      }
-      function cleanup() {
-        window.removeEventListener("blur", mark);
-        document.removeEventListener("visibilitychange", vis);
-      }
-      window.addEventListener("blur", mark);
-      document.addEventListener("visibilitychange", vis);
-      setTimeout(function () {
-        cleanup();
-        if (hit || !rotateOnMiss) return;
-        var order = AGENTS.map(function (a) { return a.id; });
-        var idx = order.indexOf(id);
-        if (idx < 0) return;
-        writeLastAgent(order[(idx + 1) % order.length]);
-      }, 1800);
-    }
-
-    function openLocalAgent(prompt) {
-      if (!prompt) return;
-      var known = readLastAgent();
-      var agents = orderedAgents();
-      var primary = agents[0];
-      var single = !!known || isWindows();
-      watchAgentOpen(primary.id, single);
-      /* Hidden fallbacks first so a custom-scheme navigation cannot cancel them. */
-      if (!single) {
-        var i = 1;
-        for (; i < agents.length; i++) openProtocolHidden(agents[i].url(prompt));
-      }
-      openProtocol(primary.url(prompt));
-    }
-
-    var prompt = buildPrompt();
-    if (promptEl) promptEl.textContent = prompt;
-    if (proofBtn) proofBtn.setAttribute("data-copy-text", prompt);
-
-    host.addEventListener("mouseenter", function () { setOpen(true); });
-    host.addEventListener("mouseleave", closeSoon);
-    host.addEventListener("focusin", function () { setOpen(true); });
-    host.addEventListener("focusout", function (e) {
-      if (!host.contains(e.relatedTarget)) closeSoon();
+    Array.prototype.forEach.call(document.querySelectorAll("[data-scheme]"), function (box) {
+      var toggle = box.querySelector("[data-scheme-toggle]");
+      var menu = box.querySelector(".hero-scheme__menu");
+      if (!toggle || !menu) return;
+      toggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var open = box.classList.contains("is-open");
+        closeAllSchemes();
+        if (open) return;
+        box.classList.add("is-open");
+        toggle.setAttribute("aria-expanded", "true");
+        menu.hidden = false;
+      });
+      Array.prototype.forEach.call(box.querySelectorAll("[data-scheme-opt]"), function (opt) {
+        opt.addEventListener("click", function (e) {
+          e.stopPropagation();
+          selectScheme(opt.getAttribute("data-ide"));
+        });
+      });
     });
-    trigger.addEventListener("click", function () {
-      if (canHover) return;
-      setOpen(!isOpen());
+
+    document.addEventListener("click", closeAllSchemes);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeAllSchemes();
     });
 
     Array.prototype.forEach.call(document.querySelectorAll("[data-copy-cmd]"), function (btn) {
       btn.addEventListener("click", function (e) {
-        var text = btn.getAttribute("data-copy-text");
-        if (!text) {
-          var code = btn.parentNode && btn.parentNode.querySelector("code");
-          text = code ? code.textContent : "";
-        }
+        var text = btn.getAttribute("data-copy-text") || command;
         if (!text) return;
         if (btn.tagName === "A") e.preventDefault();
         copyText(text, btn);
-        if (btn.hasAttribute("data-open-agent")) openLocalAgent(text);
       });
     });
 
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && isOpen()) {
-        setOpen(false);
-        trigger.focus();
-      }
-    });
-    document.addEventListener("click", function (e) {
-      if (canHover || !isOpen()) return;
-      if (host.contains(e.target)) return;
-      setOpen(false);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-copy-prompt]"), function (btn) {
+      btn.addEventListener("click", function (e) {
+        if (btn.tagName === "A") e.preventDefault();
+        var text = btn.getAttribute("data-copy-text") || prompt;
+        if (!text) return;
+        copyText(text, btn);
+        openLocalAgent(deeplinkFor(openerIde(ide), text));
+      });
     });
   })();
 })();

@@ -192,61 +192,18 @@
     fromHash();
   })();
 
-  /* desktop nav: center links in the slot between brand and actions (no overlap) */
+  /* desktop nav uses a 3-column grid; only clear leftover JS pins */
   function layoutNavLinks() {
     var links = document.getElementById("navlinks");
     var nav = links && links.closest(".nav");
     if (!links || !nav) return;
 
-    /* Must match the hamburger breakpoint in styles.css / nav-premium.css.
-       If JS still pins --nav-links-x here, the open panel stays a centered
-       desktop strip instead of a full-width dropdown. */
-    if (window.matchMedia("(max-width: 1159px)").matches) {
-      links.removeAttribute("style");
-      links.removeAttribute("data-nav-layout");
-      links.style.removeProperty("--nav-links-x");
-      return;
+    links.removeAttribute("style");
+    links.removeAttribute("data-nav-layout");
+    links.style.removeProperty("--nav-links-x");
+    if (window.matchMedia("(min-width: 1160px)").matches) {
+      links.classList.remove("open");
     }
-    links.classList.remove("open");
-
-    var inner = nav.querySelector(".nav-inner") || nav;
-    var innerBox = inner.getBoundingClientRect();
-    var brand = nav.querySelector(".nav-brand");
-    var navRight = nav.querySelector(".nav-right");
-    var pad = 12;
-    var brandRight = brand ? brand.getBoundingClientRect().right : innerBox.left + 100;
-    var actionsLeft = navRight ? navRight.getBoundingClientRect().left : innerBox.right - 260;
-    var slotLeft = brandRight - innerBox.left + pad;
-    var slotRight = actionsLeft - innerBox.left - pad;
-    if (slotRight <= slotLeft + 48) return;
-
-    var slotCenter = (slotLeft + slotRight) / 2;
-    var nudge = Math.min(18, (slotRight - slotLeft) * 0.06);
-    var desiredCenter = slotCenter + nudge;
-    var slotW = Math.max(0, Math.round(slotRight - slotLeft));
-    var linkGap = getActiveLang() === "zh" ? 14 : 8;
-    var base =
-      "position:absolute;top:0;bottom:0;right:auto;" +
-      "transform:translateX(-50%);display:flex;align-items:center;flex-wrap:nowrap;" +
-      "gap:" + linkGap + "px;margin:0;width:max-content;" +
-      "z-index:3;pointer-events:none";
-
-    links.style.cssText = base;
-    links.style.left = desiredCenter + "px";
-    links.style.setProperty("--nav-links-x", desiredCenter + "px");
-
-    while (links.getBoundingClientRect().width > slotW && linkGap > 2) {
-      linkGap -= 1;
-      links.style.gap = linkGap + "px";
-    }
-
-    var half = links.getBoundingClientRect().width / 2;
-    var minCenter = slotLeft + half;
-    var maxCenter = slotRight - half;
-    var center = Math.max(minCenter, Math.min(maxCenter, desiredCenter));
-    links.style.left = center + "px";
-    links.style.setProperty("--nav-links-x", center + "px");
-    links.dataset.navLayout = "forgeax-ui-146";
   }
   window.forgeaxLayoutNavLinks = layoutNavLinks;
   layoutNavLinks();
@@ -382,7 +339,7 @@
     }, { passive: true });
   })();
 
-  /* ── OS-aware Studio download (WorkBuddy-style hover card) ───────────── */
+  /* ── OS-aware Studio download (click to open) ───────────── */
   (function studioDownload() {
     var cfg = window.FX_EXPERIENCE || {};
     var downloads = cfg.downloads || {};
@@ -410,6 +367,9 @@
       if (isFile) {
         el.removeAttribute("target");
         el.removeAttribute("rel");
+      } else {
+        el.setAttribute("target", "_blank");
+        el.setAttribute("rel", "noopener");
       }
     }
 
@@ -422,15 +382,12 @@
       Array.prototype.forEach.call(document.querySelectorAll("[data-download]"), function (host) {
         Array.prototype.forEach.call(host.querySelectorAll("[data-download-opt]"), function (row) {
           var key = row.getAttribute("data-download-opt");
-          var url = fileFor(key);
+          var file = fileFor(key);
+          var url = file || page;
           var now = row.querySelector("[data-download-now]");
-          if (url) {
-            bindFile(row, url, true);
-            row.hidden = false;
-          } else {
-            row.hidden = true;
-          }
-          var isCurrent = !!url && key === os;
+          if (url) bindFile(row, url, !!file);
+          row.hidden = false;
+          var isCurrent = key === os && os !== "other";
           if (now) now.hidden = !isCurrent;
           row.classList.toggle("is-current", isCurrent);
         });
@@ -441,21 +398,42 @@
 
     paint(detectOs());
 
-    Array.prototype.forEach.call(document.querySelectorAll("[data-download]"), function (host) {
-      var hideTimer = 0;
-      function open() {
-        if (hideTimer) { clearTimeout(hideTimer); hideTimer = 0; }
-        host.classList.add("is-open");
-      }
-      function closeSoon() {
-        hideTimer = setTimeout(function () { host.classList.remove("is-open"); }, 140);
-      }
-      host.addEventListener("mouseenter", open);
-      host.addEventListener("mouseleave", closeSoon);
-      host.addEventListener("focusin", open);
-      host.addEventListener("focusout", function (e) {
-        if (!host.contains(e.relatedTarget)) closeSoon();
+    function setOpen(host, open) {
+      var trigger = host.querySelector("[data-download-primary]");
+      if (open) host.classList.add("is-open");
+      else host.classList.remove("is-open");
+      if (trigger) trigger.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    function closeAll() {
+      Array.prototype.forEach.call(document.querySelectorAll("[data-download]"), function (host) {
+        setOpen(host, false);
       });
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-download]"), function (host) {
+      var trigger = host.querySelector("[data-download-primary]");
+      if (!trigger) return;
+      trigger.setAttribute("role", "button");
+      trigger.setAttribute("aria-haspopup", "true");
+      trigger.setAttribute("aria-expanded", "false");
+    });
+
+    document.addEventListener("click", function (e) {
+      var trigger = e.target.closest && e.target.closest("[data-download] [data-download-primary]");
+      if (trigger) {
+        e.preventDefault();
+        e.stopPropagation();
+        var host = trigger.closest("[data-download]");
+        var next = !host.classList.contains("is-open");
+        closeAll();
+        if (next) setOpen(host, true);
+        return;
+      }
+      if (!(e.target.closest && e.target.closest("[data-download]"))) closeAll();
+    }, true);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeAll();
     });
   })();
 })();

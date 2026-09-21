@@ -74,108 +74,137 @@
 /* ── ambient — the first screen carries more brand light than inner pages ──
    Scoped to .home-immersive: docs/games also set .has-immersive and must keep
    the quieter default from linear-light-system.css. */
-.forgeax-site.home-immersive { --light-beam-opacity: 0.34; }
-.forgeax-site.home-immersive .ambient__orb { opacity: 0.66; }
-.forgeax-site.home-immersive .ambient__grid { opacity: 0.15; }
+.forgeax-site.home-immersive { --light-beam-opacity: 0.1; }
+.forgeax-site.home-immersive .ambient__orb { opacity: 0.18; }
+.forgeax-site.home-immersive .ambient__grid { opacity: 0.035; }
 
 /* ── §1 hero — full viewport: brand lockup + split copy/demo + scroll cue ─── */
-/* The section owns the whole first screen: .hero-stage takes the remaining space
-   so the split grows with the viewport, above a proof strip and the scroll cue. */
-.forgeax-site .home-v2 .hero--split {
+/* First screen: centered lockup, no split, no demo. */
+.forgeax-site .home-v2 .hero--center {
   display: flex;
   flex-direction: column;
-  /* linear-premium.css centres .hero children — the split must span full width */
-  align-items: stretch;
-  text-align: left;
-  /* bottom padding reserves the band the fixed .scroll-cue floats in */
-  padding: clamp(14px, 2.2vh, 30px) 0 clamp(48px, 6vh, 64px);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: visible;
+  position: relative;
+  padding: clamp(24px, 4vh, 48px) 0 clamp(152px, 20vh, 200px);
+  min-height: calc(100svh - var(--nav-h) - var(--devbar-h, 0px));
+}
+.forgeax-site.has-immersive .home-v2 .hero--center {
   min-height: calc(100svh - var(--nav-h) - var(--devbar-h, 0px));
 }
 
-/* soft twin bloom behind the hero — immersive.css already gives .hero
-   position:relative and lifts .hero > * to z-index 1, so this sits underneath */
-.forgeax-site .home-v2 .hero--split::before {
+.forgeax-site .home-v2 .hero--center::before {
   content: "";
   position: absolute;
   z-index: 0;
   left: 50%;
-  top: -6%;
-  width: min(1480px, 138%);
-  height: min(940px, 118%);
+  top: 8%;
+  width: min(980px, 120%);
+  height: min(640px, 78%);
   transform: translateX(-50%);
   pointer-events: none;
   background:
-    radial-gradient(ellipse 44% 50% at 20% 36%, color-mix(in srgb, var(--primary) 14%, transparent), transparent 68%),
-    radial-gradient(ellipse 42% 46% at 80% 24%, color-mix(in srgb, var(--teal) 11%, transparent), transparent 66%);
-  filter: blur(26px);
+    radial-gradient(ellipse 48% 52% at 50% 42%, color-mix(in srgb, var(--primary) 7%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 44% at 62% 28%, color-mix(in srgb, var(--teal) 5%, transparent), transparent 68%);
+  filter: blur(28px);
 }
 
-.home-v2 .hero-stage {
-  flex: 1 1 auto;
-  display: grid;
-  /* Keep the two tracks even: the lede keeps its original measure, and the
-     capture grows with the rail instead of stealing the copy column. */
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(24px, 2.6vw, 40px);
-  align-items: stretch;
-  min-height: 0;
-  overflow: visible;
-}
-
-.home-v2 .hero-lede {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  min-width: 0;
-  overflow: visible;
-}
-
-/* brand lockup — animated pixel mark + ForgeaX wordmark */
-.home-v2 .brandmark {
+.home-v2 .nowrap { white-space: nowrap; }
+.home-v2 .hero-brand {
   display: flex;
   align-items: center;
-  gap: clamp(13px, 1.3vw, 26px);
-  margin-bottom: clamp(18px, 2.4vh, 34px);
+  justify-content: center;
+  gap: clamp(12px, 1.6vw, 18px);
+  margin: 0 0 clamp(18px, 2.6vh, 30px);
 }
-.home-v2 .brandmark__mark {
-  flex: 0 0 auto;
-  width: clamp(54px, 4.6vw, 104px);
+.home-v2 .hero-mark {
+  display: block;
+  width: clamp(60px, 5.6vw, 80px);
   height: auto;
+  margin: 0;
   image-rendering: pixelated;
-  filter:
-    drop-shadow(0 0 26px color-mix(in srgb, var(--primary) 34%, transparent))
-    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.5));
+  padding: 10px;
+  border-radius: 16px;
+  background: var(--fx-ref-color-neutral-950);
+  filter: drop-shadow(0 8px 16px color-mix(in srgb, var(--fx-ref-color-neutral-950) 12%, transparent));
 }
-.home-v2 .brandmark__word {
-  font-size: clamp(29px, 2.9vw, 58px);
-  font-weight: 800;
+.home-v2 .hero-wordmark {
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
   line-height: 1;
-  letter-spacing: -0.035em;
   color: var(--text-primary);
 }
-.home-v2 .brandmark__word b {
-  font-weight: 800;
-  background: linear-gradient(100deg, var(--color-brand-primary-light) 0%, var(--primary) 46%, var(--teal) 100%);
+.home-v2 .hero-wordmark b {
+  background: var(--grad);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* vh is part of the ceiling: on short viewports the longer locales (en/de/fr)
-   would otherwise push the proof strip and scroll cue below the fold. The upper
-   bound is sized for 2K/4K — the vh term still holds it back on short screens. */
-.forgeax-site .home-v2 .hero--split h1 {
-  font-size: clamp(31px, min(3.9vw, 5.6vh), 92px);
-  line-height: 1.06;
-  letter-spacing: -0.04em;
-  font-weight: 750;
-  max-width: 20ch;
+.home-v2 .hero-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  max-width: 92vw;
+  container-type: inline-size;
+  container-name: herolock;
 }
-.forgeax-site .home-v2 .hero--split .sub {
-  margin: clamp(14px, 2vh, 26px) 0 0;
-  max-width: 42ch;
-  font-size: clamp(15px, min(1.5vw, 2.1vh), 24px);
+.forgeax-site .home-v2 .hero--center h1 {
+  /* Short lockup: “AI-native 游戏引擎” reads as one large line. */
+  font-size: clamp(40px, 10.4cqi, 92px);
+  line-height: 1.12;
+  letter-spacing: -0.042em;
+  font-weight: 750;
+  width: 0;
+  min-width: 100%;
+  margin: 0;
+  text-wrap: balance;
+  hyphens: manual;
+  overflow-wrap: normal;
+}
+.forgeax-site .home-v2 .hero--center .sub {
+  margin: clamp(12px, 1.6vh, 18px) 0 0;
+  width: 0;
+  min-width: 100%;
+  font-size: clamp(15px, 2.4cqi, 20px);
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+@media (min-width: 860px) and (min-height: 560px) {
+  .forgeax-site .home-v2 .hero--center h1 {
+    font-size: clamp(50px, 11.2cqi, 96px);
+  }
+}
+
+@media (min-width: 1080px) {
+  .home-v2 .hero-lockup {
+    min-width: min(48rem, 92vw);
+  }
+}
+@media (min-width: 1600px) {
+  .home-v2 .hero-lockup {
+    min-width: min(54rem, 92vw);
+  }
+}
+@media (min-width: 1920px) {
+  .home-v2 .hero-lockup {
+    min-width: min(60rem, 90vw);
+  }
+}
+
+/* Longer Latin locales: slightly smaller type so two lines still fit the lockup. */
+@media (min-width: 860px) and (min-height: 560px) {
+  :lang(de) .forgeax-site .home-v2 .hero--center h1,
+  :lang(fr) .forgeax-site .home-v2 .hero--center h1,
+  :lang(es) .forgeax-site .home-v2 .hero--center h1,
+  :lang(pt) .forgeax-site .home-v2 .hero--center h1 {
+    font-size: clamp(36px, 8cqi, 80px);
+  }
 }
 
 .home-v2 .hero-points {
@@ -206,64 +235,328 @@
   box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 55%, transparent);
 }
 
-.forgeax-site .home-v2 .hero--split .cta {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: clamp(14px, 1vw, 20px);
-  margin-top: clamp(16px, 2.2vh, 28px);
-  overflow: visible;
-}
-.home-v2 .cta--pair,
-.forgeax-site .home-v2 .hero--split .cta--pair {
-  flex-wrap: nowrap;
-  align-items: flex-start;
-}
-.home-v2 .cta-path {
+.home-v2 .hero-get {
+  width: max-content;
+  max-width: 100%;
+  margin: clamp(26px, 3.4vh, 36px) 0 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  min-width: 0;
+  align-items: center;
 }
-.home-v2 .cta-path__anchor {
+.home-v2 .hero-cmd {
+  --fx-cmd-h: 41px;
+  --fx-cmd-inner: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  width: 100%;
+  max-width: 100%;
   position: relative;
-  z-index: 80;
+  z-index: 4;
 }
-.home-v2 .cta-path__anchor:hover,
-.home-v2 .cta-path__anchor:focus-within,
-.home-v2 .cta-path__anchor.is-open {
+.home-v2 .hero-scheme {
+  position: relative;
+  flex: 0 0 auto;
+  z-index: 1;
+}
+.home-v2 .hero-scheme__btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: var(--fx-cmd-inner, 35px);
+  min-height: var(--fx-cmd-inner, 35px);
+  margin: 0;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--fx-color-surface-sidebar);
+  color: var(--fx-color-text-primary);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.home-v2 .hero-scheme__btn svg {
+  width: 11px;
+  height: 11px;
+  opacity: 0.65;
+}
+.home-v2 .hero-scheme__btn:hover { background: var(--fx-color-surface-hover); }
+.home-v2 .hero-scheme.is-open { z-index: 12; }
+.home-v2 .hero-scheme.is-open .hero-scheme__btn svg { transform: rotate(180deg); }
+.home-v2 .hero-scheme__menu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
   z-index: 90;
+  min-width: max(100%, 13.5em);
+  max-height: min(17rem, calc(100svh - 8rem));
+  margin: 0;
+  padding: 6px;
+  overflow-y: auto;
+  list-style: none;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--color-background-elevated);
+  box-shadow: var(--fx-shadow-floating);
+  text-align: left;
 }
-.home-v2 .dl { position: relative; z-index: 5; overflow: visible; }
-.home-v2 .dl:hover,
-.home-v2 .dl:focus-within,
-.home-v2 .dl.is-open { z-index: 90; }
+.home-v2 .hero-scheme__menu[hidden] { display: none; }
+.home-v2 .hero-scheme__menu button {
+  appearance: none;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.home-v2 .hero-scheme__menu button:hover,
+.home-v2 .hero-scheme__menu button[aria-selected="true"] {
+  background: color-mix(in srgb, var(--brand) 14%, transparent);
+}
+.home-v2 .hero-cmd__chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 1 auto;
+  width: max-content;
+  max-width: 100%;
+  min-width: 0;
+  min-height: var(--fx-cmd-h, 41px);
+  height: auto;
+  padding: 3px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  background: var(--fx-color-surface-raised);
+}
+.home-v2 .hero-cmd__chip code {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 6px 8px 6px 9px;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: clamp(10px, 0.94vw, 11.5px);
+  line-height: 1.45;
+  color: var(--text-primary);
+  white-space: normal;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+.home-v2 .hero-cmd__copy {
+  appearance: none;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: var(--fx-cmd-inner, 35px);
+  height: var(--fx-cmd-inner, 35px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.home-v2 .hero-cmd__ic {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.home-v2 .hero-cmd__ic--check { opacity: 0; }
+.home-v2 .hero-cmd__copy svg { width: 13px; height: 13px; }
+.home-v2 .hero-cmd__copy:hover {
+  color: var(--text-primary);
+  background: var(--fx-color-surface-hover);
+}
+.home-v2 .hero-cmd__copy.is-copied {
+  color: var(--text-primary);
+  background: var(--fx-color-surface-hover);
+}
+.home-v2 .hero-cmd__copy.is-copied .hero-cmd__ic--copy { opacity: 0; }
+.home-v2 .hero-cmd__copy.is-copied .hero-cmd__ic--check { opacity: 1; }
+.home-v2 .hero-cmd--end {
+  width: max-content;
+  max-width: 100%;
+  margin: 28px auto 0;
+}
+.home-v2 .hero-cmd--end .hero-scheme__menu {
+  top: calc(100% + 8px);
+  bottom: auto;
+}
+.home-v2 .hero-prompt-btn {
+  appearance: none;
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--fx-cmd-h, 41px);
+  min-height: var(--fx-cmd-h, 41px);
+  margin: 0;
+  padding: 0 15px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  background: var(--fx-color-surface-raised);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.home-v2 .hero-prompt-btn:hover {
+  color: var(--text-primary);
+  background: var(--fx-color-surface-hover);
+}
+.home-v2 .hero-prompt-btn.is-copied {
+  color: transparent;
+  background: var(--fx-color-surface-hover);
+}
+.home-v2 .hero-prompt-btn.is-copied::after {
+  content: attr(data-copied);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  pointer-events: none;
+}
+.home-v2 .hero-alt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 16px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+}
+
+.forgeax-site .home-v2 .hero--center > .hero-lockup {
+  z-index: 3;
+}
+.forgeax-site .home-v2 .hero--center:has(.hero-scheme.is-open) > .hero-lockup {
+  z-index: 8;
+}
+.forgeax-site .home-v2 .hero--center > .hero-agents {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(88px, 11vh, 112px);
+  z-index: 2;
+  width: min(40rem, 92vw);
+  margin-inline: auto;
+}
+.forgeax-site .home-v2 .hero--center:has(.hero-scheme.is-open) > .hero-agents {
+  z-index: 1;
+}
+.home-v2 .hero-agents__label {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+}
+.home-v2 .hero-agents__viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 28%, #000 72%, transparent 100%);
+}
+.home-v2 .hero-agents__track {
+  display: flex;
+  width: max-content;
+  animation: hero-agents-scroll 38s linear infinite;
+}
+.home-v2 .hero-agents:hover .hero-agents__track {
+  animation-play-state: paused;
+}
+.home-v2 .hero-agents__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0 10px 0 0;
+}
+.home-v2 .hero-agents__row img {
+  display: block;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  object-fit: cover;
+  filter: grayscale(1) invert(1);
+  opacity: 0.82;
+  transition: filter 0.18s ease, opacity 0.18s ease;
+}
+.home-v2 .hero-agents__row img:hover {
+  filter: invert(1);
+  opacity: 1;
+}
+@keyframes hero-agents-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-v2 .hero-agents__track { animation: none; }
+}
+.home-v2 .hero-alt__dl {
+  position: relative;
+  z-index: 5;
+  display: inline-block;
+}
+.home-v2 .hero-alt__dl.is-open { z-index: 120; }
+.home-v2 .hero-alt__link {
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.home-v2 .hero-alt__link:hover {
+  color: var(--brand);
+  border-bottom-color: var(--brand);
+}
+.home-v2 .hero-alt--end {
+  margin-top: 16px;
+  text-align: center;
+}
 .home-v2 .dl-card {
   position: absolute;
   left: 0;
   top: calc(100% + 8px);
-  z-index: 80;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
   min-width: 17.5em;
   padding: 8px;
   border-radius: 16px;
   border: 1px solid var(--border-subtle);
   background: var(--color-background-elevated);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--fx-shadow-floating);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.16s ease;
 }
-.home-v2 .dl:hover > .dl-card,
-.home-v2 .dl:focus-within > .dl-card,
-.home-v2 .dl.is-open > .dl-card {
+.home-v2 .hero-alt__dl.is-open > .dl-card {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
-.home-v2 .dl-card::before,
-.home-v2 .hero-editor::before {
+.home-v2 .dl-card::before {
   content: "";
   position: absolute;
   left: 0;
@@ -302,129 +595,23 @@
   font-weight: 700;
   letter-spacing: 0.02em;
 }
-.forgeax-site.has-immersive .home-v2 .hero--split .cta .btn {
-  min-width: 0;
-  min-height: clamp(44px, 2.6vw, 62px);
-  padding-inline: clamp(22px, 1.5vw, 36px);
-  font-size: clamp(14.5px, 0.94vw, 19px);
-  letter-spacing: 0;
-}
-.forgeax-site .home-v2 .hero--split .cta .btn.ghost[aria-expanded="true"] {
-  border-color: color-mix(in srgb, var(--brand) 48%, var(--border-default));
-  color: var(--brand);
-}
-/* em, not ch — a ch measure is half an em in the Latin face but a full em in
-   the CJK fallback, so the same value gives wildly different line lengths. */
-.home-v2 .hero-note {
-  margin-top: clamp(16px, 1.4vw, 24px);
-  font-size: clamp(13px, min(0.95vw, 1.4vh), 16.5px);
-  color: var(--text-tertiary);
-  max-width: min(100%, 40em);
-  line-height: 1.6;
-}
-.home-v2 .hero-note a { color: var(--text-secondary); border-bottom: 1px solid var(--border-subtle); }
-.home-v2 .hero-note a:hover { color: var(--brand); border-bottom-color: var(--brand); }
 
-/* Editor install panel: one command, pinned under the CTA. */
-.home-v2 .hero-editor {
-  position: absolute;
-  left: 0;
-  top: calc(100% + 8px);
-  z-index: 80;
-  width: min(36em, calc(100vw - 48px));
-  margin: 0;
-  padding: 14px;
-  border-radius: 16px;
-  border: 1px solid var(--border-subtle);
-  background: var(--color-background-elevated);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.16s ease;
-}
-.home-v2 .cta-path__anchor:hover > .hero-editor,
-.home-v2 .cta-path__anchor:focus-within > .hero-editor,
-.home-v2 .cta-path__anchor.is-open > .hero-editor {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-.home-v2 .hero-editor__lead {
-  margin: 0 0 10px;
-  font-size: 12.5px;
-  line-height: 1.45;
-  color: var(--text-secondary);
-}
-.home-v2 .hero-editor__cmd {
-  position: relative;
-  min-width: 0;
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  background: var(--color-background-canvas);
-}
-.home-v2 .hero-editor__cmd code {
-  display: block;
-  min-width: 0;
-  padding: 12px 14px;
-  padding-right: 7.5em;
-  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--text-primary);
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-.home-v2 .hero-editor__copy {
-  appearance: none;
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--brand);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1.2;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.home-v2 .hero-editor__copy:hover { color: var(--color-brand-primary-light, var(--brand)); }
-.home-v2 .hero-editor__more {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--brand);
-  border-bottom: 1px solid color-mix(in srgb, var(--brand) 45%, transparent);
-}
-.home-v2 .hero-editor__more:hover { border-bottom-color: var(--brand); }
-
-/* ── scroll cue — pinned to the viewport, not to the end of the hero ───────
+/* ── scroll cue — two stacked chevrons, pinned to the viewport ─────────────
    Hero height swings by locale, so an in-flow cue straddles the fold in de/fr/pt.
-   The hero reserves an equivalent band of bottom padding so the two never collide.
    Markup lives in the home-ambient partial (outside <main>) — see the note there. */
 .forgeax-site.home-immersive .scroll-cue {
   position: fixed;
   left: 50%;
-  bottom: clamp(14px, 2.2vh, 24px);
+  bottom: clamp(16px, 2.6vh, 28px);
   z-index: 60;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 9px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 28px;
   color: var(--text-tertiary);
   opacity: 0;
   pointer-events: none;
-  transform: translate3d(-50%, 10px, 0);
+  transform: translate3d(-50%, 8px, 0);
   transition:
     opacity var(--site-dur-silk, 0.6s) var(--ease-out),
     transform var(--site-dur-silk, 0.6s) var(--ease-out),
@@ -435,59 +622,41 @@
   pointer-events: auto;
   transform: translate3d(-50%, 0, 0);
 }
-.forgeax-site.home-immersive .scroll-cue:hover { color: var(--brand-light, var(--brand)); }
-/* keeps the cue legible on the long locales, where the hero overflows past it */
-.forgeax-site.home-immersive .scroll-cue::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  top: 50%;
-  width: 280px;
-  height: 140px;
-  transform: translate(-50%, -50%);
+/* The cue is position:fixed + transformed, outside <main>. z-index cannot
+   bury it under the install menu (main also has a transform). Hide it while
+   a menu is open so the panel is the top hit target. */
+.forgeax-site.home-immersive:has(.hero-alt__dl.is-open) main.home-v2,
+.forgeax-site.home-immersive:has(.hero-scheme.is-open) main.home-v2 {
+  z-index: 80;
+}
+.forgeax-site.home-immersive:has(.hero-alt__dl.is-open) .scroll-cue,
+.forgeax-site.home-immersive:has(.hero-scheme.is-open) .scroll-cue {
+  visibility: hidden;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--color-background-canvas) 78%, transparent), transparent 70%);
+}
+.forgeax-site.home-immersive .scroll-cue:hover { color: var(--brand-light, var(--brand)); }
+
+.forgeax-site.home-immersive .scroll-cue__chevrons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: cue-chevron 2s ease-in-out infinite;
+}
+.forgeax-site.home-immersive .scroll-cue__chevrons svg {
+  display: block;
+  overflow: visible;
+  width: 20px;
+  height: 10px;
+}
+.forgeax-site.home-immersive .scroll-cue__chevrons svg:first-child { opacity: 0.38; }
+.forgeax-site.home-immersive .scroll-cue__chevrons svg:last-child {
+  margin-top: -4px;
+  opacity: 0.62;
 }
 
-.forgeax-site.home-immersive .scroll-cue__ring {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  color: var(--brand-light, var(--brand));
-  border: 1px solid color-mix(in srgb, var(--primary) 36%, transparent);
-  background: color-mix(in srgb, var(--primary) 8%, transparent);
-  box-shadow: 0 0 26px -6px color-mix(in srgb, var(--primary) 34%, transparent);
-  animation: cue-bob 2.4s var(--ease-out) infinite;
-  transition:
-    border-color var(--dur-smooth) var(--ease-out),
-    background var(--dur-smooth) var(--ease-out);
-}
-.forgeax-site.home-immersive .scroll-cue__ring svg { width: 19px; height: 19px; }
-/* expanding halo so the cue reads at a glance against the dark canvas */
-.forgeax-site.home-immersive .scroll-cue__ring::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--primary) 55%, transparent);
-  animation: cue-pulse 2.4s var(--ease-out) infinite;
-}
-.forgeax-site.home-immersive .scroll-cue:hover .scroll-cue__ring {
-  border-color: color-mix(in srgb, var(--primary) 66%, transparent);
-  background: color-mix(in srgb, var(--primary) 15%, transparent);
-}
-
-@keyframes cue-bob {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, 6px, 0); }
-}
-@keyframes cue-pulse {
-  0% { opacity: 0.75; transform: scale(1); }
-  70%, 100% { opacity: 0; transform: scale(1.75); }
+@keyframes cue-chevron {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 }
 
 /* ── hero right frame — one window, three states ─────────────────────────────
@@ -537,7 +706,17 @@
 .home-v2 .hero-panel[data-stage="brief"] > .fxi--brief { display: flex; }
 
 /* ── closed-loop demo (hero right, state 1) ─────────────────────────────── */
+.home-v2 .demo-band .loop {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.home-v2 .demo-band .loop__media,
+.home-v2 .demo-band .loop__credit {
+  max-width: 100%;
+}
+
 .home-v2 .loop {
+  display: flex;
   min-width: 0;
   border: 1px solid var(--glass-border);
   border-radius: var(--panel-radius);
@@ -924,6 +1103,20 @@
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   box-shadow: var(--glass-shadow);
 }
+.home-v2 .pitch-card__badge {
+  margin-left: auto;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  white-space: nowrap;
+}
 .home-v2 .pitch-card__head {
   display: flex;
   align-items: center;
@@ -943,6 +1136,8 @@
 }
 .home-v2 .pitch-card .ico svg { width: 18px; height: 18px; }
 .home-v2 .pitch-card h3 {
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: 19px;
   font-weight: 650;
   letter-spacing: -0.02em;
@@ -963,27 +1158,161 @@
   .home-v2 .pitch-grid { grid-template-columns: 1fr; }
 }
 
-/* ── §3 games band — ports .gm-hero + .gm-card from the retired /games/ page */
-.home-v2 #sec-showcase .gm-hero:not([hidden]) { margin: 8px 0 28px; }
-/* Featured posters are 16:9. The shared hero frame is 21:9 + cover, which
-   crops the top/bottom on a wide rail. Match the art and stop the Ken Burns
-   zoom so the full poster stays in view. */
-.home-v2 #sec-showcase .gm-hero { aspect-ratio: 16 / 9; }
-.home-v2 #sec-showcase .gm-cslide img {
-  object-fit: contain;
-  object-position: center;
-  transform: none;
-  background: #0b0d10;
-}
-.home-v2 #sec-showcase .gm-featured-mobile { margin: 8px 0 24px; }
-.home-v2 #sec-showcase .gm-grid {
+/* ── §3 games band — hero-agents-style ticker, at most 3 cards in view */
+.home-v2 #sec-showcase .gm-marquee {
+  --gm-gap: 16px;
+  --gm-visible: 3;
   margin-top: 4px;
-  /* Three featured cards: always one row, each track grows with the rail.
-     auto-fill + minmax(300px) was leaving an empty fourth column on wide screens. */
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-@media (max-width: 767px) {
-  .home-v2 #sec-showcase .gm-grid { grid-template-columns: 1fr; }
+.home-v2 #sec-showcase .gm-marquee__viewport {
+  container-type: inline-size;
+  overflow: hidden;
+  padding-block: 8px;
+  margin-block: -8px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+}
+.home-v2 #sec-showcase .gm-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: gm-marquee-scroll 32s linear infinite;
+}
+.home-v2 #sec-showcase .gm-marquee:hover .gm-marquee__track,
+.home-v2 #sec-showcase .gm-marquee:focus-within .gm-marquee__track {
+  animation-play-state: paused;
+}
+.home-v2 #sec-showcase .gm-marquee__row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--gm-gap);
+  padding: 0 var(--gm-gap) 0 0;
+  margin: 0;
+}
+.home-v2 #sec-showcase .gm-marquee__row .gm-card {
+  flex: 0 0 calc((100cqi - (var(--gm-visible) - 1) * var(--gm-gap)) / var(--gm-visible));
+  width: calc((100cqi - (var(--gm-visible) - 1) * var(--gm-gap)) / var(--gm-visible));
+  max-width: none;
+  min-width: 0;
+}
+.home-v2 #sec-showcase .gm-marquee__row .gm-card .body h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.home-v2 #sec-showcase .gm-marquee[data-loop="0"] .gm-marquee__track {
+  animation: none;
+  width: 100%;
+}
+.home-v2 #sec-showcase .gm-marquee[data-loop="0"] .gm-marquee__row {
+  padding-right: 0;
+}
+.home-v2 #sec-showcase .gm-marquee[data-loop="0"] .gm-marquee__viewport {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+@keyframes gm-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (max-width: 900px) {
+  .home-v2 #sec-showcase .gm-marquee { --gm-visible: 2; }
+}
+@media (max-width: 640px) {
+  .home-v2 #sec-showcase .gm-marquee { --gm-visible: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-v2 #sec-showcase .gm-marquee__track { animation: none; }
+  .home-v2 #sec-showcase .gm-marquee__viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* ── publish platforms — captioned strip under the games ticker */
+.home-v2 .publish-band {
+  margin-top: clamp(28px, 3.2vw, 40px);
+}
+.home-v2 .publish-label {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+.home-v2 .publish-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(18px, 3vw, 36px);
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+.home-v2 .publish-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 112px;
+}
+.home-v2 .publish-item__icon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  border: 1px solid var(--hairline);
+  background: var(--glass-bg-soft);
+}
+.home-v2 .publish-item__icon img {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+.home-v2 .publish-item__icon img[src*="switch"] {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+}
+.home-v2 .publish-item__icon img[src*="kubee"] {
+  width: 54px;
+  height: 54px;
+}
+.home-v2 .publish-item__name {
+  font-size: 12.5px;
+  font-weight: 550;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .home-v2 .publish-item { width: 92px; }
+  .home-v2 .publish-item__icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+  }
+  .home-v2 .publish-item__icon img {
+    width: 36px;
+    height: 36px;
+  }
+  .home-v2 .publish-item__icon img[src*="switch"] {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+  .home-v2 .publish-item__icon img[src*="kubee"] {
+    width: 46px;
+    height: 46px;
+  }
+  .home-v2 .publish-item__name { font-size: 11.5px; }
 }
 
 /* leftover equal-card grid from the previous homepage showcase */
@@ -1087,87 +1416,18 @@
 }
 .home-v2 .founding .more:hover { color: var(--brand); border-bottom-color: var(--brand); }
 
-/* ── §6 closing CTA ─────────────────────────────────────────────────────────
-   Not a glass panel: at this size a translucent fill over the ambient wash goes
-   flat and plastic. Instead an opaque surface lit from above — vertical falloff
-   into the page black, a specular hairline that is bright at the top edge and
-   gone by the bottom, one focused brand bloom under the buttons, and the same
-   grain the ambient layer uses so the large flat area cannot band. */
+/* ── §6 closing CTA — sits on the page, no panel surface */
 .home-v2 .endcta {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  border: 1px solid transparent;
-  border-radius: var(--panel-radius);
-  padding: clamp(40px, 5.2vw, 60px) clamp(24px, 4vw, 48px);
+  padding: clamp(12px, 2vw, 24px) 0;
   text-align: center;
-  background-image:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-background-base) 52%, #050506) 0%,
-      color-mix(in srgb, var(--color-background-base) 26%, #050506) 46%,
-      color-mix(in srgb, var(--color-background-base) 10%, #050506) 100%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, #fff 17%, transparent) 0%,
-      color-mix(in srgb, #fff 7%, transparent) 28%,
-      color-mix(in srgb, #fff 4.5%, transparent) 68%,
-      color-mix(in srgb, #fff 4%, transparent) 100%
-    );
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  box-shadow:
-    inset 0 1px 0 0 color-mix(in srgb, #fff 6%, transparent),
-    0 1px 2px rgba(0, 0, 0, 0.5),
-    0 30px 80px -40px rgba(0, 0, 0, 0.9);
-  margin-bottom: 8px;
 }
-/* Brand light gathered under the buttons, plus a cool sheen off the top-left —
-   both far too dim to tint the surface, enough to keep it from reading as slab. */
-.home-v2 .endcta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      56% 46% at 50% 76%,
-      color-mix(in srgb, var(--primary) 13%, transparent),
-      transparent 72%
-    ),
-    radial-gradient(
-      54% 44% at 8% -14%,
-      rgba(var(--theme-cool-b), 0.08),
-      transparent 66%
-    ),
-    linear-gradient(
-      90deg,
-      transparent 14%,
-      color-mix(in srgb, #fff 20%, transparent) 50%,
-      transparent 86%
-    ) top center / 100% 1px no-repeat;
-}
-.home-v2 .endcta::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
-.home-v2 .endcta > * { position: relative; z-index: 1; }
 .home-v2 .endcta h2 {
   font-size: clamp(24px, 3.2vw, 34px);
   font-weight: 650;
   letter-spacing: -0.03em;
   line-height: 1.2;
 }
-.home-v2 .endcta p {
+.home-v2 .endcta > p {
   color: var(--text-secondary);
   margin: 12px auto 0;
   max-width: 52ch;
@@ -1459,86 +1719,70 @@
      rail passes it; +48 offsets the inner padding so the text edges line up */
   .forgeax-site.home-immersive .foot-inner { max-width: calc(var(--home-rail) + 48px); }
 
-  .forgeax-site.home-immersive .scroll-cue { font-size: 12.5px; gap: 12px; }
-  .forgeax-site.home-immersive .scroll-cue__ring { width: 54px; height: 54px; }
-  .forgeax-site.home-immersive .scroll-cue__ring svg { width: 24px; height: 24px; }
 }
 
-/* Stack the hero below 1000px, which is where the split genuinely runs out: the
-   frame is 0.58 of the row, so it clears the 520px the side-by-side stage needs
-   down to about a 1000px viewport and no further. Below that the stage would fall
-   back to stacking the capture over its caption, which turns the frame portrait —
-   wrong shape to sit beside the copy, so the hero stacks instead.
-
-   This used to be 1200px, sized for the old frame whose step rail ran down the
-   left edge and ate a third of the width. With the rail moved to the bottom and
-   the height driven by content, a ~550px frame carries the demo fine. */
-@media (max-width: 999px) {
-  .forgeax-site .home-v2 .hero--split {
+@media (max-width: 720px) {
+  .forgeax-site .home-v2 .hero--center {
     min-height: 0;
-    padding: 32px 0 8px;
+    padding: 36px 0 28px;
   }
-  .home-v2 .hero-stage { grid-template-columns: 1fr; }
-  .home-v2 .hero-lede { align-items: flex-start; }
-  .forgeax-site .home-v2 .hero--split h1,
-  .forgeax-site .home-v2 .hero--split .sub { max-width: none; }
-  /* Stacked, the capture would otherwise span the full rail. Cap it so the
-     frame stays a readable height instead of a 640px-tall 16:9 slab. */
+  .forgeax-site .home-v2 .hero--center h1 {
+    width: 0;
+    min-width: 100%;
+  }
+  .forgeax-site .home-v2 .hero--center .sub {
+    white-space: normal;
+    width: 0;
+    min-width: 100%;
+  }
+  .home-v2 .hero-cmd {
+    --fx-cmd-h: 36px;
+    --fx-cmd-inner: 30px;
+    width: 100%;
+  }
+  .home-v2 .hero-cmd__chip {
+    padding: 3px;
+    gap: 6px;
+    width: 100%;
+  }
+  .home-v2 .hero-scheme__btn {
+    padding: 0 11px;
+    font-size: 10px;
+  }
+  .home-v2 .hero-scheme__menu { left: 0; right: auto; }
+  .forgeax-site .home-v2 .hero--center > .hero-agents {
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: min(22rem, 92vw);
+    margin-top: 22px;
+  }
+  .home-v2 .hero-agents__row img {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+  .home-v2 .hero-cmd__chip code {
+    font-size: 10px;
+  }
+  .home-v2 .hero-prompt-btn {
+    width: 100%;
+    max-width: 100%;
+    font-size: 10px;
+  }
   .home-v2 .loop__media { max-width: 860px; }
-  /* Only a guard here. A tighter cap (68vh) clipped the stage instead of the frame
-     and letterboxed the capture to 2.4:1; the capture's own max-width does the
-     limiting now, and the frame is free to be as tall as its content needs. */
-  .home-v2 .hero-panel { width: 100%; max-height: none; }
   .forgeax-site.home-immersive .scroll-cue { display: none; }
 }
 
 @media (max-width: 620px) {
   .forgeax-site main.home-v2 { width: calc(100% - 32px); }
-  .home-v2 .hero-panel { max-height: none; }
   .home-v2 .founding .more { margin-left: 0; }
-  /* Keep Download + Connect Agent on one row in portrait phones. */
-  .forgeax-site .home-v2 .hero--split .cta--pair {
-    flex-wrap: nowrap;
-    align-items: stretch;
-    gap: 8px;
-    width: 100%;
-  }
-  .home-v2 .cta--pair .cta-path {
-    flex: 1 1 0;
-    width: auto;
-    min-width: 0;
-    align-items: stretch;
-  }
-  .home-v2 .cta--pair .cta-path__anchor {
-    width: 100%;
-  }
-  .forgeax-site .home-v2 .hero--split .cta--pair .btn,
-  .home-v2 .cta--pair .cta-path .btn {
-    width: 100%;
-    max-width: none;
-    min-width: 0;
-    padding-inline: clamp(8px, 2.2vw, 14px);
-    font-size: clamp(12.5px, 3.4vw, 14.5px);
-    white-space: normal;
-    text-align: center;
-    justify-content: center;
-  }
-  .home-v2 .cta--pair .dl-card {
+  .home-v2 .dl-card {
     width: max-content;
     min-width: min(17.5em, calc(100vw - 48px));
     max-width: calc(100vw - 48px);
   }
-  .home-v2 .cta--pair .hero-editor {
-    left: auto;
-    right: 0;
-    width: min(36em, calc(100vw - 48px));
-    min-width: 0;
-    max-width: calc(100vw - 48px);
-  }
-  .forgeax-site .home-v2 .hero--split .fxi__foot.cta .btn { width: auto; }
-  /* Phone: the brief head is the first thing to go — the document itself carries
-     the same information. */
-  .home-v2 .fxi__docHead p { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1547,11 +1791,5 @@
   .home-v2 .sc-card,
   .home-v2 .sc-card__shot img { transition: none; }
   .home-v2 .loop__live::before { animation: none; }
-  .forgeax-site.home-immersive .scroll-cue__ring,
-  .forgeax-site.home-immersive .scroll-cue__ring::before,
-  .home-v2 .fxi__live { animation: none; }
-  .home-v2 .fxi { animation: none; }
-  /* the spinner keeps turning: it is the only signal that the embed is still
-     booting, and a frozen ring reads as a stalled panel */
-  .home-v2 .fxi__spinner { animation-duration: 1.4s; }
+  .forgeax-site.home-immersive .scroll-cue__chevrons { animation: none; }
 }

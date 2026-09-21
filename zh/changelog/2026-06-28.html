@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-zh forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/zh/tutorials/" data-nav="/tutorials/">教程</a>
       <a href="/zh/examples/" data-nav="/examples/">示例</a>
       <a href="/zh/marketplace/" data-nav="/marketplace/">插件</a>
-      <a href="/zh/changelog/" data-nav="/changelog/" class="active">更新日志</a>
-      <a href="/zh/about.html" data-nav="/about.html">关于</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-06-28.html" data-l="en">English</a><a class="lang-item active" href="/zh/changelog/2026-06-28.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/changelog/2026-06-28.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/changelog/2026-06-28.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-06-28.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-06-28.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-06-28.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-06-28.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">下载</a>
+      <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
 </nav>
@@ -71,7 +71,7 @@
 <h2>会话从&quot;绑死全局&quot;变成&quot;跟着游戏走&quot;</h2>
 <p>这天还动了一处更内在的结构:会话(也就是你和 Forge 的一段对话过程)的归属。此前会话是全局的、和具体游戏分离的;这天把它改成嵌套进每个游戏之下、按游戏来划分。意思是:你为&quot;太空射击&quot;这个项目和 Forge 的对话,和你为&quot;农场模拟&quot;那个项目的对话,从此各归各的、互不串味。这更符合直觉——一段对话本就属于某一个具体的游戏;也为后面更清晰的项目管理打底:切换游戏时,连同它的对话历史、上下文一起切过去,而不是面对一锅混在一起的全局会话。这类&quot;把数据归到它真正所属的地方&quot;的整理,平时不显眼,却让整个系统的心智模型更干净。</p>
 <h2>资产导入更稳 + 底层 CLI 更快更可控</h2>
-<p>这天还落了几项让日常更稳的修复。资产这边,修好了较大模型导入时的一个索引问题(大网格需要用更宽的整数来索引顶点,过去会在这里出错),并让模型导入时写出的元数据走统一的规范格式——导入一个大一点、复杂一点的模型不再容易&quot;翻车&quot;。底层驱动 AI 的 CLI 内核也做了多项打磨:让某些场景下的首轮响应去掉冗余、更快开始干活;修正了一处给 agent 注入&quot;行为准则&quot;的问题;并新增了可选地屏蔽用户自带外部工具、以及对 agent 调用宿主工具的审计记录——后者意味着&quot;这次 AI 到底动用了哪些工具&quot;变得有据可查。这些合起来,是把地基往&quot;更快、更可控、更可信&quot;的方向又夯实了一层。</p>
+<p>这天还落了几项让日常更稳的修复。资产这边,修好了较大模型导入时的一个索引问题(大网格需要用更宽的整数来索引顶点,过去会在这里出错),并让模型导入时写出的元数据走统一的规范格式——导入一个大一点、复杂一点的模型不再容易&quot;翻车&quot;。底层驱动 AI 的 CLI 内核也做了多项打磨:让某些场景下的首轮响应去掉冗余、更快开始干活;修正了一处给 Agent 注入&quot;行为准则&quot;的问题;并新增了可选地屏蔽用户自带外部工具、以及对 Agent 调用宿主工具的审计记录——后者意味着&quot;这次 AI 到底动用了哪些工具&quot;变得有据可查。这些合起来,是把地基往&quot;更快、更可控、更可信&quot;的方向又夯实了一层。</p>
 <h2>这一天意味着什么</h2>
 <p>这一天的主角,是&quot;门槛&quot;。一个再强大的工具,如果一大批人因为系统不对、装不起来就被挡在门外,它的价值就先打了对折。把安装与启动彻底跨平台、让 Windows 用户也能一条命令跑起来,等于把这扇门向所有人敞开——这是&quot;任何人都能做游戏&quot;这句话能成立的前提之一。而同一天里,把会话归到游戏名下、把资产导入修稳、把 CLI 内核打磨得更快更可审计,则是在敞开门的同时,把屋里也收拾得更整洁。降低进入的门槛,再提高里面的质量——这一天两件事都做了。</p>
 </div>
@@ -85,19 +85,17 @@
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
-    <a href="/zh/changelog/">更新日志</a>
     <a href="/zh/tutorials/">教程</a>
     <a href="/zh/examples/">引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
-    <a href="/zh/about.html">关于</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>

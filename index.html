@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ForgeaX — AI-native game production engine</title>
-<meta name="description" content="ForgeaX is an AI-native game production engine for professional creators: agents, engine, assets, testing and builds in one closed loop — from vertical slice to release. Open source, Apache 2.0." />
+<meta name="description" content="ForgeaX is an AI-native game production engine for professional creators: Agents, engine, assets, testing and builds in one closed loop — from vertical slice to release. Open source, Apache 2.0." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
 <meta property="og:title" content="ForgeaX" />
 <meta property="og:description" content="AI-native game production engine for professional creators." />
@@ -168,7 +168,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site has-immersive home-immersive">
@@ -189,10 +191,10 @@
 <canvas id="forgeParticles" class="forge-particles" aria-hidden="true"></canvas>
 <!-- Lives outside <main>: main.home-v2 carries a transform, which would make it the
      containing block for this position:fixed cue. -->
-<a class="scroll-cue" href="#sec-proof">
-  <span class="scroll-cue__label">Scroll to explore</span>
-  <span class="scroll-cue__ring" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+<a class="scroll-cue" href="#sec-proof" aria-label="Scroll to explore">
+  <span class="scroll-cue__chevrons" aria-hidden="true">
+    <svg viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    <svg viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
   </span>
 </a>
 
@@ -205,8 +207,6 @@
       <a href="/tutorials/" data-nav="/tutorials/">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -216,259 +216,135 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/" data-l="zh">中文</a><a class="lang-item" href="/ja/" data-l="ja">日本語</a><a class="lang-item" href="/ko/" data-l="ko">한국어</a><a class="lang-item" href="/es/" data-l="es">Español</a><a class="lang-item" href="/de/" data-l="de">Deutsch</a><a class="lang-item" href="/fr/" data-l="fr">Français</a><a class="lang-item" href="/pt/" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
 
-<main class="wrap home-v2">
+<main class="wrap home-v2"
+  data-install-bin="npx -y @forgeax/game"
+  data-step1-label="1. Install the ForgeaX plugin"
+  data-step1-note="Some Agents may need a restart after install."
+  data-step2-label="2. Initialize the project"
+  data-step2-note="Choose an empty local directory as the project folder, then run:">
 
-  <!-- §1 · Hero — copy + closed-loop demo (first viewport) -->
-  <section class="hero hero--split motion-hero-in immersive-section" id="sec-hero" data-immersive-section>
-    <div class="hero-stage">
-    <div class="hero-lede">
-      <div class="brandmark">
-        <img class="brandmark__mark" src="/logo.svg?v=3" alt="ForgeaX" width="76" height="76" />
-        <span class="brandmark__word">Forge<b>aX</b></span>
-      </div>
-      <h1>AI-native game production engine for <span class="grad">professional creators</span>.</h1>
-      <p class="sub">From vertical slice to release — let a small team ship a bigger game.</p>
-      <div class="cta cta--pair">
-        <div class="cta-path dl" data-download>
-          <a class="btn primary" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span>Download client</span></a>
-          <div class="dl-card" data-download-card>
-            <a class="dl-card__row" data-download-opt="mac">
-              <span>macOS ARM64</span>
-              <span class="dl-card__now" data-download-now hidden>This device</span>
-            </a>
-            <a class="dl-card__row" data-download-opt="win">
-              <span>Windows x64</span>
-              <span class="dl-card__now" data-download-now hidden>This device</span>
-            </a>
-            <a class="dl-card__row dl-card__row--all" data-download-all href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">
-              <span>All releases</span>
-            </a>
-          </div>
-        </div>
-        <div class="cta-path">
-          <div class="cta-path__anchor">
-            <button class="btn ghost" type="button" data-editor-install aria-expanded="false" aria-controls="fxEditorInstall"><span>Connect a local agent</span></button>
-            <div class="hero-editor" id="fxEditorInstall"
-              data-install-bin="npx -y @forgeax/game"
-              data-step1-label="1. Install the ForgeaX plugin"
-              data-step1-note="Some agents may need a restart after install."
-              data-step2-label="2. Initialize the project"
-              data-step2-note="Choose an empty local directory as the project folder, then run:">
-              <p class="hero-editor__lead">Copy the setup prompt and open the matching local app, or paste it into the chat.</p>
-              <div class="hero-editor__cmd">
-                <code data-editor-prompt></code>
-                <button type="button" class="hero-editor__copy" data-copy-cmd data-open-agent data-copied="Copied">Copy & paste</button>
-              </div>
-              <a class="hero-editor__more" href="/tutorials/">Full guide →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <ul class="hero-points">
-        <li>Agents work inside the real pipeline: scenes, code, assets, tests and builds.</li>
-        <li>Engine, asset production, automated testing and packaging in one closed loop.</li>
-        <li>Reviewable, auditable, shippable — built for teams, not for one-off prompts.</li>
-      </ul>
-      <p class="hero-note">Installing ForgeaX Studio gives you the full production workflow. <a href="/tutorials/getting-started.html">Read the install guide →</a></p>
+  <!-- §1 · Hero — centered lockup + install bar -->
+  <section class="hero hero--center motion-hero-in immersive-section" id="sec-hero" data-immersive-section>
+    <div class="hero-brand">
+      <img class="hero-mark" src="/logo.svg?v=3" alt="" width="72" height="72" />
+      <span class="hero-wordmark">Forge<b>aX</b></span>
     </div>
+    <div class="hero-lockup">
+    <h1><span class="grad nowrap">AI-Native</span> game engine</h1>
+    <p class="sub">From vertical slice to release — let a small team ship a bigger game.</p>
 
-    <!-- Demo frame. Idea Lab used to take this over from a secondary CTA; the
-         editor-install path now stays in the left column so the loop remains visible. -->
-    <div class="hero-panel" id="fxIdeaLab" data-hero-panel data-stage="demo">
-
-    <div class="loop" data-loop>
-      <div class="loop__body">
-        <div class="loop__stage">
-          <div class="loop__media-block">
-            <figure class="loop__media">
-            <video
-              class="loop__video"
-              data-loop-video
-              playsinline
-              muted
-              loop
-              preload="metadata"
-              aria-label="Closed-loop demo recording"
-            ></video>
-            <button class="loop__playbtn" type="button" data-loop-play hidden aria-label="Play demo">
-              <span aria-hidden="true"></span>
+    <div class="hero-get">
+      <div class="hero-cmd" id="install">
+        <div class="hero-cmd__chip">
+          <div class="hero-scheme" data-scheme>
+            <button type="button" class="hero-scheme__btn" data-scheme-toggle aria-expanded="false" aria-haspopup="listbox" aria-controls="fxSchemeMenu">
+              <span>GET ForgeaX</span>
+              <i data-lucide="chevron-down" aria-hidden="true"></i>
             </button>
-            <div class="loop__pager" role="tablist" aria-orientation="horizontal" aria-label="Loop running">
-              <button class="loop__dot" type="button" role="tab" id="loop-tab-1" aria-controls="loop-panel-1" aria-selected="true" aria-label="State the need" data-loop-step></button>
-              <button class="loop__dot" type="button" role="tab" id="loop-tab-2" aria-controls="loop-panel-2" aria-selected="false" tabindex="-1" aria-label="Draft a plan" data-loop-step></button>
-              <button class="loop__dot" type="button" role="tab" id="loop-tab-3" aria-controls="loop-panel-3" aria-selected="false" tabindex="-1" aria-label="Edit scene, code, assets" data-loop-step></button>
-              <button class="loop__dot" type="button" role="tab" id="loop-tab-4" aria-controls="loop-panel-4" aria-selected="false" tabindex="-1" aria-label="Run and test" data-loop-step></button>
-              <button class="loop__dot" type="button" role="tab" id="loop-tab-5" aria-controls="loop-panel-5" aria-selected="false" tabindex="-1" aria-label="Review the changes" data-loop-step></button>
-              <button class="loop__dot" type="button" role="tab" id="loop-tab-6" aria-controls="loop-panel-6" aria-selected="false" tabindex="-1" aria-label="Approve and merge" data-loop-step></button>
-              <button class="loop__dot" type="button" role="tab" id="loop-tab-7" aria-controls="loop-panel-7" aria-selected="false" tabindex="-1" aria-label="Package a build" data-loop-step></button>
-            </div>
-          </figure>
-          <p class="loop__credit">Game demo made with ForgeaX</p>
-        </div>
-
-          <div class="loop__caption">
-            <div class="loop__panel is-active" role="tabpanel" id="loop-panel-1" aria-labelledby="loop-tab-1" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov">
-              <h3>State the need</h3>
-              <p class="lp-bubble">You say what you want in one sentence, and AI picks it up from there.</p>
-            </div>
-
-            <div class="loop__panel" role="tabpanel" id="loop-panel-2" aria-labelledby="loop-tab-2" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
-              <h3>Draft a plan</h3>
-              <p class="lp-bubble">AI lays out the steps first, then starts making changes.</p>
-            </div>
-
-            <div class="loop__panel" role="tabpanel" id="loop-panel-3" aria-labelledby="loop-tab-3" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
-              <h3>Edit scene, code, assets</h3>
-              <p class="lp-bubble">AI can change the scene, edit the code, and add the assets — you don't have to touch the files.</p>
-            </div>
-
-            <div class="loop__panel" role="tabpanel" id="loop-panel-4" aria-labelledby="loop-tab-4" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
-              <h3>Run and test</h3>
-              <p class="lp-bubble">AI runs and tests it on its own — you don't have to click through by hand.</p>
-            </div>
-
-            <div class="loop__panel" role="tabpanel" id="loop-panel-5" aria-labelledby="loop-tab-5" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
-              <h3>Review the changes</h3>
-              <p class="lp-bubble">Every change is laid out for you to review, and you can send it back.</p>
-            </div>
-
-            <div class="loop__panel" role="tabpanel" id="loop-panel-6" aria-labelledby="loop-tab-6" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
-              <h3>Approve and merge</h3>
-              <p class="lp-bubble">Nothing lands on the main line until you say yes.</p>
-            </div>
-
-            <div class="loop__panel" role="tabpanel" id="loop-panel-7" aria-labelledby="loop-tab-7" data-loop-panel data-loop-src="/assets/home/loop-demo-placeholder.mov" hidden>
-              <h3>Package a build</h3>
-              <p class="lp-bubble">It packs a build you can send straight to playtesters.</p>
-            </div>
+            <ul class="hero-scheme__menu" id="fxSchemeMenu" role="listbox" hidden aria-label="Choose an install option">
+              <li role="none"><button type="button" role="option" aria-selected="true" data-scheme-opt data-ide="">All Agents</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="claude">Claude Code</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="codex">Codex</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="cursor">Cursor</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="kimi">Kimi Code</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="deepseek">Deepseek Harness</button></li>
+            </ul>
           </div>
+          <code data-install-prompt>npx -y @forgeax/game install</code>
+          <button type="button" class="hero-cmd__copy" data-copy-cmd data-copied="Copied" aria-label="Copy">
+            <span class="hero-cmd__ic hero-cmd__ic--copy" aria-hidden="true"><i data-lucide="copy"></i></span>
+            <span class="hero-cmd__ic hero-cmd__ic--check" aria-hidden="true"><i data-lucide="check"></i></span>
+          </button>
+        </div>
+        <button type="button" class="hero-prompt-btn" data-copy-prompt data-copied="Copied" title="Your browser may ask to open the local app. If it isn’t installed, the prompt is still copied.">Copy install prompt</button>
+      </div>
+    </div>
+    </div>
+
+    <div class="hero-agents" aria-label="Available for these agents">
+      <p class="hero-agents__label">Available for these agents</p>
+      <div class="hero-agents__viewport">
+        <div class="hero-agents__track">
+          <ul class="hero-agents__row">
+            <li><img src="/assets/home/agents/claude-code.svg" alt="Claude Code" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/cursor.svg" alt="Cursor" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/chatgpt.svg" alt="ChatGPT" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/kimi.svg" alt="Kimi Code" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/deepseek.svg" alt="DeepSeek" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/opencode.svg" alt="OpenCode" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/zai.svg" alt="Z.ai" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/antigravity.svg" alt="Antigravity" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/vscode.svg" alt="VS Code" width="56" height="56" /></li>
+          </ul>
+          <ul class="hero-agents__row" aria-hidden="true">
+            <li><img src="/assets/home/agents/claude-code.svg" alt="" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/cursor.svg" alt="" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/chatgpt.svg" alt="" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/kimi.svg" alt="" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/deepseek.svg" alt="" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/opencode.svg" alt="" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/zai.svg" alt="" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/antigravity.svg" alt="" width="56" height="56" /></li>
+            <li><img src="/assets/home/agents/vscode.svg" alt="" width="56" height="56" /></li>
+          </ul>
         </div>
       </div>
-
     </div>
-
-    <!-- State 2 · the agent itself. The conversation is the whole surface. -->
-    <div class="fxi fxi--chat" data-fxi-chat role="region" tabindex="-1" aria-label="Idea Lab · Vertical-slice brief">
-      <div class="fxi__body">
-        <iframe class="fxi__frame" title="Idea Lab · Vertical-slice brief" data-fxi-frame></iframe>
-
-        <div class="fxi__boot" data-fxi-boot>
-          <span class="fxi__spinner" aria-hidden="true"></span>
-          <p>Waking the Idea Lab agent…</p>
-        </div>
-
-        <div class="fxi__state" data-fxi-waitlist hidden>
-          <h3>Opening soon</h3>
-          <p>Idea Lab is in private testing. The brief flow opens here shortly.</p>
-          <a class="fxi__cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download the client</a>
-        </div>
-      </div>
-
-      <div class="fxi__note" data-fxi-limit hidden>
-        <span>Preview turns are used up. Continue in Studio.</span>
-        <a data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download the client</a>
-      </div>
-    </div>
-
-    <!-- State 3 · the brief. Arrives only on forgeax:gdd, and its only forward
-         move is the client download. -->
-    <div class="fxi fxi--brief" data-fxi-brief role="region" tabindex="-1" aria-label="Vertical-slice brief">
-      <div class="fxi__bar">
-        <button class="fxi__bare" type="button" data-fxi-brief-back>
-          <i data-lucide="chevron-left" aria-hidden="true"></i>
-          <span>Back to the chat</span>
-        </button>
-        <span class="fxi__file"><i data-lucide="file-text" aria-hidden="true"></i>vertical-slice-brief.md</span>
-      </div>
-
-      <div class="fxi__docHead">
-        <h3>Vertical-slice brief</h3>
-        <p>Take the brief into ForgeaX Studio and the agent picks up from here — first tasks, scope, risks.</p>
-      </div>
-
-      <pre class="fxi__gdd" data-fxi-gdd tabindex="0"></pre>
-
-      <div class="fxi__foot cta">
-        <button class="fxi__ghost" type="button" data-fxi-copy data-copied="Copied">Copy brief</button>
-        <a class="btn primary" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span data-download-label>Download the client</span></a>
-      </div>
-    </div>
-
-    </div>
-    </div>
-
   </section>
 
-  <!-- §2 · Editor → CLI → engine -->
+  <!-- §3 · Agent plugin (main) → engine → Studio fallback -->
   <section class="section reveal-on-scroll immersive-section" id="sec-proof" data-immersive-section>
     <div class="pitch-grid">
       <article class="pitch-card">
         <div class="pitch-card__head">
-          <span class="ico" aria-hidden="true"><i data-lucide="app-window"></i></span>
-          <h3>AI-native editor</h3>
+          <h3>Plug into your Agent</h3>
         </div>
-        <p>The engine and the editor live in one full client — a visual workspace you can see and click.</p>
+        <p>Install ForgeaX into Claude Code, Codex, or Cursor, and make games with the tools you already use.</p>
         <div class="pitch-card__get">
-          <a class="btn ghost" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span>Download client</span></a>
+          <button type="button" class="btn ghost" data-copy-cmd data-copied="Copied"><span>Copy install command</span></button>
         </div>
       </article>
       <article class="pitch-card">
         <div class="pitch-card__head">
-          <span class="ico" aria-hidden="true"><i data-lucide="terminal"></i></span>
-          <h3>Open-source CLI</h3>
-        </div>
-        <p>Connects Codex, Cursor, and other local AI editors, so you run Forge with your own tools.</p>
-        <div class="pitch-card__get">
-          <button type="button" class="btn ghost" data-copy-cmd data-copy-prompt data-copied="Copied"><span>Copy setup prompt</span></button>
-        </div>
-      </article>
-      <article class="pitch-card">
-        <div class="pitch-card__head">
-          <span class="ico" aria-hidden="true"><i data-lucide="layers"></i></span>
-          <h3>Production pipeline</h3>
+          <h3>Engine core</h3>
         </div>
         <p>A stable engine core. Local production tools call it directly, so the picture and the play match.</p>
         <div class="pitch-card__get">
           <a class="btn ghost" href="https://github.com/ForgeaX-Games/forgeax-engine" target="_blank" rel="noopener"><span>Learn about the engine</span></a>
         </div>
       </article>
+      <article class="pitch-card">
+        <div class="pitch-card__head">
+          <h3>Studio client</h3>
+        </div>
+        <p>The fallback when you are not using a general Agent. Engine and editor live in one full client.</p>
+        <div class="pitch-card__get">
+          <a class="btn ghost" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span>Download Studio</span></a>
+        </div>
+      </article>
     </div>
   </section>
 
-  <!-- §3 · Games made with Forge — same hero + cards as the retired /games/ gallery -->
+  <!-- §4 · Games made with Forge — ticker, then a captioned ship-to strip -->
   <section class="section reveal-on-scroll immersive-section" id="sec-showcase" data-immersive-section data-reveal-delay="1">
     <div class="sec-head">
       <div>
         <h2>Made with ForgeaX</h2>
       </div>
     </div>
-    <div class="gm-hero" id="gmHero" aria-roledescription="carousel" aria-label="Featured">
-      <div class="gm-hero-track">
-        <div class="gm-cslide is-active" data-i="0" role="group" aria-roledescription="slide">
-          <img src="/assets/games/covers/hellforge.webp" alt="">
-          <div class="veil"></div>
-          <div class="c-inner">
-            <h2><a href="/games/detail/hellforge.html">ForgeaX: Hellforge</a></h2>
-            <div class="c-row"><div class="cta"><a class="btn primary" href="/games/hellforge/" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span>Play</span></a><a class="btn ghost" href="/games/detail/hellforge.html">View</a></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <section class="gm-featured-mobile" id="gmFeaturedMobile" aria-label="Featured">
-      <h2 class="gm-mobile-label">Featured</h2>
-      <div class="gm-featured-stack" id="gmFeaturedStack">
-        <a class="gm-spot-card" href="/games/hellforge/" target="_blank" rel="noopener" data-slug="hellforge">
-          <div class="thumb"><img src="/assets/games/covers/hellforge.webp" alt="" loading="lazy"><div class="fade"></div></div>
-          <div class="body"><h3>ForgeaX: Hellforge</h3><p>Dark-fantasy ARPG vertical slice — a sorceress with skeletal animation, from Cinderwatch camp into the Ashen Reach.</p></div>
-        </a>
-      </div>
-    </section>
-    <div class="gm-grid motion-stagger">
+    <div class="gm-marquee" data-count="4" data-loop="1" aria-label="Made with ForgeaX">
+      <div class="gm-marquee__viewport">
+        <div class="gm-marquee__track">
+          <div class="gm-marquee__row">
+      <a class="gm-card" href="/games/hellforge/" target="_blank" rel="noopener" data-slug="hellforge" data-featured="1" data-order="10" data-updated="2026-08-19" data-edit="0" data-tags="ARPG,3D,骨骼动画">
+        <div class="thumb"><img src="/assets/games/covers/hellforge.webp" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>ForgeaX: Hellforge</h3></div>
+      </a>
       <a class="gm-card" href="/games/planet-snake/" target="_blank" rel="noopener" data-slug="planet-snake" data-featured="1" data-order="7" data-updated="2026-08-24" data-edit="0" data-tags="动作,生存,3D">
         <div class="thumb"><img src="/assets/games/covers/planet-snake.jpg" alt="" loading="lazy"><div class="fade"></div></div>
         <div class="body"><h3>Planet Snake</h3></div>
@@ -481,10 +357,94 @@
         <div class="thumb"><img src="/assets/games/covers/ai-weapon-spirit.png" alt="" loading="lazy"><div class="fade"></div></div>
         <div class="body"><h3>My AI Companion Can't Be an Ancient Weapon Spirit!</h3></div>
       </a>
+          </div>
+          <div class="gm-marquee__row" aria-hidden="true">
+      <a class="gm-card" href="/games/hellforge/" target="_blank" rel="noopener" data-slug="hellforge" data-featured="1" data-order="10" data-updated="2026-08-19" data-edit="0" data-tags="ARPG,3D,骨骼动画">
+        <div class="thumb"><img src="/assets/games/covers/hellforge.webp" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>ForgeaX: Hellforge</h3></div>
+      </a>
+      <a class="gm-card" href="/games/planet-snake/" target="_blank" rel="noopener" data-slug="planet-snake" data-featured="1" data-order="7" data-updated="2026-08-24" data-edit="0" data-tags="动作,生存,3D">
+        <div class="thumb"><img src="/assets/games/covers/planet-snake.jpg" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>Planet Snake</h3></div>
+      </a>
+      <a class="gm-card" href="/games/go-karts/" target="_blank" rel="noopener" data-slug="go-karts" data-featured="1" data-order="5" data-updated="2026-08-02" data-edit="0" data-tags="竞速,卡丁车,3D,车库选装">
+        <div class="thumb"><img src="/assets/games/covers/go-karts.jpg" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>Pet Go-Karts</h3></div>
+      </a>
+      <a class="gm-card" href="/games/ai-weapon-spirit/" target="_blank" rel="noopener" data-slug="ai-weapon-spirit" data-featured="0" data-order="15" data-updated="2026-08-23" data-edit="0" data-tags="ARPG,3D,AI,ScriptablePack">
+        <div class="thumb"><img src="/assets/games/covers/ai-weapon-spirit.png" alt="" loading="lazy"><div class="fade"></div></div>
+        <div class="body"><h3>My AI Companion Can't Be an Ancient Weapon Spirit!</h3></div>
+      </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="publish-band" id="sec-publish">
+      <p class="publish-label">Ship to</p>
+      <ul class="publish-row" aria-label="Ship to">
+        <li class="publish-item">
+          <span class="publish-item__icon"><img src="/assets/home/platforms/zaohua.svg?v=4" alt="" width="56" height="56" /></span>
+          <span class="publish-item__name">造化工坊</span>
+        </li>
+        <li class="publish-item">
+          <span class="publish-item__icon"><img src="/assets/home/platforms/wechat.svg?v=4" alt="" width="56" height="56" /></span>
+          <span class="publish-item__name">WeChat Mini Game</span>
+        </li>
+        <li class="publish-item">
+          <span class="publish-item__icon"><img src="/assets/home/platforms/steam.svg?v=4" alt="" width="56" height="56" /></span>
+          <span class="publish-item__name">Steam</span>
+        </li>
+        <li class="publish-item">
+          <span class="publish-item__icon"><img src="/assets/home/platforms/steam-deck.svg?v=4" alt="" width="56" height="56" /></span>
+          <span class="publish-item__name">Steam Deck</span>
+        </li>
+        <li class="publish-item">
+          <span class="publish-item__icon"><img src="/assets/home/platforms/switch.svg?v=4" alt="" width="56" height="56" /></span>
+          <span class="publish-item__name">Switch</span>
+        </li>
+        <li class="publish-item">
+          <span class="publish-item__icon"><img src="/assets/home/platforms/kubee.png?v=4" alt="" width="56" height="56" /></span>
+          <span class="publish-item__name">Kubee</span>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- §5 · Founding Studios (secondary band) -->
+  <!-- §5 · Closing CTA -->
+  <section class="section reveal-on-scroll immersive-section" id="sec-end" data-immersive-section data-reveal-delay="2">
+    <div class="endcta">
+      <h2>Copy the command and start making a game</h2>
+      <div class="hero-cmd hero-cmd--end">
+        <div class="hero-cmd__chip">
+          <div class="hero-scheme" data-scheme>
+            <button type="button" class="hero-scheme__btn" data-scheme-toggle aria-expanded="false" aria-haspopup="listbox" aria-controls="fxSchemeMenuEnd">
+              <span>GET ForgeaX</span>
+              <i data-lucide="chevron-down" aria-hidden="true"></i>
+            </button>
+            <ul class="hero-scheme__menu" id="fxSchemeMenuEnd" role="listbox" hidden aria-label="Choose an install option">
+              <li role="none"><button type="button" role="option" aria-selected="true" data-scheme-opt data-ide="">All Agents</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="claude">Claude Code</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="codex">Codex</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="cursor">Cursor</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="kimi">Kimi Code</button></li>
+              <li role="none"><button type="button" role="option" aria-selected="false" data-scheme-opt data-ide="deepseek">Deepseek Harness</button></li>
+            </ul>
+          </div>
+          <code data-install-prompt>npx -y @forgeax/game install</code>
+          <button type="button" class="hero-cmd__copy" data-copy-cmd data-copied="Copied" aria-label="Copy">
+            <span class="hero-cmd__ic hero-cmd__ic--copy" aria-hidden="true"><i data-lucide="copy"></i></span>
+            <span class="hero-cmd__ic hero-cmd__ic--check" aria-hidden="true"><i data-lucide="check"></i></span>
+          </button>
+        </div>
+        <button type="button" class="hero-prompt-btn" data-copy-prompt data-copied="Copied" title="Your browser may ask to open the local app. If it isn’t installed, the prompt is still copied.">Copy install prompt</button>
+      </div>
+      <p class="hero-alt hero-alt--end">
+        <a class="hero-alt__link" href="/tutorials/">Read documentation</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- §6 · Founding Studios (secondary band) -->
   <section class="section reveal-on-scroll immersive-section" id="sec-founding" data-immersive-section data-reveal-delay="2">
     <div class="founding">
       <div>
@@ -495,21 +455,7 @@
     </div>
   </section>
 
-  <!-- §6 · Closing CTA -->
-  <section class="section reveal-on-scroll immersive-section" id="sec-end" data-immersive-section data-reveal-delay="2">
-    <div class="endcta">
-      <h2>Start with the client</h2>
-      <p>Install ForgeaX Studio for the full production loop.</p>
-      <div class="cta">
-        <a class="btn primary" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener"><span class="btn-fx" aria-hidden="true"></span><span data-download-label>Download client</span></a>
-        <a class="btn ghost" href="/tutorials/"><span>Read the tutorials</span></a>
-      </div>
-    </div>
-  </section>
-
 </main>
-<script>window.FX_EXPERIENCE={"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","installGuideUrl":"/tutorials/getting-started.html","contactEmail":"forgeax@outlook.com","chatUrl":"/idea/?app=chat&embed=1","chatOrigin":"","studioDeepLink":"forgeax://idea","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}};</script>
-
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
@@ -517,21 +463,19 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 <script src="/assets/immersive.js?v=822d32e9"></script>
-<script src="/assets/home-v2.js?v=d68c8083"></script>
+<script src="/assets/home-v2.js?v=69af4e74"></script>
 </body>
 </html>

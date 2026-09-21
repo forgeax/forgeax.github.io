@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Generate art with the authoring extensions — ForgeaX</title>
-<meta name="description" content="ForgeaX creation authoring extensions: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
+<title>ForgeaX Engine and plugin capability map — ForgeaX</title>
+<meta name="description" content="Choose the right ForgeaX capability for gameplay systems, image generation and editing, text-to-3D, image-to-3D, asset integration and verified preview." />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="Generate art with the authoring extensions — ForgeaX" />
-<meta property="og:description" content="ForgeaX creation authoring extensions: characters, animation, 3D, VFX, scenes, UI, music, narrative and numbers — from a sentence to game-ready assets." />
+<meta property="og:title" content="ForgeaX Engine and plugin capability map — ForgeaX" />
+<meta property="og:description" content="Choose the right ForgeaX capability for gameplay systems, image generation and editing, text-to-3D, image-to-3D, asset integration and verified preview." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/tutorials/extensions.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=66aed5b4" />
+<link rel="stylesheet" href="/assets/styles.css?v=f30fac8d" />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="color-scheme" content="light" />
 
 </head>
 <body class="lang-en forgeax-site">
@@ -40,8 +42,6 @@
       <a href="/tutorials/" data-nav="/tutorials/" class="active">Tutorials</a>
       <a href="/examples/" data-nav="/examples/">Examples</a>
       <a href="/marketplace/" data-nav="/marketplace/">Plugins</a>
-      <a href="/changelog/" data-nav="/changelog/">Changelog</a>
-      <a href="/about.html" data-nav="/about.html">About</a>
     </div>
     <div class="nav-right">
       <div class="lang-menu" id="langMenu">
@@ -51,7 +51,7 @@
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item active" href="/tutorials/extensions.html" data-l="en" aria-current="true">English</a><a class="lang-item" href="/zh/tutorials/extensions.html" data-l="zh">中文</a><a class="lang-item" href="/ja/tutorials/extensions.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/extensions.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/extensions.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/extensions.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/extensions.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/extensions.html" data-l="pt">Português</a></div>
       </div>
       <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" data-download-primary href="https://github.com/ForgeaX-Games/forgeax-studio/releases/latest" target="_blank" rel="noopener">Download</a>
+      <a class="nav-cta" href="/#install">Get started</a>
     </div>
   </div>
 </nav>
@@ -59,51 +59,67 @@
 <main>
   <article class="read article">
     <a class="back" href="/tutorials/">← Back to tutorials</a>
-    <h1>Generate art with the authoring extensions</h1>
-    <p class="standfirst">Beyond chatting, ForgeaX has a set of "authoring extensions" — each a panel plus a group of tools that turn a sentence into game-ready assets. You by hand and AI by dispatch edit the same artifact.</p>
+    <h1>Use the Engine and creation plugins by task</h1>
+    <p class="standfirst">Do not begin with product names or panels. Begin with the artifact or behavior you need. Your AI client can combine ForgeaX Game, creation tools and Engine Skills in one workflow.</p>
 
     <div class="prose">
-      <div class="note">✅ Open source (Apache-2.0). Below is an overview of the authoring system; for clone &amp; install see the <a href="/docs/">docs</a>.</div>
+      <div class="note"><strong>One conversation can cross capabilities.</strong> For example: generate concept art → turn it into a mesh → integrate the mesh as a Pack asset → add physics and gameplay → run and verify the result.</div>
 
-      <h2>Characters · animation · VFX</h2>
+      <h2>The four surfaces your agent combines</h2>
       <ul>
-        <li><strong>Character editor</strong> — write a one-line brief, get a portrait plus a turnaround.</li>
-        <li><strong>Animation</strong> — turn a still character into walking, attacking, four-direction, skeletal motion (even short clips) — without face drift.</li>
-        <li><strong>Skill / VFX</strong> — add effects like fire, slashes and auras, auto-attached to the moment of cast.</li>
+        <li><strong>ForgeaX Game</strong> — Binds the project, installs Skills and SDK, builds the game and returns preview evidence.</li>
+        <li><strong>Image generation</strong> — Creates or edits PNG/JPG assets for concepts, icons, textures, backgrounds and UI.</li>
+        <li><strong>3D generation</strong> — Creates GLB models from text or images and saves them into the active game assets.</li>
+        <li><strong>Engine Skills + SDK</strong> — Provides exact authoring guidance and APIs for ECS, rendering, physics, UI, audio, VFX and assets.</li>
       </ul>
 
-      <h2>3D modeling &amp; generation</h2>
-      <ul>
-        <li><strong>Blocky-character editor</strong> — build rigged 3D characters like snapping blocks, export standard 3D files.</li>
-        <li><strong>Low-poly generator</strong> — build 3D props with a node-graph; change one parameter, regenerate the set.</li>
-        <li><strong>3D generation</strong> — text or image straight to a 3D model, plugged into several top generators, pick whichever's best.</li>
-      </ul>
+      <h2>What you can ask it to complete</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Your task</th><th>Capability path</th><th>Result in the project</th></tr></thead>
+          <tbody>
+            <tr><td>Create an icon, key art, texture or UI panel</td><td><code>forgeax_generate_image</code></td><td>A PNG/JPG saved under the active game assets.</td></tr>
+            <tr><td>Keep the composition but change style, color or detail</td><td><code>forgeax_generate_image</code> with a local input image</td><td>An edited asset variant without rebuilding the image from scratch.</td></tr>
+            <tr><td>Create a prop, pickup, environment piece or placeholder character</td><td><code>forgeax_generate_3d</code> from text</td><td>A project-relative <code>.glb</code> ready for Engine integration.</td></tr>
+            <tr><td>Turn approved concept art into a mesh</td><td><code>forgeax_generate_3d</code> from a public image URL or configured local upload</td><td>A mesh derived from the visual reference, then validated in the real scene.</td></tr>
+            <tr><td>Add movement, combat, camera, UI, audio, VFX or levels</td><td>Installed <code>forgeax-engine-*</code> Skills + exact SDK declarations</td><td>Game code and authored assets wired into the Engine lifecycle.</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-      <h2>Scenes · UI · items</h2>
-      <ul>
-        <li><strong>Scene generator</strong> — assemble a whole game scene as a graph you can re-run anytime.</li>
-        <li><strong>2D scene-asset generator</strong> — batch props, textures, decorations and UI bits, auto-named and filed.</li>
-        <li><strong>UI authoring</strong> — a UI set for your game type — not just images, a clickable prototype.</li>
-        <li><strong>Items / icons</strong> — weapons, potions, coins as icons with their data, art and numbers in one table.</li>
-      </ul>
+      <h2>A reliable asset-to-game workflow</h2>
+      <p>Generated media is only the beginning. Finish the loop inside the Engine:</p>
+      <ol>
+        <li><strong>Specify</strong> — Describe silhouette, style, scale, palette and gameplay purpose.</li>
+        <li><strong>Generate</strong> — Create or edit the source image or GLB in the active game.</li>
+        <li><strong>Integrate</strong> — Use Pack/assets, materials, colliders, animation or UI as needed.</li>
+        <li><strong>Verify</strong> — Run the game and judge readability, scale, collision and performance in context.</li>
+      </ol>
 
-      <h2>Narrative · music · look · numbers</h2>
-      <ul>
-        <li><strong>Narrative authoring</strong> — from a spark to a full story and world, with the AI picking a fitting approach.</li>
-        <li><strong>Music / BGM</strong> — manage background music and sound effects, sequencing a whole session's score.</li>
-        <li><strong>Color / Look</strong> — unify the whole game's color mood in one click, like a filter over everything.</li>
-        <li><strong>Balance</strong> — have AI play thousands of matches and report win rates with confidence intervals; let data judge the tuning.</li>
-      </ul>
+      <h2>Prompts that produce useful artifacts</h2>
+      <p>IMAGE + UI</p>
+      <pre><code>Generate a transparent 1024×1024 energy-shard icon for this game.
+Match the existing cyan/amber palette, keep a readable silhouette at 48 px,
+save it in the active game assets, integrate it into the pickup HUD, then run and verify it.</code></pre>
+      <p>TEXT → 3D → GAMEPLAY</p>
+      <pre><code>Generate a low-poly sci-fi energy pylon as a GLB, save it in the active game,
+then use the Engine asset and physics guidance to place three pylons as solid obstacles.
+Run the game and verify scale, collision and camera readability.</code></pre>
+      <p>ENGINE SYSTEM</p>
+      <pre><code>Add a dash ability with a short cooldown, a visible recharge indicator and a brief VFX trail.
+Read the installed input, ECS, state, UI and VFX guidance first.
+Verify keyboard behavior and cooldown timing in the Play build.</code></pre>
 
-      <h2>System &amp; author tools</h2>
+      <h2>Know where the boundaries are</h2>
+      <p>ForgeaX keeps generated content and runtime behavior traceable instead of hiding them behind a one-off editor action:</p>
       <ul>
-        <li><strong>Code</strong> — browse code, jump between files, and edit alongside the coding AI.</li>
-        <li><strong>Observatory</strong> — replay every step the AI took, like a black box, to pinpoint where things went wrong.</li>
-        <li><strong>Plugin author</strong> — let non-coders build their own authoring plugins.</li>
-        <li><strong>Admin</strong> — the studio control panel: toggle authoring extensions, bind models, see which AIs are online.</li>
+        <li><strong>The host agent owns source edits.</strong> It changes the active game with normal file tools; MCP stays bounded to setup, status, generation and launch.</li>
+        <li><strong>The Engine owns runtime contracts.</strong> The agent reads installed Skills and the version-matched SDK instead of inventing imports from memory.</li>
+        <li><strong>The project owns the result.</strong> Images, GLBs, code and Pack declarations remain in your directory and can be versioned, inspected and repaired.</li>
       </ul>
+      <div class="note">For image-to-3D, the input must be a public HTTPS URL, or a local file when the environment has ForgeaX COS upload configured. Text-to-3D works directly from a prompt.</div>
 
-      <blockquote>Can't draw, model or compose? That's fine — describe it, and the authoring extensions produce assets that drop straight into your game.</blockquote>
+      <blockquote>A useful plugin does not just generate media. It helps the agent place that media inside a working game and prove the result in context.</blockquote>
     </div>
     <figure class="media-figure">
       <div class="media-embed">
@@ -112,12 +128,13 @@
           playsinline
           preload="metadata"
           poster="/assets/tutorials/gen3d-demo-poster.jpg"
-          aria-label="3D character generation plugin demo"
+          aria-label="Example: generate a 3D asset, save it into the project and continue the Engine integration loop."
           src="/assets/tutorials/gen3d-demo.mp4"
         ></video>
       </div>
-      <figcaption>3D character generation plugin demo</figcaption>
+      <figcaption>Example: generate a 3D asset, save it into the project and continue the Engine integration loop.</figcaption>
     </figure>
+    <p style="margin-top:32px"><a class="btn primary" href="/tutorials/verify.html">Next: build, inspect and verify →</a></p>
   </article>
 </main>
 
@@ -127,19 +144,17 @@
     <p>An AI-native personal game studio — turn ideas into playable games.</p>
   </div>
   <nav class="foot-links" aria-label="Site">
-    <a href="/changelog/">Changelog</a>
     <a href="/tutorials/">Tutorials</a>
     <a href="/examples/">Examples</a>
     <a href="/marketplace/">Plugins</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub org</a>
-    <a href="/about.html">About</a>
     <a href="/license.html">License</a>
   </nav>
 </div>
 <div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
 </footer>
 
-<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.28","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.28","mac":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_aarch64.dmg","win":"https://github.com/ForgeaX-Games/forgeax-studio/releases/download/v0.3.28/ForgeaX.Studio_0.3.28_x64-setup.exe","linux":""}});</script>
-<script src="/assets/site.js?v=cc748cc1"></script>
+<script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
+<script src="/assets/site.js?v=2513f655"></script>
 </body>
 </html>
