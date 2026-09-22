@@ -1,4 +1,4 @@
-/* ForgeaX examples hub — select, filter, keyboard nav, iframe loading */
+/* ForgeAX examples hub — select, filter, keyboard nav, iframe loading */
 (function () {
   var dataEl = document.getElementById("ex-data");
   if (!dataEl) return;

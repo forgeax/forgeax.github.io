@@ -1,4 +1,4 @@
-/* ForgeaX site — client interactions only.
+/* ForgeAX site — client interactions only.
    Chrome (nav/footer/head) and i18n are now baked at build time by build-site.mjs: every
    page is single-language with static header/footer and its language in the URL + <html lang>.
    This file therefore carries NO runtime chrome injection and NO runtime translation — just
@@ -112,7 +112,7 @@
   }
   if (!window.__forgeParticlesBoot && (detectForgePage() === "home" || document.body.classList.contains("has-immersive"))) {
     window.__forgeParticlesBoot = true;
-    loadScript("/assets/forge-scenes.js?v=5e1dd588", function () {
+    loadScript("/assets/forge-scenes.js?v=d68c9bf0", function () {
       loadScript("/assets/forge-particles.js?v=4e6877b8", function () {
         loadScript("/assets/light-field.js?v=c9f175de");
       });

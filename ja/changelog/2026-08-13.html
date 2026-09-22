@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026-08-13 · ForgeaX Studio v0.3.27：セットアップの安定化、プレビューの拡充、独立した Game Runtime パッケージ — ForgeaX</title>
-<meta name="description" content="ForgeaX Studio v0.3.27 は拡張機能のセットアップと Windows プラグインリンクを改善し、マテリアル・メッシュ・VFX プレビューを追加し、Game Runtime パッケージを独立した公開対象にしました。" />
+<title>2026-08-13 · ForgeAX Studio v0.3.27：セットアップの安定化、プレビューの拡充、独立した Game Runtime パッケージ — ForgeAX</title>
+<meta name="description" content="ForgeAX Studio v0.3.27 は拡張機能のセットアップと Windows プラグインリンクを改善し、マテリアル・メッシュ・VFX プレビューを追加し、Game Runtime パッケージを独立した公開対象にしました。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="2026-08-13 · ForgeaX Studio v0.3.27：セットアップの安定化、プレビューの拡充、独立した Game Runtime パッケージ — ForgeaX" />
-<meta property="og:description" content="ForgeaX Studio v0.3.27 は拡張機能のセットアップと Windows プラグインリンクを改善し、マテリアル・メッシュ・VFX プレビューを追加し、Game Runtime パッケージを独立した公開対象にしました。" />
+<meta property="og:title" content="2026-08-13 · ForgeAX Studio v0.3.27：セットアップの安定化、プレビューの拡充、独立した Game Runtime パッケージ — ForgeAX" />
+<meta property="og:description" content="ForgeAX Studio v0.3.27 は拡張機能のセットアップと Windows プラグインリンクを改善し、マテリアル・メッシュ・VFX プレビューを追加し、Game Runtime パッケージを独立した公開対象にしました。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://forgeax.github.io/ja/changelog/2026-08-13.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=d72d48c9" />
+<link rel="stylesheet" href="/assets/styles.css?v=bb431925" />
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="color-scheme" content="light" />
 
@@ -35,7 +35,7 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <a class="nav-brand" href="/ja/"><img src="/logo.svg?v=3" alt="ForgeAX" /><span>Forge<b>AX</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
       <a href="/ja/" data-nav="/">ホーム</a>
@@ -50,7 +50,6 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/changelog/2026-08-13.html" data-l="en">English</a><a class="lang-item" href="/zh/changelog/2026-08-13.html" data-l="zh">中文</a><a class="lang-item active" href="/ja/changelog/2026-08-13.html" data-l="ja" aria-current="true">日本語</a><a class="lang-item" href="/ko/changelog/2026-08-13.html" data-l="ko">한국어</a><a class="lang-item" href="/es/changelog/2026-08-13.html" data-l="es">Español</a><a class="lang-item" href="/de/changelog/2026-08-13.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/changelog/2026-08-13.html" data-l="fr">Français</a><a class="lang-item" href="/pt/changelog/2026-08-13.html" data-l="pt">Português</a></div>
       </div>
-      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
       <a class="nav-cta" href="/ja/#install">はじめる</a>
     </div>
   </div>
@@ -60,7 +59,7 @@
   <article class="read article">
     <a class="back" href="/ja/changelog/">← 変更履歴</a>
     <div class="meta"><span class="tag brand">更新</span><span>2026-08-13</span></div>
-    <h1>ForgeaX Studio v0.3.27：セットアップの安定化、プレビューの拡充、独立した Game Runtime パッケージ</h1>
+    <h1>ForgeAX Studio v0.3.27：セットアップの安定化、プレビューの拡充、独立した Game Runtime パッケージ</h1>
     <p class="standfirst">v0.3.27 では初回セットアップの信頼性を高め、Windows のマーケットプレイスリンクを修正し、Studio にマテリアル・メッシュ・VFX プレビューを追加し、ゲームホストが独立公開されたランタイムパッケージを利用できるようにしました。</p>
     <div class="prose"><h2>よりスムーズな初回セットアップ</h2>
 <p>Studio はセットアップ時に、各拡張機能が宣言したパッケージマネージャーとロックファイルに従うようになりました。Windows では Marketplace プラグインのディレクトリを利用可能なディレクトリリンクへ正規化し、シンボリックリンクのプレースホルダーを作業ディレクトリに使えないことによる子プロセスの失敗を防ぎます。</p>
@@ -68,7 +67,7 @@
 <p>マテリアル、メッシュ、VFX のプレビュービューポートは editor facade 経由で登録され、Studio ホストから同じプレビュー機能を利用できます。アセットのインポートと catalog ベースのファイル操作も一貫したパスマッピングを使い、エディター上のパスとディスク上のファイルを揃えます。</p>
 <h2>Game Runtime を独立して公開</h2>
 <p>Game Runtime パッケージと SDK 宣言は独立したリリース対象としてビルドされます。ゲームホストは Studio 全体をビルドせずにランタイムを利用できます。</p>
-<p><a href="https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.27">ForgeaX Studio v0.3.27 のリリース</a>をご覧ください。</p>
+<p><a href="https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.27">ForgeAX Studio v0.3.27 のリリース</a>をご覧ください。</p>
 </div>
     <p style="margin-top:32px"><a class="btn ghost" href="/ja/changelog/">← すべての更新</a></p>
   </article>
@@ -76,7 +75,7 @@
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
-    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>AX</b></span></div>
     <p>AI ネイティブのパーソナル ゲーム スタジオ — アイデアをプレイ可能なゲームに変えます。</p>
   </div>
   <nav class="foot-links" aria-label="サイト">
@@ -87,10 +86,10 @@
     <a href="/ja/license.html">ライセンス</a>
   </nav>
 </div>
-<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeAX · github.com/ForgeaX-Games</div>
 </footer>
 
 <script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
-<script src="/assets/site.js?v=2513f655"></script>
+<script src="/assets/site.js?v=01759541"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* ForgeaX scene profiles — fixed brand neon lime palette (no section morph) */
+/* ForgeAX scene profiles — fixed brand neon lime palette (no section morph) */
 var LIME = {
   a: [212, 255, 72],
   b: [72, 255, 207],

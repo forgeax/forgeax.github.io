@@ -614,4 +614,195 @@
       });
     });
   })();
+
+  /* ── §4 games marquee — drag and wheel, then resume the ticker ─────────── */
+  (function gamesMarquee() {
+    var root = document.querySelector("#sec-showcase .gm-marquee");
+    if (!root) return;
+    var viewport = root.querySelector(".gm-marquee__viewport");
+    var track = root.querySelector(".gm-marquee__track");
+    if (!viewport || !track || root.getAttribute("data-loop") !== "1") return;
+
+    var DRAG_SLOP = 6;
+    var looping = root.getAttribute("data-loop") === "1" && !reduced;
+    var pointerId = null;
+    var originX = 0;
+    var originY = 0;
+    var originOffset = 0;
+    var dragging = false;
+    var suppressClick = false;
+    var manual = false;
+    var paused = false;
+    var offset = 0;
+    var half = 0;
+    var speed = 0;
+    var duration = 32000;
+    var lastTs = 0;
+    var raf = 0;
+
+    function readX() {
+      var value = getComputedStyle(track).transform;
+      if (!value || value === "none") return 0;
+      if (typeof DOMMatrix === "function") return new DOMMatrix(value).m41 || 0;
+      var match = value.match(/matrix(?:3d)?\((.+)\)/);
+      if (!match) return 0;
+      var parts = match[1].split(",");
+      return parseFloat(parts.length === 16 ? parts[12] : parts[4]) || 0;
+    }
+
+    function wrap(x) {
+      if (!(half > 0)) return x;
+      var m = x % half;
+      if (m > 0) m -= half;
+      return m;
+    }
+
+    function measure() {
+      half = track.scrollWidth / 2;
+      speed = half > 0 && duration > 0 ? half / duration : 0;
+    }
+
+    function apply() {
+      track.style.transform = "translate3d(" + offset + "px,0,0)";
+    }
+
+    function held() {
+      return dragging || viewport.matches(":hover") || root.matches(":focus-within");
+    }
+
+    function ensureManual() {
+      if (!looping) return;
+      if (manual) {
+        measure();
+        return;
+      }
+      var raw = getComputedStyle(track).animationDuration || "32s";
+      var n = parseFloat(raw);
+      duration = !isFinite(n) || n <= 0 ? 32000 : (/ms/.test(raw) ? n : n * 1000);
+      var x = readX();
+      measure();
+      manual = true;
+      root.classList.add("is-manual");
+      offset = wrap(x);
+      apply();
+      paused = true;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+
+    function tick(ts) {
+      if (!lastTs) lastTs = ts;
+      var dt = Math.min(48, ts - lastTs);
+      lastTs = ts;
+      if (manual && !paused && !dragging && speed > 0) {
+        offset = wrap(offset - speed * dt);
+        apply();
+      }
+      raf = requestAnimationFrame(tick);
+    }
+
+    function armDrag(e) {
+      dragging = true;
+      suppressClick = true;
+      root.classList.add("is-dragging");
+      if (looping) {
+        ensureManual();
+        originOffset = offset;
+        paused = true;
+      } else {
+        originOffset = viewport.scrollLeft;
+      }
+      if (viewport.setPointerCapture) viewport.setPointerCapture(e.pointerId);
+    }
+
+    function moveBy(dx) {
+      if (looping) {
+        offset = wrap(originOffset + dx);
+        apply();
+      } else {
+        viewport.scrollLeft = originOffset - dx;
+      }
+    }
+
+    viewport.addEventListener("pointerdown", function (e) {
+      if (e.button !== 0) return;
+      pointerId = e.pointerId;
+      originX = e.clientX;
+      originY = e.clientY;
+      dragging = false;
+    });
+
+    viewport.addEventListener("pointermove", function (e) {
+      if (e.pointerId !== pointerId) return;
+      var dx = e.clientX - originX;
+      var dy = e.clientY - originY;
+      if (!dragging) {
+        if (Math.hypot(dx, dy) < DRAG_SLOP) return;
+        if (e.pointerType !== "mouse" && Math.abs(dy) > Math.abs(dx)) {
+          pointerId = null;
+          return;
+        }
+        armDrag(e);
+      }
+      moveBy(dx);
+    });
+
+    function endDrag(e) {
+      if (e.pointerId !== pointerId && e.pointerId !== undefined) return;
+      pointerId = null;
+      if (!dragging) return;
+      dragging = false;
+      root.classList.remove("is-dragging");
+      paused = held();
+    }
+
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+    viewport.addEventListener("dragstart", function (e) { e.preventDefault(); });
+    viewport.addEventListener("click", function (e) {
+      if (!suppressClick) return;
+      suppressClick = false;
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+
+    viewport.addEventListener("pointerenter", function () {
+      if (manual) paused = true;
+    });
+    viewport.addEventListener("pointerleave", function () {
+      if (dragging) return;
+      if (manual) paused = root.matches(":focus-within");
+    });
+    root.addEventListener("focusin", function () { if (manual) paused = true; });
+    root.addEventListener("focusout", function () {
+      if (manual && !dragging) paused = viewport.matches(":hover");
+    });
+
+    viewport.addEventListener("wheel", function (e) {
+      var dx = e.deltaX;
+      var dy = e.deltaY;
+      var scale = e.deltaMode === 1 ? 16 : (e.deltaMode === 2 ? viewport.clientWidth : 1);
+      dx *= scale;
+      dy *= scale;
+      var delta = Math.abs(dx) > Math.abs(dy) ? dx : dy;
+      if (!delta) return;
+      e.preventDefault();
+      if (looping) {
+        ensureManual();
+        offset = wrap(offset - delta);
+        apply();
+        paused = true;
+      } else {
+        viewport.scrollLeft += delta;
+      }
+    }, { passive: false });
+
+    if (typeof ResizeObserver === "function") {
+      new ResizeObserver(function () {
+        if (!manual) return;
+        measure();
+        offset = wrap(offset);
+        apply();
+      }).observe(viewport);
+    }
+  })();
 })();

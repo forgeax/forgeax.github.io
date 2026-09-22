@@ -1,4 +1,4 @@
-# ForgeaX Engine + SDK: AI bootstrap contract
+# ForgeAX Engine + SDK: AI bootstrap contract
 
 You are an AI coding Agent. Execute this contract exactly. Do not guess versions,
 URLs, packages, or recovery steps.
@@ -18,7 +18,7 @@ URLs, packages, or recovery steps.
    manifest, offline store, generated `dist/`, `node_modules/`, or `.forgeax/` state.
 4. The SDK root and every child of it are forbidden game targets. Use a sibling or
    another external absolute path. `forgeax new` must not overwrite an existing path.
-5. Direct edit is the default. Do not start the ForgeaX closed loop unless the user
+5. Direct edit is the default. Do not start the ForgeAX closed loop unless the user
    explicitly authorizes it for the current task.
 6. The user's machine must provide pnpm `>=11.7.0 <12`. Check `pnpm --version`
    before any bootstrap or project command; if it is unavailable or unsupported,
@@ -96,7 +96,7 @@ dependencies before `new`.
 rebuildable Agent discovery links. If `skill verify --json` is not OK, run
 `skill install --json`, verify again, and stop on any remaining error.
 
-## Existing ForgeaX game
+## Existing ForgeAX game
 
 If the target already contains `forge.json`, `package.json`, and its entry module, do
 not run `new` or install the SDK carrier into the game. Read its `AGENTS.md`, then use:

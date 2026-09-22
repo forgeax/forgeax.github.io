@@ -1,7 +1,7 @@
 /* =============================================================================
    Homepage v2 — docs/planning/homepage-v2-wireframe.md
    Layout language: editorial split hero + frosted panels + hairline rules, on the
-   existing ForgeaX glass tokens (glass-tokens.css) — no new palette is introduced.
+   existing ForgeAX glass tokens (glass-tokens.css) — no new palette is introduced.
    Everything here is scoped to .home-v2 so the rest of the site is untouched.
    ============================================================================= */
 
@@ -112,7 +112,7 @@
 }
 .home-v2 .hero-wordmark {
   font-size: clamp(38px, 5vw, 60px);
-  font-weight: 700;
+  font-weight: 900;
   letter-spacing: -0.045em;
   line-height: 1;
   color: var(--text-primary);
@@ -122,6 +122,18 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+:lang(zh) .home-v2 .hero-wordmark {
+  font-family: "Hiragino Sans", "PingFang SC", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+/* 创/戏 are simplified-only. Hiragino Sans (JP) has no glyphs for them,
+   so those two characters fell back to a lighter face. GB W6 covers all four. */
+:lang(zh) .home-v2 .brand-heavy {
+  font-family: "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .home-v2 .hero-lockup {
@@ -151,17 +163,6 @@
   overflow-wrap: break-word;
   word-break: keep-all;
 }
-.forgeax-site .home-v2 .hero--center .sub {
-  margin: clamp(12px, 1.6vh, 18px) 0 0;
-  width: auto;
-  max-width: min(36ch, 100%);
-  min-width: 0;
-  font-size: clamp(15px, min(2.4cqi, 2.2vw), 20px);
-  line-height: 1.5;
-  color: var(--text-secondary);
-  text-wrap: balance;
-}
-
 @media (min-width: 860px) and (min-height: 560px) {
   .forgeax-site .home-v2 .hero--center h1 {
     font-size: clamp(40px, min(11.2cqi, 6.8vw + 8px), 96px);
@@ -1160,8 +1161,18 @@
   overflow: hidden;
   padding-block: 8px;
   margin-block: -8px;
+  cursor: grab;
+  touch-action: pan-y;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+}
+.home-v2 #sec-showcase .gm-marquee.is-dragging .gm-marquee__viewport {
+  cursor: grabbing;
+  user-select: none;
+}
+.home-v2 #sec-showcase .gm-marquee__viewport img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 .home-v2 #sec-showcase .gm-marquee__track {
   display: flex;
@@ -1169,8 +1180,13 @@
   animation: gm-marquee-scroll 32s linear infinite;
 }
 .home-v2 #sec-showcase .gm-marquee:hover .gm-marquee__track,
-.home-v2 #sec-showcase .gm-marquee:focus-within .gm-marquee__track {
+.home-v2 #sec-showcase .gm-marquee:focus-within .gm-marquee__track,
+.home-v2 #sec-showcase .gm-marquee.is-dragging .gm-marquee__track,
+.home-v2 #sec-showcase .gm-marquee.is-manual .gm-marquee__track {
   animation-play-state: paused;
+}
+.home-v2 #sec-showcase .gm-marquee.is-manual .gm-marquee__track {
+  animation: none;
 }
 .home-v2 #sec-showcase .gm-marquee__row {
   display: flex;
@@ -1289,6 +1305,9 @@
   letter-spacing: -0.01em;
   color: var(--text-secondary);
   text-align: center;
+}
+.home-v2 .publish-item.is-unsupported .publish-item__name {
+  color: var(--text-tertiary);
 }
 @media (max-width: 640px) {
   .home-v2 .publish-item { width: 92px; }

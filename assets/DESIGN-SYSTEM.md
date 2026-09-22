@@ -1,6 +1,6 @@
-# ForgeaX Site — UI 规范（对齐 Studio）
+# ForgeAX Site — UI 规范（对齐 Studio）
 
-本静态站 **必须** 服从 ForgeaX Studio 官方设计系统，不得自建平行色板。
+本静态站 **必须** 服从 ForgeAX Studio 官方设计系统，不得自建平行色板。
 
 ## 唯一 Token 来源（SSOT）
 

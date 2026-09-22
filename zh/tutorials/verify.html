@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>构建、检查并验证 ForgeaX 游戏 — ForgeaX</title>
-<meta name="description" content="使用 ForgeaX Game 与 ForgeaX Engine 诊断能力，验证项目身份、构建结果、真实 Play 行为、运行状态、渲染与性能。" />
+<title>构建、检查并验证天工引擎游戏 — 天工引擎</title>
+<meta name="description" content="使用 ForgeAX Game 与天工引擎诊断能力，验证项目身份、构建结果、真实 Play 行为、运行状态、渲染与性能。" />
 <link rel="icon" href="/logo.svg?v=3" type="image/svg+xml" />
-<meta property="og:title" content="构建、检查并验证 ForgeaX 游戏 — ForgeaX" />
-<meta property="og:description" content="使用 ForgeaX Game 与 ForgeaX Engine 诊断能力，验证项目身份、构建结果、真实 Play 行为、运行状态、渲染与性能。" />
+<meta property="og:title" content="构建、检查并验证天工引擎游戏 — 天工引擎" />
+<meta property="og:description" content="使用 ForgeAX Game 与天工引擎诊断能力，验证项目身份、构建结果、真实 Play 行为、运行状态、渲染与性能。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://forgeax.github.io/zh/tutorials/verify.html" />
 <meta property="og:image" content="https://forgeax.github.io/logo.svg" />
@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=d72d48c9" />
+<link rel="stylesheet" href="/assets/styles.css?v=bb431925" />
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="color-scheme" content="light" />
 
@@ -35,7 +35,7 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="ForgeaX" /><span>Forge<b>aX</b></span></a>
+    <a class="nav-brand" href="/zh/"><img src="/logo.svg?v=3" alt="天工引擎" /><span>天工<b>引擎</b></span></a>
     <button class="nav-burger" id="burger" aria-label="menu"><span class="ui-icon" aria-hidden="true"><i data-lucide="menu"></i></span></button>
     <div class="nav-links" id="navlinks">
       <a href="/zh/" data-nav="/">主页</a>
@@ -50,7 +50,6 @@
         </button>
         <div class="lang-menu-list" id="langMenuList" role="listbox" hidden><a class="lang-item" href="/tutorials/verify.html" data-l="en">English</a><a class="lang-item active" href="/zh/tutorials/verify.html" data-l="zh" aria-current="true">中文</a><a class="lang-item" href="/ja/tutorials/verify.html" data-l="ja">日本語</a><a class="lang-item" href="/ko/tutorials/verify.html" data-l="ko">한국어</a><a class="lang-item" href="/es/tutorials/verify.html" data-l="es">Español</a><a class="lang-item" href="/de/tutorials/verify.html" data-l="de">Deutsch</a><a class="lang-item" href="/fr/tutorials/verify.html" data-l="fr">Français</a><a class="lang-item" href="/pt/tutorials/verify.html" data-l="pt">Português</a></div>
       </div>
-      <a class="nav-github" href="https://github.com/ForgeaX-Games/forgeax-studio" target="_blank" rel="noopener">GitHub</a>
       <a class="nav-cta" href="/zh/#install">开始使用</a>
     </div>
   </div>
@@ -60,7 +59,7 @@
   <article class="read article">
     <a class="back" href="/zh/tutorials/">← 返回教程</a>
     <h1>构建、检查并验证真正运行的游戏</h1>
-    <p class="standfirst">一份代码 diff 不是可玩结果。ForgeaX 为 AI 客户端提供多层独立证据，让它分清“代码编译了”和“游戏真的能玩”。</p>
+    <p class="standfirst">一份代码 diff 不是可玩结果。天工引擎为 AI 客户端提供多层独立证据，让它分清“代码编译了”和“游戏真的能玩”。</p>
 
     <div class="prose">
       <div class="note"><strong>优先使用能覆盖真实玩家路径的最窄证据。</strong>截图、结构化状态检查与真实 GPU 执行回答的是不同问题，任何一种都不能替代全部。</div>
@@ -73,8 +72,8 @@
         <li><strong>引擎证据</strong> — 行为异常时检查运行状态、渲染事实、结构化错误、性能记录或帧捕获。 <code>Remote · Profiler · RHI debug</code></li>
       </ol>
 
-      <h2>引擎怎样帮助定位问题</h2>
-      <p>ForgeaX Engine 会暴露通常被黑屏或模糊 bug 报告遮住的状态：</p>
+      <h2>天工引擎怎样帮助定位问题</h2>
+      <p>天工引擎会暴露通常被黑屏或模糊 bug 报告遮住的状态：</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>现象</th><th>应该检查的证据</th><th>它能区分什么</th></tr></thead>
@@ -113,29 +112,29 @@ renderer.frustumStats、相机朝向与渲染 pass。
         <li><strong>观察到的行为</strong>——真正测试了哪些操作、交互、状态与视觉。</li>
         <li><strong>剩余不确定性</strong>——没有执行的验证层必须明确标成“未验证”，而不是暗示全部通过。</li>
       </ul>
-      <blockquote>ForgeaX 把验证视为创作的一部分：检查真实状态，做聚焦修改，用准确 Runtime 运行，再用可观察证据闭合循环。</blockquote>
+      <blockquote>天工引擎把验证视为创作的一部分：检查真实状态，做聚焦修改，用准确 Runtime 运行，再用可观察证据闭合循环。</blockquote>
     </div>
-    <p style="margin-top:32px"><a class="btn primary" href="/zh/examples/">查看在线引擎示例 →</a></p>
+    <p style="margin-top:32px"><a class="btn primary" href="/zh/examples/">查看在线天工引擎示例 →</a></p>
   </article>
 </main>
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
-    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>Forge<b>aX</b></span></div>
+    <div class="foot-brand"><img src="/logo.svg?v=3" alt="" /><span>天工<b>引擎</b></span></div>
     <p>AI 原生的个人游戏工作室 —— 把想法变成可玩的游戏。</p>
   </div>
   <nav class="foot-links" aria-label="站点">
     <a href="/zh/tutorials/">教程</a>
-    <a href="/zh/examples/">引擎示例</a>
+    <a href="/zh/examples/">天工引擎示例</a>
     <a href="/zh/marketplace/">插件</a>
     <a href="https://github.com/ForgeaX-Games" target="_blank" rel="noopener">GitHub 组织</a>
     <a href="/zh/license.html">版权说明</a>
   </nav>
 </div>
-<div class="foot-bottom">Apache License 2.0 · © 2026 ForgeaX · github.com/ForgeaX-Games</div>
+<div class="foot-bottom">Apache License 2.0 · © 2026 天工引擎 · github.com/ForgeaX-Games</div>
 </footer>
 
 <script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
-<script src="/assets/site.js?v=2513f655"></script>
+<script src="/assets/site.js?v=01759541"></script>
 </body>
 </html>
