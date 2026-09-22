@@ -1,0 +1,1 @@
+function e(e,t){let n=Number(e);return Number.isFinite(n)?n:t}function t(t,n){return!Array.isArray(t)||t.length<3?[...n]:[e(t[0],n[0]),e(t[1],n[1]),e(t[2],n[2])]}function n(t,n){if(!Array.isArray(t)||t.length<4)return[...n];let r=[e(t[0],NaN),e(t[1],NaN),e(t[2],NaN),e(t[3],NaN)];return r.some(e=>!Number.isFinite(e))||Math.hypot(...r)<1e-6?[...n]:r}export{n,t};

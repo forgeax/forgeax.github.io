@@ -1,0 +1,1 @@
+function e(e){return Number.isFinite(e)?Math.max(0,e):0}function t(t,n){let r=e(n),i=Math.round(r),a=Math.min(e(t),r);return{current:a<=0||i<=0?0:Math.min(i,Math.ceil(a)),maximum:i}}function n(e,n,r=` / `){let i=t(e,n);return`${i.current}${r}${i.maximum}`}function r(t){return Math.round(e(t)).toString()}export{n,t as r,r as t};

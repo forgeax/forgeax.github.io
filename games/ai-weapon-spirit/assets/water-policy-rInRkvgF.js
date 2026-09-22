@@ -1,0 +1,1 @@
+var e=Object.freeze({bedDepthMeters:.9,bankWidthMeters:1.4,immersionEnterMeters:.16,immersionExitMeters:.09,contactHeightMeters:.42});export{e as t};

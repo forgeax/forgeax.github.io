@@ -1,0 +1,1 @@
+import{F as e,P as t}from"./chunk-DS7WWPFM-BDMKhb16.js";function n(n,r,i){let a=i?e.visible:e.hidden,o=n.get(r,t);if(!o.ok){n.addComponent(r,{component:t,data:{state:a}}).unwrap();return}o.value.state!==a&&n.set(r,t,{state:a}).unwrap()}export{n as t};

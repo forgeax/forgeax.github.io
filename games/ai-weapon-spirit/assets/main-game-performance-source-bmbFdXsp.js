@@ -1,0 +1,1 @@
+var e=new WeakMap;function t(t,n){return e.set(t,n),()=>{e.get(t)===n&&e.delete(t)}}function n(t,n,r,i){let a=e.get(t);a&&a({at:performance.now(),stage:n,equipment:r,accepted:i})}var r=new WeakMap;function i(e,t){return r.set(e,t),()=>{r.get(e)===t&&r.delete(e)}}function a(e){return r.get(e)?.()}export{i,a as n,n as r,t};

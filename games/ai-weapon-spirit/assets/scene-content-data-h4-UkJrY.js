@@ -1,0 +1,1 @@
+function e(e){if(e===void 0)return;if(e.version!==1||typeof e.payload!=`string`)throw Error(`[scene-content] expected version 1 cooked content payload`);let t=JSON.parse(e.payload);if(!t||typeof t!=`object`||Array.isArray(t))throw Error(`[scene-content] payload must be a record`);return t}export{e as t};

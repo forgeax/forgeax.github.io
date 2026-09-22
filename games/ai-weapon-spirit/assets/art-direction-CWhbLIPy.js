@@ -1,0 +1,1 @@
+import{M as e}from"./chunk-DS7WWPFM-BDMKhb16.js";var t=e,n=.94,r={bloom:1,bloomThreshold:2.4,bloomIntensity:.6,bloomSoftKnee:.5,bloomScatter:.7};export{t as n,r,n as t};
