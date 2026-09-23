@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=bb431925" />
+<link rel="stylesheet" href="/assets/styles.css?v=272ad8c7" />
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="color-scheme" content="light" />
 
@@ -55,17 +55,280 @@
   </div>
 </nav>
 
-<main class="wrap">
+<main class="wrap tut-landing">
+  <script type="application/json" id="tut-landing-copy">{"ui":{"capsTitle":"What ForgeAX Engine can do","flowTitle":"Ship a game in six steps","flowAria":"Six steps to make a game","stageSwitch":"Switch between Codex and View","clientChat":"AI client conversation","sessionList":"Session list","switchClient":"Switch AI client","projects":"Projects","currentProject":"Current project","send":"Send","closeHierarchy":"Close Hierarchy","rainCompare":"Compare RainAlley frames","rainFinal":"Final","rainBefore":"Before","rainVideo":"Muzzle flash","viewportAlt":"3C Starter scene running in ForgeaX View","captureHint":"Muted loop. Click the frame or use the pause button.","pauseDemo":"Pause demo","resumeDemo":"Resume","mutedDemo":"muted demo","playHint":"Press Play to run the current game in View","closeInspector":"Close Inspector","stepSheet":"What this step does","stepWhat":"What happens in this step","doing":"Doing","youType":"You type","success":"Done when","copied":"Copied","copyFail":"Could not copy. Select the text manually.","lightboxAlt":"Indoor sci-fi scene with clustered point lights","close":"Close","stepAria":"Step {n}, {label}","live":"Step {n} of {total}: {label}","chatAria":"{name} chat","sessionName":"Neon collector","pauseAria":"{label}: muted demo","sceneAlt":"Scene running in ForgeaX View"},"caps":{"webgpu":{"title":"Rendering and visuals","copy":"Build the frame with materials, lights, shadows, and post-processing, and add GPU particles, trails, and beams.","meta":"WebGPU · programmable pipeline · GPU VFX","alt":"ForgeAX Engine running volumetric fog, colored projected lights, and shadows","sourceLabel":"Engine running · volumetric fog and colored lights"},"physics":{"title":"Gameplay and simulation","copy":"Organize game logic with ECS, and build gameplay with 2D / 3D physics, animation, input, audio, and network sync.","meta":"ECS · Rapier 2D / 3D · animation and networking","alt":"ForgeAX Engine Neon Harvest survival combat sample, with a character, enemies, shooting, and a wave HUD","sourceLabel":"Engine running · Neon Harvest survival combat"},"assets":{"title":"Asset creation and management","copy":"Import models, images, and fonts, generate assets in TypeScript, reuse variants through parameters, and track sources and outputs.","meta":"ScriptablePack · glTF / FBX · GUID tracking","alt":"A Forbidden City scene generated in code and rendered by ForgeAX Engine","sourceLabel":"Engine running · ScriptablePack palace scene"},"observe":{"title":"Runtime queries and frame replay","copy":"Query live entities, components, and systems. Record and replay render frames, then inspect draws, resources, and pixels to find gameplay and visual bugs.","meta":"ECS / Remote · RHI Debug","alt":"RHI Debug Viewer loaded with a Sponza frame, inspecting draws and resources","sourceLabel":"Tool screenshot · RHI Debug / Sponza"},"cli":{"title":"One CLI","copy":"Create, run, inspect, and package games with forgeax commands. Structured input and output connect the AI to the workflow so each step is composable and repeatable.","meta":"Command discovery · JSON I/O · persistent instances","alt":"Raw output from running forgeax help dev, shown as text","sourceLabel":"Live command output · forgeax help dev"},"view":{"title":"Project visualization","copy":"Open the game project in ForgeAX Engine View, browse assets, inspect the scene and runtime, and check what the AI built.","meta":"ForgeAX Engine View · project and asset browser · scene view","alt":"ForgeAX Engine View project interface","sourceLabel":"Tool screenshot · ForgeAX Engine View / Game 3D"}},"plats":{"zaohua":{"name":"Zaohua Workshop","blurb":"A creation and distribution platform in China. Hand the finished build straight to the workshop."},"wechat":{"name":"WeChat Mini Games","blurb":"Play inside WeChat, suited to touch controls and social sharing."},"steam":{"name":"Steam","blurb":"Package the same project as a desktop build Steam can list."},"steamdeck":{"name":"Steam Deck","blurb":"Tune controls and aspect ratio for the handheld, then ship through Steam."},"switch":{"name":"Switch","blurb":"A console build with a full gamepad flow."},"kubee":{"name":"Kubee","blurb":"An international creation and distribution platform. Hand the finished build straight to Kubee."}},"prompts":{"first":"Make a neon collection game.\nThe player moves with WASD. Eight energy shards are scattered around the field, the UI shows how many have been collected, and collecting all eight wins.\nWhen it is done, run it, play through it yourself, and keep changing it until the loop is playable.","iter":"Make movement a bit more responsive. Add a short flash and a sound when a shard is picked up. Keep the win message readable on a small screen. Run it again and play from the start through the win.","play":"Run the game. Walk around with WASD, collect all 8 shards, and confirm the win message appears so a full round plays through.","plugin":"Install the ForgeaX plugin in the current {client} and confirm it can read this project's status.","ship":"Publish this neon collection game to {name}. {blurb}"},"clients":{"codex":{"listLabel":"Projects","nav":{"plus":"New chat","clock":"Scheduled tasks","plug":"Plugins"}},"workbuddy":{"listLabel":"Tasks","project":"Space · neon-runner","nav":{"plus":"New task","search":"Search"}}},"steps":{"init":{"label":"New project","goal":"Create the game project in an empty folder.","ok":"The project directory exists and the AI client can read it.","rain":"RainAlley · street baseline","created":"ForgeaX project created","activeGame":"Active game .forgeax/games/neon-runner/","sdk":"Engine SDK written to .forgeax/engine-sdk/","creating":"Creating project files","done":"The project is ready. Next, install the plugin so {name} can read and write this folder."},"plugin":{"label":"Install the plugin","goal":"Connect ForgeaX to the {name} you are using so it can read and write this project.","ok":"ForgeaX tools show up in the client and the connection is healthy.","rain":"RainAlley · interior load","run":"Run","mcp":"{menu} MCP written","statusOk":"forgeax://status is readable","done":"The plugin is connected. Tell me the gameplay you want.","writing":"Writing the client config…"},"prompt":{"label":"Describe the game","goal":"Say how the player controls the game and how they win, in one message.","ok":"The AI writes against the current engine version's API.","rain":"RainAlley · route and encounter","read":"Read","statusDetail":"Active game neon-runner · SDK matches Runtime","skills":"Matches the current SDK","done":"I have the brief: WASD movement, 8 shards, a progress display, and a win when they are all collected. I am editing files in this project.","checking":"Checking the project and engine version…"},"play":{"label":"Playtest","goal":"Run the game and play a full round yourself.","ok":"The game opens, and you have checked movement, collection, and the win state.","rain":"RainAlley · playtest encounter and muzzle flash","read":"Read","edit":"Edit","editDetail":"Character, shards, UI, win state","run":"Run","done":"The game is running. I walked around with WASD, collected all 8 shards, and the win message appeared.","starting":"Starting the game. The view on the right will switch to the running frame…"},"iterate":{"label":"Tune the feel","goal":"Change one thing at a time, then play it again immediately.","ok":"You can feel the change, and the on-screen information stays readable.","rain":"RainAlley · interaction and quality pass","edit":"Edit","editTarget":"Movement feel / pickup feedback / win message","run":"Run","reuse":"Reusing the running instance","done":"Movement accelerates faster, picking up a shard flashes and plays a sound, and the win message stays readable on a small screen. The full loop was played through again.","updating":"Hot-reloading, then another playthrough…"},"ship":{"label":"Package and publish","goal":"Produce a distributable package for the selected platform.","ok":"Where the build lives, which version it is, and how to open it on that platform are all written down.","rain":"RainAlley · release candidate","check":"Check","checkDetail":"Engine and runtime versions match","pack":"Package","soon":"The {name} channel is opening soon. A preview build is ready, with controls and aspect ratio adjusted for that platform.","done":"Packaged for {name}. The play URL still works, and the build is in the project's dist folder.","packing":"Packaging for the selected platform…"}},"view":{"emptyNone":"The project shows up here in step 1","emptyInitWait":"Creating the project…","emptyInitDone":"Project is ready. Install the plugin next.","emptyPluginWait":"Connecting your AI client…","emptyPluginDone":"Connected. Describe the gameplay.","emptyPromptWait":"Building the scene from your brief…","emptyPlay":"Press Play to try it here","workInit":"Creating project files","workPlugin":"Connecting the AI client","workPrompt":"Generating the character, shards, and UI","workPlay":"Starting the game","workIterate":"Hot-reloading feel and feedback","workShip":"Packaging for the selected platform","modeBefore":"Before","modeVideo":"0.1.37 ultra · muzzle-flash video","modeFinal":"Final · SDK 0.1.37 ultra","captureMeta":"RainAlley · package · 18s muted loop · click the frame or pause","capturePlay":"RainAlley · package · muted demo · press the button to play"}}</script>
   <div class="page-head">
     <h1>Build games with the AI client you already use</h1>
     <p>ForgeAX Engine runs the game. ForgeAX Game connects the Engine, versioned Runtime, project Skills and verification loop to Codex, Claude Code, Cursor and other MCP clients.</p>
+  </div>
+
+  <div class="tut-graft" data-theme="light">
+  <section class="section" id="capabilities" aria-labelledby="cap-title">
+    <h2 id="cap-title">What ForgeAX Engine can do</h2>
+    <div class="caps" id="cap-grid"></div>
+  </section>
+
+  <section class="section" id="workflow" aria-labelledby="flow-title">
+    <h2 id="flow-title">Ship a game in six steps</h2>
+    <nav class="flow" aria-label="Six steps to make a game">
+      <ol class="steps" id="steps"></ol>
+    </nav>
+    <div class="stage-wrap">
+      <div class="stage" id="stage" data-compact="false" data-panel="codex">
+        <div class="stage-panel-switch" role="group" aria-label="Switch between Codex and View">
+          <button type="button" data-stage-panel="codex" aria-pressed="true">Codex</button>
+          <button type="button" data-stage-panel="view" aria-pressed="false">View</button>
+        </div>
+        <section class="codex" id="client-shell" data-client="codex" aria-label="AI client conversation">
+          <aside class="cx-rail" aria-label="Session list">
+            <div class="cx-rail-head">
+              <button class="cx-client-btn" type="button" id="client-toggle" aria-expanded="false" aria-haspopup="listbox" aria-controls="client-menu">
+                <span id="client-mark" aria-hidden="true"></span>
+                <strong id="client-name">Codex</strong>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="cx-client-menu" id="client-menu" hidden role="listbox" aria-label="Switch AI client"></div>
+              <div class="cx-rail-actions" id="client-actions"></div>
+            </div>
+            <nav class="cx-nav" id="cx-nav"></nav>
+            <div class="cx-projects">
+              <div class="cx-label" id="cx-list-label">Projects</div>
+              <div class="cx-project-name">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg>
+                <span id="cx-project-label">neon-runner</span>
+              </div>
+              <div id="cx-sessions"></div>
+            </div>
+            <div class="cx-user">
+              <img class="logo" data-asset="logo.svg" alt="">
+              ForgeaX Official
+            </div>
+          </aside>
+          <div class="cx-chat">
+            <div class="thread" id="thread"></div>
+            <div class="composer-meta">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 7h6l2 2h10v10H3z"/></svg>
+              Current project <strong id="stage-path">neon-runner</strong>
+            </div>
+            <div class="composer">
+              <pre id="composer-text"></pre>
+              <div class="composer-bar">
+                <span class="composer-add" aria-hidden="true">+</span>
+                <span class="composer-model" id="composer-model">GPT-5.4</span>
+                <button class="btn-send" type="button" id="send-composer" aria-label="Send">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="fxview" id="fxview" data-running="false" data-page="scene" aria-label="ForgeaX View">
+          <header class="fx-view-header">
+            <div class="fx-view-brand">
+              <img data-asset="logo.svg" alt="">
+              <strong>ForgeaX View</strong>
+            </div>
+            <div class="fx-view-header__prefs">
+              <span class="fx-view-header__status-dot" title="UI debug mode"></span>
+              <button class="fx-button fx-button--icon" type="button" id="view-theme" aria-label="Theme">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+              </button>
+              <span class="fx-locale-trigger">EN</span>
+            </div>
+          </header>
+          <div class="fx-page-tab-strip">
+            <div class="fx-page-tab-strip__scope">
+              <div class="fx-page-tab-strip__list" role="tablist" aria-label="Open pages">
+                <button class="fx-page-tab is-active" type="button" role="tab" aria-selected="true" data-page-tab="scene">Scene</button>
+                <button class="fx-page-tab" type="button" role="tab" aria-selected="false" data-page-tab="capture">Runtime capture</button>
+              </div>
+              <button class="fx-page-tab-btn--new" type="button" aria-label="New page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="fx-view-main-col">
+            <div class="fx-view-workspace-row">
+              <div class="fx-view-dock">
+                <section class="fx-dock-panel fx-dock-panel--tree" id="hierarchy-panel" data-drawer-panel="tree" tabindex="-1" aria-label="Hierarchy">
+                  <div class="fx-dock-tabbar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+                    <span>Hierarchy</span>
+                    <button class="fx-dock-x" type="button" data-drawer-close="tree" aria-label="Close Hierarchy" aria-controls="hierarchy-panel" aria-expanded="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="13" height="13" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </button>
+                  </div>
+                  <div class="outliner-panel" role="tree">
+                    <div class="fx-panel-header">
+                      <button class="fx-button fx-button--icon" type="button" aria-label="Filter by type">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5h18l-7 8v5l-4 2v-7z"/></svg>
+                      </button>
+                      <label class="fx-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+                        <input type="search" placeholder="Search name or type…" aria-label="Search scene name or type" id="hier-search">
+                      </label>
+                      <button class="fx-button fx-button--icon" type="button" aria-label="Display settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9c.3.7.9 1.2 1.6 1.3H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.4 1z"/></svg>
+                      </button>
+                    </div>
+                    <div class="ol-colhead">
+                      <span class="ch-caret"></span>
+                      <span class="ch-name">Name</span>
+                      <span class="ch-type">Type</span>
+                      <span class="ch-mob">Mobility</span>
+                    </div>
+                    <div class="ol-body" id="tree"></div>
+                  </div>
+                </section>
+                <section class="fx-dock-panel fx-dock-panel--viewport">
+                  <div class="fx-view-viewport">
+                    <div class="vp-tools">
+                      <button class="vp-tool" type="button" id="btn-play" aria-pressed="false">Play</button>
+                      <button class="vp-tool" type="button" id="btn-stop">Stop</button>
+                      <button class="vp-tool" type="button" id="btn-eject">Eject</button>
+                      <button class="vp-tool" type="button" id="btn-possess">Possess</button>
+                      <button class="vp-tool" type="button" id="btn-editor" aria-pressed="true">Editor</button>
+                      <button class="vp-tool" type="button" id="btn-game">Game</button>
+                      <button class="vp-tool vp-drawer-toggle" type="button" data-drawer-toggle="tree" aria-controls="hierarchy-panel" aria-expanded="true" hidden>Hierarchy</button>
+                      <button class="vp-tool vp-drawer-toggle" type="button" data-drawer-toggle="inspector" aria-controls="inspector-panel" aria-expanded="true" hidden>Inspector</button>
+                      <span class="vp-status" id="vp-status">Game tools · idle</span>
+                      <div class="vp-demo-switch" id="rain-demo-switch" role="group" aria-label="Compare RainAlley frames" hidden>
+                        <button type="button" data-rain-view="final" aria-pressed="true">Final</button>
+                        <button type="button" data-rain-view="before" aria-pressed="false">Before</button>
+                        <button type="button" data-rain-view="video" aria-pressed="false" hidden>Muzzle flash</button>
+                      </div>
+                    </div>
+                    <div class="vp-canvas">
+                      <img id="play-img" data-asset="fx-viewport.png" alt="3C Starter scene running in ForgeaX View">
+                      <video id="rain-demo-video" playsinline muted loop preload="metadata" hidden></video>
+                      <video id="capture-video" class="fx-view-display-surface" playsinline muted loop autoplay preload="metadata" tabindex="-1" hidden></video>
+                      <div class="rain-demo-meta" id="rain-demo-meta" aria-live="polite"></div>
+                      <div class="capture-runtime-meta" id="capture-runtime-meta" hidden>Muted loop. Click the frame or use the pause button.</div>
+                      <button class="capture-toggle" type="button" id="capture-toggle" aria-controls="capture-video" hidden>Pause demo</button>
+                      <div class="vp-empty" id="vp-empty">Press Play to run the current game in View</div>
+                      <div class="vp-work" id="vp-work"></div>
+                    </div>
+                  </div>
+                </section>
+                <section class="fx-dock-panel fx-dock-panel--inspector" id="inspector-panel" data-drawer-panel="inspector" tabindex="-1" aria-label="Inspector">
+                  <div class="fx-dock-tabbar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+                    <span>Inspector</span>
+                    <button class="fx-dock-x" type="button" data-drawer-close="inspector" aria-label="Close Inspector" aria-controls="inspector-panel" aria-expanded="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="13" height="13" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </button>
+                  </div>
+                  <div class="fx-inspector" id="insp"></div>
+                </section>
+                <section class="fx-dock-panel fx-dock-panel--browser">
+                  <div class="fx-dock-tabbar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    <span>Content Browser</span>
+                    <span class="fx-dock-x" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="13" height="13"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </span>
+                  </div>
+                  <div class="cb-root">
+                    <div class="cb-split">
+                      <aside class="cb-source-panel">
+                        <section class="cb-source-group">
+                          <button type="button" class="cb-source-group-head">
+                            <span class="cb-source-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg></span>
+                            <span class="cb-source-group-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polygon points="12 2 15 8.5 22 9.3 17 14.2 18.2 21 12 17.8 5.8 21 7 14.2 2 9.3 9 8.5"/></svg></span>
+                            <span class="cb-source-group-name">Favorites</span>
+                          </button>
+                          <div class="cb-source-empty">No favorites yet</div>
+                        </section>
+                        <section class="cb-source-group">
+                          <button type="button" class="cb-source-group-head">
+                            <span class="cb-source-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg></span>
+                            <span class="cb-source-group-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-group-name">47 game</span>
+                          </button>
+                          <button type="button" class="cb-source-row cb-source-virtual-root is-sel" data-cb-path="">
+                            <span class="cb-source-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg></span>
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">All</span>
+                          </button>
+                          <button type="button" class="cb-source-row" data-cb-path="assets" style="padding-left:22px">
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">assets</span>
+                          </button>
+                          <button type="button" class="cb-source-row" data-cb-path="scripts" style="padding-left:22px">
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">scripts</span>
+                          </button>
+                          <button type="button" class="cb-source-row" data-cb-path="sessions" style="padding-left:22px">
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">sessions</span>
+                          </button>
+                          <button type="button" class="cb-source-row" data-cb-path="src" style="padding-left:22px">
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">src</span>
+                          </button>
+                        </section>
+                      </aside>
+                      <section class="cb-asset-view">
+                        <div class="fx-panel-header cb-toolbar">
+                          <div class="cb-address" id="cb-address"><span class="cb-crumb-current">47 game</span></div>
+                          <button class="fx-button fx-button--icon" type="button" aria-label="Content Browser settings">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M4 12h2M18 12h2M12 4v2M12 18v2"/></svg>
+                          </button>
+                        </div>
+                        <div class="cb-filter-bar">
+                          <button class="fx-button fx-button--compact" type="button">Filter by type</button>
+                          <label class="fx-search" style="max-width:240px">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+                            <input type="search" placeholder="Search assets…" aria-label="Search assets" id="cb-search">
+                          </label>
+                          <button class="fx-button fx-button--compact" type="button">Name</button>
+                        </div>
+                        <div class="cb-fe-grid" id="cb-grid"></div>
+                        <footer class="cb-status">
+                          <span id="cb-count">4 items</span>
+                          <span id="cb-path-label">47 game</span>
+                        </footer>
+                      </section>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <aside class="agent-sheet" aria-label="What this step does">
+      <h3>What happens in this step</h3>
+      <dl>
+        <dt>Doing</dt><dd id="agent-goal"></dd>
+        <dt>You type</dt><dd id="agent-input"></dd>
+        <dt>Done when</dt><dd id="agent-ok"></dd>
+      </dl>
+    </aside>
+  </section>
+
+<div class="live" id="live" aria-live="polite"></div>
+<div class="toast" id="toast" role="status">Copied</div>
+
+<dialog id="lightbox">
+  <div class="lightbox">
+    <img id="lb-img" data-asset="cap-webgpu.png" alt="Indoor sci-fi scene with clustered point lights">
+    <div class="lightbox-bar">
+      <div>
+        <strong id="lb-title"></strong>
+        <p id="lb-copy" style="margin:4px 0 0;color:var(--fx-color-text-secondary);font-size:13px"></p>
+      </div>
+      <button class="btn btn-primary" type="button" id="lb-close">Close</button>
+    </div>
+  </div>
+</dialog>
   </div>
 
   <div class="section tut-section">
     <div class="grid tut-grid">
       <a class="card card--link tut-card" href="/tutorials/engine.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="cpu"></i></div>
           <h3 class="tut-card__title">Meet ForgeAX Engine</h3>
           <span class="tag brand">Engine</span>
         </div>
@@ -73,7 +336,6 @@
       </a>
       <a class="card card--link tut-card" href="/tutorials/cli-setup.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="terminal"></i></div>
           <h3 class="tut-card__title">Install ForgeAX Game in Codex</h3>
           <span class="tag brand">Setup</span>
         </div>
@@ -81,7 +343,6 @@
       </a>
       <a class="card card--link tut-card" href="/tutorials/getting-started.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="rocket"></i></div>
           <h3 class="tut-card__title">Build your first playable game</h3>
           <span class="tag brand">First game</span>
         </div>
@@ -89,7 +350,6 @@
       </a>
       <a class="card card--link tut-card" href="/tutorials/extensions.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="palette"></i></div>
           <h3 class="tut-card__title">Use the Engine and creation plugins</h3>
           <span class="tag brand">Capabilities</span>
         </div>
@@ -97,35 +357,10 @@
       </a>
       <a class="card card--link tut-card" href="/tutorials/verify.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="search"></i></div>
           <h3 class="tut-card__title">Build, inspect and verify the game</h3>
           <span class="tag brand">Verification</span>
         </div>
         <p class="tut-card__desc">Turn “it should work” into proof: project identity, build result, real Play behavior, logs, runtime state and Engine diagnostics.</p>
-      </a>
-      <a class="card card--link tut-card" href="/examples/">
-        <div class="tut-card__head">
-          <div class="ico"><i data-lucide="box"></i></div>
-          <h3 class="tut-card__title">ForgeAX Engine examples</h3>
-          <span class="tag brand">Live demos</span>
-        </div>
-        <p class="tut-card__desc">Run WebGPU/WebGL2 rendering, physics, character control, 2D lighting, materials, post-processing, scenes and asset examples in the browser.</p>
-      </a>
-      <a class="card card--link tut-card" href="/marketplace/">
-        <div class="tut-card__head">
-          <div class="ico"><i data-lucide="blocks"></i></div>
-          <h3 class="tut-card__title">Plugin marketplace</h3>
-          <span class="tag brand">Plugins</span>
-        </div>
-        <p class="tut-card__desc">Browse creation, agent, model, workflow and tool plugins that extend what your game-making client can do.</p>
-      </a>
-      <a class="card card--link tut-card" href="/tutorials/start.html">
-        <div class="tut-card__head">
-          <div class="ico"><i data-lucide="play"></i></div>
-          <h3 class="tut-card__title">Start your first game</h3>
-          <span class="tag brand">First game</span>
-        </div>
-        <p class="tut-card__desc">After the plugin is installed, see what the engine can draw, then walk from a new project through play, iteration, and publish.</p>
       </a>
     </div>
   </div>
@@ -149,5 +384,6 @@
 
 <script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
 <script src="/assets/site.js?v=01759541"></script>
+<script src="/assets/tutorials/start-demo.js?v=ccba65b1"></script>
 </body>
 </html>

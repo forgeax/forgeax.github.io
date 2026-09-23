@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css?v=bb431925" />
+<link rel="stylesheet" href="/assets/styles.css?v=272ad8c7" />
 <meta name="theme-color" content="#FFFFFF" />
 <meta name="color-scheme" content="light" />
 
@@ -55,17 +55,280 @@
   </div>
 </nav>
 
-<main class="wrap">
+<main class="wrap tut-landing">
+  <script type="application/json" id="tut-landing-copy">{"ui":{"capsTitle":"天工引擎的核心能力","flowTitle":"六步发布一款游戏","flowAria":"制作流程六步","stageSwitch":"在 Codex 与 View 之间切换","clientChat":"AI 客户端对话","sessionList":"会话列表","switchClient":"切换 AI 客户端","projects":"项目","currentProject":"当前项目","send":"发送","closeHierarchy":"关闭 Hierarchy","rainCompare":"RainAlley 画面对比","rainFinal":"最终版","rainBefore":"调整前","rainVideo":"枪光视频","viewportAlt":"ForgeaX View 中正在运行的 3C Starter 场景","captureHint":"静音循环演示 · 点击画面或使用暂停按钮切换","pauseDemo":"暂停演示","resumeDemo":"继续播放","mutedDemo":"静音演示","playHint":"点 Play，在 View 里运行当前游戏","closeInspector":"关闭 Inspector","stepSheet":"当前步骤说明","stepWhat":"这一步发生了什么","doing":"在做什么","youType":"你要输入的","success":"怎么算成功","copied":"已复制","copyFail":"复制失败，请手动选择","lightboxAlt":"带集群点光的室内科幻场景","close":"关闭","stepAria":"第 {n} 步，{label}","live":"第 {n} 步，共 {total} 步：{label}","chatAria":"{name} 对话","sessionName":"霓虹收集游戏","pauseAria":"{label}：静音演示","sceneAlt":"ForgeaX View 中正在运行的场景"},"caps":{"webgpu":{"title":"渲染与视觉效果","copy":"用材质、灯光、阴影和后处理构建画面，结合 GPU 粒子、拖尾与光束等特效丰富表现。","meta":"WebGPU · 可编程渲染管线 · GPU VFX","alt":"天工引擎体积雾、彩色投影光与阴影实际运行截图","sourceLabel":"引擎实跑 · 体积雾与彩色投影光"},"physics":{"title":"玩法与模拟","copy":"通过 ECS 组织游戏逻辑，结合 2D / 3D 物理、动画、输入、音频与网络同步构建玩法。","meta":"ECS · Rapier 2D / 3D · 动画与网络","alt":"天工引擎 Neon Harvest 生存战斗示例，展示角色、敌人、射击与波次 HUD","sourceLabel":"引擎实跑 · Neon Harvest 生存战斗"},"assets":{"title":"资产创作与管理","copy":"导入模型、图片与字体，也能用 TypeScript 生成资产、通过参数复用变体，并追踪源文件与生成结果。","meta":"ScriptablePack · glTF / FBX · GUID 追踪","alt":"通过代码生成并由天工引擎渲染的故宫场景截图","sourceLabel":"引擎实跑 · ScriptablePack 故宫场景"},"observe":{"title":"运行时查询与渲染帧回放","copy":"查询运行中的实体、组件与系统，录制并回放渲染帧，检查绘制、资源与像素，定位玩法和画面问题。","meta":"ECS / Remote · RHI Debug","alt":"RHI Debug Viewer 加载 Sponza 帧并检查绘制与资源的实际界面","sourceLabel":"工具截图 · RHI Debug / Sponza"},"cli":{"title":"统一 CLI","copy":"通过 forgeax 命令创建、运行、检查和打包游戏，以结构化输入输出连接 AI 与开发流程，让操作可组合、可重复。","meta":"命令发现 · JSON 输入输出 · 持久运行实例","alt":"实际执行 forgeax help dev 的原始输出，文本排版展示","sourceLabel":"实际命令输出 · forgeax help dev"},"view":{"title":"工程可视化","copy":"在天工引擎 View 中打开游戏项目，浏览资产、查看场景与运行状态，在可视化界面中检查 AI 的制作结果。","meta":"天工引擎 View · 工程与资产浏览 · 场景查看","alt":"天工引擎 View 工程界面","sourceLabel":"工具截图 · 天工引擎 View / Game 3D"}},"plats":{"zaohua":{"name":"造化工坊","blurb":"国内的创作与分发平台，构建做好后直接交到工坊。"},"wechat":{"name":"微信小游戏","blurb":"发到微信里玩，适合触屏操作和社交传播。"},"steam":{"name":"Steam","blurb":"同一份工程直接打成 Steam 能上架的桌面版。"},"steamdeck":{"name":"Steam Deck","blurb":"按掌机的按键和屏幕比例调好，走 Steam 分发。"},"switch":{"name":"Switch","blurb":"主机版本，适合手柄操作的完整流程。"},"kubee":{"name":"Kubee","blurb":"海外的创作与分发平台，构建做好后直接交到 Kubee。"}},"prompts":{"first":"做一个霓虹风格的收集小游戏。\n玩家用 WASD 移动，场地里散布 8 个能量碎片，界面上显示已收集数量，集齐 8 个就算通关。\n做完直接跑起来，自己打开试玩一遍，把这套流程改到能玩通。","iter":"移动再灵敏一点；捡到碎片时加一下短促的发光和音效；通关提示在小屏幕上也要看得清。改完重新跑一遍，从头玩到通关。","play":"把游戏跑起来。用 WASD 走一圈，把 8 个碎片都捡掉，确认通关提示会出现，这一轮能顺畅玩完。","plugin":"在当前 {client} 里装上 ForgeaX 插件，装完确认能正常读到这个项目的状态。","ship":"把这个霓虹收集游戏发布到{name}。{blurb}"},"clients":{"codex":{"listLabel":"项目","nav":{"plus":"新对话","clock":"定时任务","plug":"插件"}},"workbuddy":{"listLabel":"任务","project":"空间 · neon-runner","nav":{"plus":"新建任务","search":"搜索"}}},"steps":{"init":{"label":"新建项目","goal":"在一个空文件夹里建好游戏工程。","ok":"项目目录生成完毕，AI 客户端能读到它。","rain":"RainAlley · 街区基准","created":"已创建 ForgeaX 项目","activeGame":"活动游戏 .forgeax/games/neon-runner/","sdk":"Engine SDK 写入 .forgeax/engine-sdk/","creating":"正在创建项目文件","done":"项目建好了。下一步装插件，{name} 才能读写这个目录。"},"plugin":{"label":"安装插件","goal":"让 ForgeaX 接上你正在用的 {name}，它才能读写这个项目。","ok":"客户端里出现 ForgeaX 的工具，连接状态正常。","rain":"RainAlley · 室内加载","run":"运行","mcp":"{menu} MCP 已写入","statusOk":"forgeax://status 可读","done":"插件接上了。现在把你想做的玩法告诉我。","writing":"正在写入客户端配置…"},"prompt":{"label":"说出玩法","goal":"把玩家怎么操作、怎么算赢写清楚，一次说完。","ok":"AI 按当前引擎版本的接口动手写。","rain":"RainAlley · 路线与遭遇","read":"读取","statusDetail":"活动游戏 neon-runner · SDK 与 Runtime 一致","skills":"匹配当前 SDK","done":"需求我看明白了：WASD 移动、8 个碎片、进度显示、集齐通关。我改的是这个项目里的文件。","checking":"正在核对项目和引擎版本…"},"play":{"label":"试玩","goal":"把游戏跑起来，自己上手玩完一整轮。","ok":"游戏能打开，移动、收集、通关你都亲手验过。","rain":"RainAlley · 试玩遭遇与枪光","read":"读取","edit":"编辑","editDetail":"角色、碎片、界面、通关","run":"运行","done":"游戏跑起来了。我用 WASD 走了一圈，8 个碎片都能捡到，集齐之后通关提示正常出现。","starting":"正在启动游戏，右边会切到运行画面…"},"iterate":{"label":"调手感","goal":"一次改一件事，改完立刻再玩一遍。","ok":"手感的变化玩得出来，画面上的信息还是看得清。","rain":"RainAlley · 交互与画质调校","edit":"编辑","editTarget":"移动手感 / 拾取反馈 / 通关提示","run":"运行","reuse":"复用已启动的运行环境","done":"移动加速更快了，捡到碎片有一下发光和音效，通关提示在小屏上也看得清。整套流程又完整跑了一遍。","updating":"正在热更新，准备再玩一轮…"},"ship":{"label":"打包发布","goal":"给选中的平台打出一个能分发的包。","ok":"成品放在哪、版本是多少、在这个平台怎么打开，都写清楚了。","rain":"RainAlley · 发布候选","check":"校验","checkDetail":"引擎与运行环境版本一致","pack":"打包","soon":"{name}通道即将开放。已生成可预览版本，并按该平台的操作方式调整好键位和画面比例。","done":"已为{name}完成打包。试玩地址保持可用，成品已放进项目的 dist 目录。","packing":"正在按所选平台打包…"}},"view":{"emptyNone":"项目会在第 1 步出现在这里","emptyInitWait":"正在创建项目…","emptyInitDone":"项目建好了，接着装插件","emptyPluginWait":"正在接入你的 AI 客户端…","emptyPluginDone":"已经连上，可以说玩法了","emptyPromptWait":"正在按你说的搭场景…","emptyPlay":"点 Play 就能在这里试玩","workInit":"创建项目文件","workPlugin":"连接 AI 客户端","workPrompt":"生成角色、碎片和界面","workPlay":"启动游戏","workIterate":"热更新手感和反馈","workShip":"按所选平台打包","modeBefore":"调整前版本","modeVideo":"0.1.37 ultra · 枪口光影视频","modeFinal":"最终版 · SDK 0.1.37 ultra","captureMeta":"RainAlley · 打包发布 · 18 秒静音循环 · 点击画面或暂停按钮切换","capturePlay":"RainAlley · 打包发布 · 静音演示 · 使用按钮播放"}}</script>
   <div class="page-head">
     <h1>用你熟悉的 AI 客户端，做出真正可玩的游戏</h1>
     <p>天工引擎负责运行游戏；ForgeAX Game 把引擎、版本化 Runtime、项目 Skills 与验证闭环接入 Codex、Claude Code、Cursor 等 MCP 客户端。</p>
+  </div>
+
+  <div class="tut-graft" data-theme="light">
+  <section class="section" id="capabilities" aria-labelledby="cap-title">
+    <h2 id="cap-title">天工引擎的核心能力</h2>
+    <div class="caps" id="cap-grid"></div>
+  </section>
+
+  <section class="section" id="workflow" aria-labelledby="flow-title">
+    <h2 id="flow-title">六步发布一款游戏</h2>
+    <nav class="flow" aria-label="制作流程六步">
+      <ol class="steps" id="steps"></ol>
+    </nav>
+    <div class="stage-wrap">
+      <div class="stage" id="stage" data-compact="false" data-panel="codex">
+        <div class="stage-panel-switch" role="group" aria-label="在 Codex 与 View 之间切换">
+          <button type="button" data-stage-panel="codex" aria-pressed="true">Codex</button>
+          <button type="button" data-stage-panel="view" aria-pressed="false">View</button>
+        </div>
+        <section class="codex" id="client-shell" data-client="codex" aria-label="AI 客户端对话">
+          <aside class="cx-rail" aria-label="会话列表">
+            <div class="cx-rail-head">
+              <button class="cx-client-btn" type="button" id="client-toggle" aria-expanded="false" aria-haspopup="listbox" aria-controls="client-menu">
+                <span id="client-mark" aria-hidden="true"></span>
+                <strong id="client-name">Codex</strong>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="cx-client-menu" id="client-menu" hidden role="listbox" aria-label="切换 AI 客户端"></div>
+              <div class="cx-rail-actions" id="client-actions"></div>
+            </div>
+            <nav class="cx-nav" id="cx-nav"></nav>
+            <div class="cx-projects">
+              <div class="cx-label" id="cx-list-label">项目</div>
+              <div class="cx-project-name">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg>
+                <span id="cx-project-label">neon-runner</span>
+              </div>
+              <div id="cx-sessions"></div>
+            </div>
+            <div class="cx-user">
+              <img class="logo" data-asset="logo.svg" alt="">
+              ForgeaX Official
+            </div>
+          </aside>
+          <div class="cx-chat">
+            <div class="thread" id="thread"></div>
+            <div class="composer-meta">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 7h6l2 2h10v10H3z"/></svg>
+              当前项目 <strong id="stage-path">neon-runner</strong>
+            </div>
+            <div class="composer">
+              <pre id="composer-text"></pre>
+              <div class="composer-bar">
+                <span class="composer-add" aria-hidden="true">+</span>
+                <span class="composer-model" id="composer-model">GPT-5.4</span>
+                <button class="btn-send" type="button" id="send-composer" aria-label="发送">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="fxview" id="fxview" data-running="false" data-page="scene" aria-label="ForgeaX View">
+          <header class="fx-view-header">
+            <div class="fx-view-brand">
+              <img data-asset="logo.svg" alt="">
+              <strong>ForgeaX View</strong>
+            </div>
+            <div class="fx-view-header__prefs">
+              <span class="fx-view-header__status-dot" title="UI debug mode"></span>
+              <button class="fx-button fx-button--icon" type="button" id="view-theme" aria-label="Theme">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+              </button>
+              <span class="fx-locale-trigger">EN</span>
+            </div>
+          </header>
+          <div class="fx-page-tab-strip">
+            <div class="fx-page-tab-strip__scope">
+              <div class="fx-page-tab-strip__list" role="tablist" aria-label="Open pages">
+                <button class="fx-page-tab is-active" type="button" role="tab" aria-selected="true" data-page-tab="scene">Scene</button>
+                <button class="fx-page-tab" type="button" role="tab" aria-selected="false" data-page-tab="capture">Runtime capture</button>
+              </div>
+              <button class="fx-page-tab-btn--new" type="button" aria-label="New page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="fx-view-main-col">
+            <div class="fx-view-workspace-row">
+              <div class="fx-view-dock">
+                <section class="fx-dock-panel fx-dock-panel--tree" id="hierarchy-panel" data-drawer-panel="tree" tabindex="-1" aria-label="Hierarchy">
+                  <div class="fx-dock-tabbar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+                    <span>Hierarchy</span>
+                    <button class="fx-dock-x" type="button" data-drawer-close="tree" aria-label="关闭 Hierarchy" aria-controls="hierarchy-panel" aria-expanded="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="13" height="13" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </button>
+                  </div>
+                  <div class="outliner-panel" role="tree">
+                    <div class="fx-panel-header">
+                      <button class="fx-button fx-button--icon" type="button" aria-label="Filter by type">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5h18l-7 8v5l-4 2v-7z"/></svg>
+                      </button>
+                      <label class="fx-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+                        <input type="search" placeholder="Search name or type…" aria-label="Search scene name or type" id="hier-search">
+                      </label>
+                      <button class="fx-button fx-button--icon" type="button" aria-label="Display settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9c.3.7.9 1.2 1.6 1.3H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.4 1z"/></svg>
+                      </button>
+                    </div>
+                    <div class="ol-colhead">
+                      <span class="ch-caret"></span>
+                      <span class="ch-name">Name</span>
+                      <span class="ch-type">Type</span>
+                      <span class="ch-mob">Mobility</span>
+                    </div>
+                    <div class="ol-body" id="tree"></div>
+                  </div>
+                </section>
+                <section class="fx-dock-panel fx-dock-panel--viewport">
+                  <div class="fx-view-viewport">
+                    <div class="vp-tools">
+                      <button class="vp-tool" type="button" id="btn-play" aria-pressed="false">Play</button>
+                      <button class="vp-tool" type="button" id="btn-stop">Stop</button>
+                      <button class="vp-tool" type="button" id="btn-eject">Eject</button>
+                      <button class="vp-tool" type="button" id="btn-possess">Possess</button>
+                      <button class="vp-tool" type="button" id="btn-editor" aria-pressed="true">Editor</button>
+                      <button class="vp-tool" type="button" id="btn-game">Game</button>
+                      <button class="vp-tool vp-drawer-toggle" type="button" data-drawer-toggle="tree" aria-controls="hierarchy-panel" aria-expanded="true" hidden>Hierarchy</button>
+                      <button class="vp-tool vp-drawer-toggle" type="button" data-drawer-toggle="inspector" aria-controls="inspector-panel" aria-expanded="true" hidden>Inspector</button>
+                      <span class="vp-status" id="vp-status">Game tools · idle</span>
+                      <div class="vp-demo-switch" id="rain-demo-switch" role="group" aria-label="RainAlley 画面对比" hidden>
+                        <button type="button" data-rain-view="final" aria-pressed="true">最终版</button>
+                        <button type="button" data-rain-view="before" aria-pressed="false">调整前</button>
+                        <button type="button" data-rain-view="video" aria-pressed="false" hidden>枪光视频</button>
+                      </div>
+                    </div>
+                    <div class="vp-canvas">
+                      <img id="play-img" data-asset="fx-viewport.png" alt="ForgeaX View 中正在运行的 3C Starter 场景">
+                      <video id="rain-demo-video" playsinline muted loop preload="metadata" hidden></video>
+                      <video id="capture-video" class="fx-view-display-surface" playsinline muted loop autoplay preload="metadata" tabindex="-1" hidden></video>
+                      <div class="rain-demo-meta" id="rain-demo-meta" aria-live="polite"></div>
+                      <div class="capture-runtime-meta" id="capture-runtime-meta" hidden>静音循环演示 · 点击画面或使用暂停按钮切换</div>
+                      <button class="capture-toggle" type="button" id="capture-toggle" aria-controls="capture-video" hidden>暂停演示</button>
+                      <div class="vp-empty" id="vp-empty">点 Play，在 View 里运行当前游戏</div>
+                      <div class="vp-work" id="vp-work"></div>
+                    </div>
+                  </div>
+                </section>
+                <section class="fx-dock-panel fx-dock-panel--inspector" id="inspector-panel" data-drawer-panel="inspector" tabindex="-1" aria-label="Inspector">
+                  <div class="fx-dock-tabbar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+                    <span>Inspector</span>
+                    <button class="fx-dock-x" type="button" data-drawer-close="inspector" aria-label="关闭 Inspector" aria-controls="inspector-panel" aria-expanded="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="13" height="13" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </button>
+                  </div>
+                  <div class="fx-inspector" id="insp"></div>
+                </section>
+                <section class="fx-dock-panel fx-dock-panel--browser">
+                  <div class="fx-dock-tabbar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    <span>Content Browser</span>
+                    <span class="fx-dock-x" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="13" height="13"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </span>
+                  </div>
+                  <div class="cb-root">
+                    <div class="cb-split">
+                      <aside class="cb-source-panel">
+                        <section class="cb-source-group">
+                          <button type="button" class="cb-source-group-head">
+                            <span class="cb-source-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg></span>
+                            <span class="cb-source-group-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polygon points="12 2 15 8.5 22 9.3 17 14.2 18.2 21 12 17.8 5.8 21 7 14.2 2 9.3 9 8.5"/></svg></span>
+                            <span class="cb-source-group-name">Favorites</span>
+                          </button>
+                          <div class="cb-source-empty">No favorites yet</div>
+                        </section>
+                        <section class="cb-source-group">
+                          <button type="button" class="cb-source-group-head">
+                            <span class="cb-source-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg></span>
+                            <span class="cb-source-group-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-group-name">47 game</span>
+                          </button>
+                          <button type="button" class="cb-source-row cb-source-virtual-root is-sel" data-cb-path="">
+                            <span class="cb-source-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg></span>
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">All</span>
+                          </button>
+                          <button type="button" class="cb-source-row" data-cb-path="assets" style="padding-left:22px">
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">assets</span>
+                          </button>
+                          <button type="button" class="cb-source-row" data-cb-path="scripts" style="padding-left:22px">
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">scripts</span>
+                          </button>
+                          <button type="button" class="cb-source-row" data-cb-path="sessions" style="padding-left:22px">
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">sessions</span>
+                          </button>
+                          <button type="button" class="cb-source-row" data-cb-path="src" style="padding-left:22px">
+                            <span class="cb-source-icon cb-folder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h6l2 2h10v10H3z"/></svg></span>
+                            <span class="cb-source-name">src</span>
+                          </button>
+                        </section>
+                      </aside>
+                      <section class="cb-asset-view">
+                        <div class="fx-panel-header cb-toolbar">
+                          <div class="cb-address" id="cb-address"><span class="cb-crumb-current">47 game</span></div>
+                          <button class="fx-button fx-button--icon" type="button" aria-label="Content Browser settings">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M4 12h2M18 12h2M12 4v2M12 18v2"/></svg>
+                          </button>
+                        </div>
+                        <div class="cb-filter-bar">
+                          <button class="fx-button fx-button--compact" type="button">Filter by type</button>
+                          <label class="fx-search" style="max-width:240px">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+                            <input type="search" placeholder="Search assets…" aria-label="Search assets" id="cb-search">
+                          </label>
+                          <button class="fx-button fx-button--compact" type="button">Name</button>
+                        </div>
+                        <div class="cb-fe-grid" id="cb-grid"></div>
+                        <footer class="cb-status">
+                          <span id="cb-count">4 items</span>
+                          <span id="cb-path-label">47 game</span>
+                        </footer>
+                      </section>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <aside class="agent-sheet" aria-label="当前步骤说明">
+      <h3>这一步发生了什么</h3>
+      <dl>
+        <dt>在做什么</dt><dd id="agent-goal"></dd>
+        <dt>你要输入的</dt><dd id="agent-input"></dd>
+        <dt>怎么算成功</dt><dd id="agent-ok"></dd>
+      </dl>
+    </aside>
+  </section>
+
+<div class="live" id="live" aria-live="polite"></div>
+<div class="toast" id="toast" role="status">已复制</div>
+
+<dialog id="lightbox">
+  <div class="lightbox">
+    <img id="lb-img" data-asset="cap-webgpu.png" alt="带集群点光的室内科幻场景">
+    <div class="lightbox-bar">
+      <div>
+        <strong id="lb-title"></strong>
+        <p id="lb-copy" style="margin:4px 0 0;color:var(--fx-color-text-secondary);font-size:13px"></p>
+      </div>
+      <button class="btn btn-primary" type="button" id="lb-close">关闭</button>
+    </div>
+  </div>
+</dialog>
   </div>
 
   <div class="section tut-section">
     <div class="grid tut-grid">
       <a class="card card--link tut-card" href="/zh/tutorials/engine.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="cpu"></i></div>
           <h3 class="tut-card__title">认识天工引擎</h3>
           <span class="tag brand">引擎</span>
         </div>
@@ -73,7 +336,6 @@
       </a>
       <a class="card card--link tut-card" href="/zh/tutorials/cli-setup.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="terminal"></i></div>
           <h3 class="tut-card__title">把 ForgeAX Game 安装到 Codex</h3>
           <span class="tag brand">安装</span>
         </div>
@@ -81,7 +343,6 @@
       </a>
       <a class="card card--link tut-card" href="/zh/tutorials/getting-started.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="rocket"></i></div>
           <h3 class="tut-card__title">做出第一款可玩的游戏</h3>
           <span class="tag brand">第一款游戏</span>
         </div>
@@ -89,7 +350,6 @@
       </a>
       <a class="card card--link tut-card" href="/zh/tutorials/extensions.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="palette"></i></div>
           <h3 class="tut-card__title">按任务使用引擎与创作插件</h3>
           <span class="tag brand">能力地图</span>
         </div>
@@ -97,35 +357,10 @@
       </a>
       <a class="card card--link tut-card" href="/zh/tutorials/verify.html">
         <div class="tut-card__head">
-          <div class="ico"><i data-lucide="search"></i></div>
           <h3 class="tut-card__title">构建、检查并验证游戏</h3>
           <span class="tag brand">验证</span>
         </div>
         <p class="tut-card__desc">把“应该能用”变成证据：项目身份、构建结果、真实 Play 行为、日志、运行状态与引擎诊断。</p>
-      </a>
-      <a class="card card--link tut-card" href="/zh/examples/">
-        <div class="tut-card__head">
-          <div class="ico"><i data-lucide="box"></i></div>
-          <h3 class="tut-card__title">天工引擎在线示例</h3>
-          <span class="tag brand">在线示例</span>
-        </div>
-        <p class="tut-card__desc">直接在浏览器运行 WebGPU/WebGL2 渲染、物理、角色控制、2D 光照、材质、后处理、场景与资产示例。</p>
-      </a>
-      <a class="card card--link tut-card" href="/zh/marketplace/">
-        <div class="tut-card__head">
-          <div class="ico"><i data-lucide="blocks"></i></div>
-          <h3 class="tut-card__title">插件市场</h3>
-          <span class="tag brand">插件</span>
-        </div>
-        <p class="tut-card__desc">浏览创作、智能体、模型、工作流与工具插件，继续扩展你的游戏制作客户端。</p>
-      </a>
-      <a class="card card--link tut-card" href="/zh/tutorials/start.html">
-        <div class="tut-card__head">
-          <div class="ico"><i data-lucide="play"></i></div>
-          <h3 class="tut-card__title">开始做第一个游戏</h3>
-          <span class="tag brand">第一款游戏</span>
-        </div>
-        <p class="tut-card__desc">插件装好之后，看引擎能画什么，走完新建、描述、试玩、迭代和发布，并把这一步的提示词交给本地 Agent。</p>
       </a>
     </div>
   </div>
@@ -149,5 +384,6 @@
 
 <script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
 <script src="/assets/site.js?v=01759541"></script>
+<script src="/assets/tutorials/start-demo.js?v=ccba65b1"></script>
 </body>
 </html>
