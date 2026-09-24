@@ -1516,12 +1516,21 @@ color-scheme: dark;
   display: grid;
   place-items: center;
   width: 18px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   flex: 0 0 auto;
   color: var(--fx-color-text-muted);
 }
 
 .tut-graft #fxview .tn .ico svg {
- width: 13px; height: 13px;
+ width: 13px; height: 13px; max-width: none;
 }
 
 .tut-graft #fxview .tn .name-cell {
@@ -2536,5 +2545,25 @@ color-scheme: dark;
 .tut-graft #fxview.has-overlay-drawers .fx-dock-panel--tree { left: 5px; 
 }
 .tut-graft #fxview.has-overlay-drawers .fx-dock-panel--inspector { right: 5px; transform: translateX(110%); 
+}
+
+/* Reference page sizes icons with width/height only. Site `svg { max-width: 100% }`
+   and the card `.ico` slot collapse those strokes inside this mock. */
+.tut-graft svg {
+  max-width: none;
+  flex-shrink: 0;
+  overflow: visible;
+}
+.forgeax-site .tut-graft .ico {
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
