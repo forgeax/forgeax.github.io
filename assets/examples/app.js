@@ -3,6 +3,12 @@
 // [{ id, ok, href, title, blurb }]). window.EX_NAV.landing is the default showcase id.
 // Progressive enhancement: every list item is a real <a href="/examples/<id>/"> that works
 // without JS; this script upgrades clicks into an in-page live preview.
+// Each selection creates a new iframe document (srcdoc or src). Gallery does not keep
+// a host Engine/Renderer/GPUDevice, and does not share World across examples. Shared
+// /engine/<version>/<sha>/ URLs only hit the browser HTTP cache.
+// COI/SharedArrayBuffer demos keep a real navigation (not srcdoc) so the iframe can
+// register its own COOP/COEP service worker. That still cannot isolate the parent
+// gallery page; SAB demos need a full ancestor chain or a standalone /examples/<id>/ tab.
 (function () {
   var EX = window.EX_DATA || [];
   var NAV = window.EX_NAV || {};
