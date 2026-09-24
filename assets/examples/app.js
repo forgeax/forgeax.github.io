@@ -3,15 +3,162 @@
 // [{ id, ok, href, title, blurb }]). window.EX_NAV.landing is the default showcase id.
 // Progressive enhancement: every list item is a real <a href="/examples/<id>/"> that works
 // without JS; this script upgrades clicks into an in-page live preview.
-// Each selection creates a new iframe document (srcdoc or src). Gallery does not keep
+// Each distinct selection replaces the iframe node (srcdoc or src) and bumps a navigation
+// generation so stale fetch/load callbacks cannot write the frame. Gallery does not keep
 // a host Engine/Renderer/GPUDevice, and does not share World across examples. Shared
 // /engine/<version>/<sha>/ URLs only hit the browser HTTP cache.
 // COI/SharedArrayBuffer demos keep a real navigation (not srcdoc) so the iframe can
 // register its own COOP/COEP service worker. That still cannot isolate the parent
 // gallery page; SAB demos need a full ancestor chain or a standalone /examples/<id>/ tab.
 (function () {
+  if (!window.ForgeAXExampleFrameNav) {
+    var PRESERVE_ATTRS = ['id', 'title', 'allow', 'allowfullscreen', 'class', 'name', 'referrerpolicy', 'sandbox'];
+    window.ForgeAXExampleFrameNav = {
+      createExampleFrameNav: function (options) {
+        var document = options.document;
+        var frame = options.getFrame();
+        var generation = 0;
+        var activeId = null;
+        var setTimeoutFn = options.setTimeout || function (fn, ms) { return globalThis.setTimeout(fn, ms); };
+        var wgpuNoticeDelay = options.wgpuNoticeDelay == null ? 1800 : options.wgpuNoticeDelay;
+
+        function setFrame(node) {
+          frame = node;
+          if (options.setFrame) options.setFrame(node);
+        }
+
+        function isCurrent(gen, node) {
+          return gen === generation && node === frame;
+        }
+
+        function copyPreservedAttrs(from, to) {
+          for (var i = 0; i < PRESERVE_ATTRS.length; i++) {
+            var name = PRESERVE_ATTRS[i];
+            if (from && from.hasAttribute && from.hasAttribute(name)) {
+              to.setAttribute(name, from.getAttribute(name));
+            }
+          }
+        }
+
+        function replaceFrame() {
+          var next = document.createElement('iframe');
+          copyPreservedAttrs(frame, next);
+          next.removeAttribute('src');
+          next.removeAttribute('srcdoc');
+          next.removeAttribute('data-ex-href');
+          var parent = frame && frame.parentNode;
+          var old = frame;
+          if (parent) {
+            try {
+              old.removeAttribute('srcdoc');
+              old.src = 'about:blank';
+            } catch (_) {}
+            parent.replaceChild(next, old);
+          }
+          setFrame(next);
+          return next;
+        }
+
+        function applySrc(node, gen, href) {
+          if (!isCurrent(gen, node)) return false;
+          node.removeAttribute('srcdoc');
+          node.src = href;
+          node.setAttribute('src', href);
+          return true;
+        }
+
+        function applySrcdoc(node, gen, html) {
+          if (!isCurrent(gen, node)) return false;
+          node.removeAttribute('src');
+          node.srcdoc = html;
+          node.setAttribute('srcdoc', html);
+          return true;
+        }
+
+        function rewriteDemoHtml(html, href, inject) {
+          var abs = options.resolveHref(href);
+          var dir = new URL('.', abs).href;
+          html = html.split("new URL('.',location.href)").join("new URL('" + dir + "')");
+          html = html.split('new URL(".",location.href)').join("new URL('" + dir + "')");
+          return html.replace(/<head>/i, '<head>\n<script>' + inject + '</script>\n<base href="' + dir + '">\n');
+        }
+
+        function bindLoad(node, gen) {
+          node.addEventListener('load', function () {
+            if (!isCurrent(gen, node)) return;
+            // Ignore the initial about:blank load from a newly inserted frame.
+            if (!node.hasAttribute('src') && !node.hasAttribute('srcdoc')) return;
+            if (options.setLoading) options.setLoading(false);
+            setTimeoutFn(function () {
+              if (!isCurrent(gen, node)) return;
+              try {
+                var doc = node.contentDocument;
+                if (!doc || !node.hasAttribute('srcdoc')) return;
+                if (!doc.getElementById('__wgpu_notice')) return;
+                var href = node.getAttribute('data-ex-href');
+                if (!href) return;
+                applySrc(node, gen, href);
+              } catch (_) {}
+            }, wgpuNoticeDelay);
+          });
+        }
+
+        function loadExampleFrame(href, gen, node) {
+          function fallback() {
+            return applySrc(node, gen, href);
+          }
+          return Promise.all([
+            options.fetchHtml(href),
+            options.orbitInjectPromise,
+          ]).then(function (parts) {
+            if (!isCurrent(gen, node)) return { applied: false, reason: 'stale' };
+            var html = parts[0];
+            var inject = parts[1];
+            if (html.indexOf('coi-serviceworker') >= 0 || html.indexOf('__fxDemoOrbit') >= 0 || html.indexOf('data-fx-orbit') >= 0) {
+              return { applied: fallback(), mode: 'src' };
+            }
+            return { applied: applySrcdoc(node, gen, rewriteDemoHtml(html, href, inject)), mode: 'srcdoc' };
+          }).catch(function () {
+            return { applied: fallback(), mode: 'src', reason: 'error' };
+          });
+        }
+
+        function select(id, href) {
+          if (activeId === id) {
+            return { rebuilt: false, generation: generation, frame: frame, loadPromise: Promise.resolve({ applied: false, reason: 'same-id' }) };
+          }
+          activeId = id;
+          generation += 1;
+          var gen = generation;
+          if (options.setLoading) options.setLoading(true);
+          var node = replaceFrame();
+          node.setAttribute('data-ex-href', href);
+          bindLoad(node, gen);
+          return {
+            rebuilt: true,
+            generation: gen,
+            frame: node,
+            loadPromise: loadExampleFrame(href, gen, node),
+          };
+        }
+
+        return {
+          select: select,
+          isCurrent: isCurrent,
+          applySrc: applySrc,
+          applySrcdoc: applySrcdoc,
+          replaceFrame: replaceFrame,
+          getGeneration: function () { return generation; },
+          getActiveId: function () { return activeId; },
+          getFrame: function () { return frame; },
+        };
+      },
+    };
+  }
+
   var EX = window.EX_DATA || [];
   var NAV = window.EX_NAV || {};
+  var createNav = window.ForgeAXExampleFrameNav.createExampleFrameNav;
   var byId = {};
   EX.forEach(function (e) { byId[e.id] = e; });
   var frame = document.getElementById('exFrame');
@@ -20,7 +167,6 @@
   var list = document.getElementById('exList');
   if (!frame || !list) return;
   var items = [].slice.call(list.querySelectorAll('.ex-item'));
-  var activeId = null;
 
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
@@ -43,40 +189,26 @@
       return r.text();
     });
 
-  function loadExampleFrame(href) {
-    var abs = new URL(href, location.href);
-    var dir = new URL('.', abs).href;
-    function fallback() { frame.src = href; }
-    Promise.all([
-      fetch(abs.href, { credentials: 'same-origin' }).then(function (r) {
+  var nav = createNav({
+    document: document,
+    getFrame: function () { return frame; },
+    setFrame: function (node) { frame = node; },
+    setLoading: setLoading,
+    fetchHtml: function (href) {
+      return fetch(new URL(href, location.href).href, { credentials: 'same-origin' }).then(function (r) {
         if (!r.ok) throw new Error('demo html ' + r.status);
         return r.text();
-      }),
-      orbitInjectPromise,
-    ]).then(function (parts) {
-      var html = parts[0];
-      var inject = parts[1];
-      if (html.indexOf('coi-serviceworker') >= 0) { fallback(); return; }
-      if (html.indexOf('__fxDemoOrbit') >= 0 || html.indexOf('data-fx-orbit') >= 0) {
-        fallback();
-        return;
-      }
-      html = html.split("new URL('.',location.href)").join("new URL('" + dir + "')");
-      html = html.split('new URL(".",location.href)').join("new URL('" + dir + "')");
-      html = html.replace(/<head>/i, '<head>\n<script>' + inject + '</script>\n<base href="' + dir + '">\n');
-      frame.srcdoc = html;
-    }).catch(fallback);
-  }
+      });
+    },
+    orbitInjectPromise: orbitInjectPromise,
+    resolveHref: function (href) { return new URL(href, location.href); },
+    setTimeout: function (fn, ms) { return window.setTimeout(fn, ms); },
+  });
 
   function select(id, push) {
     var e = byId[id];
     if (!e || !e.ok) return;
-    activeId = id;
-    if (frame.getAttribute('data-ex-href') !== e.href) {
-      setLoading(true);
-      frame.setAttribute('data-ex-href', e.href);
-      loadExampleFrame(e.href);
-    }
+    nav.select(id, e.href);
     if (titleEl) titleEl.innerHTML = esc(e.title) + (e.blurb ? '<small>' + esc(e.blurb) + '</small>' : '');
     items.forEach(function (it) { it.classList.toggle('is-active', it.getAttribute('data-id') === id); });
     var act = list.querySelector('.ex-item.is-active');
@@ -84,21 +216,6 @@
     if (act && act.scrollIntoView) act.scrollIntoView({ block: 'nearest' });
     if (push) { try { history.replaceState(null, '', '#' + id); } catch (_) { location.hash = id; } }
   }
-
-  frame.addEventListener('load', function () {
-    setLoading(false);
-    window.setTimeout(function () {
-      try {
-        var doc = frame.contentDocument;
-        if (!doc || !frame.hasAttribute('srcdoc')) return;
-        if (!doc.getElementById('__wgpu_notice')) return;
-        var href = frame.getAttribute('data-ex-href');
-        if (!href) return;
-        frame.removeAttribute('srcdoc');
-        frame.src = href;
-      } catch (e) {}
-    }, 1800);
-  });
 
   items.forEach(function (it) {
     it.addEventListener('click', function (ev) {
