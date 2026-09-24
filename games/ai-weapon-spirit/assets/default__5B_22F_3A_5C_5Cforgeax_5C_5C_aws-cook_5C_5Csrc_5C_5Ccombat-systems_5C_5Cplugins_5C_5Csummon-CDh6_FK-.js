@@ -1,0 +1,1 @@
+import{r as e}from"./module-plugin-nM5HDirZ.js";var t=e(`summon`);export{t as default};

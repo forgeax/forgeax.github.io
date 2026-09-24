@@ -1,0 +1,1 @@
+import{t as e}from"./dist-Cm9Vz4dd.js";var t={name:`weapon-spirit/project`,inject:[`assets`,`pluginPrograms`],async apply(t,n){let r;for(let i of n.children){let n=await e(t,i);if(!n.ok)throw n.error;let a=r;r=t.effect(function*(){a&&(yield a),yield n.value.dispose},`weapon-spirit/plugin-assets-lifetime`)}}};export{t};

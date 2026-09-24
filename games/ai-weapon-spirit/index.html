@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="zh-CN" data-game-loading>
   <head>
-<script>(function(){if(window.__fxDemoFetchRebase)return;window.__fxDemoFetchRebase=1;var orig=window.fetch;if(typeof orig!=='function')return;var root=new URL('.',location.href);function rewrite(url){try{var u=new URL(url,location.href);if(u.origin!==location.origin)return url;if(u.pathname.indexOf(root.pathname)===0)return url;if(!/^\/(shaders\/manifest\.json|pack-index\.json|[^/]+-pack-index\.json)$/.test(u.pathname))return url;return new URL(u.pathname.slice(1),root).href;}catch(e){return url;}}window.fetch=function(input,init){if(typeof input==='string')return orig.call(this,rewrite(input),init);if(typeof Request!=='undefined'&&input instanceof Request){var next=rewrite(input.url);if(next!==input.url)input=new Request(next,input);}return orig.call(this,input,init);};})();</script>
     <meta charset="UTF-8" />
     <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -13,30 +12,42 @@
       #app-shell { position: relative; }
       #game-ui { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
       #game-ui > * { pointer-events: auto; }
-      #game-loading { position: absolute; inset: 0; display: grid; place-items: center; box-sizing: border-box; padding: max(24px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left)); overflow: auto; color: #b8d4c9; font: 16px/1.6 system-ui, sans-serif; }
       
-  html[data-game-loading] #app { visibility:hidden; }
+  .game-loading-indicator { --ui-surface:#21383c;--ui-recessed:#14282c;--ui-raised:#314c50;--ui-text:#eff0df;--ui-muted:#b8cbc6;--ui-bronze:#6e9392;--ui-bronze-light:#b6dbd2;--ui-jade:#a8e1d6;--ui-health:#ad283b;--ui-health-light:#ed7963;--ui-health-deep:#400c1c;--ui-qi:#207f7d;--ui-qi-light:#87d5be;--ui-qi-deep:#0b353c;--ui-positive:#aed5b6;--ui-negative:#efb3a5;--ui-card-surface:#14282c;--ui-card-text:#eef0df;--ui-card-muted:#a6bbb7;--ui-card-line:#547773;--ui-card-positive:#b0dbb8;--ui-card-negative:#f0aa9b;--ui-title-ink:#203b40;--ui-title-veil:#a2bfc0;--ui-cinnabar:#a44736;--ui-lacquer:#2b4143;--ui-jade-carving:#b1d3c9;--ui-carving-ink:#597d7b;--ui-font-body:"Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif;--ui-font-title:"Noto Serif CJK SC","Songti SC",serif;--ui-font-number:Georgia,"Times New Roman",serif;--ui-space-xs:4px;--ui-space-sm:8px;--ui-space-md:12px;--ui-space-lg:16px;--ui-space-xl:24px;--ui-corner:2px;--ui-frame:1px;--ui-inset:3px;--ui-focus:2px;--ui-feedback:140ms;--ui-blood-flow:14000ms;--ui-qi-flow:10000ms;--ui-liquid-wave:6000ms;--ui-rainbow:linear-gradient(120deg,#e6b57b,#dace88,#80bdad,#83accc,#b493c4,#e6b57b);--ui-line:color-mix(in srgb,var(--ui-bronze) 40%,transparent);--ui-panel:color-mix(in srgb,var(--ui-surface) 94%,transparent);--ui-motif-disc:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20128%20128%22%20stroke%3D%22%23b1d3c9%22%20stroke-width%3D%221.5%22%20fill%3D%22none%22%3E%3Cg%20transform%3D%22rotate(0%2064%2064)%22%3E%3Cpath%20d%3D%22M64%203%20A61%2061%200%201%201%2063.99%203%20Z%20M64%2017%20A47%2047%200%201%200%2064.01%2017%20Z%22%20fill%3D%22%23597d7b%22%20fill-rule%3D%22evenodd%22%2F%3E%3Cpath%20d%3D%22M64%203%20A61%2061%200%201%201%2063.99%203%20M64%2010%20A54%2054%200%201%201%2063.99%2010%20M64%2017%20A47%2047%200%201%201%2063.99%2017%20M59%203%20L59%2014%20L69%2014%20L69%203%20M59%20125%20L59%20114%20L69%20114%20L69%20125%20M3%2059%20L14%2059%20L14%2069%20L3%2069%20M125%2059%20L114%2059%20L114%2069%20L125%2069%20M21%2021%20L29%2029%20M99%2099%20L107%20107%20M21%20107%20L29%2099%20M99%2029%20L107%2021%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");--ui-motif-seal:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%20stroke%3D%22%23b1d3c9%22%20stroke-width%3D%221.5%22%20fill%3D%22none%22%3E%3Cg%20transform%3D%22rotate(0%2020%2020)%22%3E%3Cpath%20d%3D%22M3%204%20L35%203%20L37%2036%20L4%2037%20Z%20M7%208%20L32%207%20L33%2032%20L8%2033%20Z%20M12%2011%20L12%2027%20L17%2027%20L17%2012%20M21%2011%20L28%2011%20L28%2017%20L22%2017%20L22%2029%20L28%2029%20L28%2023%20M11%2020%20L17%2020%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");--ui-motif-corner-nw:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%20stroke%3D%22%23b1d3c9%22%20stroke-width%3D%221.5%22%20fill%3D%22none%22%3E%3Cg%20transform%3D%22rotate(0%2040%2040)%22%3E%3Cpath%20d%3D%22M5%2070%20L5%205%20L70%205%20M14%2048%20L14%2014%20L48%2014%20L48%2025%20L25%2025%20L25%2048%20Z%20M5%2070%20L14%2061%20M61%2014%20L70%205%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");--ui-motif-corner-ne:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%20stroke%3D%22%23b1d3c9%22%20stroke-width%3D%221.5%22%20fill%3D%22none%22%3E%3Cg%20transform%3D%22rotate(90%2040%2040)%22%3E%3Cpath%20d%3D%22M5%2070%20L5%205%20L70%205%20M14%2048%20L14%2014%20L48%2014%20L48%2025%20L25%2025%20L25%2048%20Z%20M5%2070%20L14%2061%20M61%2014%20L70%205%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");--ui-motif-corner-se:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%20stroke%3D%22%23b1d3c9%22%20stroke-width%3D%221.5%22%20fill%3D%22none%22%3E%3Cg%20transform%3D%22rotate(180%2040%2040)%22%3E%3Cpath%20d%3D%22M5%2070%20L5%205%20L70%205%20M14%2048%20L14%2014%20L48%2014%20L48%2025%20L25%2025%20L25%2048%20Z%20M5%2070%20L14%2061%20M61%2014%20L70%205%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");--ui-motif-corner-sw:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%20stroke%3D%22%23b1d3c9%22%20stroke-width%3D%221.5%22%20fill%3D%22none%22%3E%3Cg%20transform%3D%22rotate(270%2040%2040)%22%3E%3Cpath%20d%3D%22M5%2070%20L5%205%20L70%205%20M14%2048%20L14%2014%20L48%2014%20L48%2025%20L25%2025%20L25%2048%20Z%20M5%2070%20L14%2061%20M61%2014%20L70%205%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"); position:absolute; left:max(12px,env(safe-area-inset-left)); bottom:max(12px,env(safe-area-inset-bottom)); z-index:1200; max-width:min(19rem,calc(100% - 24px - env(safe-area-inset-left) - env(safe-area-inset-right))); box-sizing:border-box; padding:4px 10px 4px 5px; border:1px solid var(--ui-line); border-radius:12px; background:var(--ui-panel); color:var(--ui-muted); font:12px/1.5 var(--ui-font-body); pointer-events:none; }
+  #game-ui > .game-loading-indicator { pointer-events:none; }
+  .game-loading-indicator[hidden], .game-loading-indicator [hidden] { display:none; }
+  .game-loading-indicator__status { display:flex; align-items:center; gap:5px; min-height:32px; }
+  .game-loading-indicator__flight { display:block; flex:none; width:46px; height:30px; overflow:visible; transform-origin:center; color:var(--ui-bronze); animation:game-loading-fly 2.4s ease-in-out infinite; }
+  .game-loading-indicator__wind { opacity:.45; animation:game-loading-wind 1.8s ease-in-out infinite; }
+  .game-loading-indicator [data-loading-label] { overflow-wrap:anywhere; }
+  .game-loading-indicator[data-loading-state="error"] :is(.game-loading-indicator__flight,.game-loading-indicator__wind) { animation:none; }
+  .game-loading-indicator__failure { display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; padding:0 2px 4px 4px; }
+  .game-loading-indicator__failure > span { flex-basis:100%; color:#f0c6ac; }
+  .game-loading-indicator button, .game-loading-indicator summary { pointer-events:auto; cursor:pointer; touch-action:manipulation; }
+  .game-loading-indicator button { min-height:36px; padding:5px 10px; border:1px solid #669b956b; border-radius:7px; background:#243a37; color:inherit; font:inherit; }
+  .game-loading-indicator :focus-visible { outline:2px solid #c0e4de; outline-offset:2px; }
+  .game-loading-indicator details { min-width:0; max-width:100%; }
+  .game-loading-indicator details[open] { flex-basis:100%; }
+  .game-loading-indicator summary { padding:6px 0; }
+  .game-loading-indicator pre { max-height:min(15rem,35vh); overflow:auto; overscroll-behavior:contain; margin:4px 0; white-space:pre-wrap; overflow-wrap:anywhere; user-select:text; pointer-events:auto; font:11px/1.5 monospace; }
+  /* Only initial Host readiness owns the entry veil. Later loading tasks keep
+     the compact, non-blocking HUD without concealing the world or menus. */
   html[data-game-loading] #game-ui > :not(#game-loading),
   html[data-game-loading] #game-ui > :not(#game-loading) * { visibility:hidden!important; pointer-events:none!important; }
-  #game-loading { z-index:2147483647; background:radial-gradient(ellipse at 80% 90%,#203936 0%,#101d20 36%,#0c1419 76%); }
-  .game-loading__traveler { position:absolute; right:max(32px,env(safe-area-inset-right)); bottom:max(28px,env(safe-area-inset-bottom)); width:200px; display:grid; justify-items:center; gap:5px; user-select:none; }
-  .game-loading__flight { display:block; width:180px; height:108px; overflow:visible; will-change:transform; animation:game-loading-fly 2.4s steps(12,end) infinite; }
-  .game-loading__wind { opacity:.5; }
-  .game-loading__traveler strong { color:#c9d7c4; font-size:14px; font-weight:500; letter-spacing:4px; }
-  [data-loading-label] { color:#8fa9a4; font-size:12px; letter-spacing:1px; }
-  @keyframes game-loading-fly { 0%,100% { transform:translate3d(0,2px,0) rotate(-2deg); } 50% { transform:translate3d(0,-5px,0) rotate(1deg); } }
+  html[data-game-loading] .game-loading-indicator { left:auto; right:max(32px,env(safe-area-inset-right)); bottom:max(28px,env(safe-area-inset-bottom)); width:216px; padding:0; border:0; border-radius:0; background:none; }
+  html[data-game-loading] .game-loading-indicator::before { content:''; position:fixed; inset:0; z-index:-1; background:radial-gradient(ellipse at 80% 90%,var(--ui-surface),var(--ui-recessed) 48%,color-mix(in srgb,var(--ui-recessed) 55%,black) 100%); }
+  html[data-game-loading] .game-loading-indicator__status { flex-direction:column; gap:12px; padding-top:8px; }
+  html[data-game-loading] .game-loading-indicator__flight { width:180px; height:108px; }
+  html[data-game-loading] [data-loading-label] { max-width:100%; padding:4px 10px; text-align:center; letter-spacing:.06em; }
+  html[data-game-loading] .game-loading-indicator__failure { padding-top:8px; }
+  @keyframes game-loading-fly { 0%,100% { transform:translateY(2px) rotate(-2deg); } 50% { transform:translateY(-4px) rotate(1deg); } }
+  @keyframes game-loading-wind { 0%,100% { transform:translateX(3px); opacity:.25; } 50% { transform:translateX(-5px); opacity:.55; } }
   @media(max-width:600px),(max-height:500px) {
-    .game-loading__traveler { right:max(16px,env(safe-area-inset-right)); bottom:max(18px,env(safe-area-inset-bottom)); width:164px; }
-    .game-loading__flight { width:150px; height:90px; }
+    html[data-game-loading] .game-loading-indicator { right:max(16px,env(safe-area-inset-right)); bottom:max(18px,env(safe-area-inset-bottom)); width:176px; }
+    html[data-game-loading] .game-loading-indicator__flight { width:150px; height:90px; }
   }
-  @media(prefers-reduced-motion:reduce) { .game-loading__flight { animation:none; will-change:auto; } }
+  @media(prefers-reduced-motion:reduce) { .game-loading-indicator__flight,.game-loading-indicator__wind { animation:none; } }
 
-      .game-startup-failure { width: min(100%, 36rem); min-width: 0; margin: auto; }
-      .game-startup-failure h1 { font-size: 1.3rem; color: #e0ece7; }
-      .game-startup-failure button { margin: 8px 8px 8px 0; min-height: 44px; padding: 8px 14px; border: 1px solid #527368; border-radius: 8px; background: #17231f; color: inherit; font: inherit; cursor: pointer; }
-      .game-startup-failure details { margin-top: 16px; }
-      .game-startup-failure summary { cursor: pointer; }
-      .game-startup-failure pre { white-space: pre-wrap; overflow-wrap: anywhere; user-select: text; font-size: 12px; }
       .game-runtime-interruption { position:absolute; inset:0; z-index:1000; display:grid; place-items:center; padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left)); overflow:auto; background:#101916f5; color:#e0ece7; font:16px/1.6 system-ui,sans-serif; }
       .game-runtime-interruption[hidden] { display:none; }
       .game-runtime-failure { width:min(100%,36rem); min-width:0; margin:auto; }
@@ -44,40 +55,32 @@
       .game-runtime-failure pre { white-space:pre-wrap; overflow-wrap:anywhere; user-select:text; font-size:12px; }
       .game-runtime-interruption button { min-height:46px; margin:4px; padding:8px 14px; font:inherit; }
     </style>
-    <script type="module" crossorigin src="/games/ai-weapon-spirit/assets/index-DrjepDWs.js"></script>
+    <script type="module" crossorigin src="/games/ai-weapon-spirit/assets/index-BWzE7Lq4.js"></script>
     <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/chunk-DK3Fl9T5.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/preload-helper-zJ_50EbN.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-C8TiSe7v.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-CHd_NZJQ.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/preload-helper-CGznO6YG.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-poxC_sXg.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-Cm9Vz4dd.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-5-a8mSo3.js">
     <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-D1HDioW-.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-CowGC11g.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-BSoZ26EU.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/chunk-DS7WWPFM-BDMKhb16.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-DoLag30R.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-LcsiUCJ-.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/chunk-XSFB7XXQ-Cmdh0471.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/continuous-query-CjdaXuTl.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/game-asset-catalog-CGU3DZp1.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/preview-scenario-U5tzuYv5.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/female-figure-C1kCMFUh.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/player-visuals-De9n8bMq.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/object-definition-registry-D4kFDhNZ.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/ecs-components-Dtj9xoKb.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/surface-graph-DWPiTLAt.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/returning-sword-training-surface-BlDqI5MB.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/retryable-cleanup-C4MXcLgk.js">
-    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/scene-asset-loader-GtjIqtT4.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-CcgpOc1p.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/guid-Cogv2F18.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-7g5mef-s.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-Bt8tOgWB.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-CWZWbaWG.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/chunk-GD7GZ6DN-B4nvVW7B.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/game-loading-indicator-C3PlDpTV.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/dist-Dq9wM_Xi.js">
+    <link rel="modulepreload" crossorigin href="/games/ai-weapon-spirit/assets/retryable-cleanup-BoBU8aKb.js">
   </head>
   <body>
-    <div id="app-shell"><canvas id="app"></canvas><div id="game-ui"><div id="game-loading" role="status"><div class="game-loading__traveler">
-  <svg class="game-loading__flight" viewBox="0 0 200 120" aria-hidden="true" focusable="false">
-    <g class="game-loading__wind" fill="none" stroke="#669b95" stroke-width="1.5" stroke-linecap="round">
-      <path d="M20 61h29 M5 78h37 M44 109h47"/><path d="M19 105h13 M32 46h18"/>
+    <div id="app-shell"><canvas id="app"></canvas><div id="game-ui"><div id="game-loading" class="game-loading-indicator" data-loading-state="loading" role="status" aria-live="polite" aria-atomic="true"><div class="game-loading-indicator__status">
+  <svg class="game-loading-indicator__flight" viewBox="0 0 200 120" aria-hidden="true" focusable="false">
+    <g class="game-loading-indicator__wind" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M20 61h29 M5 78h37 M44 109h47 M19 105h13 M32 46h18"/>
     </g>
-    <g class="game-loading__rider"><path data-rider-part="sword-blade" d="M49 93 L175 88 L191 92 L174 98 L49 98 Z" fill="#c0e4de"/><path data-rider-part="sword-edge" d="M61 95 L184 92 L174 98 L61 98 Z" fill="#619d99"/><path data-rider-part="sword-hilt" d="M27 93 L50 92 L50 99 L27 98 Z M49 88 L55 88 L55 104 L49 104 Z" fill="#d3b47c"/><path data-rider-part="rear-leg" d="M94 73 L106 75 L95 92 L80 92 L80 87 L89 85 Z" fill="#274b4d"/><path data-rider-part="front-leg" d="M107 73 L119 72 L123 87 L135 89 L135 94 L116 94 Z" fill="#426663"/><path data-rider-part="robe" d="M105 38 L120 42 L124 63 L133 76 L115 82 L98 76 L73 80 L86 60 Z" fill="#a5c9bb"/><path data-rider-part="robe-fold" d="M106 48 L113 55 L105 73 L115 82 L98 76 L73 80 L92 64 Z" fill="#578d85"/><path data-rider-part="sash" d="M97 57 L122 56 L123 62 L95 64 Z M99 62 L91 82 L84 84 L93 61 Z" fill="#d3b47c"/><path data-rider-part="flying-sleeve" d="M107 42 L95 45 L81 38 L63 39 L79 49 L92 58 L105 55 Z" fill="#c8ddd0"/><path data-rider-part="front-sleeve" d="M119 43 L129 50 L141 47 L143 54 L128 61 L116 55 Z" fill="#dce6d4"/><path data-rider-part="hand" d="M141 47 L150 46 L151 51 L143 54 Z" fill="#e1bc94"/><path data-rider-part="head" d="M111 23 L126 23 L130 34 L125 42 L113 39 L108 31 Z" fill="#e1bc94"/><path data-rider-part="hair" d="M108 21 L117 17 L127 21 L130 28 L117 26 L113 36 L106 31 Z M115 17 L112 12 L119 9 L124 13 L123 19 Z" fill="#233e41"/><path data-rider-part="hair-ribbon" d="M110 23 L99 29 L79 25 L63 29 L80 31 L99 34 L114 27 Z" fill="#78b8ad"/></g>
+    <g><path data-rider-part="sword-blade" d="M49 93 L175 88 L191 92 L174 98 L49 98 Z" fill="#c0e4de"/><path data-rider-part="sword-edge" d="M61 95 L184 92 L174 98 L61 98 Z" fill="#619d99"/><path data-rider-part="sword-hilt" d="M27 93 L50 92 L50 99 L27 98 Z M49 88 L55 88 L55 104 L49 104 Z" fill="#d3b47c"/><path data-rider-part="rear-leg" d="M94 73 L106 75 L95 92 L80 92 L80 87 L89 85 Z" fill="#274b4d"/><path data-rider-part="front-leg" d="M107 73 L119 72 L123 87 L135 89 L135 94 L116 94 Z" fill="#426663"/><path data-rider-part="robe" d="M105 38 L120 42 L124 63 L133 76 L115 82 L98 76 L73 80 L86 60 Z" fill="#a5c9bb"/><path data-rider-part="robe-fold" d="M106 48 L113 55 L105 73 L115 82 L98 76 L73 80 L92 64 Z" fill="#578d85"/><path data-rider-part="sash" d="M97 57 L122 56 L123 62 L95 64 Z M99 62 L91 82 L84 84 L93 61 Z" fill="#d3b47c"/><path data-rider-part="flying-sleeve" d="M107 42 L95 45 L81 38 L63 39 L79 49 L92 58 L105 55 Z" fill="#c8ddd0"/><path data-rider-part="front-sleeve" d="M119 43 L129 50 L141 47 L143 54 L128 61 L116 55 Z" fill="#dce6d4"/><path data-rider-part="hand" d="M141 47 L150 46 L151 51 L143 54 Z" fill="#e1bc94"/><path data-rider-part="head" d="M111 23 L126 23 L130 34 L125 42 L113 39 L108 31 Z" fill="#e1bc94"/><path data-rider-part="hair" d="M108 21 L117 17 L127 21 L130 28 L117 26 L113 36 L106 31 Z M115 17 L112 12 L119 9 L124 13 L123 19 Z" fill="#233e41"/><path data-rider-part="hair-ribbon" d="M110 23 L99 29 L79 25 L63 29 L80 31 L99 34 L114 27 Z" fill="#78b8ad"/></g>
   </svg>
-  <strong>加载中</strong>
-  <span data-loading-label aria-live="polite">正在加载资源…</span>
-</div></div></div></div>
+  <span data-loading-label>正在加载资源…</span>
+</div><div class="game-loading-indicator__failure" data-loading-failure hidden></div></div></div></div>
   </body>
 </html>

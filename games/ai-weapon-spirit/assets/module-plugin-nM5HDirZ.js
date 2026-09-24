@@ -1,0 +1,1 @@
+import{a as e,t}from"./content-packs-C-IdD8Me.js";var n=`weaponSpirit.sharedContent`,r=`weaponSpirit.expeditionContent`,i=e=>`weaponSpirit.content.${e}`;function a(r){return{name:t[r].plugin,inject:[n],provide:i(r),apply(t){t.provide(i(r),Object.freeze({content:e(r),fiber:t.fiber}))}}}export{i,n,a as r,r as t};

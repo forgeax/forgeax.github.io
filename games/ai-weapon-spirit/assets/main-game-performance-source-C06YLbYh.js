@@ -1,0 +1,1 @@
+var e=new WeakMap;function t(t,n){return e.set(t,n),()=>{e.get(t)===n&&e.delete(t)}}var n=new WeakMap;function r(e,t){return n.set(e,t),()=>{n.get(e)===t&&n.delete(e)}}function i(e){return n.get(e)?.()}export{i as n,r,t};

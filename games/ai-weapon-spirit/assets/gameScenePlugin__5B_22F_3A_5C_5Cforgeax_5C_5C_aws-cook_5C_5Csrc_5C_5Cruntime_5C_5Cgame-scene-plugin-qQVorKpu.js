@@ -1,0 +1,1 @@
+import{n as e}from"./game-scene-plugin-DIRuZI86.js";export{e as default};

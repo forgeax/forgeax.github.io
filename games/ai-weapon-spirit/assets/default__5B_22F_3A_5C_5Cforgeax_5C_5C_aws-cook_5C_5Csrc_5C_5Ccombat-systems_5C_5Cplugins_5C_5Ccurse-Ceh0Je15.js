@@ -1,0 +1,1 @@
+import{r as e}from"./module-plugin-nM5HDirZ.js";var t=e(`curse`);export{t as default};

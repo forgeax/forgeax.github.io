@@ -1,0 +1,1 @@
+import{r as e}from"./module-plugin-nM5HDirZ.js";var t=e(`domain`);export{t as default};
