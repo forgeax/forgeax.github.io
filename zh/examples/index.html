@@ -47,6 +47,14 @@
   .ex-empty{padding:12px;font-size:13px;color:var(--text-tertiary);margin:0}
 </style>
 
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/engine/dist/index.mjs" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/wgpu-wasm/pkg/wgpu_wasm.js" crossorigin />
+    <link rel="preload" href="/zh/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/wgpu-wasm/pkg/wgpu_wasm_bg.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/fbx/pkg/fbx-wasm.mjs" crossorigin />
+    <link rel="preload" href="/zh/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/fbx/pkg/fbx-wasm.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/codec/pkg/basis_transcoder.mjs" crossorigin />
+    <link rel="preload" href="/zh/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/codec/pkg/basis_transcoder.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="preload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/shaders/index.json" as="fetch" crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css?v=6b852f5f" />
@@ -85,145 +93,51 @@
     </div>
     <nav class="ex-list" id="exList">
         <a class="ex-item ex-item--show" data-id="happy-blob" href="/examples/happy-blob/">
-          <span class="ex-item-t">快乐光团</span>
-          <span class="ex-item-b">光线步进的软体角色，挤压拉伸，由全屏自定义着色器绘制。</span>
+          <span class="ex-item-t">SDF 角色</span>
+          <span class="ex-item-b">用引擎跑起来的 Shadertoy SDF 角色。</span>
         </a>
-        <a class="ex-item ex-item--show" data-id="gltf-instancing" href="/examples/gltf-instancing/">
-          <span class="ex-item-t">glTF 实例化</span>
-          <span class="ex-item-b">四个带光照的立方体，同一网格一次绘制 —— 来自 glTF 的 GPU 实例化。</span>
+        <a class="ex-item ex-item--show" data-id="volumetric-fog" href="/examples/volumetric-fog/">
+          <span class="ex-item-t">体积雾</span>
+          <span class="ex-item-b">走标准后处理栈的体积雾。</span>
         </a>
         <a class="ex-item ex-item--show" data-id="hdrp-lighting" href="/examples/hdrp-lighting/">
-          <span class="ex-item-t">集群光照</span>
-          <span class="ex-item-b">用集群前向管线高效点亮 256 盏点光源。</span>
+          <span class="ex-item-t">256 盏灯</span>
+          <span class="ex-item-b">集群前向管线点亮 256 盏灯。</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="10k-cubes-lights" href="/examples/10k-cubes-lights/">
+          <span class="ex-item-t">一万个立方体</span>
+          <span class="ex-item-b">一万个立方体与灯光的规模压测场景。</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="deferred-shading" href="/examples/deferred-shading/">
+          <span class="ex-item-t">延迟渲染</span>
+          <span class="ex-item-b">Learn-render 延迟渲染路径。</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="bloom" href="/examples/bloom/">
+          <span class="ex-item-t">Bloom</span>
+          <span class="ex-item-b">作为后处理通道的 HDR 辉光。</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="ibl-specular" href="/examples/ibl-specular/">
+          <span class="ex-item-t">环境反射 IBL</span>
+          <span class="ex-item-b">基于图像的镜面环境反射。</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="sprite-atlas" href="/examples/sprite-atlas/">
+          <span class="ex-item-t">一百个精灵一次绘制</span>
+          <span class="ex-item-b">图集一次绘制一百个精灵。</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="character" href="/examples/character/">
+          <span class="ex-item-t">胶囊体行走和跳跃</span>
+          <span class="ex-item-b">物理世界里的 WASD + 跳跃胶囊。</span>
         </a>
         <a class="ex-item ex-item--show" data-id="physics" href="/examples/physics/">
-          <span class="ex-item-t">物理</span>
-          <span class="ex-item-b">Rapier(wasm)刚体物理驱动 ECS 变换。</span>
+          <span class="ex-item-t">刚体下落和反弹</span>
+          <span class="ex-item-b">Rapier 刚体下落与反弹。</span>
         </a>
-        <a class="ex-item ex-item--show" data-id="sprite" href="/examples/sprite/">
-          <span class="ex-item-t">精灵</span>
-          <span class="ex-item-b">2D 精灵渲染 —— 批量四边形，支持图层深度与 JRPG Y 排序。</span>
+        <a class="ex-item ex-item--show" data-id="csm" href="/examples/csm/">
+          <span class="ex-item-t">级联阴影</span>
+          <span class="ex-item-b">级联阴影贴图。</span>
         </a>
-        <a class="ex-item ex-item--show" data-id="2d-flashlight" href="/examples/2d-flashlight/">
-          <span class="ex-item-t">2D 手电筒</span>
-          <span class="ex-item-b">精灵受光的 2D 场景 —— 扫过的聚光灯与柔和点光。</span>
-        </a>
-        <a class="ex-item ex-item--show" data-id="sprite-lit" href="/examples/sprite-lit/">
-          <span class="ex-item-t">精灵光照</span>
-          <span class="ex-item-b">四块受光精灵四边形，外加一块 PBR 立方体，共用同一组方向光、点光与聚光。</span>
-        </a>
-        <a class="ex-item ex-item--show" data-id="room" href="/examples/room/">
-          <span class="ex-item-t">室内场景</span>
-          <span class="ex-item-b">小型室内 —— 盒子、球体与平面组成的嵌套场景。</span>
-        </a>
-        <details class="ex-group" data-group="fundamentals">
-          <summary class="ex-group-sum">
-            <span class="ex-group-t">基础能力</span>
-            <span class="ex-group-n" aria-hidden="true">20</span>
-          </summary>
-          <div class="ex-group-body">
-        <div class="ex-sec" data-sec="getting-started">
-          <div class="ex-sec-h">入门</div>
-        <a class="ex-item ex-item--sub" data-id="triangle" href="/examples/triangle/">
-          <span class="ex-item-t">你好,三角形</span>
-          <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">wgsl</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="cube" href="/examples/cube/">
-          <span class="ex-item-t">立方体</span>
-          <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">mesh</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="topology" href="/examples/topology/">
-          <span class="ex-item-t">图元拓扑</span>
-          <span class="ex-item-tags"><span class="tag">basics</span><span class="tag">geometry</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="transform-hierarchy" href="/examples/transform-hierarchy/">
-          <span class="ex-item-t">层级变换</span>
-          <span class="ex-item-tags"><span class="tag">transform</span><span class="tag">scene-graph</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="mesh-assets">
-          <div class="ex-sec-h">网格与资产</div>
-        <a class="ex-item ex-item--sub" data-id="gltf" href="/examples/gltf/">
-          <span class="ex-item-t">glTF 模型</span>
-          <span class="ex-item-tags"><span class="tag">gltf</span><span class="tag">mesh</span><span class="tag">pbr</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="multi-material" href="/examples/multi-material/">
-          <span class="ex-item-t">多材质网格</span>
-          <span class="ex-item-tags"><span class="tag">mesh</span><span class="tag">materials</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="custom-shader" href="/examples/custom-shader/">
-          <span class="ex-item-t">自定义着色器</span>
-          <span class="ex-item-tags"><span class="tag">shader</span><span class="tag">wgsl</span><span class="tag">materials</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="two-d">
-          <div class="ex-sec-h">2D</div>
-        <a class="ex-item ex-item--sub" data-id="tilemap" href="/examples/tilemap/">
-          <span class="ex-item-t">瓦片地图</span>
-          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="tilemap-object-layer" href="/examples/tilemap-object-layer/">
-          <span class="ex-item-t">瓦片对象层</span>
-          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="scene">
-          <div class="ex-sec-h">场景</div>
-        <a class="ex-item ex-item--sub" data-id="multi-world" href="/examples/multi-world/">
-          <span class="ex-item-t">多世界合成</span>
-          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">ecs</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="entity-visibility" href="/examples/entity-visibility/">
-          <span class="ex-item-t">实体可见性</span>
-          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">visibility</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="interaction">
-          <div class="ex-sec-h">交互与剔除</div>
-        <a class="ex-item ex-item--sub" data-id="picking" href="/examples/picking/">
-          <span class="ex-item-t">GPU 拾取</span>
-          <span class="ex-item-tags"><span class="tag">picking</span><span class="tag">interaction</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="debug-draw" href="/examples/debug-draw/">
-          <span class="ex-item-t">调试绘制</span>
-          <span class="ex-item-tags"><span class="tag">debug</span><span class="tag">tooling</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="culling" href="/examples/culling/">
-          <span class="ex-item-t">视锥剔除</span>
-          <span class="ex-item-tags"><span class="tag">performance</span><span class="tag">culling</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="level-switch" href="/examples/level-switch/">
-          <span class="ex-item-t">关卡切换</span>
-          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">gameplay</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="character" href="/examples/character/">
-          <span class="ex-item-t">角色控制器</span>
-          <span class="ex-item-tags"><span class="tag">physics</span><span class="tag">character</span><span class="tag">input</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="lighting-post">
-          <div class="ex-sec-h">光照与后处理</div>
-        <a class="ex-item ex-item--sub" data-id="shadow-opt-out" href="/examples/shadow-opt-out/">
-          <span class="ex-item-t">阴影</span>
-          <span class="ex-item-tags"><span class="tag">shadows</span><span class="tag">lighting</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="fxaa" href="/examples/fxaa/">
-          <span class="ex-item-t">FXAA 抗锯齿</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">anti-aliasing</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="bloom" href="/examples/bloom/">
-          <span class="ex-item-t">泛光</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">bloom</span><span class="tag">hdr</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="tonemap" href="/examples/tonemap/">
-          <span class="ex-item-t">色调映射</span>
-          <span class="ex-item-tags"><span class="tag">hdr</span><span class="tag">tonemap</span></span>
-        </a>
-        </div>
-          </div>
-        </details>
     </nav>
-
+    <div class="ex-stamp">对齐引擎 v0.0.0 · <code>a202a1b907</code></div>
   </aside>
   <section class="ex-view">
     <div class="ex-bar">
@@ -234,7 +148,7 @@
     </div>
   </section>
 </main>
-<script>window.EX_DATA=[{"id":"happy-blob","ok":true,"href":"/examples/happy-blob/","title":"快乐光团","blurb":"光线步进的软体角色，挤压拉伸，由全屏自定义着色器绘制。"},{"id":"gltf-instancing","ok":true,"href":"/examples/gltf-instancing/","title":"glTF 实例化","blurb":"四个带光照的立方体，同一网格一次绘制 —— 来自 glTF 的 GPU 实例化。"},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"集群光照","blurb":"用集群前向管线高效点亮 256 盏点光源。"},{"id":"physics","ok":true,"href":"/examples/physics/","title":"物理","blurb":"Rapier(wasm)刚体物理驱动 ECS 变换。"},{"id":"sprite","ok":true,"href":"/examples/sprite/","title":"精灵","blurb":"2D 精灵渲染 —— 批量四边形，支持图层深度与 JRPG Y 排序。"},{"id":"2d-flashlight","ok":true,"href":"/examples/2d-flashlight/","title":"2D 手电筒","blurb":"精灵受光的 2D 场景 —— 扫过的聚光灯与柔和点光。"},{"id":"sprite-lit","ok":true,"href":"/examples/sprite-lit/","title":"精灵光照","blurb":"四块受光精灵四边形，外加一块 PBR 立方体，共用同一组方向光、点光与聚光。"},{"id":"room","ok":true,"href":"/examples/room/","title":"室内场景","blurb":"小型室内 —— 盒子、球体与平面组成的嵌套场景。"},{"id":"triangle","ok":true,"href":"/examples/triangle/","title":"你好,三角形","blurb":"最小的 WebGPU/WebGL2 管线 —— 一个三角形,WGSL 编译着色。"},{"id":"cube","ok":true,"href":"/examples/cube/","title":"立方体","blurb":"带光照的旋转立方体 —— 走通 ECS 渲染路径的第一块 3D 网格。"},{"id":"topology","ok":true,"href":"/examples/topology/","title":"图元拓扑","blurb":"点、线段、连续折线与三角面 —— GPU 能绘制的图元类型。"},{"id":"transform-hierarchy","ok":true,"href":"/examples/transform-hierarchy/","title":"层级变换","blurb":"父子变换 —— 由场景图驱动的公转节点。"},{"id":"gltf","ok":true,"href":"/examples/gltf/","title":"glTF 模型","blurb":"加载并渲染带 PBR 材质的 glTF 2.0 资产。"},{"id":"multi-material","ok":true,"href":"/examples/multi-material/","title":"多材质网格","blurb":"一个网格、多个子网格 —— 各有自己的材质与拓扑。"},{"id":"custom-shader","ok":true,"href":"/examples/custom-shader/","title":"自定义着色器","blurb":"自定义材质着色器 —— 由你自己的 WGSL 驱动的脉动表面。"},{"id":"tilemap","ok":true,"href":"/examples/tilemap/","title":"瓦片地图","blurb":"2D 瓦片地图 —— 正交相机看向一层已编排的地砖。"},{"id":"tilemap-object-layer","ok":true,"href":"/examples/tilemap-object-layer/","title":"瓦片对象层","blurb":"逐实体瓦片对象 —— 多格树木、翻转/轴心，以及叠在地砖上的精灵 Y 排序。"},{"id":"multi-world","ok":true,"href":"/examples/multi-world/","title":"多世界合成","blurb":"两个 ECS 世界合成到同一帧 —— 光照与网格合并，相机仍属于主世界。"},{"id":"entity-visibility","ok":true,"href":"/examples/entity-visibility/","title":"实体可见性","blurb":"隐藏、继承与覆盖 Visibility —— 父级可以消失，子级仍被画出。"},{"id":"picking","ok":true,"href":"/examples/picking/","title":"GPU 拾取","blurb":"点击选择 —— 从 GPU 回读逐像素对象 id。"},{"id":"debug-draw","ok":true,"href":"/examples/debug-draw/","title":"调试绘制","blurb":"即时模式的线条与形状,用于可视化场景。"},{"id":"culling","ok":true,"href":"/examples/culling/","title":"视锥剔除","blurb":"只绘制相机能看见的部分 —— 视锥剔除在工作。"},{"id":"level-switch","ok":true,"href":"/examples/level-switch/","title":"关卡切换","blurb":"运行时在关卡之间切换,无需整体重载。"},{"id":"character","ok":true,"href":"/examples/character/","title":"角色控制器","blurb":"WASD + 跳跃胶囊 —— 物理世界里的运动学 moveAndSlide。"},{"id":"shadow-opt-out","ok":true,"href":"/examples/shadow-opt-out/","title":"阴影","blurb":"实时投射阴影,并支持逐物体关闭。"},{"id":"fxaa","ok":true,"href":"/examples/fxaa/","title":"FXAA 抗锯齿","blurb":"作为后处理通道的快速近似抗锯齿。"},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"泛光","blurb":"HDR 泛光 —— 亮部提取 + 可分离模糊 + 合成。"},{"id":"tonemap","ok":true,"href":"/examples/tonemap/","title":"色调映射","blurb":"HDR 到显示 —— ACES / Reinhard 色调映射算子。"}];window.EX_NAV={"landing":"happy-blob"};</script>
+<script>window.EX_DATA=[{"id":"happy-blob","ok":true,"href":"/examples/happy-blob/","title":"SDF 角色","blurb":"用引擎跑起来的 Shadertoy SDF 角色。"},{"id":"volumetric-fog","ok":true,"href":"/examples/volumetric-fog/","title":"体积雾","blurb":"走标准后处理栈的体积雾。"},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"256 盏灯","blurb":"集群前向管线点亮 256 盏灯。"},{"id":"10k-cubes-lights","ok":true,"href":"/examples/10k-cubes-lights/","title":"一万个立方体","blurb":"一万个立方体与灯光的规模压测场景。"},{"id":"deferred-shading","ok":true,"href":"/examples/deferred-shading/","title":"延迟渲染","blurb":"Learn-render 延迟渲染路径。"},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"Bloom","blurb":"作为后处理通道的 HDR 辉光。"},{"id":"ibl-specular","ok":true,"href":"/examples/ibl-specular/","title":"环境反射 IBL","blurb":"基于图像的镜面环境反射。"},{"id":"sprite-atlas","ok":true,"href":"/examples/sprite-atlas/","title":"一百个精灵一次绘制","blurb":"图集一次绘制一百个精灵。"},{"id":"character","ok":true,"href":"/examples/character/","title":"胶囊体行走和跳跃","blurb":"物理世界里的 WASD + 跳跃胶囊。"},{"id":"physics","ok":true,"href":"/examples/physics/","title":"刚体下落和反弹","blurb":"Rapier 刚体下落与反弹。"},{"id":"csm","ok":true,"href":"/examples/csm/","title":"级联阴影","blurb":"级联阴影贴图。"}];window.EX_NAV={"landing":"hdrp-lighting"};</script>
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
@@ -254,6 +168,6 @@
 
 <script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
 <script src="/assets/site.js?v=01759541"></script>
-<script src="/assets/examples/app.js?v=f0817acf"></script>
+<script src="/assets/examples/app.js?v=d74374dd"></script>
 </body>
 </html>

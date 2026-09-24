@@ -47,6 +47,14 @@
   .ex-empty{padding:12px;font-size:13px;color:var(--text-tertiary);margin:0}
 </style>
 
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/engine/dist/index.mjs" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/wgpu-wasm/pkg/wgpu_wasm.js" crossorigin />
+    <link rel="preload" href="/es/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/wgpu-wasm/pkg/wgpu_wasm_bg.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/fbx/pkg/fbx-wasm.mjs" crossorigin />
+    <link rel="preload" href="/es/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/fbx/pkg/fbx-wasm.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/codec/pkg/basis_transcoder.mjs" crossorigin />
+    <link rel="preload" href="/es/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/codec/pkg/basis_transcoder.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="preload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/shaders/index.json" as="fetch" crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css?v=6b852f5f" />
@@ -85,145 +93,51 @@
     </div>
     <nav class="ex-list" id="exList">
         <a class="ex-item ex-item--show" data-id="happy-blob" href="/examples/happy-blob/">
-          <span class="ex-item-t">Happy Blob</span>
-          <span class="ex-item-b">Un personaje blando por raymarching, con squash-and-stretch, en un shader a pantalla completa.</span>
+          <span class="ex-item-t">SDF Character</span>
+          <span class="ex-item-b">A shadertoy SDF character rendered through the engine.</span>
         </a>
-        <a class="ex-item ex-item--show" data-id="gltf-instancing" href="/examples/gltf-instancing/">
-          <span class="ex-item-t">Instancia glTF</span>
-          <span class="ex-item-b">Cuatro cubos iluminados, una malla, un draw: instancing GPU desde un glTF.</span>
+        <a class="ex-item ex-item--show" data-id="volumetric-fog" href="/examples/volumetric-fog/">
+          <span class="ex-item-t">Volumetric Fog</span>
+          <span class="ex-item-b">Volumetric fog through the standard post stack.</span>
         </a>
         <a class="ex-item ex-item--show" data-id="hdrp-lighting" href="/examples/hdrp-lighting/">
-          <span class="ex-item-t">Iluminación agrupada</span>
-          <span class="ex-item-b">256 luces puntuales se iluminaron de manera eficiente con una tubería agrupada hacia adelante.</span>
+          <span class="ex-item-t">256 Lights</span>
+          <span class="ex-item-b">256 punctual lights on a clustered-forward pipeline.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="10k-cubes-lights" href="/examples/10k-cubes-lights/">
+          <span class="ex-item-t">10k Cubes</span>
+          <span class="ex-item-b">Ten thousand cubes and lights as a scale stress scene.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="deferred-shading" href="/examples/deferred-shading/">
+          <span class="ex-item-t">Deferred Shading</span>
+          <span class="ex-item-b">Learn-render deferred shading path.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="bloom" href="/examples/bloom/">
+          <span class="ex-item-t">Bloom</span>
+          <span class="ex-item-b">HDR bloom as a post-process pass.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="ibl-specular" href="/examples/ibl-specular/">
+          <span class="ex-item-t">IBL Specular</span>
+          <span class="ex-item-b">Image-based specular lighting / environment reflection.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="sprite-atlas" href="/examples/sprite-atlas/">
+          <span class="ex-item-t">Sprite Atlas</span>
+          <span class="ex-item-b">One hundred sprites in a single atlas draw.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="character" href="/examples/character/">
+          <span class="ex-item-t">Capsule Walk &amp; Jump</span>
+          <span class="ex-item-b">WASD + jump capsule on a physics world.</span>
         </a>
         <a class="ex-item ex-item--show" data-id="physics" href="/examples/physics/">
-          <span class="ex-item-t">Física</span>
-          <span class="ex-item-b">Física de cuerpo rígido a través de Rapier (wasm) que impulsa transformaciones ECS.</span>
+          <span class="ex-item-t">Rigid Body Bounce</span>
+          <span class="ex-item-b">Rigid-body drop and bounce via Rapier.</span>
         </a>
-        <a class="ex-item ex-item--show" data-id="sprite" href="/examples/sprite/">
-          <span class="ex-item-t">Sprites</span>
-          <span class="ex-item-b">Sprites 2D: quads por lotes, profundidad por capa y Y-sort JRPG.</span>
+        <a class="ex-item ex-item--show" data-id="csm" href="/examples/csm/">
+          <span class="ex-item-t">Cascaded Shadows</span>
+          <span class="ex-item-b">Cascaded shadow maps.</span>
         </a>
-        <a class="ex-item ex-item--show" data-id="2d-flashlight" href="/examples/2d-flashlight/">
-          <span class="ex-item-t">Linterna 2D</span>
-          <span class="ex-item-b">Escena 2D con sprites iluminados: foco barrido y luz puntual suave.</span>
-        </a>
-        <a class="ex-item ex-item--show" data-id="sprite-lit" href="/examples/sprite-lit/">
-          <span class="ex-item-t">Iluminación de sprites</span>
-          <span class="ex-item-b">Cuatro quads sprite-lit y un cubo PBR bajo la misma luz direccional, puntual y de foco.</span>
-        </a>
-        <a class="ex-item ex-item--show" data-id="room" href="/examples/room/">
-          <span class="ex-item-t">Habitación</span>
-          <span class="ex-item-b">Un interior pequeño: caja, esfera y plano en una escena anidada.</span>
-        </a>
-        <details class="ex-group" data-group="fundamentals">
-          <summary class="ex-group-sum">
-            <span class="ex-group-t">Fundamentos</span>
-            <span class="ex-group-n" aria-hidden="true">20</span>
-          </summary>
-          <div class="ex-group-body">
-        <div class="ex-sec" data-sec="getting-started">
-          <div class="ex-sec-h">Primeros pasos</div>
-        <a class="ex-item ex-item--sub" data-id="triangle" href="/examples/triangle/">
-          <span class="ex-item-t">Hola triangulo</span>
-          <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">wgsl</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="cube" href="/examples/cube/">
-          <span class="ex-item-t">Cubo</span>
-          <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">mesh</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="topology" href="/examples/topology/">
-          <span class="ex-item-t">Topología primitiva</span>
-          <span class="ex-item-tags"><span class="tag">basics</span><span class="tag">geometry</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="transform-hierarchy" href="/examples/transform-hierarchy/">
-          <span class="ex-item-t">Transformar jerarquía</span>
-          <span class="ex-item-tags"><span class="tag">transform</span><span class="tag">scene-graph</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="mesh-assets">
-          <div class="ex-sec-h">Mallas y recursos</div>
-        <a class="ex-item ex-item--sub" data-id="gltf" href="/examples/gltf/">
-          <span class="ex-item-t">Modelo glTF</span>
-          <span class="ex-item-tags"><span class="tag">gltf</span><span class="tag">mesh</span><span class="tag">pbr</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="multi-material" href="/examples/multi-material/">
-          <span class="ex-item-t">Malla multimaterial</span>
-          <span class="ex-item-tags"><span class="tag">mesh</span><span class="tag">materials</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="custom-shader" href="/examples/custom-shader/">
-          <span class="ex-item-t">Sombreador personalizado</span>
-          <span class="ex-item-tags"><span class="tag">shader</span><span class="tag">wgsl</span><span class="tag">materials</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="two-d">
-          <div class="ex-sec-h">2D</div>
-        <a class="ex-item ex-item--sub" data-id="tilemap" href="/examples/tilemap/">
-          <span class="ex-item-t">Tilemap</span>
-          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="tilemap-object-layer" href="/examples/tilemap-object-layer/">
-          <span class="ex-item-t">Objetos de tilemap</span>
-          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="scene">
-          <div class="ex-sec-h">Escena</div>
-        <a class="ex-item ex-item--sub" data-id="multi-world" href="/examples/multi-world/">
-          <span class="ex-item-t">Multi-mundo</span>
-          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">ecs</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="entity-visibility" href="/examples/entity-visibility/">
-          <span class="ex-item-t">Visibilidad de entidad</span>
-          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">visibility</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="interaction">
-          <div class="ex-sec-h">Interacción y culling</div>
-        <a class="ex-item ex-item--sub" data-id="picking" href="/examples/picking/">
-          <span class="ex-item-t">Selección de GPU</span>
-          <span class="ex-item-tags"><span class="tag">picking</span><span class="tag">interaction</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="debug-draw" href="/examples/debug-draw/">
-          <span class="ex-item-t">Sorteo de depuración</span>
-          <span class="ex-item-tags"><span class="tag">debug</span><span class="tag">tooling</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="culling" href="/examples/culling/">
-          <span class="ex-item-t">Cultivo de frutos</span>
-          <span class="ex-item-tags"><span class="tag">performance</span><span class="tag">culling</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="level-switch" href="/examples/level-switch/">
-          <span class="ex-item-t">Cambio de nivel</span>
-          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">gameplay</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="character" href="/examples/character/">
-          <span class="ex-item-t">Controlador de personaje</span>
-          <span class="ex-item-tags"><span class="tag">physics</span><span class="tag">character</span><span class="tag">input</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="lighting-post">
-          <div class="ex-sec-h">Iluminación y post</div>
-        <a class="ex-item ex-item--sub" data-id="shadow-opt-out" href="/examples/shadow-opt-out/">
-          <span class="ex-item-t">Oscuridad</span>
-          <span class="ex-item-tags"><span class="tag">shadows</span><span class="tag">lighting</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="fxaa" href="/examples/fxaa/">
-          <span class="ex-item-t">FXAA</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">anti-aliasing</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="bloom" href="/examples/bloom/">
-          <span class="ex-item-t">Floración</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">bloom</span><span class="tag">hdr</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="tonemap" href="/examples/tonemap/">
-          <span class="ex-item-t">Mapa de tonos</span>
-          <span class="ex-item-tags"><span class="tag">hdr</span><span class="tag">tonemap</span></span>
-        </a>
-        </div>
-          </div>
-        </details>
     </nav>
-
+    <div class="ex-stamp">alineado al motor v0.0.0 · <code>a202a1b907</code></div>
   </aside>
   <section class="ex-view">
     <div class="ex-bar">
@@ -234,7 +148,7 @@
     </div>
   </section>
 </main>
-<script>window.EX_DATA=[{"id":"happy-blob","ok":true,"href":"/examples/happy-blob/","title":"Happy Blob","blurb":"Un personaje blando por raymarching, con squash-and-stretch, en un shader a pantalla completa."},{"id":"gltf-instancing","ok":true,"href":"/examples/gltf-instancing/","title":"Instancia glTF","blurb":"Cuatro cubos iluminados, una malla, un draw: instancing GPU desde un glTF."},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"Iluminación agrupada","blurb":"256 luces puntuales se iluminaron de manera eficiente con una tubería agrupada hacia adelante."},{"id":"physics","ok":true,"href":"/examples/physics/","title":"Física","blurb":"Física de cuerpo rígido a través de Rapier (wasm) que impulsa transformaciones ECS."},{"id":"sprite","ok":true,"href":"/examples/sprite/","title":"Sprites","blurb":"Sprites 2D: quads por lotes, profundidad por capa y Y-sort JRPG."},{"id":"2d-flashlight","ok":true,"href":"/examples/2d-flashlight/","title":"Linterna 2D","blurb":"Escena 2D con sprites iluminados: foco barrido y luz puntual suave."},{"id":"sprite-lit","ok":true,"href":"/examples/sprite-lit/","title":"Iluminación de sprites","blurb":"Cuatro quads sprite-lit y un cubo PBR bajo la misma luz direccional, puntual y de foco."},{"id":"room","ok":true,"href":"/examples/room/","title":"Habitación","blurb":"Un interior pequeño: caja, esfera y plano en una escena anidada."},{"id":"triangle","ok":true,"href":"/examples/triangle/","title":"Hola triangulo","blurb":"La canalización mínima de WebGPU/WebGL2: un triángulo, WGSL compilado con sombreadores."},{"id":"cube","ok":true,"href":"/examples/cube/","title":"Cubo","blurb":"Un cubo iluminado que rota: la primera malla 3D por el camino ECS."},{"id":"topology","ok":true,"href":"/examples/topology/","title":"Topología primitiva","blurb":"Puntos, líneas, franjas de líneas y triángulos: los tipos primitivos que dibuja una GPU."},{"id":"transform-hierarchy","ok":true,"href":"/examples/transform-hierarchy/","title":"Transformar jerarquía","blurb":"Transformaciones padre/hijo: nodos en órbita impulsados ​​por un gráfico de escena."},{"id":"gltf","ok":true,"href":"/examples/gltf/","title":"Modelo glTF","blurb":"Cargue y renderice un recurso glTF 2.0 con materiales PBR."},{"id":"multi-material","ok":true,"href":"/examples/multi-material/","title":"Malla multimaterial","blurb":"Una malla, múltiples submallas, cada una con su propio material y topología."},{"id":"custom-shader","ok":true,"href":"/examples/custom-shader/","title":"Sombreador personalizado","blurb":"Un sombreador de materiales personalizado: una superficie pulsante impulsada por su propio WGSL."},{"id":"tilemap","ok":true,"href":"/examples/tilemap/","title":"Tilemap","blurb":"Tilemap 2D: cámara ortográfica sobre una capa de baldosas."},{"id":"tilemap-object-layer","ok":true,"href":"/examples/tilemap-object-layer/","title":"Objetos de tilemap","blurb":"Objetos de tile por entidad: árboles de varias celdas, flip/pivot y Y-sort de sprites."},{"id":"multi-world","ok":true,"href":"/examples/multi-world/","title":"Multi-mundo","blurb":"Dos mundos ECS compuestos en un frame: luces y mallas se fusionan; la cámara queda en el dueño."},{"id":"entity-visibility","ok":true,"href":"/examples/entity-visibility/","title":"Visibilidad de entidad","blurb":"Ocultar, heredar y override de Visibility: el padre puede desaparecer y el hijo seguir dibujado."},{"id":"picking","ok":true,"href":"/examples/picking/","title":"Selección de GPU","blurb":"Haga clic para seleccionar: ID de objeto por píxel leído desde la GPU."},{"id":"debug-draw","ok":true,"href":"/examples/debug-draw/","title":"Sorteo de depuración","blurb":"Líneas y formas en modo inmediato para visualizar una escena."},{"id":"culling","ok":true,"href":"/examples/culling/","title":"Cultivo de frutos","blurb":"Sólo se dibuja lo que la cámara puede ver: la selección frustada en el trabajo."},{"id":"level-switch","ok":true,"href":"/examples/level-switch/","title":"Cambio de nivel","blurb":"Cambie entre niveles en tiempo de ejecución sin una recarga completa."},{"id":"character","ok":true,"href":"/examples/character/","title":"Controlador de personaje","blurb":"WASD + cápsula de salto: moveAndSlide cinemático en el mundo físico."},{"id":"shadow-opt-out","ok":true,"href":"/examples/shadow-opt-out/","title":"Oscuridad","blurb":"Sombras proyectadas en tiempo real, con opción de exclusión por objeto."},{"id":"fxaa","ok":true,"href":"/examples/fxaa/","title":"FXAA","blurb":"Antialiasing aproximado rápido como paso posterior al proceso."},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"Floración","blurb":"Floración HDR: paso brillante + desenfoque separable + compuesto."},{"id":"tonemap","ok":true,"href":"/examples/tonemap/","title":"Mapa de tonos","blurb":"HDR para mostrar: operadores de mapeo de tonos ACES / Reinhard."}];window.EX_NAV={"landing":"happy-blob"};</script>
+<script>window.EX_DATA=[{"id":"happy-blob","ok":true,"href":"/examples/happy-blob/","title":"SDF Character","blurb":"A shadertoy SDF character rendered through the engine."},{"id":"volumetric-fog","ok":true,"href":"/examples/volumetric-fog/","title":"Volumetric Fog","blurb":"Volumetric fog through the standard post stack."},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"256 Lights","blurb":"256 punctual lights on a clustered-forward pipeline."},{"id":"10k-cubes-lights","ok":true,"href":"/examples/10k-cubes-lights/","title":"10k Cubes","blurb":"Ten thousand cubes and lights as a scale stress scene."},{"id":"deferred-shading","ok":true,"href":"/examples/deferred-shading/","title":"Deferred Shading","blurb":"Learn-render deferred shading path."},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"Bloom","blurb":"HDR bloom as a post-process pass."},{"id":"ibl-specular","ok":true,"href":"/examples/ibl-specular/","title":"IBL Specular","blurb":"Image-based specular lighting / environment reflection."},{"id":"sprite-atlas","ok":true,"href":"/examples/sprite-atlas/","title":"Sprite Atlas","blurb":"One hundred sprites in a single atlas draw."},{"id":"character","ok":true,"href":"/examples/character/","title":"Capsule Walk & Jump","blurb":"WASD + jump capsule on a physics world."},{"id":"physics","ok":true,"href":"/examples/physics/","title":"Rigid Body Bounce","blurb":"Rigid-body drop and bounce via Rapier."},{"id":"csm","ok":true,"href":"/examples/csm/","title":"Cascaded Shadows","blurb":"Cascaded shadow maps."}];window.EX_NAV={"landing":"hdrp-lighting"};</script>
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
@@ -254,6 +168,6 @@
 
 <script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
 <script src="/assets/site.js?v=01759541"></script>
-<script src="/assets/examples/app.js?v=f0817acf"></script>
+<script src="/assets/examples/app.js?v=d74374dd"></script>
 </body>
 </html>

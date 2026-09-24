@@ -47,6 +47,14 @@
   .ex-empty{padding:12px;font-size:13px;color:var(--text-tertiary);margin:0}
 </style>
 
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/engine/dist/index.mjs" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/wgpu-wasm/pkg/wgpu_wasm.js" crossorigin />
+    <link rel="preload" href="/ko/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/wgpu-wasm/pkg/wgpu_wasm_bg.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/fbx/pkg/fbx-wasm.mjs" crossorigin />
+    <link rel="preload" href="/ko/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/fbx/pkg/fbx-wasm.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/codec/pkg/basis_transcoder.mjs" crossorigin />
+    <link rel="preload" href="/ko/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/packages/codec/pkg/basis_transcoder.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="preload" href="/engine/0.0.0/a202a1b9076a2d9205b8ed304c16e10693d95b71/shaders/index.json" as="fetch" crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css?v=6b852f5f" />
@@ -85,145 +93,51 @@
     </div>
     <nav class="ex-list" id="exList">
         <a class="ex-item ex-item--show" data-id="happy-blob" href="/examples/happy-blob/">
-          <span class="ex-item-t">해피 블롭</span>
-          <span class="ex-item-b">찌그러지고 늘어나며 튀는 레이마치 블롭. 전체 화면 커스텀 셰이더.</span>
+          <span class="ex-item-t">SDF Character</span>
+          <span class="ex-item-b">A shadertoy SDF character rendered through the engine.</span>
         </a>
-        <a class="ex-item ex-item--show" data-id="gltf-instancing" href="/examples/gltf-instancing/">
-          <span class="ex-item-t">glTF 인스턴싱</span>
-          <span class="ex-item-b">조명된 큐브 4개, 메시 하나, 드로우 한 번 — glTF GPU 인스턴싱.</span>
+        <a class="ex-item ex-item--show" data-id="volumetric-fog" href="/examples/volumetric-fog/">
+          <span class="ex-item-t">Volumetric Fog</span>
+          <span class="ex-item-b">Volumetric fog through the standard post stack.</span>
         </a>
         <a class="ex-item ex-item--show" data-id="hdrp-lighting" href="/examples/hdrp-lighting/">
-          <span class="ex-item-t">클러스터링된 조명</span>
-          <span class="ex-item-b">256개의 정시 조명은 클러스터링된 순방향 파이프라인을 통해 효율적으로 켜집니다.</span>
+          <span class="ex-item-t">256 Lights</span>
+          <span class="ex-item-b">256 punctual lights on a clustered-forward pipeline.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="10k-cubes-lights" href="/examples/10k-cubes-lights/">
+          <span class="ex-item-t">10k Cubes</span>
+          <span class="ex-item-b">Ten thousand cubes and lights as a scale stress scene.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="deferred-shading" href="/examples/deferred-shading/">
+          <span class="ex-item-t">Deferred Shading</span>
+          <span class="ex-item-b">Learn-render deferred shading path.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="bloom" href="/examples/bloom/">
+          <span class="ex-item-t">Bloom</span>
+          <span class="ex-item-b">HDR bloom as a post-process pass.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="ibl-specular" href="/examples/ibl-specular/">
+          <span class="ex-item-t">IBL Specular</span>
+          <span class="ex-item-b">Image-based specular lighting / environment reflection.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="sprite-atlas" href="/examples/sprite-atlas/">
+          <span class="ex-item-t">Sprite Atlas</span>
+          <span class="ex-item-b">One hundred sprites in a single atlas draw.</span>
+        </a>
+        <a class="ex-item ex-item--show" data-id="character" href="/examples/character/">
+          <span class="ex-item-t">Capsule Walk &amp; Jump</span>
+          <span class="ex-item-b">WASD + jump capsule on a physics world.</span>
         </a>
         <a class="ex-item ex-item--show" data-id="physics" href="/examples/physics/">
-          <span class="ex-item-t">물리학</span>
-          <span class="ex-item-b">ECS 변환을 구동하는 Rapier(wasm)를 통한 강체 물리학.</span>
+          <span class="ex-item-t">Rigid Body Bounce</span>
+          <span class="ex-item-b">Rigid-body drop and bounce via Rapier.</span>
         </a>
-        <a class="ex-item ex-item--show" data-id="sprite" href="/examples/sprite/">
-          <span class="ex-item-t">스프라이트</span>
-          <span class="ex-item-b">2D 스프라이트 — 배치 쿼드, 레이어 Z와 JRPG Y 정렬.</span>
+        <a class="ex-item ex-item--show" data-id="csm" href="/examples/csm/">
+          <span class="ex-item-t">Cascaded Shadows</span>
+          <span class="ex-item-b">Cascaded shadow maps.</span>
         </a>
-        <a class="ex-item ex-item--show" data-id="2d-flashlight" href="/examples/2d-flashlight/">
-          <span class="ex-item-t">2D 손전등</span>
-          <span class="ex-item-b">스프라이트 조명 2D — 훑는 스팟라이트와 부드러운 포인트 라이트.</span>
-        </a>
-        <a class="ex-item ex-item--show" data-id="sprite-lit" href="/examples/sprite-lit/">
-          <span class="ex-item-t">스프라이트 조명</span>
-          <span class="ex-item-b">같은 방향광·포인트·스팟 아래 스프라이트 쿼드 4개와 PBR 큐브.</span>
-        </a>
-        <a class="ex-item ex-item--show" data-id="room" href="/examples/room/">
-          <span class="ex-item-t">룸</span>
-          <span class="ex-item-b">작은 실내 — 박스, 구, 평면을 중첩 장면으로 구성.</span>
-        </a>
-        <details class="ex-group" data-group="fundamentals">
-          <summary class="ex-group-sum">
-            <span class="ex-group-t">기초</span>
-            <span class="ex-group-n" aria-hidden="true">20</span>
-          </summary>
-          <div class="ex-group-body">
-        <div class="ex-sec" data-sec="getting-started">
-          <div class="ex-sec-h">시작하기</div>
-        <a class="ex-item ex-item--sub" data-id="triangle" href="/examples/triangle/">
-          <span class="ex-item-t">안녕하세요 트라이앵글</span>
-          <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">wgsl</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="cube" href="/examples/cube/">
-          <span class="ex-item-t">큐브</span>
-          <span class="ex-item-tags"><span class="tag">webgpu</span><span class="tag">basics</span><span class="tag">mesh</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="topology" href="/examples/topology/">
-          <span class="ex-item-t">기본 토폴로지</span>
-          <span class="ex-item-tags"><span class="tag">basics</span><span class="tag">geometry</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="transform-hierarchy" href="/examples/transform-hierarchy/">
-          <span class="ex-item-t">변환 계층</span>
-          <span class="ex-item-tags"><span class="tag">transform</span><span class="tag">scene-graph</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="mesh-assets">
-          <div class="ex-sec-h">메시와 에셋</div>
-        <a class="ex-item ex-item--sub" data-id="gltf" href="/examples/gltf/">
-          <span class="ex-item-t">glTF 모델</span>
-          <span class="ex-item-tags"><span class="tag">gltf</span><span class="tag">mesh</span><span class="tag">pbr</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="multi-material" href="/examples/multi-material/">
-          <span class="ex-item-t">다중 재료 메시</span>
-          <span class="ex-item-tags"><span class="tag">mesh</span><span class="tag">materials</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="custom-shader" href="/examples/custom-shader/">
-          <span class="ex-item-t">커스텀 셰이더</span>
-          <span class="ex-item-tags"><span class="tag">shader</span><span class="tag">wgsl</span><span class="tag">materials</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="two-d">
-          <div class="ex-sec-h">2D</div>
-        <a class="ex-item ex-item--sub" data-id="tilemap" href="/examples/tilemap/">
-          <span class="ex-item-t">타일맵</span>
-          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="tilemap-object-layer" href="/examples/tilemap-object-layer/">
-          <span class="ex-item-t">타일맵 오브젝트</span>
-          <span class="ex-item-tags"><span class="tag">2d</span><span class="tag">tilemap</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="scene">
-          <div class="ex-sec-h">장면</div>
-        <a class="ex-item ex-item--sub" data-id="multi-world" href="/examples/multi-world/">
-          <span class="ex-item-t">멀티 월드</span>
-          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">ecs</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="entity-visibility" href="/examples/entity-visibility/">
-          <span class="ex-item-t">엔티티 가시성</span>
-          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">visibility</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="interaction">
-          <div class="ex-sec-h">상호작용과 컬링</div>
-        <a class="ex-item ex-item--sub" data-id="picking" href="/examples/picking/">
-          <span class="ex-item-t">GPU 따기</span>
-          <span class="ex-item-tags"><span class="tag">picking</span><span class="tag">interaction</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="debug-draw" href="/examples/debug-draw/">
-          <span class="ex-item-t">디버그 그리기</span>
-          <span class="ex-item-tags"><span class="tag">debug</span><span class="tag">tooling</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="culling" href="/examples/culling/">
-          <span class="ex-item-t">절두체 선별</span>
-          <span class="ex-item-tags"><span class="tag">performance</span><span class="tag">culling</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="level-switch" href="/examples/level-switch/">
-          <span class="ex-item-t">레벨 전환</span>
-          <span class="ex-item-tags"><span class="tag">scene</span><span class="tag">gameplay</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="character" href="/examples/character/">
-          <span class="ex-item-t">캐릭터 컨트롤러</span>
-          <span class="ex-item-tags"><span class="tag">physics</span><span class="tag">character</span><span class="tag">input</span></span>
-        </a>
-        </div>
-        <div class="ex-sec" data-sec="lighting-post">
-          <div class="ex-sec-h">조명과 후처리</div>
-        <a class="ex-item ex-item--sub" data-id="shadow-opt-out" href="/examples/shadow-opt-out/">
-          <span class="ex-item-t">그림자</span>
-          <span class="ex-item-tags"><span class="tag">shadows</span><span class="tag">lighting</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="fxaa" href="/examples/fxaa/">
-          <span class="ex-item-t">FXAA</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">anti-aliasing</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="bloom" href="/examples/bloom/">
-          <span class="ex-item-t">꽃</span>
-          <span class="ex-item-tags"><span class="tag">post-processing</span><span class="tag">bloom</span><span class="tag">hdr</span></span>
-        </a>
-        <a class="ex-item ex-item--sub" data-id="tonemap" href="/examples/tonemap/">
-          <span class="ex-item-t">톤맵</span>
-          <span class="ex-item-tags"><span class="tag">hdr</span><span class="tag">tonemap</span></span>
-        </a>
-        </div>
-          </div>
-        </details>
     </nav>
-
+    <div class="ex-stamp">엔진에 정렬 v0.0.0 · <code>a202a1b907</code></div>
   </aside>
   <section class="ex-view">
     <div class="ex-bar">
@@ -234,7 +148,7 @@
     </div>
   </section>
 </main>
-<script>window.EX_DATA=[{"id":"happy-blob","ok":true,"href":"/examples/happy-blob/","title":"해피 블롭","blurb":"찌그러지고 늘어나며 튀는 레이마치 블롭. 전체 화면 커스텀 셰이더."},{"id":"gltf-instancing","ok":true,"href":"/examples/gltf-instancing/","title":"glTF 인스턴싱","blurb":"조명된 큐브 4개, 메시 하나, 드로우 한 번 — glTF GPU 인스턴싱."},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"클러스터링된 조명","blurb":"256개의 정시 조명은 클러스터링된 순방향 파이프라인을 통해 효율적으로 켜집니다."},{"id":"physics","ok":true,"href":"/examples/physics/","title":"물리학","blurb":"ECS 변환을 구동하는 Rapier(wasm)를 통한 강체 물리학."},{"id":"sprite","ok":true,"href":"/examples/sprite/","title":"스프라이트","blurb":"2D 스프라이트 — 배치 쿼드, 레이어 Z와 JRPG Y 정렬."},{"id":"2d-flashlight","ok":true,"href":"/examples/2d-flashlight/","title":"2D 손전등","blurb":"스프라이트 조명 2D — 훑는 스팟라이트와 부드러운 포인트 라이트."},{"id":"sprite-lit","ok":true,"href":"/examples/sprite-lit/","title":"스프라이트 조명","blurb":"같은 방향광·포인트·스팟 아래 스프라이트 쿼드 4개와 PBR 큐브."},{"id":"room","ok":true,"href":"/examples/room/","title":"룸","blurb":"작은 실내 — 박스, 구, 평면을 중첩 장면으로 구성."},{"id":"triangle","ok":true,"href":"/examples/triangle/","title":"안녕하세요 트라이앵글","blurb":"최소 WebGPU/WebGL2 파이프라인 — 하나의 삼각형, 셰이더 컴파일된 WGSL."},{"id":"cube","ok":true,"href":"/examples/cube/","title":"큐브","blurb":"조명 받는 회전 큐브 — ECS 렌더 경로의 첫 3D 메시."},{"id":"topology","ok":true,"href":"/examples/topology/","title":"기본 토폴로지","blurb":"점, 선, 선 스트립 및 삼각형 — GPU가 그리는 기본 유형입니다."},{"id":"transform-hierarchy","ok":true,"href":"/examples/transform-hierarchy/","title":"변환 계층","blurb":"상위/하위 변환 — 장면 그래프에 의해 구동되는 궤도 노드."},{"id":"gltf","ok":true,"href":"/examples/gltf/","title":"glTF 모델","blurb":"PBR 재질을 사용하여 glTF 2.0 자산을 로드하고 렌더링합니다."},{"id":"multi-material","ok":true,"href":"/examples/multi-material/","title":"다중 재료 메시","blurb":"하나의 메시, 여러 개의 하위 메시 - 각각 고유한 재질과 토폴로지를 갖습니다."},{"id":"custom-shader","ok":true,"href":"/examples/custom-shader/","title":"커스텀 셰이더","blurb":"사용자 정의 머티리얼 셰이더 - 자체 WGSL로 구동되는 펄스 표면입니다."},{"id":"tilemap","ok":true,"href":"/examples/tilemap/","title":"타일맵","blurb":"2D 타일맵 — 직교 카메라로 타일 레이어를 봅니다."},{"id":"tilemap-object-layer","ok":true,"href":"/examples/tilemap-object-layer/","title":"타일맵 오브젝트","blurb":"엔티티 단위 타일 오브젝트 — 여러 칸 나무, 플립/피벗, 타일 위 스프라이트 Y 정렬."},{"id":"multi-world","ok":true,"href":"/examples/multi-world/","title":"멀티 월드","blurb":"ECS 월드 두 개를 한 프레임에 합성 — 빛과 메시는 합치고, 카메라는 오너 월드에."},{"id":"entity-visibility","ok":true,"href":"/examples/entity-visibility/","title":"엔티티 가시성","blurb":"Visibility 숨김·상속·재정의 — 부모가 사라져도 자식은 그려집니다."},{"id":"picking","ok":true,"href":"/examples/picking/","title":"GPU 따기","blurb":"선택하려면 클릭하세요. GPU에서 픽셀당 개체 ID를 다시 읽습니다."},{"id":"debug-draw","ok":true,"href":"/examples/debug-draw/","title":"디버그 그리기","blurb":"장면을 시각화하기 위한 즉시 모드 선 및 모양."},{"id":"culling","ok":true,"href":"/examples/culling/","title":"절두체 선별","blurb":"카메라가 볼 수 있는 것만 그려집니다. 즉, 작업 중인 절두체 컬링입니다."},{"id":"level-switch","ok":true,"href":"/examples/level-switch/","title":"레벨 전환","blurb":"전체를 다시 로드하지 않고 런타임에 레벨 간을 전환합니다."},{"id":"character","ok":true,"href":"/examples/character/","title":"캐릭터 컨트롤러","blurb":"WASD + 점프 캡슐 — 물리 월드의 kinematic moveAndSlide."},{"id":"shadow-opt-out","ok":true,"href":"/examples/shadow-opt-out/","title":"그림자","blurb":"개체별 옵트아웃 기능을 갖춘 실시간 그림자 투사."},{"id":"fxaa","ok":true,"href":"/examples/fxaa/","title":"FXAA","blurb":"사후 처리 과정으로 신속하게 앤티앨리어싱을 근사화합니다."},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"꽃","blurb":"HDR 블룸 — 밝은 통과 + 분리 가능한 흐림 + 합성."},{"id":"tonemap","ok":true,"href":"/examples/tonemap/","title":"톤맵","blurb":"표시할 HDR — ACES / Reinhard 톤 매핑 연산자."}];window.EX_NAV={"landing":"happy-blob"};</script>
+<script>window.EX_DATA=[{"id":"happy-blob","ok":true,"href":"/examples/happy-blob/","title":"SDF Character","blurb":"A shadertoy SDF character rendered through the engine."},{"id":"volumetric-fog","ok":true,"href":"/examples/volumetric-fog/","title":"Volumetric Fog","blurb":"Volumetric fog through the standard post stack."},{"id":"hdrp-lighting","ok":true,"href":"/examples/hdrp-lighting/","title":"256 Lights","blurb":"256 punctual lights on a clustered-forward pipeline."},{"id":"10k-cubes-lights","ok":true,"href":"/examples/10k-cubes-lights/","title":"10k Cubes","blurb":"Ten thousand cubes and lights as a scale stress scene."},{"id":"deferred-shading","ok":true,"href":"/examples/deferred-shading/","title":"Deferred Shading","blurb":"Learn-render deferred shading path."},{"id":"bloom","ok":true,"href":"/examples/bloom/","title":"Bloom","blurb":"HDR bloom as a post-process pass."},{"id":"ibl-specular","ok":true,"href":"/examples/ibl-specular/","title":"IBL Specular","blurb":"Image-based specular lighting / environment reflection."},{"id":"sprite-atlas","ok":true,"href":"/examples/sprite-atlas/","title":"Sprite Atlas","blurb":"One hundred sprites in a single atlas draw."},{"id":"character","ok":true,"href":"/examples/character/","title":"Capsule Walk & Jump","blurb":"WASD + jump capsule on a physics world."},{"id":"physics","ok":true,"href":"/examples/physics/","title":"Rigid Body Bounce","blurb":"Rigid-body drop and bounce via Rapier."},{"id":"csm","ok":true,"href":"/examples/csm/","title":"Cascaded Shadows","blurb":"Cascaded shadow maps."}];window.EX_NAV={"landing":"hdrp-lighting"};</script>
 
 <footer class="foot"><div class="foot-inner">
   <div class="foot-brand-col">
@@ -254,6 +168,6 @@
 
 <script>window.FX_EXPERIENCE=Object.assign(window.FX_EXPERIENCE||{},{"downloadUrl":"https://github.com/ForgeaX-Games/forgeax-studio/releases/latest","downloads":{"tag":"v0.3.30","page":"https://github.com/ForgeaX-Games/forgeax-studio/releases/tag/v0.3.30","mac":"","win":"","linux":""}});</script>
 <script src="/assets/site.js?v=01759541"></script>
-<script src="/assets/examples/app.js?v=f0817acf"></script>
+<script src="/assets/examples/app.js?v=d74374dd"></script>
 </body>
 </html>
