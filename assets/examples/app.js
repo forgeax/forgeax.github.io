@@ -1,15 +1,13 @@
 // Examples gallery interactivity — split view (list + live <iframe>).
 // Data is server-rendered per language and inlined as window.EX_DATA (single-language:
-// [{ id, ok, href, title, blurb }]). window.EX_NAV.landing is the default showcase id.
+// [{ id, ok, href, title, blurb }]).
 // Progressive enhancement: every list item is a real <a href="/examples/<id>/"> that works
 // without JS; this script upgrades clicks into an in-page live preview.
-// Each distinct selection replaces the iframe node (srcdoc or src) and bumps a navigation
-// generation so stale fetch/load callbacks cannot write the frame. Gallery does not keep
+// Each distinct selection replaces the iframe node and navigates it directly to the
+// standalone example URL. The generation prevents stale load callbacks from mutating the
+// current selection. Gallery does not keep
 // a host Engine/Renderer/GPUDevice, and does not share World across examples. Shared
 // /engine/<version>/<sha>/ URLs only hit the browser HTTP cache.
-// COI/SharedArrayBuffer demos keep a real navigation (not srcdoc) so the iframe can
-// register its own COOP/COEP service worker. That still cannot isolate the parent
-// gallery page; SAB demos need a full ancestor chain or a standalone /examples/<id>/ tab.
 (function () {
   if (!window.ForgeAXExampleFrameNav) {
     var PRESERVE_ATTRS = ['id', 'title', 'allow', 'allowfullscreen', 'class', 'name', 'referrerpolicy', 'sandbox'];
@@ -19,9 +17,6 @@
         var frame = options.getFrame();
         var generation = 0;
         var activeId = null;
-        var setTimeoutFn = options.setTimeout || function (fn, ms) { return globalThis.setTimeout(fn, ms); };
-        var wgpuNoticeDelay = options.wgpuNoticeDelay == null ? 1800 : options.wgpuNoticeDelay;
-
         function setFrame(node) {
           frame = node;
           if (options.setFrame) options.setFrame(node);
@@ -67,59 +62,11 @@
           return true;
         }
 
-        function applySrcdoc(node, gen, html) {
-          if (!isCurrent(gen, node)) return false;
-          node.removeAttribute('src');
-          node.srcdoc = html;
-          node.setAttribute('srcdoc', html);
-          return true;
-        }
-
-        function rewriteDemoHtml(html, href, inject) {
-          var abs = options.resolveHref(href);
-          var dir = new URL('.', abs).href;
-          html = html.split("new URL('.',location.href)").join("new URL('" + dir + "')");
-          html = html.split('new URL(".",location.href)').join("new URL('" + dir + "')");
-          return html.replace(/<head>/i, '<head>\n<script>' + inject + '</script>\n<base href="' + dir + '">\n');
-        }
-
         function bindLoad(node, gen) {
           node.addEventListener('load', function () {
             if (!isCurrent(gen, node)) return;
-            // Ignore the initial about:blank load from a newly inserted frame.
-            if (!node.hasAttribute('src') && !node.hasAttribute('srcdoc')) return;
+            if (!node.hasAttribute('src')) return;
             if (options.setLoading) options.setLoading(false);
-            setTimeoutFn(function () {
-              if (!isCurrent(gen, node)) return;
-              try {
-                var doc = node.contentDocument;
-                if (!doc || !node.hasAttribute('srcdoc')) return;
-                if (!doc.getElementById('__wgpu_notice')) return;
-                var href = node.getAttribute('data-ex-href');
-                if (!href) return;
-                applySrc(node, gen, href);
-              } catch (_) {}
-            }, wgpuNoticeDelay);
-          });
-        }
-
-        function loadExampleFrame(href, gen, node) {
-          function fallback() {
-            return applySrc(node, gen, href);
-          }
-          return Promise.all([
-            options.fetchHtml(href),
-            options.orbitInjectPromise,
-          ]).then(function (parts) {
-            if (!isCurrent(gen, node)) return { applied: false, reason: 'stale' };
-            var html = parts[0];
-            var inject = parts[1];
-            if (html.indexOf('coi-serviceworker') >= 0 || html.indexOf('__fxDemoOrbit') >= 0 || html.indexOf('data-fx-orbit') >= 0) {
-              return { applied: fallback(), mode: 'src' };
-            }
-            return { applied: applySrcdoc(node, gen, rewriteDemoHtml(html, href, inject)), mode: 'srcdoc' };
-          }).catch(function () {
-            return { applied: fallback(), mode: 'src', reason: 'error' };
           });
         }
 
@@ -134,11 +81,12 @@
           var node = replaceFrame();
           node.setAttribute('data-ex-href', href);
           bindLoad(node, gen);
+          var applied = applySrc(node, gen, href);
           return {
             rebuilt: true,
             generation: gen,
             frame: node,
-            loadPromise: loadExampleFrame(href, gen, node),
+            loadPromise: Promise.resolve({ applied: applied, mode: 'src' }),
           };
         }
 
@@ -146,7 +94,6 @@
           select: select,
           isCurrent: isCurrent,
           applySrc: applySrc,
-          applySrcdoc: applySrcdoc,
           replaceFrame: replaceFrame,
           getGeneration: function () { return generation; },
           getActiveId: function () { return activeId; },
@@ -157,7 +104,6 @@
   }
 
   var EX = window.EX_DATA || [];
-  var NAV = window.EX_NAV || {};
   var createNav = window.ForgeAXExampleFrameNav.createExampleFrameNav;
   var byId = {};
   EX.forEach(function (e) { byId[e.id] = e; });
@@ -183,26 +129,11 @@
     if (group) group.open = true;
   }
 
-  var orbitInjectPromise = fetch('/assets/examples/demo-orbit-inject.js?v=8b9ec447', { credentials: 'same-origin' })
-    .then(function (r) {
-      if (!r.ok) throw new Error('orbit inject ' + r.status);
-      return r.text();
-    });
-
   var nav = createNav({
     document: document,
     getFrame: function () { return frame; },
     setFrame: function (node) { frame = node; },
     setLoading: setLoading,
-    fetchHtml: function (href) {
-      return fetch(new URL(href, location.href).href, { credentials: 'same-origin' }).then(function (r) {
-        if (!r.ok) throw new Error('demo html ' + r.status);
-        return r.text();
-      });
-    },
-    orbitInjectPromise: orbitInjectPromise,
-    resolveHref: function (href) { return new URL(href, location.href); },
-    setTimeout: function (fn, ms) { return window.setTimeout(fn, ms); },
   });
 
   function select(id, push) {
@@ -227,8 +158,7 @@
 
   var firstOk = EX.filter(function (e) { return e.ok; })[0];
   var hashId = (location.hash || '').replace('#', '');
-  var landing = NAV.landing && byId[NAV.landing] && byId[NAV.landing].ok ? NAV.landing : (firstOk && firstOk.id);
-  select((byId[hashId] && byId[hashId].ok) ? hashId : landing, false);
+  select((byId[hashId] && byId[hashId].ok) ? hashId : (firstOk && firstOk.id), false);
   window.addEventListener('hashchange', function () {
     var id = (location.hash || '').replace('#', '');
     if (byId[id]) select(id, false);
