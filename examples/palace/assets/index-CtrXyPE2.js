@@ -1,0 +1,1 @@
+import{t as e}from"./preload-helper-C42wKMgA.js";await new Promise(e=>{typeof requestAnimationFrame==`function`?requestAnimationFrame(e):e()});try{await e(()=>import(`./main-MyQWZ2HU.js`),[])}catch(e){globalThis.__forgeaxStartup?.fail?.(e)}
