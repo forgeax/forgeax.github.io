@@ -1,0 +1,1 @@
+import{t as e}from"./impact-3hO5TM7K.js";export{e as spawnImpact};

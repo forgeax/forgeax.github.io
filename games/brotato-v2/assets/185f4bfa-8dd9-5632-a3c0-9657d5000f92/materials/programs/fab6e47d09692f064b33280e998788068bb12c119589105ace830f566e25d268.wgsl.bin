@@ -1,0 +1,358 @@
+struct AtmosphereMediumX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX {
+    originRadius: vec4<f32>,
+    rayleigh: vec4<f32>,
+    mie: vec4<f32>,
+    absorption: vec4<f32>,
+    ground: vec4<f32>,
+    geometry: vec4<f32>,
+}
+
+struct ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX {
+    worldViewProj: mat4x4<f32>,
+    lightDir: vec3<f32>,
+    lightColor: vec3<f32>,
+    cameraPos: vec3<f32>,
+    lightViewProj_A: mat4x4<f32>,
+    inverseViewProj: mat4x4<f32>,
+    lightViewProj_B: mat4x4<f32>,
+    lightViewProj_C: mat4x4<f32>,
+    lightViewProj_D: mat4x4<f32>,
+    splitPlanes: array<vec4<f32>, 4>,
+    cascadeCount: f32,
+    cascadeBlend: f32,
+    depthBias: f32,
+    normalBias: f32,
+    directionalShadowFilter: vec4<f32>,
+    spotLightViewProj: array<mat4x4<f32>, 4>,
+    temporalCurrentViewProj: mat4x4<f32>,
+    temporalPreviousViewProj: mat4x4<f32>,
+    temporalProjection: vec4<f32>,
+    temporalPreviousCameraPos: vec4<f32>,
+    ssrParams: vec4<f32>,
+    cloudShadowOrigin: vec4<f32>,
+    cloudShadowRight: vec4<f32>,
+    cloudShadowUp: vec4<f32>,
+    cloudShadowProjection: vec4<f32>,
+    clippingPlanes: array<vec4<f32>, 6>,
+    clippingControl: vec4<f32>,
+    fogColorDensity: vec4<f32>,
+    fogHeightOpacity: vec4<f32>,
+    atmosphere: AtmosphereMediumX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX,
+    atmosphereControl: vec4<f32>,
+}
+
+struct AtmosphereTransportX_naga_oil_mod_XMZXXEZ3FMF4F6YLUNVXXG4DIMVZGKOR2N5YHI2LDOMX {
+    luminance: vec3<f32>,
+    transmittance: vec3<f32>,
+}
+
+struct AtmosphereFogSampleX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX {
+    inscatter: vec3<f32>,
+    transmittance: vec3<f32>,
+}
+
+struct FogSampleX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX {
+    inscatter: vec3<f32>,
+    transmittance: f32,
+}
+
+struct FogViewParamsX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX {
+    color: vec3<f32>,
+    density: f32,
+    heightFalloff: f32,
+    maxOpacity: f32,
+}
+
+struct FogRayX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX {
+    origin: vec3<f32>,
+    direction: vec3<f32>,
+    distance: f32,
+}
+
+struct VertexOutput {
+    @builtin(position) position: vec4<f32>,
+    @location(0) color: vec4<f32>,
+    @location(1) local: vec2<f32>,
+    @location(2) emissive_intensity: vec4<f32>,
+    @location(3) surface: vec4<f32>,
+    @location(4) sheet_uv: vec2<f32>,
+    @location(5) sheet_frame: f32,
+    @location(6) fade_distance: f32,
+    @location(7) clip_position: vec3<f32>,
+}
+
+struct VertexInput {
+    @location(0) position: vec3<f32>,
+    @location(1) right: vec2<f32>,
+    @location(2) up: vec2<f32>,
+    @location(3) particle_color: vec4<f32>,
+    @location(4) base_color: vec4<f32>,
+    @location(5) emissive_intensity: vec4<f32>,
+    @location(6) surface: vec4<f32>,
+    @location(7) advanced: vec4<f32>,
+    @location(8) texture_sheet: vec4<f32>,
+}
+
+@group(0) @binding(16) 
+var cloudShadowMapX_naga_oil_mod_XMZXXEZ3FMF4F6Y3MN52WIOR2NRQXSZLSX: texture_2d<f32>;
+@group(0) @binding(17) 
+var cloudShadowSamplerX_naga_oil_mod_XMZXXEZ3FMF4F6Y3MN52WIOR2NRQXSZLSX: sampler;
+@group(0) @binding(0) 
+var<uniform> viewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX;
+@group(0) @binding(1) 
+var scene_depth: texture_depth_2d;
+
+fn atmosphere_scene_visibilityX_naga_oil_mod_XMZXXEZ3FMF4F6YLUNVXXG4DIMVZGKOR2OZUXG2LCNFWGS5DZX(m: AtmosphereMediumX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX, p: vec3<f32>) -> f32 {
+    return 1f;
+}
+
+fn cloud_direct_solar_factorX_naga_oil_mod_XMZXXEZ3FMF4F6Y3MN52WIOR2NRQXSZLSX(worldPosition: vec3<f32>, shadowOrigin: vec3<f32>, shadowRight: vec3<f32>, shadowUp: vec3<f32>, shadowProjection: vec4<f32>) -> f32 {
+    var local: bool;
+    var local_1: bool;
+    var local_2: bool;
+    var local_3: bool;
+    var local_4: bool;
+    var local_5: bool;
+    var local_6: bool;
+    var local_7: bool;
+
+    if (worldPosition.x == worldPosition.x) {
+        local = (worldPosition.y == worldPosition.y);
+    } else {
+        local = false;
+    }
+    let _e10 = local;
+    if _e10 {
+        local_1 = (worldPosition.z == worldPosition.z);
+    } else {
+        local_1 = false;
+    }
+    let _e17 = local_1;
+    if _e17 {
+        local_2 = all((abs(worldPosition) < vec3(3.402823e38f)));
+    } else {
+        local_2 = false;
+    }
+    let validReceiver = local_2;
+    let offset = (worldPosition - shadowOrigin);
+    let uv = ((vec2<f32>(dot(offset, shadowRight), dot(offset, shadowUp)) / vec2(max(shadowProjection.x, 0.000001f))) + vec2(0.5f));
+    if all((uv >= vec2(0f))) {
+        local_3 = all((uv <= vec2(1f)));
+    } else {
+        local_3 = false;
+    }
+    let inRange = local_3;
+    if (shadowProjection.y > 0.5f) {
+        local_4 = (shadowProjection.z < 0.5f);
+    } else {
+        local_4 = false;
+    }
+    let _e64 = local_4;
+    if _e64 {
+        local_5 = (shadowProjection.x > 0f);
+    } else {
+        local_5 = false;
+    }
+    let available = local_5;
+    let _e80 = textureSampleLevel(cloudShadowMapX_naga_oil_mod_XMZXXEZ3FMF4F6Y3MN52WIOR2NRQXSZLSX, cloudShadowSamplerX_naga_oil_mod_XMZXXEZ3FMF4F6Y3MN52WIOR2NRQXSZLSX, clamp(uv, vec2(0f), vec2(1f)), 0f);
+    let sampled = _e80.x;
+    if validReceiver {
+        local_6 = inRange;
+    } else {
+        local_6 = false;
+    }
+    let _e88 = local_6;
+    if _e88 {
+        local_7 = available;
+    } else {
+        local_7 = false;
+    }
+    let _e92 = local_7;
+    return select(1f, clamp(sampled, 0f, 1f), _e92);
+}
+
+fn view_atmosphereX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTBORWW643QNBSXEZIX(v: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX, position: vec3<f32>) -> AtmosphereTransportX_naga_oil_mod_XMZXXEZ3FMF4F6YLUNVXXG4DIMVZGKOR2N5YHI2LDOMX {
+    return AtmosphereTransportX_naga_oil_mod_XMZXXEZ3FMF4F6YLUNVXXG4DIMVZGKOR2N5YHI2LDOMX(vec3(0f), vec3(1f));
+}
+
+fn view_solar_transmittanceX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTBORWW643QNBSXEZIX(v_1: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX, position_1: vec3<f32>) -> vec3<f32> {
+    return vec3(1f);
+}
+
+fn view_distant_sky_lightX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTBORWW643QNBSXEZIX(v_2: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX) -> vec3<f32> {
+    return vec3(0f);
+}
+
+fn fogOpticalDepthX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(params: FogViewParamsX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX, ray: FogRayX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX) -> f32 {
+    var integral: f32;
+
+    let rho = (params.density * exp(clamp((-(params.heightFalloff) * ray.origin.y), -60f, 60f)));
+    let t = clamp(((params.heightFalloff * ray.direction.y) * ray.distance), -60f, 60f);
+    integral = ((1f - (t * 0.5f)) + ((t * t) / 6f));
+    if (abs(t) >= 0.001f) {
+        integral = ((1f - exp(-(t))) / t);
+    }
+    let _e41 = integral;
+    return clamp(((rho * ray.distance) * _e41), 0f, 80f);
+}
+
+fn height_fog_with_sourceX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_3: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX, worldPos: vec3<f32>, source: vec3<f32>) -> FogSampleX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX {
+    var origin: vec3<f32>;
+
+    origin = v_3.cameraPos;
+    if (v_3.temporalProjection.z > 0.5f) {
+        let forward = -(normalize(vec3<f32>(v_3.worldViewProj[0].z, v_3.worldViewProj[1].z, v_3.worldViewProj[2].z)));
+        origin = (worldPos - (forward * dot((worldPos - v_3.cameraPos), forward)));
+    }
+    let _e25 = origin;
+    let delta = (worldPos - _e25);
+    let distance_ = length(delta);
+    if (distance_ < 0.00001f) {
+        return FogSampleX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(vec3(0f), 1f);
+    }
+    let params_1 = FogViewParamsX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_3.fogColorDensity.xyz, v_3.fogColorDensity.w, v_3.fogHeightOpacity.x, v_3.fogHeightOpacity.y);
+    let _e44 = origin;
+    let _e48 = fogOpticalDepthX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(params_1, FogRayX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(_e44, (delta / vec3(distance_)), distance_));
+    let opacity = (params_1.maxOpacity * (1f - exp(-(_e48))));
+    return FogSampleX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX((source * opacity), (1f - opacity));
+}
+
+fn height_fogX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_4: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX, worldPos_1: vec3<f32>) -> FogSampleX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX {
+    var source_1: vec3<f32>;
+
+    source_1 = v_4.fogColorDensity.xyz;
+    if (v_4.atmosphereControl.w > 0.5f) {
+        let ground = ((v_4.atmosphere.originRadius.xyz * 1000f) + vec3<f32>(0f, 1f, 0f));
+        let _e18 = source_1;
+        let _e19 = view_distant_sky_lightX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTBORWW643QNBSXEZIX(v_4);
+        let _e20 = view_solar_transmittanceX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTBORWW643QNBSXEZIX(v_4, ground);
+        source_1 = (_e18 + (_e19 + ((_e20 * v_4.lightColor) / vec3(12.566371f))));
+    }
+    let _e28 = source_1;
+    let _e30 = height_fog_with_sourceX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_4, worldPos_1, _e28);
+    return _e30;
+}
+
+fn view_fogX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_5: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX, position_2: vec3<f32>) -> AtmosphereFogSampleX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX {
+    let _e2 = height_fogX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_5, position_2);
+    let _e3 = view_atmosphereX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTBORWW643QNBSXEZIX(v_5, position_2);
+    return AtmosphereFogSampleX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX((_e2.inscatter + (_e2.transmittance * _e3.luminance)), (_e2.transmittance * _e3.transmittance));
+}
+
+fn translucent_fog_transmissionX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_6: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX, worldPos_2: vec3<f32>, color: vec3<f32>, alpha: f32, backdrop: vec3<f32>, transmission: vec3<f32>) -> vec3<f32> {
+    var local_8: bool;
+
+    let composition = u32((v_6.fogHeightOpacity.z + 0.5f));
+    if (composition == 0u) {
+        local_8 = all((transmission == vec3(0f)));
+    } else {
+        local_8 = false;
+    }
+    let _e16 = local_8;
+    if _e16 {
+        return color;
+    }
+    let _e19 = view_fogX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_6, worldPos_2);
+    let coverage = select(1f, alpha, (composition == 2u));
+    let inscatter = select((((vec3(1f) - transmission) * _e19.inscatter) * coverage), vec3(0f), (composition == 3u));
+    return ((((color - backdrop) * _e19.transmittance) + backdrop) + inscatter);
+}
+
+fn translucent_fogX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_7: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX, worldPos_3: vec3<f32>, color_1: vec3<f32>, alpha_1: f32) -> vec3<f32> {
+    let _e8 = translucent_fog_transmissionX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_7, worldPos_3, color_1, alpha_1, vec3(0f), vec3(0f));
+    return _e8;
+}
+
+fn ndc_worldX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(v_8: ViewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX, ndc: vec3<f32>) -> vec3<f32> {
+    let world = (v_8.inverseViewProj * vec4<f32>(ndc, 1f));
+    return (world.xyz / vec3(world.w));
+}
+
+fn textureSheetFrame(age: f32, frameRate: f32, frameCount: u32) -> u32 {
+    var local_9: bool;
+
+    if !((frameCount == 0u)) {
+        local_9 = (frameRate <= 0f);
+    } else {
+        local_9 = true;
+    }
+    let _e10 = local_9;
+    if _e10 {
+        return 0u;
+    }
+    return min((frameCount - 1u), u32(max(0f, floor((age * frameRate)))));
+}
+
+fn textureSheetUv(local_10: vec2<f32>, frame: u32, columns: u32, rows: u32) -> vec2<f32> {
+    let safeColumns = max(columns, 1u);
+    let safeRows = max(rows, 1u);
+    let cell = vec2<u32>((frame % safeColumns), (frame / safeColumns));
+    return ((((local_10 + vec2(1f)) * 0.5f) / vec2<f32>(f32(safeColumns), f32(safeRows))) + vec2<f32>((f32(cell.x) / f32(safeColumns)), (f32(cell.y) / f32(safeRows))));
+}
+
+fn billboardPivot(corner: vec2<f32>, pivot: vec2<f32>) -> vec2<f32> {
+    return (corner + (pivot * 2f));
+}
+
+fn softParticleFactor(particleDepth: f32, sceneDepth: f32, fadeDistance: f32) -> f32 {
+    if (fadeDistance <= 0f) {
+        return 1f;
+    }
+    return clamp(((particleDepth - sceneDepth) / fadeDistance), 0f, 1f);
+}
+
+fn billboardSortingKey(depth: f32, mode: u32) -> f32 {
+    return select(0f, depth, (mode == 2u));
+}
+
+fn softParticle(position_3: vec4<f32>, alpha_2: f32, fadeDistance_1: f32) -> f32 {
+    let pixel = vec2<i32>(position_3.xy);
+    let sceneDepth_1 = textureLoad(scene_depth, pixel, 0i);
+    if (sceneDepth_1 <= 0f) {
+        return alpha_2;
+    }
+    if (fadeDistance_1 <= 0f) {
+        return select(alpha_2, 0f, (position_3.z < sceneDepth_1));
+    }
+    let _e17 = softParticleFactor(position_3.z, sceneDepth_1, fadeDistance_1);
+    return (alpha_2 * _e17);
+}
+
+@vertex 
+fn vs_main(input: VertexInput, @builtin(vertex_index) vertex_index: u32) -> VertexOutput {
+    var output: VertexOutput;
+
+    let corners = array<vec2<f32>, 6>(vec2<f32>(-1f, -1f), vec2<f32>(1f, -1f), vec2<f32>(1f, 1f), vec2<f32>(-1f, -1f), vec2<f32>(1f, 1f), vec2<f32>(-1f, 1f));
+    let _e24 = billboardPivot(corners[vertex_index], input.advanced.xy);
+    let clipPosition = vec3<f32>(((input.position.xy + (input.right * _e24.x)) + (input.up * _e24.y)), input.position.z);
+    output.position = vec4<f32>(clipPosition, 1f);
+    output.clip_position = clipPosition;
+    output.color = (input.particle_color * input.base_color);
+    output.local = _e24;
+    output.emissive_intensity = input.emissive_intensity;
+    output.surface = input.surface;
+    let _e63 = textureSheetUv(corners[vertex_index], u32(input.advanced.z), u32(input.texture_sheet.x), u32(input.texture_sheet.y));
+    output.sheet_uv = _e63;
+    output.sheet_frame = input.advanced.z;
+    output.fade_distance = input.texture_sheet.z;
+    let _e70 = output;
+    return _e70;
+}
+
+@fragment 
+fn fs_main(input_1: VertexOutput) -> @location(0) vec4<f32> {
+    let radius = length(input_1.local);
+    let edge = (1f - smoothstep(0.45f, 1f, radius));
+    let core = (1f - smoothstep(0f, 0.42f, radius));
+    let roughness = clamp(input_1.surface.y, 0.04f, 1f);
+    let clearcoat = clamp(input_1.surface.z, 0f, 1f);
+    let highlight = ((core * clearcoat) * (1f - (roughness * 0.65f)));
+    let emissive = (input_1.emissive_intensity.xyz * input_1.emissive_intensity.w);
+    let _e39 = softParticle(input_1.position, (input_1.color.w * edge), input_1.fade_distance);
+    let rgb = ((input_1.color.xyz + (emissive * (0.35f + (core * 0.65f)))) + vec3(highlight));
+    let _e51 = viewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX;
+    let _e53 = viewX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTDN5WW233OX;
+    let _e55 = ndc_worldX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(_e53, input_1.clip_position);
+    let _e57 = translucent_fogX_naga_oil_mod_XMZXXEZ3FMF4F65TJMV3TUOTGN5TQX(_e51, _e55, (rgb * _e39), _e39);
+    return vec4<f32>(_e57, _e39);
+}

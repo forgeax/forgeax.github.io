@@ -1,0 +1,1 @@
+import{n as e,t}from"./limb-animation-system-D7H-L1TY.js";export{t as LIMB_ANIMATION_SYSTEM_NAME,e as installLimbAnimationSystem};

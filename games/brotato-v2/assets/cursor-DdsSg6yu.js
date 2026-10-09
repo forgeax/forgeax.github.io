@@ -1,0 +1,1 @@
+function e(e){let t=e.style.cursor,n=e.ownerDocument,r=e=>e.stopImmediatePropagation(),i=()=>{n.pointerLockElement===e&&n.exitPointerLock()};return e.style.cursor=`default`,e.addEventListener(`click`,r,!0),n.addEventListener(`pointerlockchange`,i),i(),()=>{e.removeEventListener(`click`,r,!0),n.removeEventListener(`pointerlockchange`,i),e.style.cursor=t}}export{e as t};

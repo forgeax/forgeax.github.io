@@ -1,0 +1,1 @@
+import{t as e}from"./axe-C6gHgBD8.js";export{e as AXE_PROFILE};

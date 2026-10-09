@@ -1,0 +1,1 @@
+import{n as e,t}from"./regen-system-D5klPmIP.js";export{t as REGEN_SYSTEM_NAME,e as installRegenSystem};

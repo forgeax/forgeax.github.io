@@ -1,0 +1,1 @@
+import{a as e,c as t,i as n,n as r,o as i,r as a,s as o,t as s}from"./hazard-system-Dy8kWN5H.js";export{s as HAZARD_ARM_DELAY,r as HAZARD_SYSTEM_NAME,a as PLAYER_HAZARD_SLOW_KEY,n as createPlayerHazardSlow,e as groundHazardValue,i as hazardArmDelay,o as installHazardSystem,t as tickGroundHazard};

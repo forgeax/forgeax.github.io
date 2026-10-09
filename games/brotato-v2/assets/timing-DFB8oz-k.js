@@ -1,0 +1,1 @@
+function e(e,t){let n=(Number.isFinite(e)?Math.max(0,e):0)-(Number.isFinite(t)?Math.max(0,t):0);return n<=1e-9?0:n}function t(e){return Number.isFinite(e)&&e<=0}export{e as n,t};

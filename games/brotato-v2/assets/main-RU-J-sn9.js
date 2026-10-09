@@ -1,0 +1,1 @@
+import{t as e}from"./arena-BoMhWzg7.js";import{t}from"./command-registry-DgULXylk.js";import{a as n,i as r,n as i,o as a,r as o,t as s}from"./main-CLcG99VQ.js";export{e as ARENA,s as BOOTSTRAP_DEBUG_REGISTRY_KEY,i as arenaPlugin,o as bootstrapPlugin,r as componentsPlugin,t as createDebugCommandRegistry,n as default,n as gameplayPlugin,a as systemsPlugin};

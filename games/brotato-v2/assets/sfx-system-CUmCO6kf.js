@@ -1,0 +1,1 @@
+import{n as e,r as t,t as n}from"./sfx-system-CtpyTX5E.js";export{n as SFX_RUNTIME_KEY,e as SFX_SYSTEM_NAME,t as installSfxSystem};

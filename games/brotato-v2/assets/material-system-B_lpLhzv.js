@@ -1,0 +1,1 @@
+import{n as e,r as t,t as n}from"./material-system-tO5lP68X.js";export{n as MATERIAL_SYSTEM_NAME,e as installMaterialSystem,t as materialPickupRadius};

@@ -1,0 +1,1 @@
+import{n as e,t}from"./combat-effect-cleanup-system-CzHXcrtc.js";export{t as COMBAT_EFFECT_CLEANUP_SYSTEM_NAME,e as installCombatEffectCleanupSystem};

@@ -1,0 +1,1 @@
+import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c}from"./combat-system-B2jmWGjX.js";export{c as COMBAT_STATE_KEY,i as COMBAT_SYSTEM_NAME,o as PENDING_MELEE_HITS_KEY,n as characterCollisionEnabled,e as consumePendingHealthRefill,a as createCombatState,s as installCombatSystem,t as shouldAutoRevive,r as shouldUseTestInvincible};

@@ -1,0 +1,1 @@
+import{n as e,t}from"./weapon-795Ii1ld.js";export{t as destroyWeaponRig,e as spawnWeapons};

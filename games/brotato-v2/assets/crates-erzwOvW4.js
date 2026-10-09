@@ -1,0 +1,1 @@
+var e={weatheredSackBonus:15,consolationMaterials:8,noticeMs:2200};export{e as t};

@@ -1,0 +1,1 @@
+import{t as e}from"./icicle-DOchHpte.js";export{e as ICICLE_PROFILE};

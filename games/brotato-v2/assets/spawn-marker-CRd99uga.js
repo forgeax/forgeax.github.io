@@ -1,0 +1,1 @@
+import{t as e}from"./spawn-marker-CdAau_sm.js";export{e as SPAWN_MARKER_RECIPE};

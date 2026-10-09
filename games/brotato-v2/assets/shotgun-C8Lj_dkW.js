@@ -1,0 +1,1 @@
+import{t as e}from"./shotgun-BRQ6jzAp.js";export{e as SHOTGUN_PROFILE};

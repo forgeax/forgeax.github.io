@@ -1,0 +1,1 @@
+import{mountPluginAsset as e}from"./plugin-JQ7iIaob.js";var t={name:`brotato-v2/engine-root`,inject:[`assets`,`pluginPrograms`],async apply(t,n){await t.effect(async function*(){for(let r of n.children){let n=await e(t,r);if(!n.ok)throw n.error;yield n.value.dispose}},`brotato-v2/engine-root`)}};export{t};

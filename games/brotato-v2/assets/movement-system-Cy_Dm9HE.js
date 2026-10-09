@@ -1,0 +1,1 @@
+import{n as e,t}from"./movement-system-DKEuhDvG.js";export{t as MOVEMENT_SYSTEM_NAME,e as installMovementSystem};

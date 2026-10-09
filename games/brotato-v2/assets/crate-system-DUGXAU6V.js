@@ -1,0 +1,1 @@
+import{n as e,t}from"./crate-system-BimSOEqY.js";export{t as CRATE_SYSTEM_NAME,e as installCrateSystem};

@@ -1,0 +1,1 @@
+import{n as e,r as t,t as n}from"./material-CHJGngRh.js";export{n as materialScale,e as queueMaterialDrop,t as spawnMaterialDeferred};

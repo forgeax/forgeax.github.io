@@ -1,0 +1,1 @@
+import{n as e}from"./recipes-BPftst64.js";import{i as t,n,r,t as i}from"./sfx-table-8lOMrCVg.js";export{i as SFX_EVENT_QUEUE_KEY,e as SFX_TABLE,n as createSfxEventQueue,r as queueSfx,t as queueSfxAtEntity};

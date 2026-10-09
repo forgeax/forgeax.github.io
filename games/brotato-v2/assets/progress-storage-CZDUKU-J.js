@@ -1,0 +1,1 @@
+import{t as e}from"./progress-C85ZO6oY.js";var t=`brotato-v2.best-cleared-danger`;function n(){try{return e(globalThis.localStorage?.getItem(t))}catch{return 0}}function r(n){let r=e(n);try{globalThis.localStorage?.setItem(t,String(r))}catch{}return r}export{r as n,n as t};

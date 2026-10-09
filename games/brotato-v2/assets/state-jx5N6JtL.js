@@ -1,0 +1,1 @@
+var e=`BrotatoV2StressState`;export{e as t};

@@ -1,0 +1,1 @@
+import{t as e}from"./frontend-root-DTXbax1N.js";export{e as frontendRoot};

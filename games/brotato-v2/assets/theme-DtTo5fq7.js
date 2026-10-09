@@ -1,0 +1,1 @@
+var e=Object.freeze({background:`#101820`,surface:`#182632`,surfaceRaised:`#223746`,text:`#f5f7fb`,muted:`#b9c8d2`,primary:`#8ee7bd`,accent:`#ffd166`,danger:`#ff6b6b`,info:`#77c7ff`}),t=[`#9aa0a6`,`#4a90d9`,`#a15fd0`,`#d94a4a`];function n(e){return t[Math.max(0,Math.min(t.length-1,Math.floor(e)-1))]??t[0]}export{t as n,n as r,e as t};

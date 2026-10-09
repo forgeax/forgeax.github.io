@@ -1,0 +1,1 @@
+import{t as e}from"./sniper-D8ElHgnn.js";export{e as SNIPER_PROFILE};

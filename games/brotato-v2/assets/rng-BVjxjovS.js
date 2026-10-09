@@ -1,0 +1,1 @@
+function e(e){let t=e>>>0,n=()=>{t=t+1831565813>>>0;let e=t;return e=Math.imul(e^e>>>15,e|1),e^=e+Math.imul(e^e>>>7,e|61),((e^e>>>14)>>>0)/4294967296};return{get state(){return t>>>0},next:n,nextInt:(e,t)=>{let r=Math.ceil(Math.min(e,t)),i=Math.floor(Math.max(e,t));return i<=r?r:r+Math.floor((i-r+1)*n())}}}export{e as t};

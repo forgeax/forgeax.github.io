@@ -1,0 +1,1 @@
+import{t as e}from"./cleave-area-B8sAI7g0.js";export{e as cleaveArea};

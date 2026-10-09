@@ -1,0 +1,1 @@
+import{n as e,r as t,t as n}from"./split-system-BR_yK09j.js";export{n as canSplit,e as spawnSplitChildren,t as splitAngles};

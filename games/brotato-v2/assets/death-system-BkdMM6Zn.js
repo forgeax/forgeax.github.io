@@ -1,0 +1,1 @@
+import{n as e,t}from"./death-system-BH802dfy.js";export{t as DEATH_SYSTEM_NAME,e as installDeathSystem};

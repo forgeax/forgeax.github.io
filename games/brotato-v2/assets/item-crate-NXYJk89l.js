@@ -1,0 +1,1 @@
+var e={id:`item-crate`,displayName:`Item Crate`,materialSlots:[`wood`],rootScale:1,groundOffset:0,body:[{id:`box`,shape:{kind:`box`,width:.42,height:.28,depth:.42},position:[0,.14,0],materialSlot:0},{id:`lid`,shape:{kind:`box`,width:.46,height:.08,depth:.46},position:[0,.32,0],materialSlot:0}],limbs:[]};export{e as t};

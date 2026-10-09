@@ -1,0 +1,1 @@
+import{t as e}from"./stat-commands-Bcxr_XgU.js";export{e as installStatCommands};

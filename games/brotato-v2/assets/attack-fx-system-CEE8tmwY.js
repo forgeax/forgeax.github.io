@@ -1,0 +1,1 @@
+import{n as e,t}from"./attack-fx-system-1MZ-ZrXB.js";export{t as ATTACK_FX_SYSTEM_NAME,e as installAttackFxSystem};

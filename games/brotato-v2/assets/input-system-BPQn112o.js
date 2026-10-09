@@ -1,0 +1,1 @@
+import{a as e,i as t,n,o as r,r as i,t as a}from"./input-system-B8s43hMT.js";export{a as INPUT_TOGGLE_INVINCIBILITY_ACTION,n as PLAYER_CONTROL_STATE_KEY,i as PLAYER_INPUT_MAP,t as PLAYER_INPUT_SYSTEM_NAME,e as installInputSystem,r as playerInvincibilityEnabled};

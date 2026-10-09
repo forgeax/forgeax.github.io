@@ -1,0 +1,1 @@
+function e(){let e=[];return{sample:(t,n)=>{if(!Number.isSafeInteger(t)||t<0||!Number.isFinite(n))return;for(e.length>0&&t<e[e.length-1].completed&&(e.length=0),e.push({at:n,completed:t});e.length>2&&n-e[1].at>=1e3;)e.shift();let r=e[0],i=n-r.at;if(!(i<250))return Math.max(0,(t-r.completed)*1e3/i)}}}export{e as t};

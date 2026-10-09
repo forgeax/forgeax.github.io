@@ -1,0 +1,1 @@
+import{n as e,t}from"./timing-DFB8oz-k.js";export{t as isCooldownReady,e as tickCooldown};

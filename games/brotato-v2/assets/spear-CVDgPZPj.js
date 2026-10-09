@@ -1,0 +1,1 @@
+import{t as e}from"./spear-iSnl49r0.js";export{e as SPEAR_PROFILE};

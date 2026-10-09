@@ -1,0 +1,1 @@
+function e(e,t=0){return{materialSlots:[`wood`,`steel`,`tier-trim`],restYaw:t,parts:e}}function t(e,t=0){return{materialSlots:[`gunmetal`,`steel`,`tier-trim`],restYaw:t,parts:e}}function n(e,t=0){return{materialSlots:[`steel`,`ember`,`tier-trim`],restYaw:t,parts:e}}export{t as n,e as r,n as t};

@@ -1,0 +1,1 @@
+import{a as e,i as t,n,o as r,r as i,s as a,t as o}from"./debug-clock-DKORI1nO.js";export{o as DEBUG_CLOCK_KEY,n as DEBUG_CLOCK_SYSTEM_NAME,i as SIM_BUDGET_KEY,t as STRESS_FRAME_SYSTEM_NAME,e as createSimBudget,r as installDebugClock,a as liteFixedStep};

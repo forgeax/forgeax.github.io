@@ -1,0 +1,1 @@
+import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c,u as l}from"./formulas-D6P7AfiW.js";export{c as armorMultiplier,i as asMultiplier,o as dodgeChance,n as effectiveCritChance,e as effectiveMaxHp,a as effectiveRange,s as moveSpeed,t as regenRate,r as resolveCooldown,l as scaledBaseDamage};

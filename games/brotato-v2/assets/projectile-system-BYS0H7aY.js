@@ -1,0 +1,1 @@
+import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c}from"./projectile-system-qj-1hm-J.js";export{c as PROJECTILE_STATE_KEY,i as PROJECTILE_SYSTEM_NAME,o as clearProjectiles,n as createProjectileState,e as evictOldest,a as installProjectileSystem,s as projectileDamageMultiplier,t as registerProjectile,r as spreadAngles};

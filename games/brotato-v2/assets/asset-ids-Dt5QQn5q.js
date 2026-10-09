@@ -1,0 +1,1 @@
+import{t as e}from"./asset-ids-D46F05Bx.js";export{e as ASSET_IDS};

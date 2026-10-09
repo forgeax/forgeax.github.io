@@ -1,0 +1,1 @@
+function e(e){let t=typeof e==`number`?e:Number(e);return Number.isFinite(t)?Math.max(0,Math.min(5,Math.floor(t))):0}export{e as t};

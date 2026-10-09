@@ -1,0 +1,1 @@
+import{t as e}from"./preload-helper-CBMlNM1m.js";await new Promise(e=>{typeof requestAnimationFrame==`function`?requestAnimationFrame(e):e()});try{await e(()=>import(`./main-Xv_uRHz4.js`),[])}catch(e){globalThis.__forgeaxStartup?.fail?.(e)}

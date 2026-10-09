@@ -1,0 +1,1 @@
+import{t as e}from"./spawn-Cj3t37ZX.js";function t(t=0){let n=Math.max(0,Number.isFinite(t)?t:0);return e.trees.baseAverage+e.trees.perStat*n}function n(e,n){let r=t(e),i=Math.floor(r),a=r-i;return i+ +(a>0&&n.next()<a)}function r(t){return t+e.trees.intervalSec}export{n,t as r,r as t};

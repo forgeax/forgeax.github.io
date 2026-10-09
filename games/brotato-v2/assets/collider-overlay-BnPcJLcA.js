@@ -1,0 +1,1 @@
+import{i as e,n as t,r as n,t as r}from"./collider-overlay-B5PFlxRG.js";export{r as COLLIDER_OVERLAY_COLORS,t as COLLIDER_OVERLAY_SYSTEM_NAME,n as characterColliderWorldAabb,e as installColliderOverlaySystem};

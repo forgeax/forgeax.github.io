@@ -1,0 +1,1 @@
+import{t as e}from"./combat-2WPunarD.js";import{o as t}from"./formulas-D6P7AfiW.js";import{a as n}from"./weapons-BR_P5rHW.js";import{r}from"./orbit-tKKqo3Q_.js";function i(i,a){let o=e.player.collisionRadius+1.2;for(let e of i){let i=n[Math.floor(e)];if(i===void 0)continue;let s=r(a);o=Math.max(o,i.shape===`orbit`?s.radius+s.diameter/2:t(i.range,a))}return o}export{i as t};

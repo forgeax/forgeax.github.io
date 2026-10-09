@@ -1,0 +1,1 @@
+import{n as e,t}from"./slot-layout-system-vgP1nPfV.js";export{t as SLOT_LAYOUT_SYSTEM_NAME,e as installSlotLayoutSystem};

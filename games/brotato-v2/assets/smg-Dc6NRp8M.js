@@ -1,0 +1,1 @@
+import{t as e}from"./smg-MKdV5d8c.js";export{e as SMG_PROFILE};

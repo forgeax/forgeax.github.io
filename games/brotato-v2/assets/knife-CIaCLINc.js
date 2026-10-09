@@ -1,0 +1,1 @@
+import{t as e}from"./knife-YfLPp0v0.js";export{e as KNIFE_PROFILE};

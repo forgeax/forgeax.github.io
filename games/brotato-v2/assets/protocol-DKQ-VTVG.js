@@ -1,0 +1,1 @@
+var e="`,F1,F2,F3,p,P,.,>,F8,x,F6,F7,Tab,],[,\\,F5,t,h,H,r,R,F9,F10,b,F4,g,T,o,O".split(`,`);function t(t){return typeof t==`string`&&e.includes(t)}export{t as n,e as t};
