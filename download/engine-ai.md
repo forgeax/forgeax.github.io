@@ -20,7 +20,7 @@ URLs, packages, or recovery steps.
    another external absolute path. `forgeax new` must not overwrite an existing path.
 5. Direct edit is the default. Do not start the ForgeAX closed loop unless the user
    explicitly authorizes it for the current task.
-6. The user's machine must provide pnpm `>=11.7.0 <12`. Check `pnpm --version`
+6. The user's machine must provide pnpm `>=12.10.1 <13`. Check `pnpm --version`
    before any bootstrap or project command; if it is unavailable or unsupported,
    stop and report the exact version instead of silently switching versions. This
    is the project package-manager contract; npm remains a supported public registry
@@ -30,20 +30,21 @@ URLs, packages, or recovery steps.
 
 ## Resolve and require one exact release
 
-Requirements: Node.js `>=22.13.0`, pnpm `>=11.7.0 <12`, npm registry access, and an
+Requirements: Node.js `>=22.13.0`, pnpm `>=12.10.1 <13`, npm registry access, and an
 empty parent directory.
 
 ```sh
 set -eu
 
 PNPM_VERSION="$(pnpm --version 2>/dev/null || true)"
-case "$PNPM_VERSION" in
-  11.7.*|11.8.*|11.9.*|11.[1-9][0-9].*) ;;
-  *)
-    echo "pnpm >=11.7.0 <12 is required on the user's machine; found ${PNPM_VERSION:-unavailable}. Activate pnpm 11.7.0+ and retry." >&2
-    exit 19
-    ;;
-esac
+if ! node -e '
+  const match = /^12\.(\d+)\.(\d+)$/.exec(process.argv[1] ?? "");
+  const supported = match && (+match[1] > 10 || (+match[1] === 10 && +match[2] >= 1));
+  process.exit(supported ? 0 : 1);
+' "$PNPM_VERSION"; then
+  echo "pnpm >=12.10.1 <13 is required on the user's machine; found ${PNPM_VERSION:-unavailable}. Activate pnpm 12.10.1+ and retry." >&2
+  exit 19
+fi
 
 ENGINE_VERSION="$(npm view @forgeax/engine dist-tags.latest 2>/dev/null || true)"
 SDK_VERSION="$(npm view @forgeax/engine-sdk dist-tags.latest 2>/dev/null || true)"
