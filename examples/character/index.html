@@ -1,8 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-forgeax-shell-contract="1" data-forgeax-shell-layout="canvas">
   <head>
     <script src="/examples/character/coi-serviceworker.js"></script>
-<script>(function(){var N='__wgpu_notice';function show(){if(document.getElementById(N))return;var d=document.createElement('div');d.id=N;d.style.cssText='position:fixed;inset:0;display:grid;place-items:center;background:#0b0d10;color:#e6e6e6;font:15px/1.6 system-ui,sans-serif;text-align:center;padding:24px;z-index:2147483647';d.innerHTML='<div><div style="font-size:44px">\u26A1</div><p><b>This demo needs WebGPU</b></p><p style="opacity:.75;max-width:32em">Your browser doesn\u2019t have working WebGPU. Open in <b>Chrome or Edge</b> (latest), or Safari 26+ / Firefox with WebGPU enabled. \u8FD9\u4E2A demo \u9700\u8981 WebGPU\uFF0C\u8BF7\u7528\u6700\u65B0\u7248 Chrome / Edge \u6253\u5F00\u3002</p><p style="opacity:.5;font-size:13px">Check chrome://gpu or webgpureport.org</p></div>';(document.body||document.documentElement).appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.appendChild(d);},2500);}async function chk(){var ok=false;try{if(navigator.gpu){var a=await navigator.gpu.requestAdapter();ok=!!a;}}catch(e){}if(!ok){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',show);else show();}}chk();})();</script>
+    <script type="importmap">{"imports":{"@forgeax/engine-animation":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-animation/target-id":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-animation/animated-bounds":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-app":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-assets-runtime":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-assets-runtime/internal":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-audio":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-audio-webaudio":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-audio-webaudio/audio-importer":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-codec":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-debug-draw":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ecs":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ecs/externalization":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ecs/internal":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ecs/projection":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ecs/shared":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ecs/world-read":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-fbx":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-font":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-geometry":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-gltf":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-gltf/importer":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-graphics-extras":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-host":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-host/frontend":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-host/protocol":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-host/transport":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-image":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-image/hdr-decoder":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-import":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-import/mesh-bin":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-import/animation-clip-bin":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-input":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-input/controller-db":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-input/controller-db-data":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-intelligence":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-intelligence-dsh":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-intelligence-fake":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-math":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-naga":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-net":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-net-websocket/browser":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-npc":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/schema":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/guid":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/errors":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/bridge":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/runtime":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/artifact-path":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/material-cook":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/mesh-bin-contract":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/animation-clip-bin-contract":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/name":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-pack/source":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-physics":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-physics/rapier3d":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-physics-rapier2d":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-physics-rapier3d":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-picking":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-plugin":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-plugin/loader":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-preview":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-preview/material":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-preview/mesh":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-preview/vfx":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-preview/texture":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-profiler":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-profiler/browser-user-timing":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-remote":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-remote/execute":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-remote/introspect":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-remote/errors":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-render":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-render/authoring":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-render/internal":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-render/internal/temporal":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-render/internal/construct-renderer":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-render-graph":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-rhi":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-rhi/errors":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-rhi-debug":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-rhi-debug/browser":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-rhi-null":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-rhi-webgpu":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-rhi-wgpu":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-runtime":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-runtime/internal/renderer-host":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-scene":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-shader":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-skinning":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-state":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-tool-runtime":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-types":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ui":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ui/importer":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ui/authoring":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-ui/preview":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-vfx":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-vfx-render":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-wgpu-wasm":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine-wgpu-wasm/pkg":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/animation":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/animation/animated-bounds":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/animation/target-id":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/app":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/assets-runtime":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/assets-runtime/internal":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/audio-webaudio":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/audio-webaudio/audio-importer":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/audio":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/codec":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/debug-draw":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ecs":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ecs/externalization":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ecs/internal":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ecs/projection":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ecs/shared":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ecs/world-read":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/fbx":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/font":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/geometry":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/gltf":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/gltf/importer":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/graphics-extras":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/host":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/host/frontend":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/host/protocol":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/host/transport":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/image":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/image/hdr-decoder":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/import":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/import/animation-clip-bin":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/import/mesh-bin":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/input":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/input/controller-db-data":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/input/controller-db":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/intelligence-dsh":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/intelligence-fake":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/intelligence":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/math":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/naga":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/net-websocket/browser":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/net":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/npc":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/animation-clip-bin-contract":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/artifact-path":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/bridge":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/errors":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/guid":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/material-cook":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/mesh-bin-contract":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/name":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/runtime":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/schema":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/pack/source":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/physics-rapier2d":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/physics-rapier3d":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/physics":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/physics/rapier3d":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/picking":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/plugin":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/plugin/loader":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/preview":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/preview/material":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/preview/mesh":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/preview/texture":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/preview/vfx":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/profiler":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/profiler/browser-user-timing":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/remote":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/remote/errors":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/remote/execute":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/remote/introspect":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/render-graph":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/render":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/render/authoring":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/render/internal":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/render/internal/construct-renderer":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/render/internal/temporal":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/rhi-debug":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/rhi-debug/browser":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/rhi-null":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/rhi-webgpu":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/rhi-wgpu":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/rhi":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/rhi/errors":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/runtime":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/runtime/internal/renderer-host":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/scene":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/shader":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/skinning":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/state":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/tool-runtime":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/types":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ui":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ui/authoring":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ui/importer":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/ui/preview":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/vfx-render":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/vfx":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/wgpu-wasm":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/engine/wgpu-wasm/pkg":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@deepseek-ai/cordis":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@deepseek-ai/dsh-sdk-client":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@dimforge/rapier2d-compat":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@dimforge/rapier3d-compat":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","css-tree":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","fzstd":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","jpeg-js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","meshoptimizer":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","parse5":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","upng-js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","uuidv7":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@deepseek-ai/cordis-plugin-loader":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@deepseek-ai/cosmokit":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@deepseek-ai/dsh-sdk-protocol":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","entities":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","source-map-js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/sha2.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/utils.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/legacy.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/blake3.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/blake2.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/hkdf.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/sha3.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/sha3-addons.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/hmac.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/pbkdf2.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/scrypt.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@noble/hashes/webcrypto.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","source-map-js/lib/source-map-generator.js":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","entities/escape":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","entities/decode":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js","@forgeax/sdk":"/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js"}}</script>
+    <!-- data-fx-runtime-preload -->
+    <link rel="modulepreload" href="/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/sdk.min.js" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/workers/capability-probe.min.js" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/workers/engine-worker-runtime.min.js" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/workers/kernel-worker-runtime.min.js" crossorigin />
+    <link rel="modulepreload" href="/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/workers/render-worker-runtime.min.js" crossorigin />
+    <link rel="preload" href="/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/packages/wgpu-wasm/pkg/wgpu_wasm_bg.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="preload" href="/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/packages/fbx/pkg/fbx-wasm.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="preload" href="/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/packages/codec/pkg/basis_transcoder.wasm" as="fetch" type="application/wasm" crossorigin />
+    <link rel="preload" href="/engine/0.0.0/57d75880c3bdb6edd4e481df014be824eba5d980/shaders/index.json" as="fetch" crossorigin />
+    <link rel="preload" href="./shaders/requirements.json" as="fetch" crossorigin />
+    
 <script>(function(){var g=typeof globalThis!=='undefined'?globalThis:typeof self!=='undefined'?self:window;if(g.__fxDemoFetchRebase===2)return;g.__fxDemoFetchRebase=2;var orig=g.fetch;if(typeof orig!=='function')return;var base=typeof document!=='undefined'&&document.baseURI?document.baseURI:location.href;var root=new URL("/examples/character/",base);var packPrefix=null;function rewrite(url){try{var u=new URL(url,base);if(u.origin!==root.origin)return url;if(u.pathname.indexOf(root.pathname)===0)return url;if(u.pathname.indexOf('/engine/')===0)return url;var rel;if(/^\/(pack-index\.json|[^/]+-pack-index\.json)$/.test(u.pathname))rel=u.pathname.slice(1);else if(packPrefix&&u.pathname.indexOf(packPrefix)===0)rel=u.pathname.slice(1);else if(/^\/evidence\//.test(u.pathname))rel=u.pathname.slice(1);else if(/^\/shaders\/(manifest|requirements)\.json$/.test(u.pathname))rel=u.pathname.slice(1);else return url;var next=new URL(rel,root);next.search=u.search;next.hash=u.hash;return next.href;}catch(e){return url;}}function rebuild(next,input){try{return new Request(next,{method:input.method,headers:input.headers,body:/^(GET|HEAD)$/i.test(input.method)?void 0:input.body,mode:input.mode,credentials:input.credentials,cache:input.cache,redirect:input.redirect,referrer:input.referrer,referrerPolicy:input.referrerPolicy,integrity:input.integrity,keepalive:input.keepalive,signal:input.signal});}catch(e){return null;}}g.fetch=function(input,init){if(typeof input==='string')return orig.call(this,rewrite(input),init);if(typeof URL!=='undefined'&&input instanceof URL)return orig.call(this,rewrite(input.href),init);if(typeof Request!=='undefined'&&input instanceof Request){var next=rewrite(input.url);if(next!==input.url){var request=rebuild(next,input);if(!request)return orig.call(this,next,init);input=request;}}return orig.call(this,input,init);};})();</script>
 
     <meta charset="UTF-8" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" />
@@ -18,14 +30,837 @@
         white-space: pre; pointer-events: none;
       }
     </style>
-    <script type="importmap">{"imports":{"@forgeax/engine-animation":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/animation/dist/index.mjs","@forgeax/engine-animation/target-id":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/animation/dist/target-id.mjs","@forgeax/engine-animation/animated-bounds":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/animation/dist/animated-bounds.mjs","@forgeax/engine-app":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/app/dist/index.mjs","@forgeax/engine-assets-runtime":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/assets-runtime/dist/index.mjs","@forgeax/engine-assets-runtime/internal":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/assets-runtime/dist/internal.mjs","@forgeax/engine-audio":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/audio/dist/index.mjs","@forgeax/engine-audio-webaudio":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/audio-webaudio/dist/index.mjs","@forgeax/engine-audio-webaudio/audio-importer":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/audio-webaudio/dist/audio-importer.mjs","@forgeax/engine-codec":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/codec/dist/index.mjs","@forgeax/engine-debug-draw":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/debug-draw/dist/index.mjs","@forgeax/engine-ecs":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ecs/dist/index.mjs","@forgeax/engine-ecs/externalization":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ecs/dist/externalization/index.mjs","@forgeax/engine-ecs/internal":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ecs/dist/internal.mjs","@forgeax/engine-ecs/projection":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ecs/dist/projection/index.mjs","@forgeax/engine-ecs/shared":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ecs/dist/shared.mjs","@forgeax/engine-ecs/world-read":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ecs/dist/world-read.mjs","@forgeax/engine-fbx":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/fbx/dist/index.mjs","@forgeax/engine-font":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/font/dist/index.mjs","@forgeax/engine-geometry":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/geometry/dist/index.mjs","@forgeax/engine-gltf":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/gltf/dist/index.mjs","@forgeax/engine-gltf/importer":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/gltf/dist/importer-entry.mjs","@forgeax/engine-graphics-extras":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/graphics-extras/dist/index.mjs","@forgeax/engine-host":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/host/dist/index.mjs","@forgeax/engine-host/frontend":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/host/dist/frontend.mjs","@forgeax/engine-host/protocol":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/host/dist/protocol.mjs","@forgeax/engine-host/transport":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/host/dist/transport.mjs","@forgeax/engine-image":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/image/dist/index.mjs","@forgeax/engine-image/hdr-decoder":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/image/dist/hdr-decoder.mjs","@forgeax/engine-import":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/import/dist/browser.mjs","@forgeax/engine-import/mesh-bin":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/import/dist/mesh-bin.mjs","@forgeax/engine-input":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/input/dist/index.mjs","@forgeax/engine-input/controller-db":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/input/dist/controller-db.mjs","@forgeax/engine-input/controller-db-data":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/input/dist/controller-db-data.mjs","@forgeax/engine-intelligence":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/intelligence/dist/index.mjs","@forgeax/engine-intelligence-dsh":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/intelligence-dsh/dist/index.mjs","@forgeax/engine-intelligence-fake":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/intelligence-fake/dist/index.mjs","@forgeax/engine-math":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/math/dist/index.mjs","@forgeax/engine-naga":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/naga/dist/index.mjs","@forgeax/engine-net":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/net/dist/index.mjs","@forgeax/engine-net-websocket/browser":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/net-websocket/dist/browser.mjs","@forgeax/engine-npc":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/npc/dist/index.mjs","@forgeax/engine-pack":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/index.mjs","@forgeax/engine-pack/schema":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/schema.mjs","@forgeax/engine-pack/guid":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/guid.mjs","@forgeax/engine-pack/errors":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/errors.mjs","@forgeax/engine-pack/bridge":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/bridge.mjs","@forgeax/engine-pack/runtime":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/runtime.mjs","@forgeax/engine-pack/artifact-path":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/artifact-path.mjs","@forgeax/engine-pack/material-cook":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/material-cook.mjs","@forgeax/engine-pack/mesh-bin-contract":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/mesh-bin-contract.mjs","@forgeax/engine-pack/name":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/name.mjs","@forgeax/engine-pack/source":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/pack/dist/scriptable-pack.mjs","@forgeax/engine-physics":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/physics/dist/index.mjs","@forgeax/engine-physics/rapier3d":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/physics/dist/rapier3d.mjs","@forgeax/engine-physics-rapier2d":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/physics-rapier2d/dist/index.mjs","@forgeax/engine-physics-rapier3d":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/physics-rapier3d/dist/index.mjs","@forgeax/engine-picking":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/picking/dist/index.mjs","@forgeax/engine-plugin":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/plugin/dist/browser.mjs","@forgeax/engine-plugin/loader":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/plugin/dist/loader.browser.mjs","@forgeax/engine-preview":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/preview/dist/index.mjs","@forgeax/engine-preview/material":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/preview/dist/material.mjs","@forgeax/engine-preview/mesh":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/preview/dist/mesh.mjs","@forgeax/engine-preview/vfx":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/preview/dist/vfx.mjs","@forgeax/engine-preview/texture":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/preview/dist/texture.mjs","@forgeax/engine-profiler":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/profiler/dist/index.mjs","@forgeax/engine-profiler/browser-user-timing":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/profiler/dist/browser-user-timing.mjs","@forgeax/engine-remote":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/remote/dist/index.mjs","@forgeax/engine-remote/execute":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/remote/dist/execute.mjs","@forgeax/engine-remote/introspect":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/remote/dist/introspect.mjs","@forgeax/engine-remote/errors":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/remote/dist/errors.mjs","@forgeax/engine-render":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/render/dist/index.mjs","@forgeax/engine-render/authoring":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/render/dist/authoring.mjs","@forgeax/engine-render/internal":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/render/dist/internal.mjs","@forgeax/engine-render/internal/temporal":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/render/dist/temporal/index.mjs","@forgeax/engine-render/internal/construct-renderer":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/render/dist/construct-renderer.mjs","@forgeax/engine-render-graph":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/render-graph/dist/index.mjs","@forgeax/engine-rhi":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/rhi/dist/index.mjs","@forgeax/engine-rhi/errors":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/rhi/dist/errors.mjs","@forgeax/engine-rhi-debug":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/rhi-debug/dist/index.mjs","@forgeax/engine-rhi-debug/browser":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/rhi-debug/dist/browser.mjs","@forgeax/engine-rhi-null":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/rhi-null/dist/index.mjs","@forgeax/engine-rhi-webgpu":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/rhi-webgpu/dist/index.mjs","@forgeax/engine-rhi-wgpu":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/rhi-wgpu/dist/index.mjs","@forgeax/engine-runtime":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/runtime/dist/index.mjs","@forgeax/engine-runtime/internal/renderer-host":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/runtime/dist/renderer-host.mjs","@forgeax/engine-scene":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/scene/dist/index.mjs","@forgeax/engine-shader":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/shader/dist/index.mjs","@forgeax/engine-skinning":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/skinning/dist/index.mjs","@forgeax/engine-state":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/state/dist/index.mjs","@forgeax/engine-tool-runtime":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/tool-runtime/dist/index.mjs","@forgeax/engine-types":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/types/dist/index.mjs","@forgeax/engine-ui":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ui/dist/index.mjs","@forgeax/engine-ui/importer":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ui/dist/importer/index.mjs","@forgeax/engine-ui/authoring":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ui/dist/authoring/index.mjs","@forgeax/engine-ui/preview":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/ui/dist/preview/index.mjs","@forgeax/engine-vfx":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/vfx/dist/index.mjs","@forgeax/engine-vfx-render":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/vfx-render/dist/index.mjs","@forgeax/engine-wgpu-wasm":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/wgpu-wasm/dist/index.mjs","@forgeax/engine-wgpu-wasm/pkg":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/wgpu-wasm/pkg/wgpu_wasm.js","@forgeax/engine":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/index.mjs","@forgeax/engine/animation":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/animation.mjs","@forgeax/engine/app":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/app.mjs","@forgeax/engine/assets-runtime":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/assets-runtime.mjs","@forgeax/engine/audio-webaudio":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/audio-webaudio.mjs","@forgeax/engine/audio":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/audio.mjs","@forgeax/engine/codec":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/codec.mjs","@forgeax/engine/debug-draw":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/debug-draw.mjs","@forgeax/engine/ecs":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/ecs.mjs","@forgeax/engine/fbx":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/fbx.mjs","@forgeax/engine/font":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/font.mjs","@forgeax/engine/geometry":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/geometry.mjs","@forgeax/engine/gltf":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/gltf.mjs","@forgeax/engine/graphics-extras":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/graphics-extras.mjs","@forgeax/engine/host":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/host.mjs","@forgeax/engine/image":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/image.mjs","@forgeax/engine/import":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/import.mjs","@forgeax/engine/input":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/input.mjs","@forgeax/engine/intelligence-dsh":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/intelligence-dsh.mjs","@forgeax/engine/intelligence-fake":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/intelligence-fake.mjs","@forgeax/engine/intelligence":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/intelligence.mjs","@forgeax/engine/math":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/math.mjs","@forgeax/engine/naga":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/naga.mjs","@forgeax/engine/net":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/net.mjs","@forgeax/engine/npc":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/npc.mjs","@forgeax/engine/pack":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/pack.mjs","@forgeax/engine/physics-rapier2d":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/physics-rapier2d.mjs","@forgeax/engine/physics-rapier3d":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/physics-rapier3d.mjs","@forgeax/engine/physics":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/physics.mjs","@forgeax/engine/picking":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/picking.mjs","@forgeax/engine/plugin":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/plugin.mjs","@forgeax/engine/preview":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/preview.mjs","@forgeax/engine/profiler":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/profiler.mjs","@forgeax/engine/remote":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/remote.mjs","@forgeax/engine/render-graph":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/render-graph.mjs","@forgeax/engine/render":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/render.mjs","@forgeax/engine/rhi-debug":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/rhi-debug.mjs","@forgeax/engine/rhi-null":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/rhi-null.mjs","@forgeax/engine/rhi-webgpu":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/rhi-webgpu.mjs","@forgeax/engine/rhi-wgpu":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/rhi-wgpu.mjs","@forgeax/engine/rhi":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/rhi.mjs","@forgeax/engine/runtime":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/runtime.mjs","@forgeax/engine/scene":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/scene.mjs","@forgeax/engine/shader":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/shader.mjs","@forgeax/engine/skinning":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/skinning.mjs","@forgeax/engine/state":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/state.mjs","@forgeax/engine/tool-runtime":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/tool-runtime.mjs","@forgeax/engine/types":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/types.mjs","@forgeax/engine/ui":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/ui.mjs","@forgeax/engine/vfx-render":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/vfx-render.mjs","@forgeax/engine/vfx":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/vfx.mjs","@forgeax/engine/wgpu-wasm":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/packages/engine/dist/facades/wgpu-wasm.mjs","@deepseek-ai/cordis":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@deepseek-ai/cordis/lib/index.js","@deepseek-ai/dsh-sdk-client":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@deepseek-ai/dsh-sdk-client/lib/index.js","@dimforge/rapier2d-compat":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@dimforge/rapier2d-compat/dist/rapier.mjs","@dimforge/rapier3d-compat":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@dimforge/rapier3d-compat/dist/rapier.mjs","@noble/hashes":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/index.js","css-tree":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/css-tree/lib/index.js","fzstd":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/fzstd/esm/index.mjs","jpeg-js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/jpeg-js/index.js","meshoptimizer":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/meshoptimizer/index.module.js","parse5":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/parse5/dist/index.js","upng-js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/upng-js/UPNG.js","uuidv7":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/uuidv7/dist/index.js","@deepseek-ai/cordis-plugin-loader":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@deepseek-ai/cordis-plugin-loader/lib/index.js","@deepseek-ai/cosmokit":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@deepseek-ai/cosmokit/lib/index.js","@deepseek-ai/dsh-sdk-protocol":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@deepseek-ai/dsh-sdk-protocol/lib/index.js","entities":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/entities/dist/esm/index.js","source-map-js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/source-map-js/source-map.js","@noble/hashes/sha2.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/sha2.js","@noble/hashes/utils.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/utils.js","@noble/hashes/legacy.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/legacy.js","@noble/hashes/blake3.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/blake3.js","@noble/hashes/blake2.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/blake2.js","@noble/hashes/hkdf.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/hkdf.js","@noble/hashes/sha3.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/sha3.js","@noble/hashes/sha3-addons.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/sha3-addons.js","@noble/hashes/hmac.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/hmac.js","@noble/hashes/pbkdf2.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/pbkdf2.js","@noble/hashes/scrypt.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/scrypt.js","@noble/hashes/webcrypto.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/@noble/hashes/webcrypto.js","source-map-js/lib/source-map-generator.js":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/source-map-js/lib/source-map-generator.js","entities/escape":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/entities/escape.js","entities/decode":"/engine/0.0.0/3b9cbbb527ec21d54a64c66d74d542253f30065a/vendor/entities/decode.js"}}</script>
-    <script type="module">(function(){var c=document.querySelector("#app")||document.querySelector("canvas");if(!c)return;function fit(){var d=window.devicePixelRatio||1,w=Math.max(1,Math.round(c.clientWidth*d)),h=Math.max(1,Math.round(c.clientHeight*d));if(c.width!==w||c.height!==h){c.width=w;c.height=h;}}function z(){fit();window.dispatchEvent(new Event("resize"));}fit();if(window.ResizeObserver){try{new ResizeObserver(z).observe(c);}catch(e){}}addEventListener("resize",fit);requestAnimationFrame(z);setTimeout(z,120);setTimeout(z,500);})();</script>
-<script type="module" crossorigin src="/examples/character/assets/main-D_fl8-1R.js"></script>
-  <style id="FX_LETTERBOX">html,body{height:100%;margin:0;background:#0b0d10}body{display:flex;align-items:center;justify-content:center;overflow:hidden}#app,canvas{width:min(100vw,calc(100vh*16/9))!important;height:min(100vh,calc(100vw*9/16))!important;aspect-ratio:16/9;display:block!important}</style>
-<script id="FX_AUTODEMO">(function(){function press(){['keydown','keyup'].forEach(function(t,i){setTimeout(function(){var e=new KeyboardEvent(t,{key:' ',code:'Space',keyCode:32,which:32,bubbles:true});window.dispatchEvent(e);document.dispatchEvent(e);},i*130);});}function tick(n){var h=document.getElementById('bloom-hud');if(!h)return;if(/OFF/i.test(h.textContent)){if(n<=0)return;press();setTimeout(function(){tick(n-1);},800);}}addEventListener('load',function(){setTimeout(function(){tick(8);},1400);});})();</script>
+    
+    <script type="module" crossorigin src="/examples/character/assets/main-DX8ZXd14.js"></script>
+      <style id="forgeax-example-shell">html, body, #app-shell { width: 100%; height: 100%; margin: 0; }
+      body { background: #05070b; overflow: hidden; }
+      #app-shell { position: relative; isolation: isolate; pointer-events: auto; }
+      #app { display: block; width: 100%; height: 100%; }
+      html[data-forgeax-shell-layout="canvas"] #app-shell canvas[data-forgeax-shell-canvas],
+      html[data-forgeax-shell-layout="canvas"] canvas[data-forgeax-shell-canvas="primary"] {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        pointer-events: auto !important;
+      }
+      #game-ui { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+      #forgeax-host-chrome { position: fixed; inset: 0; z-index: 2147483645; pointer-events: none; }
+      #forgeax-host-chrome #forgeax-loading, #forgeax-host-chrome #forgeax-fatal { pointer-events: auto; }
+      #forgeax-loading { position: absolute; inset: 0; z-index: 2147483646; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #05070b; color: #e6e6e6; font: 15px/1.6 system-ui, sans-serif; text-align: center; opacity: 1; transition: opacity 150ms ease; }
+      #forgeax-loading[aria-hidden="true"] { opacity: 0; display: none !important; pointer-events: none !important; }
+      #forgeax-loading-content { display: grid; justify-items: center; gap: 12px; max-width: min(480px, 100%); }
+      #forgeax-loading-title { margin: 0; color: #f5f7fa; font-size: clamp(20px, 4vw, 30px); font-weight: 500; letter-spacing: 0.02em; }
+      #forgeax-loading-spinner { width: 22px; height: 22px; border: 2px solid rgb(230 235 245 / 20%); border-top-color: rgb(230 235 245 / 78%); border-radius: 50%; animation: forgeax-loading-spin 900ms linear infinite; }
+      #forgeax-loading-status { margin: 0; color: rgb(230 235 245 / 72%); }
+      #forgeax-loading-progress { display: none; width: min(240px, 100%); height: 4px; border-radius: 999px; background: rgb(230 235 245 / 16%); overflow: hidden; }
+      #forgeax-loading-progress[data-forgeax-progress-active="true"] { display: block; }
+      #forgeax-loading-progress-bar { display: block; height: 100%; width: 0%; background: rgb(230 235 245 / 78%); }
+      #forgeax-loading-slow, #forgeax-loading-reload { display: none; }
+      #forgeax-loading-reload, #forgeax-fatal-reload { border: 1px solid rgb(230 235 245 / 35%); border-radius: 5px; padding: 7px 14px; background: transparent; color: inherit; cursor: pointer; font: inherit; }
+      #forgeax-fatal { position: absolute; inset: 0; z-index: 2147483647; display: none; place-items: center; padding: 24px; box-sizing: border-box; background: #0b0d10; color: #e6e6e6; font: 15px/1.6 system-ui, sans-serif; text-align: center; }
+      #forgeax-fatal-content { display: grid; gap: 12px; width: min(680px, 100%); text-align: left; }
+      #forgeax-fatal-message { margin: 0; font-size: 18px; }
+      #forgeax-fatal-details { max-height: 45vh; overflow: auto; white-space: pre-wrap; }
+      @keyframes forgeax-loading-spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) { #forgeax-loading { transition: none; } #forgeax-loading-spinner { animation: none; } }
+    </style>
+  <script id="FX_AUTODEMO">(function(){function press(){['keydown','keyup'].forEach(function(t,i){setTimeout(function(){var e=new KeyboardEvent(t,{key:' ',code:'Space',keyCode:32,which:32,bubbles:true});window.dispatchEvent(e);document.dispatchEvent(e);},i*130);});}function tick(n){var h=document.getElementById('bloom-hud');if(!h)return;if(/OFF/i.test(h.textContent)){if(n<=0)return;press();setTimeout(function(){tick(n-1);},800);}}addEventListener('load',function(){setTimeout(function(){tick(8);},1400);});})();</script>
 </head>
   <body>
-    <canvas id="app"></canvas>
+    <div id="app-shell"><canvas id="app" data-forgeax-shell-canvas="primary"></canvas>
     <pre id="hud">WASD move - Space jump</pre>
+    <div id="game-ui"></div>
+    <div id="forgeax-loading" role="status" aria-live="polite" aria-atomic="true">
+      <div id="forgeax-loading-content">
+        <h1 id="forgeax-loading-title">forgeax-engine - Hello Character</h1>
+        <div id="forgeax-loading-spinner" aria-hidden="true"></div>
+        <p id="forgeax-loading-status">Loading…</p>
+        <div id="forgeax-loading-progress" hidden data-forgeax-progress-root="true" aria-hidden="true"><span id="forgeax-loading-progress-bar"></span></div>
+        <p id="forgeax-loading-slow">Still loading. You can keep waiting or reload.</p>
+        <button id="forgeax-loading-reload" type="button">Reload</button>
+      </div>
+    </div>
+    <div id="forgeax-fatal" role="alert">
+      <div id="forgeax-fatal-content">
+        <p id="forgeax-fatal-message">Unable to start the game.</p>
+        <details><summary>Diagnostics</summary><pre id="forgeax-fatal-details"></pre></details>
+        <button id="forgeax-fatal-reload" type="button">Reload</button>
+      </div>
+    </div>
+    </div>
+    
+      <script>
+(() => {
+        const startupEnabled = true;
+        const loading = document.querySelector('#forgeax-loading');
+        const loadingStatus = document.querySelector('#forgeax-loading-status');
+        const loadingSlow = document.querySelector('#forgeax-loading-slow');
+        const loadingReload = document.querySelector('#forgeax-loading-reload');
+        const fatal = document.querySelector('#forgeax-fatal');
+        const fatalMessage = document.querySelector('#forgeax-fatal-message');
+        const fatalDetails = document.querySelector('#forgeax-fatal-details');
+        const fatalReload = document.querySelector('#forgeax-fatal-reload');
+        const QueryParams = typeof URLSearchParams === 'function'
+          ? URLSearchParams
+          : class {
+              has() {
+                return false;
+              }
+            };
+        const query = typeof location === 'object' && location !== null
+          ? new QueryParams(location.search)
+          : new QueryParams();
+        const gamePage = startupEnabled && !query.has('forgeaxWorkspace') &&
+          !query.has('forgeax-tool-recipe') && !query.has('forgeax-tool-replay');
+        // Workspace/resource/tool pages intentionally omit the normal loading
+        // overlay, but their entry/App failures still need the same fatal
+        // diagnostic surface and Reload action.
+        // Resource and tool pages intentionally disable only the normal game
+        // overlay. Their entry/App failures still need a terminal diagnostic
+        // surface and Reload action.
+        const fatalEnabled = true;
+        let phase = gamePage ? 'loading' : 'disabled';
+        let slowTimer;
+        let fadeTimer;
+        let slowRemainingMs = 15000;
+        let slowVisibleSince;
+        let latestSubmitted;
+        // A completion may legally lag behind a later submission. Keep the
+        // submitted frame identities for the active device generation so a
+        // successful receipt remains tied to a real frame without requiring
+        // the queue to drain to the newest submission.
+        let submittedFrames = new Set();
+        const submissionKey = (worldIdentity, deviceGeneration, frameId) =>
+          JSON.stringify([worldIdentity, deviceGeneration, frameId]);
+        let expectedSession;
+        let inputBinding;
+        let inputEnabled = false;
+        let startupListenersCleaned = false;
+        let sessionGeneration = 0;
+
+        let frameSignalPosted = false;
+        const FRAME_READY_SOURCE = 'forgeax-example';
+        const FRAME_READY_TYPE = 'forgeax-example-frame-ready';
+        const FRAME_FAILED_TYPE = 'forgeax-example-frame-failed';
+        const progressListeners = [];
+        const announceFrame = (type, reason) => {
+          if (frameSignalPosted) return;
+          frameSignalPosted = true;
+          try {
+            if (type === FRAME_READY_TYPE) window.__forgeaxExampleFrameReady = true;
+            else window.__forgeaxExampleFrameFailed = true;
+          } catch {
+            // Observability must not change startup control.
+          }
+          try {
+            const parent = window.parent;
+            if (!parent || parent === window) return;
+            const message = { source: FRAME_READY_SOURCE, type };
+            if (reason) message.reason = reason;
+            parent.postMessage(message, (typeof location === 'object' && location !== null && location.origin) || '*');
+          } catch {
+            // Direct-open and cross-origin parents stay silent.
+          }
+        };
+        const subscribeProgress = (callback) => {
+          if (typeof callback !== 'function') return () => {};
+          progressListeners.push(callback);
+          return () => {
+            const index = progressListeners.indexOf(callback);
+            if (index >= 0) progressListeners.splice(index, 1);
+          };
+        };
+        const emitProgress = (detail) => {
+          for (const listener of progressListeners) {
+            try { listener(detail); } catch { /* reserved P1 sink */ }
+          }
+          try {
+            document.dispatchEvent(new CustomEvent('forgeax:startup-progress', { detail }));
+          } catch {
+            // Progress is reserved; missing CustomEvent must not fail startup.
+          }
+        };
+        void emitProgress;
+        const reducedMotion =
+          typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const fadeDurationMs = reducedMotion ? 0 : 150;
+        const isCanvasNode = (node) => {
+          if (node === null || node === undefined) return false;
+          if (typeof HTMLCanvasElement === 'function' && node instanceof HTMLCanvasElement) return true;
+          const tag = typeof node.tagName === 'string' ? node.tagName.toLowerCase() : '';
+          if (tag === 'canvas') return true;
+          return tag === '' && typeof node.addEventListener === 'function';
+        };
+        const markPrimaryCanvas = (node) => {
+          if (node === null || node === undefined || typeof node.setAttribute !== 'function') return node;
+          node.setAttribute('data-forgeax-shell-canvas', 'primary');
+          return node;
+        };
+        const resolvePrimaryCanvas = () => {
+          const preferred = document.querySelector('#app');
+          if (preferred !== null && isCanvasNode(preferred)) return markPrimaryCanvas(preferred);
+          const marked = document.querySelector('canvas[data-forgeax-shell-canvas], [data-forgeax-shell-canvas="primary"]');
+          if (marked !== null && isCanvasNode(marked)) return markPrimaryCanvas(marked);
+          const listed =
+            typeof document.querySelectorAll === 'function' ? document.querySelectorAll('canvas') : [];
+          if (listed.length === 1 && isCanvasNode(listed[0])) return markPrimaryCanvas(listed[0]);
+          for (let index = 0; index < listed.length; index += 1) {
+            const candidate = listed[index];
+            if (!isCanvasNode(candidate)) continue;
+            const id = typeof candidate.id === 'string' ? candidate.id : '';
+            if (id === 'game' || id.length > 0) return markPrimaryCanvas(candidate);
+          }
+          return listed.length > 0 && isCanvasNode(listed[0]) ? markPrimaryCanvas(listed[0]) : null;
+        };
+        let canvas = resolvePrimaryCanvas();
+        const overlayNode = (fallback) => document.querySelector('#forgeax-loading') ?? fallback ?? loading;
+        const fatalNode = (fallback) => document.querySelector('#forgeax-fatal') ?? fallback ?? fatal;
+        let latchedSubmitted;
+        const setStartupTimeout = typeof setTimeout === 'function' ? setTimeout : () => undefined;
+        const clearStartupTimeout = (timer) => {
+          if (timer !== undefined && typeof clearTimeout === 'function') clearTimeout(timer);
+        };
+        const reload = () => {
+          if (typeof location?.reload === 'function') location.reload();
+        };
+        const loadingProgress = document.querySelector('#forgeax-loading-progress');
+        const loadingProgressBar = document.querySelector('#forgeax-loading-progress-bar');
+        const setText = (node, text) => {
+          if (node !== null && node instanceof HTMLElement) node.textContent = text;
+        };
+        const applyHostProgress = (label, percent) => {
+          const status = document.querySelector('#forgeax-loading-status') ?? loadingStatus;
+          const progress = document.querySelector('#forgeax-loading-progress') ?? loadingProgress;
+          const bar = document.querySelector('#forgeax-loading-progress-bar') ?? loadingProgressBar;
+          if (typeof label === 'string' && label.length > 0) setText(status, label);
+          const known = typeof percent === 'number' && Number.isFinite(percent);
+          if (progress instanceof HTMLElement) {
+            if (known) {
+              progress.hidden = false;
+              progress.setAttribute('data-forgeax-progress-active', 'true');
+              if (bar instanceof HTMLElement) {
+                bar.style.width = Math.min(100, Math.max(0, percent)) + '%';
+              }
+            } else {
+              progress.removeAttribute('data-forgeax-progress-active');
+            }
+          }
+          emitProgress({ label, percent: known ? percent : undefined });
+        };
+        const setDisplay = (node, display) => {
+          if (node !== null && node instanceof HTMLElement) node.style.display = display;
+        };
+        const setAttribute = (node, name, value) => {
+          if (node !== null && node instanceof HTMLElement && typeof node.setAttribute === 'function') {
+            node.setAttribute(name, value);
+          }
+        };
+        const isStartupControlTarget = (target) => {
+          if (target === null || target === undefined) return false;
+          const owns = (node) =>
+            node !== null &&
+            node !== undefined &&
+            (node === target || (typeof node.contains === 'function' && node.contains(target)));
+          return owns(loading) || owns(fatal);
+        };
+        const onStartupInputCapture = (event) => {
+          if (inputEnabled || isStartupControlTarget(event?.target)) return;
+          event?.preventDefault?.();
+          event?.stopImmediatePropagation?.();
+          event?.stopPropagation?.();
+        };
+        const onStartupControlKey = (event) => {
+          // Let the focused Reload button receive its default Enter/Space
+          // activation, but stop the key event before it bubbles to the
+          // gameplay producer while the startup surface owns the page.
+          if (!inputEnabled) event?.stopPropagation?.();
+        };
+        const startupInputKinds = [
+          'keydown',
+          'keyup',
+          'pointerdown',
+          'pointerup',
+          'pointermove',
+          'pointercancel',
+          'mousedown',
+          'mouseup',
+          'mousemove',
+          'wheel',
+          'click',
+        ];
+        const bindStartupInputCapture = () => {
+          if (!gamePage || typeof window.addEventListener !== 'function') return;
+          for (const kind of startupInputKinds) {
+            window.addEventListener(kind, onStartupInputCapture, { capture: true });
+          }
+        };
+        const removeStartupInputCapture = () => {
+          if (typeof window.removeEventListener !== 'function') return;
+          for (const kind of startupInputKinds) {
+            window.removeEventListener(kind, onStartupInputCapture, { capture: true });
+          }
+        };
+        const setInputEnabled = (enabled) => {
+          inputEnabled = enabled;
+          try {
+            inputBinding?.(enabled);
+          } catch {
+            // Input is an observational startup bridge; it must not change the
+            // fatal error path when an App-owned callback is already disposed.
+          }
+        };
+        const isOverlayDismissed = () => phase === 'entered' || phase === 'fading';
+        const bindInput = (callback) => {
+          if (typeof callback !== 'function') return () => {};
+          const previous = inputBinding;
+          if (previous !== undefined) {
+            try {
+              previous(false);
+            } catch {
+              // Continue replacing an already-bound input bridge.
+            }
+          }
+          inputBinding = callback;
+          // Sync from the current startup phase. createApp/host often bind
+          // after the first submitted frame already hid the overlay; forcing
+          // false here left InputSystem gated until a later focus/visibility
+          // transition (tab leave/return) re-enabled it.
+          setInputEnabled(isOverlayDismissed());
+          return () => {
+            if (inputBinding !== callback) return;
+            setInputEnabled(false);
+            inputBinding = undefined;
+          };
+        };
+        const clearStartupWork = () => {
+          clearStartupTimeout(slowTimer);
+          clearStartupTimeout(fadeTimer);
+          slowTimer = undefined;
+          fadeTimer = undefined;
+          slowVisibleSince = undefined;
+          submittedFrames = new Set();
+        };
+        const clockNow = () => {
+          if (typeof performance === 'object' && performance !== null && typeof performance.now === 'function') {
+            return performance.now();
+          }
+          return Date.now();
+        };
+        const isForeground = () =>
+          typeof document !== 'object' || document === null || document.visibilityState !== 'hidden';
+        const accountForegroundTime = () => {
+          if (slowVisibleSince === undefined) return;
+          slowRemainingMs = Math.max(0, slowRemainingMs - Math.max(0, clockNow() - slowVisibleSince));
+          slowVisibleSince = undefined;
+        };
+        const showSlow = () => {
+          if (!gamePage || (phase !== 'loading' && phase !== 'preparing') || !isForeground()) return;
+          accountForegroundTime();
+          if (slowRemainingMs > 0) {
+            slowVisibleSince = clockNow();
+            slowTimer = setStartupTimeout(showSlow, slowRemainingMs);
+            return;
+          }
+          slowTimer = undefined;
+          slowVisibleSince = undefined;
+          setDisplay(loadingSlow, 'block');
+          setDisplay(loadingReload, 'inline-block');
+        };
+        const armSlowTimer = () => {
+          if (!gamePage || (phase !== 'loading' && phase !== 'preparing') || !isForeground()) return;
+          accountForegroundTime();
+          clearStartupTimeout(slowTimer);
+          if (slowRemainingMs <= 0) {
+            showSlow();
+            return;
+          }
+          slowVisibleSince = clockNow();
+          slowTimer = setStartupTimeout(showSlow, slowRemainingMs);
+        };
+        const appendStructuredFailure = (value, prefix, depth, seen, lines) => {
+          const formatValue = (candidate) => {
+            if (typeof candidate === 'string') return candidate;
+            try {
+              const encoded = JSON.stringify(candidate);
+              if (encoded !== undefined) return encoded;
+            } catch {
+              // Fall through to String for unserializable diagnostics.
+            }
+            return String(candidate);
+          };
+          if (value === null || typeof value !== 'object') {
+            if (prefix && value !== undefined) lines.push(prefix + ': ' + formatValue(value));
+            return;
+          }
+          if (depth > 3) {
+            lines.push((prefix || 'cause') + ': [depth limit]');
+            return;
+          }
+          if (seen.has(value)) {
+            lines.push((prefix || 'cause') + ': [circular]');
+            return;
+          }
+          seen.add(value);
+          if (Array.isArray(value)) {
+            value.forEach((nested, index) =>
+              appendStructuredFailure(nested, (prefix || 'cause') + '[' + index + ']', depth + 1, seen, lines),
+            );
+            return;
+          }
+          const record = value;
+          const name = typeof record.name === 'string' && record.name.length > 0
+            ? record.name
+            : undefined;
+          const code = typeof record.code === 'string' && record.code.length > 0
+            ? record.code
+            : undefined;
+          const message = typeof record.message === 'string' && record.message.length > 0
+            ? record.message
+            : undefined;
+          if (name !== undefined || code !== undefined || message !== undefined) {
+            const identity = [name || 'Error', code].filter(Boolean).join(' ');
+            lines.push((prefix ? prefix + ': ' : '') + identity + (message ? ': ' + message : ''));
+          }
+          for (const key of ['expected', 'hint', 'reason']) {
+            if (record[key] !== undefined && record[key] !== null) {
+              lines.push((prefix ? prefix + '.' : '') + key + ': ' + formatValue(record[key]));
+            }
+          }
+          for (const key of ['cause', 'detail', 'failure', 'webgpuError', 'wgpuError', 'error']) {
+            const nested = record[key];
+            const nestedPrefix = (prefix ? prefix + '.' : '') + key;
+            if (nested !== undefined && nested !== null && typeof nested === 'object') {
+              appendStructuredFailure(nested, nestedPrefix, depth + 1, seen, lines);
+            } else if (nested !== undefined && nested !== null) {
+              lines.push(nestedPrefix + ': ' + formatValue(nested));
+            }
+          }
+          const knownKeys = new Set([
+            'name',
+            'code',
+            'message',
+            'expected',
+            'hint',
+            'reason',
+            'cause',
+            'detail',
+            'failure',
+            'webgpuError',
+            'wgpuError',
+            'error',
+          ]);
+          for (const key of Object.keys(record)) {
+            if (knownKeys.has(key)) continue;
+            const nested = record[key];
+            const nestedPrefix = (prefix ? prefix + '.' : '') + key;
+            if (nested !== null && typeof nested === 'object') {
+              appendStructuredFailure(nested, nestedPrefix, depth + 1, seen, lines);
+            } else if (nested !== undefined) {
+              lines.push(nestedPrefix + ': ' + formatValue(nested));
+            }
+          }
+        };
+        const formatStartupFailure = (reason) => {
+          if (reason !== null && typeof reason === 'object') {
+            const lines = [];
+            appendStructuredFailure(reason, '', 0, new Set(), lines);
+            if (lines.length > 0) return lines.join('\n');
+            try {
+              return JSON.stringify(reason) || 'Unknown structured startup failure';
+            } catch {
+              return 'Unserializable structured startup failure';
+            }
+          }
+          return String(reason ?? 'Unknown startup failure');
+        };
+        const show = (reason) => {
+          if (!fatalEnabled || phase === 'entered' || phase === 'destroyed') return;
+          if (phase !== 'failed') {
+            phase = 'failed';
+            setInputEnabled(false);
+            clearStartupWork();
+            // Keep the fatal Reload control alive after startup listeners are
+            // retired. Repeated failures are still allowed to refresh the
+            // structured diagnostic on the same terminal surface.
+            cleanupStartupListeners({ preserveFatalReload: true });
+          }
+          const details = formatStartupFailure(reason);
+          const notice = fatalNode(fatal);
+          if (!(notice instanceof HTMLElement)) return;
+          let message = 'Unable to start the game.';
+          if (/webgpu|adapter-unavailable|no usable (rendering )?backend/i.test(details)) {
+            message += '\n\nRenderer diagnosis: ForgeaX supports browser WebGPU and a wgpu/WebGL2 fallback. This failure alone does not prove that WebGPU is unsupported; use the structured code, hint, and nested backend causes above.';
+          }
+          // Keep the existing plain-text diagnostic fallback for hosts that
+          // provide only one synthetic HTMLElement in a test harness.
+          if (fatalMessage === notice) {
+            notice.textContent = 'ForgeaX game failed to start.\n' + message + '\n' + details;
+          } else {
+            setText(fatalMessage, message);
+            setText(fatalDetails, details);
+          }
+          setDisplay(overlayNode(loading), 'none');
+          setDisplay(notice, 'grid');
+          setDisplay(fatalReload, 'inline-block');
+          setAttribute(overlayNode(loading), 'aria-hidden', 'true');
+          setAttribute(overlayNode(loading), 'data-fading', 'false');
+          if (!query.has('forgeaxWorkspace') && fatalReload !== null && fatalReload instanceof HTMLElement) fatalReload.focus?.();
+          announceFrame(FRAME_FAILED_TYPE, 'fatal');
+        };
+        const prepare = () => {
+          if (!gamePage || phase !== 'loading') return;
+          phase = 'preparing';
+          latestSubmitted = undefined;
+          submittedFrames = new Set();
+          setText(loadingStatus, 'Preparing scene…');
+          armSlowTimer();
+        };
+        const enter = (event) => {
+          if (!gamePage || phase !== 'preparing') return;
+          if (event === null || typeof event !== 'object') return;
+          if (expectedSession === undefined || event.worldIdentity !== expectedSession) return;
+          if (
+            !Number.isSafeInteger(event.frameId) ||
+            event.frameId < 0 ||
+            !Number.isSafeInteger(event.deviceGeneration) ||
+            event.deviceGeneration < 0
+          ) return;
+          if (
+            latestSubmitted === undefined ||
+            event.deviceGeneration !== latestSubmitted.deviceGeneration ||
+            (latestSubmitted.worldIdentity !== undefined &&
+              event.worldIdentity !== latestSubmitted.worldIdentity) ||
+            !submittedFrames.has(
+              submissionKey(event.worldIdentity, event.deviceGeneration, event.frameId),
+            )
+          ) return;
+          submittedFrames.delete(
+            submissionKey(event.worldIdentity, event.deviceGeneration, event.frameId),
+          );
+          // A pending completion is still a terminal receipt for this
+          // submitted candidate. Retire it before checking presentation so a
+          // later forged/replayed ready event cannot reuse the same frame.
+          if (event.presentation !== 'ready') return;
+          if (phase === 'fading') return;
+          hideOverlayOnSubmitted();
+        };
+        const destroy = () => {
+          if (phase === 'entered' || phase === 'failed' || phase === 'disabled' || phase === 'destroyed') return;
+          phase = 'destroyed';
+          setInputEnabled(false);
+          clearStartupWork();
+          cleanupStartupListeners();
+        };
+        const recordSubmitted = (detail) => {
+          if (
+            detail === null ||
+            typeof detail !== 'object' ||
+            !Number.isSafeInteger(detail.frameId) ||
+            detail.frameId < 0 ||
+            !Number.isSafeInteger(detail.deviceGeneration) ||
+            detail.deviceGeneration < 0
+          ) return false;
+          const identity =
+            typeof detail.worldIdentity === 'string' && detail.worldIdentity.length > 0
+              ? detail.worldIdentity
+              : expectedSession ?? 'forgeax-anonymous-session';
+          if (expectedSession === undefined) expectedSession = identity;
+          if (typeof detail.worldIdentity === 'string' && detail.worldIdentity.length > 0 && detail.worldIdentity !== expectedSession) {
+            return false;
+          }
+          if (
+            latestSubmitted !== undefined &&
+            detail.deviceGeneration !== latestSubmitted.deviceGeneration
+          ) {
+            submittedFrames = new Set();
+          }
+          latestSubmitted = {
+            frameId: detail.frameId,
+            deviceGeneration: detail.deviceGeneration,
+            worldIdentity: detail.worldIdentity,
+          };
+          submittedFrames.add(
+            submissionKey(detail.worldIdentity, detail.deviceGeneration, detail.frameId),
+          );
+          return true;
+        };
+        const hideOverlayOnSubmitted = () => {
+          if (!gamePage) return;
+          if (phase === 'entered' || phase === 'failed' || phase === 'destroyed' || phase === 'disabled') return;
+          const overlay = overlayNode(loading);
+          phase = 'fading';
+          clearStartupWork();
+          const fadeGeneration = sessionGeneration;
+          setAttribute(overlay, 'aria-hidden', 'true');
+          setAttribute(overlay, 'data-fading', 'true');
+          setDisplay(overlay, 'none');
+          // Release capture and the InputSystem gate immediately. The overlay
+          // is already display:none; waiting 150ms left pointer/key dead and
+          // bindSession could cancel the enable timer permanently.
+          setInputEnabled(true);
+          removeStartupInputCapture();
+          fadeTimer = setStartupTimeout(() => {
+            if (phase !== 'fading' || fadeGeneration !== sessionGeneration) return;
+            phase = 'entered';
+            setInputEnabled(true);
+            setDisplay(overlayNode(loading), 'none');
+            setAttribute(overlayNode(loading), 'aria-hidden', 'true');
+            setAttribute(overlayNode(loading), 'data-fading', 'false');
+            announceFrame(FRAME_READY_TYPE);
+            cleanupStartupListeners();
+          }, fadeDurationMs);
+        };
+        const beginEnteredFade = hideOverlayOnSubmitted;
+        const adoptLatchedSubmitted = (detail) => {
+          if (!recordSubmitted(detail)) return false;
+          hideOverlayOnSubmitted();
+          return true;
+        };
+        const onSubmitted = (event) => {
+          const detail = event?.detail;
+          if (detail !== null && typeof detail === 'object') latchedSubmitted = detail;
+          if (!recordSubmitted(detail)) return;
+          hideOverlayOnSubmitted();
+        };
+        const adoptExistingSubmitted = () => {
+          if (latchedSubmitted !== undefined && adoptLatchedSubmitted(latchedSubmitted)) return;
+          const root = typeof document === 'object' && document !== null ? document.documentElement : null;
+          const frameId = Number(root?.dataset?.forgeaxFrameSubmitted);
+          const deviceGeneration = Number(root?.dataset?.forgeaxFrameDeviceGeneration ?? 0);
+          if (!Number.isSafeInteger(frameId) || frameId < 0) return;
+          adoptLatchedSubmitted({
+            frameId,
+            deviceGeneration: Number.isSafeInteger(deviceGeneration) && deviceGeneration >= 0 ? deviceGeneration : 0,
+            worldIdentity: expectedSession ?? 'forgeax-anonymous-session',
+          });
+        };
+        const onCompleted = (event) => enter(event?.detail);
+        const onVisibilityChange = () => {
+          if (isForeground()) {
+            armSlowTimer();
+          } else {
+            accountForegroundTime();
+            clearStartupTimeout(slowTimer);
+            slowTimer = undefined;
+          }
+        };
+        const onPageHide = () => destroy();
+        const onError = (event) => {
+          if (event?.error !== undefined) {
+            show(event.error);
+            return;
+          }
+          const target = event?.target;
+          const source =
+            target !== null &&
+            target !== undefined &&
+            (typeof target.src === 'string' || typeof target.href === 'string')
+              ? target.src ?? target.href
+              : undefined;
+          if (source !== undefined || event?.message !== undefined) {
+            show({
+              name: 'ScriptResourceError',
+              message: event?.message ?? 'startup resource failed to load',
+              ...(source === undefined ? {} : { detail: { source } }),
+            });
+            return;
+          }
+          show(event);
+        };
+        const onUnhandledRejection = (event) => show(event?.reason ?? event);
+        const cleanupStartupListeners = (options = {}) => {
+          if (startupListenersCleaned) return;
+          startupListenersCleaned = true;
+          const boundCanvas = canvas ?? resolvePrimaryCanvas();
+          if (boundCanvas !== null && typeof boundCanvas.removeEventListener === 'function') {
+            boundCanvas.removeEventListener('forgeax:frame-submitted', onSubmitted);
+            boundCanvas.removeEventListener('forgeax:frame-completed', onCompleted);
+          }
+          if (typeof document.removeEventListener === 'function') {
+            document.removeEventListener('forgeax:frame-submitted', onSubmitted, true);
+            document.removeEventListener('forgeax:frame-completed', onCompleted, true);
+          }
+          if (typeof window.removeEventListener === 'function') {
+            window.removeEventListener('visibilitychange', onVisibilityChange);
+            window.removeEventListener('pagehide', onPageHide);
+            window.removeEventListener('error', onError, { capture: true });
+            window.removeEventListener('unhandledrejection', onUnhandledRejection);
+          }
+          removeStartupInputCapture();
+          if (loadingReload !== null && typeof loadingReload.removeEventListener === 'function') {
+            loadingReload.removeEventListener('click', reload);
+            loadingReload.removeEventListener('keydown', onStartupControlKey);
+            loadingReload.removeEventListener('keyup', onStartupControlKey);
+          }
+          if (
+            !options.preserveFatalReload &&
+            fatalReload !== null &&
+            typeof fatalReload.removeEventListener === 'function'
+          ) {
+            fatalReload.removeEventListener('click', reload);
+            fatalReload.removeEventListener('keydown', onStartupControlKey);
+            fatalReload.removeEventListener('keyup', onStartupControlKey);
+          }
+        };
+        if (
+          loadingReload !== null &&
+          loadingReload instanceof HTMLElement &&
+          typeof loadingReload.addEventListener === 'function'
+        ) loadingReload.addEventListener('click', reload);
+        if (
+          loadingReload !== null &&
+          loadingReload instanceof HTMLElement &&
+          typeof loadingReload.addEventListener === 'function'
+        ) {
+          loadingReload.addEventListener('keydown', onStartupControlKey);
+          loadingReload.addEventListener('keyup', onStartupControlKey);
+        }
+        if (
+          fatalReload !== null &&
+          fatalReload instanceof HTMLElement &&
+          typeof fatalReload.addEventListener === 'function'
+        ) fatalReload.addEventListener('click', reload);
+        if (
+          fatalReload !== null &&
+          fatalReload instanceof HTMLElement &&
+          typeof fatalReload.addEventListener === 'function'
+        ) {
+          fatalReload.addEventListener('keydown', onStartupControlKey);
+          fatalReload.addEventListener('keyup', onStartupControlKey);
+        }
+        const bindFrameListeners = () => {
+          canvas = resolvePrimaryCanvas();
+          if (canvas !== null && typeof canvas.addEventListener === 'function') {
+            canvas.addEventListener('forgeax:frame-submitted', onSubmitted);
+            canvas.addEventListener('forgeax:frame-completed', onCompleted);
+          }
+          if (typeof document.addEventListener === 'function') {
+            document.addEventListener('forgeax:frame-submitted', onSubmitted, true);
+            document.addEventListener('forgeax:frame-completed', onCompleted, true);
+          }
+          adoptExistingSubmitted();
+        };
+        if (gamePage) {
+          bindFrameListeners();
+          window.addEventListener('visibilitychange', onVisibilityChange);
+          window.addEventListener('pagehide', onPageHide);
+          bindStartupInputCapture();
+        }
+        if (fatalEnabled) {
+          // Keep module/resource errors observable even when a workspace or
+          // preview page intentionally starts with no loading overlay.
+          window.addEventListener('error', onError, { capture: true });
+          window.addEventListener('unhandledrejection', onUnhandledRejection);
+        }
+        if (gamePage) {
+          armSlowTimer();
+        } else {
+          setDisplay(overlayNode(loading), 'none');
+          if (typeof document.addEventListener === 'function') {
+            document.addEventListener('forgeax:frame-submitted', () => announceFrame(FRAME_READY_TYPE), true);
+          }
+        }
+        const bindSession = (session) => {
+          if (typeof session !== 'string' || session.length === 0) return;
+          if (phase === 'entered' || phase === 'failed' || phase === 'destroyed') return;
+          if (expectedSession === session) return;
+          expectedSession = session;
+          sessionGeneration += 1;
+          latestSubmitted = undefined;
+          submittedFrames = new Set();
+          if (phase === 'loading' || phase === 'preparing' || phase === 'fading') {
+            accountForegroundTime();
+            clearStartupWork();
+            phase = 'loading';
+            setInputEnabled(false);
+            setDisplay(overlayNode(loading), 'grid');
+            setDisplay(fatalNode(fatal), 'none');
+            setAttribute(overlayNode(loading), 'aria-hidden', 'false');
+            setAttribute(overlayNode(loading), 'data-fading', 'false');
+            setText(loadingStatus, 'Loading…');
+            armSlowTimer();
+          }
+        };
+        globalThis.__forgeaxStartup = Object.freeze({
+          prepare,
+          enter,
+          fail: show,
+          destroy,
+          bindInput,
+          bindSession,
+          subscribeProgress,
+          progress: applyHostProgress,
+        });
+      })();
+    
+    </script>
+    <script>
+      (() => {
+        // This inert marker keeps generated pages inspectable by older hosts
+        // that only parse the fatal diagnostic hook.
+        const startupFailureText = 'ForgeaX game failed to start.\n' + 'Unable to start the game.';
+        void startupFailureText;
+      })();
+    </script>
+    <script>
+      (() => {
+        const check = async () => {
+          let ok = false;
+          try {
+            ok = !!(navigator.gpu && await navigator.gpu.requestAdapter());
+          } catch {
+            ok = false;
+          }
+          if (ok) return;
+          const fail = globalThis.__forgeaxStartup?.fail;
+          if (typeof fail === 'function') {
+            fail({
+              name: 'WebGPUUnavailable',
+              message: 'This demo needs WebGPU',
+              code: 'webgpu-unavailable',
+              hint: 'Open in Chrome or Edge (latest), or Safari 26+ / Firefox with WebGPU enabled.',
+            });
+          }
+        };
+        void check();
+      })();
+    </script>
+    <script type="module">
+      (() => {
+        const preferred = document.querySelector('#app');
+        const marked = document.querySelector('canvas[data-forgeax-shell-canvas]');
+        const listed = document.querySelectorAll('canvas');
+        const canvas = preferred instanceof HTMLCanvasElement
+          ? preferred
+          : marked instanceof HTMLCanvasElement
+            ? marked
+            : listed.length === 1 && listed[0] instanceof HTMLCanvasElement
+              ? listed[0]
+              : listed[0] instanceof HTMLCanvasElement ? listed[0] : null;
+        if (!canvas || canvas.tagName !== 'CANVAS') return;
+        canvas.setAttribute('data-forgeax-shell-canvas', 'primary');
+        const fit = () => {
+          const ratio = window.devicePixelRatio || 1;
+          const width = Math.max(1, Math.round(canvas.clientWidth * ratio));
+          const height = Math.max(1, Math.round(canvas.clientHeight * ratio));
+          if (canvas.width !== width || canvas.height !== height) {
+            canvas.width = width;
+            canvas.height = height;
+          }
+        };
+        const resize = () => {
+          fit();
+          window.dispatchEvent(new Event('resize'));
+        };
+        fit();
+        if (window.ResizeObserver) {
+          try { new ResizeObserver(resize).observe(canvas); } catch { /* layout host only */ }
+        }
+        addEventListener('resize', fit);
+        requestAnimationFrame(resize);
+      })();
+    </script>
   </body>
 </html>
